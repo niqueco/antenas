@@ -18,9 +18,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -134,10 +132,37 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	
 	final private float[] r = new float[9];
 	final private float[] values = new float[3];
+	final private float[] r2 = new float[9];
 	void nuevaOrientación()
 	{
-		SensorManager.getRotationMatrix(r  , null, gravity, geomagnetic);
-		SensorManager.getOrientation(r, values);
+		SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
+		@SuppressWarnings("deprecation")
+		int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
+		int axisX;
+		int axisY;
+		switch(rotation)
+		{
+			case Surface.ROTATION_0:
+				axisX = SensorManager.AXIS_X;
+				axisY = SensorManager.AXIS_Y;
+				break;
+			case Surface.ROTATION_90:
+				axisX = SensorManager.AXIS_Y;
+				axisY = SensorManager.AXIS_MINUS_X;
+				break;
+			case Surface.ROTATION_180:
+				axisX = SensorManager.AXIS_MINUS_X;
+				axisY = SensorManager.AXIS_MINUS_Y;
+				break;
+			case Surface.ROTATION_270:
+				axisX = SensorManager.AXIS_MINUS_Y;
+				axisY = SensorManager.AXIS_X;
+				break;
+			default:
+				throw new RuntimeException("rot: " + rotation);
+		}
+		SensorManager.remapCoordinateSystem(r, axisX, axisY, r2);
+		SensorManager.getOrientation(r2, values);
 		double brújula = Math.toDegrees(values[0]);
 		if(brújula < 0)
 			brújula += 360;
