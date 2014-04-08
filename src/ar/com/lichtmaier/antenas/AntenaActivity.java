@@ -17,10 +17,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AntenaActivity extends ActionBarActivity implements SensorEventListener
 {
@@ -45,8 +43,6 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		@Override
 		public void onLocationChanged(Location location)
 		{
-			Log.e("antenas", "location: "  + location);
-			Toast.makeText(AntenaActivity.this, "location: "  + location, Toast.LENGTH_SHORT).show();
 			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 			nuevaUbicación();
 		}
