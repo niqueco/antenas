@@ -188,6 +188,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			}
 		}
 		NumberFormat nf = NumberFormat.getNumberInstance(new Locale("es", "AR"));
+		nf.setMaximumFractionDigits(1);
 		LayoutInflater inf = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		for(Antena a : antenasCerca)
 		{
