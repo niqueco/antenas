@@ -1,17 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ar.com.lichtmaier.tda.AntenaActivity">
+    tools:context="ar.com.lichtmaier.antenas.MapaActivity">
 
     <item
-        android:id="@+id/action_mapa"
-        android:title="@string/action_mapa"
-        app:showAsAction="ifRoom"
-        />
-
-    <!-- <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never"/> -->
+        app:showAsAction="never"/>
+
 </menu>

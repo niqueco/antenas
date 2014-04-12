@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -24,7 +25,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 {
 	final private Map<Antena, View> antenaAVista = new HashMap<>();
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
-	private GlobalCoordinates coordsUsuario;
+	static GlobalCoordinates coordsUsuario;
 	final private float[] gravity = new float[3];
 	final private float[] geomagnetic = new float[3];
 	private SensorManager sensorManager;
@@ -87,7 +88,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 	}
 
-	/*@Override
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.antena, menu);
@@ -98,12 +99,16 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		int id = item.getItemId();
-		if(id == R.id.action_settings)
+		switch(id)
 		{
-			return true;
+			case R.id.action_settings:
+				return true;
+			case R.id.action_mapa:
+				Intent i = new Intent(this, MapaActivity.class);
+				startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
-	}*/
+	}
 
 	protected void onResume()
 	{

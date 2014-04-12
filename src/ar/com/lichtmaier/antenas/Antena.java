@@ -12,6 +12,8 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import android.content.Context;
 import android.content.res.XmlResourceParser;
 
@@ -36,6 +38,11 @@ public class Antena implements Serializable
 	public String toString()
 	{
 		return descripción;
+	}
+
+	public LatLng getLatLng()
+	{
+		return new LatLng(c.getLatitude(), c.getLongitude());
 	}
 
 	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario)
@@ -93,5 +100,12 @@ public class Antena implements Serializable
 		rumboCacheado = curva.getAzimuth();
 		distCacheada = curva.getEllipsoidalDistance();
 		coordsCache = coords;
+	}
+
+	public static List<Antena> dameAntenas(Context ctx)
+	{
+		if(antenas.isEmpty())
+			cargar(ctx);
+		return antenas;
 	}
 }
