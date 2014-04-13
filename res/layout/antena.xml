@@ -13,7 +13,9 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/flecha"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:fontFamily="sans-serif-light"
+        />
 
     <TextView
         android:id="@+id/antena_dist"
