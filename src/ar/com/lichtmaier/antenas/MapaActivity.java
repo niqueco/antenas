@@ -8,6 +8,7 @@ import android.view.*;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -76,9 +77,7 @@ public class MapaActivity extends ActionBarActivity
 			if(AntenaActivity.coordsUsuario != null)
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
 			for(Antena antena : Antena.dameAntenas(getActivity()))
-			{
-				mapa.addMarker(new MarkerOptions().position(antena.getLatLng()).title(antena.toString()));
-			}
+				mapa.addMarker(new MarkerOptions().position(antena.getLatLng()).title(antena.toString()).icon(BitmapDescriptorFactory.fromResource(R.drawable.antena)));
 		}
 	}
 }
