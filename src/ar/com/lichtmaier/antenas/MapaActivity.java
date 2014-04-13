@@ -1,10 +1,8 @@
 package ar.com.lichtmaier.antenas;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.AttributeSet;
 import android.view.*;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,15 +27,12 @@ public class MapaActivity extends ActionBarActivity
 		}
 	}
 
-	@Override
+	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-
-		// Inflate the menu; this adds items to the action bar if it is
-		// present.
 		getMenuInflater().inflate(R.menu.mapa, menu);
 		return true;
-	}
+	}*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
