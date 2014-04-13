@@ -6,6 +6,12 @@ import java.util.Map.Entry;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationRequest;
+
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -16,12 +22,13 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
 import android.widget.TextView;
 
-public class AntenaActivity extends ActionBarActivity implements SensorEventListener
+public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
 {
 	final private Map<Antena, View> antenaAVista = new HashMap<>();
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
@@ -32,6 +39,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	private Sensor acelerómetro;
 	private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
+
+	private LocationManager locationManager;
+	private LocationRequest locationRequest;
 
 	private final LocationListener locationListener = new LocationListener() {
 		@Override
@@ -44,11 +54,12 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		@Override
 		public void onLocationChanged(Location location)
 		{
+			if(location.getAccuracy() > 300)
+				return;
 			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 			nuevaUbicación();
 		}
 	};
-	private LocationManager locationManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -60,19 +71,37 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		if(Build.VERSION.SDK_INT < 8 && GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS)
+		{
+			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		} else
+		{
+			locationClient = new LocationClient(this, this, this);
+			locationRequest = LocationRequest.create();
+			locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+			locationRequest.setInterval(10000);
+			locationRequest.setFastestInterval(2000);
+		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
 		{
 			coordsUsuario = new GlobalCoordinates(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
 			nuevaUbicación();
-		} else
+		} else if(locationClient == null)
 		{
 			Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-			if(location != null)
+			if(location != null && location.getAccuracy() < 300)
 			{
 				coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 				nuevaUbicación();
+			} else
+			{
+				locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				if(location != null && location.getAccuracy() < 300)
+				{
+					coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+					nuevaUbicación();
+				}
 			}
 		}
 	}
@@ -110,6 +139,14 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		if(locationClient != null)
+			locationClient.connect();
+	}
+
 	protected void onResume()
 	{
 		super.onResume();
@@ -118,7 +155,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		Criteria criteria = new Criteria();
 		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 		criteria.setCostAllowed(true);
-		Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
+		if(locationManager != null)
+			Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
 	}
 
 	@Override
@@ -127,13 +165,23 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		hayInfoDeAcelerómetro = false;
 		hayInfoDeMagnetómetro = false;
 		sensorManager.unregisterListener(this);
-		locationManager.removeUpdates(locationListener);
+		if(locationManager != null)
+			locationManager.removeUpdates(locationListener);
 		super.onPause();
+	}
+
+	@Override
+	protected void onStop()
+	{
+		if(locationClient != null)
+			locationClient.disconnect();
+		super.onStop();
 	}
 	
 	final private float[] r = new float[9];
 	final private float[] values = new float[3];
 	final private float[] r2 = new float[9];
+	private LocationClient locationClient;
 	void nuevaOrientación()
 	{
 		SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
@@ -239,5 +287,34 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				vistaAAntena.put(v, a);
 			}
 		}
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0)
+	{
+	}
+
+	@Override
+	public void onConnected(Bundle arg0)
+	{
+		Location location = locationClient.getLastLocation();
+		if(location != null)
+		{
+			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+			nuevaUbicación();
+		}
+		locationClient.requestLocationUpdates(locationRequest, this);
+	}
+
+	@Override
+	public void onDisconnected()
+	{
+	}
+
+	@Override
+	public void onLocationChanged(Location location)
+	{
+		coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+		nuevaUbicación();
 	}
 }
