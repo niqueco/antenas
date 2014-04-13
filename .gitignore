@@ -1,4 +1,4 @@
 bin/**
-gen/**
+gen
 proguard/
 /local.properties
