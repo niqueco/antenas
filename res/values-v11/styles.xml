@@ -8,4 +8,10 @@
         <!-- API 11 theme customizations can go here. -->
     </style>
 
+    <style name="TemaMapa" parent="Theme.AppCompat.Light">
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="actionBarStyle">@style/ActionBarMapa</item>
+        <item name="android:actionBarStyle">@style/ActionBarMapa</item>
+    </style>
 </resources>

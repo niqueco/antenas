@@ -48,6 +48,7 @@
         <activity
             android:name="ar.com.lichtmaier.antenas.MapaActivity"
             android:label="@string/title_activity_mapa"
+            android:theme="@style/TemaMapa"
             android:parentActivityName="ar.com.lichtmaier.antenas.AntenaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

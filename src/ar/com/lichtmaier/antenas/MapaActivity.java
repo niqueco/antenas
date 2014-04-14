@@ -78,6 +78,14 @@ public class MapaActivity extends ActionBarActivity
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
 			for(Antena antena : Antena.dameAntenas(getActivity()))
 				mapa.addMarker(new MarkerOptions().position(antena.getLatLng()).title(antena.toString()).icon(BitmapDescriptorFactory.fromResource(R.drawable.antena)));
+			getActivity().findViewById(R.id.map).post(new Runnable() {
+				@Override
+				public void run()
+				{
+					int height = ((ActionBarActivity)getActivity()).getSupportActionBar().getHeight();
+					mapa.setPadding(0, height, 0, 0);
+				}
+			});
 		}
 	}
 }
