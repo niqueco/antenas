@@ -9,8 +9,9 @@ import android.view.View;
 
 public class FlechaView extends View
 {
+	private static final int ANCHO = 12;
 	private double ángulo;
-	final private Paint pinturaFlecha;
+	final private Paint pinturaFlecha, pinturaFondo;
 	private float cx, cy, z;
 	private float[] líneasFlecha;
 
@@ -20,8 +21,10 @@ public class FlechaView extends View
 		float density = getResources().getDisplayMetrics().density;
 		pinturaFlecha = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinturaFlecha.setARGB(255, 102, 153, 0);
-		pinturaFlecha.setStrokeWidth(5 * density);
-		pinturaFlecha.setStrokeCap(Cap.ROUND);
+		pinturaFlecha.setStrokeWidth((ANCHO / 2) * density);
+		pinturaFlecha.setStrokeCap(Cap.ROUND); 
+		pinturaFondo = new Paint(Paint.ANTI_ALIAS_FLAG);
+		pinturaFondo.setARGB(10, 0, 0, 0);
 		int z = (int)(100 * density);
 		setMinimumHeight(z);
 		setMinimumWidth(z);
@@ -78,6 +81,7 @@ public class FlechaView extends View
 		canvas.save();
 		canvas.translate(cx, cy);
 		canvas.rotate((float)ángulo);
+		canvas.drawCircle(0, 0, z + ANCHO / 2, pinturaFondo);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
 		canvas.restore();
 	}
