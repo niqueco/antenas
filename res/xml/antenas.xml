@@ -1,92 +1,92 @@
 <antenas>
-<antena lat='-34.064211111111' lon='-60.070902777778' desc='Buenos Aires - Arrecifes' id='1'/>
-<antena lat='-36.731866666667' lon='-59.879483333333' desc='Buenos Aires - Azul' id='2'/>
-<antena lat='-38.7116776' lon='-62.2680778' desc='Buenos Aires - Bahía Blanca' id='85'/>
-<antena lat='-33.784327777778' lon='-59.536972222222' desc='Buenos Aires - Baradero' id='3'/>
-<antena lat='-34.237416666667' lon='-58.95995' desc='Buenos Aires - Campana' id='4'/>
-<antena lat='-35.025394444444' lon='-58.732730555556' desc='Buenos Aires - Cañuelas' id='5'/>
-<antena lat='-34.6359329' lon='-60.4651222' desc='Buenos Aires - Chacabuco' id='86'/>
-<antena lat='-35.586588888889' lon='-57.965833333333' desc='Buenos Aires - Chascomús' id='6'/>
-<antena lat='-34.860461111111' lon='-60.000022222222' desc='Buenos Aires - Chivilcoy' id='7'/>
-<antena lat='-35.119425' lon='-58.245525' desc='Buenos Aires - Coronel Brandsen' id='8'/>
-<antena lat='-37.5001' lon='-61.940847222222' desc='Buenos Aires - Coronel Suárez' id='9'/>
-<antena lat='-36.271927777778' lon='-57.685522222222' desc='Buenos Aires - Dolores' id='10'/>
-<antena lat='-34.663138888889' lon='-58.567844444444' desc='Buenos Aires - La Matanza' id='11'/>
-<antena lat='-34.942580555556' lon='-57.974741666667' desc='Buenos Aires - La Plata' id='12'/>
-<antena lat='-36.026388888889' lon='-59.075833333333' desc='Buenos Aires - Las Flores' id='56'/>
-<antena lat='-35.021944444444' lon='-61.002222222222' desc='Buenos Aires - Los Toldos' id='57'/>
-<antena lat='-34.549433333333' lon='-59.151727777778' desc='Buenos Aires - Luján' id='13'/>
-<antena lat='-37.887583333333' lon='-57.529944444444' desc='Buenos Aires - Mar del Plata' id='14'/>
-<antena lat='-34.977583333333' lon='-59.298611111111' desc='Buenos Aires - Navarro' id='15'/>
-<antena lat='-38.559886111111' lon='-58.668216666667' desc='Buenos Aires - Necochea' id='16'/>
-<antena lat='-36.878288888889' lon='-60.362702777778' desc='Buenos Aires - Olavarría' id='17'/>
-<antena lat='-35.810018' lon='-61.895814' desc='Buenos Aires - Pehuajó' id='87'/>
-<antena lat='-37.117222222222' lon='-56.896666666667' desc='Buenos Aires - Pinamar' id='18'/>
-<antena lat='-36.224888' lon='-61.106472' desc='Buenos Aires - San Carlos de Bolivar' id='88'/>
-<antena lat='-36.379741666667' lon='-56.745216666667' desc='Buenos Aires - San Clemente del Tuyú (General Lavalle)' id='58'/>
-<antena lat='-35.430891666667' lon='-58.794302777778' desc='Buenos Aires - San Miguel del Monte' id='19'/>
-<antena lat='-33.338741666667' lon='-60.2009' desc='Buenos Aires - San Nicolás de los Arroyos' id='20'/>
-<antena lat='-35.914333333333' lon='-62.734883333333' desc='Buenos Aires - Trenque Lauquen' id='21'/>
-<antena lat='-34.498016666666665' lon='-61.558474999999994' desc='Buenos Aires - Vedia' id='79'/>
-<antena lat='-34.561552777778' lon='-58.512188888889' desc='Buenos Aires - Villa Martelli' id='59'/>
-<antena lat='-36.7167' lon='-56.6667' desc='Buenos Aires - Mar de Ajó' id='92'/>
+<antena lat='-34.064211111111' lon='-60.070902777778' desc='Arrecifes' id='1'/>
+<antena lat='-36.731866666667' lon='-59.879483333333' desc='Azul' id='2'/>
+<antena lat='-38.7116776' lon='-62.2680778' desc='Bahía Blanca' id='85'/>
+<antena lat='-33.784327777778' lon='-59.536972222222' desc='Baradero' id='3'/>
+<antena lat='-34.237416666667' lon='-58.95995' desc='Campana' id='4'/>
+<antena lat='-35.025394444444' lon='-58.732730555556' desc='Cañuelas' id='5'/>
+<antena lat='-34.6359329' lon='-60.4651222' desc='Chacabuco' id='86'/>
+<antena lat='-35.586588888889' lon='-57.965833333333' desc='Chascomús' id='6'/>
+<antena lat='-34.860461111111' lon='-60.000022222222' desc='Chivilcoy' id='7'/>
+<antena lat='-35.119425' lon='-58.245525' desc='Coronel Brandsen' id='8'/>
+<antena lat='-37.5001' lon='-61.940847222222' desc='Coronel Suárez' id='9'/>
+<antena lat='-36.271927777778' lon='-57.685522222222' desc='Dolores' id='10'/>
+<antena lat='-34.663138888889' lon='-58.567844444444' desc='La Matanza' id='11'/>
+<antena lat='-34.942580555556' lon='-57.974741666667' desc='La Plata' id='12'/>
+<antena lat='-36.026388888889' lon='-59.075833333333' desc='Las Flores' id='56'/>
+<antena lat='-35.021944444444' lon='-61.002222222222' desc='Los Toldos' id='57'/>
+<antena lat='-34.549433333333' lon='-59.151727777778' desc='Luján' id='13'/>
+<antena lat='-37.887583333333' lon='-57.529944444444' desc='Mar del Plata' id='14'/>
+<antena lat='-34.977583333333' lon='-59.298611111111' desc='Navarro' id='15'/>
+<antena lat='-38.559886111111' lon='-58.668216666667' desc='Necochea' id='16'/>
+<antena lat='-36.878288888889' lon='-60.362702777778' desc='Olavarría' id='17'/>
+<antena lat='-35.810018' lon='-61.895814' desc='Pehuajó' id='87'/>
+<antena lat='-37.117222222222' lon='-56.896666666667' desc='Pinamar' id='18'/>
+<antena lat='-36.224888' lon='-61.106472' desc='San Carlos de Bolivar' id='88'/>
+<antena lat='-36.379741666667' lon='-56.745216666667' desc='San Clemente del Tuyú (General Lavalle)' id='58'/>
+<antena lat='-35.430891666667' lon='-58.794302777778' desc='San Miguel del Monte' id='19'/>
+<antena lat='-33.338741666667' lon='-60.2009' desc='San Nicolás de los Arroyos' id='20'/>
+<antena lat='-35.914333333333' lon='-62.734883333333' desc='Trenque Lauquen' id='21'/>
+<antena lat='-34.498016666666665' lon='-61.558474999999994' desc='Vedia' id='79'/>
+<antena lat='-34.561552777778' lon='-58.512188888889' desc='Villa Martelli' id='59'/>
+<antena lat='-36.7167' lon='-56.6667' desc='Mar de Ajó' id='92'/>
 <antena lat='-37.83333' lon='-58.25' desc='Buenos Aires -Balcarce' id='91'/>
 <antena lat='-36.3667' lon='-56.7167' desc='Buenos Aires- san clemente del tuyu' id='94'/>
 <antena lat='-34.6417' lon='-60.4739' desc='Buenos Aires-Chacabuco' id='100'/>
-<antena lat='-28.534266666667' lon='-65.613116666667' desc='Catamarca - San Fernando del Valle de Catamarca' id='42'/>
-<antena lat='-27.364305555556' lon='-59.076952777778' desc='Chaco - Resistencia' id='34'/>
-<antena lat='-27.595916666667' lon='-60.747116666667' desc='Chaco - Villa Ángela' id='33'/>
-<antena lat='-45.854747222222' lon='-67.487930555556' desc='Chubut - Comodoro Rivadavia' id='51'/>
-<antena lat='-43.28085' lon='-65.151577777778' desc='Chubut - Rawson (Trelew)' id='68'/>
-<antena lat='-51.394' lon='-70.6055' desc='Chubut-Lago Puelo' id='99'/>
-<antena lat='-34.599472222222' lon='-58.370444444444' desc='Ciudad Aut - Ciudad Aut (Edificio Alas)' id='60'/>
-<antena lat='-34.612172222222' lon='-58.381294444444' desc='Ciudad Aut - Ciudad Aut (MOP)' id='61'/>
-<antena lat='-31.414513888889' lon='-64.426627777778' desc='Córdoba - Cerro Mogote de los Congos' id='62'/>
-<antena lat='-32.671411111111' lon='-62.31485' desc='Córdoba - Leones' id='23'/>
-<antena lat='-31.97885' lon='-65.2346' desc='Córdoba - Villa Dolores' id='47'/>
-<antena lat='-32.465361111111' lon='-63.192472222222' desc='Córdoba - Villa María' id='24'/>
-<antena lat='-31.457913888889' lon='-62.064658333333' desc='Santa Fe - Frontera (San Francisco)' id='63'/>
-<antena lat='-28.550638' lon='-56.045594' desc='Corrientes - Santo Tomé' id='90'/>
-<antena lat='-31.391011' lon='-58.016868' desc='Entre Rios - Concordia' id='89'/>
-<antena lat='-33.051222222222' lon='-58.541416666667' desc='Entre Ríos - Gualeguaychú' id='25'/>
-<antena lat='-31.759777777778' lon='-60.537411111111' desc='Entre Ríos - Paraná' id='26'/>
-<antena lat='-25.323888888889' lon='-57.7196' desc='Formosa - Clorinda' id='35'/>
-<antena lat='-26.129230555556' lon='-58.162797222222' desc='Formosa - Formosa' id='36'/>
+<antena lat='-28.534266666667' lon='-65.613116666667' desc='San Fernando del Valle de Catamarca' id='42'/>
+<antena lat='-27.364305555556' lon='-59.076952777778' desc='Resistencia' id='34'/>
+<antena lat='-27.595916666667' lon='-60.747116666667' desc='Villa Ángela' id='33'/>
+<antena lat='-45.854747222222' lon='-67.487930555556' desc='Comodoro Rivadavia' id='51'/>
+<antena lat='-43.28085' lon='-65.151577777778' desc='Rawson' id='68'/>
+<antena lat='-51.394' lon='-70.6055' desc='Lago Puelo' id='99'/>
+<antena lat='-34.599472222222' lon='-58.370444444444' desc='Edificio Alas' id='60'/>
+<antena lat='-34.612172222222' lon='-58.381294444444' desc='MOP' id='61'/>
+<antena lat='-31.414513888889' lon='-64.426627777778' desc='Cerro Mogote de los Congos' id='62'/>
+<antena lat='-32.671411111111' lon='-62.31485' desc='Leones' id='23'/>
+<antena lat='-31.97885' lon='-65.2346' desc='Villa Dolores' id='47'/>
+<antena lat='-32.465361111111' lon='-63.192472222222' desc='Villa María' id='24'/>
+<antena lat='-31.457913888889' lon='-62.064658333333' desc='Frontera (San Francisco)' id='63'/>
+<antena lat='-28.550638' lon='-56.045594' desc='Santo Tomé' id='90'/>
+<antena lat='-31.391011' lon='-58.016868' desc='Concordia' id='89'/>
+<antena lat='-33.051222222222' lon='-58.541416666667' desc='Gualeguaychú' id='25'/>
+<antena lat='-31.759777777778' lon='-60.537411111111' desc='Paraná' id='26'/>
+<antena lat='-25.323888888889' lon='-57.7196' desc='Clorinda' id='35'/>
+<antena lat='-26.129230555556' lon='-58.162797222222' desc='Formosa' id='36'/>
 <antena lat='-25.1333' lon='-58.25' desc='Formosa- Laguna Blanca' id='95'/>
-<antena lat='-24.186169444444' lon='-65.333486111111' desc='Jujuy - San Salvador de Jujuy' id='38'/>
-<antena lat='-36.665952777778' lon='-64.287866666667' desc='La Pampa - Santa Rosa' id='27'/>
-<antena lat='-29.426083333333' lon='-66.873583333333' desc='La Rioja - La Rioja' id='43'/>
-<antena lat='-32.836591666667' lon='-68.934741666667' desc='Mendoza - Cerro Arco' id='66'/>
-<antena lat='-35.033283333333' lon='-67.656466666667' desc='Mendoza - General Alvear' id='44'/>
-<antena lat='-34.666466666667' lon='-68.314216666667' desc='Mendoza - San Rafael' id='45'/>
-<antena lat='-34.385441666666665' lon='-69.16375833333333' desc='mendoza -tupungato' id='80'/>
-<antena lat='-27.478333333333' lon='-55.8625' desc='Misiones - Posadas' id='37'/>
-<antena lat='-38.938333333333' lon='-68.055472222222' desc='Neuquén - Neuquén' id='49'/>
-<antena lat='-41.134388888889' lon='-71.276597222222' desc='Río Negro - San Carlos de Bariloche' id='52'/>
-<antena lat='-40.793408333333' lon='-63.052261111111' desc='Río Negro - Viedma' id='50'/>
+<antena lat='-24.186169444444' lon='-65.333486111111' desc='San Salvador de Jujuy' id='38'/>
+<antena lat='-36.665952777778' lon='-64.287866666667' desc='Santa Rosa' id='27'/>
+<antena lat='-29.426083333333' lon='-66.873583333333' desc='La Rioja' id='43'/>
+<antena lat='-32.836591666667' lon='-68.934741666667' desc='Cerro Arco' id='66'/>
+<antena lat='-35.033283333333' lon='-67.656466666667' desc='General Alvear' id='44'/>
+<antena lat='-34.666466666667' lon='-68.314216666667' desc='San Rafael' id='45'/>
+<antena lat='-34.385441666666665' lon='-69.16375833333333' desc='Tupungato' id='80'/>
+<antena lat='-27.478333333333' lon='-55.8625' desc='Posadas' id='37'/>
+<antena lat='-38.938333333333' lon='-68.055472222222' desc='Neuquén' id='49'/>
+<antena lat='-41.134388888889' lon='-71.276597222222' desc='San Carlos de Bariloche' id='52'/>
+<antena lat='-40.793408333333' lon='-63.052261111111' desc='Viedma' id='50'/>
 <antena lat='-40.385441666666665' lon='-64.92583888888889' desc='Rio Negro-San Antonio Oeste' id='81'/>
 <antena lat='-39.0667' lon='-67.3' desc='Rio Negro- Mainque' id='96'/>
-<antena lat='-24.782108333333' lon='-65.3948' desc='Salta - Cerro 20 de Febrero' id='64'/>
-<antena lat='-30.171277777778' lon='-68.712416666667' desc='San Juan - San José de Jachal' id='67'/>
-<antena lat='-31.517' lon='-68.629316666667' desc='San Juan - San Juan' id='46'/>
-<antena lat='-33.295583333333' lon='-66.286361111111' desc='San Luis - San Luis' id='48'/>
-<antena lat='-49.963727777778' lon='-68.912430555556' desc='Santa Cruz - Comandante Luis Piedra Buena' id='69'/>
-<antena lat='-46.79841' lon='-67.9670' desc='Santa Cruz - Pico Truncado' id='72'/>
-<antena lat='-47.74275' lon='-65.872333333333' desc='Santa Cruz - Puerto Deseado' id='53'/>
-<antena lat='-51.670747222222' lon='-69.231416666667' desc='Santa Cruz - Río Gallegos' id='54'/>
-<antena lat='-51.53520' lon='-72.3356' desc='Santa Cruz - Río Turbio' id='70'/>
-<antena lat='-49.3059' lon='-67.7295' desc='Santa Cruz - San Julián' id='71'/>
-<antena lat='-46.4333' lon='-67.5333' desc='Santa Cruz -Caleta Olivia' id='98'/>
-<antena lat='-51.670069444444444' lon='-69.23168055555556' desc='Santa Cruz -Rio Gallegos' id='83'/>
-<antena lat='-32.817080555556' lon='-61.412980555556' desc='Santa Fe - Cañada de Gómez' id='28'/>
-<antena lat='-29.938327777778' lon='-61.898833333333' desc='Santa Fe - Ceres' id='29'/>
-<antena lat='-31.223463888889' lon='-61.469469444444' desc='Santa Fe - Rafaela' id='30'/>
-<antena lat='-33.013983333333' lon='-60.629416666667' desc='Santa Fe - Rosario' id='31'/>
-<antena lat='-31.695888888889' lon='-60.749738888889' desc='Santa Fe - Santo Tomé' id='32'/>
-<antena lat='-28.455111111111' lon='-62.843111111111' desc='Santiago del Estero - Añatuya' id='39'/>
-<antena lat='-27.63575' lon='-62.425' desc='Santiago del Estero - Quimilí' id='40'/>
-<antena lat='-27.882194444444' lon='-64.241611111111' desc='Santiago del Estero - Santiago del Estero' id='41'/>
-<antena lat='-54.80105' lon='-68.221886111111' desc='Tierra del Fuego - Ushuaia' id='55'/>
-<antena lat='-26.847861111111' lon='-65.376583333333' desc='Tucumán - Cerro San Javier' id='65'/>
+<antena lat='-24.782108333333' lon='-65.3948' desc='Cerro 20 de Febrero' id='64'/>
+<antena lat='-30.171277777778' lon='-68.712416666667' desc='San José de Jachal' id='67'/>
+<antena lat='-31.517' lon='-68.629316666667' desc='San Juan' id='46'/>
+<antena lat='-33.295583333333' lon='-66.286361111111' desc='San Luis' id='48'/>
+<antena lat='-49.963727777778' lon='-68.912430555556' desc='Comandante Luis Piedra Buena' id='69'/>
+<antena lat='-46.79841' lon='-67.9670' desc='Pico Truncado' id='72'/>
+<antena lat='-47.74275' lon='-65.872333333333' desc='Puerto Deseado' id='53'/>
+<antena lat='-51.670747222222' lon='-69.231416666667' desc='Río Gallegos' id='54'/>
+<antena lat='-51.53520' lon='-72.3356' desc='Río Turbio' id='70'/>
+<antena lat='-49.3059' lon='-67.7295' desc='San Julián' id='71'/>
+<antena lat='-46.4333' lon='-67.5333' desc='Caleta Olivia' id='98'/>
+<antena lat='-51.670069444444444' lon='-69.23168055555556' desc='Rio Gallegos' id='83'/>
+<antena lat='-32.817080555556' lon='-61.412980555556' desc='Cañada de Gómez' id='28'/>
+<antena lat='-29.938327777778' lon='-61.898833333333' desc='Ceres' id='29'/>
+<antena lat='-31.223463888889' lon='-61.469469444444' desc='Rafaela' id='30'/>
+<antena lat='-33.013983333333' lon='-60.629416666667' desc='Rosario' id='31'/>
+<antena lat='-31.695888888889' lon='-60.749738888889' desc='Santo Tomé' id='32'/>
+<antena lat='-28.455111111111' lon='-62.843111111111' desc='Añatuya' id='39'/>
+<antena lat='-27.63575' lon='-62.425' desc='Quimilí' id='40'/>
+<antena lat='-27.882194444444' lon='-64.241611111111' desc='Santiago del Estero' id='41'/>
+<antena lat='-54.80105' lon='-68.221886111111' desc='Ushuaia' id='55'/>
+<antena lat='-26.847861111111' lon='-65.376583333333' desc='Cerro San Javier' id='65'/>
 <antena lat="-34.672834" lon="-58.449806" desc="Torre Espacial (Canal 26)" id ="99"/>
 </antenas>
