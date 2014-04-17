@@ -12,7 +12,7 @@ public class Compat
 
 	static {
 		if(Build.VERSION.SDK_INT >= 9)
-			impl = new CompatImpl();
+			impl = new CompatImplJB();
 		else
 			impl = new CompatImpl();
 	}
