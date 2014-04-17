@@ -2,8 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GeodeticCalculator;
@@ -45,6 +44,16 @@ public class Antena implements Serializable
 		return new LatLng(c.getLatitude(), c.getLongitude());
 	}
 
+	private static final class DistComparator implements Comparator<Antena>
+	{
+		@Override
+		public int compare(Antena lhs, Antena rhs)
+		{
+			return Double.compare(lhs.dist, rhs.dist);
+		}
+	}
+	final static private DistComparator distComparator = new DistComparator();
+
 	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario)
 	{
 		if(antenas.isEmpty())
@@ -53,6 +62,11 @@ public class Antena implements Serializable
 		for(Antena antena : antenas)
 			if((antena.dist = antena.distanceTo(coordsUsuario)) < 60000)
 				res.add(antena);
+		Collections.sort(res, distComparator);
+		ListIterator<Antena> it = res.listIterator(res.size());
+		while(it.previousIndex() > 4)
+			if(it.previous().dist > 30000)
+				it.remove();
 		return res;
 	}
 
