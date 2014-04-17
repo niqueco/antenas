@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/ar.com.lichtmaier.antenas"
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/antena_desc"
+    <LinearLayout
+        android:id="@+id/texto_antena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/flecha"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:fontFamily="sans-serif-light"
-        />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/antena_dist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/antena_desc"
-        android:layout_alignRight="@+id/antena_desc"
-        android:layout_below="@+id/antena_desc"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ff666666"/>
+        <TextView
+            android:id="@+id/antena_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#ffff"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/antena_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#fddd"/>
+    </LinearLayout>
 
     <ar.com.lichtmaier.antenas.FlechaView
         android:id="@+id/flecha"

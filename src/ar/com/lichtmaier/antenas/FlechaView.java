@@ -11,7 +11,7 @@ public class FlechaView extends View
 {
 	private static final int ANCHO = 12;
 	private double ángulo;
-	final private Paint pinturaFlecha, pinturaFondo;
+	final private Paint pinturaFlecha, pinturaBorde;
 	private float cx, cy, z;
 	private float[] líneasFlecha;
 
@@ -20,11 +20,13 @@ public class FlechaView extends View
 		super(context, attrs);
 		float density = getResources().getDisplayMetrics().density;
 		pinturaFlecha = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinturaFlecha.setARGB(255, 102, 153, 0);
+		pinturaFlecha.setColor(0xffffffff);
 		pinturaFlecha.setStrokeWidth((ANCHO / 2) * density);
 		pinturaFlecha.setStrokeCap(Cap.ROUND); 
-		pinturaFondo = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinturaFondo.setARGB(10, 0, 0, 0);
+		pinturaBorde = new Paint(Paint.ANTI_ALIAS_FLAG);
+		pinturaBorde.setARGB(100, 255, 255, 255);
+		pinturaBorde.setStrokeWidth(2 * density);
+		pinturaBorde.setStyle(Paint.Style.STROKE);
 		int z = (int)(100 * density);
 		setMinimumHeight(z);
 		setMinimumWidth(z);
@@ -81,7 +83,7 @@ public class FlechaView extends View
 		canvas.save();
 		canvas.translate(cx, cy);
 		canvas.rotate((float)ángulo);
-		canvas.drawCircle(0, 0, z + ANCHO / 2, pinturaFondo);
+		canvas.drawCircle(0, 0, z + ANCHO / 2, pinturaBorde);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
 		canvas.restore();
 	}
