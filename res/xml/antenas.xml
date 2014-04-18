@@ -29,10 +29,12 @@
 <antena lat='-35.914333333333' lon='-62.734883333333' desc='Trenque Lauquen' id='21'/>
 <antena lat='-34.498016666666665' lon='-61.558474999999994' desc='Vedia' id='79'/>
 <antena lat='-34.561552777778' lon='-58.512188888889' desc='Villa Martelli' id='59'/>
+<!--
 <antena lat='-36.7167' lon='-56.6667' desc='Mar de Ajó' id='92'/>
-<antena lat='-37.83333' lon='-58.25' desc='Buenos Aires -Balcarce' id='91'/>
-<antena lat='-36.3667' lon='-56.7167' desc='Buenos Aires- san clemente del tuyu' id='94'/>
-<antena lat='-34.6417' lon='-60.4739' desc='Buenos Aires-Chacabuco' id='100'/>
+<antena lat='-37.83333' lon='-58.25' desc='Balcarce' id='91'/>
+<antena lat='-36.3667' lon='-56.7167' desc='San Clemente del Tuyú' id='94'/>
+<antena lat='-34.6417' lon='-60.4739' desc='Chacabuco' id='100'/>
+-->
 <antena lat='-28.534266666667' lon='-65.613116666667' desc='San Fernando del Valle de Catamarca' id='42'/>
 <antena lat='-27.364305555556' lon='-59.076952777778' desc='Resistencia' id='34'/>
 <antena lat='-27.595916666667' lon='-60.747116666667' desc='Villa Ángela' id='33'/>
@@ -52,7 +54,7 @@
 <antena lat='-31.759777777778' lon='-60.537411111111' desc='Paraná' id='26'/>
 <antena lat='-25.323888888889' lon='-57.7196' desc='Clorinda' id='35'/>
 <antena lat='-26.129230555556' lon='-58.162797222222' desc='Formosa' id='36'/>
-<antena lat='-25.1333' lon='-58.25' desc='Formosa- Laguna Blanca' id='95'/>
+<antena lat='-25.1333' lon='-58.25' desc='Laguna Blanca' id='95'/>
 <antena lat='-24.186169444444' lon='-65.333486111111' desc='San Salvador de Jujuy' id='38'/>
 <antena lat='-36.665952777778' lon='-64.287866666667' desc='Santa Rosa' id='27'/>
 <antena lat='-29.426083333333' lon='-66.873583333333' desc='La Rioja' id='43'/>
@@ -64,19 +66,25 @@
 <antena lat='-38.938333333333' lon='-68.055472222222' desc='Neuquén' id='49'/>
 <antena lat='-41.134388888889' lon='-71.276597222222' desc='San Carlos de Bariloche' id='52'/>
 <antena lat='-40.793408333333' lon='-63.052261111111' desc='Viedma' id='50'/>
-<antena lat='-40.385441666666665' lon='-64.92583888888889' desc='Rio Negro-San Antonio Oeste' id='81'/>
-<antena lat='-39.0667' lon='-67.3' desc='Rio Negro- Mainque' id='96'/>
+<antena lat='-40.385441666666665' lon='-64.92583888888889' desc='San Antonio Oeste' id='81'/>
+<!--
+<antena lat='-39.0667' lon='-67.3' desc='Mainque' id='96'/>
+-->
 <antena lat='-24.782108333333' lon='-65.3948' desc='Cerro 20 de Febrero' id='64'/>
 <antena lat='-30.171277777778' lon='-68.712416666667' desc='San José de Jachal' id='67'/>
 <antena lat='-31.517' lon='-68.629316666667' desc='San Juan' id='46'/>
 <antena lat='-33.295583333333' lon='-66.286361111111' desc='San Luis' id='48'/>
 <antena lat='-49.963727777778' lon='-68.912430555556' desc='Comandante Luis Piedra Buena' id='69'/>
+<!--
 <antena lat='-46.79841' lon='-67.9670' desc='Pico Truncado' id='72'/>
+-->
 <antena lat='-47.74275' lon='-65.872333333333' desc='Puerto Deseado' id='53'/>
 <antena lat='-51.670747222222' lon='-69.231416666667' desc='Río Gallegos' id='54'/>
 <antena lat='-51.53520' lon='-72.3356' desc='Río Turbio' id='70'/>
 <antena lat='-49.3059' lon='-67.7295' desc='San Julián' id='71'/>
+<!--
 <antena lat='-46.4333' lon='-67.5333' desc='Caleta Olivia' id='98'/>
+-->
 <antena lat='-51.670069444444444' lon='-69.23168055555556' desc='Rio Gallegos' id='83'/>
 <antena lat='-32.817080555556' lon='-61.412980555556' desc='Cañada de Gómez' id='28'/>
 <antena lat='-29.938327777778' lon='-61.898833333333' desc='Ceres' id='29'/>
