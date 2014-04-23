@@ -10,9 +10,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.*;
 
 public class MapaActivity extends ActionBarActivity
 {
@@ -85,8 +83,9 @@ public class MapaActivity extends ActionBarActivity
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 			if(AntenaActivity.coordsUsuario != null)
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
+			BitmapDescriptor íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
 			for(Antena antena : Antena.dameAntenas(act))
-				mapa.addMarker(new MarkerOptions().position(antena.getLatLng()).title(antena.toString()).icon(BitmapDescriptorFactory.fromResource(R.drawable.antena)));
+				mapa.addMarker(new MarkerOptions().position(antena.getLatLng()).title(antena.toString()).icon(íconoAntenita));
 			act.findViewById(R.id.map).post(new Runnable() {
 				@Override
 				public void run()
