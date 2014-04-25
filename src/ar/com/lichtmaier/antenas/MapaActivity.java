@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.*;
 
 public class MapaActivity extends ActionBarActivity
 {
+	private static BitmapDescriptor íconoAntenita;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -83,7 +85,8 @@ public class MapaActivity extends ActionBarActivity
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 			if(AntenaActivity.coordsUsuario != null)
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
-			BitmapDescriptor íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
+			if(íconoAntenita == null)
+				íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
 			for(Antena antena : Antena.dameAntenas(act))
 				mapa.addMarker(new MarkerOptions().position(antena.getLatLng()).title(antena.toString()).icon(íconoAntenita));
 			act.findViewById(R.id.map).post(new Runnable() {
