@@ -58,6 +58,7 @@ public class FlechaView extends View
 				0, -z, 10 * density, 10 * density - z,
 				0, -z, -10 * density, 10 * density - z
 		};
+		Compat.disableHardwareAccelerationForLineCaps(this);
 	}
 	
 	@Override
