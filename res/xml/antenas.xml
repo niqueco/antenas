@@ -16,7 +16,7 @@
 <antena lat='-36.026388888889' lon='-59.075833333333' desc='Las Flores' id='56'/>
 <antena lat='-35.021944444444' lon='-61.002222222222' desc='Los Toldos' id='57'/>
 <antena lat='-34.549433333333' lon='-59.151727777778' desc='Luján' id='13'/>
-<antena lat='-37.887583333333' lon='-57.529944444444' desc='Mar del Plata' id='14'/>
+<antena lat='-37.887836' lon='-57.530417' desc='Mar del Plata' id='14'/>
 <antena lat='-34.977583333333' lon='-59.298611111111' desc='Navarro' id='15'/>
 <antena lat='-38.559886111111' lon='-58.668216666667' desc='Necochea' id='16'/>
 <antena lat='-36.878288888889' lon='-60.362702777778' desc='Olavarría' id='17'/>
@@ -89,7 +89,7 @@
 <antena lat='-32.817080555556' lon='-61.412980555556' desc='Cañada de Gómez' id='28'/>
 <antena lat='-29.938327777778' lon='-61.898833333333' desc='Ceres' id='29'/>
 <antena lat='-31.223463888889' lon='-61.469469444444' desc='Rafaela' id='30'/>
-<antena lat='-33.013983333333' lon='-60.629416666667' desc='Rosario' id='31'/>
+<antena lat='-33.014056' lon='-60.629917' desc='Rosario' id='31'/>
 <antena lat='-31.695888888889' lon='-60.749738888889' desc='Santo Tomé' id='32'/>
 <antena lat='-28.455111111111' lon='-62.843111111111' desc='Añatuya' id='39'/>
 <antena lat='-27.63575' lon='-62.425' desc='Quimilí' id='40'/>
