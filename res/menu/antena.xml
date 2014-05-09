@@ -6,6 +6,7 @@
     <item
         android:id="@+id/action_mapa"
         android:title="@string/action_mapa"
+        android:icon="@drawable/ic_action_mapa_antenas"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_settings"
