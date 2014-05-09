@@ -6,14 +6,9 @@ import java.util.Map.Entry;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.location.LocationRequest;
-
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -24,9 +19,16 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
 import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationRequest;
 
 public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
 {
@@ -66,6 +68,15 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_antena);
+
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+			@Override
+			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+			{
+				nuevaUbicación();
+			}
+		});
 
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -128,13 +139,17 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		int id = item.getItemId();
+		Intent i;
 		switch(id)
 		{
 			case R.id.action_settings:
+				i = new Intent(this, PreferenciasActivity.class);
+				startActivity(i);
 				return true;
 			case R.id.action_mapa:
-				Intent i = new Intent(this, MapaActivity.class);
+				i = new Intent(this, MapaActivity.class);
 				startActivity(i);
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -182,6 +197,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	final private float[] values = new float[3];
 	final private float[] r2 = new float[9];
 	private LocationClient locationClient;
+	private SharedPreferences prefs;
 	void nuevaOrientación()
 	{
 		SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
@@ -248,7 +264,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 
 	private void nuevaUbicación()
 	{
-		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario);
+		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
+				Integer.parseInt(prefs.getString("max_dist", "60")) * 1000,
+				prefs.getBoolean("menos", true));
 		Iterator<Entry<Antena, View>> it = antenaAVista.entrySet().iterator();
 		ViewGroup contenedor = (ViewGroup)findViewById(R.id.antenas);
 		while(it.hasNext())

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Antenas TDA</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Preferencias</string>
     <string name="title_activity_mapa">Mapa de antenas</string>
     <string name="action_mapa">Mapa</string>
 

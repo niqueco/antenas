@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import android.content.Context;
 import android.content.res.XmlResourceParser;
+import android.preference.PreferenceManager;
 
 public class Antena implements Serializable
 {
@@ -54,19 +55,23 @@ public class Antena implements Serializable
 	}
 	final static private DistComparator distComparator = new DistComparator();
 
-	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario)
+	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
 	{
 		if(antenas.isEmpty())
 			cargar(ctx);
 		List<Antena> res = new ArrayList<>();
+		PreferenceManager.getDefaultSharedPreferences(ctx);
 		for(Antena antena : antenas)
-			if((antena.dist = antena.distanceTo(coordsUsuario)) < 60000)
+			if((antena.dist = antena.distanceTo(coordsUsuario)) < maxDist)
 				res.add(antena);
 		Collections.sort(res, distComparator);
-		ListIterator<Antena> it = res.listIterator(res.size());
-		while(it.previousIndex() > 4)
-			if(it.previous().dist > 30000)
-				it.remove();
+		if(mostrarMenos)
+		{
+			ListIterator<Antena> it = res.listIterator(res.size());
+			while(it.previousIndex() > 4)
+				if(it.previous().dist > maxDist / 2)
+					it.remove();
+		}
 		return res;
 	}
 

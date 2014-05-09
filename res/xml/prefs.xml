@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Lista de antenas cercanas">
+        <ListPreference
+            android:defaultValue="60"
+            android:entries="@array/pref_max_dist_titles"
+            android:entryValues="@array/pref_max_dist_values"
+            android:key="max_dist"
+            android:title="@string/pref_max_dist_title"/>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="menos"
+            android:summary="@string/pref_menos_summary"
+            android:title="@string/pref_menos_title"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
