@@ -82,7 +82,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-		if(Build.VERSION.SDK_INT < 8 && GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS)
+		if(Build.VERSION.SDK_INT < 8 || GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS)
 		{
 			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		} else
