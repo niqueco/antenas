@@ -7,6 +7,8 @@
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat">
         <!-- API 14 theme customizations can go here. -->
+        <item name="actionBarStyle">@style/ActionBarPrincipal</item>
+        <item name="android:actionBarStyle">@style/ActionBarPrincipal</item>
     </style>
 
 </resources>
