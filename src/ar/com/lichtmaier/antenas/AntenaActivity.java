@@ -279,8 +279,6 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				it.remove();
 			}
 		}
-		NumberFormat nf = NumberFormat.getNumberInstance(new Locale("es", "AR"));
-		nf.setMaximumFractionDigits(1);
 		LayoutInflater inf = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
 		for(Antena a : antenasCerca)
 		{
@@ -300,11 +298,18 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				if(i == n)
 					contenedor.addView(v);
 				((TextView)v.findViewById(R.id.antena_desc)).setText(a.toString());
-				((TextView)v.findViewById(R.id.antena_dist)).setText(nf.format(a.distanceTo(coordsUsuario) / 1000.0) + " km");
+				((TextView)v.findViewById(R.id.antena_dist)).setText(formatDistance(a.distanceTo(coordsUsuario)));
 				antenaAVista.put(a, v);
 				vistaAAntena.put(v, a);
 			}
 		}
+	}
+
+	final static private NumberFormat nf = NumberFormat.getNumberInstance(new Locale("es", "AR"));
+	private static String formatDistance(double distancia)
+	{
+		nf.setMaximumFractionDigits(distancia < 1000.0 ? 2 : 1);
+		return nf.format(distancia / 1000.0) + " km";
 	}
 
 	@Override
