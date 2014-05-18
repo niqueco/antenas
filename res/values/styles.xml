@@ -20,8 +20,8 @@
     </style>
 
     <style name="ActionBarPrincipal" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="displayOptions">showHome</item>
-        <item name="android:background">@drawable/x_ab_solid_dark_holo</item> <!-- xxx -->
+        <item name="displayOptions">showHome|useLogo</item>
+        <item name="android:background">@drawable/x_ab_solid_dark_holo</item>
     </style>
 
     <style name="TemaMapa" parent="Theme.AppCompat.Light">
