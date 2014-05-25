@@ -277,6 +277,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				contenedor.removeView(e.getValue());
 				vistaAAntena.remove(e.getValue());
 				it.remove();
+			} else
+			{
+				ponéDistancia(e.getKey(), e.getValue());
 			}
 		}
 		LayoutInflater inf = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -298,11 +301,16 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				if(i == n)
 					contenedor.addView(v);
 				((TextView)v.findViewById(R.id.antena_desc)).setText(a.toString());
-				((TextView)v.findViewById(R.id.antena_dist)).setText(formatDistance(a.distanceTo(coordsUsuario)));
+				ponéDistancia(a, v);
 				antenaAVista.put(a, v);
 				vistaAAntena.put(v, a);
 			}
 		}
+	}
+
+	private void ponéDistancia(Antena a, View v)
+	{
+		((TextView)v.findViewById(R.id.antena_dist)).setText(formatDistance(a.distanceTo(coordsUsuario)));
 	}
 
 	final static private NumberFormat nf = NumberFormat.getNumberInstance(new Locale("es", "AR"));
