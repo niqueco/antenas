@@ -97,4 +97,11 @@
 <antena lat='-54.80105' lon='-68.221886111111' desc='Ushuaia' id='55'/>
 <antena lat='-26.847861111111' lon='-65.376583333333' desc='Cerro San Javier' id='65'/>
 <antena lat="-34.672834" lon="-58.449806" desc="Torre Espacial (Canal 26)" id ="99"/>
+
+<!-- Uruguay -->
+<antena lat='-34.8954' lon='-56.1652' desc='La Tele (Canal 28)'/>
+<antena lat='-34.8987' lon='-56.1664' desc='Montecarlo TV (Canal 29)'/>
+<antena lat='-34.9069' lon='-56.1861' desc='TNU (Canal 30)'/>
+<antena lat='-34.9082' lon='-56.1804' desc='Saeta (Canal 31)'/>
+<antena lat='-34.469786' lon='-57.845622' desc='TNU'/>
 </antenas>
