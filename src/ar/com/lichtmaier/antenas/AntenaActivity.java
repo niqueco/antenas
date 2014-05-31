@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import java.lang.reflect.Field;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.Map.Entry;
@@ -69,6 +70,16 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_antena);
+
+		try
+		{
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			if(menuKeyField != null)
+			{
+				menuKeyField.setAccessible(true);
+				menuKeyField.setBoolean(ViewConfiguration.get(this), false);
+			}
+		} catch(Exception e) { }
 
 		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
                 pb.show();
