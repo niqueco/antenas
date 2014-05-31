@@ -268,8 +268,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 
 	private void nuevaUbicación()
 	{
+		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
-				Integer.parseInt(prefs.getString("max_dist", "60")) * 1000,
+				maxDist,
 				prefs.getBoolean("menos", true));
 		Iterator<Entry<Antena, View>> it = antenaAVista.entrySet().iterator();
 		ViewGroup contenedor = (ViewGroup)findViewById(R.id.antenas);
@@ -312,6 +313,21 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
 		pb.hide();
+		TextView problema = (TextView)findViewById(R.id.problema);
+		if(antenasCerca.isEmpty())
+		{
+			StringBuilder sb = new StringBuilder("No se pudo encontrar ninguna antena en el radio configurado de ");
+			sb.append(formatDistance(maxDist));
+			sb.append('.');
+			String[] vv = getResources().getStringArray(R.array.pref_max_dist_values);
+			if(Integer.parseInt(vv[vv.length-1]) * 1000 != maxDist)
+				sb.append(" Podés probar incrementando ese radio en las opciones.");
+			problema.setText(sb.toString());
+			problema.setVisibility(View.VISIBLE);
+		} else
+		{
+			problema.setVisibility(View.GONE);
+		}
 	}
 
 	private void ponéDistancia(Antena a, View v)

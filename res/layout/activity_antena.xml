@@ -28,4 +28,14 @@
         android:indeterminateOnly="true"
         android:visibility="gone"/>
 
+    <TextView
+        android:id="@+id/problema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:visibility="gone"/>
+
 </merge>
