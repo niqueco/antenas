@@ -20,6 +20,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
 import android.widget.TextView;
@@ -68,6 +69,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_antena);
+
+		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
+                pb.show();
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -306,6 +310,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				vistaAAntena.put(v, a);
 			}
 		}
+		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
+		pb.hide();
 	}
 
 	private void ponéDistancia(Antena a, View v)
