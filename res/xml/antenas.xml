@@ -102,7 +102,7 @@
 <!-- Uruguay -->
 <antena lat='-34.8954' lon='-56.1652' desc='La Tele (Canal 28)'/>
 <antena lat='-34.8987' lon='-56.1664' desc='Montecarlo TV (Canal 29)'/>
-<antena lat='-34.9069' lon='-56.1861' desc='TNU (Canal 30)'/>
+<antena lat='-34.876472' lon='-56.186611' desc='TNU (Canal 30)'/>
 <antena lat='-34.9082' lon='-56.1804' desc='Saeta (Canal 31)'/>
-<antena lat='-34.469786' lon='-57.845622' desc='TNU'/>
+<antena lat='-34.469786' lon='-57.845622' desc='TNU (Canal 30)'/>
 </antenas>
