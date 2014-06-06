@@ -11,6 +11,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -20,6 +22,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -176,6 +179,18 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				i = new Intent(this, MapaActivity.class);
 				startActivity(i);
 				return true;
+			case R.id.action_niqueco:
+				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://twitter.com/niqueco"));
+				PackageManager pm = getPackageManager();
+				List<ResolveInfo> l = pm.queryIntentActivities(i, PackageManager.MATCH_DEFAULT_ONLY);
+				for(ResolveInfo info : l)
+					if(info.activityInfo.packageName.equals("com.twitter.android"))
+					{
+						i.setPackage(info.activityInfo.packageName);
+						break;
+					}
+				startActivity(i);
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
