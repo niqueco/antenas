@@ -7,8 +7,10 @@ import java.util.Map.Entry;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -21,6 +23,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
@@ -34,6 +37,12 @@ import com.google.android.gms.location.LocationRequest;
 
 public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
 {
+	/*
+	 * Define a request code to send to Google Play services
+	 * This code is returned in Activity.onActivityResult
+	 */
+	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+
 	final private Map<Antena, View> antenaAVista = new HashMap<>();
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
 	static GlobalCoordinates coordsUsuario;
@@ -354,8 +363,62 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	}
 
 	@Override
-	public void onConnectionFailed(ConnectionResult arg0)
+	public void onConnectionFailed(ConnectionResult r)
 	{
+		if(r.hasResolution())
+		{
+			try
+			{
+				r.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+			} catch(SendIntentException e)
+			{
+				e.printStackTrace();
+			}
+		} else
+		{
+			Dialog d = GooglePlayServicesUtil.getErrorDialog(r.getErrorCode(), this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+			if(d != null)
+			{
+				ErrorDialogFragment errorFragment = new ErrorDialogFragment();
+				errorFragment.setDialog(d);
+				errorFragment.show(getSupportFragmentManager(), "err");
+			}
+		}
+	}
+
+	/**
+	 * Define a DialogFragment to display the error dialog generated in
+	 * showErrorDialog.
+	 */
+	public static class ErrorDialogFragment extends DialogFragment
+	{
+		// Global field to contain the error dialog
+		private Dialog mDialog;
+
+		/** Default constructor. Sets the dialog field to null
+		 */
+		public ErrorDialogFragment()
+		{
+			super();
+			mDialog = null;
+		}
+
+		/** Set the dialog to display
+		 *
+		 * @param dialog An error dialog
+		 */
+		public void setDialog(Dialog dialog)
+		{
+			mDialog = dialog;
+		}
+
+		/* This method must return a Dialog to the DialogFragment.
+		 */
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState)
+		{
+			return mDialog;
+		}
 	}
 
 	@Override
@@ -380,5 +443,18 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	{
 		coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 		nuevaUbicación();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		switch(requestCode)
+		{
+			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
+				if(resultCode == RESULT_OK)
+				{
+					locationClient.connect();
+				}
+		}
 	}
 }
