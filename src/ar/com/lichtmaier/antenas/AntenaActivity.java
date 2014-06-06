@@ -26,8 +26,10 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -195,7 +197,15 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 		criteria.setCostAllowed(true);
 		if(locationManager != null)
-			Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
+			try
+			{
+				Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
+			} catch(IllegalArgumentException e)
+			{
+				Log.e("antenas", "Error pidiendo updates de GPS", e);
+				Toast.makeText(this, "No se pudo obtener la ubicación... ¿está apagado el GPS?", Toast.LENGTH_SHORT).show();;
+				finish();
+			}
 	}
 
 	@Override
