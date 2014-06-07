@@ -13,6 +13,10 @@
         android:title="@string/action_settings"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/action_ayuda"
+        android:title="@string/action_ayuda"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_niqueco"
         android:title="@string/action_niqueco"
         app:showAsAction="never"/>

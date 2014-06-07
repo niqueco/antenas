@@ -179,6 +179,11 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				i = new Intent(this, MapaActivity.class);
 				startActivity(i);
 				return true;
+			case R.id.action_ayuda:
+				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://poné-tda.com.ar/"));
+				if(i.resolveActivity(getPackageManager()) != null)
+					startActivity(i);
+				return true;
 			case R.id.action_niqueco:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://twitter.com/niqueco"));
 				PackageManager pm = getPackageManager();
@@ -190,7 +195,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 						break;
 					}
 				startActivity(i);
-				break;
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
