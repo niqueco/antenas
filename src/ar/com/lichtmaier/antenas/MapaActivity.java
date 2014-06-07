@@ -3,6 +3,7 @@ package ar.com.lichtmaier.antenas;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
 import android.widget.Toast;
@@ -93,7 +94,13 @@ public class MapaActivity extends ActionBarActivity
 				@Override
 				public void run()
 				{
-					int height = ((ActionBarActivity)getActivity()).getSupportActionBar().getHeight();
+					ActionBarActivity activity = (ActionBarActivity)getActivity();
+					if(activity == null)
+						return;
+					ActionBar actionBar = activity.getSupportActionBar();
+					if(actionBar == null)
+						return;
+					int height = actionBar.getHeight();
 					mapa.setPadding(0, height, 0, 0);
 				}
 			});

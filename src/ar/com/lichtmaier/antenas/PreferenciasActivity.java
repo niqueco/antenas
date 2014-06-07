@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -23,7 +24,11 @@ public class PreferenciasActivity extends PreferenceActivity
 	private void setupActionBar()
 	{
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			getActionBar().setDisplayHomeAsUpEnabled(true);
+		{
+			ActionBar actionBar = getActionBar();
+			if(actionBar != null)
+				actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 	}
 
 	@Override
