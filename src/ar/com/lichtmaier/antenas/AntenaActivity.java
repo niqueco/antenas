@@ -7,13 +7,12 @@ import java.util.Map.Entry;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -23,10 +22,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -36,7 +33,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
 
@@ -111,38 +107,16 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-		if(Build.VERSION.SDK_INT < 8 || GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS)
-		{
-			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		} else
-		{
-			locationClient = new LocationClient(this, this, this);
-			locationRequest = LocationRequest.create();
-			locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-			locationRequest.setInterval(10000);
-			locationRequest.setFastestInterval(2000);
-		}
+		locationClient = new LocationClient(this, this, this);
+		locationRequest = LocationRequest.create();
+		locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+		locationRequest.setInterval(10000);
+		locationRequest.setFastestInterval(2000);
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
 		{
 			coordsUsuario = new GlobalCoordinates(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
 			nuevaUbicación();
-		} else if(locationClient == null)
-		{
-			Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-			if(location != null && location.getAccuracy() < 300)
-			{
-				coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-				nuevaUbicación();
-			} else
-			{
-				locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				if(location != null && location.getAccuracy() < 300)
-				{
-					coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-					nuevaUbicación();
-				}
-			}
 		}
 	}
 
@@ -213,10 +187,11 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		super.onResume();
 		sensorManager.registerListener(this, magnetómetro, SensorManager.SENSOR_DELAY_UI);
 		sensorManager.registerListener(this, acelerómetro, SensorManager.SENSOR_DELAY_UI);
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-		criteria.setCostAllowed(true);
 		if(locationManager != null)
+		{
+			Criteria criteria = new Criteria();
+			criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+			criteria.setCostAllowed(true);
 			try
 			{
 				Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
@@ -226,6 +201,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				Toast.makeText(this, "No se pudo obtener la ubicación... ¿está apagado el GPS?", Toast.LENGTH_SHORT).show();;
 				finish();
 			}
+		}
+		if(locationClient != null && locationClient.isConnected())
+			locationClient.requestLocationUpdates(locationRequest, this);
 	}
 
 	@Override
@@ -236,6 +214,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		sensorManager.unregisterListener(this);
 		if(locationManager != null)
 			locationManager.removeUpdates(locationListener);
+		if(locationClient != null)
+			locationClient.removeLocationUpdates(this);
 		super.onPause();
 	}
 
@@ -397,6 +377,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	{
 		if(r.hasResolution())
 		{
+			Log.w("antenas", "Play Services: " + r);
 			try
 			{
 				r.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
@@ -406,48 +387,26 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			}
 		} else
 		{
-			Dialog d = GooglePlayServicesUtil.getErrorDialog(r.getErrorCode(), this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
-			if(d != null)
+			Log.e("antenas", "Play Services no disponible: " + r + ". No importa, sobreviviremos.");
+			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+			locationClient = null;
+			if(coordsUsuario == null)
 			{
-				ErrorDialogFragment errorFragment = new ErrorDialogFragment();
-				errorFragment.setDialog(d);
-				errorFragment.show(getSupportFragmentManager(), "err");
+				Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				if(location != null && location.getAccuracy() < 300)
+				{
+					coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+					nuevaUbicación();
+				} else
+				{
+					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+					if(location != null && location.getAccuracy() < 300)
+					{
+						coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+						nuevaUbicación();
+					}
+				}
 			}
-		}
-	}
-
-	/**
-	 * Define a DialogFragment to display the error dialog generated in
-	 * showErrorDialog.
-	 */
-	public static class ErrorDialogFragment extends DialogFragment
-	{
-		// Global field to contain the error dialog
-		private Dialog mDialog;
-
-		/** Default constructor. Sets the dialog field to null
-		 */
-		public ErrorDialogFragment()
-		{
-			super();
-			mDialog = null;
-		}
-
-		/** Set the dialog to display
-		 *
-		 * @param dialog An error dialog
-		 */
-		public void setDialog(Dialog dialog)
-		{
-			mDialog = dialog;
-		}
-
-		/* This method must return a Dialog to the DialogFragment.
-		 */
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState)
-		{
-			return mDialog;
 		}
 	}
 
