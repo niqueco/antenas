@@ -87,10 +87,7 @@ public class Antena implements Serializable
 				xml.next();
 			}
 			xml.close();
-		} catch (XmlPullParserException e)
-		{
-			throw new RuntimeException(e);
-		} catch(IOException e)
+		} catch (XmlPullParserException | IOException e)
 		{
 			throw new RuntimeException(e);
 		}

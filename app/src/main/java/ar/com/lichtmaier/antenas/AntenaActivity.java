@@ -198,7 +198,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			} catch(IllegalArgumentException e)
 			{
 				Log.e("antenas", "Error pidiendo updates de GPS", e);
-				Toast.makeText(this, "No se pudo obtener la ubicación... ¿está apagado el GPS?", Toast.LENGTH_SHORT).show();;
+				Toast.makeText(this, "No se pudo obtener la ubicación... ¿está apagado el GPS?", Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		}

@@ -76,7 +76,7 @@ public class PreferenciasActivity extends PreferenceActivity
 			return true;
 		}
 	}
-	private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new BindPreferenceSummaryToValueListener();
+	private final static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new BindPreferenceSummaryToValueListener();
 
 	private static void bindPreferenceSummaryToValue(Preference preference)
 	{
