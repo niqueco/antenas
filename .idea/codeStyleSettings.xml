@@ -61,8 +61,8 @@
           <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="false" />
           <option name="SPACE_BEFORE_SYNCHRONIZED_PARENTHESES" value="false" />
           <indentOptions>
-            <option name="INDENT_SIZE" value="1" />
-            <option name="CONTINUATION_INDENT_SIZE" value="2" />
+            <option name="INDENT_SIZE" value="8" />
+            <option name="CONTINUATION_INDENT_SIZE" value="16" />
             <option name="TAB_SIZE" value="8" />
             <option name="USE_TAB_CHARACTER" value="true" />
           </indentOptions>
