@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 20
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 20
         versionName "0.10"
     }
 
@@ -35,9 +35,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:20.0.0'
     froyoCompile 'com.google.android.gms:play-services:3.2.65'
     normalCompile 'com.google.android.gms:play-services:+'
-    compile 'com.android.support:appcompat-v7:19.1.0'
+    compile 'com.android.support:appcompat-v7:20.0.0'
     compile files('libs/geodesy.jar')
 }
