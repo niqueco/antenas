@@ -74,6 +74,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			nuevaUbicación();
 		}
 	};
+	private Publicidad publicidad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -118,6 +119,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			coordsUsuario = new GlobalCoordinates(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
 			nuevaUbicación();
 		}
+
+		publicidad = new Publicidad(this);
 	}
 
 	@Override
@@ -204,11 +207,13 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 		if(locationClient != null && locationClient.isConnected())
 			locationClient.requestLocationUpdates(locationRequest, this);
+		publicidad.onResume();
 	}
 
 	@Override
 	protected void onPause()
 	{
+		publicidad.onPause();
 		hayInfoDeAcelerómetro = false;
 		hayInfoDeMagnetómetro = false;
 		sensorManager.unregisterListener(this);
@@ -226,7 +231,14 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			locationClient.disconnect();
 		super.onStop();
 	}
-	
+
+	@Override
+	protected void onDestroy()
+	{
+		publicidad.onDestroy();
+		super.onDestroy();
+	}
+
 	final private float[] r = new float[9];
 	final private float[] values = new float[3];
 	final private float[] r2 = new float[9];
@@ -420,6 +432,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			nuevaUbicación();
 		}
 		locationClient.requestLocationUpdates(locationRequest, this);
+		publicidad.load(location);
 	}
 
 	@Override

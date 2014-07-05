@@ -1,6 +1,17 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <LinearLayout
+        android:id="@+id/principal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_weight="1">
+
+
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -37,5 +48,8 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:visibility="gone"/>
+    </FrameLayout>
+
+    </LinearLayout>
 
 </merge>

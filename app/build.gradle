@@ -6,14 +6,25 @@ android {
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 19
+        versionName "0.10"
     }
 
     buildTypes {
         release {
             runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+
+    productFlavors {
+        normal {
+            versionCode 100
+        }
+        froyo {
+            versionCode 10
+            minSdkVersion 8
         }
     }
 
@@ -25,7 +36,8 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:19.1.0'
-    compile 'com.google.android.gms:play-services:3.2.65'
+    froyoCompile 'com.google.android.gms:play-services:3.2.65'
+    normalCompile 'com.google.android.gms:play-services:+'
     compile 'com.android.support:appcompat-v7:19.1.0'
     compile files('libs/geodesy.jar')
 }
