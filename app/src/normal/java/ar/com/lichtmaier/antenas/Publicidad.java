@@ -8,16 +8,12 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
-import org.gavaghan.geodesy.GlobalCoordinates;
-
 class Publicidad
 {
-	private final AntenaActivity act;
 	private AdView adView;
 
 	Publicidad(AntenaActivity act)
 	{
-		this.act = act;
 		adView = new AdView(act);
 		adView.setAdUnitId("ca-app-pub-0461170458442008/6164714153");
 		adView.setAdSize(AdSize.BANNER);
