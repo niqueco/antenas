@@ -185,6 +185,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			locationClient.connect();
 	}
 
+	@Override
 	protected void onResume()
 	{
 		super.onResume();
@@ -205,8 +206,13 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				finish();
 			}
 		}
-		if(locationClient != null && locationClient.isConnected())
-			locationClient.requestLocationUpdates(locationRequest, this);
+		if(locationClient != null)
+		{
+			if(locationClient.isConnected())
+				locationClient.requestLocationUpdates(locationRequest, this);
+			else if(!locationClient.isConnecting())
+				locationClient.connect();
+		}
 		publicidad.onResume();
 	}
 
@@ -219,7 +225,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		sensorManager.unregisterListener(this);
 		if(locationManager != null)
 			locationManager.removeUpdates(locationListener);
-		if(locationClient != null)
+		if(locationClient != null && locationClient.isConnected())
 			locationClient.removeLocationUpdates(this);
 		super.onPause();
 	}
