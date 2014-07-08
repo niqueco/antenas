@@ -25,8 +25,8 @@ class Publicidad
 
 	void load(Location loc)
 	{
-		AdRequest.Builder builder = new AdRequest.Builder();
-		builder.addTestDevice("C34A7B13BA1B16DE0CABA7247F94C289");
+		AdRequest.Builder builder = new AdRequest.Builder()
+			.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 		if(loc != null)
 			builder.setLocation(loc);
 		adView.loadAd(builder.build());
