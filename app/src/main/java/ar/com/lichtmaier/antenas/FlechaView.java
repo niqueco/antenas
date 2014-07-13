@@ -9,7 +9,6 @@ import android.view.View;
 
 public class FlechaView extends View
 {
-	private static final int ANCHO = 12;
 	private double ángulo;
 	final private Paint pinturaFlecha, pinturaBorde;
 	private float cx, cy, z;
@@ -21,11 +20,9 @@ public class FlechaView extends View
 		float density = getResources().getDisplayMetrics().density;
 		pinturaFlecha = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinturaFlecha.setColor(0xffffffff);
-		pinturaFlecha.setStrokeWidth((ANCHO / 2) * density);
-		pinturaFlecha.setStrokeCap(Cap.ROUND); 
+		pinturaFlecha.setStrokeCap(Cap.ROUND);
 		pinturaBorde = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinturaBorde.setARGB(100, 255, 255, 255);
-		pinturaBorde.setStrokeWidth(2 * density);
 		pinturaBorde.setStyle(Paint.Style.STROKE);
 		int z = (int)(100 * density);
 		setMinimumHeight(z);
@@ -49,6 +46,8 @@ public class FlechaView extends View
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{
 		float density = getResources().getDisplayMetrics().density;
+		pinturaFlecha.setStrokeWidth(6f * (float)w / 100f);
+		pinturaBorde.setStrokeWidth(2f * (float)w / 100f);
 		cx = getWidth() / 2.0f;
 		cy = getHeight() / 2.0f;
 		float maxpadding = Math.max(Math.max(getPaddingLeft(), getPaddingRight()), Math.max(getPaddingTop(), getPaddingBottom()));
@@ -84,7 +83,7 @@ public class FlechaView extends View
 		canvas.save();
 		canvas.translate(cx, cy);
 		canvas.rotate((float)ángulo);
-		canvas.drawCircle(0, 0, z + ANCHO / 2, pinturaBorde);
+		canvas.drawCircle(0, 0, z + pinturaFlecha.getStrokeWidth() * .75f, pinturaBorde);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
 		canvas.restore();
 	}
