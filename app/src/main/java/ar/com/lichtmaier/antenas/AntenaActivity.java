@@ -245,44 +245,10 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		super.onDestroy();
 	}
 
-	final private float[] r = new float[9];
-	final private float[] values = new float[3];
-	final private float[] r2 = new float[9];
 	private LocationClient locationClient;
 	private SharedPreferences prefs;
-	void nuevaOrientación()
+	void nuevaOrientación(double brújula)
 	{
-		SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
-		@SuppressWarnings("deprecation")
-		int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
-		int axisX;
-		int axisY;
-		switch(rotation)
-		{
-			case Surface.ROTATION_0:
-				axisX = SensorManager.AXIS_X;
-				axisY = SensorManager.AXIS_Y;
-				break;
-			case Surface.ROTATION_90:
-				axisX = SensorManager.AXIS_Y;
-				axisY = SensorManager.AXIS_MINUS_X;
-				break;
-			case Surface.ROTATION_180:
-				axisX = SensorManager.AXIS_MINUS_X;
-				axisY = SensorManager.AXIS_MINUS_Y;
-				break;
-			case Surface.ROTATION_270:
-				axisX = SensorManager.AXIS_MINUS_Y;
-				axisY = SensorManager.AXIS_X;
-				break;
-			default:
-				throw new RuntimeException("rot: " + rotation);
-		}
-		SensorManager.remapCoordinateSystem(r, axisX, axisY, r2);
-		SensorManager.getOrientation(r2, values);
-		double brújula = Math.toDegrees(values[0]);
-		if(brújula < 0)
-			brújula += 360;
 		//NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
 		//((TextView)findViewById(R.id.orientacion)).setText(nf.format(brújula) /*+ " " + nf.format(Math.PI/2.0 - brújula)*/);
 		//Log.d("antenas", "orientacion: " + values[0]);
@@ -294,6 +260,10 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			f.setÁngulo(rumbo - brújula);
 		}
 	}
+
+	final private float[] r = new float[9];
+	final private float[] values = new float[3];
+	final private float[] r2 = new float[9];
 
 	@Override
 	public void onSensorChanged(SensorEvent event)
@@ -308,7 +278,40 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			hayInfoDeAcelerómetro = true;
 		}
 		if(hayInfoDeAcelerómetro && hayInfoDeMagnetómetro)
-			nuevaOrientación();
+		{
+			SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
+			@SuppressWarnings("deprecation")
+			int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
+			int axisX;
+			int axisY;
+			switch(rotation)
+			{
+				case Surface.ROTATION_0:
+					axisX = SensorManager.AXIS_X;
+					axisY = SensorManager.AXIS_Y;
+					break;
+				case Surface.ROTATION_90:
+					axisX = SensorManager.AXIS_Y;
+					axisY = SensorManager.AXIS_MINUS_X;
+					break;
+				case Surface.ROTATION_180:
+					axisX = SensorManager.AXIS_MINUS_X;
+					axisY = SensorManager.AXIS_MINUS_Y;
+					break;
+				case Surface.ROTATION_270:
+					axisX = SensorManager.AXIS_MINUS_Y;
+					axisY = SensorManager.AXIS_X;
+					break;
+				default:
+					throw new RuntimeException("rot: " + rotation);
+			}
+			SensorManager.remapCoordinateSystem(r, axisX, axisY, r2);
+			SensorManager.getOrientation(r2, values);
+			double brújula = Math.toDegrees(values[0]);
+			if(brújula < 0)
+				brújula += 360;
+			nuevaOrientación(brújula);
+		}
 	}
 
 	@Override
