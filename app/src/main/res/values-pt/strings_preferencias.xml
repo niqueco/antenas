@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="title_activity_preferencias">Preferências</string>
+    <string name="pref_header_antenas">Lista de torres próximas</string>
+    <string name="pref_max_dist_title">Distância máxima</string>
+
+    <string-array name="pref_max_dist_titles">
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>20 km</item>
+        <item>40 km</item>
+        <item>60 km</item>
+        <item>100 km</item>
+        <item>200 km</item>
+        </string-array>
+    <string-array name="pref_max_dist_values">
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>100</item>
+        <item>200</item>
+        </string-array>
+
+    <string name="pref_menos_title">Mostrar menos torres</string>
+    <string name="pref_menos_summary">Mostrar apenas as mais próximas, se você ver que existem muitas nas proximidades.</string>
+
+</resources>

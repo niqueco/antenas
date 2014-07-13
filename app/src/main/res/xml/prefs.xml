@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Lista de antenas cercanas">
+    <PreferenceCategory android:title="@string/pref_header_antenas">
         <ListPreference
             android:defaultValue="60"
             android:entries="@array/pref_max_dist_titles"

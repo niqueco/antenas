@@ -78,7 +78,7 @@ public class MapaActivity extends ActionBarActivity
 			mapa = ((SupportMapFragment)act.getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 			if(mapa == null)
 			{
-				Toast.makeText(act, "Uhm... por alguna razón no se pudo inicializar el mapita.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(act, act.getString(R.string.fallo_inicializar_mapa), Toast.LENGTH_SHORT).show();
 				act.finish();
 				return;
 			}

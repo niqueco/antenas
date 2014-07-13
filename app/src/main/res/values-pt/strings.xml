@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Antenas TDA</string>
+    <string name="action_settings">Preferências</string>
+    <string name="action_ayuda">Ajuda com TV digital</string>
+    <string name="action_niqueco">\@niqueco</string>
+    <string name="title_activity_mapa">Mapa de antenas</string>
+    <string name="action_mapa">Mapa</string>
+    <string name="no_se_encontraron_antenas">Não foi possível encontrar uma antena no raio configurado de %s.</string>
+    <string name="podes_incrementar_radio">Você pode tentar incrementá-lo nas opções.</string>
+    <string name="no_ubicacion">Não foi possível obter a localização… É o GPS off?</string>
+    <string name="fallo_inicializar_mapa">Uhm… Por alguma razão falhou a inicialização do mapa.</string>
+
+</resources>

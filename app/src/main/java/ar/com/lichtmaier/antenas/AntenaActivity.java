@@ -202,7 +202,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			} catch(IllegalArgumentException e)
 			{
 				Log.e("antenas", "Error pidiendo updates de GPS", e);
-				Toast.makeText(this, "No se pudo obtener la ubicación... ¿está apagado el GPS?", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		}
@@ -364,12 +364,10 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		TextView problema = (TextView)findViewById(R.id.problema);
 		if(antenasCerca.isEmpty())
 		{
-			StringBuilder sb = new StringBuilder("No se pudo encontrar ninguna antena en el radio configurado de ");
-			sb.append(formatDistance(maxDist));
-			sb.append('.');
+			StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, formatDistance(maxDist)));
 			String[] vv = getResources().getStringArray(R.array.pref_max_dist_values);
 			if(Integer.parseInt(vv[vv.length-1]) * 1000 != maxDist)
-				sb.append(" Podés probar incrementando ese radio en las opciones.");
+				sb.append(' ').append(getString(R.string.podes_incrementar_radio));
 			problema.setText(sb.toString());
 			problema.setVisibility(View.VISIBLE);
 		} else
