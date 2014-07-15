@@ -53,9 +53,9 @@ public class FlechaView extends View
 		float maxpadding = Math.max(Math.max(getPaddingLeft(), getPaddingRight()), Math.max(getPaddingTop(), getPaddingBottom()));
 		z = .8f * Math.min(cx, cy) - maxpadding;
 		líneasFlecha = new float[] {
-				0, 20 * density, 0, -z,
-				0, -z, 10 * density, 10 * density - z,
-				0, -z, -10 * density, 10 * density - z
+				0, w / 5f, 0, -z,
+				0, -z, w / 10f, w / 10f - z,
+				0, -z, -w / 10f, w / 10f - z
 		};
 		Compat.disableHardwareAccelerationForLineCaps(this);
 	}
