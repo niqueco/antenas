@@ -28,7 +28,7 @@
         android:logo="@drawable/ic_logo"
         android:theme="@style/AppTheme">
         <activity
-            android:name="ar.com.lichtmaier.antenas.AntenaActivity"
+            android:name=".AntenaActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,18 +42,18 @@
             android:value="AIzaSyAskBnEXlmSgDGDKqp_IknIcTJFqbueB0A"/>
 
         <activity
-            android:name="ar.com.lichtmaier.antenas.MapaActivity"
+            android:name=".MapaActivity"
             android:label="@string/title_activity_mapa"
-            android:parentActivityName="ar.com.lichtmaier.antenas.AntenaActivity"
-            android:theme="@style/TemaMapa">
+            android:parentActivityName=".AntenaActivity"
+            android:theme="@style/TemaMapa" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ar.com.lichtmaier.antenas.AntenaActivity"/>
         </activity>
         <activity
-            android:name="ar.com.lichtmaier.antenas.PreferenciasActivity"
+            android:name=".PreferenciasActivity"
             android:label="@string/action_settings"
-            android:parentActivityName="ar.com.lichtmaier.antenas.AntenaActivity"
+            android:parentActivityName=".AntenaActivity"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
