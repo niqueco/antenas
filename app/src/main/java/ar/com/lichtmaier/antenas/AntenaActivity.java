@@ -38,11 +38,8 @@ import com.google.android.gms.location.LocationRequest;
 
 public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
 {
-	/*
-	 * Define a request code to send to Google Play services
-	 * This code is returned in Activity.onActivityResult
-	 */
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 
 	final private Map<Antena, View> antenaAVista = new HashMap<>();
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
@@ -53,6 +50,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	private Sensor acelerómetro;
 	private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
+	private Publicidad publicidad;
 
 	private LocationManager locationManager;
 	private LocationRequest locationRequest;
@@ -74,13 +72,37 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			nuevaUbicación();
 		}
 	};
-	private Publicidad publicidad;
+
+	private View.OnClickListener onAntenaClickedListener = new View.OnClickListener()
+	{
+		@Override
+		public void onClick(View v)
+		{
+			Intent i = new Intent(AntenaActivity.this, UnaAntenaActivity.class);
+			Antena antena = vistaAAntena.get(v);
+
+			int[] screenLocation = new int[2];
+			FlechaView flecha = (FlechaView)v.findViewById(R.id.flecha);
+			flecha.getLocationOnScreen(screenLocation);
+			int orientation = getResources().getConfiguration().orientation;
+			i.putExtra(PACKAGE + ".antena", antena.index).
+					putExtra(PACKAGE + ".orientation", orientation).
+					putExtra(PACKAGE + ".left", screenLocation[0]).
+					putExtra(PACKAGE + ".top", screenLocation[1]).
+					putExtra(PACKAGE + ".width", flecha.getWidth()).
+					putExtra(PACKAGE + ".height", flecha.getHeight()).
+					putExtra(PACKAGE + ".ángulo", flecha.getÁngulo());
+
+			startActivity(i);
+			overridePendingTransition(0, 0);
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_antena);
+		asignarLayout();
 
 		try
 		{
@@ -93,7 +115,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		} catch(Exception e) { }
 
 		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
-                pb.show();
+		if(pb != null)
+			pb.show();
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -121,6 +144,11 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 
 		publicidad = new Publicidad(this);
+	}
+
+	protected void asignarLayout()
+	{
+		setContentView(R.layout.activity_antena);
 	}
 
 	@Override
@@ -319,7 +347,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 
-	private void nuevaUbicación()
+	protected void nuevaUbicación()
 	{
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
@@ -358,6 +386,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				}
 				if(i == n)
 					contenedor.addView(v);
+				v.setOnClickListener(onAntenaClickedListener);
+				v.setFocusable(true);
 				((TextView)v.findViewById(R.id.antena_desc)).setText(a.toString());
 				ponéDistancia(a, v);
 				antenaAVista.put(a, v);

@@ -60,6 +60,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ar.com.lichtmaier.antenas.AntenaActivity"/>
         </activity>
+        <activity
+            android:name=".UnaAntenaActivity"
+            android:label="@string/app_name"
+	    android:theme="@style/AppTheme.Transparent"
+            android:parentActivityName=".AntenaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ar.com.lichtmaier.antenas.AntenaActivity"/>
+        </activity>
     </application>
 
 </manifest>
