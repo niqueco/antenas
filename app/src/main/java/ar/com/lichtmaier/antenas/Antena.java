@@ -23,14 +23,16 @@ public class Antena implements Serializable
 
 	final public String descripción;
 	private final GlobalCoordinates c;
+	public final int index;
 
 	public double dist;
 
 	final static private List<Antena> antenas = new ArrayList<>();
 
-	private Antena(String descripción, double lat, double lon)
+	private Antena(String descripción, double lat, double lon, int index)
 	{
 		this.descripción = descripción;
+		this.index = index;
 		c = new GlobalCoordinates(lat, lon);
 	}
 
@@ -79,11 +81,11 @@ public class Antena implements Serializable
 	{
 		try {
 			XmlResourceParser xml = ctx.getResources().getXml(R.xml.antenas);
-			int t;
+			int t, index = 0;
 			while( (t = xml.getEventType()) != XmlPullParser.END_DOCUMENT )
 			{
 				if(t == XmlPullParser.START_TAG && xml.getName().equals("antena"))
-					antenas.add(new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon"))));
+					antenas.add(new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++));
 				xml.next();
 			}
 			xml.close();
@@ -123,5 +125,17 @@ public class Antena implements Serializable
 		if(antenas.isEmpty())
 			cargar(ctx);
 		return antenas;
+	}
+
+	/** Devuelve una antena en base al número de orden.
+	 *
+	 * @param index el número de orden
+	 * @return una antena
+	 */
+	public static Antena dameAntena(Context ctx, int index)
+	{
+		if(antenas.isEmpty())
+			cargar(ctx);
+		return antenas.get(index);
 	}
 }
