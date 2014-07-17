@@ -74,6 +74,7 @@ public class FlechaView extends View
 			h = View.MeasureSpec.getSize(heightMeasureSpec);
 		else if(View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.AT_MOST)
 			h = Math.min(View.MeasureSpec.getSize(heightMeasureSpec), h);
+		w = h = Math.min(h, w);
 		setMeasuredDimension(w, h);
 	}
 	
