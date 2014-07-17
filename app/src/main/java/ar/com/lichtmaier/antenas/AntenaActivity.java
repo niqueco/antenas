@@ -73,6 +73,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 	};
 
+	static FlechaView flechaADesaparecer;
 	private View.OnClickListener onAntenaClickedListener = new View.OnClickListener()
 	{
 		@Override
@@ -92,6 +93,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 					putExtra(PACKAGE + ".width", flecha.getWidth()).
 					putExtra(PACKAGE + ".height", flecha.getHeight()).
 					putExtra(PACKAGE + ".ángulo", flecha.getÁngulo());
+			flechaADesaparecer = flecha;
 
 			startActivity(i);
 			overridePendingTransition(0, 0);
