@@ -25,11 +25,19 @@ class Publicidad
 
 	void load(Location loc)
 	{
-		AdRequest.Builder builder = new AdRequest.Builder()
-			.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
+		AdRequest.Builder builder = crearAdRequestBuilder();
 		if(loc != null)
 			builder.setLocation(loc);
 		adView.loadAd(builder.build());
+	}
+
+	static AdRequest.Builder crearAdRequestBuilder()
+	{
+		return new AdRequest.Builder()
+				.addTestDevice("341C11CC2A47D92A590EF87DA9E8125E")
+				.addTestDevice("DE769C8D98D3DACE221A6675804E8CAA")
+				.addTestDevice("C34A7B13BA1B16DE0CABA7247F94C289")
+				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 	}
 
 	void onPause()

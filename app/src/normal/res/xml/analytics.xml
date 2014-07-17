@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="ga_trackingId">UA-52893702-3</string>
+	<integer name="ga_sessionTimeout">300</integer>
+	<bool name="ga_autoActivityTracking">true</bool>
+	<bool name="ga_reportUncaughtExceptions">true</bool>
+	<screen name="ar.com.lichtmaier.antenas.AntenaActivity">Antenas</screen>
+	<screen name="ar.com.lichtmaier.antenas.MapaActivity">Mapa</screen>
+	<screen name="ar.com.lichtmaier.antenas.PreferenciasActivity">Preferencias</screen>
+</resources>

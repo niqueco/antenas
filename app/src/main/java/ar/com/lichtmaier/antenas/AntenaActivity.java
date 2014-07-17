@@ -181,6 +181,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	protected void onStart()
 	{
 		super.onStart();
+		((Aplicacion)getApplication()).reportActivityStart(this);
 		if(locationClient != null)
 			locationClient.connect();
 	}
@@ -235,6 +236,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	{
 		if(locationClient != null)
 			locationClient.disconnect();
+		((Aplicacion)getApplication()).reportActivityStop(this);
 		super.onStop();
 	}
 

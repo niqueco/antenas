@@ -31,6 +31,20 @@ public class MapaActivity extends ActionBarActivity
 		}
 	}
 
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		((Aplicacion)getApplication()).reportActivityStart(this);
+	}
+
+	@Override
+	protected void onStop()
+	{
+		((Aplicacion)getApplication()).reportActivityStop(this);
+		super.onStop();
+	}
+
 	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
