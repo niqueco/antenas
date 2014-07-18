@@ -415,7 +415,12 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 
 	private void ponéDistancia(Antena a, View v)
 	{
-		((TextView)v.findViewById(R.id.antena_dist)).setText(formatDistance(a.distanceTo(coordsUsuario)));
+		ponéDistancia(a, (TextView) v.findViewById(R.id.antena_dist));
+	}
+
+	protected void ponéDistancia(Antena a, TextView tv)
+	{
+		tv.setText(formatDistance(a.distanceTo(coordsUsuario)));
 	}
 
 	final static private NumberFormat nf = NumberFormat.getNumberInstance(new Locale("es", "AR"));

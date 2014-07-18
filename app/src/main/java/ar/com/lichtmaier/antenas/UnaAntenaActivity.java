@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.*;
+import android.widget.TextView;
 
 public class UnaAntenaActivity extends AntenaActivity
 {
@@ -16,6 +17,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		asignarLayout();
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, bundle.getInt("ar.com.lichtmaier.antenas.antena"));
+		((TextView)findViewById(R.id.antena_desc)).setText(antena.descripción);
 
 		final int top = bundle.getInt(PACKAGE + ".top");
 		final int left = bundle.getInt(PACKAGE + ".left");
@@ -134,6 +136,8 @@ public class UnaAntenaActivity extends AntenaActivity
 	@Override
 	protected void nuevaUbicación()
 	{
+		if(antena != null)
+			ponéDistancia(antena, (TextView) findViewById(R.id.antena_dist));
 	}
 
 	@Override
