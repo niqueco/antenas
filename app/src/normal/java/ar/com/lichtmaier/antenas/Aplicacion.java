@@ -19,6 +19,7 @@ public class Aplicacion extends Application
 				analytics.setDryRun(true);
 			analytics.enableAutoActivityReports(this);
 			tracker = analytics.newTracker(R.xml.analytics);
+			tracker.enableAdvertisingIdCollection(true);
 		}
 		return tracker;
 	}

@@ -25,7 +25,12 @@ class Publicidad
 
 	void load(Location loc)
 	{
-		AdRequest.Builder builder = crearAdRequestBuilder();
+		AdRequest.Builder builder = crearAdRequestBuilder()
+				.addKeyword("antena")
+				.addKeyword("tv")
+				.addKeyword("tecnología")
+				.addKeyword("tda")
+				.addKeyword("tdt");
 		if(loc != null)
 			builder.setLocation(loc);
 		adView.loadAd(builder.build());
