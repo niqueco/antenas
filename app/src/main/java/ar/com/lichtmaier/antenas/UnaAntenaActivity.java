@@ -58,6 +58,21 @@ public class UnaAntenaActivity extends AntenaActivity
 					aa.setInterpolator(new AccelerateInterpolator());
 					findViewById(R.id.principal).startAnimation(aa);
 
+					TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
+					antenaDesc.getLocationOnScreen(screenLocation);
+					int d = getWindow().getDecorView().getBottom() - screenLocation[1];
+					TranslateAnimation ta = new TranslateAnimation(0, 0, d, 0);
+					ta.setInterpolator(new DecelerateInterpolator());
+					ta.setDuration(500);
+					ta.setStartOffset(200);
+					antenaDesc.startAnimation(ta);
+					TextView antenaDist = (TextView) findViewById(R.id.antena_dist);
+					ta = new TranslateAnimation(0, 0, d, 0);
+					ta.setInterpolator(new DecelerateInterpolator());
+					ta.setDuration(500);
+					ta.setStartOffset(200);
+					antenaDist.startAnimation(ta);
+
 					if(AntenaActivity.flechaADesaparecer != null)
 					{
 						anim.setAnimationListener(new Animation.AnimationListener()
