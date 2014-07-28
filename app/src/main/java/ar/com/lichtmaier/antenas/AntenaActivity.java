@@ -75,7 +75,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	};
 
 	static FlechaView flechaADesaparecer;
-	private View.OnClickListener onAntenaClickedListener = new View.OnClickListener()
+	private final View.OnClickListener onAntenaClickedListener = new View.OnClickListener()
 	{
 		@Override
 		public void onClick(View v)
@@ -115,7 +115,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				menuKeyField.setAccessible(true);
 				menuKeyField.setBoolean(ViewConfiguration.get(this), false);
 			}
-		} catch(Exception e) { }
+		} catch(Exception ignored) { }
 
 		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
 		if(pb != null)

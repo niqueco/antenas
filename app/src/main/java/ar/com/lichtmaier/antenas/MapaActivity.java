@@ -80,8 +80,7 @@ public class MapaActivity extends ActionBarActivity
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			View rootView = inflater.inflate(R.layout.fragment_mapa, container, false);
-			return rootView;
+			return inflater.inflate(R.layout.fragment_mapa, container, false);
 		}
 
 		@Override

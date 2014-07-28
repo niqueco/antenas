@@ -45,7 +45,6 @@ public class FlechaView extends View
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{
-		float density = getResources().getDisplayMetrics().density;
 		pinturaFlecha.setStrokeWidth(6f * (float)w / 100f);
 		pinturaBorde.setStrokeWidth(2f * (float)w / 100f);
 		cx = getWidth() / 2.0f;

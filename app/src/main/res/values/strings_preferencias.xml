@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="title_activity_preferencias">Preferencias</string>
     <string name="pref_header_antenas">Lista de torres cercanas</string>
     <string name="pref_max_dist_title">Máxima distancia</string>
 
