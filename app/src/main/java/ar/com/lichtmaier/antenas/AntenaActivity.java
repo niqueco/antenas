@@ -51,6 +51,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
 	private Publicidad publicidad;
+	private int rotación;
 
 	private LocationManager locationManager;
 	private LocationRequest locationRequest;
@@ -146,6 +147,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 
 		publicidad = new Publicidad(this);
+
+		rotación = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
 	}
 
 	protected void asignarLayout()
@@ -279,8 +282,13 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 
 	private LocationClient locationClient;
 	private SharedPreferences prefs;
+	private long lastUpdate = 0;
 	void nuevaOrientación(double brújula)
 	{
+		long now = System.currentTimeMillis();
+		if(now - lastUpdate < 33)
+			return;
+		lastUpdate = now;
 		//NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
 		//((TextView)findViewById(R.id.orientacion)).setText(nf.format(brújula) /*+ " " + nf.format(Math.PI/2.0 - brújula)*/);
 		//Log.d("antenas", "orientacion: " + values[0]);
@@ -312,11 +320,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		if(hayInfoDeAcelerómetro && hayInfoDeMagnetómetro)
 		{
 			SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
-			@SuppressWarnings("deprecation")
-			int rotation = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
 			int axisX;
 			int axisY;
-			switch(rotation)
+			switch(rotación)
 			{
 				case Surface.ROTATION_0:
 					axisX = SensorManager.AXIS_X;
@@ -335,7 +341,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 					axisY = SensorManager.AXIS_X;
 					break;
 				default:
-					throw new RuntimeException("rot: " + rotation);
+					throw new RuntimeException("rot: " + rotación);
 			}
 			SensorManager.remapCoordinateSystem(r, axisX, axisY, r2);
 			SensorManager.getOrientation(r2, values);
