@@ -14,6 +14,8 @@ class Publicidad
 
 	Publicidad(AntenaActivity act)
 	{
+		if(act instanceof UnaAntenaActivity)
+			return;
 		adView = new AdView(act);
 		adView.setAdUnitId("ca-app-pub-0461170458442008/6164714153");
 		adView.setAdSize(AdSize.BANNER);
@@ -25,6 +27,8 @@ class Publicidad
 
 	void load(Location loc)
 	{
+		if(adView == null)
+			return;
 		AdRequest.Builder builder = crearAdRequestBuilder()
 				.addKeyword("antena")
 				.addKeyword("tv")
@@ -47,16 +51,19 @@ class Publicidad
 
 	void onPause()
 	{
-		adView.pause();
+		if(adView != null)
+			adView.pause();
 	}
 
 	void onResume()
 	{
-		adView.resume();
+		if(adView != null)
+			adView.resume();
 	}
 
 	void onDestroy()
 	{
-		adView.destroy();
+		if(adView != null)
+			adView.destroy();
 	}
 }
