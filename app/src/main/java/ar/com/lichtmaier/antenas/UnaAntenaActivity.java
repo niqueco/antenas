@@ -9,6 +9,16 @@ import android.widget.TextView;
 public class UnaAntenaActivity extends AntenaActivity
 {
 	private Antena antena;
+	private int orientaciónOriginal;
+	private int flechaOriginalY;
+	private int flechaOriginalX;
+	private int flechaOriginalAncho;
+	private int flechaOriginalAlto;
+	private float escalaAncho;
+	private float escalaAlto;
+	private int mLeftDelta;
+	private int mTopDelta;
+	private double ángulo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -19,11 +29,11 @@ public class UnaAntenaActivity extends AntenaActivity
 		antena = Antena.dameAntena(this, bundle.getInt("ar.com.lichtmaier.antenas.antena"));
 		((TextView)findViewById(R.id.antena_desc)).setText(antena.descripción);
 
-		final int top = bundle.getInt(PACKAGE + ".top");
-		final int left = bundle.getInt(PACKAGE + ".left");
-		final int ancho = bundle.getInt(PACKAGE + ".width");
-		final int alto = bundle.getInt(PACKAGE + ".height");
-		//final int mOriginalOrientation = bundle.getInt(PACKAGE + ".orientation");
+		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
+		flechaOriginalX = bundle.getInt(PACKAGE + ".left");
+		flechaOriginalAncho = bundle.getInt(PACKAGE + ".width");
+		flechaOriginalAlto = bundle.getInt(PACKAGE + ".height");
+		orientaciónOriginal = bundle.getInt(PACKAGE + ".orientation");
 		final double ángulo = bundle.getDouble(PACKAGE + ".ángulo");
 
 		if(savedInstanceState == null)
@@ -39,15 +49,15 @@ public class UnaAntenaActivity extends AntenaActivity
 
 					int[] screenLocation = new int[2];
 					flecha.getLocationOnScreen(screenLocation);
-					int mLeftDelta = left - screenLocation[0];
-					int mTopDelta = top - screenLocation[1];
+					mLeftDelta = flechaOriginalX - screenLocation[0];
+					mTopDelta = flechaOriginalY - screenLocation[1];
 
 					// Scale factors to make the large version the same size as the thumbnail
-					float mWidthScale = (float) ancho / flecha.getWidth();
-					float mHeightScale = (float) alto / flecha.getHeight();
+					escalaAncho = (float) flechaOriginalAncho / flecha.getWidth();
+					escalaAlto = (float) flechaOriginalAlto / flecha.getHeight();
 
 					AnimationSet anim = new AnimationSet(true);
-					anim.addAnimation(new ScaleAnimation(mWidthScale, 1, mHeightScale, 1, 0, 0));
+					anim.addAnimation(new ScaleAnimation(escalaAncho, 1, escalaAlto, 1, 0, 0));
 					anim.addAnimation(new TranslateAnimation(mLeftDelta, 0, mTopDelta, 0));
 					anim.setInterpolator(new AccelerateDecelerateInterpolator());
 					anim.setDuration(500);
@@ -56,7 +66,7 @@ public class UnaAntenaActivity extends AntenaActivity
 					AlphaAnimation aa = new AlphaAnimation(0, 1);
 					aa.setDuration(600);
 					aa.setInterpolator(new AccelerateInterpolator());
-					findViewById(R.id.principal).startAnimation(aa);
+					findViewById(R.id.fondo).startAnimation(aa);
 
 					TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
 					antenaDesc.getLocationOnScreen(screenLocation);
@@ -80,6 +90,8 @@ public class UnaAntenaActivity extends AntenaActivity
 							@Override
 							public void onAnimationStart(Animation animation)
 							{
+								flechaADesaparecer.setVisibility(View.INVISIBLE);
+								/*
 								flechaADesaparecer.postDelayed(new Runnable()
 								{
 									@Override
@@ -87,7 +99,7 @@ public class UnaAntenaActivity extends AntenaActivity
 									{
 										flechaADesaparecer.setVisibility(View.INVISIBLE);
 									}
-								}, 200);
+								}, 200);*/
 							}
 
 							@Override
@@ -129,6 +141,64 @@ public class UnaAntenaActivity extends AntenaActivity
 	}
 
 	@Override
+	public void onBackPressed()
+	{
+		if (getResources().getConfiguration().orientation != orientaciónOriginal)
+		{
+			super.onBackPressed();
+			return;
+		}
+		if(AntenaActivity.flechaADesaparecer != null)
+			AntenaActivity.flechaADesaparecer.setVisibility(View.INVISIBLE);
+		AlphaAnimation aa = new AlphaAnimation(1, 0);
+		aa.setDuration(500);
+		aa.setInterpolator(new AccelerateInterpolator());
+		aa.setFillAfter(true);
+		findViewById(R.id.fondo).startAnimation(aa);
+		aa.setAnimationListener(new Animation.AnimationListener()
+		{
+			@Override
+			public void onAnimationStart(Animation animation) { }
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				finish();
+				if(AntenaActivity.flechaADesaparecer != null)
+				{
+					AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
+					AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
+				}
+			}
+			@Override
+			public void onAnimationRepeat(Animation animation) { }
+		});
+
+		AnimationSet anim = new AnimationSet(true);
+		anim.addAnimation(new ScaleAnimation(1, escalaAncho, 1, escalaAlto, 0, 0));
+		anim.addAnimation(new TranslateAnimation(0, mLeftDelta, 0, mTopDelta));
+		anim.setInterpolator(new AccelerateDecelerateInterpolator());
+		anim.setDuration(500);
+		anim.setFillAfter(true);
+		findViewById(R.id.flecha).startAnimation(anim);
+
+		TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
+		int[] screenLocation = new int[2];
+		antenaDesc.getLocationOnScreen(screenLocation);
+		int d = getWindow().getDecorView().getBottom() - screenLocation[1];
+		TranslateAnimation ta = new TranslateAnimation(0, 0, 0, d);
+		ta.setInterpolator(new AccelerateInterpolator());
+		ta.setDuration(500);
+		ta.setFillAfter(true);
+		antenaDesc.startAnimation(ta);
+		TextView antenaDist = (TextView) findViewById(R.id.antena_dist);
+		ta = new TranslateAnimation(0, 0, 0, d);
+		ta.setInterpolator(new AccelerateInterpolator());
+		ta.setDuration(500);
+		ta.setFillAfter(true);
+		antenaDist.startAnimation(ta);
+	}
+
+	@Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -140,6 +210,14 @@ public class UnaAntenaActivity extends AntenaActivity
 	{
 		((Aplicacion)getApplication()).reportActivityStop(this);
 		super.onStop();
+	}
+
+	@Override
+	public void finish()
+	{
+		super.finish();
+		if (getResources().getConfiguration().orientation == orientaciónOriginal)
+			overridePendingTransition(0, 0);
 	}
 
 	@Override
@@ -160,6 +238,7 @@ public class UnaAntenaActivity extends AntenaActivity
 	{
 		double rumbo = antena.rumboDesde(coordsUsuario);
 		FlechaView f = (FlechaView)findViewById(R.id.flecha);
-		f.setÁngulo(rumbo - brújula);
+		ángulo = rumbo - brújula;
+		f.setÁngulo(ángulo);
 	}
 }
