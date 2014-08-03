@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.*;
 
@@ -10,11 +11,11 @@ import org.gavaghan.geodesy.GeodeticCurve;
 import org.gavaghan.geodesy.GlobalCoordinates;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import android.content.Context;
-import android.content.res.XmlResourceParser;
 
 public class Antena implements Serializable
 {
@@ -83,7 +84,9 @@ public class Antena implements Serializable
 	private static void cargar(Context ctx)
 	{
 		try {
-			XmlResourceParser xml = ctx.getResources().getXml(R.xml.antenas);
+			XmlPullParser xml = XmlPullParserFactory.newInstance().newPullParser();
+			InputStream in = ctx.getResources().openRawResource(R.raw.antenas);
+			xml.setInput(in, "UTF-8");
 			int t, index = 0;
 			while( (t = xml.getEventType()) != XmlPullParser.END_DOCUMENT )
 			{
@@ -91,7 +94,7 @@ public class Antena implements Serializable
 					antenas.add(new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++));
 				xml.next();
 			}
-			xml.close();
+			in.close();
 		} catch (XmlPullParserException | IOException e)
 		{
 			throw new RuntimeException(e);
