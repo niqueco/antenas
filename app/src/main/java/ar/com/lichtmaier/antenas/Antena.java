@@ -15,7 +15,6 @@ import com.google.android.gms.maps.model.LatLng;
 
 import android.content.Context;
 import android.content.res.XmlResourceParser;
-import android.preference.PreferenceManager;
 
 public class Antena implements Serializable
 {
@@ -28,6 +27,7 @@ public class Antena implements Serializable
 	public double dist;
 
 	final static private List<Antena> antenas = new ArrayList<>();
+	final static private List<Antena> antenasAlgoCerca = new ArrayList<>();
 
 	private Antena(String descripción, double lat, double lon, int index)
 	{
@@ -61,9 +61,12 @@ public class Antena implements Serializable
 	{
 		if(antenas.isEmpty())
 			cargar(ctx);
+		if(antenasAlgoCerca.isEmpty())
+			for(Antena antena : antenas)
+				if(Math.abs(coordsUsuario.getLatitude() - antena.c.getLatitude()) < 1)
+					antenasAlgoCerca.add(antena);
 		List<Antena> res = new ArrayList<>();
-		PreferenceManager.getDefaultSharedPreferences(ctx);
-		for(Antena antena : antenas)
+		for(Antena antena : antenasAlgoCerca)
 			if((antena.dist = antena.distanceTo(coordsUsuario)) < maxDist)
 				res.add(antena);
 		Collections.sort(res, distComparator);
