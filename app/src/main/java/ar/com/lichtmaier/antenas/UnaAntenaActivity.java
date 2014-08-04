@@ -19,6 +19,7 @@ public class UnaAntenaActivity extends AntenaActivity
 	private int mLeftDelta;
 	private int mTopDelta;
 	private double ángulo;
+	private FlechaView flecha;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -36,9 +37,10 @@ public class UnaAntenaActivity extends AntenaActivity
 		orientaciónOriginal = bundle.getInt(PACKAGE + ".orientation");
 		final double ángulo = bundle.getDouble(PACKAGE + ".ángulo");
 
+		flecha = (FlechaView)findViewById(R.id.flecha);
+
 		if(savedInstanceState == null)
 		{
-			final FlechaView flecha = (FlechaView)findViewById(R.id.flecha);
 			flecha.setÁngulo(ángulo);
 			flecha.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
 			{
@@ -47,14 +49,7 @@ public class UnaAntenaActivity extends AntenaActivity
 				{
 					flecha.getViewTreeObserver().removeOnPreDrawListener(this);
 
-					int[] screenLocation = new int[2];
-					flecha.getLocationOnScreen(screenLocation);
-					mLeftDelta = flechaOriginalX - screenLocation[0];
-					mTopDelta = flechaOriginalY - screenLocation[1];
-
-					// Scale factors to make the large version the same size as the thumbnail
-					escalaAncho = (float) flechaOriginalAncho / flecha.getWidth();
-					escalaAlto = (float) flechaOriginalAlto / flecha.getHeight();
+					calcularDeltas();
 
 					AnimationSet anim = new AnimationSet(true);
 					anim.addAnimation(new ScaleAnimation(escalaAncho, 1, escalaAlto, 1, 0, 0));
@@ -69,6 +64,7 @@ public class UnaAntenaActivity extends AntenaActivity
 					findViewById(R.id.fondo).startAnimation(aa);
 
 					TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
+					int[] screenLocation = new int[2];
 					antenaDesc.getLocationOnScreen(screenLocation);
 					int d = getWindow().getDecorView().getBottom() - screenLocation[1];
 					TranslateAnimation ta = new TranslateAnimation(0, 0, d, 0);
@@ -140,6 +136,17 @@ public class UnaAntenaActivity extends AntenaActivity
 		}
 	}
 
+	private void calcularDeltas()
+	{
+		int[] screenLocation = new int[2];
+		flecha.getLocationOnScreen(screenLocation);
+		mLeftDelta = flechaOriginalX - screenLocation[0];
+		mTopDelta = flechaOriginalY - screenLocation[1];
+
+		escalaAncho = (float) flechaOriginalAncho / flecha.getWidth();
+		escalaAlto = (float) flechaOriginalAlto / flecha.getHeight();
+	}
+
 	@Override
 	public void onBackPressed()
 	{
@@ -148,6 +155,8 @@ public class UnaAntenaActivity extends AntenaActivity
 			super.onBackPressed();
 			return;
 		}
+		if(escalaAlto == 0)
+			calcularDeltas();
 		if(AntenaActivity.flechaADesaparecer != null)
 			AntenaActivity.flechaADesaparecer.setVisibility(View.INVISIBLE);
 		AlphaAnimation aa = new AlphaAnimation(1, 0);
