@@ -144,7 +144,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		{
 			coordsUsuario = new GlobalCoordinates(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
 			nuevaUbicación();
-		}
+		} else
+			Antena.cargarAsync(this);
 
 		publicidad = new Publicidad(this);
 
