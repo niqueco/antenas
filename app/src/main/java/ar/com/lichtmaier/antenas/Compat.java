@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.annotation.TargetApi;
+import android.content.SharedPreferences;
 import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -29,6 +30,11 @@ public class Compat
 		}
 
 		void disableHardwareAccelerationForLineCaps(FlechaView view) { }
+
+		public void applyPreferences(SharedPreferences.Editor editor)
+		{
+			editor.commit();
+		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -39,6 +45,12 @@ public class Compat
 				Criteria criteria, LocationListener locationListener)
 		{
 			locationManager.requestLocationUpdates(minTime, minDistance, criteria, locationListener, null);
+		}
+
+		@Override
+		public void applyPreferences(SharedPreferences.Editor editor)
+		{
+			editor.apply();
 		}
 	}
 
@@ -65,5 +77,10 @@ public class Compat
 	public static void disableHardwareAccelerationForLineCaps(FlechaView view)
 	{
 		impl.disableHardwareAccelerationForLineCaps(view);
+	}
+
+	public static void applyPreferences(SharedPreferences.Editor editor)
+	{
+		impl.applyPreferences(editor);
 	}
 }

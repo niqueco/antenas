@@ -362,6 +362,17 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
 				maxDist,
 				prefs.getBoolean("menos", true));
+		if(!prefs.getBoolean("paises_configurados", false))
+		{
+			Set<País> países = EnumSet.noneOf(País.class);
+			for(Antena antena : antenasCerca)
+				países.add(antena.país);
+			SharedPreferences.Editor editor = prefs.edit();
+			for(País país : País.values())
+				editor.putBoolean("mapa_país_" + país, países.contains(país));
+			editor.putBoolean("paises_configurados", true);
+			Compat.applyPreferences(editor);
+		}
 		Iterator<Entry<Antena, View>> it = antenaAVista.entrySet().iterator();
 		ViewGroup contenedor = (ViewGroup)findViewById(R.id.antenas);
 		while(it.hasNext())

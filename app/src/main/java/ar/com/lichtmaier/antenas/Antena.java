@@ -25,6 +25,7 @@ public class Antena implements Serializable
 	final public String descripción;
 	private final GlobalCoordinates c;
 	public final int index;
+	final public País país;
 
 	public double dist;
 
@@ -32,11 +33,12 @@ public class Antena implements Serializable
 	final static private List<Antena> antenasAlgoCerca = new ArrayList<>();
 	final static private Map<País, List<Antena>> antenasPorPaís = new EnumMap<>(País.class);
 
-	private Antena(String descripción, double lat, double lon, int index)
+	private Antena(String descripción, double lat, double lon, int index, País país)
 	{
 		this.descripción = descripción;
 		this.index = index;
 		c = new GlobalCoordinates(lat, lon);
+		this.país = país;
 	}
 
 	@Override
@@ -93,6 +95,7 @@ public class Antena implements Serializable
 			xml.setInput(in, "UTF-8");
 			int t, index = 0;
 			List<Antena> l = null;
+			País país = null;
 			while( (t = xml.getEventType()) != XmlPullParser.END_DOCUMENT )
 			{
 				if(t == XmlPullParser.START_TAG)
@@ -100,13 +103,13 @@ public class Antena implements Serializable
 					String name = xml.getName();
 					if(name.equals("antena"))
 					{
-						Antena antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++);
+						Antena antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país);
 						antenas.add(antena);
 						if(l != null)
 							l.add(antena);
 					} else if(name.equals("pais"))
 					{
-						País país = País.valueOf(xml.getAttributeValue(null, "cod"));
+						país = País.valueOf(xml.getAttributeValue(null, "cod"));
 						l = antenasPorPaís.get(país);
 						if(l==null)
 						{
@@ -117,7 +120,10 @@ public class Antena implements Serializable
 				} else
 				{
 					if(t == XmlPullParser.END_TAG && xml.getName().equals("pais"))
+					{
 						l = null;
+						país = null;
+					}
 				}
 				xml.next();
 			}
