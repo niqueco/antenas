@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -132,7 +133,10 @@ public class MapaActivity extends ActionBarActivity
 
 		private void ponerMarcadores()
 		{
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+			Activity act = getActivity();
+			if(act == null)
+				return;
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);
 			for(País país : País.values())
 			{
 				List<Marker> markers = países.get(país);
@@ -140,7 +144,7 @@ public class MapaActivity extends ActionBarActivity
 				{
 					if(markers == null)
 					{
-						List<Antena> antenas = Antena.dameAntenas(getActivity(), país);
+						List<Antena> antenas = Antena.dameAntenas(act, país);
 						markers = new ArrayList<>(antenas.size());
 						países.put(país, markers);
 						for(Antena antena : antenas)
