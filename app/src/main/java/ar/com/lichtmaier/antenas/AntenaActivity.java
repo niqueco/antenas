@@ -135,10 +135,11 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
 		locationClient = new LocationClient(this, this, this);
-		locationRequest = LocationRequest.create();
-		locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-		locationRequest.setInterval(10000);
-		locationRequest.setFastestInterval(2000);
+		locationRequest = LocationRequest.create()
+			.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+			.setInterval(10000)
+			.setFastestInterval(2000)
+			.setSmallestDisplacement(10);
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
 		{
