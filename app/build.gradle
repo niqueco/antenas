@@ -8,7 +8,7 @@ android {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 9
         targetSdkVersion 20
-        versionName "0.12"
+        versionName "0.13"
     }
 
     buildTypes {
@@ -20,10 +20,10 @@ android {
 
     productFlavors {
         normal {
-            versionCode 120
+            versionCode 130
         }
         froyo {
-            versionCode 12
+            versionCode 13
             minSdkVersion 8
         }
     }
