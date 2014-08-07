@@ -16,4 +16,9 @@
             android:title="@string/pref_menos_title"/>
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/pref_header_mapa">
+        <CheckBoxPreference android:title="@string/pref_AR" android:key="mapa_país_AR" android:defaultValue="true"/>
+        <CheckBoxPreference android:title="@string/pref_BR" android:key="mapa_país_BR" android:defaultValue="true"/>
+        <CheckBoxPreference android:title="@string/pref_UY" android:key="mapa_país_UY" android:defaultValue="true"/>
+    </PreferenceCategory>
 </PreferenceScreen>

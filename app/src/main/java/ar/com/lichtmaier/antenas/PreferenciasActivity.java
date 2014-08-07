@@ -50,6 +50,28 @@ public class PreferenciasActivity extends PreferenceActivity
 		super.onPostCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.prefs);
 		bindPreferenceSummaryToValue(findPreference("max_dist"));
+		for(País país : País.values())
+		{
+			int nombre;
+			switch(país)
+			{
+				case AR:
+					nombre = R.string.pref_AR;
+					break;
+				case BR:
+					nombre = R.string.pref_BR;
+					break;
+				case UY:
+					nombre = R.string.pref_UY;
+					break;
+				default:
+					throw new RuntimeException("pais " + país);
+			}
+			findPreference("mapa_país_" + país).setSummary(getString(R.string.pref_país_summary,
+					Antena.dameAntenas(this, país).size(),
+					getString(nombre)));
+		}
+
 	}
 
 	/**

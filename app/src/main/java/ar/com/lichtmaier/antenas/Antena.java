@@ -166,10 +166,10 @@ public class Antena implements Serializable
 		coordsCache = coords;
 	}
 
-	public static List<Antena> dameAntenas(Context ctx)
+	public static List<Antena> dameAntenas(Context ctx, País país)
 	{
 		cargar(ctx);
-		return antenas;
+		return antenasPorPaís.get(país);
 	}
 
 	/** Devuelve una antena en base al número de orden.

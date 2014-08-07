@@ -25,4 +25,11 @@
     <string name="pref_menos_title">Mostrar menos torres</string>
     <string name="pref_menos_summary">Mostrar apenas as mais próximas, se você ver que existem muitas nas proximidades.</string>
 
+    <string name="pref_header_mapa">Mapa</string>
+    <string name="pref_AR">Argentina</string>
+    <string name="pref_BR">Brasil</string>
+    <string name="pref_UY">Uruguai</string>
+
+    <string name="pref_país_summary">Mostrar as %1$,d antenas do %2$s.</string>
+
 </resources>
