@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Antenas TDA</string>
+    <string name="app_name">Antenas TV Digital</string>
     <string name="action_settings">Preferências</string>
     <string name="action_ayuda">Ajuda com TV digital</string>
     <string name="action_niqueco">\@niqueco</string>
