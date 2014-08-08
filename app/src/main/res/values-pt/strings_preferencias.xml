@@ -33,10 +33,15 @@
 
     <string name="pref_país_summary">Mostrar as %1$,d antenas do %2$s.</string>
 
+	<string name="pref_header_general">General</string>
 	<string name="pref_unit_title">Unidade de distância</string>
 	<string-array name="pref_unit_titles">
 		<item>quilômetros</item>
 		<item>millas</item>
+	</string-array>
+	<string-array name="pref_unit_values">
+		<item>km</item>
+		<item>mi</item>
 	</string-array>
 
 </resources>
