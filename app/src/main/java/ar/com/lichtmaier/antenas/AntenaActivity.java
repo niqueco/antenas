@@ -454,7 +454,10 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		tv.setText(formatDistance(a.distanceTo(coordsUsuario)));
 	}
 
-	final static private NumberFormat nf = NumberFormat.getNumberInstance(new Locale("es", "AR"));
+	final static private NumberFormat nf = NumberFormat.getNumberInstance(
+			"es".equals(Locale.getDefault().getLanguage())
+				? new Locale("es", "AR")
+				: Locale.getDefault());
 	private String formatDistance(double distancia)
 	{
 		String unit = prefs.getString("unit", "km");
