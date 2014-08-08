@@ -22,4 +22,12 @@
         <CheckBoxPreference android:title="@string/pref_US" android:key="mapa_país_US" android:defaultValue="false"/>
         <CheckBoxPreference android:title="@string/pref_UY" android:key="mapa_país_UY" android:defaultValue="false"/>
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_header_general">
+        <ListPreference
+            android:defaultValue="km"
+            android:entries="@array/pref_unit_titles"
+            android:entryValues="@array/pref_unit_values"
+            android:key="unit"
+            android:title="@string/pref_unit_title"/>
+    </PreferenceCategory>
 </PreferenceScreen>

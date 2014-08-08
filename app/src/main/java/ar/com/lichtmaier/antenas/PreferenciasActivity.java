@@ -50,6 +50,7 @@ public class PreferenciasActivity extends PreferenceActivity
 		super.onPostCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.prefs);
 		bindPreferenceSummaryToValue(findPreference("max_dist"));
+		bindPreferenceSummaryToValue(findPreference("unit"));
 		for(País país : País.values())
 		{
 			int nombre;

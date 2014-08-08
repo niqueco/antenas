@@ -121,14 +121,24 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		if(pb != null)
 			pb.show();
 
+		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+		prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener()
+		{
 			@Override
 			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 			{
 				nuevaUbicación();
 			}
 		});
+		if(!prefs.getBoolean("unidad_configurada", false))
+		{
+			Locale locale = Locale.getDefault();
+			SharedPreferences.Editor editor = prefs.edit()
+					.putString("unit", ("US".equals(locale.getCountry()) && (!"es".equals(locale.getLanguage()))) ? "mi" : "km")
+					.putBoolean("unidad_configurada", true);
+			Compat.applyPreferences(editor);
+		}
 
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -359,6 +369,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 
 	protected void nuevaUbicación()
 	{
+		if(coordsUsuario == null)
+			return;
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
 				maxDist,
@@ -443,10 +455,23 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	}
 
 	final static private NumberFormat nf = NumberFormat.getNumberInstance(new Locale("es", "AR"));
-	private static String formatDistance(double distancia)
+	private String formatDistance(double distancia)
 	{
-		nf.setMaximumFractionDigits(distancia < 1000.0 ? 2 : 1);
-		return nf.format(distancia / 1000.0) + " km";
+		String unit = prefs.getString("unit", "km");
+		double f;
+		switch(unit)
+		{
+			case "km":
+				f = 1000.0;
+				break;
+			case "mi":
+				f = 1609.344;
+				break;
+			default:
+				throw new RuntimeException("unit: " + unit);
+		}
+		nf.setMaximumFractionDigits(distancia < f ? 2 : 1);
+		return nf.format(distancia / f) + ' ' + unit;
 	}
 
 	@Override
