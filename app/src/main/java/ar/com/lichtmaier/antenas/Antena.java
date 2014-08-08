@@ -64,7 +64,7 @@ public class Antena implements Serializable
 
 	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
 	{
-		cargar(ctx);
+		cargar(ctx, (coordsUsuario.getLatitude()>13) ? EnumSet.of(País.US) : EnumSet.of(País.AR, País.BR, País.UY));
 		if(antenasAlgoCerca.isEmpty())
 			for(Antena antena : antenas)
 				if(Math.abs(coordsUsuario.getLatitude() - antena.c.getLatitude()) < 1)
@@ -84,18 +84,43 @@ public class Antena implements Serializable
 		return res;
 	}
 
-	private synchronized static void cargar(Context ctx)
+	private synchronized static void cargar(Context ctx, Set<País> países)
 	{
-		if(!antenas.isEmpty())
+		for(País país : países)
+			cargar(ctx, país);
+	}
+
+	private synchronized static void cargar(Context ctx, País país)
+	{
+		List<Antena> l = antenasPorPaís.get(país);
+		if(l != null)
 			return;
 		long antes = System.currentTimeMillis();
 		try {
 			XmlPullParser xml = XmlPullParserFactory.newInstance().newPullParser();
-			InputStream in = ctx.getResources().openRawResource(R.raw.antenas);
+			int res;
+			switch(país)
+			{
+				case AR:
+					res = R.raw.antenas_ar;
+					break;
+				case BR:
+					res = R.raw.antenas_br;
+					break;
+				case US:
+					res = R.raw.antenas_us;
+					break;
+				case UY:
+					res = R.raw.antenas_uy;
+					break;
+				default:
+					throw new RuntimeException(String.valueOf(país));
+			}
+			InputStream in = ctx.getResources().openRawResource(res);
 			xml.setInput(in, "UTF-8");
 			int t, index = 0;
-			List<Antena> l = null;
-			País país = null;
+			l = new ArrayList<>();
+			antenasPorPaís.put(país, l);
 			while( (t = xml.getEventType()) != XmlPullParser.END_DOCUMENT )
 			{
 				if(t == XmlPullParser.START_TAG)
@@ -105,24 +130,7 @@ public class Antena implements Serializable
 					{
 						Antena antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país);
 						antenas.add(antena);
-						if(l != null)
-							l.add(antena);
-					} else if(name.equals("pais"))
-					{
-						país = País.valueOf(xml.getAttributeValue(null, "cod"));
-						l = antenasPorPaís.get(país);
-						if(l==null)
-						{
-							l = new ArrayList<>();
-							antenasPorPaís.put(país, l);
-						}
-					}
-				} else
-				{
-					if(t == XmlPullParser.END_TAG && xml.getName().equals("pais"))
-					{
-						l = null;
-						país = null;
+						l.add(antena);
 					}
 				}
 				xml.next();
@@ -132,19 +140,7 @@ public class Antena implements Serializable
 		{
 			throw new RuntimeException(e);
 		}
-		Log.i("antenas", antenas.size() + " antenas cargadas en " + (System.currentTimeMillis() - antes) + "ms");
-	}
-
-	public static void cargarAsync(final Context ctx)
-	{
-		final Context c = ctx.getApplicationContext();
-		new Thread() {
-			@Override
-			public void run()
-			{
-				cargar(c);
-			}
-		}.start();
+		Log.i("antenas", l.size() + " antenas de " + país + " cargadas en " + (System.currentTimeMillis() - antes) + "ms");
 	}
 
 	private GlobalCoordinates coordsCache = null;
@@ -174,7 +170,7 @@ public class Antena implements Serializable
 
 	public static List<Antena> dameAntenas(Context ctx, País país)
 	{
-		cargar(ctx);
+		cargar(ctx, país);
 		return antenasPorPaís.get(país);
 	}
 
@@ -183,9 +179,9 @@ public class Antena implements Serializable
 	 * @param index el número de orden
 	 * @return una antena
 	 */
-	public static Antena dameAntena(Context ctx, int index)
+	public static Antena dameAntena(Context ctx, País país, int index)
 	{
-		cargar(ctx);
-		return antenas.get(index);
+		cargar(ctx, país);
+		return antenasPorPaís.get(país).get(index);
 	}
 }

@@ -87,7 +87,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			FlechaView flecha = (FlechaView)v.findViewById(R.id.flecha);
 			flecha.getLocationOnScreen(screenLocation);
 			int orientation = getResources().getConfiguration().orientation;
-			i.putExtra(PACKAGE + ".antena", antena.index).
+			i.putExtra(PACKAGE + ".antenaIndex", antena.index).
+					putExtra(PACKAGE + ".antenaPaís", antena.país.name()).
 					putExtra(PACKAGE + ".orientation", orientation).
 					putExtra(PACKAGE + ".left", screenLocation[0]).
 					putExtra(PACKAGE + ".top", screenLocation[1]).
@@ -155,8 +156,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		{
 			coordsUsuario = new GlobalCoordinates(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
 			nuevaUbicación();
-		} else
-			Antena.cargarAsync(this);
+		}
 
 		publicidad = new Publicidad(this);
 

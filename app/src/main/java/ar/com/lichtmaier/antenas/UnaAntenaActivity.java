@@ -27,7 +27,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		super.onCreate(savedInstanceState);
 		asignarLayout();
 		Bundle bundle = getIntent().getExtras();
-		antena = Antena.dameAntena(this, bundle.getInt("ar.com.lichtmaier.antenas.antena"));
+		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
 		((TextView)findViewById(R.id.antena_desc)).setText(antena.descripción);
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
