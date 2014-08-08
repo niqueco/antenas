@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Antenas TDA</string>
-    <string name="action_settings">Preferencias</string>
-    <string name="action_ayuda">Ayuda con la TDA</string>
+    <string name="app_name">DTV Antennas</string>
+    <string name="action_settings">Preferences</string>
+    <string name="action_ayuda">Help with TVD</string>
     <string name="action_niqueco">\@niqueco</string>
-    <string name="title_activity_mapa">Mapa de antenas</string>
-    <string name="action_mapa">Mapa</string>
-    <string name="no_se_encontraron_antenas">No se pudo encontrar ninguna antena en el radio configurado de %s.</string>
-    <string name="podes_incrementar_radio">Podés probar incrementando ese radio en las opciones.</string>
-    <string name="no_ubicacion">No se pudo obtener la ubicación… ¿está apagado el GPS?</string>
-    <string name="fallo_inicializar_mapa">Uhm… por alguna razón no se pudo inicializar el mapita.</string>
+    <string name="title_activity_mapa">Antennas map</string>
+    <string name="action_mapa">Map</string>
+    <string name="no_se_encontraron_antenas">No antennas found in the configured ratio of %s.</string>
+    <string name="podes_incrementar_radio">You can try incrementing that ratio in the preferences.</string>
+    <string name="no_ubicacion">Couldn't acquire location… Is GPS off?</string>
+    <string name="fallo_inicializar_mapa">Uhm… for some reason the map could not be initialized.</string>
 
 </resources>
