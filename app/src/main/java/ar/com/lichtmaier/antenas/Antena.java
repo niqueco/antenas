@@ -64,10 +64,16 @@ public class Antena implements Serializable
 
 	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
 	{
-		cargar(ctx, (coordsUsuario.getLatitude()>13) ? EnumSet.of(País.US) : EnumSet.of(País.AR, País.BR, País.UY));
+		double latitud = coordsUsuario.getLatitude();
+		double longitud = coordsUsuario.getLongitude();
+		cargar(ctx, (latitud >13)
+				? EnumSet.of(País.US)
+				: (latitud < -34 || (latitud < -18 && longitud < -58)
+					? EnumSet.of(País.AR, País.UY)
+					: EnumSet.of(País.AR, País.BR, País.UY)));
 		if(antenasAlgoCerca.isEmpty())
 			for(Antena antena : antenas)
-				if(Math.abs(coordsUsuario.getLatitude() - antena.c.getLatitude()) < 1)
+				if(Math.abs(latitud - antena.c.getLatitude()) < 1)
 					antenasAlgoCerca.add(antena);
 		List<Antena> res = new ArrayList<>();
 		for(Antena antena : antenasAlgoCerca)
