@@ -30,11 +30,7 @@
 		<ar.com.lichtmaier.antenas.FlechaView
 			android:id="@+id/flecha"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_alignParentLeft="true"
-			android:layout_alignParentStart="true"
-			android:layout_alignParentTop="true"/>
-
+			android:layout_height="match_parent"/>
 
 		<LinearLayout
 			android:layout_width="wrap_content"
@@ -47,9 +43,6 @@
 				android:id="@+id/antena_desc"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_centerVertical="true"
-				android:layout_toEndOf="@+id/flecha"
-				android:layout_toRightOf="@+id/flecha"
 				android:fontFamily="sans-serif-light"
 				android:text="Hola"
 				android:textColor="#ffff"
@@ -59,9 +52,6 @@
 				android:id="@+id/antena_dist"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignLeft="@+id/antena_desc"
-				android:layout_alignStart="@+id/antena_desc"
-				android:layout_below="@+id/antena_desc"
 				android:text="10 km"
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:textColor="#fddd"/>
