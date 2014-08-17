@@ -16,13 +16,15 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import com.google.android.gms.maps.model.LatLng;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 public class Antena implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
-	final public String descripción;
+	final public String descripción, ref;
 	private final GlobalCoordinates c;
 	public final int index;
 	final public País país;
@@ -33,12 +35,13 @@ public class Antena implements Serializable
 	final static private List<Antena> antenasAlgoCerca = new ArrayList<>();
 	final static private Map<País, List<Antena>> antenasPorPaís = new EnumMap<>(País.class);
 
-	private Antena(String descripción, double lat, double lon, int index, País país)
+	private Antena(String descripción, double lat, double lon, int index, País país, String ref)
 	{
 		this.descripción = descripción;
 		this.index = index;
 		c = new GlobalCoordinates(lat, lon);
 		this.país = país;
+		this.ref = ref;
 	}
 
 	@Override
@@ -66,11 +69,13 @@ public class Antena implements Serializable
 	{
 		double latitud = coordsUsuario.getLatitude();
 		double longitud = coordsUsuario.getLongitude();
-		cargar(ctx, (latitud >13)
+		cargar(ctx, longitud > -27
+			? EnumSet.of(País.UK)
+			: ((latitud > 13)
 				? EnumSet.of(País.US)
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
 					? EnumSet.of(País.AR, País.UY)
-					: EnumSet.of(País.AR, País.BR, País.UY)));
+					: EnumSet.of(País.AR, País.BR, País.UY))));
 		if(antenasAlgoCerca.isEmpty())
 			for(Antena antena : antenas)
 				if(Math.abs(latitud - antena.c.getLatitude()) < 1)
@@ -113,6 +118,9 @@ public class Antena implements Serializable
 				case BR:
 					res = R.raw.antenas_br;
 					break;
+				case UK:
+					res = R.raw.antenas_uk;
+					break;
 				case US:
 					res = R.raw.antenas_us;
 					break;
@@ -134,7 +142,7 @@ public class Antena implements Serializable
 					String name = xml.getName();
 					if(name.equals("antena"))
 					{
-						Antena antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país);
+						Antena antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país, xml.getAttributeValue(null, "ref"));
 						antenas.add(antena);
 						l.add(antena);
 					}
@@ -189,5 +197,13 @@ public class Antena implements Serializable
 	{
 		cargar(ctx, país);
 		return antenasPorPaís.get(país).get(index);
+	}
+
+	public void mostrarInformacion(Context ctx)
+	{
+		if(país != País.UK || ref == null)
+			return;
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.ukfree.tv/txdetail.php?a=" + ref));
+		ctx.startActivity(intent);
 	}
 }

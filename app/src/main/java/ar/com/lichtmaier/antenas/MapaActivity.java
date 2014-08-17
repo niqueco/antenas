@@ -71,11 +71,13 @@ public class MapaActivity extends ActionBarActivity
 		return super.onOptionsItemSelected(item);
 	}
 
-	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener
+	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, GoogleMap.OnInfoWindowClickListener
 	{
 		private GoogleMap mapa;
 
 		private final Map<País, List<Marker>> países = new EnumMap<>(País.class);
+
+		private final Map<Marker, Antena> markerAAntena = new HashMap<>();
 
 		public MapaFragment()
 		{
@@ -101,6 +103,7 @@ public class MapaActivity extends ActionBarActivity
 			}
 			mapa.setMyLocationEnabled(true);
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
+			mapa.setOnInfoWindowClickListener(this);
 			if(AntenaActivity.coordsUsuario != null)
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
 			if(íconoAntenita == null)
@@ -149,7 +152,12 @@ public class MapaActivity extends ActionBarActivity
 						países.put(país, markers);
 						for(Antena antena : antenas)
 						{
-							markers.add(mapa.addMarker(new MarkerOptions().position(antena.getLatLng()).title(antena.toString()).icon(íconoAntenita)));
+							Marker marker = mapa.addMarker(new MarkerOptions()
+									.position(antena.getLatLng())
+									.title(antena.toString())
+									.icon(íconoAntenita));
+							markerAAntena.put(marker, antena);
+							markers.add(marker);
 						}
 					}
 				} else
@@ -162,6 +170,13 @@ public class MapaActivity extends ActionBarActivity
 					}
 				}
 			}
+		}
+
+		@Override
+		public void onInfoWindowClick(Marker marker)
+		{
+			Antena antena = markerAAntena.get(marker);
+			antena.mostrarInformacion(getActivity());
 		}
 	}
 }

@@ -1,0 +1,82 @@
+<antenas>
+<antena ref='SD660144' lat='53.625' lon='-2.51554' desc='Winter Hill'/>
+<antena ref='TQ330045' lat='50.8248' lon='-0.113023' desc='Whitehawk Hill'/>
+<antena ref='ST110742' lat='51.4598' lon='-3.28245' desc='Wenvoe'/>
+<antena ref='SK809233' lat='52.8012' lon='-0.801473' desc='Waltham'/>
+<antena ref='TQ607440' lat='51.1727' lon='0.297419' desc='Tunbridge Wells'/>
+<antena ref='NM703358' lat='56.4582' lon='-5.7297' desc='Torosay'/>
+<antena ref='SJ628082' lat='52.6702' lon='-2.55155' desc='The Wrekin'/>
+<antena ref='TM131958' lat='52.5184' lon='1.13944' desc='Tacolneston'/>
+<antena ref='SK113003' lat='52.6004' lon='-1.83459' desc='Sutton Coldfield'/>
+<antena ref='TL913377' lat='52.0048' lon='0.785675' desc='Sudbury'/>
+<antena ref='SJ314841' lat='53.3493' lon='-3.03198' desc='Storeton'/>
+<antena ref='ST222014' lat='50.8069' lon='-3.10552' desc='Stockland Hill'/>
+<antena ref='SK324870' lat='53.3789' lon='-1.51442' desc='Sheffield'/>
+<antena ref='NT500294' lat='55.5557' lon='-2.79417' desc='Selkirk'/>
+<antena ref='TL204494' lat='52.1298' lon='-0.242475' desc='Sandy Heath'/>
+<antena ref='SU136285' lat='51.0557' lon='-1.80732' desc='Salisbury'/>
+<antena ref='SD987050' lat='53.5417' lon='-2.02109' desc='Saddleworth'/>
+<antena ref='ND197385' lat='58.3276' lon='-3.37277' desc='Rumster Forest'/>
+<antena ref='SZ447865' lat='50.6764' lon='-1.36873' desc='Rowridge'/>
+<antena ref='NS258811' lat='55.9911' lon='-4.79436' desc='Rosneath'/>
+<antena ref='NH762623' lat='57.6336' lon='-4.07508' desc='Rosemarkie'/>
+<antena ref='SO630333' lat='51.9969' lon='-2.54032' desc='Ridge Hill'/>
+<antena ref='TQ257521' lat='51.2542' lon='-0.200111' desc='Reigate'/>
+<antena ref='SW690395' lat='50.2103' lon='-5.239' desc='Redruth'/>
+<antena ref='SN172306' lat='51.9438' lon='-4.66102' desc='Preseli'/>
+<antena ref='ST284990' lat='51.6852' lon='-3.0371' desc='Pontypool'/>
+<antena ref='NZ148526' lat='54.868' lon='-1.77094' desc='Pontop Pike'/>
+<antena ref='SX531555' lat='50.381' lon='-4.06753' desc='Plympton'/>
+<antena ref='SD825384' lat='53.8416' lon='-2.26744' desc='Pendle Forest'/>
+<antena ref='SP567105' lat='51.7903' lon='-1.17932' desc='Oxford'/>
+<antena ref='TA040869' lat='54.2672' lon='-0.404671' desc='Olivers Mount'/>
+<antena ref='SK503435' lat='52.9865' lon='-1.25218' desc='Nottingham'/>
+<antena ref='SJ123701' lat='53.2207' lon='-3.31496' desc='Moel-Y-Parc'/>
+<antena ref='SU912250' lat='51.0171' lon='-0.701182' desc='Midhurst'/>
+<antena ref='ST564488' lat='51.2367' lon='-2.6259' desc='Mendip'/>
+<antena ref='SO774464' lat='52.1155' lon='-2.33145' desc='Malvern'/>
+<antena ref='SH583810' lat='53.3069' lon='-4.1281' desc='Llanddona'/>
+<antena ref='IC711296' lat='55.1084' lon='-6.88717' desc='Limavady'/>
+<antena ref='SP187426' lat='52.0815' lon='-1.72852' desc='Lark Stoke'/>
+<antena ref='SD490662' lat='54.0892' lon='-2.78118' desc='Lancaster'/>
+<antena ref='NJ321497' lat='57.5323' lon='-3.13563' desc='Knockmore'/>
+<antena ref='SS672940' lat='51.6291' lon='-3.92006' desc='Kilvey Hill'/>
+<antena ref='SE069444' lat='53.8957' lon='-1.89649' desc='Keighley'/>
+<antena ref='HY378102' lat='58.9744' lon='-3.08358' desc='Keelylang Hill'/>
+<antena ref='SE163374' lat='53.8326' lon='-1.75382' desc='Idle'/>
+<antena ref='SS527220' lat='50.9785' lon='-4.09966' desc='Huntshaw Cross'/>
+<antena ref='TL088045' lat='51.7287' lon='-0.426044' desc='Hemel Hempstead'/>
+<antena ref='TQ566220' lat='50.9761' lon='0.229296' desc='Heathfield'/>
+<antena ref='TQ806100' lat='50.8613' lon='0.564879' desc='Hastings'/>
+<antena ref='SU527568' lat='51.3079' lon='-1.24533' desc='Hannington'/>
+<antena ref='SU975486' lat='51.2283' lon='-0.605019' desc='Guildford'/>
+<antena ref='SJ903451' lat='53.0031' lon='-2.14599' desc='Fenton'/>
+<antena ref='NZ216648' lat='54.9774' lon='-1.66408' desc='Fenham'/>
+<antena ref='SE222128' lat='53.6113' lon='-1.66593' desc='Emley Moor'/>
+<antena ref='NB305303' lat='58.1789' lon='-6.58598' desc='Eitshal'/>
+<antena ref='NO763899' lat='56.9996' lon='-2.39176' desc='Durris'/>
+<antena ref='TR274397' lat='51.1115' lon='1.24743' desc='Dover'/>
+<antena ref='IJ287750' lat='54.6066' lon='-6.00943' desc='Divis'/>
+<antena ref='NS557341' lat='55.5791' lon='-4.29058' desc='Darvel'/>
+<antena ref='TQ339712' lat='51.424' lon='-0.0755003' desc='Crystal Palace'/>
+<antena ref='NT233872' lat='56.0714' lon='-3.23366' desc='Craigkelly'/>
+<antena ref='SK382764' lat='53.2832' lon='-1.42851' desc='Chesterfield'/>
+<antena ref='NU105264' lat='55.5312' lon='-1.83523' desc='Chatton'/>
+<antena ref='SN576153' lat='51.8181' lon='-4.06738' desc='Carmel'/>
+<antena ref='SX273707' lat='50.5105' lon='-4.4371' desc='Caradon Hill'/>
+<antena ref='NY299425' lat='54.7725' lon='-3.09121' desc='Caldbeck'/>
+<antena ref='IH350527' lat='54.4215' lon='-7.46199' desc='Brougher Mountain'/>
+<antena ref='SO948730' lat='52.355' lon='-2.07777' desc='Bromsgrove'/>
+<antena ref='ST547775' lat='51.4946' lon='-2.65392' desc='Bristol Kings Weston'/>
+<antena ref='ST577700' lat='51.4274' lon='-2.60981' desc='Bristol Ilchester Crescent'/>
+<antena ref='SO916856' lat='52.4683' lon='-2.12507' desc='Brierley Hill'/>
+<antena ref='HU503387' lat='60.1298' lon='-1.09648' desc='Bressay'/>
+<antena ref='TQ757613' lat='51.3237' lon='0.520264' desc='Bluebell Hill'/>
+<antena ref='SN569757' lat='52.3606' lon='-4.10289' desc='BlaenPlwyf'/>
+<antena ref='NS828647' lat='55.8612' lon='-3.8741' desc='Black Hill'/>
+<antena ref='SE553962' lat='54.3583' lon='-1.15057' desc='Bilsdale'/>
+<antena ref='TF218836' lat='53.3353' lon='-0.172307' desc='Belmont'/>
+<antena ref='SX857619' lat='50.4458' lon='-3.61117' desc='Beacon Hill'/>
+<antena ref='NO394407' lat='56.5543' lon='-2.98741' desc='Angus'/>
+<antena ref='SO034013' lat='51.7021' lon='-3.39927' desc='Aberdare'/>
+</antenas>
