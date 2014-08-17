@@ -10,7 +10,7 @@
         <item>40 km</item>
         <item>60 km</item>
         <item>100 km</item>
-        <item>200 km</item>
+        <item>300 km</item>
         </string-array>
     <string-array name="pref_max_dist_values">
         <item>5</item>
@@ -19,7 +19,7 @@
         <item>40</item>
         <item>60</item>
         <item>100</item>
-        <item>200</item>
+        <item>300</item>
         </string-array>
 
     <string name="pref_menos_title">Show less antennas</string>
