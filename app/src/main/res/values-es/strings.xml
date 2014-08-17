@@ -3,7 +3,9 @@
 
     <string name="app_name">Antenas TDA</string>
     <string name="action_settings">Preferencias</string>
-    <string name="action_ayuda">Ayuda con la TDA</string>
+	<string name="action_ayuda">Ayuda con la TV digital</string>
+	<string name="action_ayuda_ar">Ayuda con la TDA</string>
+	<string name="action_ayuda_uk">Cobertura local Freeview</string>
     <string name="action_niqueco">\@niqueco</string>
     <string name="title_activity_mapa">Mapa de antenas</string>
     <string name="action_mapa">Mapa</string>

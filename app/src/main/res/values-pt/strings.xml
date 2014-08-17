@@ -3,7 +3,9 @@
 
     <string name="app_name">Antenas TV Digital</string>
     <string name="action_settings">Preferências</string>
-    <string name="action_ayuda">Ajuda com TV digital</string>
+	<string name="action_ayuda">Ajuda com TV digital</string>
+	<string name="action_ayuda_ar">Ajuda com TDA</string>
+	<string name="action_ayuda_uk">Cobertura de Freeview</string>
     <string name="action_niqueco">\@niqueco</string>
     <string name="title_activity_mapa">Mapa de antenas</string>
     <string name="action_mapa">Mapa</string>

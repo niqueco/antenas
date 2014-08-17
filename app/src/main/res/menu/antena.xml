@@ -12,10 +12,19 @@
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_ayuda"
-        android:title="@string/action_ayuda"
-        app:showAsAction="never"/>
+
+	<item
+		android:visible="false"
+		android:id="@+id/action_ayuda_ar"
+		android:title="@string/action_ayuda_ar"
+		app:showAsAction="never"/>
+
+	<item
+		android:visible="false"
+		android:id="@+id/action_ayuda_uk"
+		android:title="@string/action_ayuda_uk"
+		app:showAsAction="never"/>
+
     <item
         android:id="@+id/action_niqueco"
         android:title="@string/action_niqueco"

@@ -56,6 +56,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	private LocationManager locationManager;
 	private LocationRequest locationRequest;
 
+	private MenuItem opciónAyudaArgentina, opciónAyudaReinoUnido;
+	private boolean mostrarOpciónAyudaArgentina = false, mostrarOpciónAyudaReinoUnido = false;
+
 	private final LocationListener locationListener = new LocationListener() {
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras) { }
@@ -183,7 +186,18 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.antena, menu);
+		opciónAyudaArgentina = menu.findItem(R.id.action_ayuda_ar);
+		opciónAyudaReinoUnido = menu.findItem(R.id.action_ayuda_uk);
+		configurarMenú();
 		return true;
+	}
+
+	private void configurarMenú()
+	{
+		if(opciónAyudaArgentina != null)
+			opciónAyudaArgentina.setVisible(mostrarOpciónAyudaArgentina);
+		if(opciónAyudaReinoUnido != null)
+			opciónAyudaReinoUnido.setVisible(mostrarOpciónAyudaReinoUnido);
 	}
 
 	@Override
@@ -201,8 +215,13 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				i = new Intent(this, MapaActivity.class);
 				startActivity(i);
 				return true;
-			case R.id.action_ayuda:
+			case R.id.action_ayuda_ar:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://poné-tda.com.ar/"));
+				if(i.resolveActivity(getPackageManager()) != null)
+					startActivity(i);
+				return true;
+			case R.id.action_ayuda_uk:
+				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.digitaluk.co.uk/coveragechecker/"));
 				if(i.resolveActivity(getPackageManager()) != null)
 					startActivity(i);
 				return true;
@@ -367,6 +386,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 
+	private boolean menúConfigurado = false;
+
 	protected void nuevaUbicación()
 	{
 		if(coordsUsuario == null)
@@ -375,16 +396,25 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
 				maxDist,
 				prefs.getBoolean("menos", true));
-		if(!prefs.getBoolean("paises_configurados", false))
+		if(!menúConfigurado)
 		{
 			Set<País> países = EnumSet.noneOf(País.class);
 			for(Antena antena : antenasCerca)
 				países.add(antena.país);
-			SharedPreferences.Editor editor = prefs.edit();
-			for(País país : País.values())
-				editor.putBoolean("mapa_país_" + país, países.contains(país));
-			editor.putBoolean("paises_configurados", true);
-			Compat.applyPreferences(editor);
+			if(países.contains(País.AR) || países.contains(País.UY))
+				mostrarOpciónAyudaArgentina = true;
+			if(países.contains(País.UK))
+				mostrarOpciónAyudaReinoUnido = true;
+			configurarMenú();
+			if(!prefs.getBoolean("paises_configurados", false))
+			{
+				SharedPreferences.Editor editor = prefs.edit();
+				for(País país : País.values())
+					editor.putBoolean("mapa_país_" + país, países.contains(país));
+				editor.putBoolean("paises_configurados", true);
+				Compat.applyPreferences(editor);
+			}
+			menúConfigurado = true;
 		}
 		Iterator<Entry<Antena, View>> it = antenaAVista.entrySet().iterator();
 		ViewGroup contenedor = (ViewGroup)findViewById(R.id.antenas);
