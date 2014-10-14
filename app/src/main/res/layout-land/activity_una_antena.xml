@@ -25,7 +25,7 @@
 		android:layout_height="0dp"
 		android:layout_weight="1"
 		android:orientation="horizontal"
-		>
+		tools:ignore="UselessParent">
 
 		<ar.com.lichtmaier.antenas.FlechaView
 			android:id="@+id/flecha"
@@ -37,6 +37,7 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
 			android:layout_marginLeft="32dp"
+			android:layout_marginStart="32dp"
 			android:orientation="vertical">
 
 			<TextView
@@ -44,15 +45,14 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:fontFamily="sans-serif-light"
-				android:text="Hola"
 				android:textColor="#ffff"
-				android:textSize="40sp"/>
+				android:textSize="40sp"
+				tools:ignore="UnusedAttribute"/>
 
 			<TextView
 				android:id="@+id/antena_dist"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="10 km"
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:textColor="#fddd"/>
 		</LinearLayout>

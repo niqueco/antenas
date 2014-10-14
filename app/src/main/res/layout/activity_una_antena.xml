@@ -31,7 +31,8 @@
 			android:layout_height="wrap_content"
 			android:fontFamily="sans-serif-light"
 			android:textColor="#ffff"
-			android:textSize="40sp"/>
+			android:textSize="40sp"
+			tools:ignore="UnusedAttribute"/>
 
 	<TextView
 			android:id="@+id/antena_dist"

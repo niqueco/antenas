@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ar.com.lichtmaier.antenas"
     android:installLocation="auto">
 
@@ -27,7 +28,8 @@
         android:label="@string/app_name"
         android:name=".Aplicacion"
         android:logo="@drawable/ic_logo"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="UnusedAttribute">
         <activity
             android:name=".AntenaActivity"
             android:label="@string/app_name">

@@ -163,7 +163,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 
 		publicidad = new Publicidad(this);
 
-		rotación = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
+		rotación = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
 	}
 
 	protected void asignarLayout()
@@ -336,6 +336,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	final private float[] values = new float[3];
 	final private float[] r2 = new float[9];
 
+	@SuppressWarnings("SuspiciousNameCombination")
 	@Override
 	public void onSensorChanged(SensorEvent event)
 	{
