@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="fondo_antena_presionado">#3fff</color>
+	<color name="celeste_lindo">#81d4fa</color>
+	<color name="celeste_lindo_oscuro">#03a9f4</color>
 </resources>
