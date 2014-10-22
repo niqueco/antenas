@@ -1,37 +1,23 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-        <item name="actionBarStyle">@style/ActionBarPrincipal</item>
-    </style>
-
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:windowBackground">@drawable/fondo</item>
-    </style>
+	<style name="AppTheme" parent="Theme.AppCompat">
+		<item name="android:windowBackground">@drawable/fondo</item>
+		<item name="actionBarStyle">@style/ActionBarPrincipal</item>
+	</style>
 
     <style name="ActionBarPrincipal" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="displayOptions">showHome|useLogo</item>
-        <item name="android:background">@drawable/x_ab_solid_dark_holo</item>
     </style>
 
-    <style name="TemaMapa" parent="Theme.AppCompat.Light">
+    <style name="TemaMapa" parent="Theme.AppCompat">
         <item name="windowActionBarOverlay">true</item>
         <item name="actionBarStyle">@style/ActionBarMapa</item>
     </style>
 
-    <style name="ActionBarMapa" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/x_ab_solid_dark_holo</item>
-    </style>
+	<style name="ActionBarMapa" parent="@style/Widget.AppCompat.ActionBar">
+		<item name="background">@drawable/x_ab_solid_dark_holo</item>
+		<item name="displayOptions">showHome|useLogo|homeAsUp|showTitle</item>
+	</style>
 
 	<style name="AppTheme.Transparent">
 		<!-- <item name="android:windowNoTitle">true</item> -->

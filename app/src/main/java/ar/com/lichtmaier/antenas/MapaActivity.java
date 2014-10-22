@@ -94,7 +94,8 @@ public class MapaActivity extends ActionBarActivity
 		{
 			super.onActivityCreated(savedInstanceState);
 			FragmentActivity act = getActivity();
-			mapa = ((SupportMapFragment)act.getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+			SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
+			mapa = mapFragment.getMap();
 			if(mapa == null)
 			{
 				Toast.makeText(act, act.getString(R.string.fallo_inicializar_mapa), Toast.LENGTH_SHORT).show();
