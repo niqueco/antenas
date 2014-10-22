@@ -29,6 +29,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
 		((TextView)findViewById(R.id.antena_desc)).setText(antena.descripción);
+		nuevaUbicación(); // para que se configure la distancia
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
 		flechaOriginalX = bundle.getInt(PACKAGE + ".left");
