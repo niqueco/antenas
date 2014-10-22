@@ -13,5 +13,6 @@
     <string name="podes_incrementar_radio">You can try incrementing that ratio in the preferences.</string>
     <string name="no_ubicacion">"Couldn't acquire location… Is GPS off?"</string>
     <string name="fallo_inicializar_mapa">Uhm… for some reason the map could not be initialized.</string>
+	<string name="app_no_disponible">No application available to handle this operation.</string>
 
 </resources>

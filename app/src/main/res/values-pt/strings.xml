@@ -13,5 +13,6 @@
     <string name="podes_incrementar_radio">Você pode tentar incrementá-lo nas opções.</string>
     <string name="no_ubicacion">Não foi possível obter a localização… É o GPS off?</string>
     <string name="fallo_inicializar_mapa">Uhm… Por alguma razão falhou a inicialização do mapa.</string>
+	<string name="app_no_disponible">Nenhum aplicativo disponível para lidar com essa operação.</string>
 
 </resources>

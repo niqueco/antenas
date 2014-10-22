@@ -240,6 +240,10 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 						break;
 					}
 				startActivity(i);
+				if(i.resolveActivity(getPackageManager()) != null)
+					startActivity(i);
+				else
+					Toast.makeText(this, R.string.app_no_disponible, Toast.LENGTH_LONG).show();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);

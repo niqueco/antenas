@@ -13,5 +13,6 @@
     <string name="podes_incrementar_radio">Podés probar incrementando ese radio en las opciones.</string>
     <string name="no_ubicacion">No se pudo obtener la ubicación… ¿está apagado el GPS?</string>
     <string name="fallo_inicializar_mapa">Uhm… por alguna razón no se pudo inicializar el mapita.</string>
+	<string name="app_no_disponible">No hay ninguna aplicación disponible para manejar esa operación.</string>
 
 </resources>
