@@ -32,11 +32,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 
-public class AntenaActivity extends ActionBarActivity implements SensorEventListener, com.google.android.gms.location.LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
+public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
@@ -148,11 +148,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-		google = new GoogleApiClient.Builder(this)
-				.addApi(LocationServices.API)
-				.addConnectionCallbacks(this)
-				.addOnConnectionFailedListener(this)
-				.build();
+		locationClient = new LocationClient(this, this, this);
 		locationRequest = LocationRequest.create()
 			.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 			.setInterval(10000)
@@ -254,8 +250,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	{
 		super.onStart();
 		((Aplicacion)getApplication()).reportActivityStart(this);
-		if(google != null)
-			google.connect();
+		if(locationClient != null)
+			locationClient.connect();
 	}
 
 	@Override
@@ -279,12 +275,12 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				finish();
 			}
 		}
-		if(google != null)
+		if(locationClient != null)
 		{
-			if(google.isConnected())
-				LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, this);
-			else if(!google.isConnecting())
-				google.connect();
+			if(locationClient.isConnected())
+				locationClient.requestLocationUpdates(locationRequest, this);
+			else if(!locationClient.isConnecting())
+				locationClient.connect();
 		}
 		publicidad.onResume();
 	}
@@ -298,16 +294,16 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		sensorManager.unregisterListener(this);
 		if(locationManager != null)
 			locationManager.removeUpdates(locationListener);
-		if(google != null && google.isConnected())
-			LocationServices.FusedLocationApi.removeLocationUpdates(google, this);
+		if(locationClient != null && locationClient.isConnected())
+			locationClient.removeLocationUpdates(this);
 		super.onPause();
 	}
 
 	@Override
 	protected void onStop()
 	{
-		if(google != null)
-			google.disconnect();
+		if(locationClient != null)
+			locationClient.disconnect();
 		((Aplicacion)getApplication()).reportActivityStop(this);
 		super.onStop();
 	}
@@ -319,7 +315,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		super.onDestroy();
 	}
 
-	private GoogleApiClient google;
+	private LocationClient locationClient;
 	private SharedPreferences prefs;
 	private long lastUpdate = 0;
 	void nuevaOrientación(double brújula)
@@ -533,7 +529,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		{
 			Log.e("antenas", "Play Services no disponible: " + r + ". No importa, sobreviviremos.");
 			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-			google = null;
+			locationClient = null;
 			if(coordsUsuario == null)
 			{
 				Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -557,18 +553,20 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	@Override
 	public void onConnected(Bundle arg0)
 	{
-		Location location = LocationServices.FusedLocationApi.getLastLocation(google);
+		Location location = locationClient.getLastLocation();
 		if(location != null)
 		{
 			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 			nuevaUbicación();
 		}
-		LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, this);
+		locationClient.requestLocationUpdates(locationRequest, this);
 		publicidad.load(location);
 	}
 
 	@Override
-	public void onConnectionSuspended(int i) { }
+	public void onDisconnected()
+	{
+	}
 
 	@Override
 	public void onLocationChanged(Location location)
@@ -585,7 +583,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
 				if(resultCode == RESULT_OK)
 				{
-					google.connect();
+					locationClient.connect();
 				}
 		}
 	}
