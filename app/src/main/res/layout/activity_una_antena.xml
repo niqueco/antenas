@@ -5,7 +5,7 @@
 	      android:id="@+id/root"
 	      tools:context="ar.com.lichtmaier.antenas.UnaAntenaActivity">
 <View
-	android:background="@drawable/fondo"
+	android:background="@color/celeste_lindo"
 	android:id="@+id/fondo"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"/>

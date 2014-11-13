@@ -6,12 +6,12 @@
 	</style>
 
 	<style name="TemaApp.Antenas">
-		<item name="android:windowBackground">@drawable/fondo</item>
+		<item name="android:windowBackground">@color/celeste_lindo</item>
 		<item name="actionBarStyle">@style/ActionBarPrincipal</item>
 	</style>
 
     <style name="ActionBarPrincipal" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="displayOptions">showHome|useLogo</item>
+		<item name="displayOptions">showHome</item>
 		<item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 

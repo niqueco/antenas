@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="celeste_lindo">#81d4fa</color>
-	<color name="celeste_lindo_oscuro">#03a9f4</color>
+	<color name="celeste_lindo">#03a9f4</color>
+	<color name="celeste_lindo_oscuro">#039be5</color>
 </resources>
