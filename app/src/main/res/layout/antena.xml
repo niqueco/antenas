@@ -6,7 +6,8 @@
     android:layout_marginTop="6dp"
     android:layout_marginBottom="6dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/fondo_antena">
+    android:background="?attr/selectableItemBackground"
+    tools:ignore="Overdraw">
 
     <LinearLayout
         android:id="@+id/texto_antena"
