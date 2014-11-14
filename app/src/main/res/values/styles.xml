@@ -8,6 +8,8 @@
 	<style name="TemaApp.Antenas">
 		<item name="android:windowBackground">@color/celeste_lindo</item>
 		<item name="actionBarStyle">@style/ActionBarPrincipal</item>
+		<item name="colorFlecha">#fff</item>
+		<item name="colorDial">#64ffffff</item>
 	</style>
 
     <style name="ActionBarPrincipal" parent="@style/Widget.AppCompat.Light.ActionBar">

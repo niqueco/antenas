@@ -1,7 +1,9 @@
 package ar.com.lichtmaier.antenas;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
 import android.util.AttributeSet;
@@ -17,13 +19,20 @@ public class FlechaView extends View
 	public FlechaView(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
+		TypedArray values = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ArrowView, 0, 0);
+		try
+		{
+			pinturaFlecha = new Paint(Paint.ANTI_ALIAS_FLAG);
+			pinturaFlecha.setColor(values.getColor(R.styleable.ArrowView_colorFlecha, Color.BLACK));
+			pinturaFlecha.setStrokeCap(Cap.ROUND);
+			pinturaBorde = new Paint(Paint.ANTI_ALIAS_FLAG);
+			pinturaBorde.setColor(values.getColor(R.styleable.ArrowView_colorDial, Color.BLACK));
+			pinturaBorde.setStyle(Paint.Style.STROKE);
+		} finally
+		{
+			values.recycle();
+		}
 		float density = getResources().getDisplayMetrics().density;
-		pinturaFlecha = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinturaFlecha.setColor(0xffffffff);
-		pinturaFlecha.setStrokeCap(Cap.ROUND);
-		pinturaBorde = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinturaBorde.setARGB(100, 255, 255, 255);
-		pinturaBorde.setStyle(Paint.Style.STROKE);
 		int z = (int)(100 * density);
 		setMinimumHeight(z);
 		setMinimumWidth(z);

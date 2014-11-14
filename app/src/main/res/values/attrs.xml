@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="ArrowView">
+		<attr name="colorFlecha" format="color"/>
+		<attr name="colorDial" format="color"/>
+	</declare-styleable>
+</resources>
