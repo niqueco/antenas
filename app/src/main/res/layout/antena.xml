@@ -27,6 +27,7 @@
             android:fontFamily="sans-serif-light"
             android:textColor="#ffff"
             android:textSize="25sp"
+            android:text="@string/placeholder_nombre_antena"
             tools:ignore="UnusedAttribute"/>
 
         <TextView
@@ -34,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#fddd"/>
+            android:textColor="#fddd"
+            android:text="@string/placeholder_distancia_antena"/>
     </LinearLayout>
 
     <ar.com.lichtmaier.antenas.FlechaView

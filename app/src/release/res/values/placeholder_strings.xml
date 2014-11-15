@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="placeholder_nombre_antena"/>
+	<string name="placeholder_distancia_antena"/>
+</resources>
