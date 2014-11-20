@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="placeholder_nombre_antena">Buenos Aires</string>
-	<string name="placeholder_distancia_antena">23,8 km</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="placeholder_nombre_antena" tools:ignore="MissingTranslation">Buenos Aires</string>
+	<string name="placeholder_distancia_antena" tools:ignore="MissingTranslation">23,8 km</string>
 </resources>

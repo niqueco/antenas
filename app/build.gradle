@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.2"
+    buildToolsVersion "21.1.1"
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
@@ -13,7 +13,8 @@ android {
 
     buildTypes {
         release {
-            runProguard true
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
@@ -35,10 +36,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.0'
+    compile 'com.android.support:support-v4:21.0.2'
     //noinspection GradleDependency
     froyoCompile 'com.google.android.gms:play-services:3.2.65'
-    normalCompile 'com.google.android.gms:play-services:6.1.11'
-    compile 'com.android.support:appcompat-v7:21.0.0'
+    normalCompile 'com.google.android.gms:play-services:6.1.71'
+    compile 'com.android.support:appcompat-v7:21.0.2'
     compile files('libs/geodesy.jar')
 }
