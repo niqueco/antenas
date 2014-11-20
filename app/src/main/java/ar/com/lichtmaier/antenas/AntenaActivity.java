@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
@@ -164,6 +165,32 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		publicidad = new Publicidad(this);
 
 		rotación = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+
+		final View principal = findViewById(R.id.principal);
+		ViewTreeObserver tvo = principal.getViewTreeObserver();
+		if(tvo.isAlive())
+		{
+			tvo.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+			{
+				private int pw = -1;
+
+				@Override
+				public void onGlobalLayout()
+				{
+					int w = principal.getWidth();
+					if(w == pw)
+						return;
+					pw = w;
+					for(Entry<Antena, View> e : antenaAVista.entrySet())
+						actualizarDescripción((TextView) e.getValue().findViewById(R.id.antena_desc), e.getKey());
+				}
+			});
+		}
+	}
+
+	protected void actualizarDescripción(TextView tv, Antena antena)
+	{
+		tv.setText(TextUtils.commaEllipsize(antena.toString(), tv.getPaint(), tv.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
 	}
 
 	protected void asignarLayout()

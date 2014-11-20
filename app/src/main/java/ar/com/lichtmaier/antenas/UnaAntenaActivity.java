@@ -28,7 +28,8 @@ public class UnaAntenaActivity extends AntenaActivity
 		asignarLayout();
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
-		((TextView)findViewById(R.id.antena_desc)).setText(antena.descripción);
+		final TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
+		antenaDesc.setText(antena.descripción);
 		nuevaUbicación(); // para que se configure la distancia
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
@@ -50,6 +51,8 @@ public class UnaAntenaActivity extends AntenaActivity
 				{
 					flecha.getViewTreeObserver().removeOnPreDrawListener(this);
 
+					actualizarDescripción(antenaDesc, antena);
+
 					calcularDeltas();
 
 					AnimationSet anim = new AnimationSet(true);
@@ -64,7 +67,6 @@ public class UnaAntenaActivity extends AntenaActivity
 					aa.setInterpolator(new AccelerateInterpolator());
 					findViewById(R.id.fondo).startAnimation(aa);
 
-					TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
 					int[] screenLocation = new int[2];
 					antenaDesc.getLocationOnScreen(screenLocation);
 					int d = getWindow().getDecorView().getBottom() - screenLocation[1];
