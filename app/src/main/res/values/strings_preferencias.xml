@@ -28,6 +28,7 @@
     <string name="pref_header_mapa">Mapa</string>
     <string name="pref_AR">Argentina</string>
     <string name="pref_BR">Brazil</string>
+    <string name="pref_CA">Canada</string>
     <string name="pref_UK">United Kingdom</string>
     <string name="pref_US">United States</string>
     <string name="pref_UY">Uruguay</string>

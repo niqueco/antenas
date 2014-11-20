@@ -72,7 +72,7 @@ public class Antena implements Serializable
 		cargar(ctx, longitud > -27
 			? EnumSet.of(País.UK)
 			: ((latitud > 13)
-				? EnumSet.of(País.US)
+				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
 					? EnumSet.of(País.AR, País.UY)
 					: EnumSet.of(País.AR, País.BR, País.UY))));
@@ -117,6 +117,9 @@ public class Antena implements Serializable
 					break;
 				case BR:
 					res = R.raw.antenas_br;
+					break;
+				case CA:
+					res = R.raw.antenas_ca;
 					break;
 				case UK:
 					res = R.raw.antenas_uk;
