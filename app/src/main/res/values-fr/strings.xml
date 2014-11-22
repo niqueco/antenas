@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Antennes de la télévision numérique</string>
+	<string name="action_niqueco">\@niqueco</string>
+	<string name="action_settings">Paramètres</string>
+	<string name="title_activity_mapa">Carte antennes</string>
+	<string name="some_more">%d plus</string>
+	<string name="one_more">une plus</string>
+	<string name="action_mapa">Carte</string>
+	<string name="app_no_disponible">Aucune application disponible pour gérer la transaction.</string>
+	<string name="fallo_inicializar_mapa">Uhm… pour une raison pas initialiser la carte.</string>
+	<string name="action_ayuda">Aide à la télévision numérique</string>
+	<string name="action_ayuda_ar">Aide à la télévision numérique</string>
+	<string name="action_ayuda_uk">Cobertura Freeview locale</string>
+	<string name="podes_incrementar_radio">Vous pouvez essayer incrémenter ce ratio dans les préférences.</string>
+	<string name="no_ubicacion">Impossible d\'obtenir l\'emplacement… le GPS est éteint?</string>
+	<string name="no_se_encontraron_antenas">Impossible de trouver un antenne à la distance configurée (%s).</string>
+</resources>

@@ -1,0 +1,48 @@
+<resources>
+	<string name="pref_header_antenas">Liste des antennes à proximité</string>
+	<string name="pref_max_dist_title">Distance maximale</string>
+
+	<string-array name="pref_max_dist_titles">
+		<item>5 km</item>
+		<item>10 km</item>
+		<item>20 km</item>
+		<item>40 km</item>
+		<item>60 km</item>
+		<item>100 km</item>
+		<item>300 km</item>
+	</string-array>
+	<string-array name="pref_max_dist_values">
+		<item>5</item>
+		<item>10</item>
+		<item>20</item>
+		<item>40</item>
+		<item>60</item>
+		<item>100</item>
+		<item>300</item>
+	</string-array>
+
+	<string name="pref_menos_title">Afficher moins antennes</string>
+	<string name="pref_menos_summary">Afficher uniquement les plus proches ceux si il semble y avoir un trop grand nombre autour</string>
+
+	<string name="pref_header_mapa">Carte</string>
+	<string name="pref_AR">Argentina</string>
+	<string name="pref_BR">Brésil</string>
+	<string name="pref_CA">Canada</string>
+	<string name="pref_UK">Royaume-Uni</string>
+	<string name="pref_US">États-Unis</string>
+	<string name="pref_UY">Uruguay</string>
+
+	<string name="pref_país_summary">Afficher les %1$,d antennes en %2$s.</string>
+
+	<string name="pref_header_general">Général</string>
+	<string name="pref_unit_title">Unité de distance</string>
+	<string-array name="pref_unit_values">
+		<item>km</item>
+		<item>mi</item>
+	</string-array>
+	<string-array name="pref_unit_titles">
+		<item>kilomètres</item>
+		<item>miles</item>
+	</string-array>
+
+</resources>
