@@ -1,1143 +1,216 @@
 <antenas>
-<antena lat="49.3642" lon="-114.2452" desc="CFCN-TV-18 (ch. 8)"/>
-<antena lat="45.1900" lon="-73.1358" desc="QC-PT-2113 (ch. 48), QC-PT-2112 (ch. 4)"/>
-<antena lat="54.0900" lon="-115.4104" desc="AB-PT-306 (ch. 32), AB-PT-307 (ch. 33)"/>
-<antena lat="48.2428" lon="-71.0504" desc="CJPM-DT (ch. 46)"/>
-<antena lat="53.0102" lon="-103.4336" desc="SK-PT-2490 (ch. 21)"/>
-<antena lat="44.2300" lon="-64.1857" desc="NS-PT-1236 (ch. 40)"/>
-<antena lat="45.5400" lon="-64.3057" desc="NB-PT-894 (ch. 50)"/>
-<antena lat="51.5009" lon="-123.0310" desc="CIAC-TV (ch. 11)"/>
-<antena lat="45.1600" lon="-66.0257" desc="NB-PT-937 (ch. 22), NB-PT-938 (ch. 34)"/>
-<antena lat="48.0825" lon="-64.5902" desc="QC-PT-2205 (ch. 7), QC-PT-1989 (ch. 16), QC-PT-2182 (ch. 19)"/>
-<antena lat="50.3114" lon="-101.0425" desc="MB-PT-900 (ch. 11), MB-PT-697 (ch. 14), MB-PT-698 (ch. 29), MB-PT-699 (ch. 33), MB-PT-700 (ch. 36), MB-PT-701 (ch. 42), MB-PT-702 (ch. 47)"/>
-<antena lat="52.1215" lon="-81.4139" desc="ON-PT-1399 (ch. 7), ON-PT-1730 (ch. 8)"/>
-<antena lat="43.5715" lon="-78.4823" desc="CHEX-TV-2 (ch. 22), CHEX-PT-2 (ch. 22), ON-PT-1531 (ch. 48)"/>
-<antena lat="46.1235" lon="-70.2913" desc="QC-PT-2121 (ch. 40), QC-PT-2122 (ch. 50)"/>
-<antena lat="46.5723" lon="-71.2322" desc="QC-PT-2216 (ch. 44), QC-PT-2117 (ch. 33)"/>
-<antena lat="57.2703" lon="-117.3102" desc="AB-PT-15 (ch. 10), AB-PT-16 (ch. 16)"/>
-<antena lat="54.4425" lon="-112.0334" desc="AB-PT-1014 (ch. 10), AB-PT-177 (ch. 46)"/>
-<antena lat="49.1127" lon="-64.5331" desc="QC-PT-2193 (ch. 8), QC-PT-2234 (ch. 16), QC-PT-1824 (ch. 11), QC-PT-1826 (ch. 28)"/>
-<antena lat="49.2935" lon="-117.1619" desc="CKTN-TV-3 (ch. 3), BC-PT-464 (ch. 3), CKTN-PT-3 (ch. 7), BC-PT-467 (ch. 18)"/>
-<antena lat="49.3448" lon="-97.1005" desc="CKY-DT (ch. 7), CKY-PT (ch. 7), MB-PT-871 (ch. 46)"/>
-<antena lat="49.0600" lon="-97.3302" desc="MB-PT-627 (ch. 4), MB-PT-628 (ch. 34)"/>
-<antena lat="48.4500" lon="-69.0558" desc="QC-PT-1841 (ch. 15), QC-PT-1842 (ch. 23)"/>
-<antena lat="50.2620" lon="-121.1650" desc="CJNA-TV-1 (ch. 3)"/>
-<antena lat="51.1731" lon="-77.2136" desc="QC-PT-1787 (ch. 3), QC-PT-1788 (ch. 38)"/>
-<antena lat="42.5659" lon="-81.1552" desc="CFPL-DT (ch. 10)"/>
-<antena lat="48.3136" lon="-64.1437" desc="CHAU-DT-5(1) (ch. 11)"/>
-<antena lat="48.4623" lon="-91.3639" desc="ON-PT-1336 (ch. 16), ON-PT-1752 (ch. 7)"/>
-<antena lat="42.5720" lon="-81.2119" desc="ON-PT-1738 (ch. 49), CITS-DT-2 (ch. 14), ON-PT-1769 (ch. 7), CKXT-PT-2 (ch. 19), CFMT-DT-1 (ch. 48), ON-PT-1474 (ch. 3), CICO-PT-18 (ch. 18), CJMT-PT-1 (ch. 20), ON-PT-1481 (ch. 23), CFMT-PT-1 (ch. 48), CJMT-DT-1 (ch. 20), CITS-PT-2 (ch. 14), ON-PT-1477 (ch. 38)"/>
-<antena lat="53.5900" lon="-111.1704" desc="AB-PT-282 (ch. 21), AB-PT-283 (ch. 40)"/>
-<antena lat="48.0316" lon="-66.2715" desc="QC-PT-1833 (ch. 28), QC-PT-2171 (ch. 18)"/>
-<antena lat="49.3000" lon="-119.3504" desc="BC-PT-497 (ch. 23)"/>
-<antena lat="49.3150" lon="-117.1802" desc="BC-PT-468 (ch. 21), BC-PT-634 (ch. 9)"/>
-<antena lat="47.2721" lon="-66.2458" desc="CKAM-TV (ch. 12)"/>
-<antena lat="47.3307" lon="-70.3338" desc="CKRT-DT-5 (ch. 35), CIMT-DT-5 (ch. 38)"/>
-<antena lat="46.0100" lon="-73.2558" desc="QC-PT-1884 (ch. 43)"/>
-<antena lat="49.1320" lon="-65.4533" desc="QC-PT-2202 (ch. 19), QC-PT-1950 (ch. 31)"/>
-<antena lat="50.4300" lon="-121.1705" desc="BC-PT-315 (ch. 48), BC-PT-316 (ch. 49)"/>
-<antena lat="44.1002" lon="-76.2539" desc="CKWS-DT (ch. 11), CKWS-PT (ch. 11)"/>
-<antena lat="54.1847" lon="-130.1936" desc="BC-PT-531 (ch. 32), BC-PT-532 (ch. 38)"/>
-<antena lat="45.2800" lon="-76.4059" desc="ON-PT-1586 (ch. 26)"/>
-<antena lat="51.4312" lon="-91.4856" desc="CH4263 (ch. 11)"/>
-<antena lat="49.2111" lon="-122.5723" desc="BC-PT-580 (ch. 2), BC-PT-584 (ch. 16), BC-PT-586 (ch. 18), CHNM-PT (ch. 20), CBUFT-PT (ch. 26), BC-PT-594 (ch. 41), BC-PT-595 (ch. 42), CBUT-PT (ch. 43)"/>
-<antena lat="50.0511" lon="-119.2531" desc="CH4490 (ch. 34)"/>
-<antena lat="53.1300" lon="-114.5904" desc="AB-PT-81 (ch. 24)"/>
-<antena lat="48.3607" lon="-70.4944" desc="QC-PT-1885 (ch. 4), QC-PT-1889 (ch. 38)"/>
-<antena lat="46.1400" lon="-63.0757" desc="PE-PT-1708 (ch. 3), PE-PT-1712 (ch. 14), PE-PT-1714 (ch. 25)"/>
-<antena lat="52.1812" lon="-121.5026" desc="CH4378 (ch. 7)"/>
-<antena lat="46.2510" lon="-79.5603" desc="ON-PT-1777 (ch. 7), ON-PT-1615 (ch. 15)"/>
-<antena lat="53.2500" lon="-117.3404" desc="AB-PT-161 (ch. 14), AB-PT-163 (ch. 49)"/>
-<antena lat="53.2200" lon="-110.5104" desc="AB-PT-293 (ch. 15), AB-PT-294 (ch. 19), AB-PT-295 (ch. 24)"/>
-<antena lat="46.3014" lon="-80.5803" desc="ON-PT-1778 (ch. 13), ON-PT-1632 (ch. 47)"/>
-<antena lat="51.2333" lon="-117.0030" desc="CHCE-TV-3 (ch. 5), CHCE-TV-1 (ch. 2), CHCE-TV-2 (ch. 4)"/>
-<antena lat="50.1812" lon="-89.0026" desc="ON-PT-1331 (ch. 10), ON-PT-1332 (ch. 35)"/>
-<antena lat="47.3436" lon="-68.3630" desc="CKRT-DT-2 (ch. 25)"/>
-<antena lat="54.5240" lon="-100.0048" desc="CKYS-TV (ch. 11)"/>
-<antena lat="49.1600" lon="-101.0002" desc="MB-PT-774 (ch. 43), MB-PT-776 (ch. 48)"/>
-<antena lat="45.0344" lon="-72.1752" desc="QC-PT-1773 (ch. 16), QC-PT-1774 (ch. 47)"/>
-<antena lat="52.1910" lon="-113.4041" desc="CFRN-TV-6 (ch. 8), CFRN-PT-6 (ch. 8)"/>
-<antena lat="50.3404" lon="-119.0551" desc="CH4412 (ch. 47)"/>
-<antena lat="45.5500" lon="-59.5757" desc="NS-PT-1234 (ch. 46), NS-PT-1235 (ch. 47)"/>
-<antena lat="49.2326" lon="-123.2243" desc="CHAN-DT-2 (ch. 39)"/>
-<antena lat="52.0908" lon="-95.2240" desc="MB-PT-746 (ch. 12), MB-PT-884 (ch. 9)"/>
-<antena lat="43.4635" lon="-65.1826" desc="NS-PT-1300 (ch. 7)"/>
-<antena lat="49.2700" lon="-112.3903" desc="AB-PT-252 (ch. 5), AB-PT-253 (ch. 25)"/>
-<antena lat="49.3000" lon="-115.4604" desc="BC-PT-363 (ch. 24), BC-PT-364 (ch. 29), BC-PT-365 (ch. 41), BC-PT-366 (ch. 42)"/>
-<antena lat="49.4520" lon="-97.0753" desc="CIIT-DT (ch. 35), MB-PT-868 (ch. 40)"/>
-<antena lat="56.4400" lon="-111.2304" desc="AB-PT-124 (ch. 15), AB-PT-125 (ch. 16), AB-PT-126 (ch. 21), AB-PT-127 (ch. 22), AB-PT-128 (ch. 40), AB-PT-129 (ch. 45)"/>
-<antena lat="49.2900" lon="-117.1704" desc="BC-PT-469 (ch. 38), BC-PT-470 (ch. 50)"/>
-<antena lat="48.1551" lon="-79.0239" desc="CIVA-DT-1 (ch. 8), CKRN-DT (ch. 9), CFEM-DT (ch. 13), CFVS-DT-1 (ch. 20)"/>
-<antena lat="51.2750" lon="-109.3703" desc="SK-PT-2263 (ch. 15), SK-PT-2264 (ch. 25)"/>
-<antena lat="54.2843" lon="-70.2857" desc="QC-PT-1775 (ch. 4), QC-PT-1776 (ch. 11)"/>
-<antena lat="51.1142" lon="-116.5143" desc="CHCX-TV (ch. 22), CHCY-TV (ch. 25), CHCZ-TV (ch. 28)"/>
-<antena lat="50.1831" lon="-107.5238" desc="CKMC-TV (ch. 12), CKMC-PT (ch. 12), SK-PT-2409 (ch. 35)"/>
-<antena lat="53.3315" lon="-106.5450" desc="SK-PT-2480 (ch. 22), SK-PT-2205 (ch. 21)"/>
-<antena lat="56.2630" lon="-100.0232" desc="MB-PT-737 (ch. 9), MB-PT-883 (ch. 13)"/>
-<antena lat="54.4536" lon="-113.1955" desc="AB-PT-1003 (ch. 8), AB-PT-6 (ch. 16)"/>
-<antena lat="49.3850" lon="-83.5030" desc="ON-PT-1765 (ch. 7), ON-PT-1426 (ch. 4), ON-PT-1429 (ch. 40), ON-PT-1430 (ch. 41), CITO-PT-3 (ch. 42), ON-PT-1732 (ch. 5)"/>
-<antena lat="49.5100" lon="-93.2401" desc="ON-PT-1679 (ch. 14), ON-PT-1680 (ch. 20), ON-PT-1681 (ch. 42)"/>
-<antena lat="49.1401" lon="-68.0824" desc="CFTF-PT-5 (ch. 9), QC-PT-1750 (ch. 25)"/>
-<antena lat="46.2316" lon="-82.3716" desc="ON-PT-1729 (ch. 7)"/>
-<antena lat="49.0800" lon="-102.5902" desc="SK-PT-2211 (ch. 28), SK-PT-2212 (ch. 33)"/>
-<antena lat="51.1233" lon="-102.4401" desc="CICC-TV (ch. 10), CBKT-PT-6 (ch. 5), CICC-PT (ch. 10), SK-PT-2440 (ch. 23), SK-PT-2444 (ch. 48)"/>
-<antena lat="48.0032" lon="-65.1929" desc="QC-PT-1977 (ch. 45), QC-PT-2179 (ch. 38)"/>
-<antena lat="45.0954" lon="-66.5423" desc="CIHF-DT-12 (ch. 21), CIHF-TV-12 (ch. 21)"/>
-<antena lat="50.4700" lon="-101.1502" desc="MB-PT-805 (ch. 22)"/>
-<antena lat="52.2555" lon="-122.2555" desc="CKRR-TV-1 (ch. 9), CKRR-TV-2 (ch. 11)"/>
-<antena lat="50.5307" lon="-118.1504" desc="CHKL-TV-3 (ch. 7), CHRP-TV-2 (ch. 9)"/>
-<antena lat="53.4300" lon="-113.1304" desc="AB-PT-131 (ch. 33), AB-PT-132 (ch. 40)"/>
-<antena lat="47.4647" lon="-70.0908" desc="CIVB-DT-1 (ch. 31), CIVB-PT-1 (ch. 31)"/>
-<antena lat="54.0218" lon="-125.0633" desc="CH4337 (ch. 33), CH4303 (ch. 29), CH4304 (ch. 31), CH2030 (ch. 3), CH2031 (ch. 39), CH2032 (ch. 44)"/>
-<antena lat="49.4628" lon="-123.0748" desc="CHAN-DT-5 (ch. 9)"/>
-<antena lat="45.3050" lon="-61.0054" desc="CIMC-TV (ch. 10), CIMC-PT (ch. 10)"/>
-<antena lat="55.1202" lon="-102.5439" desc="SK-PT-2321 (ch. 11), SK-PT-2463 (ch. 5)"/>
-<antena lat="45.1843" lon="-72.1430" desc="CKSH-DT(1) (ch. 9), CHLT-DT (ch. 7), CFKS-DT (ch. 30), CHLT-PT (ch. 7), CKMI-PT-2 (ch. 11), CIVS-PT (ch. 24), QC-PT-2088 (ch. 27), QC-PT-2089 (ch. 30), CFKS-PT (ch. 41), CKMI-DT-2 (ch. 11), CIVS-DT (ch. 24)"/>
-<antena lat="48.3500" lon="-78.0659" desc="QC-PT-1741 (ch. 35)"/>
-<antena lat="49.5201" lon="-106.2308" desc="SK-PT-2481 (ch. 39), SK-PT-2223 (ch. 23), SK-PT-2224 (ch. 24), SK-PT-2466 (ch. 45)"/>
-<antena lat="46.4700" lon="-75.1959" desc="QC-PT-1968 (ch. 29), QC-PT-1969 (ch. 33), QC-PT-1970 (ch. 38)"/>
-<antena lat="53.2200" lon="-104.0003" desc="SK-PT-2296 (ch. 7), SK-PT-2299 (ch. 29)"/>
-<antena lat="46.0841" lon="-64.5411" desc="CBAFT-PT (ch. 11)"/>
-<antena lat="45.3900" lon="-64.0257" desc="NS-PT-1264 (ch. 41)"/>
-<antena lat="45.0500" lon="-67.0258" desc="NB-PT-943 (ch. 26), NB-PT-944 (ch. 35)"/>
-<antena lat="44.4955" lon="-75.3116" desc="CKWS-TV-2 (ch. 26), ON-PT-1580 (ch. 3), CKWS-PT-2 (ch. 48)"/>
-<antena lat="49.5159" lon="-124.3305" desc="BC-PT-511 (ch. 7), BC-PT-512 (ch. 27), BC-PT-513 (ch. 50)"/>
-<antena lat="44.1941" lon="-78.1758" desc="CHEX-DT (ch. 12)"/>
-<antena lat="49.4359" lon="-112.5740" desc="CFCN-DT-5 (ch. 13)"/>
-<antena lat="43.5456" lon="-66.0516" desc="CIHF-TV-10 (ch. 45), CJCH-TV-7 (ch. 40), NS-PT-1283 (ch. 33), CJCH-PT-7 (ch. 40), NS-PT-1285 (ch. 43), CIHF-PT-10 (ch. 45), CIHF-DT-10 (ch. 45)"/>
-<antena lat="49.3536" lon="-125.0041" desc="BC-PT-658 (ch. 9), CKVU-TV-1 (ch. 5), CKVU-PT-1 (ch. 5), BC-PT-356 (ch. 29), BC-PT-358 (ch. 49)"/>
-<antena lat="50.0900" lon="-96.5201" desc="MB-PT-806 (ch. 17), MB-PT-807 (ch. 26)"/>
-<antena lat="50.3658" lon="-96.2249" desc="MB-PT-895 (ch. 11), MB-PT-796 (ch. 38)"/>
-<antena lat="49.1700" lon="-117.3904" desc="BC-PT-449 (ch. 29), BC-PT-450 (ch. 30)"/>
-<antena lat="49.5026" lon="-100.0152" desc="MB-PT-892 (ch. 21)"/>
-<antena lat="49.1650" lon="-100.5914" desc="MB-PT-775 (ch. 47)"/>
-<antena lat="51.3346" lon="-112.1948" desc="CFCN-TV-1 (ch. 12), CFCN-PT-1 (ch. 12), AB-PT-83 (ch. 17), AB-PT-84 (ch. 18)"/>
-<antena lat="46.5443" lon="-60.3016" desc="NS-PT-1208 (ch. 46), NS-PT-1290 (ch. 12)"/>
-<antena lat="48.4300" lon="-67.2257" desc="QC-PT-2123 (ch. 26)"/>
-<antena lat="46.3010" lon="-72.3813" desc="CHEM-PT (ch. 8), CBMT-PT-1 (ch. 28), QC-PT-2146 (ch. 40)"/>
-<antena lat="50.4000" lon="-120.2005" desc="BC-PT-436 (ch. 39)"/>
-<antena lat="49.2925" lon="-120.2444" desc="CH4292 (ch. 8), CH4293 (ch. 12)"/>
-<antena lat="49.5229" lon="-74.2258" desc="QC-PT-2218 (ch. 5), QC-PT-1810 (ch. 4), QC-PT-1813 (ch. 15), QC-PT-2169 (ch. 8)"/>
-<antena lat="45.4833" lon="-64.4456" desc="CIHF-DT-3 (ch. 27)"/>
-<antena lat="46.4300" lon="-79.0559" desc="QC-PT-2126 (ch. 16), QC-PT-2127 (ch. 22), QC-PT-2129 (ch. 40)"/>
-<antena lat="45.2038" lon="-80.0046" desc="CKVR-TV-1 (ch. 12)"/>
-<antena lat="47.2316" lon="-68.1901" desc="CIMT-DT-1 (ch. 4), CFTF-DT-1 (ch. 42)"/>
-<antena lat="49.1850" lon="-117.3734" desc="CKTN-TV-1 (ch. 5)"/>
-<antena lat="49.1900" lon="-117.4004" desc="BC-PT-336 (ch. 26), BC-PT-337 (ch. 35)"/>
-<antena lat="49.0525" lon="-116.2249" desc="CKTN-TV-4 (ch. 12)"/>
-<antena lat="54.2632" lon="-126.3936" desc="CFHO-TV (ch. 8), CH4443 (ch. 18), BC-PT-424 (ch. 2), CFHO-PT (ch. 8), CBCY-PT (ch. 22), BC-PT-428 (ch. 36)"/>
-<antena lat="45.2400" lon="-71.5358" desc="QC-PT-2086 (ch. 14)"/>
-<antena lat="49.2400" lon="-103.5302" desc="SK-PT-2194 (ch. 16), SK-PT-2196 (ch. 48)"/>
-<antena lat="52.4912" lon="-67.0526" desc="QC-PT-2164 (ch. 9), QC-PT-2219 (ch. 7), QC-PT-1836 (ch. 8), QC-PT-1838 (ch. 19)"/>
-<antena lat="49.1715" lon="-115.4954" desc="CH4417 (ch. 3)"/>
-<antena lat="52.2415" lon="-126.2825" desc="CH4580 (ch. 12), CH4577 (ch. 8), CH4578 (ch. 9), CH5330 (ch. 13), CH4579 (ch. 10)"/>
-<antena lat="43.5555" lon="-66.0608" desc="NS-PT-1280 (ch. 3), NS-PT-1287 (ch. 49), NS-PT-1310 (ch. 50), NS-PT-1302 (ch. 11)"/>
-<antena lat="48.2529" lon="-71.0630" desc="QC-PT-2170 (ch. 21)"/>
-<antena lat="50.4722" lon="-96.5851" desc="CH3077 (ch. 26), CH3078 (ch. 29), CH3073 (ch. 14), CH3074 (ch. 17), CH3076 (ch. 23), CH3075 (ch. 20)"/>
-<antena lat="51.0337" lon="-114.1017" desc="CKCS-DT (ch. 32), CFCN-DT (ch. 29), AB-PT-42 (ch. 4), CFCN-PT (ch. 29), AB-PT-54 (ch. 27), CKCS-PT (ch. 32)"/>
-<antena lat="49.4624" lon="-123.0744" desc="CHAN-TV-5 (ch. 9)"/>
-<antena lat="49.1100" lon="-98.0502" desc="MB-PT-780 (ch. 30), MB-PT-781 (ch. 50)"/>
-<antena lat="50.2325" lon="-105.5541" desc="SK-PT-2468 (ch. 4), SK-PT-2292 (ch. 43)"/>
-<antena lat="54.0247" lon="-122.5335" desc="CKPG-TV (ch. 2), CKPG-PT (ch. 34), BC-PT-514 (ch. 2)"/>
-<antena lat="44.3903" lon="-63.3925" desc="NS-PT-1304 (ch. 13), CIHF-DT (ch. 8), NS-PT-1214 (ch. 3), NS-PT-1215 (ch. 5), NS-PT-1216 (ch. 8), NS-PT-1218 (ch. 14), CIHF-PT (ch. 26), NS-PT-1220 (ch. 32), NS-PT-1221 (ch. 38), CBHT-PT (ch. 39), CJCH-PT (ch. 48), CBHT-DT (ch. 39)"/>
-<antena lat="48.0850" lon="-65.4743" desc="QC-PT-2180 (ch. 27)"/>
-<antena lat="50.2535" lon="-116.0626" desc="CFCN-TV-15 (ch. 6)"/>
-<antena lat="54.3012" lon="-126.1704" desc="CH4355 (ch. 6), CFTY-TV (ch. 11)"/>
-<antena lat="51.0354" lon="-114.1255" desc="CJCO-PT (ch. 38)"/>
-<antena lat="49.3144" lon="-119.3829" desc="BC-PT-638 (ch. 17), BC-PT-495 (ch. 16)"/>
-<antena lat="53.5000" lon="-101.1522" desc="MB-PT-821 (ch. 4), MB-PT-830 (ch. 42)"/>
-<antena lat="49.0959" lon="-123.5605" desc="BC-PT-461 (ch. 28), BC-PT-462 (ch. 38), BC-PT-463 (ch. 50)"/>
-<antena lat="52.1412" lon="-113.3854" desc="CKEM-TV-1 (ch. 4), AB-PT-255 (ch. 4), CKEM-PT-1 (ch. 45)"/>
-<antena lat="53.5009" lon="-101.1512" desc="CKYP-TV (ch. 12), MB-PT-897 (ch. 6), CKYP-PT (ch. 12), MB-PT-825 (ch. 14), MB-PT-826 (ch. 15), MB-PT-829 (ch. 30), MB-PT-889 (ch. 7)"/>
-<antena lat="45.3500" lon="-62.3857" desc="NS-PT-1247 (ch. 40)"/>
-<antena lat="49.1400" lon="-102.1102" desc="SK-PT-2317 (ch. 34)"/>
-<antena lat="56.2200" lon="-109.2649" desc="CH2009 (ch. 4), CH2010 (ch. 6)"/>
-<antena lat="46.3337" lon="-75.4219" desc="QC-PT-1944 (ch. 21), QC-PT-1946 (ch. 48)"/>
-<antena lat="58.0627" lon="-103.1015" desc="CH2721 (ch. 2), CH2722 (ch. 4), CH2723 (ch. 6), CH2724 (ch. 7), CJLK-TV (ch. 9), CH2809 (ch. 11)"/>
-<antena lat="55.1430" lon="-118.3330" desc="AB-PT-1029 (ch. 19), AB-PT-137 (ch. 17)"/>
-<antena lat="50.3004" lon="-120.4851" desc="CH2516 (ch. 14), CH2518 (ch. 18), CH2519 (ch. 26), CH2520 (ch. 30), CH3082 (ch. 5), CH2512 (ch. 7), CH2513 (ch. 9), CH2514 (ch. 11), CH2515 (ch. 13)"/>
-<antena lat="52.5400" lon="-107.2903" desc="SK-PT-2165 (ch. 18), SK-PT-2166 (ch. 24)"/>
-<antena lat="56.5100" lon="-101.0302" desc="MB-PT-747 (ch. 10), MB-PT-748 (ch. 15)"/>
-<antena lat="51.0337" lon="-114.1021" desc="AB-PT-57 (ch. 43), AB-PT-1001 (ch. 44)"/>
-<antena lat="48.4832" lon="-69.0028" desc="CFTF-PT-4 (ch. 4), QC-PT-1840 (ch. 5), QC-PT-1843 (ch. 34), QC-PT-1844 (ch. 42)"/>
-<antena lat="55.0600" lon="-105.1703" desc="SK-PT-2256 (ch. 14), SK-PT-2257 (ch. 15)"/>
-<antena lat="45.2542" lon="-73.3547" desc="QC-PT-1956 (ch. 15)"/>
-<antena lat="50.1009" lon="-126.3413" desc="BC-PT-648 (ch. 12)"/>
-<antena lat="51.4700" lon="-114.0604" desc="AB-PT-224 (ch. 30)"/>
-<antena lat="46.5334" lon="-64.0853" desc="CKCW-TV-2 (ch. 5), PE-PT-1734 (ch. 9), PE-PT-1723 (ch. 4), CKCW-PT-2 (ch. 5), PE-PT-1727 (ch. 33), PE-PT-1728 (ch. 35), PE-PT-1732 (ch. 26)"/>
-<antena lat="45.3149" lon="-70.4718" desc="QC-PT-2214 (ch. 12), QC-PT-1915 (ch. 31)"/>
-<antena lat="58.4206" lon="-118.4114" desc="CH4301 (ch. 11), CKCA-TV (ch. 13)"/>
-<antena lat="50.1800" lon="-96.0401" desc="MB-PT-725 (ch. 15), MB-PT-726 (ch. 18), MB-PT-728 (ch. 30), MB-PT-729 (ch. 33), MB-PT-730 (ch. 34), MB-PT-731 (ch. 36), MB-PT-732 (ch. 39), MB-PT-733 (ch. 41), MB-PT-734 (ch. 47)"/>
-<antena lat="49.3106" lon="-120.4414" desc="CFTB-TV (ch. 8), CFCU-TV (ch. 5), CH4416 (ch. 10)"/>
-<antena lat="48.2320" lon="-72.0520" desc="CJPM-TV-1 (ch. 10), CJPM-PT-1 (ch. 10), QC-PT-2047 (ch. 14)"/>
-<antena lat="45.1337" lon="-77.5229" desc="ON-PT-1724 (ch. 48)"/>
-<antena lat="46.0838" lon="-64.5408" desc="CBAFT-DT (ch. 11)"/>
-<antena lat="46.3300" lon="-75.2959" desc="QC-PT-1943 (ch. 18)"/>
-<antena lat="50.1941" lon="-122.4950" desc="BC-PT-490 (ch. 4), BC-PT-492 (ch. 40), BC-PT-637 (ch. 7)"/>
-<antena lat="45.4300" lon="-65.3057" desc="NB-PT-950 (ch. 14)"/>
-<antena lat="49.0800" lon="-81.2259" desc="ON-PT-1386 (ch. 19), ON-PT-1387 (ch. 22)"/>
-<antena lat="50.0129" lon="-125.1445" desc="BC-PT-330 (ch. 47)"/>
-<antena lat="49.5226" lon="-97.4427" desc="CHMI-DT (ch. 13), CHMI-PT (ch. 13), MB-PT-802 (ch. 32)"/>
-<antena lat="46.3335" lon="-75.4216" desc="QC-PT-2223 (ch. 44), QC-PT-1942 (ch. 3)"/>
-<antena lat="49.0216" lon="-118.2641" desc="CH4364 (ch. 25)"/>
-<antena lat="47.2200" lon="-70.0158" desc="QC-PT-1894 (ch. 49), QC-PT-1895 (ch. 28)"/>
-<antena lat="48.3259" lon="-89.1328" desc="CICO-DT-9 (ch. 9)"/>
-<antena lat="56.0241" lon="-122.0759" desc="CJDC-TV-2 (ch. 8)"/>
-<antena lat="45.3011" lon="-75.5101" desc="CIVO-DT (ch. 30), CBOFT-DT(2) (ch. 33), CBOT-DT (ch. 25), CHOT-DT (ch. 40), CIII-DT-6(1) (ch. 14), CJOH-DT (ch. 13), CKXT-PT-3 (ch. 33), ON-PT-1787 (ch. 9), ON-PT-1532 (ch. 4), ON-PT-1536 (ch. 12), CJOH-PT (ch. 13), CICO-PT-24 (ch. 24), CBOT-PT (ch. 25), ON-PT-1786 (ch. 6), CIVO-PT (ch. 30), CFGS-PT (ch. 34), CHOT-PT (ch. 40), CFGS-DT (ch. 34), CICO-DT-24 (ch. 24)"/>
-<antena lat="47.1252" lon="-61.5711" desc="QC-PT-2220 (ch. 16), QC-PT-1870 (ch. 17)"/>
-<antena lat="46.5553" lon="-69.4918" desc="QC-PT-2233 (ch. 27), QC-PT-2119 (ch. 3)"/>
-<antena lat="46.2152" lon="-63.2436" desc="CIHF-DT-14 (ch. 42)"/>
-<antena lat="47.3437" lon="-69.2258" desc="CKRT-DT (ch. 7)"/>
-<antena lat="46.4000" lon="-71.4358" desc="QC-PT-1827 (ch. 49), QC-PT-1828 (ch. 35)"/>
-<antena lat="48.2629" lon="-123.3405" desc="CHNU-PT-1 (ch. 21), CHNM-PT-1 (ch. 29)"/>
-<antena lat="45.5300" lon="-72.2958" desc="QC-PT-1829 (ch. 29)"/>
-<antena lat="46.5835" lon="-60.2734" desc="CJCB-TV-5 (ch. 7)"/>
-<antena lat="42.0909" lon="-82.5705" desc="ON-PT-1782 (ch. 35), CICO-PT-32 (ch. 32)"/>
-<antena lat="50.1700" lon="-107.5003" desc="SK-PT-2406 (ch. 28), SK-PT-2407 (ch. 30), SK-PT-2408 (ch. 31), SK-PT-2411 (ch. 48)"/>
-<antena lat="48.0700" lon="-69.1058" desc="QC-PT-2139 (ch. 39), QC-PT-2140 (ch. 49)"/>
-<antena lat="52.1200" lon="-105.0703" desc="SK-PT-2236 (ch. 22), SK-PT-2237 (ch. 49)"/>
-<antena lat="49.1859" lon="-124.1905" desc="BC-PT-486 (ch. 44), BC-PT-487 (ch. 45)"/>
-<antena lat="46.1310" lon="-74.3309" desc="QC-PT-2225 (ch. 11)"/>
-<antena lat="56.0128" lon="-120.3801" desc="BC-PT-410 (ch. 35), BC-PT-412 (ch. 45)"/>
-<antena lat="48.4513" lon="-86.3508" desc="ON-PT-1740 (ch. 11), ON-PT-1494 (ch. 44)"/>
-<antena lat="47.1000" lon="-67.5558" desc="NB-PT-945 (ch. 26), NB-PT-946 (ch. 39)"/>
-<antena lat="51.0424" lon="-114.1538" desc="AB-PT-41 (ch. 2), CICT-PT (ch. 41)"/>
-<antena lat="59.1712" lon="-129.5107" desc="BC-PT-334 (ch. 7), BC-PT-335 (ch. 12)"/>
-<antena lat="50.2035" lon="-121.3530" desc="CILY-TV-2 (ch. 8), CHWS-TV-2 (ch. 11)"/>
-<antena lat="50.1200" lon="-66.2257" desc="QC-PT-2075 (ch. 24), QC-PT-2078 (ch. 36), QC-PT-2079 (ch. 48), QC-PT-2080 (ch. 50)"/>
-<antena lat="55.0722" lon="-105.1703" desc="SK-PT-2255 (ch. 13), SK-PT-2450 (ch. 12)"/>
-<antena lat="55.5900" lon="-109.0504" desc="SK-PT-2277 (ch. 5), SK-PT-2278 (ch. 14), SK-PT-2279 (ch. 23), SK-PT-2280 (ch. 29)"/>
-<antena lat="55.1646" lon="-77.4501" desc="QC-PT-1992 (ch. 34), QC-PT-1993 (ch. 38)"/>
-<antena lat="44.1400" lon="-76.2959" desc="ON-PT-1461 (ch. 19), ON-PT-1462 (ch. 23), ON-PT-1466 (ch. 48)"/>
-<antena lat="49.4410" lon="-112.4813" desc="AB-PT-1031 (ch. 23), AB-PT-1023 (ch. 10), AB-PT-186 (ch. 19), AB-PT-189 (ch. 31)"/>
-<antena lat="45.2541" lon="-75.4245" desc="CRC-DT-5 (ch. 46)"/>
-<antena lat="54.2700" lon="-124.1505" desc="BC-PT-404 (ch. 16), BC-PT-405 (ch. 35)"/>
-<antena lat="46.0348" lon="-79.2602" desc="ON-PT-1742 (ch. 38), CKNY-TV (ch. 10), ON-PT-1516 (ch. 4), CKNY-PT (ch. 10)"/>
-<antena lat="44.3700" lon="-65.4557" desc="NS-PT-1206 (ch. 47)"/>
-<antena lat="48.4512" lon="-123.2930" desc="CKVU-PT (ch. 10)"/>
-<antena lat="53.1200" lon="-105.4603" desc="SK-PT-2330 (ch. 20), SK-PT-2332 (ch. 34), SK-PT-2334 (ch. 48)"/>
-<antena lat="42.0227" lon="-82.3558" desc="CFTV-DT (ch. 34)"/>
-<antena lat="54.2506" lon="-124.1754" desc="CH3034 (ch. 3)"/>
-<antena lat="49.4200" lon="-112.5004" desc="AB-PT-188 (ch. 28), AB-PT-191 (ch. 41), AB-PT-193 (ch. 50)"/>
-<antena lat="49.2616" lon="-103.4755" desc="CKCK-TV-1 (ch. 12), CKCK-PT-1 (ch. 12), SK-PT-2195 (ch. 39)"/>
-<antena lat="52.5130" lon="-101.0323" desc="MB-PT-749 (ch. 2), MB-PT-752 (ch. 21), MB-PT-753 (ch. 24), MB-PT-885 (ch. 10)"/>
-<antena lat="53.2520" lon="-113.1413" desc="AB-PT-1002 (ch. 17)"/>
-<antena lat="49.4604" lon="-94.3123" desc="CJBN-TV (ch. 13), CJBN-TV(1) (ch. 13)"/>
-<antena lat="46.0226" lon="-66.2924" desc="NB-PT-903 (ch. 11), CIHF-PT-1 (ch. 44), CIHF-DT-1 (ch. 44)"/>
-<antena lat="49.0959" lon="-121.5705" desc="BC-PT-342 (ch. 21), BC-PT-343 (ch. 23), BC-PT-344 (ch. 31), BC-PT-345 (ch. 36), BC-PT-347 (ch. 48)"/>
-<antena lat="50.4703" lon="-122.4933" desc="CH4314 (ch. 10), CH4300 (ch. 13), CH4297 (ch. 2), CH4298 (ch. 5), CH4299 (ch. 8)"/>
-<antena lat="58.4844" lon="-122.4257" desc="BC-PT-400 (ch. 7), BC-PT-630 (ch. 8)"/>
-<antena lat="51.2814" lon="-100.4312" desc="CKYD-TV (ch. 12), MB-PT-661 (ch. 8), CKYD-PT (ch. 12), MB-PT-666 (ch. 20), MB-PT-669 (ch. 43)"/>
-<antena lat="48.2122" lon="-64.4105" desc="CHAU-PT-4 (ch. 6), QC-PT-1805 (ch. 26)"/>
-<antena lat="50.1140" lon="-120.5820" desc="CFJC-TV-12 (ch. 10)"/>
-<antena lat="55.0259" lon="-107.4528" desc="SK-PT-2171 (ch. 41), SK-PT-2172 (ch. 42), SK-PT-2445 (ch. 7)"/>
-<antena lat="49.5910" lon="-117.2242" desc="BC-PT-471 (ch. 15), BC-PT-635 (ch. 17)"/>
-<antena lat="45.3834" lon="-62.0729" desc="CIHF-DT-15 (ch. 21), CIHF-TV-15 (ch. 21)"/>
-<antena lat="50.0436" lon="-110.4743" desc="AB-PT-222 (ch. 50)"/>
-<antena lat="49.2720" lon="-78.1951" desc="CJDG-TV-3 (ch. 11), CJDG-PT-3 (ch. 11), QC-PT-1893 (ch. 46)"/>
-<antena lat="47.2719" lon="-66.2504" desc="NB-PT-953 (ch. 11), CKAM-PT (ch. 12)"/>
-<antena lat="56.1900" lon="-103.1403" desc="SK-PT-2384 (ch. 14), SK-PT-2385 (ch. 15)"/>
-<antena lat="54.3255" lon="-94.2741" desc="MB-PT-705 (ch. 7), MB-PT-879 (ch. 13)"/>
-<antena lat="51.2900" lon="-109.4703" desc="SK-PT-2265 (ch. 26), SK-PT-2266 (ch. 49)"/>
-<antena lat="54.4924" lon="-112.1908" desc="AB-PT-1034 (ch. 21), AB-PT-246 (ch. 22)"/>
-<antena lat="43.4500" lon="-81.4259" desc="ON-PT-1411 (ch. 50)"/>
-<antena lat="47.2526" lon="-70.3129" desc="CIMT-DT-4 (ch. 13), CKRT-DT-1 (ch. 36), CFTF-DT-10 (ch. 26)"/>
-<antena lat="58.2245" lon="-116.0056" desc="AB-PT-1008 (ch. 11), AB-PT-134 (ch. 14)"/>
-<antena lat="49.4600" lon="-117.2714" desc="CH5280 (ch. 3), CH5281 (ch. 6), CH4363 (ch. 7), CH5283 (ch. 10)"/>
-<antena lat="49.3200" lon="-98.0002" desc="MB-PT-650 (ch. 22), MB-PT-651 (ch. 31)"/>
-<antena lat="42.2658" lon="-82.0501" desc="CICO-DT-59 (ch. 33)"/>
-<antena lat="48.1241" lon="-64.5214" desc="CIVK-DT-1 (ch. 32), QC-PT-1847 (ch. 29), CIVK-PT-1 (ch. 32)"/>
-<antena lat="58.4000" lon="-118.3605" desc="AB-PT-66 (ch. 14), AB-PT-67 (ch. 20)"/>
-<antena lat="48.2300" lon="-89.1500" desc="ON-PT-1643 (ch. 14), ON-PT-1644 (ch. 30), ON-PT-1645 (ch. 39)"/>
-<antena lat="49.4420" lon="-107.1557" desc="SK-PT-2485 (ch. 22), SK-PT-2470 (ch. 8), SK-PT-2322 (ch. 3), SK-PT-2324 (ch. 19), SK-PT-2326 (ch. 44)"/>
-<antena lat="44.2105" lon="-79.4154" desc="CKVR-DT (ch. 10), ON-PT-1758 (ch. 42), ON-PT-1789 (ch. 16), ON-PT-1341 (ch. 3), ON-PT-1348 (ch. 50)"/>
-<antena lat="50.2020" lon="-107.4727" desc="SK-PT-2474 (ch. 5), SK-PT-2410 (ch. 41)"/>
-<antena lat="54.3321" lon="-71.1143" desc="QC-PT-1917 (ch. 2), QC-PT-1918 (ch. 8)"/>
-<antena lat="54.5300" lon="-100.0202" desc="MB-PT-813 (ch. 18), MB-PT-814 (ch. 41)"/>
-<antena lat="49.1359" lon="-124.4805" desc="BC-PT-502 (ch. 15), BC-PT-503 (ch. 36), BC-PT-504 (ch. 41)"/>
-<antena lat="46.2300" lon="-70.3658" desc="QC-PT-1910 (ch. 49), QC-PT-1912 (ch. 30)"/>
-<antena lat="54.4427" lon="-126.5856" desc="CH4442 (ch. 31), CFHO-TV-1 (ch. 13), CBCY-PT-2 (ch. 5), CFHO-PT-1 (ch. 13), BC-PT-556 (ch. 29), BC-PT-557 (ch. 33)"/>
-<antena lat="42.5900" lon="-79.1459" desc="ON-PT-1691 (ch. 50)"/>
-<antena lat="46.1158" lon="-77.4239" desc="QC-PT-2231 (ch. 31), QC-PT-2014 (ch. 8)"/>
-<antena lat="50.0444" lon="-123.0105" desc="BC-PT-614 (ch. 34), BC-PT-647 (ch. 13)"/>
-<antena lat="56.2000" lon="-103.2136" desc="SK-PT-2458 (ch. 13), SK-PT-2382 (ch. 9)"/>
-<antena lat="50.4200" lon="-119.1604" desc="BC-PT-549 (ch. 23), BC-PT-551 (ch. 39)"/>
-<antena lat="48.3149" lon="-71.3756" desc="QC-PT-1737 (ch. 30), QC-PT-2165 (ch. 32)"/>
-<antena lat="42.0830" lon="-82.2648" desc="CHWI-PT (ch. 16), ON-PT-1693 (ch. 47), CHWI-DT (ch. 16)"/>
-<antena lat="47.2239" lon="-65.2620" desc="NB-PT-961 (ch. 36), NB-PT-875 (ch. 3), NB-PT-876 (ch. 28)"/>
-<antena lat="53.2749" lon="-113.2011" desc="CJEO-PT (ch. 44), AB-PT-101 (ch. 50), CKES-PT (ch. 30), AB-PT-97 (ch. 23)"/>
-<antena lat="49.0409" lon="-122.0141" desc="CHAN-TV-1 (ch. 11)"/>
-<antena lat="47.0321" lon="-65.2920" desc="CIHF-DT-13 (ch. 40), CIHF-TV-13 (ch. 40)"/>
-<antena lat="55.3025" lon="-107.5855" desc="SK-PT-2240 (ch. 21), SK-PT-2448 (ch. 9)"/>
-<antena lat="47.0408" lon="-79.4715" desc="ON-PT-1746 (ch. 18)"/>
-<antena lat="49.0411" lon="-122.0138" desc="CHAN-DT-1 (ch. 31)"/>
-<antena lat="46.4616" lon="-71.1656" desc="CHMG-TV (ch. 9)"/>
-<antena lat="51.2120" lon="-110.2302" desc="CFCN-TV-16 (ch. 2)"/>
-<antena lat="44.2026" lon="-65.0631" desc="CJCH-PT-6 (ch. 6), NS-PT-1191 (ch. 33)"/>
-<antena lat="50.0400" lon="-96.3301" desc="MB-PT-629 (ch. 23)"/>
-<antena lat="49.4059" lon="-125.0005" desc="BC-PT-357 (ch. 31)"/>
-<antena lat="45.3744" lon="-61.1934" desc="CJCB-TV-6 (ch. 3), NS-PT-1253 (ch. 3), CJCB-PT-6 (ch. 41)"/>
-<antena lat="49.3439" lon="-114.3006" desc="CISA-TV-3 (ch. 12)"/>
-<antena lat="54.0100" lon="-124.0105" desc="BC-PT-598 (ch. 22), BC-PT-599 (ch. 38)"/>
-<antena lat="48.3127" lon="-89.0653" desc="CHFD-DT (ch. 4), CKPR-DT (ch. 2)"/>
-<antena lat="46.2529" lon="-81.0053" desc="CHCH-TV-4 (ch. 41), ON-PT-1721 (ch. 25), ON-PT-1717 (ch. 19), ON-PT-1624 (ch. 20), ON-PT-1627 (ch. 39), CHCH-PT-4 (ch. 41)"/>
-<antena lat="47.2525" lon="-72.4547" desc="QC-PT-2222 (ch. 11), QC-PT-1903 (ch. 3), QC-PT-1906 (ch. 18), QC-PT-1908 (ch. 29), QC-PT-1909 (ch. 50), QC-PT-2176 (ch. 9)"/>
-<antena lat="48.5818" lon="-88.1824" desc="ON-PT-1772 (ch. 26), ON-PT-1510 (ch. 14), ON-PT-1512 (ch. 24), ON-PT-1790 (ch. 16)"/>
-<antena lat="51.3459" lon="-120.0842" desc="CH5665 (ch. 5), CH5666 (ch. 6), CH5667 (ch. 13)"/>
-<antena lat="48.2122" lon="-64.4103" desc="CHAU-DT-4 (ch. 26)"/>
-<antena lat="48.1840" lon="-67.0503" desc="CHAU-PT-1 (ch. 3), QC-PT-2101 (ch. 7), QC-PT-2102 (ch. 50)"/>
-<antena lat="51.1000" lon="-108.4603" desc="SK-PT-2213 (ch. 22)"/>
-<antena lat="53.5000" lon="-101.1502" desc="MB-PT-827 (ch. 23), MB-PT-828 (ch. 27)"/>
-<antena lat="48.5952" lon="-64.2552" desc="QC-PT-2206 (ch. 25), QC-PT-2024 (ch. 2), CHAU-PT-7 (ch. 4), QC-PT-2026 (ch. 5), QC-PT-2028 (ch. 46)"/>
-<antena lat="45.1944" lon="-78.5755" desc="CKNY-TV-11 (ch. 11), CKNY-PT-11 (ch. 11), ON-PT-1435 (ch. 40)"/>
-<antena lat="49.0815" lon="-119.4014" desc="CKKM-TV (ch. 3), BC-PT-477 (ch. 3), CKKM-PT (ch. 12), BC-PT-479 (ch. 28)"/>
-<antena lat="47.4718" lon="-83.2248" desc="ON-PT-1760 (ch. 13), ON-PT-1366 (ch. 18)"/>
-<antena lat="48.0820" lon="-64.5907" desc="CHAU-DT-3 (ch. 10)"/>
-<antena lat="48.2350" lon="-67.1924" desc="QC-PT-2201 (ch. 13)"/>
-<antena lat="50.2858" lon="-104.3023" desc="CBKFT-DT (ch. 13), CBKT-DT (ch. 9), CBKFT-PT (ch. 13), SK-PT-2345 (ch. 26)"/>
-<antena lat="54.1055" lon="-110.5159" desc="AB-PT-1025 (ch. 6), AB-PT-23 (ch. 32)"/>
-<antena lat="49.2940" lon="-117.2719" desc="CKTN-TV-2 (ch. 23)"/>
-<antena lat="47.3438" lon="-69.2256" desc="CIMT-DT (ch. 9), CFTF-DT (ch. 29)"/>
-<antena lat="45.3556" lon="-61.2444" desc="NS-PT-1307 (ch. 7), CIHF-DT-16 (ch. 28), CIHF-TV-16 (ch. 28), NS-PT-1242 (ch. 20), CIHF-PT-16 (ch. 28), NS-PT-1297 (ch. 12)"/>
-<antena lat="46.1300" lon="-71.4658" desc="QC-PT-1986 (ch. 22), QC-PT-1987 (ch. 33)"/>
-<antena lat="46.3300" lon="-72.4458" desc="QC-PT-2081 (ch. 30), QC-PT-2082 (ch. 42)"/>
-<antena lat="43.1539" lon="-80.2638" desc="ON-PT-1736 (ch. 29), ON-PT-1768 (ch. 17), CIII-DT(1) (ch. 17), CICO-PT-28 (ch. 28), CIII-PT (ch. 6)"/>
-<antena lat="52.3500" lon="-112.0404" desc="AB-PT-115 (ch. 14), AB-PT-116 (ch. 27)"/>
-<antena lat="56.5500" lon="-117.3705" desc="AB-PT-211 (ch. 4), AB-PT-213 (ch. 20)"/>
-<antena lat="56.1745" lon="-120.5917" desc="BC-PT-408 (ch. 21), BC-PT-409 (ch. 28)"/>
-<antena lat="51.2749" lon="-123.5657" desc="CH4404 (ch. 8)"/>
-<antena lat="50.3708" lon="-116.0451" desc="BC-PT-539 (ch. 22), BC-PT-540 (ch. 28), BC-PT-543 (ch. 47), BC-PT-641 (ch. 17)"/>
-<antena lat="54.0800" lon="-108.2603" desc="SK-PT-2268 (ch. 14), SK-PT-2269 (ch. 21)"/>
-<antena lat="45.5442" lon="-74.0642" desc="QC-PT-2095 (ch. 39)"/>
-<antena lat="56.2900" lon="-109.2604" desc="SK-PT-2251 (ch. 15), SK-PT-2252 (ch. 39)"/>
-<antena lat="49.4549" lon="-92.4053" desc="ON-PT-1783 (ch. 6), ON-PT-1392 (ch. 45), ON-PT-1393 (ch. 47), ON-PT-1753 (ch. 9)"/>
-<antena lat="50.0856" lon="-66.2809" desc="QC-PT-2211 (ch. 13), QC-PT-2066 (ch. 3), QC-PT-2072 (ch. 14), QC-PT-2077 (ch. 35), QC-PT-2185 (ch. 11)"/>
-<antena lat="49.0956" lon="-116.4043" desc="BC-PT-371 (ch. 3), BC-PT-373 (ch. 14), BC-PT-626 (ch. 7)"/>
-<antena lat="44.0104" lon="-81.1145" desc="ON-PT-1751 (ch. 45)"/>
-<antena lat="43.4609" lon="-65.2057" desc="CIHF-TV-9 (ch. 10), NS-PT-1261 (ch. 10), CIHF-PT-9 (ch. 28), CIHF-DT-9 (ch. 28)"/>
-<antena lat="55.2500" lon="-104.3303" desc="SK-PT-2392 (ch. 2), SK-PT-2395 (ch. 24)"/>
-<antena lat="56.1647" lon="-121.0233" desc="CBCD-PT-3 (ch. 9), BC-PT-411 (ch. 44)"/>
-<antena lat="56.2902" lon="-109.2614" desc="SK-PT-2253 (ch. 43), SK-PT-2449 (ch. 13)"/>
-<antena lat="46.1300" lon="-60.1457" desc="NS-PT-1251 (ch. 21)"/>
-<antena lat="49.0600" lon="-117.4504" desc="BC-PT-612 (ch. 48)"/>
-<antena lat="58.3824" lon="-118.4039" desc="AB-PT-1004 (ch. 5), AB-PT-68 (ch. 40)"/>
-<antena lat="43.0306" lon="-79.1803" desc="CKVP-DT (ch. 42)"/>
-<antena lat="46.0653" lon="-71.2422" desc="QC-PT-2217 (ch. 23), QC-PT-2133 (ch. 21), QC-PT-2136 (ch. 32), QC-PT-2137 (ch. 36), QC-PT-2187 (ch. 42)"/>
-<antena lat="46.0540" lon="-60.0852" desc="NS-PT-1311 (ch. 36), NS-PT-1266 (ch. 5), NS-PT-1309 (ch. 13)"/>
-<antena lat="52.0922" lon="-111.0808" desc="AB-PT-1005 (ch. 10), AB-PT-74 (ch. 30)"/>
-<antena lat="46.1342" lon="-70.4526" desc="QC-PT-2212 (ch. 6), QC-PT-1766 (ch. 10)"/>
-<antena lat="46.3828" lon="-79.0423" desc="QC-PT-2232 (ch. 12), QC-PT-2128 (ch. 28), QC-PT-2130 (ch. 46), QC-PT-2131 (ch. 49)"/>
-<antena lat="53.5308" lon="-108.2435" desc="SK-PT-2270 (ch. 49), SK-PT-2452 (ch. 8)"/>
-<antena lat="44.0414" lon="-78.0835" desc="CIII-PT-27 (ch. 27), CIII-DT-27 (ch. 27)"/>
-<antena lat="49.1747" lon="-82.1109" desc="ON-PT-1766 (ch. 12), ON-PT-1438 (ch. 8)"/>
-<antena lat="60.0219" lon="-77.1627" desc="QC-PT-1994 (ch. 16), QC-PT-1995 (ch. 38)"/>
-<antena lat="45.1440" lon="-62.0137" desc="NS-PT-1292 (ch. 5)"/>
-<antena lat="48.0807" lon="-79.3318" desc="ON-PT-1735 (ch. 28), ON-PT-1446 (ch. 2)"/>
-<antena lat="49.1559" lon="-123.0705" desc="BC-PT-583 (ch. 14), BC-PT-590 (ch. 30), BC-PT-593 (ch. 39), BC-PT-597 (ch. 45)"/>
-<antena lat="49.0500" lon="-117.4804" desc="BC-PT-546 (ch. 27)"/>
-<antena lat="54.1519" lon="-125.4042" desc="CH4333-PT (ch. 7), BC-PT-322 (ch. 30)"/>
-<antena lat="54.3059" lon="-128.3506" desc="BC-PT-566 (ch. 20), BC-PT-567 (ch. 21), BC-PT-568 (ch. 22), BC-PT-569 (ch. 27)"/>
-<antena lat="47.0400" lon="-79.4659" desc="ON-PT-1635 (ch. 44)"/>
-<antena lat="52.1407" lon="-76.3656" desc="QC-PT-1830 (ch. 5), QC-PT-1831 (ch. 13)"/>
-<antena lat="49.1040" lon="-113.1940" desc="CFSO-TV (ch. 32)"/>
-<antena lat="47.2700" lon="-72.4658" desc="QC-PT-1907 (ch. 24)"/>
-<antena lat="47.4000" lon="-81.4259" desc="ON-PT-1413 (ch. 22), ON-PT-1414 (ch. 23), ON-PT-1415 (ch. 29)"/>
-<antena lat="47.5115" lon="-83.2508" desc="CITO-TV-4 (ch. 9), CITO-PT-4 (ch. 8), ON-PT-1364 (ch. 9), ON-PT-1367 (ch. 26), ON-PT-1369 (ch. 43), ON-PT-1727 (ch. 7)"/>
-<antena lat="49.2848" lon="-113.5801" desc="CISA-TV-5 (ch. 9)"/>
-<antena lat="54.0800" lon="-111.3404" desc="AB-PT-2 (ch. 15)"/>
-<antena lat="49.4240" lon="-114.5246" desc="BC-PT-559 (ch. 26), BC-PT-643 (ch. 11)"/>
-<antena lat="45.3800" lon="-72.5658" desc="QC-PT-2111 (ch. 39)"/>
-<antena lat="50.5422" lon="-118.5103" desc="CFFI-TV-2 (ch. 11), CH4468 (ch. 13), CFFI-TV-1 (ch. 4)"/>
-<antena lat="43.2200" lon="-80.5659" desc="ON-PT-1613 (ch. 46)"/>
-<antena lat="55.0400" lon="-117.1705" desc="AB-PT-287 (ch. 17), AB-PT-288 (ch. 20), AB-PT-289 (ch. 26), AB-PT-290 (ch. 34)"/>
-<antena lat="50.3300" lon="-119.0804" desc="BC-PT-388 (ch. 25)"/>
-<antena lat="53.5000" lon="-73.2507" desc="QC-PT-1783 (ch. 6), QC-PT-1784 (ch. 7), QC-PT-1785 (ch. 9), QC-PT-1786 (ch. 10)"/>
-<antena lat="49.4708" lon="-111.1929" desc="CJIL-TV-1 (ch. 39), CJIL-PT-1 (ch. 39)"/>
-<antena lat="46.1400" lon="-60.1357" desc="NS-PT-1274 (ch. 20), NS-PT-1275 (ch. 33)"/>
-<antena lat="50.4531" lon="-119.2157" desc="BC-PT-547 (ch. 3), BC-PT-642 (ch. 33)"/>
-<antena lat="49.5200" lon="-99.2002" desc="MB-PT-648 (ch. 26), MB-PT-649 (ch. 40)"/>
-<antena lat="50.1849" lon="-122.4944" desc="CH4552 (ch. 6), CH4553 (ch. 8), CH2128 (ch. 2), CH2129 (ch. 10), CH2130 (ch. 13)"/>
-<antena lat="48.1555" lon="-79.0236" desc="QC-PT-2049 (ch. 4), CIVA-PT-1 (ch. 8), CKRN-PT (ch. 9), CFEM-PT (ch. 13), CFVS-PT-1 (ch. 20), QC-PT-2055 (ch. 21), QC-PT-2056 (ch. 23), QC-PT-2057 (ch. 30), QC-PT-2059 (ch. 41)"/>
-<antena lat="52.5034" lon="-119.1523" desc="CH4330 (ch. 4), CH2649 (ch. 8), CH4023 (ch. 9), CH4331 (ch. 11), CH4332 (ch. 13), CHVC-TV-1 (ch. 7), CH2062 (ch. 6)"/>
-<antena lat="49.1401" lon="-68.0825" desc="CFTF-DT-5 (ch. 9)"/>
-<antena lat="53.2747" lon="-113.2007" desc="CKES-DT (ch. 30)"/>
-<antena lat="45.0334" lon="-77.1159" desc="CIII-TV-2 (ch. 2), ON-PT-1339 (ch. 2), CIII-PT-2 (ch. 8)"/>
-<antena lat="49.3200" lon="-82.5200" desc="ON-PT-1524 (ch. 29), ON-PT-1525 (ch. 30)"/>
-<antena lat="54.4717" lon="-101.5042" desc="CKYF-TV (ch. 13), MB-PT-893 (ch. 8), MB-PT-686 (ch. 3), MB-PT-689 (ch. 12), CKYF-PT (ch. 13), MB-PT-691 (ch. 22), MB-PT-878 (ch. 10)"/>
-<antena lat="46.1100" lon="-65.5257" desc="NB-PT-893 (ch. 17)"/>
-<antena lat="52.4740" lon="-67.0526" desc="CINE-TV (ch. 4)"/>
-<antena lat="46.1713" lon="-78.4035" desc="ON-PT-1788 (ch. 43), ON-PT-1496 (ch. 26), ON-PT-1497 (ch. 30)"/>
-<antena lat="50.3900" lon="-102.0502" desc="SK-PT-2209 (ch. 35), SK-PT-2207 (ch. 19), SK-PT-2208 (ch. 31), SK-PT-2210 (ch. 41)"/>
-<antena lat="50.0700" lon="-120.4705" desc="BC-PT-459 (ch. 27), BC-PT-460 (ch. 41)"/>
-<antena lat="54.0159" lon="-124.3746" desc="CH4433 (ch. 19), CH2308 (ch. 15), CH2309 (ch. 17), CFFL-TV-1 (ch. 9), CH2024 (ch. 23), CH2025 (ch. 49), CFFL-PT-1 (ch. 9)"/>
-<antena lat="49.4005" lon="-100.0042" desc="CKYB-TV (ch. 4), MB-PT-899 (ch. 49), MB-PT-639 (ch. 4), MB-PT-640 (ch. 5), CBCN-PT-641 (ch. 16), CKYB-PT (ch. 50)"/>
-<antena lat="49.5800" lon="-119.3144" desc="BC-PT-652 (ch. 21), CHBC-DT (ch. 27), CHKL-DT (ch. 24), BC-PT-439 (ch. 2), BC-PT-440 (ch. 5), CHBC-PT (ch. 8), BC-PT-442 (ch. 14), CHKL-PT (ch. 24), BC-PT-632 (ch. 45)"/>
-<antena lat="49.2730" lon="-115.3749" desc="CFCN-TV-9 (ch. 5), CFCN-PT-9 (ch. 5), BC-PT-360 (ch. 9), BC-PT-362 (ch. 13), BC-PT-367 (ch. 44), BC-PT-368 (ch. 48), BC-PT-624 (ch. 10)"/>
-<antena lat="51.1800" lon="-116.5804" desc="BC-PT-416 (ch. 15), BC-PT-417 (ch. 38)"/>
-<antena lat="53.4309" lon="-75.5944" desc="QC-PT-1780 (ch. 4), QC-PT-1781 (ch. 15), QC-PT-1782 (ch. 16)"/>
-<antena lat="47.0000" lon="-65.3357" desc="NB-PT-927 (ch. 13)"/>
-<antena lat="48.2812" lon="-81.1749" desc="CHCH-TV-7 (ch. 11), ON-PT-1780 (ch. 9), ON-PT-1718 (ch. 7), CHCH-PT-7 (ch. 11), CIII-PT-13 (ch. 13), ON-PT-1655 (ch. 14), ON-PT-1661 (ch. 44), CIII-DT-13 (ch. 13)"/>
-<antena lat="55.0152" lon="-122.5344" desc="CKPG-TV-4 (ch. 6)"/>
-<antena lat="52.2400" lon="-101.0602" desc="MB-PT-633 (ch. 25), MB-PT-636 (ch. 45)"/>
-<antena lat="49.2328" lon="-82.2127" desc="CITO-TV-1 (ch. 10), ON-PT-1437 (ch. 2), CITO-PT-1 (ch. 10), ON-PT-1734 (ch. 17)"/>
-<antena lat="55.4505" lon="-117.1205" desc="AB-PT-1027 (ch. 6), AB-PT-114 (ch. 46)"/>
-<antena lat="48.5015" lon="-64.2932" desc="CHAU-DT-6 (ch. 7), CHAU-PT-6 (ch. 7), QC-PT-1852 (ch. 30), CFTF-DT-9 (ch. 30)"/>
-<antena lat="58.2729" lon="-78.0625" desc="QC-PT-1882 (ch. 14), QC-PT-1883 (ch. 15)"/>
-<antena lat="50.2659" lon="-104.3005" desc="CKCK-DT (ch. 8)"/>
-<antena lat="44.5242" lon="-77.1150" desc="ON-PT-1374 (ch. 10), CICO-PT-92 (ch. 44)"/>
-<antena lat="46.1900" lon="-78.4159" desc="ON-PT-1495 (ch. 19), ON-PT-1499 (ch. 48)"/>
-<antena lat="46.4900" lon="-71.1258" desc="QC-PT-2003 (ch. 38)"/>
-<antena lat="48.2538" lon="-68.2914" desc="CJPC-DT (ch. 18)"/>
-<antena lat="54.3300" lon="-94.2801" desc="MB-PT-707 (ch. 14)"/>
-<antena lat="51.5300" lon="-97.1602" desc="MB-PT-720 (ch. 22), MB-PT-721 (ch. 23)"/>
-<antena lat="43.1354" lon="-79.5133" desc="CHCJ-DT (ch. 35)"/>
-<antena lat="45.3007" lon="-74.4116" desc="ON-PT-1705 (ch. 48), ON-PT-1719 (ch. 39), ON-PT-1423 (ch. 31)"/>
-<antena lat="48.2427" lon="-71.0506" desc="CJPM-PT (ch. 6), QC-PT-1822 (ch. 46)"/>
-<antena lat="49.1114" lon="-119.4139" desc="CHKC-TV-1 (ch. 9), CH4568 (ch. 22)"/>
-<antena lat="50.4111" lon="-112.2713" desc="AB-PT-1024 (ch. 11), AB-PT-272 (ch. 42)"/>
-<antena lat="47.2323" lon="-68.1858" desc="CIMT-PT-1 (ch. 4), NB-PT-898 (ch. 32)"/>
-<antena lat="51.0525" lon="-120.1349" desc="CH4336 (ch. 2), CHMQ-TV (ch. 3), CHLP-TV (ch. 5)"/>
-<antena lat="50.0859" lon="-61.4700" desc="QC-PT-1974 (ch. 10), QC-PT-1975 (ch. 16)"/>
-<antena lat="46.5658" lon="-60.2802" desc="CJCB-TV-3 (ch. 9)"/>
-<antena lat="49.0200" lon="-119.2804" desc="BC-PT-484 (ch. 15), BC-PT-485 (ch. 19)"/>
-<antena lat="46.0555" lon="-60.1841" desc="CIHF-TV-7 (ch. 11), CIHF-PT-7 (ch. 11), CIHF-DT-7 (ch. 36)"/>
-<antena lat="49.0427" lon="-64.3212" desc="CHAU-DT-9 (ch. 12)"/>
-<antena lat="49.2058" lon="-105.3811" desc="CKCK-PT-2 (ch. 6), SK-PT-2428 (ch. 34)"/>
-<antena lat="53.2007" lon="-104.0857" desc="CKBQ-TV-1 (ch. 12), CKBQ-PT-1 (ch. 12), SK-PT-2300 (ch. 41), SK-PT-2301 (ch. 44), SK-PT-2454 (ch. 10)"/>
-<antena lat="54.2359" lon="-126.3806" desc="BC-PT-427 (ch. 23), BC-PT-429 (ch. 44)"/>
-<antena lat="47.3047" lon="-67.1707" desc="CHAU-DT-2 (ch. 31)"/>
-<antena lat="58.0631" lon="-68.2430" desc="QC-PT-1845 (ch. 2), QC-PT-1846 (ch. 14)"/>
-<antena lat="54.0155" lon="-115.4304" desc="CFRN-TV-3 (ch. 12)"/>
-<antena lat="48.0807" lon="-66.0657" desc="NB-PT-885 (ch. 4), NB-PT-957 (ch. 34)"/>
-<antena lat="51.3655" lon="-120.0228" desc="CHCW-TV-1 (ch. 2), CHCW-TV-2 (ch. 10), CH5663 (ch. 8)"/>
-<antena lat="45.0345" lon="-77.4922" desc="CHEX-TV-1 (ch. 4)"/>
-<antena lat="51.2700" lon="-109.1003" desc="SK-PT-2249 (ch. 33)"/>
-<antena lat="54.0158" lon="-115.4307" desc="AB-PT-303 (ch. 9), CFRN-PT-3 (ch. 12), AB-PT-305 (ch. 22), AB-PT-1019 (ch. 7)"/>
-<antena lat="49.4403" lon="-77.4044" desc="CJDG-TV-4 (ch. 9), CJDG-PT-4 (ch. 9), QC-PT-1931 (ch. 19)"/>
-<antena lat="53.2419" lon="-113.2042" desc="AB-PT-1036 (ch. 26), AB-PT-90 (ch. 9)"/>
-<antena lat="59.3441" lon="-108.3546" desc="SK-PT-2475 (ch. 8), SK-PT-2415 (ch. 7)"/>
-<antena lat="48.5001" lon="-64.1524" desc="QC-PT-2194 (ch. 9), QC-PT-1853 (ch. 33), CIVK-PT-3 (ch. 35), QC-PT-2172 (ch. 18), CIVK-DT-3 (ch. 35)"/>
-<antena lat="53.2347" lon="-110.0030" desc="AB-PT-194 (ch. 2), CITL-PT (ch. 4), CBCN-PT-196 (ch. 11), CKSA-PT (ch. 13), AB-PT-201 (ch. 30), AB-PT-205 (ch. 48), CITL-DT (ch. 4), CKSA-DT (ch. 2)"/>
-<antena lat="47.0332" lon="-65.3435" desc="NB-PT-892 (ch. 49), NB-PT-959 (ch. 6)"/>
-<antena lat="50.1300" lon="-62.0457" desc="QC-PT-1733 (ch. 14), QC-PT-1734 (ch. 34)"/>
-<antena lat="50.4522" lon="-119.2001" desc="CHBC-TV-4 (ch. 9), CHBC-PT-4 (ch. 9)"/>
-<antena lat="51.1700" lon="-101.2802" desc="MB-PT-803 (ch. 4), MB-PT-804 (ch. 28)"/>
-<antena lat="49.3130" lon="-119.3819" desc="CHBC-TV-7 (ch. 7)"/>
-<antena lat="50.4022" lon="-99.3612" desc="CKYB-TV-1 (ch. 13), MB-PT-902 (ch. 19), MB-PT-763 (ch. 11)"/>
-<antena lat="46.2712" lon="-66.2734" desc="CKLT-TV-2 (ch. 7)"/>
-<antena lat="50.4329" lon="-127.2935" desc="BC-PT-506 (ch. 8), BC-PT-509 (ch. 33)"/>
-<antena lat="52.1600" lon="-113.4004" desc="AB-PT-266 (ch. 48)"/>
-<antena lat="50.1724" lon="-121.1135" desc="CHIR-TV (ch. 19), CH4348 (ch. 16)"/>
-<antena lat="53.5333" lon="-94.5659" desc="MB-PT-848 (ch. 8), MB-PT-891 (ch. 9)"/>
-<antena lat="49.3331" lon="-108.2751" desc="SK-PT-2472 (ch. 7), SK-PT-2378 (ch. 16)"/>
-<antena lat="45.1301" lon="-75.3350" desc="CITY-DT-3 (ch. 17), CITY-PT-3 (ch. 17), ON-PT-1535 (ch. 11), CHCH-PT-1 (ch. 22), CFMT-PT-2 (ch. 27), CITS-PT-1 (ch. 42), CHRO-PT-43 (ch. 43), ON-PT-1547 (ch. 50), CJMT-DT-2 (ch. 20), CITS-DT-1 (ch. 42), CHRO-DT-43 (ch. 43), CFMT-DT-2 (ch. 27), CJMT-PT-2 (ch. 20), CHCH-DT-1 (ch. 22)"/>
-<antena lat="50.1300" lon="-99.2902" desc="MB-PT-782 (ch. 23), MB-PT-783 (ch. 39)"/>
-<antena lat="51.0421" lon="-114.1538" desc="CICT-DT (ch. 41), CKAL-DT (ch. 49), CJCO-DT (ch. 38)"/>
-<antena lat="45.3334" lon="-73.3309" desc="CIVM-DT (ch. 26)"/>
-<antena lat="46.0600" lon="-64.4657" desc="NB-PT-921 (ch. 25), NB-PT-924 (ch. 33), NB-PT-925 (ch. 39), NB-PT-926 (ch. 48)"/>
-<antena lat="49.3850" lon="-83.3050" desc="CITO-TV-3 (ch. 4)"/>
-<antena lat="54.3148" lon="-124.1107" desc="CH5799 (ch. 16), CH5800 (ch. 22), CH5801 (ch. 26)"/>
-<antena lat="54.2605" lon="-124.3248" desc="CH2926 (ch. 8), CH2927 (ch. 12), CH3035 (ch. 4), CH3036 (ch. 5), CH3037 (ch. 6), CH3038 (ch. 9), CH3039 (ch. 10), CH3040 (ch. 11), CH3041 (ch. 13)"/>
-<antena lat="50.3845" lon="-68.4420" desc="QC-PT-1926 (ch. 10), QC-PT-1927 (ch. 46)"/>
-<antena lat="52.5400" lon="-101.0102" desc="MB-PT-670 (ch. 6), MB-PT-671 (ch. 14), MB-PT-672 (ch. 26), MB-PT-673 (ch. 41), MB-PT-674 (ch. 47)"/>
-<antena lat="49.3854" lon="-116.5057" desc="BC-PT-625 (ch. 5), BC-PT-370 (ch. 34)"/>
-<antena lat="48.3540" lon="-123.3242" desc="CBCN-PT-607 (ch. 15)"/>
-<antena lat="43.1227" lon="-79.4627" desc="CITS-DT (ch. 36), CHCH-PT (ch. 11), CKXT-PT-1 (ch. 15), CITS-PT (ch. 36), CHCH-DT (ch. 15)"/>
-<antena lat="53.1600" lon="-113.3304" desc="AB-PT-180 (ch. 38)"/>
-<antena lat="50.4319" lon="-122.1506" desc="CH4419 (ch. 7), CH4425 (ch. 13), CH4420 (ch. 8), CH4421 (ch. 9), CH4422 (ch. 10), CH4423 (ch. 11), CH4424 (ch. 12)"/>
-<antena lat="49.3300" lon="-114.1704" desc="AB-PT-35 (ch. 20), AB-PT-38 (ch. 40)"/>
-<antena lat="52.2758" lon="-103.3014" desc="SK-PT-2229 (ch. 30), SK-PT-2447 (ch. 4)"/>
-<antena lat="44.3847" lon="-63.3937" desc="CJCH-DT (ch. 48)"/>
-<antena lat="52.3200" lon="-111.3104" desc="AB-PT-207 (ch. 15), AB-PT-208 (ch. 16)"/>
-<antena lat="58.2900" lon="-115.0605" desc="AB-PT-167 (ch. 5), AB-PT-170 (ch. 20)"/>
-<antena lat="49.1300" lon="-65.4457" desc="QC-PT-1948 (ch. 27), QC-PT-1949 (ch. 29)"/>
-<antena lat="44.0237" lon="-77.4739" desc="CKWS-PT-1 (ch. 30)"/>
-<antena lat="50.2300" lon="-105.3203" desc="SK-PT-2288 (ch. 17), SK-PT-2290 (ch. 36), SK-PT-2291 (ch. 42)"/>
-<antena lat="51.2929" lon="-123.4631" desc="CH4430 (ch. 2)"/>
-<antena lat="44.5529" lon="-62.2952" desc="NS-PT-1256 (ch. 2), NS-PT-1258 (ch. 29), CJCH-PT-5 (ch. 44), NS-PT-1299 (ch. 11)"/>
-<antena lat="58.4601" lon="-94.1001" desc="MB-PT-654 (ch. 10), MB-PT-656 (ch. 14), MB-PT-657 (ch. 19)"/>
-<antena lat="53.1300" lon="-106.2403" desc="SK-PT-2380 (ch. 25), SK-PT-2381 (ch. 26)"/>
-<antena lat="55.3536" lon="-121.5837" desc="CH2065 (ch. 31), CH2524 (ch. 15), CH2522 (ch. 17), CH2523 (ch. 19), CH4236 (ch. 21), CH4237 (ch. 23), CH4238 (ch. 25), CH4477 (ch. 27), CH4239 (ch. 29), CHET-TV-1 (ch. 33)"/>
-<antena lat="51.0000" lon="-118.1204" desc="BC-PT-544 (ch. 32), BC-PT-545 (ch. 43)"/>
-<antena lat="50.3900" lon="-97.0001" desc="MB-PT-703 (ch. 19), MB-PT-704 (ch. 42)"/>
-<antena lat="49.0706" lon="-96.0122" desc="MB-PT-797 (ch. 23), MB-PT-888 (ch. 29)"/>
-<antena lat="51.5400" lon="-121.1535" desc="CFJC-TV-6 (ch. 5), CFJC-PT-6 (ch. 5), BC-PT-312 (ch. 23)"/>
-<antena lat="51.1600" lon="-105.5903" desc="SK-PT-2202 (ch. 14), SK-PT-2203 (ch. 25)"/>
-<antena lat="44.5533" lon="-62.3001" desc="CJCH-TV-5 (ch. 2)"/>
-<antena lat="55.1700" lon="-114.4604" desc="AB-PT-276 (ch. 17), AB-PT-278 (ch. 20), AB-PT-279 (ch. 23), AB-PT-281 (ch. 41)"/>
-<antena lat="49.1341" lon="-119.4819" desc="CH4319 (ch. 26)"/>
-<antena lat="53.3155" lon="-113.4653" desc="CKEM-DT (ch. 17), CJEO-DT (ch. 44)"/>
-<antena lat="49.0035" lon="-118.2329" desc="CISR-TV-1 (ch. 7)"/>
-<antena lat="45.5100" lon="-66.2858" desc="NB-PT-928 (ch. 33)"/>
-<antena lat="48.2500" lon="-71.1458" desc="QC-PT-1888 (ch. 19), QC-PT-1890 (ch. 47)"/>
-<antena lat="51.2530" lon="-112.4234" desc="CFCN-TV-6 (ch. 10)"/>
-<antena lat="51.0835" lon="-96.1555" desc="MB-PT-755 (ch. 16), MB-PT-886 (ch. 22)"/>
-<antena lat="50.0310" lon="-120.4527" desc="CFJC-TV-3 (ch. 8)"/>
-<antena lat="50.1600" lon="-119.1604" desc="BC-PT-604 (ch. 41), BC-PT-605 (ch. 42)"/>
-<antena lat="55.5100" lon="-108.2903" desc="SK-PT-2184 (ch. 3), SK-PT-2186 (ch. 36)"/>
-<antena lat="49.0200" lon="-118.2704" desc="BC-PT-419 (ch. 44), BC-PT-420 (ch. 47)"/>
-<antena lat="50.3855" lon="-119.5018" desc="CHKM-DT-1 (ch. 9), CFJC-TV-19 (ch. 2), CHKM-TV-1 (ch. 9)"/>
-<antena lat="54.4659" lon="-127.1006" desc="BC-PT-554 (ch. 14), BC-PT-555 (ch. 15)"/>
-<antena lat="49.4600" lon="-102.1502" desc="SK-PT-2192 (ch. 28)"/>
-<antena lat="48.1818" lon="-64.4156" desc="QC-PT-2192 (ch. 8), QC-PT-1803 (ch. 22), QC-PT-2168 (ch. 23)"/>
-<antena lat="51.5300" lon="-102.0502" desc="SK-PT-2304 (ch. 16), SK-PT-2308 (ch. 46)"/>
-<antena lat="54.0924" lon="-72.3151" desc="QC-PT-1778 (ch. 5), QC-PT-1779 (ch. 13)"/>
-<antena lat="49.2316" lon="-123.2241" desc="CHAN-TV-2 (ch. 3)"/>
-<antena lat="47.4100" lon="-68.5358" desc="QC-PT-1777 (ch. 21)"/>
-<antena lat="55.1905" lon="-126.3726" desc="CH4120 (ch. 11), CH4117 (ch. 6), CH4118 (ch. 7), CH4119 (ch. 9)"/>
-<antena lat="50.5030" lon="-116.1934" desc="CIBR-TV (ch. 11)"/>
-<antena lat="53.2306" lon="-113.1252" desc="AB-PT-88 (ch. 3), CBXFT-PT (ch. 47), CITV-PT (ch. 13)"/>
-<antena lat="49.2644" lon="-114.5924" desc="BC-PT-395 (ch. 23), BC-PT-628 (ch. 21)"/>
-<antena lat="44.5235" lon="-65.1824" desc="CJCH-TV-4 (ch. 13)"/>
-<antena lat="46.1900" lon="-79.2759" desc="ON-PT-1522 (ch. 41), ON-PT-1523 (ch. 50)"/>
-<antena lat="49.4218" lon="-119.4455" desc="CHPT-TV-1 (ch. 4), CIPL-TV (ch. 9), CH4322 (ch. 29)"/>
-<antena lat="50.1400" lon="-99.5102" desc="MB-PT-778 (ch. 17)"/>
-<antena lat="45.0454" lon="-67.0334" desc="CHCO-TV (ch. 26)"/>
-<antena lat="49.0600" lon="-117.4204" desc="BC-PT-574 (ch. 14), BC-PT-576 (ch. 19)"/>
-<antena lat="46.1244" lon="-63.2029" desc="PE-PT-1733 (ch. 32), CBCT-DT (ch. 13), CBCT-PT (ch. 13), PE-PT-1713 (ch. 22), PE-PT-1715 (ch. 31)"/>
-<antena lat="52.4943" lon="-119.1621" desc="CHVC-TV (ch. 32)"/>
-<antena lat="49.5000" lon="-99.5702" desc="MB-PT-642 (ch. 18), MB-PT-644 (ch. 27), MB-PT-645 (ch. 34)"/>
-<antena lat="49.3600" lon="-114.2604" desc="AB-PT-17 (ch. 15), AB-PT-18 (ch. 25), AB-PT-19 (ch. 31), AB-PT-20 (ch. 34)"/>
-<antena lat="50.1407" lon="-62.0332" desc="QC-PT-2188 (ch. 8), QC-PT-1732 (ch. 12)"/>
-<antena lat="51.2701" lon="-112.4410" desc="CICT-TV-1 (ch. 8)"/>
-<antena lat="45.2548" lon="-77.1814" desc="ON-PT-1723 (ch. 14)"/>
-<antena lat="55.0612" lon="-108.1313" desc="CH2830 (ch. 6)"/>
-<antena lat="49.2138" lon="-119.5439" desc="CHNJ-TV-1 (ch. 11)"/>
-<antena lat="49.1300" lon="-68.0958" desc="QC-PT-1748 (ch. 19), QC-PT-1752 (ch. 29), QC-PT-1753 (ch. 31), QC-PT-1756 (ch. 35)"/>
-<antena lat="51.4000" lon="-105.2803" desc="SK-PT-2420 (ch. 10), SK-PT-2421 (ch. 23)"/>
-<antena lat="49.1359" lon="-68.0830" desc="QC-PT-2189 (ch. 10), QC-PT-1745 (ch. 7), QC-PT-1749 (ch. 21), QC-PT-1754 (ch. 32), QC-PT-1755 (ch. 33), QC-PT-2166 (ch. 28)"/>
-<antena lat="52.3215" lon="-111.3110" desc="CFRN-TV-7 (ch. 7), CFRN-PT-7 (ch. 7), AB-PT-209 (ch. 23), AB-PT-210 (ch. 33)"/>
-<antena lat="49.4400" lon="-95.1401" desc="MB-PT-852 (ch. 22), MB-PT-853 (ch. 24), MB-PT-854 (ch. 28), MB-PT-855 (ch. 31), MB-PT-856 (ch. 40), MB-PT-857 (ch. 46)"/>
-<antena lat="49.0821" lon="-85.4924" desc="ON-PT-1739 (ch. 8), ON-PT-1491 (ch. 28)"/>
-<antena lat="55.2920" lon="-118.4455" desc="AB-PT-1009 (ch. 10), AB-PT-142 (ch. 41)"/>
-<antena lat="56.0142" lon="-121.5638" desc="CJDC-TV-1 (ch. 11)"/>
-<antena lat="46.2442" lon="-70.3535" desc="QC-PT-2213 (ch. 22)"/>
-<antena lat="47.2112" lon="-79.2736" desc="CKRN-TV-2 (ch. 6)"/>
-<antena lat="49.5343" lon="-97.0817" desc="CBWT-DT (ch. 27), CBWFT-DT (ch. 51), MB-PT-866 (ch. 28)"/>
-<antena lat="50.0700" lon="-101.4002" desc="SK-PT-2294 (ch. 18), SK-PT-2295 (ch. 40)"/>
-<antena lat="47.4500" lon="-70.0658" desc="QC-PT-1859 (ch. 24)"/>
-<antena lat="51.1620" lon="-120.0750" desc="CFIB-TV (ch. 7), CKIB-TV (ch. 12), CH4370 (ch. 13)"/>
-<antena lat="52.1130" lon="-76.0427" desc="CH3191 (ch. 2548), CH3190 (ch. 2542), CH3192 (ch. 2554), CH3193 (ch. 2560), CH3194 (ch. 2566), CH3195 (ch. 2572), CH3196 (ch. 2578), CH3197 (ch. 2584), CH3198 (ch. 2590), CH3199 (ch. 2596), CH3200 (ch. 2602), CH3201 (ch. 2608), CH3202 (ch. 2614), CH3203 (ch. 2620), CH3204 (ch. 2626), CH3205 (ch. 2632), CH3206 (ch. 2638), CH3208 (ch. 2650), CH3209 (ch. 2656), CH3210 (ch. 2662), CH3211 (ch. 2668), CH3212 (ch. 2674), CH3213 (ch. 2680), CH3207 (ch. 2644)"/>
-<antena lat="45.2210" lon="-75.4215" desc="CRC-DT-3 (ch. 46)"/>
-<antena lat="48.0458" lon="-66.3450" desc="NB-PT-962 (ch. 9), CKCD-TV (ch. 7), NB-PT-886 (ch. 7), CKCD-PT (ch. 21)"/>
-<antena lat="46.0700" lon="-70.3958" desc="QC-PT-2109 (ch. 19), QC-PT-2110 (ch. 33)"/>
-<antena lat="58.4900" lon="-122.4306" desc="BC-PT-402 (ch. 10), BC-PT-403 (ch. 14)"/>
-<antena lat="49.4837" lon="-102.4116" desc="CIEW-TV (ch. 7), SK-PT-2476 (ch. 46), CIEW-PT (ch. 7), SK-PT-2190 (ch. 17), SK-PT-2191 (ch. 21), SK-PT-2418 (ch. 3)"/>
-<antena lat="53.5448" lon="-122.2715" desc="CIFG-DT (ch. 29), CIFG-TV (ch. 12), BC-PT-521 (ch. 20), CIFG-PT (ch. 12)"/>
-<antena lat="51.2941" lon="-117.1024" desc="CH4445 (ch. 8), CH4446 (ch. 10), CH4447 (ch. 12), CH4448 (ch. 19)"/>
-<antena lat="52.4900" lon="-110.5204" desc="AB-PT-297 (ch. 31), AB-PT-298 (ch. 39)"/>
-<antena lat="48.1158" lon="-78.0721" desc="QC-PT-1925 (ch. 45), QC-PT-2177 (ch. 5)"/>
-<antena lat="48.2600" lon="-71.0358" desc="QC-PT-1819 (ch. 24), QC-PT-1820 (ch. 40), QC-PT-1821 (ch. 44)"/>
-<antena lat="49.0600" lon="-95.5001" desc="MB-PT-841 (ch. 17), MB-PT-842 (ch. 34), MB-PT-843 (ch. 41), MB-PT-844 (ch. 42), MB-PT-845 (ch. 47)"/>
-<antena lat="46.3100" lon="-84.2000" desc="ON-PT-1599 (ch. 19), ON-PT-1606 (ch. 44), ON-PT-1607 (ch. 46)"/>
-<antena lat="46.0200" lon="-65.0257" desc="NB-PT-940 (ch. 21)"/>
-<antena lat="49.0600" lon="-116.3104" desc="BC-PT-374 (ch. 16), BC-PT-375 (ch. 44)"/>
-<antena lat="51.3600" lon="-98.4202" desc="MB-PT-676 (ch. 16), MB-PT-678 (ch. 40)"/>
-<antena lat="48.4818" lon="-93.5325" desc="ON-PT-1405 (ch. 48), ON-PT-1754 (ch. 5)"/>
-<antena lat="56.1400" lon="-117.1705" desc="AB-PT-234 (ch. 14), AB-PT-237 (ch. 48), AB-PT-238 (ch. 49)"/>
-<antena lat="47.2300" lon="-61.5457" desc="QC-PT-1789 (ch. 19), QC-PT-1790 (ch. 20), QC-PT-1791 (ch. 22), QC-PT-1792 (ch. 29), QC-PT-1793 (ch. 30), QC-PT-1794 (ch. 34), QC-PT-1795 (ch. 35)"/>
-<antena lat="55.3226" lon="-116.0730" desc="AB-PT-1011 (ch. 39), CFRN-TV-8 (ch. 18), CFRN-PT-8 (ch. 18), AB-PT-151 (ch. 2)"/>
-<antena lat="46.1100" lon="-82.5700" desc="ON-PT-1356 (ch. 29), ON-PT-1357 (ch. 50)"/>
-<antena lat="44.4500" lon="-65.3057" desc="NS-PT-1180 (ch. 49)"/>
-<antena lat="55.2347" lon="-104.3527" desc="SK-PT-2460 (ch. 8), SK-PT-2394 (ch. 9)"/>
-<antena lat="47.3014" lon="-69.1754" desc="QC-PT-1834 (ch. 23)"/>
-<antena lat="50.1347" lon="-99.2758" desc="CH5248 (ch. 30)"/>
-<antena lat="53.2258" lon="-113.1301" desc="CITV-DT (ch. 13), CFRN-DT (ch. 12)"/>
-<antena lat="53.4940" lon="-107.0146" desc="CIPA-TV-2 (ch. 7), SK-PT-2176 (ch. 4), CIPA-PT-2 (ch. 7), SK-PT-2178 (ch. 15), SK-PT-2179 (ch. 18)"/>
-<antena lat="50.1019" lon="-66.4415" desc="CFTF-DT-7 (ch. 7)"/>
-<antena lat="51.0750" lon="-115.2310" desc="CFCN-TV-14 (ch. 45)"/>
-<antena lat="54.0146" lon="-124.3732" desc="BC-PT-659 (ch. 13), BC-PT-399 (ch. 49)"/>
-<antena lat="55.1000" lon="-118.4805" desc="AB-PT-140 (ch. 35), AB-PT-141 (ch. 38), AB-PT-143 (ch. 45)"/>
-<antena lat="42.1858" lon="-83.0224" desc="CHWI-DT-60 (ch. 26), CHWI-PT-60 (ch. 26)"/>
-<antena lat="50.2302" lon="-105.3300" desc="SK-PT-2483 (ch. 16), SK-PT-2289 (ch. 30)"/>
-<antena lat="50.3356" lon="-119.0607" desc="CHBC-TV-5 (ch. 16), CHBC-PT-5 (ch. 16), BC-PT-391 (ch. 36)"/>
-<antena lat="55.4007" lon="-121.3457" desc="CH2383 (ch. 2), CH2385 (ch. 4), CH4334 (ch. 49), CH4148 (ch. 52), CH2384 (ch. 12), CH4146 (ch. 46), CH4149 (ch. 39), CH4147 (ch. 43), CHET-TV (ch. 55)"/>
-<antena lat="48.3130" lon="-89.0650" desc="ON-PT-1638 (ch. 2), ON-PT-1639 (ch. 4), CHFD-PT (ch. 46), CKPR-PT (ch. 49)"/>
-<antena lat="44.3600" lon="-75.4059" desc="ON-PT-1360 (ch. 31), ON-PT-1361 (ch. 39)"/>
-<antena lat="48.0600" lon="-77.4659" desc="QC-PT-2154 (ch. 19), QC-PT-2157 (ch. 42)"/>
-<antena lat="49.3200" lon="-101.3302" desc="SK-PT-2173 (ch. 24)"/>
-<antena lat="49.0332" lon="-113.5423" desc="CISA-TV-4 (ch. 12)"/>
-<antena lat="48.2530" lon="-123.2013" desc="BC-PT-655 (ch. 40), CIVI-DT (ch. 23), CKVU-DT-2 (ch. 27), CHNM-DT-1 (ch. 29), CHNU-DT-1 (ch. 21)"/>
-<antena lat="46.3556" lon="-73.5402" desc="QC-PT-2227 (ch. 31), QC-PT-2115 (ch. 7)"/>
-<antena lat="53.0327" lon="-105.5035" desc="CIPA-TV (ch. 9), SK-PT-2457 (ch. 5), SK-PT-2486 (ch. 46), SK-PT-2327 (ch. 3), CIPA-PT (ch. 9), SK-PT-2331 (ch. 33), SK-PT-2335 (ch. 50)"/>
-<antena lat="56.0424" lon="-95.5032" desc="MB-PT-767 (ch. 7), MB-PT-887 (ch. 10)"/>
-<antena lat="44.0359" lon="-64.4257" desc="NS-PT-1295 (ch. 12), NS-PT-1232 (ch. 25)"/>
-<antena lat="52.1635" lon="-113.4126" desc="CITV-DT-1(1) (ch. 28)"/>
-<antena lat="45.4832" lon="-64.4456" desc="CIHF-PT-3 (ch. 27), NB-PT-958 (ch. 7)"/>
-<antena lat="42.0912" lon="-82.5711" desc="CBET-DT (ch. 9), CICO-DT-32 (ch. 32)"/>
-<antena lat="52.5300" lon="-122.2010" desc="CKPG-TV-5 (ch. 13), CFJC-TV-11 (ch. 7), CITM-TV-2 (ch. 8), CITM-DT-2 (ch. 8)"/>
-<antena lat="46.5718" lon="-70.5822" desc="QC-PT-2236 (ch. 43)"/>
-<antena lat="45.5106" lon="-64.4844" desc="NB-PT-918 (ch. 2), CKCW-PT (ch. 29)"/>
-<antena lat="54.0159" lon="-128.3906" desc="BC-PT-451 (ch. 14), BC-PT-452 (ch. 15), BC-PT-453 (ch. 19), BC-PT-454 (ch. 31)"/>
-<antena lat="52.2500" lon="-108.4303" desc="SK-PT-2424 (ch. 43)"/>
-<antena lat="50.3447" lon="-126.5505" desc="BC-PT-620 (ch. 11), BC-PT-314 (ch. 31)"/>
-<antena lat="48.4659" lon="-123.4205" desc="BC-PT-385 (ch. 34)"/>
-<antena lat="48.0619" lon="-69.1011" desc="CIMT-DT-2 (ch. 13), CKRT-DT-6 (ch. 19), CFTF-DT-2 (ch. 17)"/>
-<antena lat="50.3203" lon="-111.5500" desc="CISA-TV-2 (ch. 3), CFCN-TV-3 (ch. 9)"/>
-<antena lat="45.1035" lon="-74.3137" desc="CJOH-TV-8 (ch. 8), ON-PT-1377 (ch. 45), CJOH-PT-8 (ch. 8)"/>
-<antena lat="44.0711" lon="-78.0811" desc="ON-PT-1774 (ch. 42), CBCN-PT-1573 (ch. 24)"/>
-<antena lat="55.1211" lon="-127.4148" desc="CHHZ-TV (ch. 9), CH2014 (ch. 4), CH2015 (ch. 7), CH4382 (ch. 11), CH4383 (ch. 13), CH4397 (ch. 12), CHHZ-PT (ch. 9)"/>
-<antena lat="48.1941" lon="-68.5006" desc="CJBR-DT (ch. 45)"/>
-<antena lat="46.2513" lon="-67.3334" desc="CIHF-TV-11 (ch. 38), CKLT-TV-1 (ch. 3)"/>
-<antena lat="52.3544" lon="-104.5255" desc="SK-PT-2488 (ch. 7), SK-PT-2389 (ch. 15)"/>
-<antena lat="50.5407" lon="-119.3824" desc="CHSH-TV-2 (ch. 13)"/>
-<antena lat="43.2415" lon="-80.3804" desc="CKCO-PT (ch. 13), CKCO-DT (ch. 13)"/>
-<antena lat="46.1605" lon="-63.2027" desc="PE-PT-1710 (ch. 10), PE-PT-1719 (ch. 45)"/>
-<antena lat="49.0635" lon="-121.5052" desc="BC-PT-649 (ch. 15), BC-PT-623 (ch. 7), BC-PT-339 (ch. 3), BC-PT-346 (ch. 46)"/>
-<antena lat="45.4700" lon="-73.5958" desc="QC-PT-2114 (ch. 23)"/>
-<antena lat="54.0300" lon="-105.4603" desc="SK-PT-2281 (ch. 6), SK-PT-2283 (ch. 19)"/>
-<antena lat="47.3100" lon="-64.5357" desc="NB-PT-951 (ch. 25), NB-PT-952 (ch. 39)"/>
-<antena lat="48.3300" lon="-71.3858" desc="QC-PT-1735 (ch. 23), QC-PT-1736 (ch. 29), QC-PT-1739 (ch. 35), QC-PT-1740 (ch. 50)"/>
-<antena lat="52.3032" lon="-93.0055" desc="CH4116 (ch. 13)"/>
-<antena lat="50.2414" lon="-110.0310" desc="CHAT-TV-1 (ch. 4), AB-PT-242 (ch. 4), CHAT-PT-1 (ch. 13), AB-PT-244 (ch. 29)"/>
-<antena lat="55.0854" lon="-107.3608" desc="CH2549 (ch. 13)"/>
-<antena lat="50.1510" lon="-118.3530" desc="CJCC-TV (ch. 13), CH4347 (ch. 8), CJWR-TV-1 (ch. 10)"/>
-<antena lat="51.0415" lon="-99.3118" desc="MB-PT-896 (ch. 14), MB-PT-815 (ch. 3)"/>
-<antena lat="52.5211" lon="-108.2550" desc="SK-PT-2484 (ch. 41), SK-PT-2314 (ch. 22)"/>
-<antena lat="58.4127" lon="-117.2329" desc="AB-PT-1010 (ch. 8), AB-PT-149 (ch. 22)"/>
-<antena lat="49.4450" lon="-97.0838" desc="CIIT-PT (ch. 35)"/>
-<antena lat="46.0600" lon="-77.2859" desc="ON-PT-1383 (ch. 18), ON-PT-1384 (ch. 27)"/>
-<antena lat="49.2113" lon="-122.5723" desc="CBUT-DT(1) (ch. 43)"/>
-<antena lat="46.3624" lon="-61.0312" desc="CH2000 (ch. 34), CH2001 (ch. 38), CH2002 (ch. 42), CH2192 (ch. 30), CH4438 (ch. 40), CH4096 (ch. 44), CH4095 (ch. 18), CH2881 (ch. 48), CH2448 (ch. 20), CH2191 (ch. 24), CH2190 (ch. 26), CH2193 (ch. 22), CH2752 (ch. 53), CH2753 (ch. 57), CHNE-TV (ch. 36), CH5521 (ch. 32), CH5522 (ch. 46), CH5523 (ch. 16), CH5528 (ch. 50), CH5529 (ch. 55), CH5520 (ch. 28)"/>
-<antena lat="46.4922" lon="-71.2943" desc="CKMI-PT (ch. 20), CKMI-DT (ch. 20), QC-PT-2235 (ch. 12), CBVT-DT(2) (ch. 25)"/>
-<antena lat="51.4230" lon="-104.1758" desc="CIWH-TV (ch. 12), SK-PT-2478 (ch. 6), CIWH-PT (ch. 12), SK-PT-2434 (ch. 25), SK-PT-2435 (ch. 27)"/>
-<antena lat="56.0847" lon="-117.2020" desc="CFRN-TV-2 (ch. 3), AB-PT-230 (ch. 3), CFRN-PT-2 (ch. 15)"/>
-<antena lat="46.3441" lon="-60.5901" desc="NS-PT-1303 (ch. 10), NS-PT-1197 (ch. 2), NS-PT-1200 (ch. 43), NS-PT-1289 (ch. 50)"/>
-<antena lat="49.3025" lon="-115.0403" desc="CFCN-TV-10 (ch. 3)"/>
-<antena lat="52.3708" lon="-94.0252" desc="CH4113 (ch. 12)"/>
-<antena lat="46.5900" lon="-70.3258" desc="QC-PT-1951 (ch. 21)"/>
-<antena lat="49.2500" lon="-82.2559" desc="ON-PT-1441 (ch. 15), ON-PT-1443 (ch. 18), ON-PT-1444 (ch. 19), ON-PT-1445 (ch. 26)"/>
-<antena lat="46.2159" lon="-63.2435" desc="PE-PT-1718 (ch. 43)"/>
-<antena lat="51.0300" lon="-114.0504" desc="AB-PT-48 (ch. 19), AB-PT-50 (ch. 23), AB-PT-60 (ch. 50)"/>
-<antena lat="51.2845" lon="-57.4256" desc="QC-PT-2208 (ch. 21), QC-PT-2040 (ch. 20), QC-PT-2042 (ch. 23), QC-PT-2183 (ch. 11)"/>
-<antena lat="53.5500" lon="-122.4505" desc="BC-PT-520 (ch. 19), BC-PT-522 (ch. 21), BC-PT-523 (ch. 29), BC-PT-516 (ch. 11), BC-PT-519 (ch. 17)"/>
-<antena lat="52.5100" lon="-104.0403" desc="SK-PT-2412 (ch. 20)"/>
-<antena lat="53.2824" lon="-111.5028" desc="AB-PT-179 (ch. 16)"/>
-<antena lat="42.5027" lon="-81.5129" desc="CHCH-PT-2 (ch. 24), CHCH-DT-2 (ch. 51)"/>
-<antena lat="51.4055" lon="-108.3048" desc="CFQC-TV-1 (ch. 3), SK-PT-2399 (ch. 3), CFQC-PT-1 (ch. 50)"/>
-<antena lat="50.1438" lon="-63.3559" desc="QC-PT-2197 (ch. 12), QC-PT-1865 (ch. 21)"/>
-<antena lat="56.0400" lon="-118.2305" desc="AB-PT-109 (ch. 17), AB-PT-110 (ch. 25), AB-PT-111 (ch. 26), AB-PT-112 (ch. 34)"/>
-<antena lat="54.5600" lon="-95.1601" desc="MB-PT-786 (ch. 8), MB-PT-787 (ch. 12), MB-PT-788 (ch. 48)"/>
-<antena lat="49.0331" lon="-113.5442" desc="CFCN-TV-17 (ch. 6)"/>
-<antena lat="52.3800" lon="-104.5403" desc="SK-PT-2390 (ch. 23), SK-PT-2391 (ch. 31)"/>
-<antena lat="48.2051" lon="-123.3553" desc="CH4388 (ch. 17)"/>
-<antena lat="50.0246" lon="-110.3711" desc="AB-PT-1032 (ch. 34), AB-PT-218 (ch. 22)"/>
-<antena lat="49.1300" lon="-65.1039" desc="QC-PT-2195 (ch. 6), QC-PT-1858 (ch. 23)"/>
-<antena lat="46.3007" lon="-72.3810" desc="CKTM-DT (ch. 28)"/>
-<antena lat="44.2228" lon="-65.0209" desc="NS-PT-1293 (ch. 30), NS-PT-1188 (ch. 2)"/>
-<antena lat="50.3348" lon="-119.0614" desc="BC-PT-390 (ch. 30)"/>
-<antena lat="49.2918" lon="-115.0351" desc="BC-PT-396 (ch. 30), BC-PT-629 (ch. 8)"/>
-<antena lat="52.5800" lon="-113.2204" desc="AB-PT-300 (ch. 36), AB-PT-301 (ch. 41)"/>
-<antena lat="48.1900" lon="-69.2543" desc="CFTF-DT-8 (ch. 33), CIMT-DT-7 (ch. 35)"/>
-<antena lat="54.5303" lon="-126.1255" desc="CH2795 (ch. 8), CH2793 (ch. 4), CH2794 (ch. 6), CH4088 (ch. 7), CH2796 (ch. 9), CH2797 (ch. 10), CH2798 (ch. 11), CH2799 (ch. 12), CH2800 (ch. 13), CH4469 (ch. 2), CH4470 (ch. 3), CH4471 (ch. 5)"/>
-<antena lat="49.4100" lon="-115.5904" desc="BC-PT-447 (ch. 27), BC-PT-448 (ch. 31)"/>
-<antena lat="50.4430" lon="-121.1635" desc="CHAC-TV-2 (ch. 2), CH4472 (ch. 4), CJAC-TV-2 (ch. 5), CH4327 (ch. 38)"/>
-<antena lat="52.4700" lon="-108.1703" desc="SK-PT-2311 (ch. 14), SK-PT-2316 (ch. 44)"/>
-<antena lat="45.3011" lon="-73.3656" desc="CFTU-DT (ch. 29)"/>
-<antena lat="48.0808" lon="-66.0658" desc="CIVK-DT (ch. 15), QC-PT-2191 (ch. 47), QC-PT-1796 (ch. 2), CIVK-PT (ch. 15), CFTF-PT-11 (ch. 44)"/>
-<antena lat="47.2303" lon="-61.5500" desc="QC-PT-2221 (ch. 12), QC-PT-1879 (ch. 40), QC-PT-1880 (ch. 45), QC-PT-1881 (ch. 49), QC-PT-2174 (ch. 7)"/>
-<antena lat="49.4615" lon="-97.3037" desc="MB-PT-859 (ch. 3), MB-PT-861 (ch. 6), CBWT-PT (ch. 27), MB-PT-874 (ch. 9)"/>
-<antena lat="44.4610" lon="-79.5924" desc="ON-PT-1714 (ch. 29), ON-PT-1773 (ch. 34), ON-PT-1568 (ch. 36), ON-PT-1569 (ch. 50)"/>
-<antena lat="50.3653" lon="-121.5247" desc="CFDF-TV-2 (ch. 13), CH5525 (ch. 22), CH4311 (ch. 39), CH5526 (ch. 41), CH5527 (ch. 43), CH5568 (ch. 2)"/>
-<antena lat="51.0354" lon="-114.1251" desc="AB-PT-1037 (ch. 13), AB-PT-1026 (ch. 16), AB-PT-43 (ch. 5), CBRT-PT (ch. 9), AB-PT-46 (ch. 15), AB-PT-51 (ch. 25), CKAL-PT (ch. 49), CBRT-DT (ch. 21)"/>
-<antena lat="54.0807" lon="-111.3620" desc="CFRN-TV-4 (ch. 12), CFRN-PT-4 (ch. 12), AB-PT-3 (ch. 43)"/>
-<antena lat="50.4345" lon="-119.1239" desc="CHBC-TV-8 (ch. 6)"/>
-<antena lat="49.0700" lon="-85.5000" desc="ON-PT-1489 (ch. 20), ON-PT-1490 (ch. 26)"/>
-<antena lat="45.0239" lon="-64.2119" desc="CIHF-TV-5 (ch. 20), CIHF-PT-5 (ch. 20), CIHF-DT-5 (ch. 20)"/>
-<antena lat="46.2512" lon="-67.3332" desc="CIHF-DT-11 (ch. 38), NB-PT-900 (ch. 3), CKLT-PT-1 (ch. 24), NB-PT-955 (ch. 30), CIHF-PT-11 (ch. 38)"/>
-<antena lat="46.1500" lon="-83.3300" desc="ON-PT-1637 (ch. 36)"/>
-<antena lat="49.4057" lon="-112.5538" desc="AB-PT-181 (ch. 2), CKAL-PT-1 (ch. 46), CKAL-DT-1 (ch. 46)"/>
-<antena lat="45.3012" lon="-73.3547" desc="CFHD-DT (ch. 47)"/>
-<antena lat="51.4658" lon="-119.1922" desc="CH2556 (ch. 7), CH2557 (ch. 11), CH2685 (ch. 13), CH4329 (ch. 9), CH4588 (ch. 2), CH4589 (ch. 4)"/>
-<antena lat="45.2434" lon="-63.1500" desc="CJCH-TV-3 (ch. 12), CJCH-TV-2 (ch. 12)"/>
-<antena lat="54.1600" lon="-110.4404" desc="AB-PT-25 (ch. 41)"/>
-<antena lat="51.1300" lon="-102.2802" desc="SK-PT-2439 (ch. 14), SK-PT-2441 (ch. 30), SK-PT-2442 (ch. 34), SK-PT-2443 (ch. 38)"/>
-<antena lat="45.5002" lon="-77.0949" desc="CJOH-TV-47 (ch. 47), ON-PT-1713 (ch. 28), ON-PT-1720 (ch. 16), CHRO-TV (ch. 5), ON-PT-1557 (ch. 5), ON-PT-1561 (ch. 29), CJOH-PT-47 (ch. 36), ON-PT-1564 (ch. 47), CHRO-PT (ch. 7)"/>
-<antena lat="49.4600" lon="-94.2901" desc="ON-PT-1454 (ch. 35), ON-PT-1455 (ch. 36), ON-PT-1456 (ch. 38), ON-PT-1457 (ch. 39)"/>
-<antena lat="50.0059" lon="-125.1505" desc="BC-PT-326 (ch. 14), BC-PT-327 (ch. 23), BC-PT-329 (ch. 44)"/>
-<antena lat="45.3826" lon="-62.0732" desc="CIHF-PT-15 (ch. 21), NS-PT-1183 (ch. 39)"/>
-<antena lat="45.3245" lon="-62.1536" desc="CJCB-TV-2 (ch. 9), CJCB-PT-2 (ch. 9)"/>
-<antena lat="51.1410" lon="-120.0310" desc="CH4413 (ch. 9), CFDQ-TV (ch. 8), CIQR-TV (ch. 11)"/>
-<antena lat="43.0800" lon="-80.1559" desc="ON-PT-1358 (ch. 34)"/>
-<antena lat="46.1400" lon="-61.1757" desc="NS-PT-1227 (ch. 17)"/>
-<antena lat="51.4300" lon="-108.2903" desc="SK-PT-2401 (ch. 24)"/>
-<antena lat="44.1000" lon="-77.2159" desc="ON-PT-1355 (ch. 39)"/>
-<antena lat="49.4218" lon="-114.5150" desc="CFCN-TV-11 (ch. 6)"/>
-<antena lat="45.4100" lon="-62.4257" desc="NS-PT-1252 (ch. 28)"/>
-<antena lat="56.4829" lon="-111.2655" desc="AB-PT-1028 (ch. 12), AB-PT-1007 (ch. 9), AB-PT-122 (ch. 11), AB-PT-130 (ch. 48)"/>
-<antena lat="52.0600" lon="-101.1602" desc="MB-PT-819 (ch. 29), MB-PT-820 (ch. 33)"/>
-<antena lat="49.4300" lon="-114.5304" desc="BC-PT-560 (ch. 33)"/>
-<antena lat="45.2348" lon="-71.4952" desc="QC-PT-2186 (ch. 50)"/>
-<antena lat="45.2634" lon="-75.3848" desc="CRC-DT-4 (ch. 46)"/>
-<antena lat="51.5255" lon="-97.1852" desc="MB-PT-719 (ch. 18), MB-PT-881 (ch. 5)"/>
-<antena lat="44.2639" lon="-81.0237" desc="ON-PT-1711 (ch. 12), ON-PT-1549 (ch. 11)"/>
-<antena lat="54.4300" lon="-113.1704" desc="AB-PT-7 (ch. 24), AB-PT-10 (ch. 48), AB-PT-11 (ch. 49)"/>
-<antena lat="50.0431" lon="-92.0141" desc="ON-PT-1757 (ch. 12)"/>
-<antena lat="51.0530" lon="-121.3950" desc="CHTS-TV-1 (ch. 13)"/>
-<antena lat="45.3018" lon="-73.3528" desc="CJNT-PT (ch. 49), CJNT-DT (ch. 49)"/>
-<antena lat="49.0424" lon="-64.3216" desc="CHAU-PT-9 (ch. 12), QC-PT-1920 (ch. 42)"/>
-<antena lat="46.0300" lon="-66.4458" desc="NB-PT-909 (ch. 50)"/>
-<antena lat="51.2503" lon="-57.0606" desc="QC-PT-2190 (ch. 8), QC-PT-1767 (ch. 3), QC-PT-1770 (ch. 13), QC-PT-1771 (ch. 16), QC-PT-1772 (ch. 39), QC-PT-2167 (ch. 5)"/>
-<antena lat="49.3959" lon="-124.5505" desc="BC-PT-350 (ch. 19), BC-PT-351 (ch. 35)"/>
-<antena lat="56.1500" lon="-120.5105" desc="BC-PT-406 (ch. 3)"/>
-<antena lat="52.5900" lon="-122.3005" desc="BC-PT-537 (ch. 16), BC-PT-538 (ch. 22)"/>
-<antena lat="44.3900" lon="-63.3557" desc="NS-PT-1223 (ch. 43)"/>
-<antena lat="45.2839" lon="-66.1359" desc="CKLT-DT (ch. 9), NB-PT-934 (ch. 4), CKLT-PT (ch. 9), NB-PT-960 (ch. 42)"/>
-<antena lat="48.4832" lon="-69.0026" desc="CFTF-DT-4 (ch. 4)"/>
-<antena lat="49.4700" lon="-92.4901" desc="ON-PT-1390 (ch. 27), ON-PT-1391 (ch. 43)"/>
-<antena lat="56.0926" lon="-117.1851" desc="AB-PT-1033 (ch. 9), AB-PT-1016 (ch. 7), AB-PT-232 (ch. 8), AB-PT-236 (ch. 21)"/>
-<antena lat="53.5411" lon="-122.4216" desc="BC-PT-653 (ch. 14), BC-PT-515 (ch. 4)"/>
-<antena lat="52.0400" lon="-108.0003" desc="SK-PT-2180 (ch. 18), SK-PT-2181 (ch. 29)"/>
-<antena lat="44.1722" lon="-76.2849" desc="ON-PT-1708 (ch. 38), ON-PT-1767 (ch. 36), CBCN-PT-1463 (ch. 32)"/>
-<antena lat="55.4853" lon="-121.4445" desc="CH4558 (ch. 8), CH4494 (ch. 10)"/>
-<antena lat="52.4200" lon="-113.3504" desc="AB-PT-247 (ch. 20)"/>
-<antena lat="53.3000" lon="-112.0304" desc="AB-PT-291 (ch. 14), AB-PT-292 (ch. 38)"/>
-<antena lat="42.4321" lon="-82.0959" desc="CIII-DT-29 (ch. 29), CIII-PT-29 (ch. 29)"/>
-<antena lat="50.4800" lon="-98.5802" desc="MB-PT-620 (ch. 24), MB-PT-621 (ch. 31), MB-PT-622 (ch. 33), MB-PT-623 (ch. 34), MB-PT-624 (ch. 39), MB-PT-625 (ch. 41), MB-PT-626 (ch. 46)"/>
-<antena lat="48.4800" lon="-79.1159" desc="QC-PT-1896 (ch. 18), QC-PT-1897 (ch. 26)"/>
-<antena lat="52.4100" lon="-101.0602" desc="MB-PT-751 (ch. 19), MB-PT-754 (ch. 39)"/>
-<antena lat="52.4539" lon="-108.3355" desc="CFQC-TV-2 (ch. 6), SK-PT-2455 (ch. 7), CFQC-PT-2 (ch. 6), SK-PT-2312 (ch. 16), SK-PT-2313 (ch. 20)"/>
-<antena lat="47.5000" lon="-69.3158" desc="QC-PT-2037 (ch. 50)"/>
-<antena lat="50.0200" lon="-113.3504" desc="AB-PT-69 (ch. 12), AB-PT-70 (ch. 36)"/>
-<antena lat="55.4452" lon="-120.0235" desc="CH2061 (ch. 20)"/>
-<antena lat="48.2502" lon="-70.5453" desc="CKTV-PT-1 (ch. 27), QC-PT-2108 (ch. 28)"/>
-<antena lat="50.0843" lon="-122.5824" desc="CHAN-TV-7 (ch. 9), CHAN-DT-7 (ch. 9)"/>
-<antena lat="53.3048" lon="-113.1706" desc="CBXFT-DT (ch. 47), CBXT-DT (ch. 42)"/>
-<antena lat="48.2700" lon="-68.3158" desc="QC-PT-2023 (ch. 46)"/>
-<antena lat="45.2923" lon="-77.4256" desc="ON-PT-1722 (ch. 19)"/>
-<antena lat="53.2843" lon="-122.3805" desc="CKPG-TV-1 (ch. 10)"/>
-<antena lat="48.3302" lon="-89.1325" desc="ON-PT-1779 (ch. 12), CBCN-PT-1640 (ch. 7), CICO-PT-9 (ch. 9)"/>
-<antena lat="49.3154" lon="-114.1141" desc="CFCN-TV-4 (ch. 5), CISA-TV-1 (ch. 3), AB-PT-30 (ch. 3), CFCN-PT-4 (ch. 5), AB-PT-32 (ch. 6), CISA-PT-1 (ch. 9), AB-PT-34 (ch. 18), AB-PT-36 (ch. 22)"/>
-<antena lat="56.3000" lon="-99.5902" desc="MB-PT-735 (ch. 3), MB-PT-736 (ch. 6), MB-PT-738 (ch. 11), MB-PT-740 (ch. 18), MB-PT-741 (ch. 21), MB-PT-742 (ch. 26), MB-PT-743 (ch. 29), MB-PT-744 (ch. 41)"/>
-<antena lat="52.2200" lon="-114.5504" desc="AB-PT-269 (ch. 19), AB-PT-270 (ch. 36)"/>
-<antena lat="48.0808" lon="-66.0704" desc="CHAU-DT (ch. 5), CFTF-DT-11 (ch. 44)"/>
-<antena lat="44.5814" lon="-79.4657" desc="CIII-DT-7 (ch. 7), CIII-PT-7 (ch. 7), ON-PT-1506 (ch. 27), CHCH-PT-3 (ch. 23), CHCH-DT-3 (ch. 23)"/>
-<antena lat="47.3732" lon="-68.5048" desc="CKRT-DT-4 (ch. 21), CIMT-DT-8 (ch. 23), CFTF-DT-3 (ch. 12)"/>
-<antena lat="49.3000" lon="-115.0404" desc="BC-PT-393 (ch. 20)"/>
-<antena lat="50.3300" lon="-101.5042" desc="CHSO-TV (ch. 15), CHBG-TV (ch. 17)"/>
-<antena lat="49.2500" lon="-67.1757" desc="QC-PT-1758 (ch. 17), QC-PT-1759 (ch. 41)"/>
-<antena lat="50.4600" lon="-103.4802" desc="SK-PT-2219 (ch. 45)"/>
-<antena lat="45.3010" lon="-73.3653" desc="CFTU-PT (ch. 29)"/>
-<antena lat="50.3002" lon="-59.2914" desc="QC-PT-2196 (ch. 8), QC-PT-1862 (ch. 12), QC-PT-2173 (ch. 13)"/>
-<antena lat="50.3800" lon="-116.0504" desc="BC-PT-541 (ch. 33)"/>
-<antena lat="45.5601" lon="-81.5932" desc="ON-PT-1737 (ch. 16), ON-PT-1472 (ch. 6)"/>
-<antena lat="49.0821" lon="-85.4923" desc="ON-PT-1770 (ch. 15), ON-PT-1492 (ch. 36)"/>
-<antena lat="54.4627" lon="-127.1324" desc="CFHO-TV-2 (ch. 10), CH4441 (ch. 20)"/>
-<antena lat="45.5529" lon="-77.0422" desc="CIVP-DT (ch. 23), QC-PT-2230 (ch. 11), CIVP-PT (ch. 23)"/>
-<antena lat="47.3503" lon="-69.2208" desc="CFTF-PT (ch. 29), QC-PT-2035 (ch. 41), CBCN-PT-2036 (ch. 48)"/>
-<antena lat="46.3007" lon="-72.3809" desc="CHEM-DT (ch. 8)"/>
-<antena lat="59.1900" lon="-107.1204" desc="SK-PT-2216 (ch. 12)"/>
-<antena lat="47.2200" lon="-68.1958" desc="NB-PT-897 (ch. 14), NB-PT-899 (ch. 36)"/>
-<antena lat="49.5344" lon="-97.0822" desc="CKND-DT (ch. 40)"/>
-<antena lat="46.0240" lon="-77.2805" desc="ON-PT-1556 (ch. 3), ON-PT-1726 (ch. 39)"/>
-<antena lat="59.2252" lon="-107.0839" desc="SK-PT-2214 (ch. 9), SK-PT-2465 (ch. 10)"/>
-<antena lat="50.3500" lon="-113.5204" desc="AB-PT-157 (ch. 35)"/>
-<antena lat="59.1600" lon="-105.5003" desc="SK-PT-2398 (ch. 11)"/>
-<antena lat="49.3925" lon="-109.3048" desc="SK-PT-2199 (ch. 2), SK-PT-2464 (ch. 27)"/>
-<antena lat="54.1703" lon="-122.3851" desc="CH4381 (ch. 9)"/>
-<antena lat="49.4454" lon="-125.1458" desc="CHAN-TV-4 (ch. 11), CHEK-PT-5 (ch. 13), BC-PT-328 (ch. 25), CHAN-PT-4 (ch. 11), BC-PT-355 (ch. 21), CHAN-DT-4 (ch. 25)"/>
-<antena lat="50.3333" lon="-119.2035" desc="CH4367 (ch. 3)"/>
-<antena lat="55.0757" lon="-120.5851" desc="CH2444 (ch. 9), CH2446 (ch. 13)"/>
-<antena lat="44.2317" lon="-64.4044" desc="CIHF-TV-6 (ch. 9), CIHF-PT-6 (ch. 9), NS-PT-1187 (ch. 35), CIHF-DT-6 (ch. 35)"/>
-<antena lat="44.0240" lon="-77.4735" desc="CKWS-DT-1 (ch. 30)"/>
-<antena lat="46.2300" lon="-82.3900" desc="ON-PT-1398 (ch. 36)"/>
-<antena lat="45.3600" lon="-67.1958" desc="NB-PT-912 (ch. 36)"/>
-<antena lat="50.4545" lon="-120.5205" desc="CFSC-TV-2 (ch. 8), CH4338 (ch. 11), CFSC-TV-1 (ch. 13)"/>
-<antena lat="50.1731" lon="-121.1039" desc="CH4341 (ch. 7)"/>
-<antena lat="51.1914" lon="-106.0349" desc="SK-PT-2204 (ch. 29)"/>
-<antena lat="48.3745" lon="-85.1124" desc="ON-PT-1695 (ch. 34), ON-PT-1749 (ch. 12)"/>
-<antena lat="49.2126" lon="-122.5713" desc="CHNM-DT (ch. 20), CKVU-DT (ch. 33), CIVT-DT(1) (ch. 32), CHAN-DT (ch. 22)"/>
-<antena lat="49.2134" lon="-119.5434" desc="CHBC-TV-9 (ch. 13)"/>
-<antena lat="49.3934" lon="-119.3422" desc="CHKL-DT-1 (ch. 30), CHBC-DT-1 (ch. 32), BC-PT-562 (ch. 34), BC-PT-563 (ch. 48), CHKL-PT-1 (ch. 10), CHBC-PT-1 (ch. 13), BC-PT-499 (ch. 40), BC-PT-500 (ch. 49)"/>
-<antena lat="59.3400" lon="-108.3704" desc="SK-PT-2417 (ch. 14)"/>
-<antena lat="46.3800" lon="-61.0057" desc="NS-PT-1199 (ch. 23)"/>
-<antena lat="49.4700" lon="-74.5158" desc="QC-PT-1806 (ch. 2), QC-PT-1807 (ch. 49)"/>
-<antena lat="50.1327" lon="-119.1812" desc="BC-PT-646 (ch. 18)"/>
-<antena lat="48.2517" lon="-77.5048" desc="CFEM-DT-1 (ch. 10), CIVA-DT (ch. 12), CJDG-PT (ch. 7), CFEM-PT-1 (ch. 10), CIVA-PT (ch. 12), QC-PT-2153 (ch. 15), CFVS-PT (ch. 25), QC-PT-2156 (ch. 33), QC-PT-2158 (ch. 47), CJDG-DT (ch. 7), CFVS-DT (ch. 25)"/>
-<antena lat="55.4343" lon="-97.5150" desc="CKYT-TV (ch. 9), MB-PT-898 (ch. 11), MB-PT-832 (ch. 5), CKYT-PT (ch. 9), MB-PT-836 (ch. 13), MB-PT-837 (ch. 14), MB-PT-890 (ch. 7)"/>
-<antena lat="42.0424" lon="-82.3754" desc="CFTV-DT(1) (ch. 34)"/>
-<antena lat="49.1400" lon="-100.0302" desc="MB-PT-637 (ch. 29), MB-PT-638 (ch. 41)"/>
-<antena lat="53.0900" lon="-99.1732" desc="MB-PT-709 (ch. 14), MB-PT-710 (ch. 15), MB-PT-711 (ch. 50), MB-PT-880 (ch. 8)"/>
-<antena lat="51.2841" lon="-90.1101" desc="ON-PT-1578 (ch. 7), ON-PT-1579 (ch. 9)"/>
-<antena lat="44.1945" lon="-78.1802" desc="CHEX-PT (ch. 12), ON-PT-1575 (ch. 34)"/>
-<antena lat="48.0808" lon="-79.3319" desc="CITO-TV-2 (ch. 11), CITO-PT-2 (ch. 11)"/>
-<antena lat="51.0204" lon="-115.1234" desc="CFCN-TV-13 (ch. 40)"/>
-<antena lat="51.0500" lon="-97.3902" desc="MB-PT-681 (ch. 32), MB-PT-682 (ch. 34), MB-PT-683 (ch. 43)"/>
-<antena lat="44.4035" lon="-65.4401" desc="NS-PT-1294 (ch. 19), NS-PT-1305 (ch. 17), NS-PT-1202 (ch. 15), NS-PT-1205 (ch. 39)"/>
-<antena lat="42.5535" lon="-79.0535" desc="CIII-PT-55 (ch. 48)"/>
-<antena lat="48.1400" lon="-79.0059" desc="QC-PT-2060 (ch. 44), QC-PT-2061 (ch. 49)"/>
-<antena lat="45.0518" lon="-77.3849" desc="ON-PT-1709 (ch. 46), ON-PT-1501 (ch. 31), ON-PT-1503 (ch. 42), ON-PT-1725 (ch. 33)"/>
-<antena lat="58.0635" lon="-68.2443" desc="CH4718 (ch. 8), CH4719 (ch. 11), CH4720 (ch. 13), CH4717 (ch. 5), CH4716 (ch. 3)"/>
-<antena lat="49.4616" lon="-94.3119" desc="CJBN-PT (ch. 13), ON-PT-1453 (ch. 16)"/>
-<antena lat="45.2854" lon="-62.3347" desc="CIHF-TV-8 (ch. 34), CIHF-PT-8 (ch. 34), CIHF-DT-8 (ch. 34)"/>
-<antena lat="43.2700" lon="-80.3607" desc="ON-PT-1471 (ch. 39)"/>
-<antena lat="52.5022" lon="-104.1909" desc="CKBQ-TV (ch. 2), SK-PT-2271 (ch. 2), SK-PT-2274 (ch. 28), CKBQ-PT (ch. 36)"/>
-<antena lat="48.5000" lon="-67.2139" desc="QC-PT-2200 (ch. 6), QC-PT-1935 (ch. 43)"/>
-<antena lat="51.0234" lon="-116.3754" desc="CH2738 (ch. 6), CH2737 (ch. 7), CH2022 (ch. 9), CH2023 (ch. 11)"/>
-<antena lat="58.3100" lon="-117.0805" desc="AB-PT-148 (ch. 15), AB-PT-150 (ch. 26)"/>
-<antena lat="45.1000" lon="-67.1758" desc="NB-PT-914 (ch. 32), NB-PT-915 (ch. 45)"/>
-<antena lat="52.4000" lon="-106.1703" desc="SK-PT-2361 (ch. 23), SK-PT-2362 (ch. 35)"/>
-<antena lat="43.3856" lon="-79.2254" desc="CITY-PT (ch. 44), ON-PT-1669 (ch. 21), ON-PT-1671 (ch. 30)"/>
-<antena lat="51.2800" lon="-112.4204" desc="AB-PT-85 (ch. 32), AB-PT-86 (ch. 33), AB-PT-87 (ch. 38)"/>
-<antena lat="55.4006" lon="-121.3459" desc="CBCD-PT-2 (ch. 7)"/>
-<antena lat="50.3346" lon="-119.0615" desc="BC-PT-387 (ch. 17), BC-PT-627 (ch. 26)"/>
-<antena lat="48.2000" lon="-70.5258" desc="QC-PT-2161 (ch. 36)"/>
-<antena lat="49.4600" lon="-119.4404" desc="BC-PT-488 (ch. 26), BC-PT-489 (ch. 29)"/>
-<antena lat="50.0147" lon="-120.5118" desc="CH4315 (ch. 7), CH4277 (ch. 9), CH4278 (ch. 13)"/>
-<antena lat="51.1000" lon="-115.3404" desc="AB-PT-12 (ch. 34)"/>
-<antena lat="47.0320" lon="-65.2917" desc="NB-PT-916 (ch. 30), CIHF-PT-13 (ch. 40)"/>
-<antena lat="47.3600" lon="-65.3857" desc="NB-PT-879 (ch. 23), NB-PT-880 (ch. 24)"/>
-<antena lat="46.3900" lon="-67.3458" desc="NB-PT-882 (ch. 28), NB-PT-883 (ch. 43)"/>
-<antena lat="50.2500" lon="-104.3903" desc="SK-PT-2344 (ch. 20), SK-PT-2346 (ch. 29), SK-PT-2347 (ch. 32), SK-PT-2348 (ch. 33), SK-PT-2350 (ch. 44), SK-PT-2351 (ch. 46)"/>
-<antena lat="52.0635" lon="-119.1829" desc="CH2558 (ch. 9), CH4318 (ch. 11), CH2531 (ch. 13), CH4556 (ch. 4), CH4557 (ch. 12)"/>
-<antena lat="47.0022" lon="-65.3512" desc="CKAM-TV-1 (ch. 10), CKAM-TV-2 (ch. 10)"/>
-<antena lat="49.1200" lon="-99.4202" desc="MB-PT-722 (ch. 19), MB-PT-723 (ch. 35)"/>
-<antena lat="47.2700" lon="-70.2958" desc="QC-PT-1743 (ch. 18), QC-PT-1744 (ch. 30)"/>
-<antena lat="44.2900" lon="-80.1259" desc="ON-PT-1376 (ch. 48)"/>
-<antena lat="49.2112" lon="-122.5718" desc="CBUFT-DT (ch. 26)"/>
-<antena lat="52.0655" lon="-122.1115" desc="CFJC-TV-5 (ch. 8), CITM-TV-1 (ch. 13)"/>
-<antena lat="51.2800" lon="-57.4256" desc="QC-PT-2039 (ch. 15), QC-PT-2043 (ch. 27), QC-PT-2044 (ch. 32), QC-PT-2045 (ch. 34)"/>
-<antena lat="45.5651" lon="-66.3540" desc="NB-PT-965 (ch. 19), CBAT-PT (ch. 31), CBAT-DT (ch. 31)"/>
-<antena lat="49.2700" lon="-120.3104" desc="BC-PT-533 (ch. 35), BC-PT-534 (ch. 45)"/>
-<antena lat="53.0020" lon="-78.4833" desc="CH4248 (ch. 14), CH4249 (ch. 17), CH4250 (ch. 20), CH4251 (ch. 23), CH4252 (ch. 26), CH4253 (ch. 29), CH4254 (ch. 32), CH4255 (ch. 35), CH4256 (ch. 38)"/>
-<antena lat="45.2324" lon="-80.0220" desc="ON-PT-1712 (ch. 31), ON-PT-1554 (ch. 41), ON-PT-1555 (ch. 42)"/>
-<antena lat="54.0245" lon="-105.4658" desc="SK-PT-2284 (ch. 43), SK-PT-2453 (ch. 11)"/>
-<antena lat="49.1335" lon="-119.4819" desc="CHKC-TV-2 (ch. 6), CHKC-TV-5 (ch. 11)"/>
-<antena lat="51.3300" lon="-108.0003" desc="SK-PT-2359 (ch. 32), SK-PT-2360 (ch. 40)"/>
-<antena lat="50.4236" lon="-127.2630" desc="BC-PT-639 (ch. 6), BC-PT-507 (ch. 14)"/>
-<antena lat="51.4700" lon="-104.1003" desc="SK-PT-2431 (ch. 3), SK-PT-2436 (ch. 41)"/>
-<antena lat="51.0450" lon="-97.3857" desc="CKYA-TV (ch. 8), CKYA-PT (ch. 8), MB-PT-684 (ch. 45), MB-PT-685 (ch. 47), MB-PT-877 (ch. 10)"/>
-<antena lat="55.0900" lon="-107.3703" desc="SK-PT-2169 (ch. 15), SK-PT-2170 (ch. 22)"/>
-<antena lat="48.3604" lon="-70.4944" desc="CFRS-DT (ch. 13), CKTV-DT (ch. 12), QC-PT-1817 (ch. 16), CIVV-DT (ch. 8)"/>
-<antena lat="53.5808" lon="-121.5246" desc="BC-PT-536 (ch. 22), BC-PT-640 (ch. 10)"/>
-<antena lat="48.3100" lon="-72.1258" desc="QC-PT-2048 (ch. 45)"/>
-<antena lat="50.2000" lon="-102.3002" desc="SK-PT-2182 (ch. 25), SK-PT-2183 (ch. 49)"/>
-<antena lat="49.4000" lon="-108.2503" desc="SK-PT-2377 (ch. 15), SK-PT-2379 (ch. 38)"/>
-<antena lat="51.2200" lon="-110.2803" desc="AB-PT-227 (ch. 22), AB-PT-228 (ch. 23)"/>
-<antena lat="46.3857" lon="-67.3533" desc="NB-PT-956 (ch. 6)"/>
-<antena lat="49.2310" lon="-105.4020" desc="SK-PT-2489 (ch. 21), SK-PT-2477 (ch. 10), SK-PT-2429 (ch. 38), SK-PT-2430 (ch. 50)"/>
-<antena lat="52.1630" lon="-113.4128" desc="AB-PT-254 (ch. 2), AB-PT-256 (ch. 5), AB-PT-257 (ch. 6), CITV-PT-1 (ch. 10), AB-PT-263 (ch. 34), AB-PT-264 (ch. 39), AB-PT-1000 (ch. 28)"/>
-<antena lat="50.1220" lon="-109.3546" desc="CKMC-TV-1 (ch. 10), CKMC-PT-1 (ch. 10), SK-PT-2221 (ch. 14), SK-PT-2222 (ch. 24)"/>
-<antena lat="55.2600" lon="-116.2905" desc="AB-PT-152 (ch. 16), AB-PT-153 (ch. 36), AB-PT-155 (ch. 43), AB-PT-156 (ch. 49)"/>
-<antena lat="49.0130" lon="-118.0334" desc="CISR-TV (ch. 68)"/>
-<antena lat="50.1257" lon="-60.4110" desc="QC-PT-1855 (ch. 11), QC-PT-1856 (ch. 15)"/>
-<antena lat="42.5716" lon="-81.2117" desc="CICO-DT-18 (ch. 18)"/>
-<antena lat="55.4344" lon="-120.2647" desc="BC-PT-650 (ch. 33), CJDC-TV (ch. 5), CJDC-PT (ch. 5), BC-PT-378 (ch. 14), BC-PT-381 (ch. 31)"/>
-<antena lat="50.0945" lon="-110.5723" desc="CHAT-TV (ch. 6), CFCN-TV-8 (ch. 8), AB-PT-215 (ch. 6), CFCN-PT-8 (ch. 8), CHAT-PT (ch. 36)"/>
-<antena lat="48.2900" lon="-81.1959" desc="ON-PT-1656 (ch. 21), ON-PT-1657 (ch. 25), ON-PT-1659 (ch. 30), ON-PT-1660 (ch. 31), ON-PT-1662 (ch. 45)"/>
-<antena lat="52.0700" lon="-106.3803" desc="SK-PT-2368 (ch. 19), SK-PT-2369 (ch. 21), SK-PT-2370 (ch. 26), SK-PT-2371 (ch. 28), SK-PT-2372 (ch. 34), SK-PT-2373 (ch. 36)"/>
-<antena lat="49.4000" lon="-103.5102" desc="SK-PT-2422 (ch. 5), SK-PT-2423 (ch. 23)"/>
-<antena lat="54.4800" lon="-66.5107" desc="QC-PT-2228 (ch. 9), QC-PT-2063 (ch. 8), QC-PT-2065 (ch. 10), QC-PT-2184 (ch. 7)"/>
-<antena lat="48.2802" lon="-68.1239" desc="CFER-DT (ch. 11), CIVB-DT (ch. 22)"/>
-<antena lat="50.0719" lon="-123.0127" desc="CHWM-TV-1 (ch. 18), CJWM-TV (ch. 21)"/>
-<antena lat="49.4606" lon="-94.3017" desc="ON-PT-1785 (ch. 50), ON-PT-1449 (ch. 2), ON-PT-1755 (ch. 8)"/>
-<antena lat="52.1130" lon="-106.2315" desc="CFQC-DT (ch. 8)"/>
-<antena lat="46.2100" lon="-62.1457" desc="PE-PT-1722 (ch. 33)"/>
-<antena lat="50.4700" lon="-103.4705" desc="CKCK-TV-7 (ch. 7), CKCK-PT-7 (ch. 7), SK-PT-2218 (ch. 16)"/>
-<antena lat="53.2349" lon="-117.4234" desc="AB-PT-1030 (ch. 13), AB-PT-1012 (ch. 8), AB-PT-158 (ch. 3), AB-PT-162 (ch. 20)"/>
-<antena lat="51.3400" lon="-101.5402" desc="SK-PT-2248 (ch. 45)"/>
-<antena lat="52.5034" lon="-119.1524" desc="BC-PT-579 (ch. 32), BC-PT-645 (ch. 12)"/>
-<antena lat="50.4511" lon="-103.4056" desc="CFRE-TV-2 (ch. 6)"/>
-<antena lat="52.2059" lon="-125.1915" desc="CIAL-TV-1 (ch. 5)"/>
-<antena lat="46.3550" lon="-84.1653" desc="CHCH-TV-5 (ch. 38), ON-PT-1776 (ch. 26), CIII-PT-12 (ch. 7), ON-PT-1595 (ch. 12), ON-PT-1597 (ch. 15), ON-PT-1598 (ch. 16), ON-PT-1604 (ch. 32), CHCH-PT-5 (ch. 38), CIII-DT-12 (ch. 15)"/>
-<antena lat="47.1400" lon="-61.5457" desc="QC-PT-1871 (ch. 47)"/>
-<antena lat="51.2246" lon="-121.1435" desc="CH2042 (ch. 7), CH2043 (ch. 12)"/>
-<antena lat="50.3544" lon="-105.0412" desc="SK-PT-2349 (ch. 40), CFRE-DT (ch. 11)"/>
-<antena lat="44.0600" lon="-77.3459" desc="ON-PT-1677 (ch. 4), ON-PT-1678 (ch. 40)"/>
-<antena lat="52.4008" lon="-111.5657" desc="AB-PT-1006 (ch. 35)"/>
-<antena lat="48.1940" lon="-68.5007" desc="QC-PT-2016 (ch. 2), CJBR-PT (ch. 45)"/>
-<antena lat="49.0527" lon="-117.4759" desc="BC-PT-575 (ch. 17), BC-PT-644 (ch. 11)"/>
-<antena lat="49.2103" lon="-105.3808" desc="CKCK-TV-2 (ch. 6)"/>
-<antena lat="46.1810" lon="-79.2439" desc="CHCH-TV-6 (ch. 32), CFGC-DT-2 (ch. 15), ON-PT-1515 (ch. 2), CHCH-PT-6 (ch. 22), CFGC-PT-2 (ch. 32)"/>
-<antena lat="46.0608" lon="-61.1721" desc="NS-PT-1229 (ch. 38), NS-PT-1291 (ch. 8)"/>
-<antena lat="46.2200" lon="-79.5559" desc="ON-PT-1616 (ch. 29), ON-PT-1617 (ch. 42)"/>
-<antena lat="44.0200" lon="-64.4257" desc="NS-PT-1233 (ch. 31)"/>
-<antena lat="54.4513" lon="-111.5630" desc="CFRN-TV-5 (ch. 2), AB-PT-171 (ch. 2), CFRN-PT-5 (ch. 7), AB-PT-175 (ch. 36), AB-PT-176 (ch. 39)"/>
-<antena lat="44.0715" lon="-78.0810" desc="ON-PT-1715 (ch. 18)"/>
-<antena lat="47.5000" lon="-83.2400" desc="ON-PT-1368 (ch. 39), ON-PT-1370 (ch. 50)"/>
-<antena lat="55.2757" lon="-118.4537" desc="CFRN-TV-1 (ch. 13), CFRN-PT-1 (ch. 13), AB-PT-139 (ch. 32)"/>
-<antena lat="47.2325" lon="-68.1857" desc="NB-PT-964 (ch. 13)"/>
-<antena lat="47.3027" lon="-64.5624" desc="CHAU-DT-10 (ch. 9)"/>
-<antena lat="43.0246" lon="-80.4604" desc="CITY-PT-2 (ch. 31), CITY-DT-2 (ch. 31)"/>
-<antena lat="51.0400" lon="-99.3102" desc="MB-PT-817 (ch. 38)"/>
-<antena lat="45.5800" lon="-66.3858" desc="NB-PT-906 (ch. 32), NB-PT-908 (ch. 48)"/>
-<antena lat="50.4159" lon="-127.2505" desc="BC-PT-508 (ch. 15), BC-PT-510 (ch. 50)"/>
-<antena lat="46.0346" lon="-79.2604" desc="ON-PT-1710 (ch. 6)"/>
-<antena lat="50.3001" lon="-120.4847" desc="CH5535-DT (ch. 36), CH5534-DT (ch. 32), CH5537-DT (ch. 48), CH5536-DT (ch. 40), CH3083-DT (ch. 34), CH3084-DT (ch. 38), CH4697-DT (ch. 42), CH2517-DT (ch. 46), CH5530-DT (ch. 16), CH5531-DT (ch. 20), CH5532-DT (ch. 24), CH5533-DT (ch. 28)"/>
-<antena lat="47.4846" lon="-81.3539" desc="ON-PT-1764 (ch. 12), ON-PT-1416 (ch. 36)"/>
-<antena lat="46.3000" lon="-80.5959" desc="ON-PT-1629 (ch. 43), ON-PT-1630 (ch. 45), ON-PT-1631 (ch. 46)"/>
-<antena lat="54.4214" lon="-113.1723" desc="CFRN-TV-12 (ch. 13), CFRN-PT-12 (ch. 13), AB-PT-8 (ch. 40), AB-PT-9 (ch. 41)"/>
-<antena lat="45.5400" lon="-64.2157" desc="NB-PT-932 (ch. 14), NB-PT-933 (ch. 18)"/>
-<antena lat="44.5248" lon="-77.1151" desc="CICO-DT-92 (ch. 44)"/>
-<antena lat="49.4647" lon="-112.5218" desc="CISA-DT (ch. 7), CISA-PT (ch. 7), CJIL-PT (ch. 17), AB-PT-190 (ch. 33), CJIL-DT (ch. 17)"/>
-<antena lat="53.1655" lon="-120.1403" desc="CH5798 (ch. 21), CH5412 (ch. 17), CH2013 (ch. 4), CH4711 (ch. 11), CH4710 (ch. 9), CH4164 (ch. 2), CH2537 (ch. 7), CH4165 (ch. 13), CH5797 (ch. 23), CH5796 (ch. 19), BC-PT-458 (ch. 40), BC-PT-633 (ch. 6)"/>
-<antena lat="54.1859" lon="-130.1906" desc="BC-PT-527 (ch. 10), BC-PT-528 (ch. 12), BC-PT-529 (ch. 15), BC-PT-530 (ch. 20)"/>
-<antena lat="46.0300" lon="-71.5758" desc="QC-PT-2159 (ch. 44), QC-PT-2160 (ch. 48)"/>
-<antena lat="48.3138" lon="-64.1437" desc="QC-PT-2204 (ch. 11), CIVK-PT-2 (ch. 40), QC-PT-1983 (ch. 41), QC-PT-1984 (ch. 44), QC-PT-1985 (ch. 48), QC-PT-2181 (ch. 14), CIVK-DT-2 (ch. 40)"/>
-<antena lat="52.3121" lon="-114.5245" desc="CFRN-TV-10 (ch. 12), CFRN-PT-10 (ch. 12), AB-PT-268 (ch. 15)"/>
-<antena lat="55.2700" lon="-107.5303" desc="SK-PT-2238 (ch. 4), SK-PT-2241 (ch. 24)"/>
-<antena lat="49.2445" lon="-115.5019" desc="CFCN-TV-12 (ch. 8)"/>
-<antena lat="46.2400" lon="-63.4657" desc="PE-PT-1729 (ch. 34), PE-PT-1730 (ch. 40)"/>
-<antena lat="49.0606" lon="-119.3442" desc="BC-PT-636 (ch. 6)"/>
-<antena lat="49.5500" lon="-109.2703" desc="SK-PT-2262 (ch. 49)"/>
-<antena lat="46.3540" lon="-84.2100" desc="CHBX-TV (ch. 2), ON-PT-1744 (ch. 21), ON-PT-1716 (ch. 20), ON-PT-1592 (ch. 2), ON-PT-1593 (ch. 5), CHBX-PT (ch. 13), ON-PT-1602 (ch. 25)"/>
-<antena lat="49.2900" lon="-111.0603" desc="AB-PT-107 (ch. 31), AB-PT-108 (ch. 32)"/>
-<antena lat="44.2028" lon="-65.0638" desc="CJCH-TV-6 (ch. 6)"/>
-<antena lat="53.3625" lon="-107.3319" desc="SK-PT-2482 (ch. 31), SK-PT-2260 (ch. 32), SK-PT-2261 (ch. 35), SK-PT-2451 (ch. 12)"/>
-<antena lat="45.3457" lon="-65.4738" desc="NB-PT-902 (ch. 5)"/>
-<antena lat="48.2609" lon="-71.0232" desc="QC-PT-1814 (ch. 2)"/>
-<antena lat="50.1610" lon="-64.1344" desc="QC-PT-2199 (ch. 6), QC-PT-1922 (ch. 11), QC-PT-1923 (ch. 38)"/>
-<antena lat="49.4300" lon="-113.2504" desc="AB-PT-118 (ch. 35), AB-PT-119 (ch. 38), AB-PT-120 (ch. 44)"/>
-<antena lat="52.1028" lon="-106.2607" desc="SK-PT-2487 (ch. 13), CFSK-DT (ch. 42), SK-PT-2491 (ch. 11), SK-PT-2363 (ch. 4), SK-PT-2367 (ch. 17), SK-PT-2374 (ch. 39), CFSK-PT (ch. 42)"/>
-<antena lat="51.0118" lon="-93.4945" desc="ON-PT-1582 (ch. 7), ON-PT-1584 (ch. 20), ON-PT-1585 (ch. 49), ON-PT-1756 (ch. 10)"/>
-<antena lat="56.4220" lon="-117.3922" desc="AB-PT-1015 (ch. 12), AB-PT-214 (ch. 23)"/>
-<antena lat="47.3000" lon="-67.2258" desc="NB-PT-947 (ch. 30)"/>
-<antena lat="51.1454" lon="-116.5651" desc="CH2055 (ch. 2), CH2059 (ch. 4), CH2060 (ch. 5)"/>
-<antena lat="50.1141" lon="-115.4929" desc="BC-PT-622 (ch. 12), BC-PT-333 (ch. 50)"/>
-<antena lat="58.1124" lon="-103.4153" desc="SK-PT-2336 (ch. 12), SK-PT-2337 (ch. 13)"/>
-<antena lat="51.2605" lon="-124.0109" desc="CH4427 (ch. 2)"/>
-<antena lat="51.0606" lon="-63.2654" desc="CH3100 (ch. 2542), CH3101 (ch. 2548), CH3102 (ch. 2554), CH3103 (ch. 2560), CH3104 (ch. 2566), CH3105 (ch. 2572), CH3106 (ch. 2578), CH3108 (ch. 2590), CH3109 (ch. 2596), CH3110 (ch. 2602), CH3111 (ch. 2608), CH3112 (ch. 2614), CH3113 (ch. 2620), CH3114 (ch. 2626), CH3115 (ch. 2632), CH3116 (ch. 2638), CH3117 (ch. 2644), CH3118 (ch. 2650), CH3119 (ch. 2656), CH3120 (ch. 2662), CH3121 (ch. 2668), CH3122 (ch. 2674), CH3123 (ch. 2680), CH3107 (ch. 2584)"/>
-<antena lat="53.1700" lon="-110.0003" desc="AB-PT-198 (ch. 18), AB-PT-199 (ch. 25), AB-PT-200 (ch. 29), AB-PT-202 (ch. 36), AB-PT-203 (ch. 42), AB-PT-204 (ch. 45)"/>
-<antena lat="48.3250" lon="-80.5708" desc="CITO-TV (ch. 3), ON-PT-1649 (ch. 3), ON-PT-1658 (ch. 27), CITO-PT (ch. 48), ON-PT-1747 (ch. 6)"/>
-<antena lat="46.1200" lon="-59.5657" desc="NS-PT-1209 (ch. 16), NS-PT-1210 (ch. 18), NS-PT-1211 (ch. 26), NS-PT-1212 (ch. 28), NS-PT-1213 (ch. 45)"/>
-<antena lat="54.4600" lon="-101.5302" desc="MB-PT-692 (ch. 25), MB-PT-693 (ch. 28), MB-PT-694 (ch. 34), MB-PT-695 (ch. 43)"/>
-<antena lat="53.2437" lon="-122.3417" desc="CH4405 (ch. 6)"/>
-<antena lat="51.0900" lon="-100.0302" desc="MB-PT-664 (ch. 15), MB-PT-665 (ch. 17), MB-PT-667 (ch. 24), MB-PT-668 (ch. 26)"/>
-<antena lat="42.4335" lon="-80.1731" desc="ON-PT-1741 (ch. 42)"/>
-<antena lat="53.3053" lon="-113.1711" desc="AB-PT-1038 (ch. 11), CBXT-PT (ch. 42), AB-PT-89 (ch. 5), AB-PT-94 (ch. 21)"/>
-<antena lat="51.1702" lon="-80.3804" desc="ON-PT-1507 (ch. 9), ON-PT-1508 (ch. 47)"/>
-<antena lat="52.5200" lon="-104.3603" desc="SK-PT-2272 (ch. 24), SK-PT-2273 (ch. 26)"/>
-<antena lat="48.4627" lon="-123.1015" desc="BC-PT-606 (ch. 6), CHEK-PT (ch. 49), CHEK-DT (ch. 49)"/>
-<antena lat="46.2525" lon="-62.0527" desc="PE-PT-1721 (ch. 19), PE-PT-1731 (ch. 11)"/>
-<antena lat="49.3851" lon="-123.1239" desc="CHAN-TV-3 (ch. 7), CHAN-DT-3 (ch. 7)"/>
-<antena lat="49.5700" lon="-98.2502" desc="MB-PT-800 (ch. 14), MB-PT-801 (ch. 17)"/>
-<antena lat="50.4712" lon="-59.0030" desc="QC-PT-2198 (ch. 7), QC-PT-1898 (ch. 4), QC-PT-1901 (ch. 40), QC-PT-1902 (ch. 41), QC-PT-2175 (ch. 10)"/>
-<antena lat="50.5400" lon="-106.5203" desc="SK-PT-2354 (ch. 15), SK-PT-2355 (ch. 22), SK-PT-2356 (ch. 25), SK-PT-2357 (ch. 38)"/>
-<antena lat="51.4219" lon="-76.0201" desc="CH3215 (ch. 2548), CH3216 (ch. 2554), CH3217 (ch. 2560), CH3218 (ch. 2566), CH3219 (ch. 2572), CH3220 (ch. 2578), CH3221 (ch. 2584), CH3222 (ch. 2590), CH3223 (ch. 2596), CH3224 (ch. 2602), CH3225 (ch. 2608), CH3226 (ch. 2614), CH3227 (ch. 2620), CH3228 (ch. 2626), CH3229 (ch. 2632), CH3230 (ch. 2638), CH3231 (ch. 2644), CH3232 (ch. 2650), CH3233 (ch. 2626), CH3234 (ch. 2662), CH3235 (ch. 2668), CH3236 (ch. 2674), CH3237 (ch. 2680), CH3214 (ch. 2542)"/>
-<antena lat="45.0200" lon="-74.4359" desc="ON-PT-1378 (ch. 28), ON-PT-1379 (ch. 29), ON-PT-1380 (ch. 31), ON-PT-1382 (ch. 47)"/>
-<antena lat="45.2840" lon="-66.1400" desc="CIHF-PT-2 (ch. 12), CHNB-DT (ch. 12)"/>
-<antena lat="45.0438" lon="-64.4859" desc="NS-PT-1306 (ch. 46), NS-PT-1238 (ch. 23), NS-PT-1296 (ch. 8)"/>
-<antena lat="54.1522" lon="-125.4043" desc="CH4333 (ch. 7), CH4376 (ch. 21), CKHS-TV (ch. 13), CKHS-PT (ch. 13), BC-PT-324 (ch. 47)"/>
-<antena lat="45.2600" lon="-76.2059" desc="ON-PT-1333 (ch. 31), ON-PT-1334 (ch. 48)"/>
-<antena lat="44.3700" lon="-79.2459" desc="ON-PT-1528 (ch. 31), ON-PT-1529 (ch. 43)"/>
-<antena lat="51.2914" lon="-78.4449" desc="QC-PT-2229 (ch. 9), QC-PT-2163 (ch. 10)"/>
-<antena lat="50.2400" lon="-113.1504" desc="AB-PT-296 (ch. 24)"/>
-<antena lat="47.0300" lon="-67.4358" desc="NB-PT-910 (ch. 15), NB-PT-911 (ch. 49)"/>
-<antena lat="49.4046" lon="-100.3710" desc="MB-PT-894 (ch. 32), MB-PT-784 (ch. 30)"/>
-<antena lat="54.1154" lon="-110.5031" desc="CKSA-TV-2 (ch. 9), CKSA-PT-2 (ch. 9), AB-PT-24 (ch. 33)"/>
-<antena lat="55.4235" lon="-97.5313" desc="MB-PT-838 (ch. 24), MB-PT-839 (ch. 27)"/>
-<antena lat="50.5014" lon="-118.5900" desc="CH4366 (ch. 8)"/>
-<antena lat="52.0500" lon="-111.2704" desc="AB-PT-75 (ch. 41)"/>
-<antena lat="49.0434" lon="-112.0143" desc="AB-PT-76 (ch. 4), AB-PT-79 (ch. 20), AB-PT-1021 (ch. 9)"/>
-<antena lat="49.0530" lon="-117.4914" desc="CKTN-TV (ch. 8), CKTN-PT (ch. 8), BC-PT-577 (ch. 42)"/>
-<antena lat="46.3003" lon="-81.0112" desc="CICI-TV (ch. 5), ON-PT-1745 (ch. 9), ON-PT-1618 (ch. 5), CICI-PT (ch. 8), ON-PT-1626 (ch. 35)"/>
-<antena lat="52.1843" lon="-113.5732" desc="AB-PT-1035 (ch. 31), AB-PT-1017 (ch. 22)"/>
-<antena lat="45.1212" lon="-64.2403" desc="CJCH-TV-1 (ch. 10), CJCH-PT-1 (ch. 10), NS-PT-1194 (ch. 16)"/>
-<antena lat="47.5900" lon="-84.4700" desc="ON-PT-1682 (ch. 6), ON-PT-1686 (ch. 21), ON-PT-1687 (ch. 27)"/>
-<antena lat="48.5951" lon="-64.2553" desc="CHAU-DT-7 (ch. 4)"/>
-<antena lat="50.0552" lon="-124.5741" desc="CH4373 (ch. 4)"/>
-<antena lat="49.2833" lon="-117.2920" desc="BC-PT-621 (ch. 13), BC-PT-318 (ch. 45)"/>
-<antena lat="45.2113" lon="-75.5407" desc="CRC-DT-1 (ch. 51), CRC-DT-2 (ch. 46)"/>
-<antena lat="52.5300" lon="-118.0504" desc="AB-PT-165 (ch. 26), AB-PT-166 (ch. 33)"/>
-<antena lat="48.0113" lon="-84.4500" desc="CHBX-TV-1 (ch. 7), ON-PT-1781 (ch. 16), CHBX-PT-1 (ch. 7), ON-PT-1688 (ch. 45), ON-PT-1748 (ch. 9)"/>
-<antena lat="47.3816" lon="-67.2106" desc="CHAU-DT-11 (ch. 27)"/>
-<antena lat="45.3200" lon="-62.3811" desc="NS-PT-1308 (ch. 15), NS-PT-1244 (ch. 4), NS-PT-1298 (ch. 47)"/>
-<antena lat="43.5000" lon="-66.0658" desc="NS-PT-1282 (ch. 19)"/>
-<antena lat="50.2917" lon="-115.5710" desc="CFWL-TV-1 (ch. 8)"/>
-<antena lat="51.4250" lon="-98.3452" desc="MB-PT-677 (ch. 23), MB-PT-876 (ch. 7)"/>
-<antena lat="49.0400" lon="-112.0103" desc="AB-PT-78 (ch. 14), AB-PT-80 (ch. 24)"/>
-<antena lat="46.4100" lon="-64.5157" desc="NB-PT-931 (ch. 41)"/>
-<antena lat="43.3833" lon="-79.2314" desc="CBLT-DT(1) (ch. 20), CJMT-DT (ch. 40), CFTO-DT (ch. 9), CITY-DT (ch. 44), CJMT-PT (ch. 40), CFMT-DT (ch. 47), CIII-DT-41 (ch. 41), ON-PT-1664 (ch. 5), ON-PT-1665 (ch. 8), CFTO-PT (ch. 9), CICA-PT (ch. 19), CBLT-PT (ch. 20), CBLFT-PT (ch. 25), CIII-PT-41 (ch. 41), CFMT-PT (ch. 47), CBLFT-DT(1) (ch. 25), CICA-DT (ch. 19)"/>
-<antena lat="52.0648" lon="-122.1116" desc="CITM-DT-1 (ch. 13)"/>
-<antena lat="49.2328" lon="-67.2815" desc="CIVF-PT (ch. 12), QC-PT-1760 (ch. 49), CIVF-DT (ch. 12)"/>
-<antena lat="50.4820" lon="-121.1905" desc="CH4473 (ch. 8), CJAC-TV-1 (ch. 10), CHAC-TV-1 (ch. 12), CH4328 (ch. 24)"/>
-<antena lat="51.0536" lon="-121.3957" desc="CFJC-TV-4 (ch. 9), CFJC-PT-4 (ch. 9), BC-PT-349 (ch. 41)"/>
-<antena lat="44.5641" lon="-81.0754" desc="ON-PT-1696 (ch. 2), CKCO-PT-2 (ch. 17)"/>
-<antena lat="50.1700" lon="-100.0639" desc="CKND-DT-2 (ch. 9), MB-PT-777 (ch. 2), CKND-PT-2 (ch. 44)"/>
-<antena lat="54.4600" lon="-111.5804" desc="AB-PT-174 (ch. 16)"/>
-<antena lat="48.3900" lon="-72.2658" desc="QC-PT-2105 (ch. 7), QC-PT-2106 (ch. 43)"/>
-<antena lat="45.1835" lon="-63.2001" desc="CIHF-TV-4 (ch. 18), CIHF-PT-4 (ch. 18), NS-PT-1277 (ch. 33), CIHF-DT-4 (ch. 18)"/>
-<antena lat="51.4049" lon="-108.4257" desc="SK-PT-2461 (ch. 9), SK-PT-2402 (ch. 45)"/>
-<antena lat="51.4400" lon="-96.5602" desc="MB-PT-757 (ch. 24), MB-PT-758 (ch. 26), MB-PT-759 (ch. 29), MB-PT-760 (ch. 35), MB-PT-761 (ch. 41), MB-PT-762 (ch. 48)"/>
-<antena lat="53.4523" lon="-77.3323" desc="QC-PT-2226 (ch. 8), QC-PT-2006 (ch. 6), CH2440-PT (ch. 7), CFBJ-PT (ch. 10), QC-PT-2010 (ch. 11), QC-PT-2011 (ch. 12), CJBJ-PT (ch. 13), QC-PT-2013 (ch. 14)"/>
-<antena lat="50.3345" lon="-119.0614" desc="CFEN-TV-1 (ch. 4), CFEN-TV-2 (ch. 11)"/>
-<antena lat="45.1015" lon="-66.5428" desc="CIHF-PT-12 (ch. 21), NB-PT-949 (ch. 40)"/>
-<antena lat="49.2300" lon="-121.2605" desc="BC-PT-423 (ch. 38)"/>
-<antena lat="55.2947" lon="-102.1801" desc="SK-PT-2245 (ch. 8), SK-PT-2462 (ch. 7)"/>
-<antena lat="49.1200" lon="-113.1804" desc="AB-PT-63 (ch. 16), AB-PT-64 (ch. 22)"/>
-<antena lat="54.4500" lon="-101.5402" desc="SK-PT-2197 (ch. 45), SK-PT-2198 (ch. 49)"/>
-<antena lat="50.2652" lon="-104.3002" desc="SK-PT-2338 (ch. 2), CKCK-PT (ch. 8), SK-PT-2343 (ch. 18)"/>
-<antena lat="54.1524" lon="-125.4042" desc="BC-PT-319 (ch. 4), CBCY-PT-1 (ch. 32)"/>
-<antena lat="48.1841" lon="-67.0503" desc="CHAU-DT-1 (ch. 3)"/>
-<antena lat="46.0206" lon="-74.1407" desc="QC-PT-2096 (ch. 33)"/>
-<antena lat="50.5900" lon="-100.1502" desc="MB-PT-660 (ch. 6)"/>
-<antena lat="50.4100" lon="-121.5605" desc="BC-PT-455 (ch. 23), BC-PT-456 (ch. 31)"/>
-<antena lat="44.2644" lon="-78.3159" desc="CFTO-PT-54 (ch. 35), CFTO-DT-54 (ch. 35)"/>
-<antena lat="53.1205" lon="-107.3053" desc="CIPA-TV-1 (ch. 10), SK-PT-2459 (ch. 38), CIPA-PT-1 (ch. 10), SK-PT-2167 (ch. 27), SK-PT-2386 (ch. 2)"/>
-<antena lat="46.3923" lon="-70.0849" desc="QC-PT-2215 (ch. 13), QC-PT-2104 (ch. 35)"/>
-<antena lat="48.0000" lon="-66.3957" desc="NB-PT-890 (ch. 35)"/>
-<antena lat="48.4106" lon="-67.2112" desc="QC-PT-2210 (ch. 30)"/>
-<antena lat="47.5521" lon="-74.3716" desc="CH2879 (ch. 10)"/>
-<antena lat="46.2321" lon="-82.3706" desc="ON-PT-1762 (ch. 12)"/>
-<antena lat="47.5128" lon="-69.3309" desc="CKRT-DT-3 (ch. 13), CIMT-DT-6 (ch. 41), CFTF-DT-6 (ch. 11)"/>
-<antena lat="56.2212" lon="-120.4929" desc="CH4380 (ch. 46), CH3033 (ch. 50)"/>
-<antena lat="51.3800" lon="-111.5404" desc="AB-PT-145 (ch. 24), AB-PT-146 (ch. 47)"/>
-<antena lat="44.5000" lon="-65.1757" desc="NS-PT-1185 (ch. 36)"/>
-<antena lat="49.3055" lon="-101.3453" desc="SK-PT-2479 (ch. 26), SK-PT-2175 (ch. 38)"/>
-<antena lat="48.4500" lon="-91.3701" desc="ON-PT-1337 (ch. 23), ON-PT-1338 (ch. 28)"/>
-<antena lat="49.0607" lon="-66.1711" desc="QC-PT-2209 (ch. 8)"/>
-<antena lat="46.0500" lon="-71.1758" desc="QC-PT-2132 (ch. 3), QC-PT-2135 (ch. 29)"/>
-<antena lat="45.3500" lon="-77.1359" desc="ON-PT-1417 (ch. 21), ON-PT-1418 (ch. 41)"/>
-<antena lat="52.0200" lon="-113.5704" desc="AB-PT-164 (ch. 42)"/>
-<antena lat="46.4827" lon="-71.1300" desc="CFAP-DT (ch. 39), QC-PT-1996 (ch. 2), CIVQ-PT (ch. 15), CFAP-PT (ch. 39), CIVQ-DT (ch. 15)"/>
-<antena lat="49.0600" lon="-119.3449" desc="CHBC-TV-3 (ch. 8), CHBC-PT-3 (ch. 8)"/>
-<antena lat="50.1918" lon="-122.4743" desc="CH4554 (ch. 14), CH4555 (ch. 17), CH2125 (ch. 25), CH2126 (ch. 28), CH2127 (ch. 30)"/>
-<antena lat="45.0042" lon="-76.0316" desc="CKWS-TV-3 (ch. 36), CKWS-PT-3 (ch. 47)"/>
-<antena lat="48.5100" lon="-67.3157" desc="QC-PT-1933 (ch. 14), QC-PT-1934 (ch. 24)"/>
-<antena lat="49.5917" lon="-117.2243" desc="CH5668 (ch. 3), CH5669 (ch. 6), CH5670 (ch. 10), CH5671 (ch. 11), CH5672 (ch. 13), CH4418 (ch. 8), CH2066 (ch. 7)"/>
-<antena lat="44.5809" lon="-62.3951" desc="CJCH-TV-8 (ch. 23)"/>
-<antena lat="44.0900" lon="-81.0159" desc="ON-PT-1422 (ch. 50)"/>
-<antena lat="51.2110" lon="-110.2433" desc="AB-PT-225 (ch. 2), CFCN-PT-16 (ch. 5), AB-PT-229 (ch. 44)"/>
-<antena lat="50.3843" lon="-105.4609" desc="CKMJ-TV (ch. 7), CKMJ-PT (ch. 7), SK-PT-2293 (ch. 47)"/>
-<antena lat="46.4623" lon="-75.1823" desc="QC-PT-2224 (ch. 16), QC-PT-1966 (ch. 22), QC-PT-1967 (ch. 23)"/>
-<antena lat="50.2532" lon="-121.1851" desc="CH2330 (ch. 9), CJNA-TV-2 (ch. 7), CH4475 (ch. 15), CH4474 (ch. 13), CH4444 (ch. 11), CH4480 (ch. 23), CH4476 (ch. 19)"/>
-<antena lat="47.4500" lon="-64.4157" desc="NB-PT-941 (ch. 18), NB-PT-942 (ch. 43)"/>
-<antena lat="50.1643" lon="-119.1857" desc="CHKL-DT-2 (ch. 22), CHBC-DT-2 (ch. 20)"/>
-<antena lat="49.3359" lon="-111.0755" desc="AB-PT-1022 (ch. 12), AB-PT-106 (ch. 15)"/>
-<antena lat="55.3200" lon="-102.2102" desc="SK-PT-2246 (ch. 14), SK-PT-2247 (ch. 27)"/>
-<antena lat="48.1515" lon="-79.0236" desc="QC-PT-2053 (ch. 17), QC-PT-2058 (ch. 38)"/>
-<antena lat="53.5200" lon="-94.4001" desc="MB-PT-712 (ch. 3), MB-PT-713 (ch. 5), MB-PT-714 (ch. 11), MB-PT-715 (ch. 15), MB-PT-716 (ch. 21), MB-PT-717 (ch. 36)"/>
-<antena lat="46.4400" lon="-67.4158" desc="NB-PT-929 (ch. 34), NB-PT-930 (ch. 50)"/>
-<antena lat="46.4704" lon="-71.1552" desc="CFCM-PT (ch. 17), CFCM-DT (ch. 17), QC-PT-1997 (ch. 4), QC-PT-1998 (ch. 5)"/>
-<antena lat="48.4837" lon="-124.4011" desc="CH4715 (ch. 7), CH4243 (ch. 3), CH4244 (ch. 5)"/>
-<antena lat="43.4600" lon="-65.1957" desc="NS-PT-1263 (ch. 41)"/>
-<antena lat="46.2547" lon="-82.4009" desc="CICI-TV-1 (ch. 3), ON-PT-1394 (ch. 3), CICI-PT-1 (ch. 30)"/>
-<antena lat="48.2802" lon="-68.1251" desc="CFER-TV (ch. 11), CFER-PT (ch. 11), CIVB-PT (ch. 22), QC-PT-2021 (ch. 40)"/>
-<antena lat="53.5300" lon="-94.5601" desc="MB-PT-850 (ch. 23), MB-PT-851 (ch. 47)"/>
-<antena lat="52.1900" lon="-112.4304" desc="AB-PT-284 (ch. 44), AB-PT-285 (ch. 49)"/>
-<antena lat="52.0800" lon="-122.0905" desc="BC-PT-615 (ch. 32), BC-PT-616 (ch. 40)"/>
-<antena lat="52.2800" lon="-103.3002" desc="SK-PT-2228 (ch. 26)"/>
-<antena lat="49.5100" lon="-100.5502" desc="MB-PT-846 (ch. 13), MB-PT-847 (ch. 35)"/>
-<antena lat="42.5431" lon="-82.2019" desc="ON-PT-1775 (ch. 17), ON-PT-1743 (ch. 34), ON-PT-1589 (ch. 46)"/>
-<antena lat="49.1127" lon="-64.5327" desc="CHAU-DT-8 (ch. 11)"/>
-<antena lat="52.4755" lon="-67.0522" desc="CFTC-TV (ch. 6)"/>
-<antena lat="50.1658" lon="-119.1913" desc="CHBC-PT-2 (ch. 7), CHKL-PT-2 (ch. 12)"/>
-<antena lat="49.3756" lon="-108.2417" desc="CISH-TV (ch. 10)"/>
-<antena lat="46.0719" lon="-60.1023" desc="CJCB-TV (ch. 4), NS-PT-1265 (ch. 4), CJCB-PT (ch. 14)"/>
-<antena lat="52.0816" lon="-123.5708" desc="CH4306 (ch. 6)"/>
-<antena lat="48.2537" lon="-68.2917" desc="QC-PT-2020 (ch. 27)"/>
-<antena lat="52.5242" lon="-118.0427" desc="CFRN-TV-11 (ch. 11)"/>
-<antena lat="50.0300" lon="-110.4003" desc="AB-PT-217 (ch. 21), AB-PT-221 (ch. 48)"/>
-<antena lat="42.2700" lon="-82.0459" desc="ON-PT-1761 (ch. 12), CICO-PT-59 (ch. 33), ON-PT-1728 (ch. 42)"/>
-<antena lat="51.1153" lon="-115.3647" desc="CICT-TV-2 (ch. 13), CFCN-TV-2 (ch. 7)"/>
-<antena lat="52.5200" lon="-102.2502" desc="SK-PT-2234 (ch. 28), SK-PT-2235 (ch. 49)"/>
-<antena lat="52.2100" lon="-110.1603" desc="AB-PT-248 (ch. 18), AB-PT-249 (ch. 21), AB-PT-250 (ch. 32), AB-PT-251 (ch. 35)"/>
-<antena lat="50.1019" lon="-66.4417" desc="CFER-TV-2 (ch. 5), CFER-PT-2 (ch. 5), CFTF-PT-7 (ch. 7), QC-PT-2074 (ch. 20), QC-PT-2076 (ch. 32)"/>
-<antena lat="49.2128" lon="-122.5714" desc="BC-PT-656 (ch. 8), CHAN-PT (ch. 22), CIVT-DT (ch. 32), CIVT-PT (ch. 32), BC-PT-592 (ch. 33)"/>
-<antena lat="52.2700" lon="-109.1003" desc="SK-PT-2413 (ch. 27), SK-PT-2414 (ch. 31)"/>
-<antena lat="55.5640" lon="-108.3340" desc="SK-PT-2187 (ch. 42), SK-PT-2446 (ch. 11)"/>
-<antena lat="46.0300" lon="-73.0658" desc="QC-PT-2092 (ch. 23), QC-PT-2093 (ch. 44), QC-PT-2094 (ch. 48)"/>
-<antena lat="49.4208" lon="-94.4715" desc="ON-PT-1452 (ch. 14), ON-PT-1707 (ch. 44)"/>
-<antena lat="46.2408" lon="-75.5645" desc="QC-PT-1929 (ch. 31), QC-PT-2178 (ch. 15)"/>
-<antena lat="49.0347" lon="-122.1300" desc="CHNU-DT (ch. 47), CHNU-PT (ch. 47)"/>
-<antena lat="49.4000" lon="-109.3003" desc="SK-PT-2200 (ch. 19)"/>
-<antena lat="50.3245" lon="-122.2805" desc="CH4575 (ch. 3), CH4576 (ch. 5)"/>
-<antena lat="46.1601" lon="-63.2028" desc="CKCW-DT-1 (ch. 8)"/>
-<antena lat="55.2818" lon="-114.4709" desc="CFRN-TV-9 (ch. 4), AB-PT-273 (ch. 4), CFRN-PT-9 (ch. 5), AB-PT-277 (ch. 19), AB-PT-280 (ch. 27), AB-PT-1018 (ch. 11)"/>
-<antena lat="51.1625" lon="-116.5921" desc="BC-PT-418 (ch. 41), BC-PT-631 (ch. 13)"/>
-<antena lat="49.5522" lon="-109.2742" desc="CHAT-TV-2 (ch. 6)"/>
-<antena lat="53.5214" lon="-126.0041" desc="CHBL-TV (ch. 11), CHHH-TV (ch. 10), CH4467 (ch. 5), CH4467-PT (ch. 5), CHHH-PT (ch. 10), CHBL-PT (ch. 11), BC-PT-483 (ch. 50)"/>
-<antena lat="45.2710" lon="-63.1717" desc="NS-PT-1301 (ch. 42)"/>
-<antena lat="54.1730" lon="-107.4751" desc="CH2352 (ch. 2), CH2353 (ch. 5), CH4621 (ch. 13), CH4620 (ch. 11)"/>
-<antena lat="45.3700" lon="-61.2057" desc="NS-PT-1254 (ch. 25)"/>
-<antena lat="49.0114" lon="-125.0220" desc="CH4426 (ch. 2)"/>
-<antena lat="49.1319" lon="-124.0015" desc="CHAN-DT-6 (ch. 23), CHAN-TV-6 (ch. 23), CHAN-PT-6 (ch. 23)"/>
-<antena lat="54.1704" lon="-130.1854" desc="CFTK-TV-1 (ch. 6), BC-PT-525 (ch. 6), CFTK-PT-1 (ch. 7)"/>
-<antena lat="45.5107" lon="-64.4845" desc="CKCW-DT (ch. 29)"/>
-<antena lat="50.1440" lon="-121.3455" desc="CH4321 (ch. 10)"/>
-<antena lat="50.4425" lon="-106.5437" desc="SK-PT-2471 (ch. 10), SK-PT-2358 (ch. 49)"/>
-<antena lat="54.0120" lon="-121.4035" desc="CH4432 (ch. 7)"/>
-<antena lat="50.1506" lon="-95.5726" desc="MB-PT-724 (ch. 4), MB-PT-882 (ch. 21)"/>
-<antena lat="45.3500" lon="-70.5258" desc="QC-PT-1914 (ch. 26), QC-PT-1916 (ch. 35)"/>
-<antena lat="46.0913" lon="-61.2258" desc="CJCB-TV-1 (ch. 6), CJCB-PT-1 (ch. 6), NS-PT-1228 (ch. 27)"/>
-<antena lat="45.2438" lon="-79.1521" desc="ON-PT-1432 (ch. 8), ON-PT-1733 (ch. 45)"/>
-<antena lat="44.0526" lon="-81.1225" desc="CKNX-TV (ch. 8), ON-PT-1704 (ch. 8), CKNX-PT (ch. 33)"/>
-<antena lat="49.4340" lon="-86.4410" desc="ON-PT-1763 (ch. 7), ON-PT-1409 (ch. 33), ON-PT-1410 (ch. 48), ON-PT-1731 (ch. 13)"/>
-<antena lat="46.4450" lon="-65.5031" desc="CKAM-TV-3 (ch. 9)"/>
-<antena lat="52.2800" lon="-113.4404" desc="AB-PT-178 (ch. 14)"/>
-<antena lat="49.3239" lon="-120.4526" desc="CH4403 (ch. 2)"/>
-<antena lat="46.2800" lon="-64.4257" desc="NB-PT-884 (ch. 47)"/>
-<antena lat="49.4700" lon="-112.0803" desc="AB-PT-286 (ch. 15)"/>
-<antena lat="52.5115" lon="-102.2928" desc="CICC-TV-3 (ch. 11), CICC-PT-3 (ch. 11), SK-PT-2232 (ch. 14), SK-PT-2233 (ch. 15), SK-PT-2467 (ch. 9)"/>
-<antena lat="45.5000" lon="-64.1157" desc="NS-PT-1178 (ch. 15), NS-PT-1179 (ch. 43)"/>
-<antena lat="45.1546" lon="-79.2145" desc="ON-PT-1706 (ch. 13)"/>
-<antena lat="59.1110" lon="-105.5533" desc="SK-PT-2473 (ch. 7), SK-PT-2397 (ch. 8)"/>
-<antena lat="44.0830" lon="-77.0433" desc="CJOH-TV-6 (ch. 6), CJOH-PT-6 (ch. 49)"/>
-<antena lat="54.0900" lon="-113.5204" desc="AB-PT-299 (ch. 14)"/>
-<antena lat="44.5204" lon="-79.3541" desc="CFTO-TV-21 (ch. 21), ON-PT-1526 (ch. 15), CFTO-PT-21 (ch. 21)"/>
-<antena lat="44.2645" lon="-80.5959" desc="CIII-DT-4 (ch. 26), ON-PT-1548 (ch. 4), CIII-PT-4 (ch. 26)"/>
-<antena lat="50.5359" lon="-116.2039" desc="BC-PT-657 (ch. 39)"/>
-<antena lat="49.0307" lon="-122.2029" desc="CFEG-TV (ch. 19)"/>
-<antena lat="54.2635" lon="-124.1333" desc="CH6455 (ch. 46), CH6456 (ch. 50), CH6457 (ch. 54), CH6459 (ch. 62), CH6460 (ch. 66), CH6458 (ch. 60), CH6461 (ch. 68), CH6499 (ch. 64), CH6498 (ch. 58), CH6497 (ch. 56), CH6496 (ch. 52), CH6495 (ch. 48)"/>
-<antena lat="52.0300" lon="-102.0320" desc="CICC-TV-2 (ch. 7), SK-PT-2469 (ch. 13), CICC-PT-2 (ch. 7), SK-PT-2305 (ch. 18), SK-PT-2306 (ch. 22), SK-PT-2307 (ch. 32)"/>
-<antena lat="45.4600" lon="-71.5658" desc="QC-PT-1742 (ch. 31)"/>
-<antena lat="50.5500" lon="-102.4802" desc="SK-PT-2276 (ch. 20)"/>
-<antena lat="54.2700" lon="-110.1004" desc="AB-PT-71 (ch. 3), AB-PT-72 (ch. 25)"/>
-<antena lat="50.5400" lon="-121.4626" desc="CIPV-TV-1 (ch. 4), CIPV-TV-2 (ch. 11), CIPV-TV (ch. 12)"/>
-<antena lat="50.1652" lon="-64.3736" desc="QC-PT-2207 (ch. 7), QC-PT-2029 (ch. 2), QC-PT-2031 (ch. 15)"/>
-<antena lat="49.2900" lon="-113.5704" desc="AB-PT-240 (ch. 24), AB-PT-241 (ch. 42)"/>
-<antena lat="54.0800" lon="-114.2404" desc="AB-PT-13 (ch. 31), AB-PT-14 (ch. 32)"/>
-<antena lat="54.3104" lon="-128.2821" desc="BC-PT-654 (ch. 11), CFTK-TV (ch. 3), BC-PT-564 (ch. 3), BC-PT-570 (ch. 34), CFTK-PT (ch. 35)"/>
-<antena lat="50.5400" lon="-119.3839" desc="CFJC-TV-8 (ch. 11)"/>
-<antena lat="48.5756" lon="-65.2840" desc="QC-PT-2203 (ch. 10), QC-PT-1973 (ch. 39)"/>
-<antena lat="55.4340" lon="-120.2640" desc="CFSN-TV (ch. 8)"/>
-<antena lat="44.1845" lon="-77.1224" desc="ON-PT-1759 (ch. 15), CICO-DT-53 (ch. 26), CBCN-PT-1351 (ch. 9), CICO-PT-53 (ch. 26), ON-PT-1354 (ch. 33)"/>
-<antena lat="51.3437" lon="-119.4733" desc="CKVA-TV-1 (ch. 7), CKVB-TV (ch. 12), CH5662 (ch. 6)"/>
-<antena lat="43.1541" lon="-80.2641" desc="CICO-DT-28 (ch. 28)"/>
-<antena lat="45.1225" lon="-63.4427" desc="CH5660 (ch. 23)"/>
-<antena lat="49.5300" lon="-97.0901" desc="MB-PT-858 (ch. 2), MB-PT-860 (ch. 5), MB-PT-864 (ch. 25), MB-PT-869 (ch. 42), MB-PT-870 (ch. 43), MB-PT-872 (ch. 48), MB-PT-873 (ch. 49)"/>
-<antena lat="51.5410" lon="-121.1542" desc="CITM-TV (ch. 3), CITM-DT (ch. 21), BC-PT-308 (ch. 3), CITM-PT (ch. 7), BC-PT-311 (ch. 21)"/>
-<antena lat="49.2916" lon="-117.3236" desc="CH5644 (ch. 43), CH5645 (ch. 47), CH5646 (ch. 51), CH5643 (ch. 39)"/>
-<antena lat="49.1414" lon="-124.4820" desc="BC-PT-501 (ch. 3)"/>
-<antena lat="47.2300" lon="-61.5157" desc="QC-PT-1875 (ch. 14), QC-PT-1876 (ch. 18), QC-PT-1877 (ch. 25), QC-PT-1878 (ch. 28)"/>
-<antena lat="49.0325" lon="-76.5847" desc="CJDG-TV-2 (ch. 11)"/>
-<antena lat="52.2215" lon="-100.5932" desc="MB-PT-630 (ch. 4), MB-PT-631 (ch. 5), MB-PT-632 (ch. 17), MB-PT-634 (ch. 31), MB-PT-635 (ch. 35)"/>
-<antena lat="45.2900" lon="-77.4059" desc="ON-PT-1350 (ch. 20)"/>
-<antena lat="49.3314" lon="-114.1041" desc="AB-PT-39 (ch. 47), AB-PT-1020 (ch. 32)"/>
-<antena lat="55.4345" lon="-97.5202" desc="MB-PT-831 (ch. 4), MB-PT-840 (ch. 35)"/>
-<antena lat="50.4015" lon="-120.2355" desc="BC-PT-651 (ch. 50), CHKM-DT (ch. 22), CFJC-TV (ch. 4), CHKM-TV (ch. 6), BC-PT-430 (ch. 4), BC-PT-431 (ch. 6), CHKM-PT (ch. 11), CFJC-PT (ch. 13), BC-PT-434 (ch. 22), BC-PT-435 (ch. 29), BC-PT-437 (ch. 43)"/>
-<antena lat="42.0341" lon="-82.2905" desc="ON-PT-1611 (ch. 6), CIII-PT-22 (ch. 22), CIII-DT-22 (ch. 22)"/>
-<antena lat="53.0100" lon="-112.5004" desc="AB-PT-62 (ch. 18)"/>
-<antena lat="56.1930" lon="-109.0429" desc="SK-PT-2456 (ch. 8), SK-PT-2319 (ch. 16)"/>
-<antena lat="49.2116" lon="-122.5730" desc="CIVI-DT-2 (ch. 17), CIVI-PT-2 (ch. 17)"/>
-<antena lat="58.4603" lon="-94.1011" desc="MB-PT-653 (ch. 8), MB-PT-658 (ch. 36)"/>
-<antena lat="47.1516" lon="-79.2237" desc="CKRN-TV-3 (ch. 3), QC-PT-1761 (ch. 3), CKRN-PT-3 (ch. 7), QC-PT-1763 (ch. 24), QC-PT-1764 (ch. 27)"/>
-<antena lat="46.0206" lon="-74.1417" desc="QC-PT-2097 (ch. 49)"/>
-<antena lat="42.4253" lon="-82.0811" desc="CKCO-TV-3 (ch. 42), CKCO-PT-3 (ch. 27)"/>
-<antena lat="51.0533" lon="-121.3504" desc="CH2040 (ch. 7), CH2041 (ch. 11)"/>
-<antena lat="44.2400" lon="-79.3959" desc="ON-PT-1343 (ch. 14), ON-PT-1345 (ch. 22), ON-PT-1347 (ch. 46)"/>
-<antena lat="49.0800" lon="-98.3702" desc="MB-PT-789 (ch. 18), MB-PT-790 (ch. 24), MB-PT-791 (ch. 36), MB-PT-792 (ch. 41), MB-PT-793 (ch. 42), MB-PT-794 (ch. 47)"/>
-<antena lat="56.2950" lon="-109.2707" desc="CH2058 (ch. 9), CH2057 (ch. 7), CH2056 (ch. 2)"/>
-<antena lat="50.3200" lon="-103.4002" desc="SK-PT-2242 (ch. 24), SK-PT-2243 (ch. 36)"/>
-<antena lat="50.1018" lon="-66.4416" desc="CIVG-PT (ch. 9), QC-PT-2073 (ch. 18), CIVG-DT (ch. 9)"/>
-<antena lat="44.4437" lon="-80.5415" desc="ON-PT-1698 (ch. 20), ON-PT-1750 (ch. 35)"/>
-<antena lat="56.0500" lon="-95.4501" desc="MB-PT-765 (ch. 2), MB-PT-766 (ch. 6), MB-PT-769 (ch. 12), MB-PT-770 (ch. 42), MB-PT-771 (ch. 49), MB-PT-772 (ch. 50)"/>
-<antena lat="46.3418" lon="-66.0750" desc="CKAM-TV-4 (ch. 10)"/>
-<antena lat="49.3200" lon="-96.4101" desc="MB-PT-818 (ch. 11)"/>
-<antena lat="50.3500" lon="-111.5303" desc="AB-PT-27 (ch. 29), AB-PT-28 (ch. 30), AB-PT-29 (ch. 47)"/>
-<antena lat="49.3333" lon="-117.3538" desc="CH5647 (ch. 22), CH5648 (ch. 25), CH5649 (ch. 31), CH4369 (ch. 16)"/>
-<antena lat="46.2927" lon="-72.3858" desc="CKTM-PT (ch. 13), QC-PT-2143 (ch. 16), CFKM-PT (ch. 34), QC-PT-2149 (ch. 47), QC-PT-2147 (ch. 46), CIVC-PT (ch. 45), CFKM-DT (ch. 34), CIVC-DT (ch. 45)"/>
-<antena lat="58.4650" lon="-94.1117" desc="MB-PT-652 (ch. 4), MB-PT-655 (ch. 12)"/>
-<antena lat="55.0800" lon="-101.0502" desc="MB-PT-808 (ch. 14), MB-PT-809 (ch. 24), MB-PT-810 (ch. 36), MB-PT-811 (ch. 42), MB-PT-812 (ch. 48)"/>
-<antena lat="45.3020" lon="-73.3530" desc="CKMI-DT-1 (ch. 15), CFTM-DT (ch. 10), CFCF-DT (ch. 12), QC-PT-1952 (ch. 2), QC-PT-1953 (ch. 6), CFTM-PT (ch. 10), CFCF-PT (ch. 12), CBFT-PT (ch. 19), CBMT-PT (ch. 21), CIVM-PT (ch. 26), CFJP-PT (ch. 35), QC-PT-1962 (ch. 36), CFJP-DT (ch. 35), CBFT-DT(2) (ch. 19), CBMT-DT(2) (ch. 21)"/>
-<antena lat="58.2940" lon="-115.0905" desc="AB-PT-1013 (ch. 13), AB-PT-168 (ch. 7)"/>
-<antena lat="46.3019" lon="-80.5733" desc="CFGC-PT (ch. 11), ON-PT-1633 (ch. 50), CFGC-DT (ch. 11)"/>
-<antena lat="55.4600" lon="-120.1405" desc="BC-PT-377 (ch. 11), BC-PT-379 (ch. 15), BC-PT-380 (ch. 20)"/>
-<antena lat="45.2000" lon="-60.5957" desc="NS-PT-1195 (ch. 15), NS-PT-1196 (ch. 39)"/>
-<antena lat="49.1100" lon="-119.3304" desc="BC-PT-475 (ch. 43)"/>
-<antena lat="53.3500" lon="-116.2604" desc="AB-PT-103 (ch. 41), AB-PT-104 (ch. 43)"/>
-<antena lat="48.3500" lon="-68.1058" desc="QC-PT-1938 (ch. 16), QC-PT-1939 (ch. 20), QC-PT-1940 (ch. 36), QC-PT-1941 (ch. 38)"/>
-<antena lat="46.1000" lon="-60.1157" desc="NS-PT-1270 (ch. 27), NS-PT-1272 (ch. 40), NS-PT-1273 (ch. 49)"/>
-<antena lat="48.3822" lon="-93.4315" desc="ON-PT-1784 (ch. 15), ON-PT-1404 (ch. 41)"/>
-<antena lat="49.3302" lon="-117.4124" desc="CH4365 (ch. 7), CH5650 (ch. 2), CH5651 (ch. 4), CH5653 (ch. 20), CH5652 (ch. 5), CH2054 (ch. 10)"/>
+<antena lat="49.76777777777777777778" lon="-94.52305555555555555556" desc="CJBN-TV (ch. 13)"/>
+<antena lat="46.04055555555555555555" lon="-66.49000000000000000000" desc="CIHF-DT-1 (ch. 44)"/>
+<antena lat="49.89527777777777777777" lon="-97.13805555555555555555" desc="CBWT-DT (ch. 27)"/>
+<antena lat="52.05000000000000000000" lon="-102.05555555555555555556" desc="CICC-TV-2 (ch. 7)"/>
+<antena lat="48.40777777777777777778" lon="-71.08444444444444444444" desc="CJPM-DT (ch. 46)"/>
+<antena lat="52.19166666666666666666" lon="-76.07416666666666666667" desc="CH3191 (ch. 2548), CH3190 (ch. 2542), CH3192 (ch. 2554), CH3193 (ch. 2560), CH3194 (ch. 2566), CH3195 (ch. 2572), CH3196 (ch. 2578), CH3197 (ch. 2584), CH3198 (ch. 2590), CH3199 (ch. 2596), CH3200 (ch. 2602), CH3201 (ch. 2608), CH3202 (ch. 2614), CH3203 (ch. 2620), CH3204 (ch. 2626), CH3205 (ch. 2632), CH3206 (ch. 2638), CH3208 (ch. 2650), CH3209 (ch. 2656), CH3210 (ch. 2662), CH3211 (ch. 2668), CH3212 (ch. 2674), CH3213 (ch. 2680), CH3207 (ch. 2644)"/>
+<antena lat="45.36944444444444444445" lon="-75.70416666666666666667" desc="CRC-DT-3 (ch. 46)"/>
+<antena lat="48.08277777777777777778" lon="-66.58055555555555555556" desc="CKCD-TV (ch. 7)"/>
+<antena lat="49.81027777777777777778" lon="-102.68777777777777777777" desc="CIEW-TV (ch. 7)"/>
+<antena lat="51.47055555555555555556" lon="-100.72000000000000000000" desc="CKYD-TV (ch. 12)"/>
+<antena lat="53.91333333333333333333" lon="-122.45416666666666666667" desc="CIFG-TV (ch. 12)"/>
+<antena lat="51.08055555555555555556" lon="-97.64916666666666666666" desc="CKYA-TV (ch. 8)"/>
+<antena lat="54.51777777777777777778" lon="-128.47250000000000000000" desc="CFTK-TV (ch. 3)"/>
+<antena lat="48.60111111111111111111" lon="-70.82888888888888888889" desc="CFRS-DT (ch. 13), CKTV-DT (ch. 12)"/>
+<antena lat="49.45555555555555555556" lon="-78.33083333333333333334" desc="CJDG-TV-3 (ch. 11)"/>
+<antena lat="53.38277777777777777778" lon="-113.21694444444444444445" desc="CITV-DT (ch. 13), CFRN-DT (ch. 12)"/>
+<antena lat="44.31250000000000000000" lon="-77.20666666666666666667" desc="CICO-DT-53 (ch. 26)"/>
+<antena lat="43.26138888888888888889" lon="-80.44472222222222222222" desc="CICO-DT-28 (ch. 28)"/>
+<antena lat="53.82777777777777777778" lon="-107.02944444444444444445" desc="CIPA-TV-2 (ch. 7)"/>
+<antena lat="50.17194444444444444445" lon="-66.73750000000000000000" desc="CFTF-DT-7 (ch. 7)"/>
+<antena lat="50.20555555555555555556" lon="-109.59611111111111111111" desc="CKMC-TV-1 (ch. 10)"/>
+<antena lat="51.90277777777777777778" lon="-121.26166666666666666667" desc="CITM-TV (ch. 3)"/>
+<antena lat="42.95444444444444444444" lon="-81.35472222222222222222" desc="CICO-DT-18 (ch. 18)"/>
+<antena lat="42.31611111111111111111" lon="-83.04000000000000000000" desc="CHWI-DT-60 (ch. 26)"/>
+<antena lat="55.72888888888888888889" lon="-120.44638888888888888889" desc="CJDC-TV (ch. 5)"/>
+<antena lat="50.16250000000000000000" lon="-110.95638888888888888889" desc="CHAT-TV (ch. 6), CFCN-TV-8 (ch. 8)"/>
+<antena lat="49.49305555555555555555" lon="-117.27194444444444444445" desc="CKTN-TV-3 (ch. 3)"/>
+<antena lat="42.44944444444444444444" lon="-82.08361111111111111111" desc="CICO-DT-59 (ch. 33)"/>
+<antena lat="48.21138888888888888889" lon="-64.87055555555555555556" desc="CIVK-DT-1 (ch. 32)"/>
+<antena lat="48.46722222222222222223" lon="-68.21083333333333333333" desc="CIVB-DT (ch. 22)"/>
+<antena lat="52.19166666666666666666" lon="-106.38750000000000000000" desc="CFQC-DT (ch. 8)"/>
+<antena lat="50.78333333333333333333" lon="-103.78472222222222222222" desc="CKCK-TV-7 (ch. 7)"/>
+<antena lat="49.58000000000000000000" lon="-97.16805555555555555556" desc="CKY-DT (ch. 7)"/>
+<antena lat="44.35138888888888888889" lon="-79.69833333333333333333" desc="CKVR-DT (ch. 10)"/>
+<antena lat="54.74083333333333333333" lon="-126.98222222222222222223" desc="CFHO-TV-1 (ch. 13)"/>
+<antena lat="48.42500000000000000000" lon="-123.33694444444444444444" desc="CIVI-DT (ch. 23), CKVU-DT-2 (ch. 27), CHNM-DT-1 (ch. 29), CHNU-DT-1 (ch. 21)"/>
+<antena lat="42.14166666666666666666" lon="-82.44666666666666666666" desc="CHWI-DT (ch. 16)"/>
+<antena lat="50.59555555555555555555" lon="-105.07000000000000000000" desc="CFRE-DT (ch. 11)"/>
+<antena lat="53.05750000000000000000" lon="-105.84305555555555555555" desc="CIPA-TV (ch. 9)"/>
+<antena lat="49.35083333333333333333" lon="-105.63555555555555555555" desc="CKCK-TV-2 (ch. 6)"/>
+<antena lat="50.67083333333333333334" lon="-120.39861111111111111111" desc="CFJC-TV (ch. 4), CHKM-TV (ch. 6)"/>
+<antena lat="42.15333333333333333333" lon="-82.95305555555555555556" desc="CBET-DT (ch. 9), CICO-DT-32 (ch. 32)"/>
+<antena lat="42.06138888888888888889" lon="-82.48472222222222222222" desc="CIII-DT-22 (ch. 22)"/>
+<antena lat="42.95555555555555555556" lon="-81.35527777777777777778" desc="CITS-DT-2 (ch. 14), CFMT-DT-1 (ch. 48), CJMT-DT-1 (ch. 20)"/>
+<antena lat="54.75361111111111111111" lon="-111.94166666666666666666" desc="CFRN-TV-5 (ch. 2)"/>
+<antena lat="55.46583333333333333333" lon="-118.76027777777777777778" desc="CFRN-TV-1 (ch. 13)"/>
+<antena lat="51.35555555555555555556" lon="-110.38388888888888888889" desc="CFCN-TV-16 (ch. 2)"/>
+<antena lat="43.04611111111111111111" lon="-80.76777777777777777778" desc="CITY-DT-2 (ch. 31)"/>
+<antena lat="45.17638888888888888889" lon="-74.52694444444444444445" desc="CJOH-TV-8 (ch. 8)"/>
+<antena lat="55.20305555555555555556" lon="-127.69666666666666666666" desc="CHHZ-TV (ch. 9)"/>
+<antena lat="48.32805555555555555556" lon="-68.83500000000000000000" desc="CJBR-DT (ch. 45)"/>
+<antena lat="46.42027777777777777778" lon="-67.55944444444444444444" desc="CKLT-TV-1 (ch. 3)"/>
+<antena lat="49.35444444444444444444" lon="-122.95833333333333333333" desc="CIVI-DT-2 (ch. 17)"/>
+<antena lat="47.45583333333333333333" lon="-66.41611111111111111111" desc="CKAM-TV (ch. 12)"/>
+<antena lat="43.40416666666666666667" lon="-80.63444444444444444444" desc="CKCO-DT (ch. 13)"/>
+<antena lat="45.62888888888888888889" lon="-61.32611111111111111111" desc="CJCB-TV-6 (ch. 3)"/>
+<antena lat="48.52416666666666666667" lon="-89.11472222222222222222" desc="CHFD-DT (ch. 4), CKPR-DT (ch. 2)"/>
+<antena lat="47.25444444444444444444" lon="-79.37694444444444444445" desc="CKRN-TV-3 (ch. 3)"/>
+<antena lat="48.35611111111111111111" lon="-64.68416666666666666666" desc="CHAU-DT-4 (ch. 26)"/>
+<antena lat="50.40388888888888888889" lon="-110.05277777777777777778" desc="CHAT-TV-1 (ch. 4)"/>
+<antena lat="45.32888888888888888889" lon="-78.96527777777777777778" desc="CKNY-TV-11 (ch. 11)"/>
+<antena lat="49.13750000000000000000" lon="-119.67055555555555555556" desc="CKKM-TV (ch. 3)"/>
+<antena lat="54.70388888888888888889" lon="-113.28972222222222222222" desc="CFRN-TV-12 (ch. 13)"/>
+<antena lat="44.16722222222222222223" lon="-76.42750000000000000000" desc="CKWS-DT (ch. 11)"/>
+<antena lat="44.88000000000000000000" lon="-77.19750000000000000000" desc="CICO-DT-92 (ch. 44)"/>
+<antena lat="50.48277777777777777778" lon="-104.50638888888888888889" desc="CBKFT-DT (ch. 13), CBKT-DT (ch. 9)"/>
+<antena lat="49.77972222222222222223" lon="-112.87166666666666666667" desc="CISA-DT (ch. 7), CJIL-DT (ch. 17)"/>
+<antena lat="47.57722222222222222223" lon="-69.38222222222222222223" desc="CIMT-DT (ch. 9), CFTF-DT (ch. 29)"/>
+<antena lat="46.82277777777777777778" lon="-71.49527777777777777777" desc="CKMI-DT (ch. 20)"/>
+<antena lat="51.70833333333333333333" lon="-104.29944444444444444444" desc="CIWH-TV (ch. 12)"/>
+<antena lat="56.14638888888888888889" lon="-117.33888888888888888889" desc="CFRN-TV-2 (ch. 3)"/>
+<antena lat="50.17166666666666666667" lon="-66.73777777777777777777" desc="CIVG-DT (ch. 9)"/>
+<antena lat="52.52250000000000000000" lon="-114.87916666666666666667" desc="CFRN-TV-10 (ch. 12)"/>
+<antena lat="46.59444444444444444444" lon="-84.35000000000000000000" desc="CHBX-TV (ch. 2)"/>
+<antena lat="44.34111111111111111111" lon="-65.11055555555555555556" desc="CJCH-TV-6 (ch. 6)"/>
+<antena lat="52.17444444444444444445" lon="-106.43527777777777777777" desc="CFSK-DT (ch. 42)"/>
+<antena lat="43.76916666666666666667" lon="-65.34916666666666666666" desc="CIHF-TV-9 (ch. 10)"/>
+<antena lat="51.68194444444444444445" lon="-108.51333333333333333333" desc="CFQC-TV-1 (ch. 3)"/>
+<antena lat="52.31944444444444444445" lon="-113.67805555555555555556" desc="CFRN-TV-6 (ch. 8)"/>
+<antena lat="43.05166666666666666667" lon="-79.30083333333333333333" desc="CKVP-DT (ch. 42)"/>
+<antena lat="46.49083333333333333333" lon="-72.64944444444444444444" desc="CFKM-DT (ch. 34), CIVC-DT (ch. 45)"/>
+<antena lat="45.50555555555555555556" lon="-73.59166666666666666666" desc="CKMI-DT-1 (ch. 15), CFTM-DT (ch. 10), CFCF-DT (ch. 12), CFJP-DT (ch. 35)"/>
+<antena lat="51.10166666666666666667" lon="-63.44833333333333333333" desc="CH3100 (ch. 2542), CH3101 (ch. 2548), CH3102 (ch. 2554), CH3103 (ch. 2560), CH3104 (ch. 2566), CH3105 (ch. 2572), CH3106 (ch. 2578), CH3108 (ch. 2590), CH3109 (ch. 2596), CH3110 (ch. 2602), CH3111 (ch. 2608), CH3112 (ch. 2614), CH3113 (ch. 2620), CH3114 (ch. 2626), CH3115 (ch. 2632), CH3116 (ch. 2638), CH3117 (ch. 2644), CH3118 (ch. 2650), CH3119 (ch. 2656), CH3120 (ch. 2662), CH3121 (ch. 2668), CH3122 (ch. 2674), CH3123 (ch. 2680), CH3107 (ch. 2584)"/>
+<antena lat="48.54722222222222222222" lon="-80.95222222222222222222" desc="CITO-TV (ch. 3)"/>
+<antena lat="46.50194444444444444444" lon="-72.63611111111111111111" desc="CKTM-DT (ch. 28)"/>
+<antena lat="48.77416666666666666667" lon="-123.17083333333333333334" desc="CHEK-DT (ch. 49)"/>
+<antena lat="47.85416666666666666667" lon="-83.41888888888888888889" desc="CITO-TV-4 (ch. 9)"/>
+<antena lat="45.50305555555555555556" lon="-73.61555555555555555556" desc="CFTU-DT (ch. 29)"/>
+<antena lat="48.13555555555555555555" lon="-66.11611111111111111111" desc="CIVK-DT (ch. 15)"/>
+<antena lat="49.75555555555555555556" lon="-97.13138888888888888889" desc="CIIT-DT (ch. 35)"/>
+<antena lat="51.70527777777777777778" lon="-76.03361111111111111111" desc="CH3215 (ch. 2548), CH3216 (ch. 2554), CH3217 (ch. 2560), CH3218 (ch. 2566), CH3219 (ch. 2572), CH3220 (ch. 2578), CH3221 (ch. 2584), CH3222 (ch. 2590), CH3223 (ch. 2596), CH3224 (ch. 2602), CH3225 (ch. 2608), CH3226 (ch. 2614), CH3227 (ch. 2620), CH3228 (ch. 2626), CH3229 (ch. 2632), CH3230 (ch. 2638), CH3231 (ch. 2644), CH3232 (ch. 2650), CH3233 (ch. 2626), CH3234 (ch. 2662), CH3235 (ch. 2668), CH3236 (ch. 2674), CH3237 (ch. 2680), CH3214 (ch. 2542)"/>
+<antena lat="45.47777777777777777778" lon="-66.23333333333333333333" desc="CHNB-DT (ch. 12)"/>
+<antena lat="54.13527777777777777777" lon="-111.60555555555555555556" desc="CFRN-TV-4 (ch. 12)"/>
+<antena lat="51.06500000000000000000" lon="-114.21416666666666666667" desc="CBRT-DT (ch. 21)"/>
+<antena lat="54.25611111111111111111" lon="-125.67861111111111111111" desc="CH4333 (ch. 7), CKHS-TV (ch. 13)"/>
+<antena lat="48.26416666666666666667" lon="-79.04416666666666666666" desc="CIVA-DT-1 (ch. 8), CKRN-DT (ch. 9), CFEM-DT (ch. 13), CFVS-DT-1 (ch. 20)"/>
+<antena lat="50.30861111111111111111" lon="-107.87722222222222222223" desc="CKMC-TV (ch. 12)"/>
+<antena lat="54.19833333333333333333" lon="-110.84194444444444444444" desc="CKSA-TV-2 (ch. 9)"/>
+<antena lat="49.68250000000000000000" lon="-112.92722222222222222223" desc="CKAL-DT-1 (ch. 46)"/>
+<antena lat="45.50333333333333333333" lon="-73.59638888888888888889" desc="CFHD-DT (ch. 47)"/>
+<antena lat="49.09166666666666666666" lon="-117.82055555555555555556" desc="CKTN-TV (ch. 8)"/>
+<antena lat="46.50083333333333333333" lon="-81.02000000000000000000" desc="CICI-TV (ch. 5)"/>
+<antena lat="49.23361111111111111111" lon="-68.14027777777777777777" desc="CFTF-DT-5 (ch. 9)"/>
+<antena lat="53.46305555555555555556" lon="-113.33527777777777777777" desc="CKES-DT (ch. 30)"/>
+<antena lat="45.20333333333333333333" lon="-64.40083333333333333333" desc="CJCH-TV-1 (ch. 10)"/>
+<antena lat="45.05944444444444444444" lon="-77.19972222222222222222" desc="CIII-TV-2 (ch. 2)"/>
+<antena lat="45.83388888888888888889" lon="-77.16361111111111111111" desc="CHRO-TV (ch. 5)"/>
+<antena lat="54.78805555555555555555" lon="-101.84500000000000000000" desc="CKYF-TV (ch. 13)"/>
+<antena lat="48.99750000000000000000" lon="-64.43138888888888888889" desc="CHAU-DT-7 (ch. 4)"/>
+<antena lat="45.54583333333333333333" lon="-62.26000000000000000000" desc="CJCB-TV-2 (ch. 9)"/>
+<antena lat="45.35361111111111111111" lon="-75.90194444444444444444" desc="CRC-DT-1 (ch. 51), CRC-DT-2 (ch. 46)"/>
+<antena lat="48.02027777777777777778" lon="-84.75000000000000000000" desc="CHBX-TV-1 (ch. 7)"/>
+<antena lat="51.20916666666666666667" lon="-102.73361111111111111111" desc="CICC-TV (ch. 10)"/>
+<antena lat="43.64250000000000000000" lon="-79.38722222222222222222" desc="CJMT-DT (ch. 40), CFTO-DT (ch. 9), CITY-DT (ch. 44), CFMT-DT (ch. 47), CIII-DT-41 (ch. 41), CICA-DT (ch. 19)"/>
+<antena lat="54.03305555555555555556" lon="-124.62944444444444444445" desc="CFFL-TV-1 (ch. 9)"/>
+<antena lat="49.39111111111111111111" lon="-67.47083333333333333334" desc="CIVF-DT (ch. 12)"/>
+<antena lat="51.09333333333333333333" lon="-121.66583333333333333333" desc="CFJC-TV-4 (ch. 9)"/>
+<antena lat="47.77972222222222222223" lon="-70.15222222222222222222" desc="CIVB-DT-1 (ch. 31)"/>
+<antena lat="49.66805555555555555556" lon="-100.01166666666666666667" desc="CKYB-TV (ch. 4)"/>
+<antena lat="45.51388888888888888889" lon="-61.01500000000000000000" desc="CIMC-TV (ch. 10)"/>
+<antena lat="49.45833333333333333333" lon="-115.63027777777777777778" desc="CFCN-TV-9 (ch. 5)"/>
+<antena lat="45.31194444444444444444" lon="-72.24166666666666666666" desc="CHLT-DT (ch. 7), CFKS-DT (ch. 30), CKMI-DT-2 (ch. 11), CIVS-DT (ch. 24)"/>
+<antena lat="49.96666666666666666667" lon="-119.52888888888888888889" desc="CHBC-DT (ch. 27), CHKL-DT (ch. 24)"/>
+<antena lat="45.44277777777777777777" lon="-75.64666666666666666666" desc="CRC-DT-4 (ch. 46)"/>
+<antena lat="48.47000000000000000000" lon="-81.29694444444444444444" desc="CHCH-TV-7 (ch. 11)"/>
+<antena lat="44.32805555555555555556" lon="-78.29944444444444444444" desc="CHEX-DT (ch. 12)"/>
+<antena lat="45.50500000000000000000" lon="-73.59111111111111111111" desc="CJNT-DT (ch. 49)"/>
+<antena lat="49.39111111111111111111" lon="-82.35750000000000000000" desc="CITO-TV-1 (ch. 10)"/>
+<antena lat="49.73305555555555555556" lon="-112.96111111111111111111" desc="CFCN-DT-5 (ch. 13)"/>
+<antena lat="48.83750000000000000000" lon="-64.49222222222222222222" desc="CHAU-DT-6 (ch. 7)"/>
+<antena lat="45.47750000000000000000" lon="-66.23305555555555555556" desc="CKLT-DT (ch. 9)"/>
+<antena lat="50.44972222222222222222" lon="-104.50138888888888888889" desc="CKCK-DT (ch. 8)"/>
+<antena lat="49.59333333333333333333" lon="-125.01138888888888888889" desc="CKVU-TV-1 (ch. 5)"/>
+<antena lat="48.80888888888888888889" lon="-69.00722222222222222222" desc="CFTF-DT-4 (ch. 4)"/>
+<antena lat="48.42722222222222222223" lon="-68.48722222222222222222" desc="CJPC-DT (ch. 18)"/>
+<antena lat="43.23166666666666666667" lon="-79.85916666666666666667" desc="CHCJ-DT (ch. 35)"/>
+<antena lat="51.56277777777777777778" lon="-112.33000000000000000000" desc="CFCN-TV-1 (ch. 12)"/>
+<antena lat="48.31138888888888888889" lon="-67.08416666666666666666" desc="CHAU-DT-1 (ch. 3)"/>
+<antena lat="44.44555555555555555555" lon="-78.53305555555555555556" desc="CFTO-DT-54 (ch. 35)"/>
+<antena lat="53.20138888888888888889" lon="-107.51472222222222222222" desc="CIPA-TV-1 (ch. 10)"/>
+<antena lat="45.80916666666666666667" lon="-64.74888888888888888889" desc="CIHF-DT-3 (ch. 27)"/>
+<antena lat="46.09861111111111111111" lon="-60.31138888888888888889" desc="CIHF-TV-7 (ch. 11)"/>
+<antena lat="49.07416666666666666667" lon="-64.53666666666666666666" desc="CHAU-DT-9 (ch. 12)"/>
+<antena lat="53.33527777777777777777" lon="-104.14916666666666666666" desc="CKBQ-TV-1 (ch. 12)"/>
+<antena lat="52.76083333333333333333" lon="-108.56527777777777777778" desc="CFQC-TV-2 (ch. 6)"/>
+<antena lat="47.38777777777777777777" lon="-68.31694444444444444445" desc="CIMT-DT-1 (ch. 4)"/>
+<antena lat="54.44222222222222222222" lon="-126.66000000000000000000" desc="CFHO-TV (ch. 8)"/>
+<antena lat="54.03194444444444444445" lon="-115.71777777777777777778" desc="CFRN-TV-3 (ch. 12)"/>
+<antena lat="53.51333333333333333333" lon="-113.28500000000000000000" desc="CBXFT-DT (ch. 47), CBXT-DT (ch. 42)"/>
+<antena lat="46.80750000000000000000" lon="-71.21666666666666666667" desc="CFAP-DT (ch. 39), CIVQ-DT (ch. 15)"/>
+<antena lat="51.06027777777777777778" lon="-114.17138888888888888889" desc="CKCS-DT (ch. 32), CFCN-DT (ch. 29)"/>
+<antena lat="49.10000000000000000000" lon="-119.58027777777777777778" desc="CHBC-TV-3 (ch. 8)"/>
+<antena lat="49.73416666666666666666" lon="-77.67888888888888888889" desc="CJDG-TV-4 (ch. 9)"/>
+<antena lat="54.04638888888888888889" lon="-122.89305555555555555555" desc="CKPG-TV (ch. 2)"/>
+<antena lat="44.65083333333333333333" lon="-63.65694444444444444444" desc="CIHF-DT (ch. 8), CBHT-DT (ch. 39)"/>
+<antena lat="53.39638888888888888889" lon="-110.00833333333333333333" desc="CITL-DT (ch. 4), CKSA-DT (ch. 2)"/>
+<antena lat="50.75611111111111111111" lon="-119.33361111111111111111" desc="CHBC-TV-4 (ch. 9)"/>
+<antena lat="50.64527777777777777777" lon="-105.76916666666666666667" desc="CKMJ-TV (ch. 7)"/>
+<antena lat="49.53166666666666666667" lon="-114.19472222222222222222" desc="CFCN-TV-4 (ch. 5), CISA-TV-1 (ch. 3)"/>
+<antena lat="48.13555555555555555555" lon="-66.11777777777777777778" desc="CHAU-DT (ch. 5), CFTF-DT-11 (ch. 44)"/>
+<antena lat="44.97055555555555555556" lon="-79.78250000000000000000" desc="CIII-DT-7 (ch. 7)"/>
+<antena lat="50.27861111111111111111" lon="-119.31583333333333333333" desc="CHKL-DT-2 (ch. 22), CHBC-DT-2 (ch. 20)"/>
+<antena lat="52.23666666666666666666" lon="-113.64833333333333333333" desc="CKEM-TV-1 (ch. 4)"/>
+<antena lat="53.83583333333333333333" lon="-101.25333333333333333333" desc="CKYP-TV (ch. 12)"/>
+<antena lat="46.78444444444444444444" lon="-71.26444444444444444444" desc="CFCM-DT (ch. 17)"/>
+<antena lat="45.21694444444444444445" lon="-75.56388888888888888889" desc="CITY-DT-3 (ch. 17), CJMT-DT-2 (ch. 20), CITS-DT-1 (ch. 42), CHRO-DT-43 (ch. 43), CFMT-DT-2 (ch. 27)"/>
+<antena lat="51.07250000000000000000" lon="-114.26055555555555555556" desc="CICT-DT (ch. 41), CKAL-DT (ch. 49), CJCO-DT (ch. 38)"/>
+<antena lat="45.55944444444444444444" lon="-73.55250000000000000000" desc="CIVM-DT (ch. 26)"/>
+<antena lat="46.42972222222222222223" lon="-82.66916666666666666667" desc="CICI-TV-1 (ch. 3)"/>
+<antena lat="48.46722222222222222223" lon="-68.21416666666666666667" desc="CFER-TV (ch. 11)"/>
+<antena lat="45.92472222222222222223" lon="-77.07277777777777777778" desc="CIVP-DT (ch. 23)"/>
+<antena lat="49.64722222222222222222" lon="-83.51388888888888888889" desc="CITO-TV-3 (ch. 4)"/>
+<antena lat="49.19083333333333333333" lon="-64.89083333333333333333" desc="CHAU-DT-8 (ch. 11)"/>
+<antena lat="46.50194444444444444444" lon="-72.63583333333333333333" desc="CHEM-DT (ch. 8)"/>
+<antena lat="49.89555555555555555555" lon="-97.13944444444444444444" desc="CKND-DT (ch. 40)"/>
+<antena lat="43.20750000000000000000" lon="-79.77416666666666666667" desc="CITS-DT (ch. 36), CHCH-DT (ch. 15)"/>
+<antena lat="46.89277777777777777777" lon="-64.14805555555555555555" desc="CKCW-TV-2 (ch. 5)"/>
+<antena lat="44.64638888888888888889" lon="-63.66027777777777777778" desc="CJCH-DT (ch. 48)"/>
+<antena lat="48.38888888888888888889" lon="-72.08888888888888888889" desc="CJPM-TV-1 (ch. 10)"/>
+<antena lat="49.74833333333333333333" lon="-125.24944444444444444444" desc="CHAN-TV-4 (ch. 11)"/>
+<antena lat="50.17194444444444444445" lon="-66.73805555555555555555" desc="CFER-TV-2 (ch. 5)"/>
+<antena lat="46.14388888888888888889" lon="-64.90222222222222222222" desc="CBAFT-DT (ch. 11)"/>
+<antena lat="44.38805555555555555555" lon="-64.67888888888888888889" desc="CIHF-TV-6 (ch. 9)"/>
+<antena lat="49.35777777777777777778" lon="-122.95388888888888888889" desc="CIVT-DT (ch. 32)"/>
+<antena lat="44.04444444444444444444" lon="-77.79305555555555555555" desc="CKWS-DT-1 (ch. 30)"/>
+<antena lat="51.90000000000000000000" lon="-121.25972222222222222222" desc="CFJC-TV-6 (ch. 5)"/>
+<antena lat="49.87388888888888888889" lon="-97.74083333333333333333" desc="CHMI-DT (ch. 13)"/>
+<antena lat="48.54972222222222222222" lon="-89.22444444444444444445" desc="CICO-DT-9 (ch. 9)"/>
+<antena lat="49.35722222222222222222" lon="-122.95361111111111111111" desc="CHNM-DT (ch. 20), CKVU-DT (ch. 33), CHAN-DT (ch. 22)"/>
+<antena lat="49.65944444444444444444" lon="-119.57277777777777777778" desc="CHKL-DT-1 (ch. 30), CHBC-DT-1 (ch. 32)"/>
+<antena lat="44.92583333333333333334" lon="-62.50027777777777777778" desc="CJCH-TV-5 (ch. 2)"/>
+<antena lat="45.50305555555555555556" lon="-75.85027777777777777778" desc="CIVO-DT (ch. 30), CBOT-DT (ch. 25), CHOT-DT (ch. 40), CJOH-DT (ch. 13), CFGS-DT (ch. 34), CICO-DT-24 (ch. 24)"/>
+<antena lat="53.53194444444444444445" lon="-113.78138888888888888889" desc="CKEM-DT (ch. 17), CJEO-DT (ch. 44)"/>
+<antena lat="46.36444444444444444444" lon="-63.41000000000000000000" desc="CIHF-DT-14 (ch. 42)"/>
+<antena lat="47.57694444444444444445" lon="-69.38277777777777777778" desc="CKRT-DT (ch. 7)"/>
+<antena lat="49.06305555555555555556" lon="-122.21666666666666666667" desc="CHNU-DT (ch. 47)"/>
+<antena lat="46.26694444444444444445" lon="-63.34111111111111111111" desc="CKCW-DT-1 (ch. 8)"/>
+<antena lat="55.47166666666666666667" lon="-114.78583333333333333333" desc="CFRN-TV-9 (ch. 4)"/>
+<antena lat="53.87055555555555555556" lon="-126.01138888888888888889" desc="CHBL-TV (ch. 11), CHHH-TV (ch. 10), CH4467 (ch. 5)"/>
+<antena lat="48.42138888888888888889" lon="-77.84666666666666666666" desc="CFEM-DT-1 (ch. 10), CIVA-DT (ch. 12), CJDG-DT (ch. 7), CFVS-DT (ch. 25)"/>
+<antena lat="55.72861111111111111111" lon="-97.86388888888888888889" desc="CKYT-TV (ch. 9)"/>
+<antena lat="54.28444444444444444444" lon="-130.31500000000000000000" desc="CFTK-TV-1 (ch. 6)"/>
+<antena lat="45.85194444444444444444" lon="-64.81250000000000000000" desc="CKCW-DT (ch. 29)"/>
+<antena lat="48.13555555555555555555" lon="-79.55527777777777777778" desc="CITO-TV-2 (ch. 11)"/>
+<antena lat="46.15361111111111111111" lon="-61.38277777777777777778" desc="CJCB-TV-1 (ch. 6)"/>
+<antena lat="46.21222222222222222222" lon="-63.34138888888888888889" desc="CBCT-DT (ch. 13)"/>
+<antena lat="44.09055555555555555555" lon="-81.20694444444444444444" desc="CKNX-TV (ch. 8)"/>
+<antena lat="45.42805555555555555556" lon="-75.71250000000000000000" desc="CRC-DT-5 (ch. 46)"/>
+<antena lat="52.83944444444444444444" lon="-104.31916666666666666667" desc="CKBQ-TV (ch. 2)"/>
+<antena lat="46.06333333333333333333" lon="-79.43388888888888888889" desc="CKNY-TV (ch. 10)"/>
+<antena lat="52.85416666666666666667" lon="-102.49111111111111111111" desc="CICC-TV-3 (ch. 11)"/>
+<antena lat="52.53750000000000000000" lon="-111.51944444444444444445" desc="CFRN-TV-7 (ch. 7)"/>
+<antena lat="44.14166666666666666666" lon="-77.07583333333333333334" desc="CJOH-TV-6 (ch. 6)"/>
+<antena lat="49.43777777777777777777" lon="-103.79861111111111111111" desc="CKCK-TV-1 (ch. 12)"/>
 </antenas>
