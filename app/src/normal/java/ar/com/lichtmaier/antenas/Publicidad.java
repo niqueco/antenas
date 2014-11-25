@@ -30,11 +30,12 @@ class Publicidad
 		if(adView == null)
 			return;
 		AdRequest.Builder builder = crearAdRequestBuilder()
-				.addKeyword("antena")
+				.addKeyword("antenna")
 				.addKeyword("tv")
-				.addKeyword("tecnología")
-				.addKeyword("tda")
-				.addKeyword("tdt");
+				.addKeyword("technology")
+				.addKeyword("digital tv")
+				.addKeyword("ota")
+				.addKeyword("cordcutter");
 		if(loc != null)
 			builder.setLocation(loc);
 		adView.loadAd(builder.build());
