@@ -79,13 +79,12 @@
 <antena lat='-46.79841' lon='-67.9670' desc='Pico Truncado'/>
 -->
 <antena lat='-47.74275' lon='-65.87233' desc='Puerto Deseado'/>
-<antena lat='-51.67075' lon='-69.23142' desc='Río Gallegos'/>
 <antena lat='-51.53520' lon='-72.3356' desc='Río Turbio'/>
 <antena lat='-49.3059' lon='-67.7295' desc='San Julián'/>
 <!--
 <antena lat='-46.4333' lon='-67.5333' desc='Caleta Olivia'/>
 -->
-<antena lat='-51.67017' lon='-69.23168' desc='Rio Gallegos'/>
+<antena lat='-51.67017' lon='-69.23168' desc='Río Gallegos'/>
 <antena lat='-32.81708' lon='-61.41298' desc='Cañada de Gómez'/>
 <antena lat='-29.93833' lon='-61.89883' desc='Ceres'/>
 <antena lat='-31.22346' lon='-61.46947' desc='Rafaela'/>
