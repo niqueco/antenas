@@ -28,6 +28,7 @@ public class Antena implements Serializable
 	private final GlobalCoordinates c;
 	public final int index;
 	final public País país;
+	public List<Canal> canales;
 
 	public double dist;
 
@@ -44,10 +45,39 @@ public class Antena implements Serializable
 		this.ref = ref;
 	}
 
+	private transient String tostring = null;
 	@Override
 	public String toString()
 	{
-		return descripción;
+		if(tostring == null)
+		{
+			StringBuilder sb = new StringBuilder();
+			if(descripción != null)
+			{
+				sb.append(descripción);
+				if(canales != null && !canales.isEmpty())
+					sb.append(" (");
+			}
+			if(canales != null)
+			{
+				boolean primero = true;
+				for(Canal canal : canales)
+				{
+					if(primero)
+						primero = false;
+					else
+						sb.append(", ");
+					sb.append(canal.nombre);
+					if(canal.numero != null)
+						sb.append(" (ch. ").append(canal.numero).append(")");
+				}
+			}
+
+			if(descripción != null && canales != null && !canales.isEmpty())
+				sb.append(")");
+			tostring = sb.toString();
+		}
+		return tostring;
 	}
 
 	public LatLng getLatLng()
@@ -138,17 +168,35 @@ public class Antena implements Serializable
 			int t, index = 0;
 			l = new ArrayList<>();
 			antenasPorPaís.put(país, l);
+			Antena antena = null;
 			while( (t = xml.getEventType()) != XmlPullParser.END_DOCUMENT )
 			{
-				if(t == XmlPullParser.START_TAG)
+				switch(t)
 				{
-					String name = xml.getName();
-					if(name.equals("antena"))
-					{
-						Antena antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país, xml.getAttributeValue(null, "ref"));
-						antenas.add(antena);
-						l.add(antena);
-					}
+					case XmlPullParser.START_TAG:
+						String name = xml.getName();
+						switch(name)
+						{
+							case "antena":
+								antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país, xml.getAttributeValue(null, "ref"));
+								antenas.add(antena);
+								l.add(antena);
+								break;
+							case "canal":
+								if(antena == null)
+									throw new RuntimeException(xml.getPositionDescription() +": canal sin antena?");
+								antena.agregar(new Canal(xml.getAttributeValue(null, "nombre"),
+										xml.getAttributeValue(null, "numero"),
+										xml.getAttributeValue(null, "numero_virtual"),
+										xml.getAttributeValue(null, "cadena"),
+										xml.getAttributeValue(null, "ref")));
+								break;
+						}
+						break;
+					case XmlPullParser.END_TAG:
+						if(xml.getName().equals("antena"))
+							antena = null;
+						break;
 				}
 				xml.next();
 			}
@@ -158,6 +206,13 @@ public class Antena implements Serializable
 			throw new RuntimeException(e);
 		}
 		Log.i("antenas", l.size() + " antenas de " + país + " cargadas en " + (System.currentTimeMillis() - antes) + "ms");
+	}
+
+	private void agregar(Canal canal)
+	{
+		if(canales == null)
+			canales = new ArrayList<>();
+		canales.add(canal);
 	}
 
 	private GlobalCoordinates coordsCache = null;
