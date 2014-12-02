@@ -74,14 +74,19 @@ public class FlechaView extends View
 		float density = getResources().getDisplayMetrics().density;
 		int w, h;
 		w = h = (int)(100 * density);
-		if(View.MeasureSpec.getMode(widthMeasureSpec) == View.MeasureSpec.EXACTLY)
+		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+		if(widthMode == View.MeasureSpec.EXACTLY || widthMode == View.MeasureSpec.AT_MOST)
 			w = View.MeasureSpec.getSize(widthMeasureSpec);
-		else if(View.MeasureSpec.getMode(widthMeasureSpec) == View.MeasureSpec.AT_MOST)
-			w = Math.min(View.MeasureSpec.getSize(widthMeasureSpec), w);
-		if(View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.EXACTLY)
-			h = View.MeasureSpec.getSize(heightMeasureSpec);
-		else if(View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.AT_MOST)
-			h = Math.min(View.MeasureSpec.getSize(heightMeasureSpec), h);
+		switch(MeasureSpec.getMode(heightMeasureSpec))
+		{
+			case MeasureSpec.EXACTLY:
+			case MeasureSpec.AT_MOST:
+				h = MeasureSpec.getSize(heightMeasureSpec);
+				break;
+			case MeasureSpec.UNSPECIFIED:
+				h = w;
+				break;
+		}
 		w = h = Math.min(h, w);
 		setMeasuredDimension(w, h);
 	}
