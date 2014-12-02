@@ -2,9 +2,13 @@ package ar.com.lichtmaier.antenas;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.*;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UnaAntenaActivity extends AntenaActivity
 {
@@ -20,16 +24,19 @@ public class UnaAntenaActivity extends AntenaActivity
 	private int mTopDelta;
 	private double ángulo;
 	private FlechaView flecha;
+	final private List<View> vistasAnimadas = new ArrayList<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		asignarLayout();
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
 		final TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
-		antenaDesc.setText(antena.descripción);
+		if(antena.descripción != null)
+			antenaDesc.setText(antena.descripción);
+		else
+			antenaDesc.setVisibility(View.GONE);
 		nuevaUbicación(); // para que se configure la distancia
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
@@ -40,6 +47,20 @@ public class UnaAntenaActivity extends AntenaActivity
 		final double ángulo = bundle.getDouble(PACKAGE + ".ángulo");
 
 		flecha = (FlechaView)findViewById(R.id.flecha);
+
+		if(antena.canales != null && !antena.canales.isEmpty())
+		{
+			findViewById(R.id.antes_de_canales).setVisibility(View.VISIBLE);
+			ViewGroup p = (ViewGroup)findViewById(R.id.columna_derecha);
+			if(p == null)
+				p = (ViewGroup)findViewById(R.id.principal);
+			for(Canal canal : antena.canales)
+			{
+				View vc = canal.dameViewCanal(this, p);
+				p.addView(vc);
+				vistasAnimadas.add(vc);
+			}
+		}
 
 		if(savedInstanceState == null)
 		{
@@ -67,20 +88,20 @@ public class UnaAntenaActivity extends AntenaActivity
 					aa.setInterpolator(new AccelerateInterpolator());
 					findViewById(R.id.fondo).startAnimation(aa);
 
-					int[] screenLocation = new int[2];
-					antenaDesc.getLocationOnScreen(screenLocation);
-					int d = getWindow().getDecorView().getBottom() - screenLocation[1];
-					TranslateAnimation ta = new TranslateAnimation(0, 0, d, 0);
-					ta.setInterpolator(new DecelerateInterpolator());
-					ta.setDuration(500);
-					ta.setStartOffset(200);
-					antenaDesc.startAnimation(ta);
+					vistasAnimadas.add(antenaDesc);
 					TextView antenaDist = (TextView) findViewById(R.id.antena_dist);
-					ta = new TranslateAnimation(0, 0, d, 0);
-					ta.setInterpolator(new DecelerateInterpolator());
-					ta.setDuration(500);
-					ta.setStartOffset(200);
-					antenaDist.startAnimation(ta);
+					vistasAnimadas.add(antenaDist);
+					for(View v : vistasAnimadas)
+					{
+						int[] screenLocation = new int[2];
+						v.getLocationOnScreen(screenLocation);
+						int d = getWindow().getDecorView().getBottom() - screenLocation[1];
+						TranslateAnimation ta = new TranslateAnimation(0, 0, d, 0);
+						ta.setInterpolator(new DecelerateInterpolator());
+						ta.setDuration(500);
+						ta.setStartOffset(200);
+						v.startAnimation(ta);
+					}
 
 					if(AntenaActivity.flechaADesaparecer != null)
 					{
@@ -158,8 +179,7 @@ public class UnaAntenaActivity extends AntenaActivity
 			super.onBackPressed();
 			return;
 		}
-		if(escalaAlto == 0)
-			calcularDeltas();
+		calcularDeltas();
 		if(AntenaActivity.flechaADesaparecer != null)
 			AntenaActivity.flechaADesaparecer.setVisibility(View.INVISIBLE);
 		AlphaAnimation aa = new AlphaAnimation(1, 0);
@@ -193,21 +213,17 @@ public class UnaAntenaActivity extends AntenaActivity
 		anim.setFillAfter(true);
 		findViewById(R.id.flecha).startAnimation(anim);
 
-		TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
-		int[] screenLocation = new int[2];
-		antenaDesc.getLocationOnScreen(screenLocation);
-		int d = getWindow().getDecorView().getBottom() - screenLocation[1];
-		TranslateAnimation ta = new TranslateAnimation(0, 0, 0, d);
-		ta.setInterpolator(new AccelerateInterpolator());
-		ta.setDuration(500);
-		ta.setFillAfter(true);
-		antenaDesc.startAnimation(ta);
-		TextView antenaDist = (TextView) findViewById(R.id.antena_dist);
-		ta = new TranslateAnimation(0, 0, 0, d);
-		ta.setInterpolator(new AccelerateInterpolator());
-		ta.setDuration(500);
-		ta.setFillAfter(true);
-		antenaDist.startAnimation(ta);
+		for(View v : vistasAnimadas)
+		{
+			int[] screenLocation = new int[2];
+			v.getLocationOnScreen(screenLocation);
+			int d = getWindow().getDecorView().getBottom() - screenLocation[1];
+			TranslateAnimation ta = new TranslateAnimation(0, 0, 0, d);
+			ta.setInterpolator(new AccelerateInterpolator());
+			ta.setDuration(500);
+			ta.setFillAfter(true);
+			v.startAnimation(ta);
+		}
 	}
 
 	@Override

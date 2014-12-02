@@ -2,4 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<string name="placeholder_nombre_antena" tools:ignore="MissingTranslation">Buenos Aires</string>
 	<string name="placeholder_distancia_antena" tools:ignore="MissingTranslation">23,8 km</string>
+	<string name="placeholder_nombre_canal" tools:ignore="MissingTranslation">WPNYX-TV</string>
+	<string name="placeholder_desc_canal" tools:ignore="MissingTranslation">channel 23 (4)</string>
 </resources>

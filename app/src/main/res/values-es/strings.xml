@@ -16,5 +16,6 @@
 	<string name="app_no_disponible">No hay ninguna aplicación disponible para manejar esa operación.</string>
 	<string name="one_more">una más</string>
 	<string name="some_more">%d más</string>
+	<string name="channel_number">canal %s</string>
 
 </resources>

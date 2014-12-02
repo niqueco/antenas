@@ -10,9 +10,13 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"/>
 
+<ScrollView
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	android:layout_height="wrap_content"
 	android:id="@+id/principal"
 	android:paddingLeft="@dimen/activity_horizontal_margin"
 	android:paddingRight="@dimen/activity_horizontal_margin"
@@ -23,7 +27,8 @@
 	<ar.com.lichtmaier.antenas.FlechaView
 			android:id="@+id/flecha"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"/>
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"/>
 
 	<TextView
 			android:id="@+id/antena_desc"
@@ -43,6 +48,14 @@
 			android:textColor="#fddd"
 			android:text="@string/placeholder_distancia_antena"/>
 
-</LinearLayout>
+	<View
+		android:id="@+id/antes_de_canales"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="12dp"
+		android:visibility="gone"
+		/>
 
+</LinearLayout>
+</ScrollView>
 </FrameLayout>

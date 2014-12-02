@@ -26,4 +26,88 @@ public class Canal implements Serializable
 		this.cadena = cadena;
 		this.ref = ref;
 	}
+
+	/** Obtiene un logo asociado al canal o a la cadena a la que pertenece.
+	 *
+	 * @return un recurso apuntando a un logo
+	 */
+	public int dameLogo()
+	{
+		int logo = 0;
+		if(cadena != null) switch(cadena)
+		{
+			case "ABC":
+				logo = R.drawable.logo_abc;
+				break;
+			case "CBS":
+				logo = R.drawable.logo_cbs;
+				break;
+			case "CW":
+			case "THE CW NETWORK":
+			case "CW TELEVISION NETWOR":
+				logo = R.drawable.logo_cw;
+				break;
+			case "FOX":
+				logo = R.drawable.logo_fox;
+				break;
+			case "ION":
+				logo = R.drawable.logo_ion;
+				break;
+			case "MYTV":
+			case "MY NETWORK TV":
+			case "MYNETWORK TV":
+			case "MYNETWORKTV":
+			case "MYNETWORK":
+			case "MY NETWORK":
+			case "MNT":
+				logo = R.drawable.logo_mytv;
+				break;
+			case "NBC":
+				logo = R.drawable.logo_nbc;
+				break;
+			case "PBS":
+			case "PUBLIC BROADCASTING SERVICE":
+				logo = R.drawable.logo_pbs;
+				break;
+			case "TELEMUNDO":
+			case "TELMUNDO":
+				logo = R.drawable.logo_telemundo;
+				break;
+			case "UNIMAS":
+				logo = R.drawable.logo_unimas;
+				break;
+			case "UNIVISION":
+			case "UNVISION":
+				logo = R.drawable.logo_univision;
+				break;
+		}
+		return logo;
+	}
+
+	/** Crea una vista que muestra información del canal.
+	 *
+	 * @param activity la actividad
+	 * @param parent el {@link android.view.ViewGroup} donde se insertará la vista
+	 * @return la vista
+	 */
+	public View dameViewCanal(Activity activity, ViewGroup parent)
+	{
+		View vc = activity.getLayoutInflater().inflate(R.layout.canal, parent, false);
+		((TextView)vc.findViewById(R.id.nombre_canal)).setText(nombre);
+		int logo = dameLogo();
+		if(logo > 0)
+		{
+			ImageView iv = (ImageView)vc.findViewById(R.id.imagen_canal);
+			iv.setImageResource(logo);
+			iv.setContentDescription(cadena);
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(activity.getString(R.string.channel_number, numero));
+		if(numeroVirtual != null)
+			sb.append(" (").append(numeroVirtual).append(")");
+		if(logo == 0 && cadena != null && !cadena.equals("IND") && !cadena.equals("INDE") && !cadena.equals("NONE") && !cadena.isEmpty())
+			sb.append(" - ").append(cadena);
+		((TextView)vc.findViewById(R.id.desc_canal)).setText(sb.toString());
+		return vc;
+	}
 }
