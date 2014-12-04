@@ -13,6 +13,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import com.github.davidmoten.geo.Coverage;
+import com.github.davidmoten.geo.GeoHash;
 import com.google.android.gms.maps.model.LatLng;
 
 import android.content.Context;
@@ -23,8 +25,9 @@ import android.util.Log;
 public class Antena implements Serializable
 {
 	private static final long serialVersionUID = 1L;
+	private static final double RAÍZ_DE_DOS = Math.sqrt(2);
 
-	final public String descripción, ref;
+	final public String descripción, ref, geohash;
 	private final GlobalCoordinates c;
 	public final int index;
 	final public País país;
@@ -32,9 +35,9 @@ public class Antena implements Serializable
 
 	public double dist;
 
-	final static private List<Antena> antenas = new ArrayList<>();
 	final static private List<Antena> antenasAlgoCerca = new ArrayList<>();
 	final static private Map<País, List<Antena>> antenasPorPaís = new EnumMap<>(País.class);
+	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();
 
 	private Antena(String descripción, double lat, double lon, int index, País país, String ref)
 	{
@@ -43,6 +46,14 @@ public class Antena implements Serializable
 		c = new GlobalCoordinates(lat, lon);
 		this.país = país;
 		this.ref = ref;
+		geohash = GeoHash.encodeHash(lat, lon, 4);
+		List<Antena> l = geohashAAntenas.get(geohash);
+		if(l == null)
+		{
+			l = new ArrayList<>();
+			geohashAAntenas.put(geohash, l);
+		}
+		l.add(this);
 	}
 
 	private transient String tostring = null;
@@ -107,9 +118,14 @@ public class Antena implements Serializable
 					? EnumSet.of(País.AR, País.UY)
 					: EnumSet.of(País.AR, País.BR, País.UY))));
 		if(antenasAlgoCerca.isEmpty())
-			for(Antena antena : antenas)
-				if(Math.abs(latitud - antena.c.getLatitude()) < 1)
-					antenasAlgoCerca.add(antena);
+		{
+			double distance = 500000.0 * RAÍZ_DE_DOS;
+			GlobalCoordinates topLeftCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 315, distance);
+			GlobalCoordinates bottomRightCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 135, distance);
+			for(String hash : GeoHash.coverBoundingBox(topLeftCoords.getLatitude(), topLeftCoords.getLongitude(), bottomRightCoords.getLatitude(), bottomRightCoords.getLongitude()).getHashes())
+				for(Map.Entry<String, List<Antena>> e : geohashAAntenas.subMap(hash, hash + "z").entrySet())
+					antenasAlgoCerca.addAll(e.getValue());
+		}
 		List<Antena> res = new ArrayList<>();
 		for(Antena antena : antenasAlgoCerca)
 			if((antena.dist = antena.distanceTo(coordsUsuario)) < maxDist)
@@ -179,7 +195,6 @@ public class Antena implements Serializable
 						{
 							case "antena":
 								antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país, xml.getAttributeValue(null, "ref"));
-								antenas.add(antena);
 								l.add(antena);
 								break;
 							case "canal":
