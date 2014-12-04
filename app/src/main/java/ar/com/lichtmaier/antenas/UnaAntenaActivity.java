@@ -54,9 +54,10 @@ public class UnaAntenaActivity extends AntenaActivity
 			ViewGroup p = (ViewGroup)findViewById(R.id.columna_derecha);
 			if(p == null)
 				p = (ViewGroup)findViewById(R.id.principal);
+			boolean hayImágenes = antena.hayImágenes();
 			for(Canal canal : antena.canales)
 			{
-				View vc = canal.dameViewCanal(this, p);
+				View vc = canal.dameViewCanal(this, p, hayImágenes);
 				p.addView(vc);
 				vistasAnimadas.add(vc);
 			}

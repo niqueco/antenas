@@ -215,6 +215,14 @@ public class Antena implements Serializable
 		canales.add(canal);
 	}
 
+	public boolean hayImágenes()
+	{
+		for(Canal canal : canales)
+			if(canal.dameLogo() != 0)
+				return true;
+		return false;
+	}
+
 	private GlobalCoordinates coordsCache = null;
 	private double rumboCacheado, distCacheada;
 

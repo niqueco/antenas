@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -71,7 +72,7 @@ public class MapaActivity extends ActionBarActivity
 		return super.onOptionsItemSelected(item);
 	}
 
-	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, GoogleMap.OnInfoWindowClickListener
+	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.InfoWindowAdapter
 	{
 		private GoogleMap mapa;
 
@@ -105,6 +106,7 @@ public class MapaActivity extends ActionBarActivity
 			mapa.setMyLocationEnabled(true);
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 			mapa.setOnInfoWindowClickListener(this);
+			mapa.setInfoWindowAdapter(this);
 			if(AntenaActivity.coordsUsuario != null)
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
 			if(íconoAntenita == null)
@@ -178,6 +180,61 @@ public class MapaActivity extends ActionBarActivity
 		{
 			Antena antena = markerAAntena.get(marker);
 			antena.mostrarInformacion(getActivity());
+		}
+
+		@Override
+		public View getInfoWindow(Marker marker)
+		{
+			return null;
+		}
+
+		@Override
+		public View getInfoContents(Marker marker)
+		{
+			Antena antena = markerAAntena.get(marker);
+			if(antena.canales == null)
+				return null;
+			boolean hayImágenes = antena.hayImágenes();
+			ContextThemeWrapper ctx = new ContextThemeWrapper(getActivity(), R.style.InfoMapa);
+			@SuppressLint("InflateParams")
+			View v = ((LayoutInflater)ctx.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.info_mapa, null, false);
+			ViewGroup l = (ViewGroup)v.findViewById(R.id.lista_canales);
+			int n;
+			if(l instanceof TableLayout)
+			{
+				n = Math.min(antena.canales.size(), 8);
+				for(int i = 0; i < (n+1) / 2 ; i++)
+				{
+					TableRow row = new TableRow(ctx);
+					row.addView(antena.canales.get(i * 2).dameViewCanal(ctx, row, hayImágenes));
+					if((i*2+1) < antena.canales.size())
+					{
+						View der = antena.canales.get(i * 2 + 1).dameViewCanal(ctx, row, hayImágenes);
+						der.setPadding((int)getResources().getDimension(der.getPaddingLeft() + R.dimen.paddingColumnasInfoMapa), der.getPaddingTop(), der.getPaddingRight(), der.getPaddingBottom());
+						row.addView(der);
+					}
+					l.addView(row);
+				}
+			} else
+			{
+				n = Math.min(antena.canales.size(), 4);
+				for(Canal canal : antena.canales)
+					l.addView(canal.dameViewCanal(ctx, l, hayImágenes));
+			}
+			if(n < antena.canales.size())
+			{
+				TextView tv = new TextView(ctx);
+				tv.setText(ctx.getString(R.string.some_more, antena.canales.size() - n));
+				tv.setLayoutParams(
+						(l instanceof TableLayout)
+						? new TableLayout.LayoutParams()
+						: new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+				);
+				tv.setGravity(Gravity.CENTER);
+				l.addView(tv);
+			}
+			v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+			return v;
 		}
 	}
 }

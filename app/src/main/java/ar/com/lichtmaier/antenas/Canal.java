@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
-import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -86,23 +87,31 @@ public class Canal implements Serializable
 
 	/** Crea una vista que muestra información del canal.
 	 *
-	 * @param activity la actividad
+	 * @param ctx un contexto
 	 * @param parent el {@link android.view.ViewGroup} donde se insertará la vista
+	 * @param conImagen si incluir ícono asociado al canal
 	 * @return la vista
 	 */
-	public View dameViewCanal(Activity activity, ViewGroup parent)
+	public View dameViewCanal(Context ctx, ViewGroup parent, boolean conImagen)
 	{
-		View vc = activity.getLayoutInflater().inflate(R.layout.canal, parent, false);
+		View vc = ((LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.canal, parent, false);
 		((TextView)vc.findViewById(R.id.nombre_canal)).setText(nombre);
-		int logo = dameLogo();
-		if(logo > 0)
+		int logo = 0;
+		if(conImagen)
 		{
-			ImageView iv = (ImageView)vc.findViewById(R.id.imagen_canal);
-			iv.setImageResource(logo);
-			iv.setContentDescription(cadena);
+			logo = dameLogo();
+			if(logo > 0)
+			{
+				ImageView iv = (ImageView)vc.findViewById(R.id.imagen_canal);
+				iv.setImageResource(logo);
+				iv.setContentDescription(cadena);
+			}
+		} else
+		{
+			vc.findViewById(R.id.imagen_canal).setVisibility(View.GONE);
 		}
 		StringBuilder sb = new StringBuilder();
-		sb.append(activity.getString(R.string.channel_number, numero));
+		sb.append(ctx.getString(R.string.channel_number, numero));
 		if(numeroVirtual != null)
 			sb.append(" (").append(numeroVirtual).append(")");
 		if(logo == 0 && cadena != null && !cadena.equals("IND") && !cadena.equals("INDE") && !cadena.equals("NONE") && !cadena.isEmpty())

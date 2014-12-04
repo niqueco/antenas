@@ -10,6 +10,7 @@
 		<item name="actionBarStyle">@style/ActionBarPrincipal</item>
 		<item name="colorFlecha">#fff</item>
 		<item name="colorDial">#64ffffff</item>
+		<item name="ladoIconoCanal">@dimen/ladoIconoCanal</item>
 	</style>
 
     <style name="ActionBarPrincipal" parent="@style/Widget.AppCompat.Light.ActionBar">
@@ -33,5 +34,23 @@
 		<item name="android:windowIsTranslucent">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
+
+	<style name="InfoMapa" parent="ThemeOverlay.AppCompat.Light">
+		<item name="android:textAppearanceLarge">@style/textoGrandeInfoMapa</item>
+		<item name="android:textAppearanceMedium">@style/textoChicoInfoMapa</item>
+		<item name="ladoIconoCanal">@dimen/ladoIconoCanalInfoMapa</item>
+	</style>
+
+	<style name="textoGrandeInfoMapa" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/textoGrandeInfoMapa</item>
+	</style>
+
+	<style name="textoChicoInfoMapa" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/textoChicoInfoMapa</item>
+	</style>
+
+	<declare-styleable name="InfoMapa">
+		<attr name="ladoIconoCanal" format="dimension"/>
+	</declare-styleable>
 
 </resources>

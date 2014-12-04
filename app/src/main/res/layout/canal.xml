@@ -6,8 +6,9 @@
 		android:layout_marginTop="6dp">
 
 	<ImageView
-		android:layout_width="48dp"
-		android:layout_height="48dp"
+		android:layout_width="?ladoIconoCanal"
+		android:layout_height="?ladoIconoCanal"
+		android:scaleType="centerInside"
 		android:id="@+id/imagen_canal"
 		android:layout_alignParentTop="true"
 		android:layout_alignParentLeft="true"
