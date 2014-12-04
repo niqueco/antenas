@@ -72,7 +72,7 @@ public class MapaActivity extends ActionBarActivity
 		return super.onOptionsItemSelected(item);
 	}
 
-	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.InfoWindowAdapter
+	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.InfoWindowAdapter, GoogleMap.OnCameraChangeListener
 	{
 		private GoogleMap mapa;
 
@@ -107,13 +107,16 @@ public class MapaActivity extends ActionBarActivity
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 			mapa.setOnInfoWindowClickListener(this);
 			mapa.setInfoWindowAdapter(this);
+			mapa.setOnCameraChangeListener(this);
 			if(AntenaActivity.coordsUsuario != null)
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
 			if(íconoAntenita == null)
 				íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);
 			prefs.registerOnSharedPreferenceChangeListener(this);
-			ponerMarcadores();
+			for(País país : País.values())
+				if(prefs.getBoolean("mapa_país_" + país, false))
+					Antena.dameAntenas(act, país);
 			act.findViewById(R.id.map).post(new Runnable() {
 				@Override
 				public void run()
@@ -134,7 +137,23 @@ public class MapaActivity extends ActionBarActivity
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 		{
 			if(key.startsWith("mapa_país_"))
-				ponerMarcadores();
+			{
+				País país = País.valueOf(key.substring(10));
+				if(sharedPreferences.getBoolean(key, false))
+				{
+					Antena.dameAntenas(getActivity(), país);
+					ponerMarcadores();
+				} else
+				{
+					List<Marker> markers = países.remove(país);
+					if(markers != null)
+						for(Marker marker : markers)
+						{
+							antenasDentro.remove(markerAAntena.get(marker));
+							marker.remove();
+						}
+				}
+			}
 		}
 
 		private void ponerMarcadores()
@@ -143,36 +162,57 @@ public class MapaActivity extends ActionBarActivity
 			if(act == null)
 				return;
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);
-			for(País país : País.values())
+			VisibleRegion visibleRegion = mapa.getProjection().getVisibleRegion();
+			antenas_temp.clear();
+			Antena.antenasEnRectángulo(max(visibleRegion.farLeft.latitude, visibleRegion.nearLeft.latitude,
+							visibleRegion.farRight.latitude, visibleRegion.nearLeft.latitude),
+					min(visibleRegion.farLeft.longitude, visibleRegion.nearLeft.longitude,
+							visibleRegion.farRight.longitude, visibleRegion.nearLeft.longitude),
+					min(visibleRegion.farLeft.latitude, visibleRegion.nearLeft.latitude,
+							visibleRegion.farRight.latitude, visibleRegion.nearLeft.latitude),
+					max(visibleRegion.farLeft.longitude, visibleRegion.nearLeft.longitude,
+							visibleRegion.farRight.longitude, visibleRegion.nearLeft.longitude),
+					antenas_temp);
+			for(Antena antena : antenas_temp)
 			{
-				List<Marker> markers = países.get(país);
-				if(prefs.getBoolean("mapa_país_" + país, true))
+				if(!prefs.getBoolean("mapa_país_" + antena.país, false))
+					continue;
+				if(!antenasDentro.add(antena))
+					continue;
+
+				Marker marker = mapa.addMarker(new MarkerOptions()
+						.position(antena.getLatLng())
+						.title(antena.toString())
+						.icon(íconoAntenita));
+				markerAAntena.put(marker, antena);
+
+				List<Marker> markers = países.get(antena.país);
+				if(markers == null)
 				{
-					if(markers == null)
-					{
-						List<Antena> antenas = Antena.dameAntenas(act, país);
-						markers = new ArrayList<>(antenas.size());
-						países.put(país, markers);
-						for(Antena antena : antenas)
-						{
-							Marker marker = mapa.addMarker(new MarkerOptions()
-									.position(antena.getLatLng())
-									.title(antena.toString())
-									.icon(íconoAntenita));
-							markerAAntena.put(marker, antena);
-							markers.add(marker);
-						}
-					}
-				} else
-				{
-					if(markers != null)
-					{
-						for(Marker marker : markers)
-							marker.remove();
-						países.remove(país);
-					}
+					markers = new ArrayList<>();
+					países.put(antena.país, markers);
 				}
+				markers.add(marker);
 			}
+		}
+
+		private static double max(double a, double b, double c, double d)
+		{
+			return Math.max(Math.max(a, b), Math.max(c, d));
+		}
+
+		private static double min(double a, double b, double c, double d)
+		{
+			return Math.min(Math.min(a, b), Math.min(c, d));
+		}
+
+		final private List<Antena> antenas_temp = new ArrayList<>();
+		final private Set<Antena> antenasDentro = new HashSet<>();
+
+		@Override
+		public void onCameraChange(CameraPosition cameraPosition)
+		{
+			ponerMarcadores();
 		}
 
 		@Override

@@ -122,9 +122,9 @@ public class Antena implements Serializable
 			double distance = 500000.0 * RAÍZ_DE_DOS;
 			GlobalCoordinates topLeftCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 315, distance);
 			GlobalCoordinates bottomRightCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 135, distance);
-			for(String hash : GeoHash.coverBoundingBox(topLeftCoords.getLatitude(), topLeftCoords.getLongitude(), bottomRightCoords.getLatitude(), bottomRightCoords.getLongitude()).getHashes())
-				for(Map.Entry<String, List<Antena>> e : geohashAAntenas.subMap(hash, hash + "z").entrySet())
-					antenasAlgoCerca.addAll(e.getValue());
+			antenasEnRectángulo(topLeftCoords.getLatitude(), topLeftCoords.getLongitude(),
+					bottomRightCoords.getLatitude(), bottomRightCoords.getLongitude(),
+					antenasAlgoCerca);
 		}
 		List<Antena> res = new ArrayList<>();
 		for(Antena antena : antenasAlgoCerca)
@@ -139,6 +139,26 @@ public class Antena implements Serializable
 					it.remove();
 		}
 		return res;
+	}
+
+	public static void antenasEnRectángulo(double topLeftLat, double topLeftLon, double bottomRightLat, double bottomRightLon, List<Antena> antenas)
+	{
+		Coverage coverage = GeoHash.coverBoundingBox(topLeftLat, topLeftLon, bottomRightLat, bottomRightLon);
+		if(coverage == null)
+		{
+			Log.w("antenas", "mapa coverBoundingBox(" + topLeftLat + ", " + topLeftLon + ", "
+					+ bottomRightLat + ", " + bottomRightLon + ") dio null");
+			return;
+		}
+		for(String hash : coverage.getHashes())
+			for(Map.Entry<String, List<Antena>> e : geohashAAntenas.subMap(hash, hashMásUno(hash)).entrySet())
+				antenas.addAll(e.getValue());
+	}
+
+	private static String hashMásUno(String hash)
+	{
+		int len = hash.length();
+		return hash.substring(0, len - 1) + (char)((hash.charAt(len - 1) + 1));
 	}
 
 	private synchronized static void cargar(Context ctx, Set<País> países)
