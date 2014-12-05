@@ -74,6 +74,10 @@ public class Canal implements Serializable
 			case "TELMUNDO":
 				logo = R.drawable.logo_telemundo;
 				break;
+			case "TRINITY BROADCASTING NETWORK":
+			case "TBN":
+				logo = R.drawable.logo_tbn;
+				break;
 			case "UNIMAS":
 				logo = R.drawable.logo_unimas;
 				break;
