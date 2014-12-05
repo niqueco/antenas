@@ -172,15 +172,16 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		{
 			tvo.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
 			{
-				private int pw = -1;
+				private int pw = -1, n = -1;
 
 				@Override
 				public void onGlobalLayout()
 				{
 					int w = principal.getWidth();
-					if(w == pw)
+					if(w == pw && antenaAVista.size() == n)
 						return;
 					pw = w;
+					n = antenaAVista.size();
 					for(Entry<Antena, View> e : antenaAVista.entrySet())
 						actualizarDescripción((TextView) e.getValue().findViewById(R.id.antena_desc), e.getKey());
 				}
