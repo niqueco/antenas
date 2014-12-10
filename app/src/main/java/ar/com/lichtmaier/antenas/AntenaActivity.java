@@ -34,7 +34,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
 
 public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
@@ -55,7 +54,6 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	private int rotación;
 
 	private LocationManager locationManager;
-	private LocationRequest locationRequest;
 
 	private MenuItem opciónAyudaArgentina, opciónAyudaReinoUnido;
 	private boolean mostrarOpciónAyudaArgentina = false, mostrarOpciónAyudaReinoUnido = false;
@@ -149,12 +147,11 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-		locationClient = new LocationClient(this, this, this);
-		locationRequest = LocationRequest.create()
-			.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-			.setInterval(10000)
-			.setFastestInterval(2000)
-			.setSmallestDisplacement(10);
+		locationClient = new LocationClientCompat(this, LocationRequest.create()
+				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+				.setInterval(10000)
+				.setFastestInterval(2000)
+				.setSmallestDisplacement(10));
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
 		{
@@ -279,7 +276,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		super.onStart();
 		((Aplicacion)getApplication()).reportActivityStart(this);
 		if(locationClient != null)
-			locationClient.connect();
+			locationClient.onStart();
 	}
 
 	@Override
@@ -304,12 +301,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			}
 		}
 		if(locationClient != null)
-		{
-			if(locationClient.isConnected())
-				locationClient.requestLocationUpdates(locationRequest, this);
-			else if(!locationClient.isConnecting())
-				locationClient.connect();
-		}
+			locationClient.onResume();
 		publicidad.onResume();
 	}
 
@@ -322,8 +314,8 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		sensorManager.unregisterListener(this);
 		if(locationManager != null)
 			locationManager.removeUpdates(locationListener);
-		if(locationClient != null && locationClient.isConnected())
-			locationClient.removeLocationUpdates(this);
+		if(locationClient != null)
+			locationClient.onPause();
 		super.onPause();
 	}
 
@@ -331,7 +323,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	protected void onStop()
 	{
 		if(locationClient != null)
-			locationClient.disconnect();
+			locationClient.onStop();
 		((Aplicacion)getApplication()).reportActivityStop(this);
 		super.onStop();
 	}
@@ -343,7 +335,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		super.onDestroy();
 	}
 
-	private LocationClient locationClient;
+	private LocationClientCompat locationClient;
 	private SharedPreferences prefs;
 	private long lastUpdate = 0;
 	void nuevaOrientación(double brújula)
@@ -587,7 +579,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 			nuevaUbicación();
 		}
-		locationClient.requestLocationUpdates(locationRequest, this);
+		locationClient.onConnected();
 		publicidad.load(location);
 	}
 
