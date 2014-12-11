@@ -95,6 +95,8 @@
 <antena lat='-27.88219' lon='-64.24161' desc='Santiago del Estero'/>
 <antena lat='-54.80105' lon='-68.22189' desc='Ushuaia'/>
 <antena lat='-26.84786' lon='-65.37658' desc='Cerro San Javier'/>
-<antena lat="-34.672834" lon="-58.44981" desc="Torre Espacial (Canal 26)"/>
+<antena lat="-34.672834" lon="-58.44981" desc="Torre Espacial">
+<canal nombre="Canal 26" numero="26"/>
+</antena>
 <antena lat="-33.106461" lon="-64.38683" desc="Río Cuarto"/>
 </antenas>

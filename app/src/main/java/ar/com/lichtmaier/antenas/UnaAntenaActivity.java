@@ -73,8 +73,6 @@ public class UnaAntenaActivity extends AntenaActivity
 				{
 					flecha.getViewTreeObserver().removeOnPreDrawListener(this);
 
-					actualizarDescripción(antenaDesc, antena);
-
 					calcularDeltas();
 
 					AnimationSet anim = new AnimationSet(true);
