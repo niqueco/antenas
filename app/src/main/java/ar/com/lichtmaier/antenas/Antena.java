@@ -78,9 +78,16 @@ public class Antena implements Serializable
 						primero = false;
 					else
 						sb.append(", ");
-					sb.append(canal.nombre);
+					if(canal.nombre != null)
+						sb.append(canal.nombre);
 					if(canal.numero != null)
-						sb.append(" (ch. ").append(canal.numero).append(")");
+					{
+						if(canal.nombre != null)
+							sb.append(" (");
+						sb.append("ch. ").append(canal.numero);
+						if(canal.nombre != null)
+							sb.append(")");
+					}
 				}
 			}
 
