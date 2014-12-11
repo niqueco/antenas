@@ -94,9 +94,7 @@ public class UnaAntenaActivity extends AntenaActivity
 					vistasAnimadas.add(antenaDist);
 					for(View v : vistasAnimadas)
 					{
-						int[] screenLocation = new int[2];
-						v.getLocationOnScreen(screenLocation);
-						int d = getWindow().getDecorView().getBottom() - screenLocation[1];
+						int d = getWindow().getDecorView().getBottom();
 						TranslateAnimation ta = new TranslateAnimation(0, 0, d, 0);
 						ta.setInterpolator(new DecelerateInterpolator());
 						ta.setDuration(500);
@@ -216,9 +214,7 @@ public class UnaAntenaActivity extends AntenaActivity
 
 		for(View v : vistasAnimadas)
 		{
-			int[] screenLocation = new int[2];
-			v.getLocationOnScreen(screenLocation);
-			int d = getWindow().getDecorView().getBottom() - screenLocation[1];
+			int d = getWindow().getDecorView().getBottom();
 			TranslateAnimation ta = new TranslateAnimation(0, 0, 0, d);
 			ta.setInterpolator(new AccelerateInterpolator());
 			ta.setDuration(500);
