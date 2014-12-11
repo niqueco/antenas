@@ -111,7 +111,7 @@ public class Antena implements Serializable
 		double latitud = coordsUsuario.getLatitude();
 		double longitud = coordsUsuario.getLongitude();
 		cargar(ctx, longitud > -27
-			? EnumSet.of(País.UK)
+			? (longitud < 60 ? EnumSet.of(País.UK) : EnumSet.of(País.AU))
 			: ((latitud > 13)
 				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
@@ -180,6 +180,9 @@ public class Antena implements Serializable
 			{
 				case AR:
 					res = R.raw.antenas_ar;
+					break;
+				case AU:
+					res = R.raw.antenas_au;
 					break;
 				case BR:
 					res = R.raw.antenas_br;

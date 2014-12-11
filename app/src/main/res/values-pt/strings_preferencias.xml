@@ -27,6 +27,7 @@
 
     <string name="pref_header_mapa">Mapa</string>
     <string name="pref_AR">Argentina</string>
+    <string name="pref_AU">Australia</string>
     <string name="pref_BR">Brasil</string>
     <string name="pref_CA">Canadá</string>
     <string name="pref_UK">Reino Unido</string>
