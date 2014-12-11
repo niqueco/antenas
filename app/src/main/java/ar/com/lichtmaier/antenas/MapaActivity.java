@@ -104,7 +104,6 @@ public class MapaActivity extends ActionBarActivity
 				return;
 			}
 			mapa.setMyLocationEnabled(true);
-			mapa.getUiSettings().setMapToolbarEnabled(false);
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 			mapa.setOnInfoWindowClickListener(this);
 			mapa.setInfoWindowAdapter(this);
