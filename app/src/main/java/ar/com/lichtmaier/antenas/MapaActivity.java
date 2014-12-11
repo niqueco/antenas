@@ -238,6 +238,14 @@ public class MapaActivity extends ActionBarActivity
 			ContextThemeWrapper ctx = new ContextThemeWrapper(getActivity(), R.style.InfoMapa);
 			@SuppressLint("InflateParams")
 			View v = ((LayoutInflater)ctx.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.info_mapa, null, false);
+			TextView tv = (TextView)v.findViewById(R.id.antena_desc);
+			if(tv != null)
+			{
+				if(antena.descripción == null)
+					tv.setVisibility(View.GONE);
+				else
+					tv.setText(antena.descripción);
+			}
 			ViewGroup l = (ViewGroup)v.findViewById(R.id.lista_canales);
 			int n;
 			if(l instanceof TableLayout)
@@ -263,7 +271,7 @@ public class MapaActivity extends ActionBarActivity
 			}
 			if(n < antena.canales.size())
 			{
-				TextView tv = new TextView(ctx);
+				tv = new TextView(ctx);
 				tv.setText(ctx.getString(R.string.some_more, antena.canales.size() - n));
 				tv.setLayoutParams(
 						(l instanceof TableLayout)

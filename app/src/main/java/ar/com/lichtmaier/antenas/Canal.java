@@ -114,13 +114,20 @@ public class Canal implements Serializable
 		{
 			vc.findViewById(R.id.imagen_canal).setVisibility(View.GONE);
 		}
-		StringBuilder sb = new StringBuilder();
-		sb.append(ctx.getString(R.string.channel_number, numero));
-		if(numeroVirtual != null)
-			sb.append(" (").append(numeroVirtual).append(")");
-		if(logo == 0 && cadena != null && !cadena.equals("IND") && !cadena.equals("INDE") && !cadena.equals("NONE") && !cadena.isEmpty())
-			sb.append(" - ").append(cadena);
-		((TextView)vc.findViewById(R.id.desc_canal)).setText(sb.toString());
+		TextView tv = (TextView)vc.findViewById(R.id.desc_canal);
+		if(nombre == null || !nombre.startsWith("Canal "))
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append(ctx.getString(R.string.channel_number, numero));
+			if(numeroVirtual != null)
+				sb.append(" (").append(numeroVirtual).append(")");
+			if(logo == 0 && cadena != null && !cadena.equals("IND") && !cadena.equals("INDE") && !cadena.equals("NONE") && !cadena.isEmpty())
+				sb.append(" - ").append(cadena);
+			tv.setText(sb.toString());
+		} else
+		{
+			tv.setVisibility(View.GONE);
+		}
 		return vc;
 	}
 }
