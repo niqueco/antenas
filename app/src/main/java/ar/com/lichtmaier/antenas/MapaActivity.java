@@ -162,16 +162,12 @@ public class MapaActivity extends ActionBarActivity
 			if(act == null)
 				return;
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);
-			VisibleRegion visibleRegion = mapa.getProjection().getVisibleRegion();
+			LatLngBounds latLngBounds = mapa.getProjection().getVisibleRegion().latLngBounds;
 			antenas_temp.clear();
-			Antena.antenasEnRectángulo(max(visibleRegion.farLeft.latitude, visibleRegion.nearLeft.latitude,
-							visibleRegion.farRight.latitude, visibleRegion.nearLeft.latitude),
-					min(visibleRegion.farLeft.longitude, visibleRegion.nearLeft.longitude,
-							visibleRegion.farRight.longitude, visibleRegion.nearLeft.longitude),
-					min(visibleRegion.farLeft.latitude, visibleRegion.nearLeft.latitude,
-							visibleRegion.farRight.latitude, visibleRegion.nearLeft.latitude),
-					max(visibleRegion.farLeft.longitude, visibleRegion.nearLeft.longitude,
-							visibleRegion.farRight.longitude, visibleRegion.nearLeft.longitude),
+			Antena.antenasEnRectángulo(latLngBounds.northeast.latitude,
+					latLngBounds.southwest.longitude,
+					latLngBounds.southwest.latitude,
+					latLngBounds.northeast.longitude,
 					antenas_temp);
 			for(Antena antena : antenas_temp)
 			{
