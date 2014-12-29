@@ -1,0 +1,211 @@
+<antenas>
+<antena lat="-36.84846" lon="174.76218" desc="Sky Tower" polaridad="V">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="World TV" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-37.72996" lon="176.23951" desc="Kopukairua" polaridad="V">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+<antena lat="-38.13888" lon="176.34943" desc="Pukepoto" polaridad="V">
+<canal nombre="JDA 2" numero="27"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="JDA 1" numero="37"/>
+</antena>
+<antena lat="-38.66728" lon="175.95511" desc="Whakaroa" polaridad="V">
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="JDA" numero="37"/>
+</antena>
+<antena lat="-35.71273" lon="174.33529" desc="Parahaki" polaridad="V">
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="JDA" numero="36"/>
+</antena>
+<antena lat="-38.74739" lon="177.70669" desc="Parikanapa" polaridad="H">
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="JDA" numero="44"/>
+</antena>
+<antena lat="-37.53417" lon="175.74194" desc="Te Aroha" polaridad="H">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-36.92611" lon="174.56806" desc="Waiatarua" polaridad="H">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="World TV" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+<antena lat="-40.85192" lon="175.05211" desc="Ngarara" polaridad="V">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+<antena lat="-39.28889" lon="174.08444" desc="Mount Taranaki" polaridad="H">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-39.73972" lon="176.84083" desc="Mount Erin" polaridad="V">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+<antena lat="-40.25473" lon="175.85786" desc="Wharite" polaridad="V">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-41.16391" lon="175.56828" desc="Popoiti" polaridad="H">
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="JDA" numero="37"/>
+</antena>
+<antena lat="-39.89115" lon="175.06556" desc="Mount Jowett" polaridad="H">
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="JDA" numero="37"/>
+</antena>
+<antena lat="-41.23354" lon="174.77931" desc="Kaukau" polaridad="H">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-45.81316" lon="170.55536" desc="Mount Cargill" polaridad="H">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-43.60345" lon="172.64955" desc="Sugarloaf" polaridad="H">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-41.12377" lon="172.85251" desc="Mount Campbell" polaridad="V">
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="41"/>
+<canal nombre="JDA" numero="47"/>
+</antena>
+<antena lat="-44.37922" lon="171.01024" desc="Cave Hill" polaridad="V">
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="JDA" numero="37"/>
+<canal nombre="TVNZ" numero="43"/>
+</antena>
+<antena lat="-46.22169" lon="168.43584" desc="Forest Hill" polaridad="V">
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="JDA" numero="36"/>
+</antena>
+<antena lat="-41.21845" lon="174.95922" desc="Fitzherbert" polaridad="V">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+<antena lat="-41.12697" lon="174.86225" desc="Baxter's Knob" polaridad="H">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+<antena lat="-39.751176" lon="176.783004" desc="Mt. Threave" polaridad="V">
+<canal nombre="TVHB" numero="27"/>
+</antena>
+<antena lat="-41.133973" lon="174.993326" desc="Haywards" polaridad="V">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+<antena lat="-36.8119659" lon="175.0841638" desc="Waiheke Island" polaridad="V">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-36.880611" lon="174.801392" desc="Remuera" polaridad="V">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-36.732281" lon="174.735092" desc="Pinehill" polaridad="H">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-41.268925" lon="173.299286" desc="Botanical Ridge" polaridad="H">
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="40"/>
+<canal nombre="JDA" numero="42"/>
+</antena>
+<antena lat="-38.6782" lon="178.069916" desc="Wheatstone Road" polaridad="H">
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="41"/>
+<canal nombre="JDA" numero="47"/>
+</antena>
+<antena lat="-41.291397" lon="173.254669" desc="Observatory Hill" polaridad="H">
+<canal nombre="Mainland TV" numero="26"/>
+</antena>
+<antena lat="-41.020832" lon="172.862213" desc="Takaka Hill" polaridad="H">
+<canal nombre="Mainland TV" numero="27"/>
+</antena>
+<antena lat="-39.467461" lon="176.871552" desc="Napier Airport" polaridad="V">
+<canal nombre="World TV" numero="28"/>
+<canal nombre="Sky TV" numero="30"/>
+<canal nombre="TVWorks" numero="32"/>
+<canal nombre="TVNZ" numero="34"/>
+<canal nombre="Kordia" numero="36"/>
+</antena>
+<antena lat="-37.786091" lon="175.280319" desc="Hamilton Towers" polaridad="V">
+<canal nombre="World TV" numero="29"/>
+<canal nombre="Sky TV" numero="31"/>
+<canal nombre="TVWorks" numero="33"/>
+<canal nombre="TVNZ" numero="35"/>
+<canal nombre="Kordia" numero="37"/>
+</antena>
+</antenas>

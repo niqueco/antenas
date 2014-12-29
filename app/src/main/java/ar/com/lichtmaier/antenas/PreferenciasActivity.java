@@ -68,6 +68,9 @@ public class PreferenciasActivity extends PreferenceActivity
 				case CA:
 					nombre = R.string.pref_CA;
 					break;
+				case NZ:
+					nombre = R.string.pref_NZ;
+					break;
 				case UK:
 					nombre = R.string.pref_UK;
 					break;
