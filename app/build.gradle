@@ -9,6 +9,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 21
         versionName "0.21"
+        resConfigs "en", "es", "fr", "pt"
     }
 
     buildTypes {
