@@ -99,4 +99,21 @@
 <canal nombre="Canal 26" numero="26"/>
 </antena>
 <antena lat="-33.106461" lon="-64.38683" desc="Río Cuarto"/>
+<antena lat="-31.35487" lon="-64.19656">
+<canal nombre="cba24n" numero="31.1"/>
+<canal nombre="Canal 10" numero="31.2"/>
+</antena>
+<antena lat="-31.45984" lon="-64.2021">
+<canal nombre="Teleocho" numero="29.2"/>
+</antena>
+<antena lat="-31.38134" lon="-64.22592">
+<canal nombre="Canal 12" numero="40.1"/>
+</antena>
+<antena lat="-32.97742" lon="-60.72815">
+<canal nombre="Canal 3" numero="32.1"/>
+<canal nombre="Canal 5" numero="38.1"/>
+</antena>
+<antena lat="-34.91337" lon="-57.95124" desc="UNLP">
+<canal nombre="TV Universidad" numero="56"/>
+</antena>
 </antenas>
