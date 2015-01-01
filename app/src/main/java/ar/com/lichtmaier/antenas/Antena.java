@@ -80,7 +80,7 @@ public class Antena implements Serializable
 						sb.append(", ");
 					if(canal.nombre != null)
 						sb.append(canal.nombre);
-					if(canal.numero != null && (canal.nombre == null || !canal.nombre.startsWith("Canal ")))
+					if(canal.numero != null && (canal.nombre == null || !canal.númeroEnElNombre()))
 					{
 						if(canal.nombre != null)
 							sb.append(" (");

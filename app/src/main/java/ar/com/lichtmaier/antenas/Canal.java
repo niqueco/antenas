@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /** Un canal que es transmitido por una {@link ar.com.lichtmaier.antenas.Antena}. */
 public class Canal implements Serializable
@@ -115,7 +117,7 @@ public class Canal implements Serializable
 			vc.findViewById(R.id.imagen_canal).setVisibility(View.GONE);
 		}
 		TextView tv = (TextView)vc.findViewById(R.id.desc_canal);
-		if(nombre == null || !nombre.startsWith("Canal "))
+		if(nombre == null || !númeroEnElNombre())
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.append(ctx.getString(R.string.channel_number, numero));
@@ -129,5 +131,18 @@ public class Canal implements Serializable
 			tv.setVisibility(View.GONE);
 		}
 		return vc;
+	}
+
+	final private static Pattern patternCanal = Pattern.compile("(?:Canal|Channel) (\\d+)$");
+
+	boolean númeroEnElNombre()
+	{
+		if(nombre != null)
+		{
+			Matcher m = patternCanal.matcher(nombre);
+			if(m.find() && m.group(1).equals(numero))
+				return true;
+		}
+		return false;
 	}
 }
