@@ -1,10 +1,27 @@
 <antenas>
-<antena lat='-34.8954' lon='-56.1652' desc='La Tele (Canal 28)'/>
-<antena lat='-34.8987' lon='-56.1664' desc='Montecarlo TV (Canal 29)'/>
-<antena lat='-34.906617' lon='-56.186072' desc='TNU (Canal 30) y TV Ciudad (Canal 32)'/>
-<antena lat='-34.9082' lon='-56.1804' desc='Saeta (Canal 31)'/>
-<antena lat='-34.469786' lon='-57.845622' desc='TNU (Canal 30)'/>
-<antena lat='-34.810806' lon='-55.259774' desc='Canal 7 (Canal 24)'/>
-<antena lat='-34.923611' lon='-54.946483' desc='Canal 11'/>
-<antena lat='-34.377778' lon='-55.290278' desc='Canal 13'/>
+<antena lat='-34.8954' lon='-56.1652'>
+<canal nombre="La Tele" numero="28"/>
+</antena>
+<antena lat='-34.8987' lon='-56.1664'>
+<canal nombre="Montecarlo TV" numero="29"/>
+</antena>
+<antena lat='-34.90662' lon='-56.18607'>
+<canal nombre="TNU" numero="30"/>
+<canal nombre="TV Ciudad" numero="32"/>
+</antena>
+<antena lat='-34.9082' lon='-56.1804'>
+<canal nombre="Saeta" numero="31"/>
+</antena>
+<antena lat='-34.46979' lon='-57.84562'>
+<canal nombre="TNU" numero="30"/>
+</antena>
+<antena lat='-34.81081' lon='-55.25977'>
+<canal nombre="Canal 7" numero="24"/>
+</antena>
+<antena lat='-34.92361' lon='-54.94648'>
+<canal nombre="Canal 11" numero="41"/>
+</antena>
+<antena lat='-34.37778' lon='-55.29028'>
+<canal nombre="Canal 13" numero="21"/>
+</antena>
 </antenas>
