@@ -56,11 +56,12 @@ public class Antena implements Serializable
 		l.add(this);
 	}
 
-	private transient String tostring = null;
-	@Override
-	public String toString()
+	private transient String nombre = null;
+	private transient Locale localeNombre = null;
+	public String dameNombre(Context context)
 	{
-		if(tostring == null)
+		Locale locale = context.getResources().getConfiguration().locale;
+		if(nombre == null || !locale.equals(localeNombre))
 		{
 			StringBuilder sb = new StringBuilder();
 			if(descripción != null)
@@ -84,7 +85,7 @@ public class Antena implements Serializable
 					{
 						if(canal.nombre != null)
 							sb.append(" (");
-						sb.append("ch. ").append(canal.numero);
+						sb.append(context.getString(R.string.ch_number, canal.numero));
 						if(canal.nombre != null)
 							sb.append(")");
 					}
@@ -93,9 +94,10 @@ public class Antena implements Serializable
 
 			if(descripción != null && canales != null && !canales.isEmpty())
 				sb.append(")");
-			tostring = sb.toString();
+			nombre = sb.toString();
+			localeNombre = locale;
 		}
-		return tostring;
+		return nombre;
 	}
 
 	public LatLng getLatLng()

@@ -178,7 +178,7 @@ public class MapaActivity extends ActionBarActivity
 
 				Marker marker = mapa.addMarker(new MarkerOptions()
 						.position(antena.getLatLng())
-						.title(antena.toString())
+						.title(antena.dameNombre(getActivity()))
 						.icon(íconoAntenita));
 				markerAAntena.put(marker, antena);
 

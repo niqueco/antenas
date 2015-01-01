@@ -16,4 +16,5 @@
 	<string name="no_ubicacion">Impossible d\'obtenir l\'emplacement… le GPS est éteint?</string>
 	<string name="no_se_encontraron_antenas">Impossible de trouver un antenne à la distance configurée (%s).</string>
 	<string name="channel_number">canal %s</string>
+	<string name="ch_number">canal %s</string>
 </resources>

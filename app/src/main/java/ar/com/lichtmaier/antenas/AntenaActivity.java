@@ -188,7 +188,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 
 	protected void actualizarDescripción(TextView tv, Antena antena)
 	{
-		tv.setText(TextUtils.commaEllipsize(antena.toString(), tv.getPaint(), tv.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
+		tv.setText(TextUtils.commaEllipsize(antena.dameNombre(this), tv.getPaint(), tv.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
 	}
 
 	protected void asignarLayout()
@@ -476,7 +476,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 					contenedor.addView(v);
 				v.setOnClickListener(onAntenaClickedListener);
 				v.setFocusable(true);
-				((TextView)v.findViewById(R.id.antena_desc)).setText(a.toString());
+				((TextView)v.findViewById(R.id.antena_desc)).setText(a.dameNombre(this));
 				ponéDistancia(a, v);
 				antenaAVista.put(a, v);
 				vistaAAntena.put(v, a);

@@ -17,5 +17,6 @@
 	<string name="one_more">one more</string>
 	<string name="some_more">%d more</string>
 	<string name="channel_number">channel %s</string>
+	<string name="ch_number">ch. %s</string>
 
 </resources>
