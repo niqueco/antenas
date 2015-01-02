@@ -20,6 +20,8 @@ import com.google.android.gms.maps.model.LatLng;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 
 public class Antena implements Serializable
@@ -72,7 +74,7 @@ public class Antena implements Serializable
 					sb.append(" (");
 			}
 			if(canales != null)
-				dameDetalleCanales(context, sb);
+				sb.append(dameDetalleCanales(context));
 
 			if(descripción != null && canales != null && !canales.isEmpty())
 				sb.append(")");
@@ -82,7 +84,7 @@ public class Antena implements Serializable
 		return nombre;
 	}
 
-	private transient String detalleCanales = null;
+	private transient CharSequence detalleCanales = null;
 	private transient Locale localeDetalleCanales = null;
 
 	public CharSequence dameDetalleCanales(Context context)
@@ -92,15 +94,8 @@ public class Antena implements Serializable
 		Locale locale = context.getResources().getConfiguration().locale;
 		if(detalleCanales != null && locale.equals(localeDetalleCanales))
 			return detalleCanales;
-		StringBuilder sb = new StringBuilder();
-		dameDetalleCanales(context, sb);
-		detalleCanales = sb.toString();
-		localeDetalleCanales = locale;
-		return detalleCanales;
-	}
 
-	private void dameDetalleCanales(Context context, StringBuilder sb)
-	{
+		SpannableStringBuilder sb = new SpannableStringBuilder();
 		boolean primero = true;
 		for(Canal canal : canales)
 		{
@@ -112,13 +107,23 @@ public class Antena implements Serializable
 				sb.append(canal.nombre);
 			if(canal.numero != null && (canal.nombre == null || !canal.númeroEnElNombre()))
 			{
+				int desde = 0;
 				if(canal.nombre != null)
+				{
+					desde = sb.length() + 1;
 					sb.append(" (");
+				}
 				sb.append(context.getString(R.string.ch_number, canal.numero));
 				if(canal.nombre != null)
+				{
 					sb.append(")");
+					sb.setSpan(new RelativeSizeSpan(.8f), desde, sb.length(), 0);
+				}
 			}
 		}
+		detalleCanales = sb;
+		localeDetalleCanales = locale;
+		return detalleCanales;
 	}
 
 	public LatLng getLatLng()
