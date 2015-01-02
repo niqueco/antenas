@@ -58,6 +58,7 @@ public class Antena implements Serializable
 
 	private transient String nombre = null;
 	private transient Locale localeNombre = null;
+
 	public String dameNombre(Context context)
 	{
 		Locale locale = context.getResources().getConfiguration().locale;
@@ -71,26 +72,7 @@ public class Antena implements Serializable
 					sb.append(" (");
 			}
 			if(canales != null)
-			{
-				boolean primero = true;
-				for(Canal canal : canales)
-				{
-					if(primero)
-						primero = false;
-					else
-						sb.append(", ");
-					if(canal.nombre != null)
-						sb.append(canal.nombre);
-					if(canal.numero != null && (canal.nombre == null || !canal.númeroEnElNombre()))
-					{
-						if(canal.nombre != null)
-							sb.append(" (");
-						sb.append(context.getString(R.string.ch_number, canal.numero));
-						if(canal.nombre != null)
-							sb.append(")");
-					}
-				}
-			}
+				dameDetalleCanales(context, sb);
 
 			if(descripción != null && canales != null && !canales.isEmpty())
 				sb.append(")");
@@ -98,6 +80,45 @@ public class Antena implements Serializable
 			localeNombre = locale;
 		}
 		return nombre;
+	}
+
+	private transient String detalleCanales = null;
+	private transient Locale localeDetalleCanales = null;
+
+	public CharSequence dameDetalleCanales(Context context)
+	{
+		if(canales == null || canales.isEmpty())
+			return null;
+		Locale locale = context.getResources().getConfiguration().locale;
+		if(detalleCanales != null && locale.equals(localeDetalleCanales))
+			return detalleCanales;
+		StringBuilder sb = new StringBuilder();
+		dameDetalleCanales(context, sb);
+		detalleCanales = sb.toString();
+		localeDetalleCanales = locale;
+		return detalleCanales;
+	}
+
+	private void dameDetalleCanales(Context context, StringBuilder sb)
+	{
+		boolean primero = true;
+		for(Canal canal : canales)
+		{
+			if(primero)
+				primero = false;
+			else
+				sb.append(", ");
+			if(canal.nombre != null)
+				sb.append(canal.nombre);
+			if(canal.numero != null && (canal.nombre == null || !canal.númeroEnElNombre()))
+			{
+				if(canal.nombre != null)
+					sb.append(" (");
+				sb.append(context.getString(R.string.ch_number, canal.numero));
+				if(canal.nombre != null)
+					sb.append(")");
+			}
+		}
 	}
 
 	public LatLng getLatLng()

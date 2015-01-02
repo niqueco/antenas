@@ -180,15 +180,21 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 					pw = w;
 					n = antenaAVista.size();
 					for(Entry<Antena, View> e : antenaAVista.entrySet())
-						actualizarDescripción((TextView) e.getValue().findViewById(R.id.antena_desc), e.getKey());
+						actualizarDescripción(e.getValue(), e.getKey());
 				}
 			});
 		}
 	}
 
-	protected void actualizarDescripción(TextView tv, Antena antena)
+	protected void actualizarDescripción(View v, Antena antena)
 	{
-		tv.setText(TextUtils.commaEllipsize(antena.dameNombre(this), tv.getPaint(), tv.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
+		CharSequence detalleCanales = antena.dameDetalleCanales(this);
+		TextView tvDesc = (TextView)v.findViewById(R.id.antena_desc);
+		TextView tvDet = (TextView)v.findViewById(R.id.antena_detalle_canales);
+
+		tvDesc.setText(TextUtils.commaEllipsize(antena.descripción != null ? antena.descripción : detalleCanales, tvDesc.getPaint(), tvDesc.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
+		if(tvDet.getVisibility() != View.GONE)
+			tvDet.setText(TextUtils.commaEllipsize(detalleCanales, tvDet.getPaint(), tvDet.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
 	}
 
 	protected void asignarLayout()
@@ -476,7 +482,21 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 					contenedor.addView(v);
 				v.setOnClickListener(onAntenaClickedListener);
 				v.setFocusable(true);
-				((TextView)v.findViewById(R.id.antena_desc)).setText(a.dameNombre(this));
+				CharSequence detalleCanales = a.dameDetalleCanales(this);
+				TextView tvDesc = (TextView)v.findViewById(R.id.antena_desc);
+				TextView tvDetalle = (TextView)v.findViewById(R.id.antena_detalle_canales);
+				if(a.descripción != null)
+				{
+					tvDesc.setText(a.descripción);
+					if(detalleCanales != null)
+						tvDetalle.setText(detalleCanales);
+					else
+						tvDetalle.setVisibility(View.GONE);
+				} else
+				{
+					tvDesc.setText(detalleCanales);
+					tvDetalle.setVisibility(View.GONE);
+				}
 				ponéDistancia(a, v);
 				antenaAVista.put(a, v);
 				vistaAAntena.put(v, a);

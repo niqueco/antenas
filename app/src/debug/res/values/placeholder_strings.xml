@@ -4,4 +4,5 @@
 	<string name="placeholder_distancia_antena" tools:ignore="MissingTranslation">23,8 km</string>
 	<string name="placeholder_nombre_canal" tools:ignore="MissingTranslation">WPNYX-TV</string>
 	<string name="placeholder_desc_canal" tools:ignore="MissingTranslation">channel 23 (4)</string>
+	<string name="placeholder_detalle_canales" tools:ignore="MissingTranslation">El Trece (ch. 23), Telefé (ch. 12)</string>
 </resources>
