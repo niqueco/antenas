@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -23,12 +24,15 @@ import java.util.*;
 public class MapaActivity extends ActionBarActivity
 {
 	private static BitmapDescriptor íconoAntenita;
+	private Publicidad publicidad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mapa);
+
+		publicidad = new Publicidad(this, "ca-app-pub-0461170458442008/5727485755");
 
 		if(savedInstanceState == null)
 		{
@@ -50,6 +54,27 @@ public class MapaActivity extends ActionBarActivity
 	{
 		((Aplicacion)getApplication()).reportActivityStop(this);
 		super.onStop();
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		publicidad.onResume();
+	}
+
+	@Override
+	protected void onPause()
+	{
+		publicidad.onPause();
+		super.onPause();
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		publicidad.onDestroy();
+		super.onDestroy();
 	}
 
 	@Override
@@ -108,8 +133,15 @@ public class MapaActivity extends ActionBarActivity
 			mapa.setOnInfoWindowClickListener(this);
 			mapa.setInfoWindowAdapter(this);
 			mapa.setOnCameraChangeListener(this);
+			Location loc = null;
 			if(AntenaActivity.coordsUsuario != null)
+			{
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
+				loc = new Location("*");
+				loc.setLatitude(AntenaActivity.coordsUsuario.getLatitude());
+				loc.setLongitude(AntenaActivity.coordsUsuario.getLongitude());
+			}
+			((MapaActivity)act).publicidad.load(loc);
 			if(íconoAntenita == null)
 				íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);

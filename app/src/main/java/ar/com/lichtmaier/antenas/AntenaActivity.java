@@ -159,7 +159,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			nuevaUbicación();
 		}
 
-		publicidad = new Publicidad(this);
+		publicidad = new Publicidad(this, "ca-app-pub-0461170458442008/6164714153");
 
 		rotación = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
 

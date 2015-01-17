@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.app.Activity;
 import android.location.Location;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -12,12 +13,12 @@ class Publicidad
 {
 	private AdView adView;
 
-	Publicidad(AntenaActivity act)
+	Publicidad(Activity act, String adUnitId)
 	{
 		if(act instanceof UnaAntenaActivity)
 			return;
 		adView = new AdView(act);
-		adView.setAdUnitId("ca-app-pub-0461170458442008/6164714153");
+		adView.setAdUnitId(adUnitId);
 		adView.setAdSize(AdSize.BANNER);
 		ViewGroup v = (ViewGroup)act.findViewById(R.id.principal);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
