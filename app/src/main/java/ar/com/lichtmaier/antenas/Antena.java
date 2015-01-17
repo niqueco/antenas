@@ -170,7 +170,7 @@ public class Antena implements Serializable
 		{
 			ListIterator<Antena> it = res.listIterator(res.size());
 			while(it.previousIndex() > 4)
-				if(it.previous().dist > maxDist / 2)
+				if(it.previous().dist > (maxDist * 2) / 3)
 					it.remove();
 		}
 		return res;
