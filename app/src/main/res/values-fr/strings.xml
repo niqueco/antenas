@@ -17,4 +17,6 @@
 	<string name="no_se_encontraron_antenas">Impossible de trouver un antenne à la distance configurée (%s).</string>
 	<string name="channel_number">canal %s</string>
 	<string name="ch_number">canal %s</string>
+	<string name="gps_is_off">Le GPS est désactivé!</string>
+	<string name="gps_prender">Allumez-le</string>
 </resources>

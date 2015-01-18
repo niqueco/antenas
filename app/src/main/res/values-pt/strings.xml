@@ -18,5 +18,7 @@
 	<string name="some_more">%d mais</string>
 	<string name="channel_number">canal %s</string>
 	<string name="ch_number">canal %s</string>
+	<string name="gps_is_off">O GPS está desligado!</string>
+	<string name="gps_prender">Ligá-lo</string>
 
 </resources>

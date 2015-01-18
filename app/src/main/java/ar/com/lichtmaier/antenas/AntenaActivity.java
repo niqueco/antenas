@@ -35,6 +35,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationRequest;
+import com.nispok.snackbar.Snackbar;
+import com.nispok.snackbar.listeners.ActionClickListener;
 
 public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
 {
@@ -157,6 +159,23 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		{
 			coordsUsuario = new GlobalCoordinates(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
 			nuevaUbicación();
+		}
+
+		if(savedInstanceState == null && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
+		{
+			Snackbar.with(getApplicationContext())
+					.text(R.string.gps_is_off)
+					.actionLabel(R.string.gps_prender)
+					.actionListener(new ActionClickListener()
+					{
+						@Override
+						public void onActionClicked(Snackbar snackbar)
+						{
+							startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+						}
+					})
+					.duration(Snackbar.SnackbarDuration.LENGTH_INDEFINITE)
+					.show(this);
 		}
 
 		publicidad = new Publicidad(this, "ca-app-pub-0461170458442008/6164714153");
