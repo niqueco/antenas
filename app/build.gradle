@@ -44,7 +44,7 @@ dependencies {
     normalCompile 'com.google.android.gms:play-services-maps:6.5.87'
     normalCompile 'com.google.android.gms:play-services-ads:6.5.87'
     compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.github.davidmoten:geo:0.6.10'
+    compile 'com.github.davidmoten:geo:0.7'
     compile files('libs/geodesy.jar')
-    compile 'com.nispok:snackbar:2.7.4'
+    compile 'com.nispok:snackbar:2.7.5'
 }
