@@ -35,7 +35,10 @@
     <string name="pref_US">Estados Unidos</string>
     <string name="pref_UY">Uruguay</string>
 
-    <string name="pref_país_summary">Mostrar las %1$,d antenas de %2$s.</string>
+	<plurals name="pref_país_summary">
+		<item quantity="one">Mostrar la antena de %2$s.</item>
+		<item quantity="other">Mostrar las %1$,d antenas de %2$s.</item>
+	</plurals>
 
 	<string name="pref_header_general">General</string>
 	<string name="pref_unit_title">Unidad de distancia</string>

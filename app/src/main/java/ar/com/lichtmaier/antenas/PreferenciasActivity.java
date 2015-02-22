@@ -83,8 +83,10 @@ public class PreferenciasActivity extends PreferenceActivity
 				default:
 					throw new RuntimeException("pais " + país);
 			}
-			findPreference("mapa_país_" + país).setSummary(getString(R.string.pref_país_summary,
-					Antena.dameAntenas(this, país).size(),
+			int cantAntenas = Antena.dameAntenas(this, país).size();
+			findPreference("mapa_país_" + país)
+				.setSummary(getResources().getQuantityString(R.plurals.pref_país_summary,
+					cantAntenas, cantAntenas,
 					getString(nombre)));
 		}
 
