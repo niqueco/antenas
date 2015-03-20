@@ -1,6 +1,5 @@
 package ar.com.lichtmaier.antenas;
 
-import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -9,17 +8,17 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
 
-public class LocationClientCompat
+public class LocationClientCompat implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener
 {
 	private final LocationClient locationClient;
 	private final AntenaActivity activity;
-	private LocationRequest locationRequest;
+	private final LocationRequest locationRequest;
 
 	public LocationClientCompat(AntenaActivity activity, LocationRequest locationRequest)
 	{
 		this.activity = activity;
 		this.locationRequest = locationRequest;
-		locationClient = new LocationClient(activity, activity, activity);
+		locationClient = new LocationClient(activity, this, this);
 	}
 
 	public void onStart()
@@ -59,5 +58,22 @@ public class LocationClientCompat
 	public void connect()
 	{
 		locationClient.connect();
+	}
+
+	@Override
+	public void onConnected(Bundle bundle)
+	{
+		activity.onConnected(bundle);
+	}
+
+	@Override
+	public void onDisconnected()
+	{
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult connectionResult)
+	{
+		activity.onConnectionFailed(connectionResult);
 	}
 }

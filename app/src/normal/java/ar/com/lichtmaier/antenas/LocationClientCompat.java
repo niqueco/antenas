@@ -72,7 +72,6 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	@Override
 	public void onConnectionSuspended(int i)
 	{
-		activity.onDisconnected();
 	}
 
 	@Override

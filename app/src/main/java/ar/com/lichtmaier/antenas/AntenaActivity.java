@@ -33,12 +33,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationRequest;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.listeners.ActionClickListener;
 
-public class AntenaActivity extends ActionBarActivity implements SensorEventListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener
+public class AntenaActivity extends ActionBarActivity implements SensorEventListener, com.google.android.gms.location.LocationListener
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
@@ -571,7 +570,6 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		return nf.format(distancia / f) + ' ' + unit;
 	}
 
-	@Override
 	public void onConnectionFailed(ConnectionResult r)
 	{
 		if(r.hasResolution())
@@ -609,7 +607,6 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 	}
 
-	@Override
 	public void onConnected(Bundle arg0)
 	{
 		Location location = locationClient.getLastLocation();
@@ -620,11 +617,6 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		}
 		locationClient.onConnected();
 		publicidad.load(location);
-	}
-
-	@Override
-	public void onDisconnected()
-	{
 	}
 
 	@Override
