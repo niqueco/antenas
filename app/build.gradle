@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "22"
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionName "1.1"
         resConfigs "en", "en-rGB", "en-rUS", "es", "es-rUS", "fr", "fr-rCA", "pt"
     }
@@ -37,13 +37,13 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:support-v4:22.0.0'
     //noinspection GradleDependency
     froyoCompile 'com.google.android.gms:play-services:3.2.65'
     normalCompile 'com.google.android.gms:play-services-location:7.0.0'
     normalCompile 'com.google.android.gms:play-services-maps:7.0.0'
     normalCompile 'com.google.android.gms:play-services-ads:7.0.0'
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.github.davidmoten:geo:0.7'
     compile files('libs/geodesy.jar')
     compile 'com.nispok:snackbar:2.7.5'
