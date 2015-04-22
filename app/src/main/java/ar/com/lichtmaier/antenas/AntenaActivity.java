@@ -53,6 +53,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
 	private Publicidad publicidad;
 	private int rotación;
+	boolean huboSavedInstanceState;
 
 	private LocationManager locationManager;
 
@@ -160,22 +161,7 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 			nuevaUbicación();
 		}
 
-		if(savedInstanceState == null && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
-		{
-			Snackbar.with(getApplicationContext())
-					.text(R.string.gps_is_off)
-					.actionLabel(R.string.gps_prender)
-					.actionListener(new ActionClickListener()
-					{
-						@Override
-						public void onActionClicked(Snackbar snackbar)
-						{
-							startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-						}
-					})
-					.duration(Snackbar.SnackbarDuration.LENGTH_INDEFINITE)
-					.show(this);
-		}
+		huboSavedInstanceState = savedInstanceState != null;
 
 		publicidad = new Publicidad(this, "ca-app-pub-0461170458442008/6164714153");
 
@@ -585,6 +571,9 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 		} else
 		{
 			Log.e("antenas", "Play Services no disponible: " + r + ". No importa, sobreviviremos.");
+
+			pedirCambioConfiguración();
+
 			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 			locationClient = null;
 			if(coordsUsuario == null)
@@ -604,6 +593,26 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 					}
 				}
 			}
+		}
+	}
+
+	void pedirCambioConfiguración()
+	{
+		if(!huboSavedInstanceState && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
+		{
+			Snackbar.with(getApplicationContext())
+					.text(R.string.gps_is_off)
+					.actionLabel(R.string.gps_prender)
+					.actionListener(new ActionClickListener()
+					{
+						@Override
+						public void onActionClicked(Snackbar snackbar)
+						{
+							startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+						}
+					})
+					.duration(Snackbar.SnackbarDuration.LENGTH_INDEFINITE)
+					.show(this);
 		}
 	}
 
@@ -636,6 +645,10 @@ public class AntenaActivity extends ActionBarActivity implements SensorEventList
 				{
 					locationClient.connect();
 				}
+				return;
 		}
+		if(locationClient.onActivityResult(requestCode, resultCode, data))
+			return;
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }

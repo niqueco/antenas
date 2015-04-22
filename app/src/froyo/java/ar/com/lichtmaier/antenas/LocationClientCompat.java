@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
 
+@SuppressWarnings({"UnusedParameters", "SameReturnValue"})
 public class LocationClientCompat implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener
 {
 	private final LocationClient locationClient;
@@ -52,6 +54,7 @@ public class LocationClientCompat implements GooglePlayServicesClient.Connection
 
 	public void onConnected()
 	{
+		activity.pedirCambioConfiguración();
 		locationClient.requestLocationUpdates(locationRequest, activity);
 	}
 
@@ -75,5 +78,10 @@ public class LocationClientCompat implements GooglePlayServicesClient.Connection
 	public void onConnectionFailed(ConnectionResult connectionResult)
 	{
 		activity.onConnectionFailed(connectionResult);
+	}
+
+	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		return false;
 	}
 }
