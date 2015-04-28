@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import android.widget.*;
 
@@ -21,7 +21,7 @@ import com.google.android.gms.maps.model.*;
 
 import java.util.*;
 
-public class MapaActivity extends ActionBarActivity
+public class MapaActivity extends AppCompatActivity
 {
 	private static BitmapDescriptor íconoAntenita;
 	private Publicidad publicidad;
@@ -153,7 +153,7 @@ public class MapaActivity extends ActionBarActivity
 				@Override
 				public void run()
 				{
-					ActionBarActivity activity = (ActionBarActivity)getActivity();
+					AppCompatActivity activity = (AppCompatActivity)getActivity();
 					if(activity == null)
 						return;
 					ActionBar actionBar = activity.getSupportActionBar();

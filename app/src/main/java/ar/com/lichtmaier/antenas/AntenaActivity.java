@@ -25,7 +25,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.*;
@@ -37,7 +37,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.listeners.ActionClickListener;
 
-public class AntenaActivity extends ActionBarActivity implements SensorEventListener, com.google.android.gms.location.LocationListener
+public class AntenaActivity extends AppCompatActivity implements SensorEventListener, com.google.android.gms.location.LocationListener
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
