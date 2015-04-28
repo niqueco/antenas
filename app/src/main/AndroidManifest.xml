@@ -55,7 +55,7 @@
             android:name=".PreferenciasActivity"
             android:label="@string/action_settings"
             android:parentActivityName=".AntenaActivity"
-            android:theme="@style/Theme.AppCompat.Light">
+            android:theme="@style/TemaPreferencias">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ar.com.lichtmaier.antenas.AntenaActivity"/>

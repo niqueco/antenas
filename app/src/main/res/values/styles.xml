@@ -35,6 +35,11 @@
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
+	<style name="TemaPreferencias" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/celeste_lindo</item>
+		<item name="colorPrimaryDark">@color/celeste_lindo_oscuro</item>
+	</style>
+
 	<style name="InfoMapa" parent="ThemeOverlay.AppCompat.Light">
 		<item name="android:textAppearanceLarge">@style/textoGrandeInfoMapa</item>
 		<item name="android:textAppearanceMedium">@style/textoChicoInfoMapa</item>

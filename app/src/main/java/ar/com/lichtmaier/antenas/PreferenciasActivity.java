@@ -11,7 +11,9 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
-public class PreferenciasActivity extends PreferenceActivity
+import ar.com.lichtmaier.util.AppCompatPreferenceActivity;
+
+public class PreferenciasActivity extends AppCompatPreferenceActivity
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
