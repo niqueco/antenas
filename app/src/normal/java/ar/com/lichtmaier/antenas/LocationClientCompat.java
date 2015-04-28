@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -26,6 +27,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	{
 		this.activity = activity;
 		this.locationRequest = locationRequest;
+		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
 		google = new GoogleApiClient.Builder(activity).addApi(LocationServices.API)
 			.addConnectionCallbacks(this)
 			.addOnConnectionFailedListener(this)
@@ -40,7 +42,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	public void onResume()
 	{
 		if(google.isConnected())
-			LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, activity);
+			LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
 		else if(!google.isConnecting())
 			google.connect();
 	}
@@ -63,7 +65,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 
 	public void onConnected()
 	{
-		LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, activity);
+		LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
 	}
 
 	public void connect()
@@ -76,6 +78,11 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	{
 		activity.onConnected(bundle);
 
+		verificarConfiguración();
+	}
+
+	private void verificarConfiguración()
+	{
 		LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
 			.addLocationRequest(locationRequest);
 		PendingResult<LocationSettingsResult> result =
@@ -122,4 +129,19 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		}
 		return false;
 	}
+
+	final private LocationCallback locationCallback = new LocationCallback()
+	{
+		@Override
+		public void onLocationAvailability(LocationAvailability locationAvailability)
+		{
+			verificarConfiguración();
+		}
+
+		@Override
+		public void onLocationResult(LocationResult result)
+		{
+			activity.onLocationChanged(result.getLastLocation());
+		}
+	};
 }
