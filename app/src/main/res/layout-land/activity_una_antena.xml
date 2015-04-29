@@ -20,7 +20,7 @@
 	android:paddingRight="@dimen/activity_horizontal_margin"
 	android:paddingTop="@dimen/activity_vertical_margin">
 
-	<LinearLayout
+	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1"
@@ -30,21 +30,26 @@
 		<ar.com.lichtmaier.antenas.FlechaView
 			android:id="@+id/flecha"
 			android:layout_width="wrap_content"
-			android:layout_height="match_parent"/>
+			android:layout_height="match_parent"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"/>
 
 		<ScrollView
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-			>
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:layout_toRightOf="@+id/flecha"
+			android:layout_toEndOf="@+id/flecha">
 
 		<LinearLayout
 			android:id="@+id/columna_derecha"
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center_vertical"
 			android:layout_marginLeft="32dp"
 			android:layout_marginStart="32dp"
+			android:minWidth="192dp"
 			android:orientation="vertical"
 			tools:ignore="InconsistentLayout">
 
@@ -74,7 +79,7 @@
 				/>
 		</LinearLayout>
 		</ScrollView>
-	</LinearLayout>
+	</RelativeLayout>
 
 </LinearLayout>
 </FrameLayout>

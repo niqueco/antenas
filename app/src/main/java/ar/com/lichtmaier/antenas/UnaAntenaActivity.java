@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.*;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -59,7 +60,14 @@ public class UnaAntenaActivity extends AntenaActivity
 			{
 				View vc = canal.dameViewCanal(this, p, hayImágenes);
 				p.addView(vc);
-				vistasAnimadas.add(vc);
+				if(p.getId() != R.id.columna_derecha)
+					vistasAnimadas.add(vc);
+			}
+			if(p.getId() == R.id.columna_derecha)
+			{
+				if(p.getParent() instanceof ScrollView)
+					p = (ViewGroup)p.getParent();
+				vistasAnimadas.add(p);
 			}
 		}
 
