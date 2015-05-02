@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<style name="TemaApp" parent="Theme.AppCompat">
+	<style name="TemaApp" parent="Theme.AppCompat.NoActionBar">
 		<item name="colorPrimary">@color/celeste_lindo</item>
 		<item name="colorPrimaryDark">@color/celeste_lindo_oscuro</item>
 	</style>
@@ -17,17 +17,6 @@
 		<item name="displayOptions">showHome</item>
 		<item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
-
-    <style name="TemaApp.Mapa">
-        <item name="windowActionBarOverlay">true</item>
-        <item name="actionBarStyle">@style/ActionBarMapa</item>
-    </style>
-
-	<style name="ActionBarMapa" parent="@style/Widget.AppCompat.ActionBar">
-		<item name="background">@drawable/x_ab_solid_dark_holo</item>
-		<item name="displayOptions">showHome|useLogo|homeAsUp|showTitle</item>
-		<item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-	</style>
 
 	<style name="TemaApp.Antenas.Transparente">
 		<!-- <item name="android:windowNoTitle">true</item> -->

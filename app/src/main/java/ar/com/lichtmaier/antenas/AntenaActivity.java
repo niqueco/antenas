@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.*;
@@ -111,6 +112,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		super.onCreate(savedInstanceState);
 		asignarLayout();
+
+		Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
+		if(tb != null)
+		{
+			setSupportActionBar(tb);
+			getSupportActionBar().setDisplayShowTitleEnabled(false);
+		}
 
 		try
 		{
