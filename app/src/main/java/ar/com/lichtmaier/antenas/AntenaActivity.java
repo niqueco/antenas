@@ -22,6 +22,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.ContentLoadingProgressBar;
@@ -30,6 +31,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.*;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -195,6 +197,37 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 						actualizarDescripción(e.getValue(), e.getKey());
 				}
 			});
+		}
+
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		{
+			final ScrollView sv = (ScrollView)findViewById(R.id.scroll);
+			final float density = getResources().getDisplayMetrics().density;
+			if(sv != null)
+			{
+				final ViewTreeObserver.OnScrollChangedListener scrollChangedListener;
+				scrollChangedListener = new ViewTreeObserver.OnScrollChangedListener()
+				{
+					@Override
+					public void onScrollChanged()
+					{
+						Log.i("antenas", "scroll=" + sv.getScrollY());
+						getSupportActionBar().setElevation(Math.min(sv.getScrollY() / 8f, density * 8f));
+					}
+				};
+				final ViewTreeObserver o = sv.getViewTreeObserver();
+				o.addOnScrollChangedListener(scrollChangedListener);
+				o.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
+				{
+					@Override
+					public boolean onPreDraw()
+					{
+						sv.getViewTreeObserver().removeOnPreDrawListener(this);
+						scrollChangedListener.onScrollChanged();
+						return true;
+					}
+				});
+			}
 		}
 	}
 
@@ -533,7 +566,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 	private void ponéDistancia(Antena a, View v)
 	{
-		ponéDistancia(a, (TextView) v.findViewById(R.id.antena_dist));
+		ponéDistancia(a, (TextView)v.findViewById(R.id.antena_dist));
 	}
 
 	protected void ponéDistancia(Antena a, TextView tv)
