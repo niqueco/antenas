@@ -11,3 +11,6 @@ build/
 .idea/dictionaries
 local.properties
 .navigation/
+manifest-merger-*.txt
+*.iml
+/device-*.png
