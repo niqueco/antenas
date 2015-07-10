@@ -237,6 +237,12 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		TextView tvDesc = (TextView)v.findViewById(R.id.antena_desc);
 		TextView tvDet = (TextView)v.findViewById(R.id.antena_detalle_canales);
 
+		if(antena.descripción == null && detalleCanales == null)
+		{
+			Log.e("antenas", "Antena sin nombre ni canales: " + antena);
+			return;
+		}
+
 		tvDesc.setText(TextUtils.commaEllipsize(antena.descripción != null ? antena.descripción : detalleCanales, tvDesc.getPaint(), tvDesc.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
 		if(tvDet.getVisibility() != View.GONE)
 			tvDet.setText(TextUtils.commaEllipsize(detalleCanales, tvDet.getPaint(), tvDet.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));

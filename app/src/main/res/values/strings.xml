@@ -21,4 +21,8 @@
 	<string name="gps_is_off">GPS is off!</string>
 	<string name="gps_prender">Turn it on</string>
 
+	<plurals name="senales">
+		<item quantity="one">%1$,d channel</item>
+		<item quantity="other">%1$,d channels</item>
+	</plurals>
 </resources>

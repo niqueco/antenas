@@ -1,9 +1,18 @@
 package ar.com.lichtmaier.antenas;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.util.*;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.net.Uri;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.util.Log;
+
+import com.github.davidmoten.geo.Coverage;
+import com.github.davidmoten.geo.GeoHash;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GeodeticCalculator;
@@ -13,16 +22,10 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.github.davidmoten.geo.Coverage;
-import com.github.davidmoten.geo.GeoHash;
-import com.google.android.gms.maps.model.LatLng;
-
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.text.SpannableStringBuilder;
-import android.text.style.RelativeSizeSpan;
-import android.util.Log;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.*;
 
 public class Antena implements Serializable
 {
@@ -91,6 +94,12 @@ public class Antena implements Serializable
 	{
 		if(canales == null || canales.isEmpty())
 			return null;
+		if(canales.size() > 12)
+		{
+			SpannableString spannableString = new SpannableString(context.getResources().getQuantityString(R.plurals.senales, canales.size(), canales.size()));
+			spannableString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spannableString.length(), 0);
+			return spannableString;
+		}
 		Locale locale = context.getResources().getConfiguration().locale;
 		if(detalleCanales != null && locale.equals(localeDetalleCanales))
 			return detalleCanales;
@@ -113,7 +122,7 @@ public class Antena implements Serializable
 					desde = sb.length() + 1;
 					sb.append(" (");
 				}
-				sb.append(context.getString(R.string.ch_number, canal.numero));
+				sb.append(canal.numero);
 				if(canal.nombre != null)
 				{
 					sb.append(")");

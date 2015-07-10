@@ -19,4 +19,9 @@
 	<string name="ch_number">canal %s</string>
 	<string name="gps_is_off">Le GPS est désactivé!</string>
 	<string name="gps_prender">Allumez-le</string>
+
+	<plurals name="senales">
+		<item quantity="one">%1$,d chaîne</item>
+		<item quantity="other">%1$,d chaînes</item>
+	</plurals>
 </resources>
