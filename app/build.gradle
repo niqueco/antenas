@@ -37,14 +37,14 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:support-v4:22.2.1'
     //noinspection GradleDependency
     froyoCompile 'com.google.android.gms:play-services:3.2.65'
     normalCompile 'com.google.android.gms:play-services-location:7.5.0'
     normalCompile 'com.google.android.gms:play-services-maps:7.5.0'
     normalCompile 'com.google.android.gms:play-services-ads:7.5.0'
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
     compile 'com.github.davidmoten:geo:0.7.1'
     compile files('libs/geodesy.jar')
-    compile 'com.nispok:snackbar:2.7.5'
 }

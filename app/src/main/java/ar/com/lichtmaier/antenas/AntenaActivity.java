@@ -25,6 +25,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,8 +38,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
-import com.nispok.snackbar.Snackbar;
-import com.nispok.snackbar.listeners.ActionClickListener;
 
 public class AntenaActivity extends AppCompatActivity implements SensorEventListener, com.google.android.gms.location.LocationListener
 {
@@ -647,19 +646,16 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		if(!huboSavedInstanceState && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
 		{
-			Snackbar.with(getApplicationContext())
-					.text(R.string.gps_is_off)
-					.actionLabel(R.string.gps_prender)
-					.actionListener(new ActionClickListener()
+			Snackbar.make(findViewById(R.id.scroll), R.string.gps_is_off, Snackbar.LENGTH_INDEFINITE)
+					.setAction(R.string.gps_prender, new View.OnClickListener()
 					{
 						@Override
-						public void onActionClicked(Snackbar snackbar)
+						public void onClick(View v)
 						{
 							startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 						}
 					})
-					.duration(Snackbar.SnackbarDuration.LENGTH_INDEFINITE)
-					.show(this);
+					.show();
 		}
 	}
 
