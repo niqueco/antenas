@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:textColor="#ffff"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:text="@string/placeholder_detalle_canales"
             tools:ignore="UnusedAttribute"/>
 
@@ -44,7 +44,7 @@
             android:id="@+id/antena_dist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#fddd"
             android:text="@string/placeholder_distancia_antena"/>
     </LinearLayout>
