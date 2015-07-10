@@ -11,11 +11,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.*;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.*;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -105,7 +105,9 @@ public class MapaActivity extends AppCompatActivity
 		return super.onOptionsItemSelected(item);
 	}
 
-	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.InfoWindowAdapter, GoogleMap.OnCameraChangeListener
+	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
+			GoogleMap.OnInfoWindowClickListener, GoogleMap.InfoWindowAdapter,
+			GoogleMap.OnCameraChangeListener, GoogleMap.OnMarkerClickListener
 	{
 		private GoogleMap mapa;
 
@@ -141,6 +143,7 @@ public class MapaActivity extends AppCompatActivity
 			mapa.setOnInfoWindowClickListener(this);
 			mapa.setInfoWindowAdapter(this);
 			mapa.setOnCameraChangeListener(this);
+			mapa.setOnMarkerClickListener(this);
 			Location loc = null;
 			if(AntenaActivity.coordsUsuario != null)
 			{
@@ -319,6 +322,25 @@ public class MapaActivity extends AppCompatActivity
 			}
 			v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 			return v;
+		}
+
+		@Override
+		public boolean onMarkerClick(final Marker marker)
+		{
+			int zoom = (int)mapa.getCameraPosition().zoom;
+			CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude + (double)90/Math.pow(2, zoom), marker.getPosition().longitude), zoom);
+			mapa.animateCamera(cu, 200, new GoogleMap.CancelableCallback()
+			{
+				@Override
+				public void onFinish()
+				{
+					marker.showInfoWindow();
+				}
+
+				@Override
+				public void onCancel() { }
+			});
+			return true;
 		}
 	}
 }
