@@ -123,7 +123,7 @@ public class Canal implements Serializable
 			sb.append(ctx.getString(R.string.channel_number, numero));
 			if(numeroVirtual != null)
 				sb.append(" (").append(numeroVirtual).append(")");
-			if(logo == 0 && cadena != null && !cadena.equals("IND") && !cadena.equals("INDE") && !cadena.equals("NONE") && !cadena.isEmpty())
+			if(logo == 0 && cadena != null && !cadena.equals("IND") && !cadena.equals("INDE") && !cadena.equals("NONE") && cadena.length() != 0)
 				sb.append(" - ").append(cadena);
 			tv.setText(sb.toString());
 		} else
