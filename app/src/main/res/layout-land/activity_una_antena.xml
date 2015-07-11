@@ -71,7 +71,7 @@
 				android:fontFamily="sans-serif-light"
 				android:textColor="#ffff"
 				android:textSize="40sp"
-				android:text="@string/placeholder_nombre_antena"
+				tools:text="Buenos Aires"
 				tools:ignore="UnusedAttribute"/>
 
 			<TextView
@@ -80,7 +80,7 @@
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:textColor="#fddd"
-				android:text="@string/placeholder_distancia_antena"/>
+				tools:text="23,8 km"/>
 			<View
 				android:id="@+id/antes_de_canales"
 				android:layout_width="match_parent"
