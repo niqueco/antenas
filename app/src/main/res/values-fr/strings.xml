@@ -7,7 +7,7 @@
 	<string name="some_more">%d plus</string>
 	<string name="one_more">une plus</string>
 	<string name="action_mapa">Carte</string>
-	<string name="app_no_disponible">Aucune application disponible pour gérer la transaction.</string>
+	<string name="app_no_disponible">Aucune application disponible pour gérer l\'opération.</string>
 	<string name="fallo_inicializar_mapa">Uhm… pour une raison pas initialiser la carte.</string>
 	<string name="action_ayuda">Aide à la télévision numérique</string>
 	<string name="action_ayuda_ar">Aide à la télévision numérique</string>
