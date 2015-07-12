@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
@@ -26,6 +27,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
+import android.support.annotation.RequiresPermission;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,6 +47,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
+	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 
 	final private Map<Antena, View> antenaAVista = new HashMap<>();
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
@@ -56,6 +61,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private Publicidad publicidad;
 	private int rotación;
 	boolean huboSavedInstanceState;
+	private boolean seMuestraRuegoDePermisos;
 
 	private LocationManager locationManager;
 
@@ -158,11 +164,31 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-		locationClient = new LocationClientCompat(this, LocationRequest.create()
-				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-				.setInterval(10000)
-				.setFastestInterval(2000)
-				.setSmallestDisplacement(10));
+		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+		{
+			if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION))
+			{
+				ViewGroup principal = (ViewGroup)findViewById(R.id.principal);
+				View view = getLayoutInflater().inflate(R.layout.permiso_necesario, principal, false);
+				((TextView)view.findViewById(android.R.id.text1)).setText(R.string.explicacion_permiso_gps);
+				view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener()
+				{
+					@Override
+					public void onClick(View v)
+					{
+						ActivityCompat.requestPermissions(AntenaActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_FINE_LOCATION);
+					}
+				});
+				principal.addView(view);
+				seMuestraRuegoDePermisos = true;
+			} else
+			{
+				ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_FINE_LOCATION);
+			}
+		} else
+		{
+			crearLocationClientCompat();
+		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
 		{
@@ -228,6 +254,35 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				});
 			}
 		}
+	}
+
+	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+	private void crearLocationClientCompat()
+	{
+		if(seMuestraRuegoDePermisos)
+		{
+			ViewGroup principal = (ViewGroup)findViewById(R.id.principal);
+			View pedido = principal.findViewById(R.id.pedido_de_permisos);
+			principal.removeView(pedido);
+		}
+		locationClient = new LocationClientCompat(this, LocationRequest.create()
+				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+				.setInterval(10000)
+				.setFastestInterval(2000)
+				.setSmallestDisplacement(10));
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+	{
+		if(requestCode == PEDIDO_DE_PERMISO_FINE_LOCATION)
+		{
+			if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+				crearLocationClientCompat();
+			else
+				finish();
+		} else
+			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 	protected void actualizarDescripción(View v, Antena antena)

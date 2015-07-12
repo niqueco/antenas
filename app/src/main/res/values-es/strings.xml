@@ -25,5 +25,8 @@
 		<item quantity="one">%1$,d señal</item>
 		<item quantity="other">%1$,d señales</item>
 	</plurals>
+	<string name="solicitar_permiso">Solicitar permiso</string>
+	<string name="explicacion_permiso_almacenamiento">El mapa necesita acceso al almacenamiento para funcionar porque guarda allí información de mapa para funcionar con más rapidez y eficiencia.</string>
+	<string name="explicacion_permiso_gps">Esta aplicación necesita acceso a tu GPS para saber dónde estás y así poder decirte cuáles son las antenas de TV más cercanas!</string>
 
 </resources>

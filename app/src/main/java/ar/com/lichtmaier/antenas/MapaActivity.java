@@ -1,14 +1,19 @@
 package ar.com.lichtmaier.antenas;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +33,9 @@ public class MapaActivity extends AppCompatActivity
 	private static BitmapDescriptor íconoAntenita;
 	private Publicidad publicidad;
 
+	private static final int PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE = 144;
+	private boolean seMuestraRuegoDePermisos;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -44,10 +52,53 @@ public class MapaActivity extends AppCompatActivity
 
 		if(savedInstanceState == null)
 		{
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new MapaFragment())
-					.commit();
+			if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+			{
+				if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE))
+				{
+					ViewGroup container = (ViewGroup)findViewById(R.id.container);
+					View view = getLayoutInflater().inflate(R.layout.permiso_necesario, container, false);
+					((TextView)view.findViewById(android.R.id.text1)).setText(R.string.explicacion_permiso_almacenamiento);
+					view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener()
+					{
+						@Override
+						public void onClick(View v)
+						{
+							requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE);
+						}
+					});
+					container.addView(view);
+					seMuestraRuegoDePermisos = true;
+				}
+				if(!seMuestraRuegoDePermisos)
+				{
+					ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE);
+				}
+			} else
+			{
+				getSupportFragmentManager().beginTransaction()
+						.add(R.id.container, new MapaFragment())
+						.commit();
+			}
 		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	{
+		if(requestCode == PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE)
+		{
+			if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+			{
+				if(seMuestraRuegoDePermisos)
+					((ViewGroup)findViewById(R.id.container)).removeAllViews();
+				getSupportFragmentManager().beginTransaction()
+						.add(R.id.container, new MapaFragment())
+						.commit();
+			} else
+				finish();
+		} else
+			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 	@Override

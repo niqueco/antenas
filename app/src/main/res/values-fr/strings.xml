@@ -24,4 +24,7 @@
 		<item quantity="one">%1$,d chaîne</item>
 		<item quantity="other">%1$,d chaînes</item>
 	</plurals>
+	<string name="explicacion_permiso_gps">Cette application a besoin d\'accéder à votre GPS pour savoir où vous êtes et ainsi vous aider à trouver l\'antenne la plus proche!</string>
+	<string name="explicacion_permiso_almacenamiento">La carte doit avoir accès au stockage parce qu\'il l\'utilise pour enregistrer les données de carte de fonctionner plus rapidement.</string>
+	<string name="solicitar_permiso">Demander la permission</string>
 </resources>
