@@ -1,5 +1,5 @@
 <antenas>
-<antena lat="-54.8011" lon="-68.2219" desc="Ushuaia" ref="265">
+<antena lat="-54.8011" lon="-68.2219" desc="Ushuaia" ref="265" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -17,7 +17,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-51.53702" lon="-72.34806" desc="Río Turbio" ref="301">
+<antena lat="-51.53702" lon="-72.34806" desc="Río Turbio" ref="301" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -35,7 +35,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-51.6701" lon="-69.2317" desc="Río Gallegos" ref="262">
+<antena lat="-51.6701" lon="-69.2317" desc="Río Gallegos" ref="262" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -53,7 +53,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-49.9637" lon="-68.9124" desc="Comandante Piedrabuena" ref="258">
+<antena lat="-49.3118" lon="-67.7453" desc="Puerto San Julián" ref="261" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -71,7 +71,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-49.3118" lon="-67.7453" desc="Puerto San Julián" ref="261">
+<antena lat="-46.8054" lon="-67.9887" desc="Pico Truncado" ref="242" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -89,7 +89,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-46.8054" lon="-67.9887" desc="Pico Truncado" ref="242">
+<antena lat="-46.4579" lon="-67.5144" desc="Caleta Olivia" ref="240" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -107,7 +107,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-46.4579" lon="-67.5144" desc="Caleta Olivia" ref="240">
+<antena lat="-47.7427" lon="-65.8735" desc="Puerto Deseado" ref="260" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -125,7 +125,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-47.7427" lon="-65.8735" desc="Puerto Deseado" ref="260">
+<antena lat="-45.8546" lon="-67.4884" desc="Comodoro Rivadavia" ref="239" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -143,7 +143,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-45.8546" lon="-67.4884" desc="Comodoro Rivadavia" ref="239">
+<antena lat="-42.0516" lon="-71.5833" desc="Lago Puelo" ref="244" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -161,7 +161,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-42.0516" lon="-71.5833" desc="Lago Puelo" ref="244">
+<antena lat="-41.1342" lon="-71.2763" desc="Bariloche" ref="246" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -179,7 +179,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-41.1342" lon="-71.2763" desc="Bariloche" ref="246">
+<antena lat="-38.9386" lon="-68.0554" desc="Neuquén" ref="230" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -197,7 +197,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-38.9386" lon="-68.0554" desc="Neuquén" ref="230">
+<antena lat="-34.62916" lon="-68.26668" desc="San Rafael" ref="221" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -215,7 +215,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.62916" lon="-68.26668" desc="San Rafael" ref="221">
+<antena lat="-35.0333" lon="-67.6565" desc="General Alvear" ref="220" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -233,7 +233,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-35.0333" lon="-67.6565" desc="General Alvear" ref="220">
+<antena lat="-33.3854" lon="-69.1638" desc="Tupungato" ref="222" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -251,25 +251,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-33.3854" lon="-69.1638" desc="Tupungato" ref="222">
-<canal nombre="Arpeggio" numero="24.03"/>
-<canal nombre="C5N" numero="25.02"/>
-<canal nombre="CN23" numero="25.01"/>
-<canal nombre="Construir" numero="23.03"/>
-<canal nombre="DeporTV HD" numero="24.01"/>
-<canal nombre="Encuentro" numero="22.01"/>
-<canal nombre="G360" numero="25.04"/>
-<canal nombre="INCAA TV" numero="22.04"/>
-<canal nombre="Paka Paka" numero="22.02"/>
-<canal nombre="RT" numero="25.05"/>
-<canal nombre="TaTeTi" numero="22.03"/>
-<canal nombre="Tecnópolis" numero="22.05"/>
-<canal nombre="Telesur" numero="25.03"/>
-<canal nombre="TV Pública HD" numero="23.02"/>
-<canal nombre="Viajar" numero="24.04"/>
-<canal nombre="Vivra" numero="24.02"/>
-</antena>
-<antena lat="-32.8367" lon="-68.9348" desc="Mendoza" ref="219">
+<antena lat="-32.8367" lon="-68.9348" desc="Mendoza" ref="219" potencia="1">
 <canal nombre="Acequia TV HD" numero="29.01"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -294,7 +276,7 @@
 <antena lat="-32.89558" lon="-68.8836" ref="1000588">
 <canal nombre="Señal U" numero="30"/>
 </antena>
-<antena lat="-31.5169" lon="-68.6296" desc="San Juan" ref="224">
+<antena lat="-31.5169" lon="-68.6296" desc="San Juan" ref="224" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -312,7 +294,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-30.1718" lon="-68.7151" desc="Jachal" ref="223">
+<antena lat="-30.1718" lon="-68.7151" desc="Jachal" ref="223" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -330,7 +312,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-43.2805" lon="-65.1513" desc="Rawson/Trelew" ref="238">
+<antena lat="-43.2805" lon="-65.1513" desc="Rawson/Trelew" ref="238" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -348,7 +330,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-40.707" lon="-64.9258" desc="San Antonio Oeste" ref="235">
+<antena lat="-40.707" lon="-64.9258" desc="San Antonio Oeste" ref="235" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -366,7 +348,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-40.7934" lon="-63.0523" desc="Viedma" ref="236">
+<antena lat="-40.7934" lon="-63.0523" desc="Viedma" ref="236" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -384,7 +366,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-38.69696" lon="-62.29921" desc="Bahia Blanca" ref="6">
+<antena lat="-38.69696" lon="-62.29921" desc="Bahia Blanca" ref="6" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -402,7 +384,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-36.666" lon="-64.2879" desc="Santa Rosa" ref="114">
+<antena lat="-36.666" lon="-64.2879" desc="Santa Rosa" ref="114" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="Canal 3" numero="29.01"/>
@@ -421,7 +403,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-37.4996" lon="-61.9386" desc="Coronel Suarez" ref="23">
+<antena lat="-37.4996" lon="-61.9386" desc="Coronel Suarez" ref="23" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -439,7 +421,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-35.9144" lon="-62.7349" desc="Trenque Lauquen" ref="72">
+<antena lat="-35.9144" lon="-62.7349" desc="Trenque Lauquen" ref="72" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="Canal 12 Trenque Lauquen" numero="24.04"/>
@@ -457,7 +439,7 @@
 <canal nombre="TV Pública HD" numero="23.02"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-35.80706" lon="-61.88533" desc="Pehuajó" ref="52">
+<antena lat="-35.80706" lon="-61.88533" desc="Pehuajó" ref="52" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -475,7 +457,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-36.8783" lon="-60.3627" desc="Olavarría" ref="50">
+<antena lat="-36.8783" lon="-60.3627" desc="Olavarría" ref="50" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -493,7 +475,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-36.7319" lon="-59.8795" desc="Azul" ref="5">
+<antena lat="-36.7319" lon="-59.8795" desc="Azul" ref="5" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -511,7 +493,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-38.57613" lon="-58.71865" desc="Necochea" ref="49">
+<antena lat="-38.57613" lon="-58.71865" desc="Necochea" ref="49" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -529,7 +511,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-37.8169" lon="-58.2302" desc="Balcarce" ref="7">
+<antena lat="-37.8169" lon="-58.2302" desc="Balcarce" ref="7" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -547,7 +529,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-37.8878" lon="-57.5304" desc="Mar del Plata" ref="45">
+<antena lat="-37.8878" lon="-57.5304" desc="Mar del Plata" ref="45" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -565,7 +547,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-37.1176" lon="-56.8967" desc="Pinamar" ref="56">
+<antena lat="-37.1176" lon="-56.8967" desc="Pinamar" ref="56" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -583,7 +565,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-36.21777" lon="-61.11594" desc="San Carlos de Bolivar" ref="64">
+<antena lat="-36.21777" lon="-61.11594" desc="San Carlos de Bolivar" ref="64" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -601,7 +583,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-36.0264" lon="-59.0758" desc="Las Flores" ref="38">
+<antena lat="-36.0264" lon="-59.0758" desc="Las Flores" ref="38" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -619,7 +601,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.498" lon="-61.5585" desc="Vedia" ref="75">
+<antena lat="-34.498" lon="-61.5585" desc="Vedia" ref="75" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -637,7 +619,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-35.02" lon="-61.0022" desc="Los Toldos" ref="41">
+<antena lat="-35.02" lon="-61.0022" desc="Los Toldos" ref="41" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -655,7 +637,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.8554" lon="-59.9908" desc="Chivilcoy" ref="19">
+<antena lat="-34.8554" lon="-59.9908" desc="Chivilcoy" ref="19" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -673,7 +655,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.58794" lon="-60.46584" desc="Chacabuco" ref="16">
+<antena lat="-34.58794" lon="-60.46584" desc="Chacabuco" ref="16" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -691,7 +673,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.9776" lon="-59.2986" desc="Navarro" ref="48">
+<antena lat="-34.9776" lon="-59.2986" desc="Navarro" ref="48" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -709,7 +691,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.5494" lon="-59.1517" desc="Luján" ref="42">
+<antena lat="-34.5494" lon="-59.1517" desc="Luján" ref="42" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -730,7 +712,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.0642" lon="-60.0717" desc="Arrecifes" ref="2">
+<antena lat="-34.0642" lon="-60.0717" desc="Arrecifes" ref="2" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -748,7 +730,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.2628" lon="-59.4429" desc="San Antonio de Areco" ref="63">
+<antena lat="-34.2628" lon="-59.4429" desc="San Antonio de Areco" ref="63" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -766,7 +748,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-33.7843" lon="-59.537" desc="Baradero" ref="8">
+<antena lat="-33.7843" lon="-59.537" desc="Baradero" ref="8" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -784,7 +766,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-36.2719" lon="-57.6855" desc="Dolores" ref="25">
+<antena lat="-36.2719" lon="-57.6855" desc="Dolores" ref="25" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -802,7 +784,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-35.4308" lon="-58.795" desc="San Miguel del Monte" ref="66">
+<antena lat="-35.5866" lon="-57.9658" desc="Chascomús" ref="18" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -820,7 +802,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-35.5866" lon="-57.9658" desc="Chascomús" ref="18">
+<antena lat="-36.3792" lon="-56.7453" desc="San Clemente del Tuyú" ref="65" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -838,25 +820,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-36.3792" lon="-56.7453" desc="San Clemente del Tuyú" ref="65">
-<canal nombre="Arpeggio" numero="24.03"/>
-<canal nombre="C5N" numero="25.02"/>
-<canal nombre="CN23" numero="25.01"/>
-<canal nombre="Construir" numero="23.03"/>
-<canal nombre="DeporTV HD" numero="24.01"/>
-<canal nombre="Encuentro" numero="22.01"/>
-<canal nombre="G360" numero="25.04"/>
-<canal nombre="INCAA TV" numero="22.04"/>
-<canal nombre="Paka Paka" numero="22.02"/>
-<canal nombre="RT" numero="25.05"/>
-<canal nombre="TaTeTi" numero="22.03"/>
-<canal nombre="Tecnópolis" numero="22.05"/>
-<canal nombre="Telesur" numero="25.03"/>
-<canal nombre="TV Pública HD" numero="23.02"/>
-<canal nombre="Viajar" numero="24.04"/>
-<canal nombre="Vivra" numero="24.02"/>
-</antena>
-<antena lat="-35.0254" lon="-58.7327" desc="Cañuelas" ref="12">
+<antena lat="-35.0254" lon="-58.7327" desc="Cañuelas" ref="12" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -877,7 +841,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.6631" lon="-58.5678" desc="La Matanza" ref="35">
+<antena lat="-34.6631" lon="-58.5678" desc="La Matanza" ref="35" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -901,7 +865,7 @@
 <antena lat="-34.67283" lon="-58.44981" desc="Torre Espacial" ref="1000580">
 <canal nombre="Canal 26" numero="26"/>
 </antena>
-<antena lat="-34.61224" lon="-58.38147" desc="Ministerio de Obras Públicas" ref="300">
+<antena lat="-34.61224" lon="-58.38147" desc="Ministerio de Obras Públicas" ref="300" potencia="5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -919,7 +883,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.5616" lon="-58.5122" desc="Villa Martelli" ref="78">
+<antena lat="-34.5616" lon="-58.5122" desc="Villa Martelli" ref="78" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -941,7 +905,7 @@
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
 <antena lat="-34.59947" lon="-58.37044" desc="Edificio Alas" ref="1000535"/>
-<antena lat="-35.1194" lon="-58.2455" desc="Coronel Brandsen" ref="21">
+<antena lat="-35.1194" lon="-58.2455" desc="Coronel Brandsen" ref="21" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -962,7 +926,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-34.9426" lon="-57.9747" desc="La Plata" ref="36">
+<antena lat="-34.9426" lon="-57.9747" desc="La Plata" ref="36" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -987,7 +951,7 @@
 <antena lat="-34.91337" lon="-57.95124" desc="UNLP" ref="1000586">
 <canal nombre="TV Universidad" numero="56"/>
 </antena>
-<antena lat="-34.2374" lon="-58.9602" desc="Campana" ref="11">
+<antena lat="-34.2374" lon="-58.9602" desc="Campana" ref="11" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
@@ -1008,7 +972,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-33.2955" lon="-66.2868" desc="San Luis" ref="228">
+<antena lat="-33.2955" lon="-66.2868" desc="San Luis" ref="228" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1026,7 +990,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-31.9789" lon="-65.2346" desc="Villa Dolores" ref="225">
+<antena lat="-31.9789" lon="-65.2346" desc="Villa Dolores" ref="225" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1044,7 +1008,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-33.10647" lon="-64.38683" desc="Río Cuarto" ref="266">
+<antena lat="-33.10647" lon="-64.38683" desc="Río Cuarto" ref="266" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1065,7 +1029,7 @@
 <antena lat="-33.09062" lon="-64.35483" ref="1000589">
 <canal nombre="Canal 13" numero="29.1"/>
 </antena>
-<antena lat="-32.4654" lon="-63.1925" desc="Villa María" ref="89">
+<antena lat="-32.4654" lon="-63.1925" desc="Villa María" ref="89" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1083,7 +1047,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-32.6714" lon="-62.3149" desc="Cerro Leones" ref="86">
+<antena lat="-32.6714" lon="-62.3149" desc="Cerro Leones" ref="86" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1101,7 +1065,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-31.4142" lon="-64.4267" desc="Córdoba Capital - Cerro Mogote" ref="84">
+<antena lat="-31.4142" lon="-64.4267" desc="Córdoba Capital - Cerro Mogote" ref="84" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="Canal 10 CBA" numero="31.02"/>
@@ -1131,7 +1095,7 @@
 <antena lat="-31.38134" lon="-64.22592" ref="1000584">
 <canal nombre="Canal 12" numero="40.1"/>
 </antena>
-<antena lat="-31.4585" lon="-62.0655" desc="Frontera" ref="120">
+<antena lat="-31.4585" lon="-62.0655" desc="Frontera" ref="120" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1149,7 +1113,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-29.4262" lon="-66.8731" desc="La Rioja" ref="216">
+<antena lat="-29.4262" lon="-66.8731" desc="La Rioja" ref="216" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="Canal 9" numero="29.01"/>
@@ -1168,7 +1132,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-28.45721" lon="-65.76611" desc="Catamarca" ref="211">
+<antena lat="-28.45721" lon="-65.76611" desc="Catamarca" ref="211" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1186,7 +1150,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-29.9364" lon="-61.8976" desc="Ceres" ref="117">
+<antena lat="-29.9364" lon="-61.8976" desc="Ceres" ref="117" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1204,7 +1168,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-28.4551" lon="-62.8431" desc="Añatuya" ref="201">
+<antena lat="-28.4551" lon="-62.8431" desc="Añatuya" ref="201" potencia="0.3">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1222,7 +1186,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-32.8171" lon="-61.413" desc="Cañada de Gómez" ref="115">
+<antena lat="-32.8171" lon="-61.413" desc="Cañada de Gómez" ref="115" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1240,7 +1204,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-33.0141" lon="-60.6299" desc="Rosario" ref="124">
+<antena lat="-33.0141" lon="-60.6299" desc="Rosario" ref="124" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1262,7 +1226,7 @@
 <canal nombre="Canal 3" numero="32.1"/>
 <canal nombre="Canal 5" numero="38.1"/>
 </antena>
-<antena lat="-33.3389" lon="-60.2009" desc="San Nicolás" ref="67">
+<antena lat="-33.3389" lon="-60.2009" desc="San Nicolás" ref="67" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1280,7 +1244,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-31.7579" lon="-60.5396" desc="Paraná" ref="102">
+<antena lat="-31.7579" lon="-60.5396" desc="Paraná" ref="102" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1298,7 +1262,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-31.6961" lon="-60.7504" desc="Santo Tomé - Santa Fe" ref="127">
+<antena lat="-31.6961" lon="-60.7504" desc="Santo Tomé - Santa Fe" ref="127" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1316,7 +1280,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-31.2261" lon="-61.4703" desc="Rafaela" ref="123">
+<antena lat="-31.2261" lon="-61.4703" desc="Rafaela" ref="123" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1334,7 +1298,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-33.0508" lon="-58.54" desc="Gualeguaychú" ref="99">
+<antena lat="-33.0508" lon="-58.54" desc="Gualeguaychú" ref="99" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1352,7 +1316,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-31.418" lon="-58.0972" desc="Concordia" ref="94">
+<antena lat="-31.418" lon="-58.0972" desc="Concordia" ref="94" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1370,7 +1334,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-26.8479" lon="-65.3766" desc="Tucumán" ref="206">
+<antena lat="-26.8479" lon="-65.3766" desc="Tucumán" ref="206" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="Canal 10" numero="28.01"/>
@@ -1389,7 +1353,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-27.8818" lon="-64.2414" desc="Santiago del Estero" ref="203">
+<antena lat="-27.8818" lon="-64.2414" desc="Santiago del Estero" ref="203" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1407,7 +1371,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-27.6358" lon="-62.425" desc="Quimili" ref="202">
+<antena lat="-27.6358" lon="-62.425" desc="Quimili" ref="202" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1425,7 +1389,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-24.7822" lon="-65.3947" desc="Salta" ref="191">
+<antena lat="-24.7822" lon="-65.3947" desc="Salta" ref="191" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1443,7 +1407,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-24.1864" lon="-65.334" desc="Jujuy" ref="189">
+<antena lat="-24.1864" lon="-65.334" desc="Jujuy" ref="189" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1461,7 +1425,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-27.5921" lon="-60.7489" desc="Villa Angela" ref="135">
+<antena lat="-27.5921" lon="-60.7489" desc="Villa Angela" ref="135" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1479,7 +1443,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-27.3643" lon="-59.0769" desc="Resistencia" ref="143">
+<antena lat="-27.3643" lon="-59.0769" desc="Resistencia" ref="143" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="Chaco TV" numero="28.01"/>
@@ -1498,7 +1462,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-26.1292" lon="-58.1634" desc="Formosa" ref="165">
+<antena lat="-26.1292" lon="-58.1634" desc="Formosa" ref="165" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1517,7 +1481,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-25.3207" lon="-57.7192" desc="Clorinda" ref="161">
+<antena lat="-25.3207" lon="-57.7192" desc="Clorinda" ref="161" potencia="0.5">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1535,7 +1499,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-25.1195" lon="-58.2757" desc="Laguna Blanca" ref="168">
+<antena lat="-25.1195" lon="-58.2757" desc="Laguna Blanca" ref="168" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1553,7 +1517,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-28.5865" lon="-56.0419" desc="Santo Tomé - Corrientes" ref="160">
+<antena lat="-28.5865" lon="-56.0419" desc="Santo Tomé - Corrientes" ref="160" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="CN23" numero="25.01"/>
@@ -1571,7 +1535,7 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
-<antena lat="-27.4781" lon="-55.8613" desc="Posadas" ref="179">
+<antena lat="-27.4781" lon="-55.8613" desc="Posadas" ref="179" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
 <canal nombre="Canal 12" numero="30.01"/>
