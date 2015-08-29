@@ -547,6 +547,9 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 					tvDesc.setText(detalleCanales);
 					tvDetalle.setVisibility(View.GONE);
 				}
+				TextView tvPotencia = (TextView)v.findViewById(R.id.antena_potencia);
+				if(tvPotencia != null)
+					tvPotencia.setText(a.potencia > 0 ? a.potencia + " kW" : null);
 				ponéDistancia(a, v);
 				antenaAVista.put(a, v);
 				vistaAAntena.put(v, a);
@@ -600,6 +603,12 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		}
 		nf.setMaximumFractionDigits(distancia < f ? 2 : 1);
 		return nf.format(distancia / f) + ' ' + unit;
+	}
+
+	protected static String formatPower(float potencia)
+	{
+		nf.setMaximumFractionDigits(potencia < 1 ? 2 : 1);
+		return nf.format(potencia) + " kW";
 	}
 
 	public void onConnectionFailed(ConnectionResult r)

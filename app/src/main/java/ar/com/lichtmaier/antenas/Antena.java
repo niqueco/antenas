@@ -34,6 +34,7 @@ public class Antena implements Serializable
 
 	final public String descripción, ref, geohash;
 	private final GlobalCoordinates c;
+	final public float potencia;
 	public final int index;
 	final public País país;
 	public List<Canal> canales;
@@ -44,10 +45,11 @@ public class Antena implements Serializable
 	final static private Map<País, List<Antena>> antenasPorPaís = new EnumMap<>(País.class);
 	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();
 
-	private Antena(String descripción, double lat, double lon, int index, País país, String ref)
+	private Antena(String descripción, double lat, double lon, int index, País país, String ref, float potencia)
 	{
 		this.descripción = descripción;
 		this.index = index;
+		this.potencia = potencia;
 		c = new GlobalCoordinates(lat, lon);
 		this.país = país;
 		this.ref = ref;
@@ -264,7 +266,12 @@ public class Antena implements Serializable
 						switch(name)
 						{
 							case "antena":
-								antena = new Antena(xml.getAttributeValue(null, "desc"), Double.parseDouble(xml.getAttributeValue(null, "lat")), Double.parseDouble(xml.getAttributeValue(null, "lon")), index++, país, xml.getAttributeValue(null, "ref"));
+								String pot = xml.getAttributeValue(null, "potencia");
+								antena = new Antena(xml.getAttributeValue(null, "desc"),
+										Double.parseDouble(xml.getAttributeValue(null, "lat")),
+										Double.parseDouble(xml.getAttributeValue(null, "lon")),
+										index++, país, xml.getAttributeValue(null, "ref"),
+										pot == null ? 0 : Float.parseFloat(pot));
 								l.add(antena);
 								break;
 							case "canal":

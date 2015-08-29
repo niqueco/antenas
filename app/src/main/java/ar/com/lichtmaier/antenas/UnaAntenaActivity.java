@@ -38,6 +38,8 @@ public class UnaAntenaActivity extends AntenaActivity
 			antenaDesc.setText(antena.descripción);
 		else
 			antenaDesc.setVisibility(View.GONE);
+		final TextView tvPotencia = (TextView)findViewById(R.id.antena_potencia);
+		tvPotencia.setText(antena.potencia > 0 ? formatPower(antena.potencia) : null);
 		nuevaUbicación(); // para que se configure la distancia
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
@@ -98,6 +100,7 @@ public class UnaAntenaActivity extends AntenaActivity
 					vistasAnimadas.add(antenaDesc);
 					TextView antenaDist = (TextView) findViewById(R.id.antena_dist);
 					vistasAnimadas.add(antenaDist);
+					vistasAnimadas.add(tvPotencia);
 					for(View v : vistasAnimadas)
 					{
 						int d = getWindow().getDecorView().getBottom();
