@@ -124,7 +124,7 @@ public class Antena implements Serializable
 					desde = sb.length() + 1;
 					sb.append(" (");
 				}
-				sb.append(canal.numero);
+				sb.append(context.getString(R.string.ch_number, canal.numero));
 				if(canal.nombre != null)
 				{
 					sb.append(")");
