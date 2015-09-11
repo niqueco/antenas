@@ -89,11 +89,11 @@ public class UnaAntenaActivity extends AntenaActivity
 					anim.addAnimation(new ScaleAnimation(escalaAncho, 1, escalaAlto, 1, 0, 0));
 					anim.addAnimation(new TranslateAnimation(mLeftDelta, 0, mTopDelta, 0));
 					anim.setInterpolator(new AccelerateDecelerateInterpolator());
-					anim.setDuration(500);
+					anim.setDuration(400);
 					flecha.startAnimation(anim);
 
 					AlphaAnimation aa = new AlphaAnimation(0, 1);
-					aa.setDuration(600);
+					aa.setDuration(500);
 					aa.setInterpolator(new AccelerateInterpolator());
 					findViewById(R.id.fondo).startAnimation(aa);
 
@@ -191,7 +191,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		if(AntenaActivity.flechaADesaparecer != null)
 			AntenaActivity.flechaADesaparecer.setVisibility(View.INVISIBLE);
 		AlphaAnimation aa = new AlphaAnimation(1, 0);
-		aa.setDuration(500);
+		aa.setDuration(400);
 		aa.setInterpolator(new AccelerateInterpolator());
 		aa.setFillAfter(true);
 		findViewById(R.id.fondo).startAnimation(aa);
@@ -217,7 +217,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		anim.addAnimation(new ScaleAnimation(1, escalaAncho, 1, escalaAlto, 0, 0));
 		anim.addAnimation(new TranslateAnimation(0, mLeftDelta, 0, mTopDelta));
 		anim.setInterpolator(new AccelerateDecelerateInterpolator());
-		anim.setDuration(500);
+		anim.setDuration(400);
 		anim.setFillAfter(true);
 		findViewById(R.id.flecha).startAnimation(anim);
 
@@ -226,7 +226,7 @@ public class UnaAntenaActivity extends AntenaActivity
 			int d = getWindow().getDecorView().getBottom();
 			TranslateAnimation ta = new TranslateAnimation(0, 0, 0, d);
 			ta.setInterpolator(new AccelerateInterpolator());
-			ta.setDuration(500);
+			ta.setDuration(400);
 			ta.setFillAfter(true);
 			v.startAnimation(ta);
 		}
