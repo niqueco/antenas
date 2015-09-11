@@ -1,15 +1,16 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -17,14 +18,15 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.*;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.*;
 
@@ -80,6 +82,14 @@ public class MapaActivity extends AppCompatActivity
 						.add(R.id.container, new MapaFragment())
 						.commit();
 			}
+		}
+
+		SlidingUpPanelLayout supl = (SlidingUpPanelLayout)findViewById(R.id.sliding_layout);
+		supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		{
+			supl.setShadowHeight(0);
+			supl.getChildAt(1).setElevation(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
 		}
 	}
 
@@ -137,6 +147,16 @@ public class MapaActivity extends AppCompatActivity
 	}
 
 	@Override
+	public void onBackPressed()
+	{
+		SlidingUpPanelLayout supl = (SlidingUpPanelLayout)findViewById(R.id.sliding_layout);
+		if(supl.getPanelState() != SlidingUpPanelLayout.PanelState.HIDDEN)
+			supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+		else
+			super.onBackPressed();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.mapa, menu);
@@ -157,7 +177,7 @@ public class MapaActivity extends AppCompatActivity
 	}
 
 	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
-			GoogleMap.OnInfoWindowClickListener, GoogleMap.InfoWindowAdapter,
+			GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
 			GoogleMap.OnCameraChangeListener, GoogleMap.OnMarkerClickListener
 	{
 		private GoogleMap mapa;
@@ -192,7 +212,7 @@ public class MapaActivity extends AppCompatActivity
 			mapa.setMyLocationEnabled(true);
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 			mapa.setOnInfoWindowClickListener(this);
-			mapa.setInfoWindowAdapter(this);
+			mapa.setOnMapClickListener(this);
 			mapa.setOnCameraChangeListener(this);
 			mapa.setOnMarkerClickListener(this);
 			Location loc = null;
@@ -286,16 +306,6 @@ public class MapaActivity extends AppCompatActivity
 			}
 		}
 
-		private static double max(double a, double b, double c, double d)
-		{
-			return Math.max(Math.max(a, b), Math.max(c, d));
-		}
-
-		private static double min(double a, double b, double c, double d)
-		{
-			return Math.min(Math.min(a, b), Math.min(c, d));
-		}
-
 		final private List<Antena> antenas_temp = new ArrayList<>();
 		final private Set<Antena> antenasDentro = new HashSet<>();
 
@@ -313,21 +323,21 @@ public class MapaActivity extends AppCompatActivity
 		}
 
 		@Override
-		public View getInfoWindow(Marker marker)
+		public void onMapClick(LatLng latLng)
 		{
-			return null;
+			SlidingUpPanelLayout supl = (SlidingUpPanelLayout)getActivity().findViewById(R.id.sliding_layout);
+			supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
 		}
 
-		@Override
-		public View getInfoContents(Marker marker)
+		@Nullable
+		private View getInfoPanel(Marker marker, ViewGroup parent)
 		{
 			Antena antena = markerAAntena.get(marker);
 			if(antena.canales == null)
 				return null;
 			boolean hayImágenes = antena.hayImágenes();
 			ContextThemeWrapper ctx = new ContextThemeWrapper(getActivity(), R.style.InfoMapa);
-			@SuppressLint("InflateParams")
-			View v = ((LayoutInflater)ctx.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.info_mapa, null, false);
+			View v = ((LayoutInflater)ctx.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.info_mapa, parent, false);
 			TextView tv = (TextView)v.findViewById(R.id.antena_desc);
 			if(tv != null)
 			{
@@ -340,7 +350,7 @@ public class MapaActivity extends AppCompatActivity
 			int n;
 			if(l instanceof TableLayout)
 			{
-				n = Math.min(antena.canales.size(), 8);
+				n = antena.canales.size();
 				for(int i = 0; i < (n+1) / 2 ; i++)
 				{
 					TableRow row = new TableRow(ctx);
@@ -378,20 +388,20 @@ public class MapaActivity extends AppCompatActivity
 		@Override
 		public boolean onMarkerClick(final Marker marker)
 		{
-			int zoom = (int)mapa.getCameraPosition().zoom;
-			CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(new LatLng(marker.getPosition().latitude + (double)90/Math.pow(2, zoom), marker.getPosition().longitude), zoom);
-			mapa.animateCamera(cu, 200, new GoogleMap.CancelableCallback()
+			FrameLayout bs = (FrameLayout)getActivity().findViewById(R.id.bottom_sheet);
+			bs.removeAllViews();
+			View view = getInfoPanel(marker, bs);
+			SlidingUpPanelLayout supl = (SlidingUpPanelLayout)getActivity().findViewById(R.id.sliding_layout);
+			//supl.getChildAt(1).setOnClickListener(null);
+			if(view != null)
 			{
-				@Override
-				public void onFinish()
-				{
-					marker.showInfoWindow();
-				}
-
-				@Override
-				public void onCancel() { }
-			});
-			return true;
+				bs.addView(view);
+				supl.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+			} else
+			{
+				supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+			}
+			return false;
 		}
 	}
 }
