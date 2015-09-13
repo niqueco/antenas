@@ -351,16 +351,19 @@ public class MapaActivity extends AppCompatActivity
 			if(l instanceof TableLayout)
 			{
 				n = antena.canales.size();
-				for(int i = 0; i < (n+1) / 2 ; i++)
+				int ncolumns = 3;
+				for(int i = 0; i < (n+ncolumns-1) / ncolumns; i++)
 				{
 					TableRow row = new TableRow(ctx);
-					row.addView(antena.canales.get(i * 2).dameViewCanal(ctx, row, hayImágenes));
-					if((i*2+1) < antena.canales.size())
+
+					for(int j = 0 ; j < ncolumns && (i * ncolumns + j) < antena.canales.size() ; j++)
 					{
-						View der = antena.canales.get(i * 2 + 1).dameViewCanal(ctx, row, hayImágenes);
-						der.setPadding((int)getResources().getDimension(der.getPaddingLeft() + R.dimen.paddingColumnasInfoMapa), der.getPaddingTop(), der.getPaddingRight(), der.getPaddingBottom());
-						row.addView(der);
+						View vc = antena.canales.get(i * ncolumns + j).dameViewCanal(ctx, row, hayImágenes);
+						if(j > 0)
+							vc.setPadding((int)getResources().getDimension(vc.getPaddingLeft() + R.dimen.paddingColumnasInfoMapa), vc.getPaddingTop(), vc.getPaddingRight(), vc.getPaddingBottom());
+						row.addView(vc);
 					}
+
 					l.addView(row);
 				}
 			} else
