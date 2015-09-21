@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -66,7 +68,9 @@ public class MapaActivity extends AppCompatActivity
 						@Override
 						public void onClick(View v)
 						{
-							requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE);
+							ActivityCompat.requestPermissions(MapaActivity.this,
+								new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE},
+								PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE);
 						}
 					});
 					container.addView(view);
@@ -185,6 +189,15 @@ public class MapaActivity extends AppCompatActivity
 		private final Map<País, List<Marker>> países = new EnumMap<>(País.class);
 
 		private final Map<Marker, Antena> markerAAntena = new HashMap<>();
+
+		private final View.OnClickListener canalClickListener = new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				v.setSelected(true);
+			}
+		};
 
 		public MapaFragment()
 		{
@@ -350,6 +363,9 @@ public class MapaActivity extends AppCompatActivity
 			int n;
 			if(l instanceof TableLayout)
 			{
+				TypedArray arr = getActivity().getTheme().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
+				int selectableItemBackground = arr.getResourceId(0, -1);
+				arr.recycle();
 				n = antena.canales.size();
 				int ncolumns = 3;
 				for(int i = 0; i < (n+ncolumns-1) / ncolumns; i++)
@@ -358,7 +374,15 @@ public class MapaActivity extends AppCompatActivity
 
 					for(int j = 0 ; j < ncolumns && (i * ncolumns + j) < antena.canales.size() ; j++)
 					{
-						View vc = antena.canales.get(i * ncolumns + j).dameViewCanal(ctx, row, hayImágenes);
+						Canal canal = antena.canales.get(i * ncolumns + j);
+						View vc = canal.dameViewCanal(ctx, row, hayImágenes);
+						vc.setClickable(true);
+						vc.setFocusable(true);
+						vc.setTag(canal);
+						//noinspection deprecation
+						vc.setBackgroundResource(selectableItemBackground);
+						vc.setOnClickListener(canalClickListener);
+						vc.setMinimumHeight((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics()));
 						if(j > 0)
 							vc.setPadding((int)getResources().getDimension(vc.getPaddingLeft() + R.dimen.paddingColumnasInfoMapa), vc.getPaddingTop(), vc.getPaddingRight(), vc.getPaddingBottom());
 						row.addView(vc);
