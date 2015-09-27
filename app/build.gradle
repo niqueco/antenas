@@ -40,9 +40,10 @@ dependencies {
     compile 'com.android.support:support-v4:23.0.1'
     //noinspection GradleDependency
     froyoCompile 'com.google.android.gms:play-services:3.2.65'
-    normalCompile 'com.google.android.gms:play-services-location:7.8.0'
-    normalCompile 'com.google.android.gms:play-services-maps:7.8.0'
-    normalCompile 'com.google.android.gms:play-services-ads:7.8.0'
+    normalCompile 'com.google.android.gms:play-services-location:8.1.0'
+    normalCompile 'com.google.android.gms:play-services-maps:8.1.0'
+    normalCompile 'com.google.android.gms:play-services-ads:8.1.0'
+    normalCompile 'com.google.android.gms:play-services-analytics:8.1.0'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.github.davidmoten:geo:0.7.1'
