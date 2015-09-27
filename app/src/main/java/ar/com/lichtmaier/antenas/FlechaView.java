@@ -6,6 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
+import android.support.v4.view.AccessibilityDelegateCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -36,6 +39,9 @@ public class FlechaView extends View
 		int z = (int)(100 * density);
 		setMinimumHeight(z);
 		setMinimumWidth(z);
+
+		instalarDelegadoAccesibilidad();
+		ViewCompat.setImportantForAccessibility(this, ViewCompat.IMPORTANT_FOR_ACCESSIBILITY_YES);
 	}
 
 	public double getÁngulo()
@@ -100,5 +106,41 @@ public class FlechaView extends View
 		canvas.drawCircle(0, 0, z + pinturaFlecha.getStrokeWidth() * .75f, pinturaBorde);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
 		canvas.restore();
+	}
+
+	private void instalarDelegadoAccesibilidad()
+	{
+		ViewCompat.setAccessibilityDelegate(this, new AccessibilityDelegateCompat() {
+
+			@Override
+			public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfoCompat info)
+			{
+				super.onInitializeAccessibilityNodeInfo(host, info);
+
+				int a = (int)Math.round(ángulo + 360) % 360;
+				int str;
+				if(a == 0)
+					str = R.plurals.hacia_adelante;
+				else if(a > 0 && a < 180)
+					str = R.plurals.grados_derecha;
+				else if(a == 180)
+					str = R.plurals.hacia_atras;
+				else if(a > 180)
+				{
+					str = R.plurals.grados_izquierda;
+					a = 360 - a;
+				}
+				else
+					throw new IllegalArgumentException("grados " + a + "?");
+
+				info.setText(getContext().getResources().getQuantityString(str, a, a));
+			}
+		});
+	}
+
+	@Override
+	public CharSequence getAccessibilityClassName()
+	{
+		return FlechaView.class.getName();
 	}
 }

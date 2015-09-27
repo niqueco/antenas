@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Antenas TV Digital</string>
     <string name="action_settings">Preferências</string>
@@ -28,5 +28,20 @@
 	<string name="explicacion_permiso_gps">Este aplicativo precisa de acesso para o seu GPS para saber onde você está e assim ajudá-lo a encontrar a antena mais próxima!</string>
 	<string name="explicacion_permiso_almacenamiento">O mapa precisa de acesso ao armazenamento, pois ele usa-lo para salvar os dados de mapas para funcionar mais rápido.</string>
 	<string name="solicitar_permiso">Pedir permissão</string>
+
+	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
+		<item quantity="other">Para a frente</item>
+	</plurals>
+	<plurals name="grados_derecha">
+		<item quantity="one">%d grau para a direita</item>
+		<item quantity="other">%d graus para a direita</item>
+	</plurals>
+	<plurals name="grados_izquierda">
+		<item quantity="one">%d grau para a esquerda</item>
+		<item quantity="other">%d graus para a esquerda</item>
+	</plurals>
+	<plurals name="hacia_atras" tools:ignore="MissingQuantity">
+		<item quantity="other">Para trás</item>
+	</plurals>
 
 </resources>
