@@ -74,13 +74,31 @@
 				tools:text="Buenos Aires"
 				tools:ignore="UnusedAttribute"/>
 
-			<TextView
-				android:id="@+id/antena_dist"
-				android:layout_width="wrap_content"
+			<LinearLayout
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceLarge"
-				android:textColor="#fddd"
-				tools:text="23,8 km"/>
+				android:orientation="horizontal">
+
+				<TextView
+					android:id="@+id/antena_dist"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:textColor="#fddd"
+					tools:text="23,8 km"/>
+
+				<TextView
+					android:id="@+id/antena_potencia"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="end"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:textColor="#fddd"
+					tools:text="1 kw"/>
+
+			</LinearLayout>
+
 			<View
 				android:id="@+id/antes_de_canales"
 				android:layout_width="match_parent"

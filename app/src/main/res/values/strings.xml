@@ -28,4 +28,19 @@
 		<item quantity="one">%1$,d channel</item>
 		<item quantity="other">%1$,d channels</item>
 	</plurals>
+	<plurals name="hacia_adelante">
+		<item quantity="other">Forward</item>
+	</plurals>
+	<plurals name="grados_derecha">
+		<item quantity="one">%d degree right</item>
+		<item quantity="other">%d degrees right</item>
+	</plurals>
+	<plurals name="grados_izquierda">
+		<item quantity="one">%d degree left</item>
+		<item quantity="other">%d degrees left</item>
+	</plurals>
+	<plurals name="hacia_atras">
+		<item quantity="other">Backwards</item>
+	</plurals>
+
 </resources>
