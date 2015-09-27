@@ -47,5 +47,4 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.github.davidmoten:geo:0.7.1'
     compile files('libs/geodesy.jar')
-    compile 'com.sothree.slidinguppanel:library:3.1.1'
 }

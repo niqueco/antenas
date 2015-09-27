@@ -1,15 +1,11 @@
-<com.sothree.slidinguppanel.SlidingUpPanelLayout
-	xmlns:sothree="http://schemas.android.com/apk/res-auto"
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/sliding_layout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:gravity="bottom"
-	sothree:umanoPanelHeight="144dp"
-	sothree:umanoShadowHeight="4dp"
-	sothree:umanoOverlay="true"
-	sothree:umanoFadeColor="@android:color/transparent"
+	android:clipChildren="false"
 	tools:context=".MapaActivity">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,12 +41,23 @@
 	</FrameLayout>
 </LinearLayout>
 
-<FrameLayout
-	android:id="@+id/bottom_sheet"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="center|top"
-	android:background="@color/celeste_lindo"
-	/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="200dp"
+		android:layout_gravity="bottom"
+		android:clipChildren="false">
 
-</com.sothree.slidinguppanel.SlidingUpPanelLayout>
+		<FrameLayout
+			android:id="@+id/bottom_sheet"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:gravity="bottom"
+			android:clipToPadding="false"
+			android:clipChildren="false"
+			tools:ignore="UnusedAttribute"
+			/>
+
+	</LinearLayout>
+
+</FrameLayout>

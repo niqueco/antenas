@@ -2,20 +2,17 @@ package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.*;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +25,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.*;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.*;
 
@@ -86,14 +82,6 @@ public class MapaActivity extends AppCompatActivity
 						.add(R.id.container, new MapaFragment())
 						.commit();
 			}
-		}
-
-		SlidingUpPanelLayout supl = (SlidingUpPanelLayout)findViewById(R.id.sliding_layout);
-		supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
-			supl.setShadowHeight(0);
-			supl.getChildAt(1).setElevation(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
 		}
 	}
 
@@ -153,11 +141,13 @@ public class MapaActivity extends AppCompatActivity
 	@Override
 	public void onBackPressed()
 	{
-		SlidingUpPanelLayout supl = (SlidingUpPanelLayout)findViewById(R.id.sliding_layout);
-		if(supl.getPanelState() != SlidingUpPanelLayout.PanelState.HIDDEN)
-			supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
-		else
+		FragmentManager fm = getSupportFragmentManager();
+		if(fm.getBackStackEntryCount() == 0)
+		{
 			super.onBackPressed();
+			return;
+		}
+		fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 	}
 
 	@Override
@@ -189,18 +179,28 @@ public class MapaActivity extends AppCompatActivity
 		private final Map<País, List<Marker>> países = new EnumMap<>(País.class);
 
 		private final Map<Marker, Antena> markerAAntena = new HashMap<>();
-
-		private final View.OnClickListener canalClickListener = new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				v.setSelected(true);
-			}
-		};
+		private Marker marker;
 
 		public MapaFragment()
 		{
+		}
+
+		@Override
+		public void onCreate(@Nullable Bundle savedInstanceState)
+		{
+			super.onCreate(savedInstanceState);
+
+			final int n = getFragmentManager().getBackStackEntryCount();
+
+			getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener()
+			{
+				@Override
+				public void onBackStackChanged()
+				{
+					if(getFragmentManager().getBackStackEntryCount() == n)
+						marker.hideInfoWindow();
+				}
+			});
 		}
 
 		@Override
@@ -338,19 +338,80 @@ public class MapaActivity extends AppCompatActivity
 		@Override
 		public void onMapClick(LatLng latLng)
 		{
-			SlidingUpPanelLayout supl = (SlidingUpPanelLayout)getActivity().findViewById(R.id.sliding_layout);
-			supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+			FragmentManager fm = getFragmentManager();
+			if(fm.findFragmentByTag("canales") != null)
+				fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		}
 
-		@Nullable
-		private View getInfoPanel(Marker marker, ViewGroup parent)
+		@Override
+		public boolean onMarkerClick(Marker marker)
 		{
+			this.marker = marker;
+
+			FragmentManager fm = getFragmentManager();
+			CanalesFragment fr = (CanalesFragment)fm.findFragmentByTag("canales");
+
 			Antena antena = markerAAntena.get(marker);
 			if(antena.canales == null)
-				return null;
+			{
+				if(fr != null)
+					fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+				return false;
+			}
+
+			if(fr != null)
+			{
+				fr = CanalesFragment.crear(antena);
+				fm.beginTransaction()
+						.setCustomAnimations(0, 0, R.anim.canales_enter, R.anim.canales_exit)
+						.replace(R.id.bottom_sheet, fr, "canales")
+						.addToBackStack("canales")
+						.commit();
+			} else
+			{
+				fr = CanalesFragment.crear(antena);
+				fm.beginTransaction()
+					.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit)
+					.replace(R.id.bottom_sheet, fr, "canales")
+					.addToBackStack("canales")
+					.commit();
+			}
+			return false;
+		}
+	}
+
+	public static class CanalesFragment extends Fragment
+	{
+		static CanalesFragment crear(Antena antena)
+		{
+			CanalesFragment fr = new CanalesFragment();
+			Bundle args = new Bundle();
+			args.putInt("país", antena.país.ordinal());
+			args.putInt("index", antena.index);
+			fr.setArguments(args);
+			return fr;
+		}
+
+		private final View.OnClickListener canalClickListener = new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				v.setSelected(true);
+			}
+		};
+
+		@Nullable
+		@Override
+		public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+		{
+			País país = País.values()[getArguments().getInt("país")];
+			int index = getArguments().getInt("index");
+			Antena antena = Antena.dameAntena(getActivity(), país, index);
+
 			boolean hayImágenes = antena.hayImágenes();
 			ContextThemeWrapper ctx = new ContextThemeWrapper(getActivity(), R.style.InfoMapa);
-			View v = ((LayoutInflater)ctx.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.info_mapa, parent, false);
+			View v = inflater.inflate(R.layout.info_mapa, container, false);
 			TextView tv = (TextView)v.findViewById(R.id.antena_desc);
 			if(tv != null)
 			{
@@ -402,33 +463,13 @@ public class MapaActivity extends AppCompatActivity
 				tv.setText(ctx.getString(R.string.some_more, antena.canales.size() - n));
 				tv.setLayoutParams(
 						(l instanceof TableLayout)
-						? new TableLayout.LayoutParams()
-						: new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+								? new TableLayout.LayoutParams()
+								: new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 				);
 				tv.setGravity(Gravity.CENTER);
 				l.addView(tv);
 			}
-			v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 			return v;
-		}
-
-		@Override
-		public boolean onMarkerClick(final Marker marker)
-		{
-			FrameLayout bs = (FrameLayout)getActivity().findViewById(R.id.bottom_sheet);
-			bs.removeAllViews();
-			View view = getInfoPanel(marker, bs);
-			SlidingUpPanelLayout supl = (SlidingUpPanelLayout)getActivity().findViewById(R.id.sliding_layout);
-			//supl.getChildAt(1).setOnClickListener(null);
-			if(view != null)
-			{
-				bs.addView(view);
-				supl.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-			} else
-			{
-				supl.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
-			}
-			return false;
 		}
 	}
 }

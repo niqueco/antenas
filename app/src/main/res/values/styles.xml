@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<style name="TemaApp" parent="Theme.AppCompat.NoActionBar">
+	<style name="TemaApp" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/celeste_lindo</item>
 		<item name="colorPrimaryDark">@color/celeste_lindo_oscuro</item>
 	</style>
