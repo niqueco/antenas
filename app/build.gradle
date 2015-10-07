@@ -48,4 +48,5 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.github.davidmoten:geo:0.7.1'
     compile files('libs/geodesy.jar')
+    compile 'com.google.maps.android:android-maps-utils:0.4'
 }
