@@ -15,4 +15,9 @@ class Publicidad
 	void onResume() { }
 
 	void onDestroy() { }
+
+	int getHeight()
+	{
+		return 0;
+	}
 }

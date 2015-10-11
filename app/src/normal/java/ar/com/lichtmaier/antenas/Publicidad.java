@@ -69,4 +69,9 @@ class Publicidad
 		if(adView != null)
 			adView.destroy();
 	}
+
+	public int getHeight()
+	{
+		return adView.getHeight();
+	}
 }

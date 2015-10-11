@@ -2,12 +2,12 @@ package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -17,10 +17,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -172,7 +174,7 @@ public class MapaActivity extends AppCompatActivity
 
 	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 			GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
-			GoogleMap.OnCameraChangeListener, GoogleMap.OnMarkerClickListener
+			GoogleMap.OnCameraChangeListener, GoogleMap.OnMarkerClickListener, CanalesFragment.Callback
 	{
 		private GoogleMap mapa;
 
@@ -180,6 +182,9 @@ public class MapaActivity extends AppCompatActivity
 
 		private final Map<Marker, Antena> markerAAntena = new HashMap<>();
 		private Marker marker;
+		private CachéDeContornos cachéDeContornos;
+		private Polygon contornoActual;
+		private int altoActionBar;
 
 		public MapaFragment()
 		{
@@ -198,7 +203,11 @@ public class MapaActivity extends AppCompatActivity
 				public void onBackStackChanged()
 				{
 					if(getFragmentManager().getBackStackEntryCount() == n)
+					{
+						canalSeleccionado(null, null);
 						marker.hideInfoWindow();
+						mapa.setPadding(0, altoActionBar, 0, 0);
+					}
 				}
 			});
 		}
@@ -254,8 +263,8 @@ public class MapaActivity extends AppCompatActivity
 					ActionBar actionBar = activity.getSupportActionBar();
 					if(actionBar == null)
 						return;
-					int height = actionBar.getHeight();
-					mapa.setPadding(0, height, 0, 0);
+					altoActionBar = actionBar.getHeight();
+					mapa.setPadding(0, altoActionBar, 0, 0);
 				}
 			});
 		}
@@ -338,15 +347,19 @@ public class MapaActivity extends AppCompatActivity
 		@Override
 		public void onMapClick(LatLng latLng)
 		{
+			canalSeleccionado(null, null);
 			FragmentManager fm = getFragmentManager();
 			if(fm.findFragmentByTag("canales") != null)
 				fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+			mapa.setPadding(0, altoActionBar, 0, 0);
 		}
 
 		@Override
 		public boolean onMarkerClick(Marker marker)
 		{
 			this.marker = marker;
+
+			canalSeleccionado(null, null);
 
 			FragmentManager fm = getFragmentManager();
 			CanalesFragment fr = (CanalesFragment)fm.findFragmentByTag("canales");
@@ -356,12 +369,13 @@ public class MapaActivity extends AppCompatActivity
 			{
 				if(fr != null)
 					fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+				mapa.setPadding(0, altoActionBar, 0, 0);
 				return false;
 			}
 
 			if(fr != null)
 			{
-				fr = CanalesFragment.crear(antena);
+				fr = CanalesFragment.crear(antena, this);
 				fm.beginTransaction()
 						.setCustomAnimations(0, 0, R.anim.canales_enter, R.anim.canales_exit)
 						.replace(R.id.bottom_sheet, fr, "canales")
@@ -369,7 +383,7 @@ public class MapaActivity extends AppCompatActivity
 						.commit();
 			} else
 			{
-				fr = CanalesFragment.crear(antena);
+				fr = CanalesFragment.crear(antena, this);
 				fm.beginTransaction()
 					.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit)
 					.replace(R.id.bottom_sheet, fr, "canales")
@@ -378,17 +392,75 @@ public class MapaActivity extends AppCompatActivity
 			}
 			return false;
 		}
+
+		@Override
+		public void canalSeleccionado(Antena antena, final Canal canal)
+		{
+			if(contornoActual != null)
+			{
+				contornoActual.remove();
+				contornoActual = null;
+			}
+			if(antena == null || antena.país != País.US || canal == null || canal.ref == null)
+				return;
+			new AsyncTask<Void, Void, Polígono>()
+			{
+				@Override
+				protected Polígono doInBackground(Void... params)
+				{
+					try
+					{
+						if(cachéDeContornos == null)
+							cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
+						return cachéDeContornos.dameContornoFCC(Integer.parseInt(canal.ref));
+					} catch(Exception e)
+					{
+						Log.e("antenas", "uh?", e);
+					}
+					return null;
+				}
+
+				@Override
+				protected void onPostExecute(Polígono polygon)
+				{
+					PolygonOptions poly = new PolygonOptions();
+					poly.addAll(polygon.getPuntos());
+					poly.fillColor(ContextCompat.getColor(getActivity(), R.color.contorno));
+					contornoActual = mapa.addPolygon(poly);
+					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), (int)getActivity().getResources().getDimension(R.dimen.paddingContorno));
+					mapa.animateCamera(cameraUpdate);
+				}
+			}.execute();
+		}
+
+		@Override
+		public void onDestroy()
+		{
+			if(cachéDeContornos != null)
+				cachéDeContornos.devolver();
+			super.onDestroy();
+		}
 	}
 
 	public static class CanalesFragment extends Fragment
 	{
-		static CanalesFragment crear(Antena antena)
+		Antena antena;
+
+		interface Callback
+		{
+			void canalSeleccionado(Antena antena, Canal canal);
+		}
+
+		Callback callback;
+
+		static CanalesFragment crear(Antena antena, Callback callback)
 		{
 			CanalesFragment fr = new CanalesFragment();
 			Bundle args = new Bundle();
 			args.putInt("país", antena.país.ordinal());
 			args.putInt("index", antena.index);
 			fr.setArguments(args);
+			fr.callback = callback;
 			return fr;
 		}
 
@@ -398,6 +470,7 @@ public class MapaActivity extends AppCompatActivity
 			public void onClick(View v)
 			{
 				v.setSelected(true);
+				callback.canalSeleccionado(antena, (Canal)v.getTag());
 			}
 		};
 
@@ -407,11 +480,11 @@ public class MapaActivity extends AppCompatActivity
 		{
 			País país = País.values()[getArguments().getInt("país")];
 			int index = getArguments().getInt("index");
-			Antena antena = Antena.dameAntena(getActivity(), país, index);
+			antena = Antena.dameAntena(getActivity(), país, index);
 
 			boolean hayImágenes = antena.hayImágenes();
 			ContextThemeWrapper ctx = new ContextThemeWrapper(getActivity(), R.style.InfoMapa);
-			View v = inflater.inflate(R.layout.info_mapa, container, false);
+			final View v = inflater.inflate(R.layout.info_mapa, container, false);
 			TextView tv = (TextView)v.findViewById(R.id.antena_desc);
 			if(tv != null)
 			{
@@ -437,12 +510,15 @@ public class MapaActivity extends AppCompatActivity
 					{
 						Canal canal = antena.canales.get(i * ncolumns + j);
 						View vc = canal.dameViewCanal(ctx, row, hayImágenes);
-						vc.setClickable(true);
-						vc.setFocusable(true);
-						vc.setTag(canal);
-						//noinspection deprecation
-						vc.setBackgroundResource(selectableItemBackground);
-						vc.setOnClickListener(canalClickListener);
+						if(antena.país == País.US && canal.ref != null)
+						{
+							vc.setClickable(true);
+							vc.setFocusable(true);
+							vc.setTag(canal);
+							//noinspection deprecation
+							vc.setBackgroundResource(selectableItemBackground);
+							vc.setOnClickListener(canalClickListener);
+						}
 						vc.setMinimumHeight((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics()));
 						if(j > 0)
 							vc.setPadding((int)getResources().getDimension(vc.getPaddingLeft() + R.dimen.paddingColumnasInfoMapa), vc.getPaddingTop(), vc.getPaddingRight(), vc.getPaddingBottom());
@@ -469,6 +545,26 @@ public class MapaActivity extends AppCompatActivity
 				tv.setGravity(Gravity.CENTER);
 				l.addView(tv);
 			}
+			ViewTreeObserver vto = v.getViewTreeObserver();
+			vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
+			{
+				@Override
+				public boolean onPreDraw()
+				{
+					v.getViewTreeObserver().removeOnPreDrawListener(this);
+
+					MapaFragment mfr = (MapaFragment)getFragmentManager().findFragmentById(R.id.container);
+					//int height = getActivity().findViewById(R.id.bottom_sheet).getHeight();
+					int height = v.getHeight();
+					height -= ((MapaActivity)getActivity()).publicidad.getHeight();
+					if(height < 0)
+						height = 0;
+					Log.d("antenas", "height=" + height);
+					mfr.mapa.setPadding(0, mfr.altoActionBar, 0, height);
+
+					return true;
+				}
+			});
 			return v;
 		}
 	}
