@@ -501,7 +501,9 @@ public class MapaActivity extends AppCompatActivity
 				int selectableItemBackground = arr.getResourceId(0, -1);
 				arr.recycle();
 				n = antena.canales.size();
-				int ncolumns = 3;
+				int ncolumns = (n + 1) / (antena.descripción != null ? 2 : 3);
+				if(ncolumns == 0)
+					ncolumns++;
 				for(int i = 0; i < (n+ncolumns-1) / ncolumns; i++)
 				{
 					TableRow row = new TableRow(ctx);
