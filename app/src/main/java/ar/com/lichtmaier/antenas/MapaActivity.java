@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -506,6 +507,7 @@ public class MapaActivity extends AppCompatActivity
 			public void onClick(View v)
 			{
 				v.setSelected(true);
+				v.requestRectangleOnScreen(new Rect(0, 0, v.getWidth(), v.getHeight()));
 				callback.canalSeleccionado(antena, (Canal)v.getTag());
 			}
 		};
