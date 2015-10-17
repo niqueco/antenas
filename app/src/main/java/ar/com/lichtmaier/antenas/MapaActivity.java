@@ -185,6 +185,7 @@ public class MapaActivity extends AppCompatActivity
 		private CachéDeContornos cachéDeContornos;
 		private Polygon contornoActual;
 		private int altoActionBar;
+		final private EnumSet<País> paísesPrendidos = EnumSet.noneOf(País.class);
 
 		public MapaFragment()
 		{
@@ -252,7 +253,10 @@ public class MapaActivity extends AppCompatActivity
 			prefs.registerOnSharedPreferenceChangeListener(this);
 			for(País país : País.values())
 				if(prefs.getBoolean("mapa_país_" + país, false))
+				{
 					Antena.dameAntenas(act, país);
+					paísesPrendidos.add(país);
+				}
 			act.findViewById(R.id.map).post(new Runnable() {
 				@Override
 				public void run()
@@ -279,6 +283,7 @@ public class MapaActivity extends AppCompatActivity
 				{
 					Antena.dameAntenas(getActivity(), país);
 					ponerMarcadores();
+					paísesPrendidos.add(país);
 				} else
 				{
 					List<Marker> markers = países.remove(país);
@@ -288,7 +293,20 @@ public class MapaActivity extends AppCompatActivity
 							antenasDentro.remove(markerAAntena.get(marker));
 							marker.remove();
 						}
+					paísesPrendidos.remove(país);
 				}
+			}
+		}
+
+		static class FuturoMarcador
+		{
+			final Antena antena;
+			final MarkerOptions markerOptions;
+
+			public FuturoMarcador(Antena antena, MarkerOptions markerOptions)
+			{
+				this.antena = antena;
+				this.markerOptions = markerOptions;
 			}
 		}
 
@@ -297,38 +315,56 @@ public class MapaActivity extends AppCompatActivity
 			Activity act = getActivity();
 			if(act == null)
 				return;
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);
-			LatLngBounds latLngBounds = mapa.getProjection().getVisibleRegion().latLngBounds;
-			antenas_temp.clear();
-			Antena.antenasEnRectángulo(latLngBounds.northeast.latitude,
-					latLngBounds.southwest.longitude,
-					latLngBounds.southwest.latitude,
-					latLngBounds.northeast.longitude,
-					antenas_temp);
-			for(Antena antena : antenas_temp)
-			{
-				if(!prefs.getBoolean("mapa_país_" + antena.país, false))
-					continue;
-				if(!antenasDentro.add(antena))
-					continue;
+			final LatLngBounds latLngBounds = mapa.getProjection().getVisibleRegion().latLngBounds;
 
-				Marker marker = mapa.addMarker(new MarkerOptions()
-						.position(antena.getLatLng())
-						.title(antena.dameNombre(getActivity()))
-						.icon(íconoAntenita));
-				markerAAntena.put(marker, antena);
+			new AsyncTask<Void, Void, List<FuturoMarcador>>() {
 
-				List<Marker> markers = países.get(antena.país);
-				if(markers == null)
+				@Override
+				protected List<FuturoMarcador> doInBackground(Void... params)
 				{
-					markers = new ArrayList<>();
-					países.put(antena.país, markers);
+					List<Antena> antenas = new ArrayList<>();
+					Antena.antenasEnRectángulo(latLngBounds.northeast.latitude,
+							latLngBounds.southwest.longitude,
+							latLngBounds.southwest.latitude,
+							latLngBounds.northeast.longitude,
+							antenas);
+					List<FuturoMarcador> mm = new ArrayList<>();
+					for(Antena antena : antenas)
+					{
+						if(!paísesPrendidos.contains(antena.país))
+							continue;
+						if(!antenasDentro.add(antena))
+							continue;
+
+						mm.add(new FuturoMarcador(antena, new MarkerOptions()
+								.position(antena.getLatLng())
+								.title(antena.dameNombre(getActivity()))
+								.icon(íconoAntenita)));
+					}
+					return mm;
 				}
-				markers.add(marker);
-			}
+
+				@Override
+				protected void onPostExecute(List<FuturoMarcador> mm)
+				{
+					for(FuturoMarcador m : mm)
+					{
+						Marker marker = mapa.addMarker(m.markerOptions);
+						markerAAntena.put(marker, m.antena);
+
+						List<Marker> markers = países.get(m.antena.país);
+						if(markers == null)
+						{
+							markers = new ArrayList<>();
+							países.put(m.antena.país, markers);
+						}
+						markers.add(marker);
+					}
+				}
+
+			}.execute();
 		}
 
-		final private List<Antena> antenas_temp = new ArrayList<>();
 		final private Set<Antena> antenasDentro = new HashSet<>();
 
 		@Override
