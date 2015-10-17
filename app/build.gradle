@@ -37,15 +37,15 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:support-v4:23.1.0'
     //noinspection GradleDependency
     froyoCompile 'com.google.android.gms:play-services:3.2.65'
     normalCompile 'com.google.android.gms:play-services-location:8.1.0'
     normalCompile 'com.google.android.gms:play-services-maps:8.1.0'
     normalCompile 'com.google.android.gms:play-services-ads:8.1.0'
     normalCompile 'com.google.android.gms:play-services-analytics:8.1.0'
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
     compile 'com.github.davidmoten:geo:0.7.1'
     compile files('libs/geodesy.jar')
     compile 'com.google.maps.android:android-maps-utils:0.4'
