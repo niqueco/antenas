@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
@@ -273,7 +274,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
 		if(requestCode == PEDIDO_DE_PERMISO_FINE_LOCATION)
 		{
