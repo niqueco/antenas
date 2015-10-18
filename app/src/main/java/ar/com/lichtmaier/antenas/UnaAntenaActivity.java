@@ -1,10 +1,14 @@
 package ar.com.lichtmaier.antenas;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.*;
+import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -26,11 +30,16 @@ public class UnaAntenaActivity extends AntenaActivity
 	private double ángulo;
 	private FlechaView flecha;
 	final private List<View> vistasAnimadas = new ArrayList<>();
+	private View navigationIcon;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		//noinspection ConstantConditions
+		getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
 		final TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
@@ -96,6 +105,27 @@ public class UnaAntenaActivity extends AntenaActivity
 					aa.setDuration(500);
 					aa.setInterpolator(new AccelerateInterpolator());
 					findViewById(R.id.fondo).startAnimation(aa);
+
+					Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
+					int n = tb.getChildCount();
+					for(int i = 0 ; i < n ; i++)
+					{
+						View v = tb.getChildAt(i);
+						if(v instanceof ImageButton && tb.getNavigationIcon() == ((ImageButton)v).getDrawable())
+						{
+							navigationIcon = v;
+							break;
+						}
+					}
+
+					if(navigationIcon != null)
+					{
+						AlphaAnimation ab = new AlphaAnimation(0, 1);
+						ab.setDuration(300);
+						ab.setStartOffset(300);
+						ab.setInterpolator(new DecelerateInterpolator());
+						navigationIcon.startAnimation(ab);
+					}
 
 					vistasAnimadas.add(antenaDesc);
 					TextView antenaDist = (TextView) findViewById(R.id.antena_dist);
@@ -182,9 +212,14 @@ public class UnaAntenaActivity extends AntenaActivity
 	@Override
 	public void onBackPressed()
 	{
+		cerrar();
+	}
+
+	private void cerrar()
+	{
 		if (getResources().getConfiguration().orientation != orientaciónOriginal)
 		{
-			super.onBackPressed();
+			finish();
 			return;
 		}
 		calcularDeltas();
@@ -195,6 +230,14 @@ public class UnaAntenaActivity extends AntenaActivity
 		aa.setInterpolator(new AccelerateInterpolator());
 		aa.setFillAfter(true);
 		findViewById(R.id.fondo).startAnimation(aa);
+		if(navigationIcon != null)
+		{
+			AlphaAnimation ab = new AlphaAnimation(1, 0);
+			ab.setDuration(400);
+			ab.setInterpolator(new AccelerateInterpolator());
+			ab.setFillAfter(true);
+			navigationIcon.startAnimation(ab);
+		}
 		aa.setAnimationListener(new Animation.AnimationListener()
 		{
 			@Override
@@ -274,5 +317,16 @@ public class UnaAntenaActivity extends AntenaActivity
 		FlechaView f = (FlechaView)findViewById(R.id.flecha);
 		ángulo = rumbo - brújula;
 		f.setÁngulo(ángulo);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		if(item.getItemId() == android.R.id.home)
+		{
+			cerrar();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }
