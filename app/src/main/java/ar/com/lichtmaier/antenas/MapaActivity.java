@@ -544,6 +544,7 @@ public class MapaActivity extends AppCompatActivity
 				else
 					tv.setText(antena.descripción);
 			}
+			View viewPrimerCanal = null;
 			ViewGroup l = (ViewGroup)v.findViewById(R.id.lista_canales);
 			int n;
 			if(l instanceof TableLayout)
@@ -567,6 +568,9 @@ public class MapaActivity extends AppCompatActivity
 						FrameLayout fl = new FrameLayout(getContext());
 						fl.addView(vc);
 						vc = fl;
+
+						if(viewPrimerCanal == null)
+							viewPrimerCanal = vc;
 
 						if(antena.país == País.US && canal.ref != null)
 						{
@@ -623,6 +627,8 @@ public class MapaActivity extends AppCompatActivity
 					return true;
 				}
 			});
+			if(viewPrimerCanal != null)
+				canalClickListener.onClick(viewPrimerCanal);
 			return v;
 		}
 	}
