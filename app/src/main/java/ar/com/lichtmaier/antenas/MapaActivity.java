@@ -189,6 +189,7 @@ public class MapaActivity extends AppCompatActivity
 		private Polygon contornoActual;
 		private int altoActionBar;
 		final private EnumSet<País> paísesPrendidos = EnumSet.noneOf(País.class);
+		private AsyncTask<Void, Void, Polígono> tareaTraerContorno;
 
 		public MapaFragment()
 		{
@@ -440,9 +441,11 @@ public class MapaActivity extends AppCompatActivity
 				contornoActual.remove();
 				contornoActual = null;
 			}
+			if(tareaTraerContorno != null)
+				tareaTraerContorno.cancel(false);
 			if(antena == null || antena.país != País.US || canal == null || canal.ref == null)
 				return;
-			new AsyncTask<Void, Void, Polígono>()
+			tareaTraerContorno = new AsyncTask<Void, Void, Polígono>()
 			{
 				@Override
 				protected Polígono doInBackground(Void... params)
@@ -451,6 +454,8 @@ public class MapaActivity extends AppCompatActivity
 					{
 						if(cachéDeContornos == null)
 							cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
+						if(isCancelled())
+							return null;
 						return cachéDeContornos.dameContornoFCC(Integer.parseInt(canal.ref));
 					} catch(Exception e)
 					{
@@ -462,6 +467,8 @@ public class MapaActivity extends AppCompatActivity
 				@Override
 				protected void onPostExecute(Polígono polygon)
 				{
+					if(isCancelled())
+						return;
 					PolygonOptions poly = new PolygonOptions();
 					poly.addAll(polygon.getPuntos());
 					poly.fillColor(ContextCompat.getColor(getActivity(), R.color.contorno));
@@ -469,7 +476,8 @@ public class MapaActivity extends AppCompatActivity
 					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), (int)getActivity().getResources().getDimension(R.dimen.paddingContorno));
 					mapa.animateCamera(cameraUpdate);
 				}
-			}.execute();
+			};
+			tareaTraerContorno.execute();
 		}
 
 		@Override
