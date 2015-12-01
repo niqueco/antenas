@@ -594,11 +594,11 @@ public class MapaActivity extends AppCompatActivity
 						fl.addView(vc);
 						vc = fl;
 
-						if(viewPrimerCanal == null)
-							viewPrimerCanal = vc;
-
 						if(antena.país == País.US && canal.ref != null)
 						{
+							if(viewPrimerCanal == null)
+								viewPrimerCanal = vc;
+
 							vc.setClickable(true);
 							vc.setFocusable(true);
 							vc.setTag(canal);
