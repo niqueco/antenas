@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -187,9 +188,15 @@ public class MapaActivity extends AppCompatActivity
 		return super.onOptionsItemSelected(item);
 	}
 
+	public void canalSeleccionado(Antena antena, Canal canal)
+	{
+		MapaFragment mfr = (MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container);
+		mfr.canalSeleccionado(antena, canal);
+	}
+
 	public static class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 			GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
-			GoogleMap.OnCameraChangeListener, GoogleMap.OnMarkerClickListener, CanalesFragment.Callback
+			GoogleMap.OnCameraChangeListener, GoogleMap.OnMarkerClickListener
 	{
 		private GoogleMap mapa;
 
@@ -427,7 +434,7 @@ public class MapaActivity extends AppCompatActivity
 
 			if(fr != null)
 			{
-				fr = CanalesFragment.crear(antena, this);
+				fr = CanalesFragment.crear(antena);
 				fm.beginTransaction()
 						.setCustomAnimations(0, 0, R.anim.canales_enter, R.anim.canales_exit)
 						.replace(R.id.bottom_sheet, fr, "canales")
@@ -435,7 +442,7 @@ public class MapaActivity extends AppCompatActivity
 						.commit();
 			} else
 			{
-				fr = CanalesFragment.crear(antena, this);
+				fr = CanalesFragment.crear(antena);
 				fm.beginTransaction()
 					.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit)
 					.replace(R.id.bottom_sheet, fr, "canales")
@@ -445,7 +452,6 @@ public class MapaActivity extends AppCompatActivity
 			return false;
 		}
 
-		@Override
 		public void canalSeleccionado(Antena antena, final Canal canal)
 		{
 			if(contornoActual != null)
@@ -504,26 +510,25 @@ public class MapaActivity extends AppCompatActivity
 	public static class CanalesFragment extends Fragment
 	{
 		Antena antena;
+		MapaActivity callback;
+		private View selectedView;
 
-		interface Callback
-		{
-			void canalSeleccionado(Antena antena, Canal canal);
-		}
-
-		Callback callback;
-
-		static CanalesFragment crear(Antena antena, Callback callback)
+		static CanalesFragment crear(Antena antena)
 		{
 			CanalesFragment fr = new CanalesFragment();
 			Bundle args = new Bundle();
 			args.putInt("país", antena.país.ordinal());
 			args.putInt("index", antena.index);
 			fr.setArguments(args);
-			fr.callback = callback;
 			return fr;
 		}
 
-		private View selectedView;
+		@Override
+		public void onAttach(Context context)
+		{
+			super.onAttach(context);
+			callback = (MapaActivity)context;
+		}
 
 		private final View.OnClickListener canalClickListener = new View.OnClickListener()
 		{
