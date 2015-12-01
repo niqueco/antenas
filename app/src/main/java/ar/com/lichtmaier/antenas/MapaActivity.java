@@ -11,6 +11,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -99,9 +101,19 @@ public class MapaActivity extends AppCompatActivity
 			{
 				if(seMuestraRuegoDePermisos)
 					((ViewGroup)findViewById(R.id.container)).removeAllViews();
-				getSupportFragmentManager().beginTransaction()
-						.add(R.id.container, new MapaFragment())
-						.commit();
+
+				// stupid, but needed because of bug https://code.google.com/p/android/issues/detail?id=190966
+				new Handler(Looper.getMainLooper()).post(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						getSupportFragmentManager().beginTransaction()
+								.add(R.id.container, new MapaFragment())
+								.commit();
+					}
+				});
+
 			} else
 				finish();
 		} else
