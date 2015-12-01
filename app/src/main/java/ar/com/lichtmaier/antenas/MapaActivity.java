@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class MapaActivity extends AppCompatActivity
 		if(tb != null)
 		{
 			setSupportActionBar(tb);
+			//noinspection ConstantConditions
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
@@ -501,12 +503,23 @@ public class MapaActivity extends AppCompatActivity
 			return fr;
 		}
 
+		private View selectedView;
+
 		private final View.OnClickListener canalClickListener = new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
+				if(selectedView != null)
+				{
+					selectedView.setSelected(false);
+					//noinspection RedundantCast
+					((FrameLayout)selectedView).setForeground(null);
+				}
+				selectedView = v;
 				v.setSelected(true);
+				//noinspection RedundantCast
+				((FrameLayout)selectedView).setForeground(new ColorDrawable(0x55eeeeee));
 				v.requestRectangleOnScreen(new Rect(0, 0, v.getWidth(), v.getHeight()));
 				callback.canalSeleccionado(antena, (Canal)v.getTag());
 			}
@@ -550,6 +563,11 @@ public class MapaActivity extends AppCompatActivity
 					{
 						Canal canal = antena.canales.get(i * ncolumns + j);
 						View vc = canal.dameViewCanal(ctx, row, hayImágenes);
+
+						FrameLayout fl = new FrameLayout(getContext());
+						fl.addView(vc);
+						vc = fl;
+
 						if(antena.país == País.US && canal.ref != null)
 						{
 							vc.setClickable(true);
