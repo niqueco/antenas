@@ -487,7 +487,7 @@ public class MapaActivity extends AppCompatActivity
 				@Override
 				protected void onPostExecute(Polígono polygon)
 				{
-					if(isCancelled())
+					if(polygon == null || isCancelled())
 						return;
 					PolygonOptions poly = new PolygonOptions();
 					poly.addAll(polygon.getPuntos());
