@@ -256,7 +256,8 @@ public class MapaActivity extends AppCompatActivity
 				return;
 			}
 			mapa.setMyLocationEnabled(true);
-			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
+			if(savedInstanceState == null)
+				mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 			mapa.setOnInfoWindowClickListener(this);
 			mapa.setOnMapClickListener(this);
 			mapa.setOnCameraChangeListener(this);
@@ -264,7 +265,8 @@ public class MapaActivity extends AppCompatActivity
 			Location loc = null;
 			if(AntenaActivity.coordsUsuario != null)
 			{
-				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
+				if(savedInstanceState == null)
+					mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
 				loc = new Location("*");
 				loc.setLatitude(AntenaActivity.coordsUsuario.getLatitude());
 				loc.setLongitude(AntenaActivity.coordsUsuario.getLongitude());
@@ -569,7 +571,8 @@ public class MapaActivity extends AppCompatActivity
 				else
 					tv.setText(antena.descripción);
 			}
-			View viewPrimerCanal = null;
+			View viewCanalASeleccionar = null;
+			final int canalSeleccionadoPos = savedInstanceState != null ? savedInstanceState.getInt("canal", -1) : -1;
 			ViewGroup l = (ViewGroup)v.findViewById(R.id.lista_canales);
 			int n;
 			if(l instanceof TableLayout)
@@ -587,7 +590,8 @@ public class MapaActivity extends AppCompatActivity
 
 					for(int j = 0 ; j < ncolumns && (i * ncolumns + j) < antena.canales.size() ; j++)
 					{
-						Canal canal = antena.canales.get(i * ncolumns + j);
+						int posCanal = i * ncolumns + j;
+						Canal canal = antena.canales.get(posCanal);
 						View vc = canal.dameViewCanal(ctx, row, hayImágenes);
 
 						FrameLayout fl = new FrameLayout(getContext());
@@ -596,8 +600,8 @@ public class MapaActivity extends AppCompatActivity
 
 						if(antena.país == País.US && canal.ref != null)
 						{
-							if(viewPrimerCanal == null)
-								viewPrimerCanal = vc;
+							if(viewCanalASeleccionar == null && (canalSeleccionadoPos == -1 || posCanal == canalSeleccionadoPos))
+								viewCanalASeleccionar = vc;
 
 							vc.setClickable(true);
 							vc.setFocusable(true);
@@ -646,15 +650,27 @@ public class MapaActivity extends AppCompatActivity
 					height -= ((MapaActivity)getActivity()).publicidad.getHeight();
 					if(height < 0)
 						height = 0;
-					Log.d("antenas", "height=" + height);
+					if(Log.isLoggable("antenas", Log.DEBUG))
+						Log.d("antenas", "height=" + height);
 					mfr.mapa.setPadding(0, mfr.altoActionBar, 0, height);
 
 					return true;
 				}
 			});
-			if(viewPrimerCanal != null)
-				canalClickListener.onClick(viewPrimerCanal);
+			if(viewCanalASeleccionar != null)
+				canalClickListener.onClick(viewCanalASeleccionar);
 			return v;
+		}
+
+		@Override
+		public void onSaveInstanceState(Bundle outState)
+		{
+			super.onSaveInstanceState(outState);
+
+			if(selectedView != null)
+				//noinspection SuspiciousMethodCalls
+				outState.putInt("canal", antena.canales.indexOf(selectedView.getTag()));
+
 		}
 	}
 }
