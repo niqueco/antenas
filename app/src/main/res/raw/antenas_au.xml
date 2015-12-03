@@ -1,6 +1,7 @@
 <antenas>
 <antena lat="-34.32861" lon="115.1606">
-<canal nombre="ABC" numero="55"/>
+<canal nombre="ABC" numero="46"/>
+<canal nombre="SBS" numero="47"/>
 <canal nombre="WAW" numero="48"/>
 <canal nombre="WDW" numero="50"/>
 <canal nombre="WOW" numero="49"/>
@@ -12,52 +13,59 @@
 <canal nombre="SSW" numero="41"/>
 <canal nombre="WOW" numero="42"/>
 </antena>
-<antena lat="-33.98667" lon="115.7675">
+<antena lat="-33.98639" lon="115.7675">
 <canal nombre="ABC" numero="31"/>
+<canal nombre="SBS" numero="28"/>
 <canal nombre="SDW" numero="33"/>
 <canal nombre="SSW" numero="29"/>
 <canal nombre="WOW" numero="30"/>
 </antena>
 <antena lat="-34.44861" lon="116.0414">
 <canal nombre="ABC" numero="32"/>
+<canal nombre="SBS" numero="28"/>
 <canal nombre="WAW" numero="29"/>
 <canal nombre="WDW" numero="33"/>
 <canal nombre="WOW" numero="30"/>
 </antena>
-<antena lat="-34.25583" lon="116.1422">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="SBS" numero="55"/>
+<antena lat="-34.25556" lon="116.1414">
+<canal nombre="ABC" numero="46"/>
+<canal nombre="SBS" numero="47"/>
 <canal nombre="SDW" numero="49"/>
 <canal nombre="SSW" numero="48"/>
 <canal nombre="WOW" numero="50"/>
 </antena>
 <antena lat="-33.96667" lon="116.1406">
 <canal nombre="ABC" numero="45"/>
+<canal nombre="SBS" numero="43"/>
 <canal nombre="SDW" numero="44"/>
 <canal nombre="SSW" numero="41"/>
-<canal nombre="WOW" numero="42"/>
-</antena>
-<antena lat="-35.02611" lon="117.8931">
-<canal nombre="SDW" numero="44"/>
-<canal nombre="SSW" numero="45"/>
 <canal nombre="WOW" numero="42"/>
 </antena>
 <antena lat="-35.02583" lon="117.8928">
 <canal nombre="ABC" numero="43"/>
 <canal nombre="SBS" numero="41"/>
 </antena>
+<antena lat="-35.02611" lon="117.8931">
+<canal nombre="SDW" numero="44"/>
+<canal nombre="SSW" numero="45"/>
+<canal nombre="WOW" numero="42"/>
+</antena>
 <antena lat="-34.65667" lon="117.6458">
 <canal nombre="ABC" numero="11"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="SBS" numero="10"/>
 <canal nombre="SDW" numero="12"/>
 <canal nombre="SSW" numero="6"/>
 <canal nombre="WOW" numero="8"/>
 </antena>
-<antena lat="-33.8475" lon="117.1597">
-<canal nombre="ABC" numero="68"/>
+<antena lat="-33.84861" lon="117.1578">
+<canal nombre="ABC" numero="50"/>
+<canal nombre="SBS" numero="48"/>
 <canal nombre="SDW" numero="49"/>
 <canal nombre="SSW" numero="46"/>
 <canal nombre="WOW" numero="51"/>
+</antena>
+<antena lat="-33.93417" lon="120.1319">
+<canal nombre="ABC" numero="40"/>
 </antena>
 <antena lat="-33.87611" lon="121.8931">
 <canal nombre="ABC9A" numero="9A"/>
@@ -66,24 +74,25 @@
 <canal nombre="VEW" numero="12"/>
 <canal nombre="WOW" numero="11"/>
 </antena>
-<antena lat="-33.39778" lon="115.9133">
+<antena lat="-33.39806" lon="115.9136">
 <canal nombre="ABC" numero="36"/>
 <canal nombre="SBS" numero="34"/>
 <canal nombre="SDW" numero="37"/>
 <canal nombre="SSW" numero="35"/>
 <canal nombre="WOW" numero="39"/>
 </antena>
-<antena lat="-32.65139" lon="115.9881">
-<canal nombre="SBS" numero="53"/>
-</antena>
 <antena lat="-32.65111" lon="115.9886">
 <canal nombre="ABC" numero="41"/>
+<canal nombre="NEW" numero="33"/>
+<canal nombre="SBS" numero="40"/>
 <canal nombre="SDW" numero="44"/>
 <canal nombre="SSW" numero="42"/>
+<canal nombre="STW" numero="31"/>
+<canal nombre="TVW" numero="30"/>
 <canal nombre="WOW" numero="43"/>
 </antena>
-<antena lat="-33.31528" lon="117.2758">
-<canal nombre="ABC" numero="38"/>
+<antena lat="-33.31528" lon="117.2769">
+<canal nombre="ABC" numero="29"/>
 <canal nombre="SBS" numero="28"/>
 <canal nombre="SDW" numero="31"/>
 <canal nombre="SSW" numero="33"/>
@@ -96,16 +105,30 @@
 <canal nombre="SSW" numero="40"/>
 <canal nombre="WOW" numero="41"/>
 </antena>
-<antena lat="-32.88417" lon="117.1956">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="SBS" numero="55"/>
+<antena lat="-32.88361" lon="117.195">
+<canal nombre="ABC" numero="50"/>
+<canal nombre="SBS" numero="48"/>
 </antena>
 <antena lat="-32.88556" lon="117.1942">
 <canal nombre="SDW" numero="49"/>
 <canal nombre="SSW" numero="46"/>
 <canal nombre="WOW" numero="51"/>
 </antena>
-<antena lat="-31.99917" lon="116.0708">
+<antena lat="-31.89444" lon="115.7558">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="NEW" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STW" numero="47"/>
+<canal nombre="TVW" numero="46"/>
+</antena>
+<antena lat="-31.95583" lon="115.8556">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="NEW" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STW" numero="47"/>
+<canal nombre="TVW" numero="46"/>
+</antena>
+<antena lat="-31.99889" lon="116.0706">
 <canal nombre="STW" numero="8"/>
 </antena>
 <antena lat="-32.00944" lon="116.0825">
@@ -113,36 +136,50 @@
 <canal nombre="TVW" numero="6"/>
 </antena>
 <antena lat="-32.13917" lon="116.0489">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="NEW" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STW" numero="62"/>
-<canal nombre="TVW" numero="59"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NEW" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STW" numero="43"/>
+<canal nombre="TVW" numero="42"/>
 </antena>
 <antena lat="-32.01167" lon="116.0828">
 <canal nombre="ABC" numero="12"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="SBS" numero="7"/>
 </antena>
 <antena lat="-32.01361" lon="116.0603">
 <canal nombre="ABC" numero="12"/>
-<canal nombre="CTV" numero="32"/>
+<canal nombre="CTW" numero="32"/>
 <canal nombre="NEW" numero="11"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="SBS" numero="7"/>
 <canal nombre="TVW" numero="6"/>
 </antena>
 <antena lat="-31.65722" lon="116.65">
-<canal nombre="ABC" numero="57"/>
-<canal nombre="SBS" numero="54"/>
+<canal nombre="ABC" numero="50"/>
+<canal nombre="SBS" numero="48"/>
 <canal nombre="SDW" numero="49"/>
 <canal nombre="SSW" numero="46"/>
 <canal nombre="WOW" numero="51"/>
 </antena>
+<antena lat="-31.48111" lon="115.6014">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="NEW" numero="33"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="STW" numero="31"/>
+<canal nombre="TVW" numero="30"/>
+</antena>
+<antena lat="-30.98611" lon="115.3839">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NEW" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STW" numero="43"/>
+<canal nombre="TVW" numero="42"/>
+</antena>
 <antena lat="-31.56167" lon="116.4686">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="NEW" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STW" numero="62"/>
-<canal nombre="TVW" numero="59"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="NEW" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STW" numero="49"/>
+<canal nombre="TVW" numero="48"/>
 </antena>
 <antena lat="-31.98556" lon="117.1883">
 <canal nombre="ABC" numero="45"/>
@@ -151,56 +188,76 @@
 <canal nombre="SSW" numero="40"/>
 <canal nombre="WOW" numero="41"/>
 </antena>
+<antena lat="-30.5025" lon="115.0694">
+<canal nombre="SBS" numero="48"/>
+<canal nombre="WAW" numero="49"/>
+<canal nombre="WDW" numero="51"/>
+<canal nombre="WOW" numero="50"/>
+</antena>
 <antena lat="-30.50389" lon="115.0694">
 <canal nombre="ABC" numero="47"/>
 </antena>
 <antena lat="-30.28083" lon="115.0664">
-<canal nombre="ABC" numero="56"/>
+<canal nombre="ABC" numero="37"/>
+</antena>
+<antena lat="-30.29722" lon="115.0486">
+<canal nombre="SBS" numero="38"/>
+<canal nombre="WAW" numero="35"/>
+<canal nombre="WDW" numero="34"/>
+<canal nombre="WOW" numero="36"/>
 </antena>
 <antena lat="-29.96306" lon="114.9778">
 <canal nombre="ABC" numero="6"/>
-</antena>
-<antena lat="-28.68556" lon="114.6753">
-<canal nombre="GDW" numero="45"/>
-<canal nombre="GTW" numero="40"/>
-<canal nombre="WOW" numero="44"/>
 </antena>
 <antena lat="-28.68306" lon="114.6753">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="SBS" numero="42"/>
 </antena>
+<antena lat="-28.685" lon="114.6744">
+<canal nombre="GDW" numero="45"/>
+<canal nombre="GTW" numero="40"/>
+<canal nombre="WOW" numero="44"/>
+</antena>
 <antena lat="-28.37167" lon="114.645">
 <canal nombre="ABC" numero="46"/>
-<canal nombre="ABC" numero="55"/>
-<canal nombre="SBS" numero="58"/>
+<canal nombre="SBS" numero="47"/>
 </antena>
 <antena lat="-30.63611" lon="116.1581">
-<canal nombre="ABC" numero="52"/>
+<canal nombre="ABC" numero="38"/>
+<canal nombre="SBS" numero="39"/>
 <canal nombre="WAW" numero="35"/>
 <canal nombre="WDW" numero="34"/>
 <canal nombre="WOW" numero="37"/>
 </antena>
-<antena lat="-30.83694" lon="116.6381">
-<canal nombre="ABC" numero="7"/>
-</antena>
 <antena lat="-30.29" lon="116.6078">
 <canal nombre="ABC" numero="49"/>
 </antena>
-<antena lat="-29.69722" lon="115.8769">
+<antena lat="-29.6975" lon="115.8772">
+<canal nombre="ABC" numero="46"/>
 <canal nombre="GDW" numero="50"/>
 <canal nombre="GTW" numero="48"/>
+<canal nombre="SBS" numero="47"/>
 <canal nombre="WOW" numero="49"/>
 </antena>
-<antena lat="-30.89139" lon="116.7233">
-<canal nombre="SBS" numero="56"/>
-<canal nombre="WAW" numero="62"/>
+<antena lat="-30.89167" lon="116.7231">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WAW" numero="48"/>
 <canal nombre="WDW" numero="51"/>
-<canal nombre="WOW" numero="59"/>
+<canal nombre="WOW" numero="50"/>
 </antena>
-<antena lat="-29.25333" lon="115.3975">
+<antena lat="-30.82722" lon="117.4828">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WAW" numero="48"/>
+<canal nombre="WDW" numero="51"/>
+<canal nombre="WOW" numero="50"/>
+</antena>
+<antena lat="-29.25333" lon="115.3978">
+<canal nombre="ABC" numero="46"/>
 <canal nombre="GDW" numero="50"/>
-<canal nombre="GDW" numero="60"/>
 <canal nombre="GTW" numero="48"/>
+<canal nombre="SBS" numero="47"/>
 <canal nombre="WOW" numero="49"/>
 </antena>
 <antena lat="-29.31972" lon="115.8806">
@@ -212,41 +269,50 @@
 <antena lat="-29.31806" lon="115.8778">
 <canal nombre="ABC" numero="7"/>
 </antena>
-<antena lat="-29.44333" lon="116.2881">
-<canal nombre="GDW" numero="45"/>
-<canal nombre="GTW" numero="43"/>
-<canal nombre="WOW" numero="44"/>
-</antena>
-<antena lat="-28.55194" lon="115.5017">
+<antena lat="-28.55222" lon="115.5022">
 <canal nombre="ABC" numero="46"/>
 <canal nombre="GDW" numero="50"/>
 <canal nombre="GTW" numero="48"/>
 <canal nombre="SBS" numero="47"/>
 <canal nombre="WOW" numero="49"/>
 </antena>
-<antena lat="-33.1" lon="118.4583">
+<antena lat="-28.34333" lon="116.6792">
+<canal nombre="ABC" numero="10"/>
+</antena>
+<antena lat="-33.10028" lon="118.4589">
 <canal nombre="ABC" numero="34"/>
 </antena>
+<antena lat="-33.5875" lon="120.0436">
+<canal nombre="ABC" numero="10"/>
+</antena>
+<antena lat="-32.06361" lon="118.3883">
+<canal nombre="ABC" numero="50"/>
+</antena>
 <antena lat="-31.87472" lon="118.1469">
+<canal nombre="ABC" numero="50"/>
+<canal nombre="SBS" numero="48"/>
 <canal nombre="SDW" numero="49"/>
 <canal nombre="SSW" numero="46"/>
 <canal nombre="WOW" numero="51"/>
 </antena>
 <antena lat="-31.495" lon="118.2717">
-<canal nombre="ABC" numero="56"/>
+<canal nombre="ABC" numero="50"/>
+<canal nombre="SBS" numero="48"/>
 <canal nombre="VDW" numero="49"/>
 <canal nombre="VEW" numero="46"/>
 <canal nombre="WOW" numero="51"/>
 </antena>
-<antena lat="-31.27722" lon="119.5078">
-<canal nombre="ABC" numero="7"/>
-</antena>
-<antena lat="-31.235" lon="119.3225">
+<antena lat="-31.23528" lon="119.3225">
+<canal nombre="SBS" numero="28"/>
 <canal nombre="VDW" numero="30"/>
 <canal nombre="VEW" numero="33"/>
 <canal nombre="WOW" numero="31"/>
 </antena>
-<antena lat="-32.2" lon="121.7781">
+<antena lat="-31.27722" lon="119.5078">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-32.2" lon="121.7778">
+<canal nombre="SBS" numero="47"/>
 <canal nombre="VDW" numero="50"/>
 <canal nombre="VEW" numero="48"/>
 <canal nombre="WOW" numero="49"/>
@@ -254,7 +320,7 @@
 <antena lat="-32.14389" lon="121.7261">
 <canal nombre="ABC" numero="6"/>
 </antena>
-<antena lat="-30.93889" lon="121.1639">
+<antena lat="-30.94056" lon="121.1639">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="SBS" numero="40"/>
 <canal nombre="VDW" numero="44"/>
@@ -262,13 +328,11 @@
 <canal nombre="WOW" numero="43"/>
 </antena>
 <antena lat="-31.21139" lon="121.6714">
-<canal nombre="ABC" numero="56"/>
+<canal nombre="ABC" numero="40"/>
+<canal nombre="SBS" numero="41"/>
 <canal nombre="VDW" numero="44"/>
 <canal nombre="VEW" numero="42"/>
 <canal nombre="WOW" numero="43"/>
-</antena>
-<antena lat="-30.84167" lon="119.5417">
-<canal nombre="WOW" numero="8"/>
 </antena>
 <antena lat="-30.71833" lon="121.4386">
 <canal nombre="ABC9A" numero="9A"/>
@@ -277,11 +341,23 @@
 <canal nombre="VEW" numero="12"/>
 <canal nombre="WOW" numero="10"/>
 </antena>
+<antena lat="-29.69583" lon="121.0278">
+<canal nombre="SBS" numero="41"/>
+<canal nombre="WAW" numero="42"/>
+<canal nombre="WDW" numero="44"/>
+<canal nombre="WOW" numero="43"/>
+</antena>
+<antena lat="-29.69528" lon="121.0286">
+<canal nombre="ABC" numero="10"/>
+</antena>
 <antena lat="-28.88306" lon="121.3328">
 <canal nombre="SBS" numero="41"/>
 <canal nombre="WAW" numero="42"/>
 <canal nombre="WDW" numero="44"/>
 <canal nombre="WOW" numero="43"/>
+</antena>
+<antena lat="-28.88722" lon="121.3636">
+<canal nombre="ABC" numero="10"/>
 </antena>
 <antena lat="-28.62944" lon="122.3978">
 <canal nombre="SBS" numero="46"/>
@@ -289,22 +365,36 @@
 <canal nombre="WDW" numero="49"/>
 <canal nombre="WOW" numero="48"/>
 </antena>
-<antena lat="-27.70639" lon="114.1736">
+<antena lat="-28.62917" lon="122.3975">
+<canal nombre="ABC" numero="11"/>
+</antena>
+<antena lat="-27.70667" lon="114.1736">
 <canal nombre="ABC" numero="8"/>
 <canal nombre="GDW" numero="12"/>
 <canal nombre="GTW" numero="6"/>
+<canal nombre="SBS" numero="10"/>
 <canal nombre="WOW" numero="11"/>
+</antena>
+<antena lat="-25.92056" lon="113.5328">
+<canal nombre="SBS" numero="34"/>
+<canal nombre="WAW" numero="35"/>
+<canal nombre="WDW" numero="37"/>
+<canal nombre="WOW" numero="39"/>
 </antena>
 <antena lat="-25.92528" lon="113.5422">
 <canal nombre="ABC" numero="7"/>
 </antena>
 <antena lat="-28.0575" lon="117.8408">
 <canal nombre="ABC" numero="9"/>
+<canal nombre="SBS9A" numero="9A"/>
 <canal nombre="WAW" numero="11"/>
 <canal nombre="WDW" numero="7"/>
 <canal nombre="WOW" numero="12"/>
 </antena>
-<antena lat="-24.90722" lon="113.7192">
+<antena lat="-27.43028" lon="117.8992">
+<canal nombre="ABC" numero="10"/>
+</antena>
+<antena lat="-24.90639" lon="113.7186">
 <canal nombre="ABC" numero="6"/>
 <canal nombre="SBS" numero="11"/>
 <canal nombre="WAW" numero="7"/>
@@ -330,6 +420,7 @@
 </antena>
 <antena lat="-26.59806" lon="118.4964">
 <canal nombre="ABC" numero="9"/>
+<canal nombre="SBS9A" numero="9A"/>
 <canal nombre="WAW" numero="10"/>
 <canal nombre="WDW" numero="7"/>
 <canal nombre="WOW" numero="12"/>
@@ -341,29 +432,54 @@
 <canal nombre="WDW" numero="8"/>
 <canal nombre="WOW" numero="10"/>
 </antena>
-<antena lat="-32.75806" lon="134.1917">
+<antena lat="-32.75028" lon="134.2422">
+<canal nombre="CDT" numero="44"/>
+<canal nombre="IMP" numero="43"/>
+<canal nombre="QQQ" numero="42"/>
+<canal nombre="SBS" numero="41"/>
+</antena>
+<antena lat="-32.75778" lon="134.1911">
 <canal nombre="ABC" numero="11"/>
+</antena>
+<antena lat="-32.40917" lon="134.6111">
+<canal nombre="ABC9A" numero="9A"/>
 </antena>
 <antena lat="-32.14" lon="133.7881">
 <canal nombre="ABC" numero="39"/>
+<canal nombre="CDT" numero="34"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
 <canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-29.01278" lon="134.7578">
 <canal nombre="ABC" numero="7"/>
 </antena>
-<antena lat="-26.13667" lon="126.5778">
+<antena lat="-29.01194" lon="134.7578">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
+<antena lat="-26.13556" lon="126.5786">
 <canal nombre="ABC" numero="48"/>
 <canal nombre="SBS" numero="46"/>
 <canal nombre="WAW" numero="40"/>
 <canal nombre="WDW" numero="44"/>
 <canal nombre="WOW" numero="42"/>
 </antena>
-<antena lat="-26" lon="128.2847">
+<antena lat="-25.99889" lon="128.2819">
 <canal nombre="ABC" numero="48"/>
 <canal nombre="SBS" numero="46"/>
 <canal nombre="WAW" numero="40"/>
 <canal nombre="WDW" numero="44"/>
 <canal nombre="WOW" numero="42"/>
+</antena>
+<antena lat="-25.23583" lon="130.9906">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="CDT" numero="45"/>
+<canal nombre="IMP" numero="43"/>
+<canal nombre="QQQ" numero="41"/>
+<canal nombre="SBS" numero="47"/>
 </antena>
 <antena lat="-23.72361" lon="133.8553">
 <canal nombre="ABC" numero="8"/>
@@ -371,6 +487,36 @@
 </antena>
 <antena lat="-23.72389" lon="133.8561">
 <canal nombre="CDT" numero="40"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="38"/>
+</antena>
+<antena lat="-12.18944" lon="96.82778">
+<canal nombre="ABC" numero="6"/>
+<canal nombre="SBS" numero="7"/>
+<canal nombre="WAW" numero="8"/>
+<canal nombre="WDW" numero="11"/>
+<canal nombre="WOW" numero="10"/>
+</antena>
+<antena lat="-10.43639" lon="105.6825">
+<canal nombre="ABC" numero="34"/>
+<canal nombre="SBS" numero="35"/>
+<canal nombre="WAW" numero="36"/>
+<canal nombre="WDW" numero="38"/>
+<canal nombre="WOW" numero="37"/>
+</antena>
+<antena lat="-10.41778" lon="105.6747">
+<canal nombre="ABC" numero="40"/>
+<canal nombre="SBS" numero="41"/>
+<canal nombre="WAW" numero="42"/>
+<canal nombre="WDW" numero="44"/>
+<canal nombre="WOW" numero="43"/>
+</antena>
+<antena lat="-10.43333" lon="105.6692">
+<canal nombre="ABC" numero="6"/>
+<canal nombre="SBS" numero="7"/>
+<canal nombre="WAW" numero="8"/>
+<canal nombre="WDW" numero="11"/>
+<canal nombre="WOW" numero="10"/>
 </antena>
 <antena lat="-21.91972" lon="114.1197">
 <canal nombre="ABC" numero="7"/>
@@ -379,10 +525,23 @@
 <canal nombre="WDW" numero="12"/>
 <canal nombre="WOW" numero="11"/>
 </antena>
-<antena lat="-21.64639" lon="115.1142">
+<antena lat="-21.81083" lon="114.1117">
+<canal nombre="ABC" numero="46"/>
+<canal nombre="SBS" numero="48"/>
+<canal nombre="WAW" numero="40"/>
+<canal nombre="WDW" numero="44"/>
+<canal nombre="WOW" numero="42"/>
+</antena>
+<antena lat="-21.64722" lon="115.1136">
+<canal nombre="SBS" numero="41"/>
+<canal nombre="WAW" numero="43"/>
+<canal nombre="WDW" numero="47"/>
+<canal nombre="WOW" numero="45"/>
+</antena>
+<antena lat="-21.64611" lon="115.1142">
 <canal nombre="ABC" numero="7"/>
 </antena>
-<antena lat="-21.65222" lon="116.3233">
+<antena lat="-21.65111" lon="116.3236">
 <canal nombre="ABC" numero="9"/>
 <canal nombre="SBS" numero="10"/>
 <canal nombre="WAW" numero="8"/>
@@ -391,9 +550,20 @@
 </antena>
 <antena lat="-20.77306" lon="117.1406">
 <canal nombre="ABC9A" numero="9A"/>
+<canal nombre="SBS" numero="8"/>
 <canal nombre="WAW" numero="7"/>
 <canal nombre="WDW" numero="11"/>
 <canal nombre="WOW" numero="10"/>
+</antena>
+<antena lat="-20.77361" lon="117.1397">
+<canal nombre="HPO" numero="34"/>
+</antena>
+<antena lat="-20.73694" lon="116.8578">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="SBS" numero="44"/>
+<canal nombre="WAW" numero="40"/>
+<canal nombre="WDW" numero="43"/>
+<canal nombre="WOW" numero="41"/>
 </antena>
 <antena lat="-20.65639" lon="116.7267">
 <canal nombre="ABC" numero="28"/>
@@ -402,15 +572,7 @@
 <canal nombre="WDW" numero="31"/>
 <canal nombre="WOW" numero="32"/>
 </antena>
-<antena lat="-20.73694" lon="116.8575">
-<canal nombre="ABC" numero="53"/>
-<canal nombre="SBS" numero="65"/>
-<canal nombre="WAW" numero="40"/>
-<canal nombre="WDW" numero="43"/>
-<canal nombre="WDW" numero="52"/>
-<canal nombre="WOW" numero="41"/>
-</antena>
-<antena lat="-21.17139" lon="119.7456">
+<antena lat="-21.1725" lon="119.7475">
 <canal nombre="ABC" numero="7"/>
 </antena>
 <antena lat="-20.36861" lon="118.5575">
@@ -420,11 +582,9 @@
 <canal nombre="WDW" numero="9"/>
 <canal nombre="WOW" numero="10"/>
 </antena>
-<antena lat="-17.96556" lon="122.22">
-<canal nombre="HPO" numero="31"/>
-</antena>
-<antena lat="-17.88917" lon="122.2617">
+<antena lat="-17.88972" lon="122.2619">
 <canal nombre="ABC" numero="9"/>
+<canal nombre="HPO" numero="6"/>
 <canal nombre="SBS9A" numero="9A"/>
 <canal nombre="WAW" numero="10"/>
 <canal nombre="WDW" numero="12"/>
@@ -439,7 +599,6 @@
 </antena>
 <antena lat="-18.19083" lon="125.5642">
 <canal nombre="ABC" numero="41"/>
-<canal nombre="ABC" numero="59"/>
 <canal nombre="SBS" numero="40"/>
 <canal nombre="WAW" numero="42"/>
 <canal nombre="WDW" numero="44"/>
@@ -452,9 +611,17 @@
 <canal nombre="WDW" numero="10"/>
 <canal nombre="WOW" numero="12"/>
 </antena>
-<antena lat="-19.63556" lon="134.2225">
+<antena lat="-22.25583" lon="131.7936">
+<canal nombre="ACT" numero="42"/>
+</antena>
+<antena lat="-19.63556" lon="134.2222">
 <canal nombre="ABC9A" numero="9A"/>
 <canal nombre="SBS" numero="11"/>
+</antena>
+<antena lat="-19.63528" lon="134.2203">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
 </antena>
 <antena lat="-15.76444" lon="128.7392">
 <canal nombre="ABC" numero="8"/>
@@ -463,9 +630,8 @@
 <canal nombre="WDW" numero="7"/>
 <canal nombre="WOW" numero="11"/>
 </antena>
-<antena lat="-15.78417" lon="128.7403">
+<antena lat="-15.78583" lon="128.7417">
 <canal nombre="ABC" numero="40"/>
-<canal nombre="ABC" numero="67"/>
 <canal nombre="SBS" numero="41"/>
 <canal nombre="WAW" numero="42"/>
 <canal nombre="WDW" numero="44"/>
@@ -478,21 +644,66 @@
 <canal nombre="WDW" numero="9"/>
 <canal nombre="WOW" numero="7"/>
 </antena>
+<antena lat="-14.93667" lon="133.0581">
+<canal nombre="ABC" numero="8"/>
+</antena>
+<antena lat="-14.49444" lon="132.3956">
+<canal nombre="ABC" numero="46"/>
+<canal nombre="CDT" numero="44"/>
+<canal nombre="IMP" numero="42"/>
+<canal nombre="QQQ" numero="40"/>
+<canal nombre="SBS" numero="48"/>
+</antena>
+<antena lat="-14.47528" lon="132.2842">
+<canal nombre="CDT" numero="38"/>
+<canal nombre="IMP" numero="36"/>
+<canal nombre="QQQ" numero="34"/>
+</antena>
 <antena lat="-14.47361" lon="132.2778">
 <canal nombre="ABC" numero="8"/>
 <canal nombre="SBS" numero="6"/>
 </antena>
+<antena lat="-13.75222" lon="130.6878">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-13.82417" lon="131.8353">
+<canal nombre="ABC" numero="10"/>
+</antena>
+<antena lat="-13.04694" lon="131.0253">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="DTD" numero="44"/>
+<canal nombre="NTD" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TND" numero="42"/>
+</antena>
+<antena lat="-11.77667" lon="130.5658">
+<canal nombre="ABC" numero="11"/>
+</antena>
 <antena lat="-12.41583" lon="130.9681">
 <canal nombre="ABC" numero="30"/>
 <canal nombre="DTD" numero="33"/>
+<canal nombre="HPO" numero="35"/>
 <canal nombre="NTD" numero="31"/>
 <canal nombre="SBS" numero="29"/>
 <canal nombre="TND" numero="32"/>
 </antena>
+<antena lat="-12.4525" lon="130.8256">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="DTD" numero="44"/>
+<canal nombre="NTD" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TND" numero="42"/>
+</antena>
+<antena lat="-12.67389" lon="132.8289">
+<canal nombre="CDT" numero="38"/>
+<canal nombre="IMP" numero="36"/>
+<canal nombre="QQQ" numero="34"/>
+<canal nombre="SBS" numero="28"/>
+</antena>
 <antena lat="-12.67083" lon="132.8331">
 <canal nombre="ABC" numero="7"/>
 </antena>
-<antena lat="-11.06917" lon="126.6089">
+<antena lat="-11.06917" lon="126.6086">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="43"/>
@@ -501,89 +712,113 @@
 </antena>
 <antena lat="-42.15028" lon="145.3011">
 <canal nombre="ABC" numero="41"/>
-<canal nombre="ABC" numero="58"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TDT" numero="44"/>
+<canal nombre="TNT" numero="42"/>
+<canal nombre="TVT" numero="43"/>
 </antena>
 <antena lat="-41.84556" lon="145.5408">
 <canal nombre="ABC" numero="32"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="TDT" numero="30"/>
+<canal nombre="TNT" numero="31"/>
+<canal nombre="TVT" numero="29"/>
 </antena>
 <antena lat="-42.09361" lon="145.605">
 <canal nombre="ABC" numero="47"/>
 <canal nombre="SBS" numero="46"/>
+<canal nombre="TDT" numero="50"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
 </antena>
-<antena lat="-41.49278" lon="146.1828">
+<antena lat="-41.49194" lon="146.1831">
 <canal nombre="ABC" numero="48"/>
-<canal nombre="SBS" numero="31"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-41.45139" lon="145.3764">
-<canal nombre="ABC" numero="39"/>
+<canal nombre="ABC" numero="47"/>
 </antena>
 <antena lat="-40.96056" lon="145.1914">
-<canal nombre="ABC" numero="9"/>
-<canal nombre="SBS9A" numero="9A"/>
+<canal nombre="ABC" numero="8"/>
+<canal nombre="SBS" numero="11"/>
+</antena>
+<antena lat="-40.95667" lon="145.1947">
+<canal nombre="TDT" numero="12"/>
+<canal nombre="TNT" numero="7"/>
+<canal nombre="TVT" numero="10"/>
 </antena>
 <antena lat="-40.84444" lon="145.1283">
-<canal nombre="ABC" numero="31"/>
+<canal nombre="ABC" numero="35"/>
 <canal nombre="SBS" numero="37"/>
+<canal nombre="TDT" numero="36"/>
+<canal nombre="TNT" numero="34"/>
+<canal nombre="TVT" numero="39"/>
 </antena>
 <antena lat="-40.95806" lon="145.5281">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="TNT" numero="56"/>
+<canal nombre="ABC" numero="47"/>
 </antena>
 <antena lat="-41.33667" lon="145.7322">
 <canal nombre="ABC" numero="35"/>
-<canal nombre="ABC" numero="54"/>
+<canal nombre="SBS" numero="39"/>
+<canal nombre="TDT" numero="37"/>
+<canal nombre="TNT" numero="34"/>
+<canal nombre="TVT" numero="36"/>
 </antena>
 <antena lat="-41.16778" lon="146.1775">
-<canal nombre="ABC" numero="45"/>
+<canal nombre="ABC" numero="35"/>
 <canal nombre="SBS" numero="39"/>
 <canal nombre="TDT" numero="36"/>
-<canal nombre="TNT" numero="40"/>
-<canal nombre="TVT" numero="42"/>
+<canal nombre="TNT" numero="34"/>
+<canal nombre="TVT" numero="37"/>
 </antena>
 <antena lat="-40.95583" lon="145.7211">
-<canal nombre="ABC" numero="45"/>
+<canal nombre="ABC" numero="28"/>
 <canal nombre="SBS" numero="29"/>
-<canal nombre="TDT" numero="36"/>
-<canal nombre="TNT" numero="40"/>
+<canal nombre="TDT" numero="32"/>
+<canal nombre="TNT" numero="30"/>
+<canal nombre="TVT" numero="33"/>
 </antena>
 <antena lat="-41.07167" lon="145.9503">
-<canal nombre="ABC" numero="67"/>
-<canal nombre="SBS" numero="66"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-41.11889" lon="146.0586">
-<canal nombre="ABC" numero="45"/>
-<canal nombre="SBS" numero="60"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="39"/>
 <canal nombre="TDT" numero="36"/>
-<canal nombre="TNT" numero="40"/>
-<canal nombre="TVT" numero="63"/>
+<canal nombre="TNT" numero="34"/>
+<canal nombre="TVT" numero="37"/>
 </antena>
 <antena lat="-41.07139" lon="145.9511">
-<canal nombre="TDT" numero="68"/>
-<canal nombre="TNT" numero="65"/>
+<canal nombre="TDT" numero="51"/>
+<canal nombre="TNT" numero="49"/>
 <canal nombre="TVT" numero="48"/>
 </antena>
 <antena lat="-39.91694" lon="143.8528">
 <canal nombre="ABC" numero="37"/>
 <canal nombre="SBS" numero="34"/>
-<canal nombre="TDT" numero="46"/>
-<canal nombre="TNT" numero="40"/>
-<canal nombre="TVT" numero="43"/>
+<canal nombre="TDT" numero="38"/>
+<canal nombre="TNT" numero="35"/>
+<canal nombre="TVT" numero="36"/>
 </antena>
 <antena lat="-40.0375" lon="144.015">
-<canal nombre="ABC" numero="57"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="51"/>
+<canal nombre="TDT" numero="50"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
 </antena>
 <antena lat="-37.60361" lon="140.4811">
-<canal nombre="ABC" numero="39"/>
+<canal nombre="ABC" numero="31"/>
 <canal nombre="MGS" numero="30"/>
-<canal nombre="SBS" numero="40"/>
+<canal nombre="SBS" numero="28"/>
 <canal nombre="SDS" numero="29"/>
 <canal nombre="SES" numero="32"/>
 </antena>
-<antena lat="-37.03417" lon="139.8097">
+<antena lat="-37.03389" lon="139.81">
 <canal nombre="ABC" numero="38"/>
-<canal nombre="ABC" numero="55"/>
 <canal nombre="MGS" numero="34"/>
-<canal nombre="SBS" numero="52"/>
+<canal nombre="SBS" numero="35"/>
 <canal nombre="SDS" numero="37"/>
 <canal nombre="SES" numero="36"/>
 </antena>
@@ -591,28 +826,50 @@
 <canal nombre="ABC" numero="44"/>
 <canal nombre="GDS" numero="42"/>
 <canal nombre="GTS" numero="41"/>
+<canal nombre="SBS" numero="45"/>
 <canal nombre="SGS" numero="40"/>
 </antena>
 <antena lat="-34.69583" lon="135.8292">
-<canal nombre="ABC" numero="59"/>
+<canal nombre="ABC" numero="49"/>
 <canal nombre="GDS" numero="47"/>
-<canal nombre="GTS" numero="62"/>
-<canal nombre="SBS" numero="53"/>
+<canal nombre="GTS" numero="48"/>
+<canal nombre="SBS" numero="50"/>
 <canal nombre="SGS" numero="46"/>
 </antena>
 <antena lat="-34.35167" lon="135.9536">
-<canal nombre="ABC" numero="49"/>
+<canal nombre="ABC" numero="30"/>
 <canal nombre="GDS" numero="32"/>
-<canal nombre="GTS" numero="34"/>
-<canal nombre="SBS" numero="43"/>
+<canal nombre="GTS" numero="33"/>
+<canal nombre="SBS" numero="28"/>
 <canal nombre="SGS" numero="29"/>
 </antena>
 <antena lat="-34.35833" lon="137.6933">
 <canal nombre="ABC" numero="51"/>
-<canal nombre="ADS" numero="67"/>
+<canal nombre="ADS" numero="48"/>
 <canal nombre="NWS" numero="47"/>
-<canal nombre="SAS" numero="58"/>
+<canal nombre="SAS" numero="46"/>
 <canal nombre="SBS" numero="50"/>
+</antena>
+<antena lat="-35.59833" lon="138.1369">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="ADS" numero="45"/>
+<canal nombre="NWS" numero="44"/>
+<canal nombre="SAS" numero="43"/>
+<canal nombre="SBS" numero="41"/>
+</antena>
+<antena lat="-35.45417" lon="138.3508">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="ADS" numero="45"/>
+<canal nombre="NWS" numero="44"/>
+<canal nombre="SAS" numero="43"/>
+<canal nombre="SBS" numero="41"/>
+</antena>
+<antena lat="-35.41583" lon="138.4925">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="ADS" numero="45"/>
+<canal nombre="NWS" numero="44"/>
+<canal nombre="SAS" numero="43"/>
+<canal nombre="SBS" numero="41"/>
 </antena>
 <antena lat="-35.42139" lon="138.3258">
 <canal nombre="ABC" numero="49"/>
@@ -621,54 +878,66 @@
 <canal nombre="SAS" numero="46"/>
 <canal nombre="SBS" numero="50"/>
 </antena>
+<antena lat="-35.46583" lon="138.3156">
+<canal nombre="ABC" numero="38"/>
+<canal nombre="ADS" numero="37"/>
+<canal nombre="NWS" numero="36"/>
+<canal nombre="SAS" numero="35"/>
+<canal nombre="SBS" numero="39"/>
+</antena>
 <antena lat="-35.58361" lon="138.5711">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="ADS" numero="65"/>
-<canal nombre="NWS" numero="62"/>
-<canal nombre="SAS" numero="59"/>
-<canal nombre="SBS" numero="53"/>
+<canal nombre="ABC" numero="39"/>
+<canal nombre="ADS" numero="37"/>
+<canal nombre="NWS" numero="36"/>
+<canal nombre="SAS" numero="35"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
+<antena lat="-35.25111" lon="138.8967">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="ADS" numero="45"/>
+<canal nombre="NWS" numero="44"/>
+<canal nombre="SAS" numero="43"/>
+<canal nombre="SBS" numero="41"/>
+</antena>
+<antena lat="-36.00917" lon="140.335">
+<canal nombre="ABC" numero="38"/>
+<canal nombre="SBS" numero="35"/>
 </antena>
 <antena lat="-36.00917" lon="140.3358">
 <canal nombre="MGS" numero="34"/>
 <canal nombre="SDS" numero="37"/>
 <canal nombre="SES" numero="36"/>
 </antena>
-<antena lat="-36.00917" lon="140.335">
-<canal nombre="ABC" numero="38"/>
-</antena>
 <antena lat="-35.33" lon="140.5114">
-<canal nombre="ABC" numero="58"/>
+<canal nombre="ABC" numero="42"/>
 <canal nombre="LRS" numero="43"/>
 <canal nombre="RDS" numero="45"/>
 <canal nombre="RTS" numero="44"/>
+<canal nombre="SBS" numero="41"/>
+</antena>
+<antena lat="-34.98361" lon="138.7069">
+<canal nombre="ADS" numero="11"/>
+<canal nombre="NWS" numero="8"/>
+<canal nombre="SAS" numero="6"/>
 </antena>
 <antena lat="-34.9825" lon="138.7067">
 <canal nombre="ABC" numero="12"/>
 <canal nombre="ADS" numero="11"/>
 <canal nombre="NWS" numero="8"/>
 <canal nombre="SAS" numero="6"/>
-<canal nombre="SBS" numero="33"/>
-</antena>
-<antena lat="-34.98389" lon="138.7069">
-<canal nombre="ADS" numero="11"/>
-<canal nombre="NWS" numero="8"/>
-<canal nombre="SAS" numero="6"/>
+<canal nombre="SBS" numero="7"/>
 </antena>
 <antena lat="-34.92611" lon="138.5997">
-<canal nombre="ABC" numero="64"/>
-<canal nombre="ADS" numero="54"/>
-<canal nombre="NWS" numero="66"/>
-<canal nombre="SAS" numero="57"/>
-<canal nombre="SBS" numero="61"/>
+<canal nombre="ABC" numero="39"/>
+<canal nombre="ADS" numero="37"/>
+<canal nombre="NWS" numero="36"/>
+<canal nombre="SAS" numero="35"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-34.98028" lon="138.7069">
 <canal nombre="ABC" numero="12"/>
-<canal nombre="CTV" numero="30"/>
-<canal nombre="SBS" numero="33"/>
-</antena>
-<antena lat="-34.74389" lon="138.6478">
-<canal nombre="ABC" numero="64"/>
-<canal nombre="SBS" numero="61"/>
+<canal nombre="CTS" numero="33"/>
+<canal nombre="SBS" numero="7"/>
 </antena>
 <antena lat="-34.69667" lon="138.7036">
 <canal nombre="ABC" numero="39"/>
@@ -684,26 +953,32 @@
 <canal nombre="SAS" numero="46"/>
 <canal nombre="SBS" numero="50"/>
 </antena>
+<antena lat="-34.60278" lon="138.8961">
+<canal nombre="ABC" numero="39"/>
+<canal nombre="ADS" numero="37"/>
+<canal nombre="NWS" numero="36"/>
+<canal nombre="SAS" numero="35"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
 <antena lat="-34.505" lon="139.0581">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="ADS" numero="67"/>
-<canal nombre="NWS" numero="64"/>
-<canal nombre="SAS" numero="61"/>
-<canal nombre="SBS" numero="55"/>
+<canal nombre="ABC" numero="39"/>
+<canal nombre="ADS" numero="37"/>
+<canal nombre="NWS" numero="36"/>
+<canal nombre="SAS" numero="35"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-34.17167" lon="139.0656">
-<canal nombre="ABC" numero="66"/>
-<canal nombre="ADS" numero="63"/>
-<canal nombre="NWS" numero="60"/>
-<canal nombre="SAS" numero="57"/>
-<canal nombre="SBS" numero="69"/>
+<canal nombre="ABC" numero="39"/>
+<canal nombre="ADS" numero="37"/>
+<canal nombre="NWS" numero="36"/>
+<canal nombre="SAS" numero="35"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-33.84333" lon="138.6039">
 <canal nombre="ABC" numero="47"/>
-<canal nombre="ABC" numero="55"/>
 <canal nombre="GDS" numero="49"/>
 <canal nombre="GTS" numero="50"/>
-<canal nombre="SBS" numero="52"/>
+<canal nombre="SBS" numero="46"/>
 <canal nombre="SGS" numero="48"/>
 </antena>
 <antena lat="-34.89472" lon="139.3539">
@@ -714,18 +989,18 @@
 <canal nombre="SBS" numero="41"/>
 </antena>
 <antena lat="-34.60222" lon="139.5978">
-<canal nombre="ABC" numero="66"/>
-<canal nombre="ADS" numero="63"/>
-<canal nombre="NWS" numero="60"/>
-<canal nombre="SAS" numero="57"/>
-<canal nombre="SBS" numero="69"/>
+<canal nombre="ABC" numero="39"/>
+<canal nombre="ADS" numero="37"/>
+<canal nombre="NWS" numero="36"/>
+<canal nombre="SAS" numero="35"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-34.46556" lon="140.5319">
-<canal nombre="ABC" numero="39"/>
+<canal nombre="ABC" numero="31"/>
 <canal nombre="LRS" numero="29"/>
 <canal nombre="RDS" numero="32"/>
-<canal nombre="RTS" numero="35"/>
-<canal nombre="SBS" numero="40"/>
+<canal nombre="RTS" numero="30"/>
+<canal nombre="SBS" numero="28"/>
 </antena>
 <antena lat="-34.035" lon="139.6672">
 <canal nombre="ABC" numero="42"/>
@@ -735,216 +1010,238 @@
 <canal nombre="SBS" numero="41"/>
 </antena>
 <antena lat="-34.1925" lon="139.9306">
-<canal nombre="ABC" numero="55"/>
+<canal nombre="ABC" numero="47"/>
 <canal nombre="LRS" numero="48"/>
 <canal nombre="RDS" numero="50"/>
 <canal nombre="RTS" numero="49"/>
-<canal nombre="SBS" numero="52"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-38.21806" lon="141.7019">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="AMV" numero="65"/>
-<canal nombre="BCV" numero="62"/>
-<canal nombre="SBS" numero="68"/>
-<canal nombre="VTV" numero="56"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
-<antena lat="-38.38472" lon="142.4997">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="AMV" numero="65"/>
-<canal nombre="BCV" numero="62"/>
-<canal nombre="SBS" numero="68"/>
-<canal nombre="VTV" numero="56"/>
+<antena lat="-38.385" lon="142.4994">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="AMV" numero="30"/>
+<canal nombre="BCV" numero="32"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="VTV" numero="31"/>
 </antena>
 <antena lat="-38.31861" lon="142.3764">
 <canal nombre="ABC" numero="50"/>
 <canal nombre="AMV" numero="51"/>
 <canal nombre="BCV" numero="48"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="VTV" numero="45"/>
+<canal nombre="SBS" numero="47"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-38.49389" lon="142.9789">
-<canal nombre="ABC" numero="63"/>
-<canal nombre="AMV" numero="69"/>
-<canal nombre="BCV" numero="60"/>
-<canal nombre="SBS" numero="66"/>
-<canal nombre="VTV" numero="57"/>
+<canal nombre="ABC" numero="29"/>
+<canal nombre="AMV" numero="30"/>
+<canal nombre="BCV" numero="32"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="VTV" numero="31"/>
 </antena>
 <antena lat="-38.18417" lon="142.9311">
-<canal nombre="ABC" numero="41"/>
-<canal nombre="AMV" numero="46"/>
-<canal nombre="BCV" numero="40"/>
-<canal nombre="SBS" numero="43"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="AMV" numero="36"/>
+<canal nombre="BCV" numero="38"/>
+<canal nombre="SBS" numero="34"/>
 <canal nombre="VTV" numero="37"/>
 </antena>
 <antena lat="-38.26389" lon="143.1592">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="AMV" numero="65"/>
-<canal nombre="BCV" numero="62"/>
-<canal nombre="SBS" numero="68"/>
-<canal nombre="VTV" numero="56"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-37.61806" lon="141.7031">
-<canal nombre="ABC" numero="42"/>
+<canal nombre="ABC" numero="47"/>
 </antena>
 <antena lat="-37.5775" lon="141.4089">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="AMV" numero="63"/>
-<canal nombre="BCV" numero="60"/>
-<canal nombre="VTV" numero="66"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-37.46028" lon="141.9144">
 <canal nombre="ABC" numero="6"/>
 <canal nombre="AMV" numero="12"/>
-<canal nombre="BCV9A" numero="9A"/>
+<canal nombre="BCV" numero="11"/>
 <canal nombre="SBS" numero="7"/>
 <canal nombre="VTV" numero="10"/>
 </antena>
-<antena lat="-36.9775" lon="140.7689">
-<canal nombre="ABC" numero="51"/>
+<antena lat="-36.97722" lon="140.7686">
+<canal nombre="ABC" numero="42"/>
 <canal nombre="MGS" numero="43"/>
-<canal nombre="SBS" numero="47"/>
+<canal nombre="SBS" numero="41"/>
 <canal nombre="SDS" numero="44"/>
 <canal nombre="SES" numero="45"/>
 </antena>
-<antena lat="-36.68528" lon="140.6411">
+<antena lat="-36.685" lon="140.6419">
 <canal nombre="MGS" numero="36"/>
 <canal nombre="SDS" numero="37"/>
 <canal nombre="SES" numero="35"/>
 </antena>
 <antena lat="-36.75194" lon="141.8319">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="AMV" numero="53"/>
-<canal nombre="BCV" numero="56"/>
-<canal nombre="SBS" numero="49"/>
-<canal nombre="VTV" numero="52"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-37.29417" lon="142.5997">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="AMV" numero="63"/>
-<canal nombre="BCV" numero="60"/>
-<canal nombre="VTV" numero="57"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="BCV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-37.28389" lon="143.2464">
-<canal nombre="ABC" numero="41"/>
-<canal nombre="AMV" numero="46"/>
-<canal nombre="BCV" numero="40"/>
-<canal nombre="SBS" numero="43"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="AMV" numero="36"/>
+<canal nombre="BCV" numero="38"/>
+<canal nombre="SBS" numero="34"/>
 <canal nombre="VTV" numero="37"/>
 </antena>
-<antena lat="-38.67444" lon="143.7214">
-<canal nombre="AMV" numero="67"/>
-<canal nombre="BCV" numero="66"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="64"/>
+<antena lat="-38.67417" lon="143.7211">
+<canal nombre="AMV" numero="46"/>
+<canal nombre="BCV" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-38.78139" lon="143.65">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="AMV" numero="67"/>
-<canal nombre="BCV" numero="66"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="64"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="46"/>
+<canal nombre="BCV" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-38.54889" lon="143.8581">
-<canal nombre="AMV" numero="67"/>
-<canal nombre="BCV" numero="66"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="64"/>
+<canal nombre="AMV" numero="46"/>
+<canal nombre="BCV" numero="48"/>
+<canal nombre="SBS" numero="49"/>
+<canal nombre="VTV" numero="47"/>
+</antena>
+<antena lat="-38.64167" lon="143.8753">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="ATV" numero="38"/>
+<canal nombre="GTV" numero="37"/>
+<canal nombre="HSV" numero="36"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-38.54944" lon="143.9742">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="AMV" numero="67"/>
-<canal nombre="BCV" numero="66"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="64"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="AMV" numero="36"/>
+<canal nombre="BCV" numero="38"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="VTV" numero="37"/>
 </antena>
 <antena lat="-38.22528" lon="143.5281">
-<canal nombre="ABC" numero="52"/>
+<canal nombre="ABC" numero="47"/>
 <canal nombre="AMV" numero="51"/>
 <canal nombre="BCV" numero="50"/>
-<canal nombre="SBS" numero="53"/>
+<canal nombre="SBS" numero="49"/>
 <canal nombre="VTV" numero="48"/>
 </antena>
-<antena lat="-38.15861" lon="144.3125">
-<canal nombre="ABC" numero="64"/>
-<canal nombre="ATV" numero="69"/>
-<canal nombre="GTV" numero="67"/>
-<canal nombre="HSV" numero="66"/>
-<canal nombre="SBS" numero="53"/>
+<antena lat="-38.41472" lon="144.1622">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="ATV" numero="33"/>
+<canal nombre="GTV" numero="31"/>
+<canal nombre="HSV" numero="30"/>
+<canal nombre="SBS" numero="28"/>
 </antena>
-<antena lat="-38.35556" lon="144.9497">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="SBS" numero="57"/>
+<antena lat="-38.15861" lon="144.3125">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="ATV" numero="48"/>
+<canal nombre="GTV" numero="47"/>
+<canal nombre="HSV" numero="46"/>
+<canal nombre="SBS" numero="50"/>
 </antena>
 <antena lat="-38.37222" lon="144.8908">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="ATV" numero="54"/>
-<canal nombre="GTV" numero="51"/>
-<canal nombre="HSV" numero="63"/>
-<canal nombre="SBS" numero="57"/>
+<canal nombre="ABC" numero="43"/>
+<canal nombre="ATV" numero="45"/>
+<canal nombre="GTV" numero="44"/>
+<canal nombre="HSV" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-38.35583" lon="144.9508">
-<canal nombre="ATV" numero="54"/>
-<canal nombre="GTV" numero="51"/>
-<canal nombre="HSV" numero="63"/>
+<canal nombre="ATV" numero="45"/>
+<canal nombre="GTV" numero="44"/>
+<canal nombre="HSV" numero="41"/>
 </antena>
-<antena lat="-38.63417" lon="145.7247">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="AMV" numero="62"/>
-<canal nombre="GLV" numero="53"/>
-<canal nombre="SBS" numero="59"/>
-<canal nombre="VTV" numero="65"/>
+<antena lat="-38.35556" lon="144.9497">
+<canal nombre="ABC" numero="43"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
-<antena lat="-38.62056" lon="146.1725">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="AMV" numero="62"/>
-<canal nombre="GLV" numero="53"/>
-<canal nombre="SBS" numero="59"/>
-<canal nombre="VTV" numero="65"/>
+<antena lat="-38.63417" lon="145.7244">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="AMV" numero="46"/>
+<canal nombre="GLV" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="VTV" numero="47"/>
+</antena>
+<antena lat="-38.62028" lon="146.1722">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="45"/>
+<canal nombre="GLV" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="44"/>
 </antena>
 <antena lat="-38.2425" lon="146.1006">
-<canal nombre="ABC" numero="67"/>
-<canal nombre="AMV" numero="58"/>
-<canal nombre="GLV" numero="64"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="VTV" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="45"/>
+<canal nombre="GLV" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="44"/>
 </antena>
 <antena lat="-37.36444" lon="143.6739">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="AMV" numero="55"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
 <canal nombre="BCV" numero="50"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="VTV" numero="53"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
-<antena lat="-37.41889" lon="143.7025">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="AMV" numero="55"/>
-<canal nombre="BCV" numero="50"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="VTV" numero="53"/>
+<antena lat="-37.41861" lon="143.7025">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-37.54583" lon="143.8711">
-<canal nombre="ABC" numero="67"/>
-<canal nombre="AMV" numero="64"/>
-<canal nombre="BCV" numero="61"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="VTV" numero="58"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
+</antena>
+<antena lat="-36.99361" lon="144.3069">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="SBS" numero="28"/>
 </antena>
 <antena lat="-36.99194" lon="144.3072">
 <canal nombre="AMV" numero="31"/>
-<canal nombre="BCV" numero="51"/>
-<canal nombre="VTV" numero="54"/>
-</antena>
-<antena lat="-36.99361" lon="144.3069">
-<canal nombre="ABC" numero="48"/>
-<canal nombre="SBS" numero="28"/>
+<canal nombre="BCV" numero="33"/>
+<canal nombre="VTV" numero="30"/>
 </antena>
 <antena lat="-37.84028" lon="144.9953">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="ATV" numero="54"/>
-<canal nombre="GTV" numero="51"/>
-<canal nombre="HSV" numero="63"/>
-<canal nombre="MGV" numero="66"/>
-<canal nombre="SBS" numero="57"/>
+<canal nombre="ABC" numero="43"/>
+<canal nombre="ATV" numero="45"/>
+<canal nombre="GTV" numero="44"/>
+<canal nombre="HSV" numero="41"/>
+<canal nombre="MGV" numero="42"/>
+<canal nombre="SBS" numero="40"/>
+</antena>
+<antena lat="-37.8175" lon="144.9547">
+<canal nombre="ABC" numero="43"/>
+<canal nombre="ATV" numero="45"/>
+<canal nombre="GTV" numero="44"/>
+<canal nombre="HSV" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-37.83889" lon="145.3453">
 <canal nombre="ABC" numero="12"/>
@@ -952,21 +1249,21 @@
 <canal nombre="GTV" numero="8"/>
 <canal nombre="HSV" numero="6"/>
 <canal nombre="MGV" numero="32"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="SBS" numero="7"/>
 </antena>
 <antena lat="-37.91556" lon="145.3786">
-<canal nombre="ABC" numero="47"/>
-<canal nombre="ATV" numero="54"/>
-<canal nombre="GTV" numero="44"/>
-<canal nombre="HSV" numero="41"/>
-<canal nombre="SBS" numero="50"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="ATV" numero="38"/>
+<canal nombre="GTV" numero="37"/>
+<canal nombre="HSV" numero="36"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-37.88361" lon="145.2897">
-<canal nombre="ABC" numero="47"/>
-<canal nombre="ATV" numero="54"/>
+<canal nombre="ABC" numero="43"/>
+<canal nombre="ATV" numero="45"/>
 <canal nombre="GTV" numero="44"/>
 <canal nombre="HSV" numero="41"/>
-<canal nombre="SBS" numero="50"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-37.83667" lon="145.3464">
 <canal nombre="ATV" numero="11"/>
@@ -975,20 +1272,20 @@
 </antena>
 <antena lat="-37.83639" lon="145.3472">
 <canal nombre="ABC" numero="12"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="SBS" numero="7"/>
+</antena>
+<antena lat="-37.90583" lon="145.3219">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="ATV" numero="38"/>
+<canal nombre="GTV" numero="37"/>
+<canal nombre="HSV" numero="36"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-37.88278" lon="145.4003">
 <canal nombre="ABC" numero="49"/>
 <canal nombre="ATV" numero="48"/>
-<canal nombre="GTV" numero="52"/>
+<canal nombre="GTV" numero="47"/>
 <canal nombre="HSV" numero="46"/>
-<canal nombre="SBS" numero="53"/>
-</antena>
-<antena lat="-37.90583" lon="145.3219">
-<canal nombre="ABC" numero="47"/>
-<canal nombre="ATV" numero="54"/>
-<canal nombre="GTV" numero="44"/>
-<canal nombre="HSV" numero="41"/>
 <canal nombre="SBS" numero="50"/>
 </antena>
 <antena lat="-37.56889" lon="145.5242">
@@ -999,139 +1296,142 @@
 <canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-37.72667" lon="145.6958">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="ATV" numero="54"/>
-<canal nombre="GTV" numero="51"/>
-<canal nombre="HSV" numero="63"/>
-<canal nombre="SBS" numero="57"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="ATV" numero="38"/>
+<canal nombre="GTV" numero="37"/>
+<canal nombre="HSV" numero="36"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-37.50944" lon="145.7214">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="ATV" numero="54"/>
-<canal nombre="GTV" numero="51"/>
-<canal nombre="HSV" numero="63"/>
-<canal nombre="SBS" numero="57"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="ATV" numero="38"/>
+<canal nombre="GTV" numero="37"/>
+<canal nombre="HSV" numero="36"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-37.27806" lon="145.8489">
 <canal nombre="ABC" numero="34"/>
-<canal nombre="AMV" numero="46"/>
-<canal nombre="GLV" numero="43"/>
+<canal nombre="AMV" numero="35"/>
+<canal nombre="GLV" numero="38"/>
 <canal nombre="SBS" numero="37"/>
-<canal nombre="VTV" numero="40"/>
+<canal nombre="VTV" numero="36"/>
 </antena>
 <antena lat="-37.10028" lon="145.1739">
-<canal nombre="ABC" numero="53"/>
-<canal nombre="AMV" numero="60"/>
-<canal nombre="GLV" numero="63"/>
-<canal nombre="SBS" numero="66"/>
-<canal nombre="VTV" numero="57"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="GLV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-37.17778" lon="145.1508">
-<canal nombre="ABC" numero="68"/>
-<canal nombre="AMV" numero="61"/>
-<canal nombre="BCV" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="VTV" numero="58"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="BCV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-37.2225" lon="145.4231">
 <canal nombre="ABC" numero="34"/>
-<canal nombre="AMV" numero="46"/>
-<canal nombre="GLV" numero="43"/>
+<canal nombre="AMV" numero="35"/>
+<canal nombre="GLV" numero="38"/>
 <canal nombre="SBS" numero="37"/>
-<canal nombre="VTV" numero="40"/>
+<canal nombre="VTV" numero="36"/>
 </antena>
 <antena lat="-37.21972" lon="145.7042">
-<canal nombre="ABC" numero="32"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="42"/>
 </antena>
 <antena lat="-37.24083" lon="145.8833">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="SBS" numero="53"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="42"/>
 </antena>
 <antena lat="-37.02139" lon="145.8719">
 <canal nombre="ABC" numero="32"/>
 <canal nombre="AMV" numero="33"/>
 <canal nombre="GLV" numero="30"/>
 <canal nombre="SBS" numero="29"/>
-<canal nombre="VTV" numero="35"/>
+<canal nombre="VTV" numero="31"/>
 </antena>
 <antena lat="-37.07806" lon="145.5717">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="AMV" numero="64"/>
-<canal nombre="GLV" numero="61"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="VTV" numero="63"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-37.2375" lon="146.1228">
-<canal nombre="ABC" numero="31"/>
+<canal nombre="ABC" numero="36"/>
 <canal nombre="AMV" numero="37"/>
 <canal nombre="GLV" numero="38"/>
-<canal nombre="SBS" numero="28"/>
+<canal nombre="SBS" numero="35"/>
 <canal nombre="VTV" numero="34"/>
 </antena>
 <antena lat="-37.04444" lon="145.9836">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="AMV" numero="64"/>
-<canal nombre="GLV" numero="61"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="VTV" numero="63"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
+</antena>
+<antena lat="-36.3075" lon="140.7622">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="SBS" numero="41"/>
 </antena>
 <antena lat="-36.31056" lon="140.7569">
 <canal nombre="MGS" numero="43"/>
 <canal nombre="SDS" numero="44"/>
 <canal nombre="SES" numero="45"/>
 </antena>
-<antena lat="-36.3075" lon="140.7622">
-<canal nombre="ABC" numero="53"/>
-</antena>
 <antena lat="-36.40528" lon="141.4731">
-<canal nombre="ABC" numero="66"/>
-<canal nombre="AMV" numero="61"/>
-<canal nombre="BCV" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="VTV" numero="63"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="BCV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-35.25639" lon="140.8981">
-<canal nombre="ABC" numero="55"/>
+<canal nombre="ABC" numero="38"/>
 <canal nombre="LRS" numero="34"/>
 <canal nombre="RDS" numero="37"/>
 <canal nombre="RTS" numero="36"/>
+<canal nombre="SBS" numero="35"/>
 </antena>
 <antena lat="-36.24194" lon="142.3953">
-<canal nombre="ABC" numero="61"/>
-<canal nombre="AMV" numero="63"/>
-<canal nombre="BCV" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="VTV" numero="66"/>
+<canal nombre="ABC" numero="33"/>
+<canal nombre="AMV" numero="28"/>
+<canal nombre="BCV" numero="29"/>
+<canal nombre="SBS" numero="31"/>
+<canal nombre="VTV" numero="30"/>
 </antena>
 <antena lat="-36.26028" lon="143.3453">
-<canal nombre="ABC" numero="68"/>
-<canal nombre="AMV" numero="53"/>
-<canal nombre="BCV" numero="55"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="52"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
-<antena lat="-35.97972" lon="142.91">
-<canal nombre="ABC" numero="68"/>
-<canal nombre="AMV" numero="53"/>
-<canal nombre="BCV" numero="55"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="52"/>
+<antena lat="-35.98083" lon="142.9072">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-36.0825" lon="143.2258">
-<canal nombre="ABC" numero="68"/>
-<canal nombre="AMV" numero="53"/>
-<canal nombre="BCV" numero="55"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="52"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-35.73" lon="142.3581">
 <canal nombre="AMV" numero="28"/>
-<canal nombre="BCV" numero="33"/>
-<canal nombre="VTV" numero="36"/>
+<canal nombre="BCV" numero="29"/>
+<canal nombre="SBS" numero="31"/>
+<canal nombre="VTV" numero="30"/>
 </antena>
 <antena lat="-35.85444" lon="142.2886">
-<canal nombre="ABC" numero="34"/>
+<canal nombre="ABC" numero="33"/>
 </antena>
 <antena lat="-35.04028" lon="140.6983">
 <canal nombre="LRS" numero="47"/>
@@ -1139,392 +1439,452 @@
 <canal nombre="RTS" numero="48"/>
 </antena>
 <antena lat="-35.13833" lon="142.0197">
-<canal nombre="ABC" numero="66"/>
-<canal nombre="MDV" numero="63"/>
-<canal nombre="PTV" numero="57"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="STV" numero="60"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="MDV" numero="38"/>
+<canal nombre="PTV" numero="36"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STV" numero="37"/>
 </antena>
-<antena lat="-35.07472" lon="142.3097">
-<canal nombre="ABC" numero="46"/>
+<antena lat="-35.07444" lon="142.3103">
+<canal nombre="ABC" numero="44"/>
 <canal nombre="MDV" numero="43"/>
-<canal nombre="PTV" numero="37"/>
-<canal nombre="SBS" numero="51"/>
+<canal nombre="PTV" numero="42"/>
+<canal nombre="SBS" numero="45"/>
 <canal nombre="STV" numero="41"/>
 </antena>
 <antena lat="-34.58889" lon="142.7683">
-<canal nombre="ABC" numero="46"/>
-<canal nombre="MDV" numero="43"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="MDV" numero="38"/>
 <canal nombre="PTV" numero="37"/>
-<canal nombre="SBS" numero="51"/>
-<canal nombre="STV" numero="41"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STV" numero="36"/>
 </antena>
 <antena lat="-34.38111" lon="142.1869">
 <canal nombre="ABC" numero="11"/>
-<canal nombre="MDV" numero="33"/>
-<canal nombre="PTV" numero="31"/>
-<canal nombre="SBS" numero="28"/>
+<canal nombre="MDV" numero="10"/>
+<canal nombre="PTV" numero="6"/>
+<canal nombre="SBS" numero="8"/>
 <canal nombre="STV" numero="7"/>
 </antena>
 <antena lat="-35.64" lon="144.1231">
-<canal nombre="ABC" numero="68"/>
-<canal nombre="AMV" numero="53"/>
-<canal nombre="BCV" numero="55"/>
-<canal nombre="SBS" numero="69"/>
-<canal nombre="VTV" numero="52"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="BCV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
-<antena lat="-35.47472" lon="143.4544">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="AMV" numero="62"/>
-<canal nombre="BCV" numero="65"/>
-<canal nombre="SBS" numero="59"/>
-<canal nombre="VTV" numero="60"/>
+<antena lat="-35.47417" lon="143.4544">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="BCV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-35.80722" lon="144.2067">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="AMV" numero="62"/>
-<canal nombre="BCV" numero="65"/>
-<canal nombre="SBS" numero="59"/>
-<canal nombre="VTV" numero="60"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="BCV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-36.35944" lon="145.6936">
 <canal nombre="ABC" numero="37"/>
-<canal nombre="AMV" numero="45"/>
-<canal nombre="GLV" numero="42"/>
+<canal nombre="AMV" numero="34"/>
+<canal nombre="GLV" numero="38"/>
 <canal nombre="SBS" numero="36"/>
 </antena>
 <antena lat="-36.36389" lon="145.6853">
-<canal nombre="VTV" numero="9"/>
+<canal nombre="VTV" numero="35"/>
 </antena>
 <antena lat="-35.59917" lon="145.0356">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="AMV" numero="47"/>
-<canal nombre="GLV" numero="64"/>
-<canal nombre="SBS" numero="50"/>
-<canal nombre="VTV" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="GLV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
+</antena>
+<antena lat="-35.52306" lon="144.9625">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="AMV" numero="30"/>
+<canal nombre="GLV" numero="33"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="VTV" numero="31"/>
 </antena>
 <antena lat="-35.34417" lon="145.6594">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="AMV" numero="63"/>
-<canal nombre="GLV" numero="66"/>
-<canal nombre="SBS" numero="60"/>
-<canal nombre="VTV" numero="57"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="GLV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-34.63694" lon="143.5608">
 <canal nombre="ABC" numero="40"/>
-<canal nombre="AMV" numero="37"/>
+<canal nombre="AMV" numero="42"/>
 <canal nombre="BCV" numero="41"/>
 <canal nombre="SBS" numero="43"/>
-<canal nombre="VTV" numero="56"/>
+<canal nombre="VTV" numero="44"/>
 </antena>
 <antena lat="-34.45361" lon="144.985">
-<canal nombre="ABC" numero="55"/>
+<canal nombre="ABC" numero="41"/>
 <canal nombre="AMN" numero="42"/>
 <canal nombre="MDN" numero="44"/>
 <canal nombre="MTN" numero="43"/>
-<canal nombre="SBS" numero="61"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-34.12306" lon="146.2336">
-<canal nombre="ABC" numero="11"/>
+<canal nombre="ABC" numero="28"/>
 <canal nombre="AMN" numero="30"/>
 <canal nombre="MDN" numero="32"/>
 <canal nombre="MTN" numero="29"/>
-<canal nombre="MTN" numero="6"/>
 <canal nombre="SBS" numero="33"/>
 </antena>
 <antena lat="-43.14889" lon="146.9364">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="TDT" numero="65"/>
-<canal nombre="TNT" numero="64"/>
-<canal nombre="TVT" numero="61"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="TDT" numero="39"/>
+<canal nombre="TNT" numero="36"/>
+<canal nombre="TVT" numero="37"/>
 </antena>
-<antena lat="-43.31667" lon="147.015">
+<antena lat="-43.31694" lon="147.015">
 <canal nombre="ABC" numero="43"/>
 <canal nombre="SBS" numero="40"/>
+<canal nombre="TDT" numero="44"/>
+<canal nombre="TNT" numero="41"/>
+<canal nombre="TVT" numero="42"/>
 </antena>
 <antena lat="-43.31194" lon="147.0042">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="TDT" numero="65"/>
-<canal nombre="TNT" numero="64"/>
-<canal nombre="TVT" numero="61"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="TDT" numero="50"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
 </antena>
 <antena lat="-43.17028" lon="147.0644">
 <canal nombre="ABC" numero="44"/>
 <canal nombre="SBS" numero="41"/>
-<canal nombre="TDT" numero="52"/>
-<canal nombre="TNT" numero="50"/>
-<canal nombre="TVT" numero="47"/>
+<canal nombre="TDT" numero="42"/>
+<canal nombre="TNT" numero="45"/>
+<canal nombre="TVT" numero="43"/>
 </antena>
 <antena lat="-42.89889" lon="147.2347">
 <canal nombre="ABC" numero="8"/>
-<canal nombre="SBS9A" numero="9A"/>
+<canal nombre="SBS" numero="6"/>
 </antena>
 <antena lat="-42.89611" lon="147.2347">
 <canal nombre="TDT" numero="11"/>
 <canal nombre="TNT" numero="10"/>
 <canal nombre="TVT" numero="7"/>
 </antena>
+<antena lat="-43.00833" lon="147.1383">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="TDT" numero="48"/>
+<canal nombre="TNT" numero="46"/>
+<canal nombre="TVT" numero="47"/>
+</antena>
 <antena lat="-43.00194" lon="147.4019">
 <canal nombre="TDT" numero="41"/>
-<canal nombre="TNT" numero="48"/>
-<canal nombre="TVT" numero="39"/>
+<canal nombre="TNT" numero="40"/>
+<canal nombre="TVT" numero="43"/>
 </antena>
 <antena lat="-42.9775" lon="147.3914">
 <canal nombre="ABC" numero="45"/>
 <canal nombre="SBS" numero="42"/>
 </antena>
-<antena lat="-42.76111" lon="147.0681">
-<canal nombre="ABC" numero="57"/>
-<canal nombre="SBS" numero="54"/>
-<canal nombre="TDT" numero="51"/>
-<canal nombre="TNT" numero="63"/>
-<canal nombre="TVT" numero="60"/>
+<antena lat="-42.77583" lon="146.6531">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="SBS" numero="43"/>
+<canal nombre="TDT" numero="44"/>
+<canal nombre="TNT" numero="45"/>
+<canal nombre="TVT" numero="41"/>
 </antena>
-<antena lat="-42.825" lon="147.3339">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="SBS" numero="64"/>
-<canal nombre="TDT" numero="66"/>
-<canal nombre="TNT" numero="62"/>
-<canal nombre="TVT" numero="65"/>
+<antena lat="-42.76111" lon="147.0681">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="TDT" numero="39"/>
+<canal nombre="TNT" numero="36"/>
+<canal nombre="TVT" numero="37"/>
 </antena>
 <antena lat="-42.87444" lon="147.4986">
 <canal nombre="ABC" numero="36"/>
 <canal nombre="SBS" numero="35"/>
-<canal nombre="TDT" numero="51"/>
+<canal nombre="TDT" numero="34"/>
 <canal nombre="TNT" numero="38"/>
 <canal nombre="TVT" numero="37"/>
 </antena>
+<antena lat="-42.82472" lon="147.3339">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="TDT" numero="51"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
+</antena>
 <antena lat="-42.52389" lon="147.9489">
-<canal nombre="ABC" numero="36"/>
-<canal nombre="SBS" numero="37"/>
-<canal nombre="TDT" numero="39"/>
-<canal nombre="TNT" numero="47"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TDT" numero="44"/>
+<canal nombre="TNT" numero="42"/>
 <canal nombre="TVT" numero="43"/>
 </antena>
-<antena lat="-41.54167" lon="146.535">
-<canal nombre="ABC" numero="55"/>
+<antena lat="-41.54167" lon="146.5347">
+<canal nombre="ABC" numero="48"/>
 <canal nombre="SBS" numero="47"/>
 </antena>
-<antena lat="-41.17806" lon="146.5261">
-<canal nombre="ABC" numero="53"/>
-</antena>
-<antena lat="-41.21222" lon="146.3264">
-<canal nombre="ABC" numero="45"/>
-<canal nombre="SBS" numero="39"/>
-<canal nombre="TDT" numero="36"/>
-<canal nombre="TNT" numero="40"/>
+<antena lat="-41.18139" lon="146.2597">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="44"/>
+<canal nombre="TDT" numero="43"/>
+<canal nombre="TNT" numero="45"/>
 <canal nombre="TVT" numero="42"/>
 </antena>
-<antena lat="-41.45694" lon="147.1258">
-<canal nombre="ABC" numero="65"/>
-<canal nombre="SBS" numero="64"/>
-<canal nombre="TDT" numero="66"/>
-<canal nombre="TNT" numero="60"/>
-<canal nombre="TVT" numero="63"/>
+<antena lat="-41.17806" lon="146.5261">
+<canal nombre="ABC" numero="28"/>
 </antena>
-<antena lat="-41.27333" lon="147.1994">
-<canal nombre="ABC" numero="65"/>
-<canal nombre="SBS" numero="64"/>
+<antena lat="-41.21222" lon="146.3264">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="39"/>
+<canal nombre="TDT" numero="36"/>
+<canal nombre="TNT" numero="34"/>
+<canal nombre="TVT" numero="37"/>
+</antena>
+<antena lat="-41.45694" lon="147.1258">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="TDT" numero="39"/>
+<canal nombre="TNT" numero="36"/>
+<canal nombre="TVT" numero="37"/>
+</antena>
+<antena lat="-41.27361" lon="147.1992">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-41.2425" lon="146.99">
 <canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="TDT" numero="51"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
 </antena>
 <antena lat="-41.39306" lon="147.4247">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="SBS" numero="44"/>
 </antena>
 <antena lat="-41.39139" lon="147.4231">
-<canal nombre="TDT" numero="52"/>
-<canal nombre="TNT" numero="38"/>
-<canal nombre="TVT" numero="50"/>
+<canal nombre="TDT" numero="43"/>
+<canal nombre="TNT" numero="45"/>
+<canal nombre="TVT" numero="42"/>
 </antena>
 <antena lat="-42.12639" lon="148.0719">
 <canal nombre="ABC" numero="47"/>
-<canal nombre="ABC" numero="58"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="TDT" numero="50"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
 </antena>
-<antena lat="-41.88278" lon="148.295">
+<antena lat="-41.88278" lon="148.2947">
 <canal nombre="ABC" numero="36"/>
+<canal nombre="SBS" numero="35"/>
+<canal nombre="TDT" numero="39"/>
+<canal nombre="TNT" numero="34"/>
+<canal nombre="TVT" numero="37"/>
 </antena>
 <antena lat="-41.53556" lon="148.1703">
-<canal nombre="ABC" numero="53"/>
-<canal nombre="TDT" numero="68"/>
-<canal nombre="TNT" numero="60"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="51"/>
+<canal nombre="TDT" numero="50"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
 </antena>
 <antena lat="-41.13861" lon="147.7911">
-<canal nombre="ABC" numero="65"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="TDT" numero="51"/>
+<canal nombre="TNT" numero="48"/>
+<canal nombre="TVT" numero="49"/>
 </antena>
 <antena lat="-41.335" lon="148.2856">
-<canal nombre="ABC" numero="37"/>
-<canal nombre="TDT" numero="46"/>
-<canal nombre="TNT" numero="45"/>
+<canal nombre="ABC" numero="29"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="TDT" numero="32"/>
+<canal nombre="TNT" numero="30"/>
+<canal nombre="TVT" numero="31"/>
 </antena>
 <antena lat="-41.2525" lon="148.0697">
-<canal nombre="ABC" numero="65"/>
+<canal nombre="ABC" numero="35"/>
 </antena>
 <antena lat="-41.24778" lon="148.2839">
 <canal nombre="ABC" numero="37"/>
-<canal nombre="TDT" numero="46"/>
-<canal nombre="TNT" numero="65"/>
+<canal nombre="SBS" numero="38"/>
+<canal nombre="TDT" numero="36"/>
+<canal nombre="TNT" numero="34"/>
+<canal nombre="TVT" numero="35"/>
 </antena>
 <antena lat="-41.06806" lon="147.7331">
-<canal nombre="ABC" numero="65"/>
+<canal nombre="ABC" numero="29"/>
 </antena>
-<antena lat="-40.96472" lon="148.0128">
-<canal nombre="ABC" numero="65"/>
+<antena lat="-40.965" lon="148.0131">
+<canal nombre="ABC" numero="47"/>
 </antena>
 <antena lat="-38.40056" lon="146.5633">
-<canal nombre="ABC" numero="42"/>
+<canal nombre="ABC" numero="29"/>
 <canal nombre="SBS" numero="30"/>
+</antena>
+<antena lat="-38.395" lon="146.5581">
+<canal nombre="AMV" numero="33"/>
+<canal nombre="GLV" numero="28"/>
+<canal nombre="VTV" numero="31"/>
 </antena>
 <antena lat="-38.37722" lon="146.2617">
 <canal nombre="ABC" numero="49"/>
-<canal nombre="AMV" numero="67"/>
-<canal nombre="GLV" numero="53"/>
+<canal nombre="AMV" numero="46"/>
+<canal nombre="GLV" numero="47"/>
 <canal nombre="SBS" numero="51"/>
 <canal nombre="VTV" numero="50"/>
-</antena>
-<antena lat="-38.395" lon="146.5578">
-<canal nombre="AMV" numero="33"/>
-<canal nombre="GLV" numero="39"/>
-<canal nombre="VTV" numero="36"/>
 </antena>
 <antena lat="-38.18611" lon="146.3217">
-<canal nombre="ABC" numero="67"/>
-<canal nombre="AMV" numero="58"/>
-<canal nombre="GLV" numero="64"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="VTV" numero="61"/>
-</antena>
-<antena lat="-38.30556" lon="146.3475">
-<canal nombre="ABC" numero="49"/>
-<canal nombre="AMV" numero="67"/>
-<canal nombre="GLV" numero="53"/>
-<canal nombre="SBS" numero="51"/>
-<canal nombre="VTV" numero="50"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="45"/>
+<canal nombre="GLV" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="44"/>
 </antena>
 <antena lat="-38.30417" lon="146.4597">
 <canal nombre="ABC" numero="49"/>
-<canal nombre="AMV" numero="67"/>
-<canal nombre="GLV" numero="53"/>
+<canal nombre="AMV" numero="46"/>
+<canal nombre="GLV" numero="47"/>
 <canal nombre="SBS" numero="51"/>
 <canal nombre="VTV" numero="50"/>
 </antena>
-<antena lat="-37.70722" lon="147.5592">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="AMV" numero="59"/>
-<canal nombre="GLV" numero="65"/>
-<canal nombre="SBS" numero="52"/>
-<canal nombre="VTV" numero="62"/>
+<antena lat="-38.30556" lon="146.3475">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="AMV" numero="46"/>
+<canal nombre="GLV" numero="47"/>
+<canal nombre="SBS" numero="51"/>
+<canal nombre="VTV" numero="50"/>
+</antena>
+<antena lat="-37.70694" lon="147.5592">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="AMV" numero="36"/>
+<canal nombre="GLV" numero="38"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="VTV" numero="37"/>
+</antena>
+<antena lat="-37.49583" lon="147.2389">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-36.78639" lon="147.1961">
-<canal nombre="AMV" numero="50"/>
-<canal nombre="GLV" numero="55"/>
-<canal nombre="VTV" numero="67"/>
+<canal nombre="AMV" numero="39"/>
+<canal nombre="GLV" numero="38"/>
+<canal nombre="VTV" numero="37"/>
 </antena>
 <antena lat="-36.86361" lon="147.2753">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="AMV" numero="62"/>
-<canal nombre="GLV" numero="68"/>
-<canal nombre="SBS" numero="65"/>
-<canal nombre="VTV" numero="59"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="AMV" numero="42"/>
+<canal nombre="GLV" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="43"/>
 </antena>
 <antena lat="-36.85778" lon="147.0553">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="AMV" numero="67"/>
-<canal nombre="GLV" numero="64"/>
-<canal nombre="SBS" numero="58"/>
-<canal nombre="VTV" numero="61"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
-<antena lat="-36.71694" lon="146.9719">
+<antena lat="-36.71722" lon="146.9714">
 <canal nombre="ABC" numero="31"/>
-<canal nombre="AMV" numero="34"/>
-<canal nombre="GLV" numero="36"/>
+<canal nombre="AMV" numero="29"/>
+<canal nombre="GLV" numero="32"/>
 <canal nombre="SBS" numero="28"/>
-<canal nombre="VTV" numero="40"/>
+<canal nombre="VTV" numero="30"/>
 </antena>
 <antena lat="-36.72528" lon="147.2022">
 <canal nombre="ABC" numero="31"/>
-<canal nombre="AMV" numero="34"/>
-<canal nombre="GLV" numero="45"/>
+<canal nombre="AMV" numero="29"/>
+<canal nombre="GLV" numero="32"/>
 <canal nombre="SBS" numero="28"/>
-<canal nombre="VTV" numero="40"/>
+<canal nombre="VTV" numero="30"/>
 </antena>
-<antena lat="-37.73944" lon="147.8492">
-<canal nombre="ABC" numero="38"/>
-<canal nombre="SBS" numero="28"/>
+<antena lat="-37.73972" lon="147.8492">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-37.86833" lon="148.0222">
-<canal nombre="ABC" numero="61"/>
-<canal nombre="AMV" numero="64"/>
-<canal nombre="GLV" numero="53"/>
-<canal nombre="SBS" numero="58"/>
-<canal nombre="VTV" numero="67"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-37.69417" lon="148.0894">
-<canal nombre="ABC" numero="51"/>
+<canal nombre="ABC" numero="29"/>
 </antena>
 <antena lat="-37.71306" lon="148.5983">
-<canal nombre="ABC" numero="37"/>
+<canal nombre="ABC" numero="41"/>
 <canal nombre="AMV" numero="43"/>
-<canal nombre="GLV" numero="38"/>
+<canal nombre="GLV" numero="40"/>
+<canal nombre="SBS" numero="42"/>
 <canal nombre="VTV" numero="44"/>
 </antena>
 <antena lat="-37.59528" lon="148.9933">
-<canal nombre="ABC" numero="12"/>
-<canal nombre="AMV" numero="53"/>
-<canal nombre="GLV9A" numero="9A"/>
-<canal nombre="VTV" numero="55"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="49"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="48"/>
 </antena>
 <antena lat="-37.54778" lon="149.7497">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="AMV" numero="62"/>
-<canal nombre="GLV" numero="59"/>
-<canal nombre="VTV" numero="65"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-37.41222" lon="149.5461">
-<canal nombre="ABC" numero="30"/>
+<canal nombre="ABC" numero="36"/>
+<canal nombre="SBS" numero="35"/>
 </antena>
 <antena lat="-37.41194" lon="149.5461">
 <canal nombre="AMV" numero="39"/>
-<canal nombre="GLV" numero="33"/>
-<canal nombre="VTV" numero="44"/>
+<canal nombre="GLV" numero="38"/>
+<canal nombre="VTV" numero="37"/>
 </antena>
 <antena lat="-36.8525" lon="149.215">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="CBN" numero="63"/>
-<canal nombre="CTC" numero="59"/>
-<canal nombre="WIN" numero="60"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-37.0125" lon="149.8883">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="CBN" numero="67"/>
-<canal nombre="CTC" numero="64"/>
-<canal nombre="SBS" numero="68"/>
-<canal nombre="WIN" numero="61"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
-<antena lat="-36.86833" lon="149.9028">
-<canal nombre="ABC" numero="41"/>
+<antena lat="-36.86861" lon="149.9019">
+<canal nombre="ABC" numero="35"/>
 <canal nombre="CBN" numero="38"/>
 <canal nombre="CTC" numero="37"/>
 <canal nombre="SBS" numero="39"/>
 <canal nombre="WIN" numero="36"/>
 </antena>
+<antena lat="-36.56222" lon="146.7336">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="49"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="48"/>
+</antena>
 <antena lat="-36.4525" lon="146.8017">
-<canal nombre="AMV" numero="51"/>
-<canal nombre="GLV" numero="48"/>
+<canal nombre="AMV" numero="43"/>
+<canal nombre="GLV" numero="41"/>
 <canal nombre="VTV" numero="44"/>
 </antena>
-<antena lat="-36.56222" lon="146.7336">
-<canal nombre="ABC" numero="53"/>
-<canal nombre="AMV" numero="54"/>
-<canal nombre="GLV" numero="64"/>
-<canal nombre="SBS" numero="58"/>
-<canal nombre="VTV" numero="61"/>
-</antena>
 <antena lat="-36.255" lon="146.8536">
-<canal nombre="ABC9A" numero="9A"/>
+<canal nombre="ABC" numero="11"/>
 <canal nombre="AMV" numero="12"/>
 <canal nombre="GLV" numero="8"/>
 <canal nombre="SBS" numero="7"/>
@@ -1533,42 +1893,58 @@
 <antena lat="-36.21806" lon="147.0317">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="AMV" numero="44"/>
-<canal nombre="GLV" numero="47"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="VTV" numero="46"/>
+<canal nombre="GLV" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="VTV" numero="42"/>
+</antena>
+<antena lat="-36.51917" lon="147.3517">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="AMV" numero="48"/>
+<canal nombre="GLV" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="VTV" numero="49"/>
 </antena>
 <antena lat="-36.21528" lon="147.5383">
-<canal nombre="AMV" numero="51"/>
-<canal nombre="GLV" numero="48"/>
+<canal nombre="AMV" numero="43"/>
+<canal nombre="GLV" numero="41"/>
 <canal nombre="VTV" numero="45"/>
 </antena>
-<antena lat="-36.02167" lon="146.9603">
+<antena lat="-36.02139" lon="146.96">
 <canal nombre="ABC" numero="31"/>
 <canal nombre="SBS" numero="29"/>
 </antena>
-<antena lat="-36.02167" lon="146.9606">
-<canal nombre="AMV" numero="58"/>
-<canal nombre="GLV" numero="64"/>
-<canal nombre="VTV" numero="61"/>
+<antena lat="-36.02139" lon="146.9606">
+<canal nombre="AMV" numero="28"/>
+<canal nombre="GLV" numero="32"/>
+<canal nombre="VTV" numero="30"/>
 </antena>
-<antena lat="-36.49472" lon="148.2861">
+<antena lat="-35.73139" lon="147.3061">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="AMV" numero="30"/>
+<canal nombre="GLV" numero="32"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="VTV" numero="31"/>
+</antena>
+<antena lat="-36.495" lon="148.2864">
 <canal nombre="ABC" numero="33"/>
-<canal nombre="CTC" numero="39"/>
+<canal nombre="CBN" numero="28"/>
+<canal nombre="CTC" numero="32"/>
 <canal nombre="SBS" numero="30"/>
-<canal nombre="WIN" numero="42"/>
+<canal nombre="WIN" numero="29"/>
 </antena>
 <antena lat="-36.21278" lon="148.1267">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="AMV" numero="53"/>
-<canal nombre="GLV" numero="65"/>
+<canal nombre="ABC" numero="46"/>
+<canal nombre="AMV" numero="47"/>
+<canal nombre="GLV" numero="49"/>
 <canal nombre="SBS" numero="50"/>
-<canal nombre="VTV" numero="62"/>
+<canal nombre="VTV" numero="48"/>
 </antena>
 <antena lat="-36.18694" lon="147.9753">
-<canal nombre="ABC" numero="32"/>
+<canal nombre="ABC" numero="36"/>
 <canal nombre="AMV" numero="37"/>
 <canal nombre="GLV" numero="34"/>
-<canal nombre="VTV" numero="40"/>
+<canal nombre="SBS" numero="35"/>
+<canal nombre="VTV" numero="38"/>
 </antena>
 <antena lat="-35.89944" lon="147.9481">
 <canal nombre="ABC" numero="41"/>
@@ -1577,34 +1953,43 @@
 <canal nombre="SBS" numero="40"/>
 <canal nombre="WIN" numero="43"/>
 </antena>
-<antena lat="-35.93361" lon="147.7406">
-<canal nombre="ABAV" numero="55"/>
-<canal nombre="AMV" numero="58"/>
-<canal nombre="GLV" numero="64"/>
-<canal nombre="SBS" numero="34"/>
-<canal nombre="VTV" numero="61"/>
+<antena lat="-35.93361" lon="147.7403">
+<canal nombre="ABC" numero="51"/>
+<canal nombre="AMV" numero="47"/>
+<canal nombre="GLV" numero="49"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="VTV" numero="48"/>
 </antena>
 <antena lat="-36.4025" lon="148.6639">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="CBN" numero="62"/>
-<canal nombre="CTC" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="SMTV" numero="48"/>
-<canal nombre="WIN" numero="56"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="SMT" numero="48"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-35.98472" lon="149.0244">
 <canal nombre="ABC" numero="29"/>
-<canal nombre="CBN" numero="43"/>
+<canal nombre="CBN" numero="33"/>
 <canal nombre="CTC" numero="32"/>
-<canal nombre="WIN" numero="40"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="WIN" numero="31"/>
+</antena>
+<antena lat="-35.7775" lon="148.02">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="CBN" numero="30"/>
+<canal nombre="CTC" numero="32"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="WIN" numero="31"/>
 </antena>
 <antena lat="-35.59583" lon="148.2872">
 <canal nombre="ABC" numero="41"/>
-<canal nombre="CTC" numero="55"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
 <canal nombre="SBS" numero="40"/>
 <canal nombre="WIN" numero="43"/>
 </antena>
-<antena lat="-35.54694" lon="148.1969">
+<antena lat="-35.54722" lon="148.1978">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="CBN" numero="42"/>
 <canal nombre="CTC" numero="44"/>
@@ -1619,13 +2004,13 @@
 <canal nombre="WIN" numero="37"/>
 </antena>
 <antena lat="-35.29472" lon="148.2464">
-<canal nombre="ABC" numero="53"/>
-<canal nombre="CBN" numero="59"/>
-<canal nombre="CTC" numero="65"/>
-<canal nombre="SBS" numero="56"/>
-<canal nombre="WIN" numero="62"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
-<antena lat="-34.75306" lon="146.5661">
+<antena lat="-34.7525" lon="146.5661">
 <canal nombre="ABC" numero="36"/>
 <canal nombre="CBN" numero="37"/>
 <canal nombre="CTC" numero="38"/>
@@ -1633,11 +2018,11 @@
 <canal nombre="WIN" numero="39"/>
 </antena>
 <antena lat="-35.13417" lon="147.3706">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="CBN" numero="58"/>
-<canal nombre="CTC" numero="64"/>
-<canal nombre="SBS" numero="54"/>
-<canal nombre="WIN" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-34.87667" lon="147.575">
 <canal nombre="ABC" numero="36"/>
@@ -1646,12 +2031,12 @@
 <canal nombre="SBS" numero="34"/>
 <canal nombre="WIN" numero="39"/>
 </antena>
-<antena lat="-33.92889" lon="147.2497">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="CBN" numero="62"/>
-<canal nombre="CTC" numero="65"/>
-<canal nombre="SBS" numero="56"/>
-<canal nombre="WIN" numero="68"/>
+<antena lat="-33.92889" lon="147.25">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-34.82167" lon="147.9">
 <canal nombre="ABC" numero="46"/>
@@ -1664,85 +2049,85 @@
 <canal nombre="ABC" numero="41"/>
 <canal nombre="CBN" numero="45"/>
 <canal nombre="CTC" numero="44"/>
-<canal nombre="SBS" numero="49"/>
-<canal nombre="WIN" numero="38"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-34.645" lon="148.0481">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="CBN" numero="62"/>
-<canal nombre="CTC" numero="68"/>
-<canal nombre="SBS" numero="56"/>
-<canal nombre="WIN" numero="65"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-34.56639" lon="148.3683">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="CBN" numero="60"/>
-<canal nombre="CTC" numero="66"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="WIN" numero="63"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-34.30028" lon="148.3053">
-<canal nombre="ABC" numero="10"/>
-<canal nombre="CBN" numero="7"/>
-<canal nombre="CTC" numero="63"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="WIN" numero="60"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-33.86528" lon="148.1381">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="59"/>
-<canal nombre="CTC" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="WIN" numero="62"/>
+<canal nombre="ABC" numero="29"/>
+<canal nombre="CBN" numero="33"/>
+<canal nombre="CTC" numero="32"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="WIN" numero="31"/>
 </antena>
 <antena lat="-33.83028" lon="148.6967">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="CBN" numero="65"/>
-<canal nombre="CTC" numero="53"/>
-<canal nombre="SBS" numero="59"/>
-<canal nombre="WIN" numero="56"/>
+<canal nombre="ABC" numero="42"/>
+<canal nombre="CBN" numero="43"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="WIN" numero="41"/>
 </antena>
 <antena lat="-36.23639" lon="149.1394">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="CBN" numero="64"/>
-<canal nombre="CTC" numero="58"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="WIN" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-36.43056" lon="150.0806">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="CBN" numero="66"/>
-<canal nombre="CTC" numero="63"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="WIN" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-36.54639" lon="149.8647">
-<canal nombre="ABC" numero="35"/>
+<canal nombre="ABC" numero="31"/>
 <canal nombre="CBN" numero="30"/>
 <canal nombre="CTC" numero="33"/>
 <canal nombre="SBS" numero="32"/>
 <canal nombre="WIN" numero="29"/>
 </antena>
 <antena lat="-36.19639" lon="150.0828">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="65"/>
-<canal nombre="CTC" numero="62"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="WIN" numero="59"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-36.18333" lon="150.1175">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="65"/>
-<canal nombre="CTC" numero="62"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="WIN" numero="59"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
-<antena lat="-35.59917" lon="149.4403">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="65"/>
-<canal nombre="CTC" numero="59"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="WIN" numero="62"/>
+<antena lat="-35.59889" lon="149.4403">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-35.47306" lon="149.1061">
 <canal nombre="ABC" numero="36"/>
@@ -1752,43 +2137,43 @@
 <canal nombre="WIN" numero="38"/>
 </antena>
 <antena lat="-35.37417" lon="149.0739">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="SBS" numero="57"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="45"/>
 </antena>
 <antena lat="-35.45472" lon="149.1064">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="CBN" numero="68"/>
-<canal nombre="CTC" numero="62"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="WIN" numero="65"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-35.27694" lon="149.0964">
-<canal nombre="ABC9A" numero="9A"/>
+<canal nombre="ABC" numero="8"/>
 <canal nombre="CBN" numero="12"/>
 <canal nombre="CTC" numero="6"/>
-<canal nombre="SBS" numero="30"/>
+<canal nombre="SBS" numero="7"/>
 <canal nombre="WIN" numero="11"/>
 </antena>
 <antena lat="-35.7975" lon="150.0042">
-<canal nombre="ABC9A" numero="9A"/>
-<canal nombre="CBN" numero="66"/>
-<canal nombre="CTC" numero="63"/>
-<canal nombre="SBS" numero="7"/>
-<canal nombre="WIN" numero="10"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-35.45667" lon="149.7708">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="65"/>
-<canal nombre="CTC" numero="59"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="WIN" numero="62"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-35.28333" lon="150.3414">
 <canal nombre="ABC" numero="28"/>
-<canal nombre="CBN" numero="49"/>
-<canal nombre="CTC" numero="46"/>
+<canal nombre="CBN" numero="30"/>
+<canal nombre="CTC" numero="32"/>
 <canal nombre="SBS" numero="31"/>
-<canal nombre="WIN" numero="52"/>
+<canal nombre="WIN" numero="33"/>
 </antena>
 <antena lat="-34.93861" lon="149.3786">
 <canal nombre="ABC" numero="47"/>
@@ -1798,85 +2183,109 @@
 <canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-34.78472" lon="149.2631">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="CBN" numero="64"/>
-<canal nombre="CTC" numero="55"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="WIN" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-34.75861" lon="149.7625">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="SBS" numero="59"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
-<antena lat="-34.75806" lon="149.7622">
-<canal nombre="CBN" numero="65"/>
-<canal nombre="CTC" numero="68"/>
-<canal nombre="WIN" numero="62"/>
-</antena>
-<antena lat="-34.76278" lon="149.7211">
+<antena lat="-34.7625" lon="149.7214">
 <canal nombre="ABC" numero="29"/>
 <canal nombre="CBN" numero="32"/>
 <canal nombre="CTC" numero="33"/>
 <canal nombre="SBS" numero="28"/>
 <canal nombre="WIN" numero="31"/>
 </antena>
+<antena lat="-34.75806" lon="149.7622">
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="WIN" numero="43"/>
+</antena>
+<antena lat="-34.45667" lon="149.4403">
+<canal nombre="ABC" numero="32"/>
+</antena>
 <antena lat="-34.46611" lon="150.4269">
-<canal nombre="ABC" numero="52"/>
+<canal nombre="ABC" numero="47"/>
 <canal nombre="CBN" numero="46"/>
-<canal nombre="CTC" numero="43"/>
+<canal nombre="CTC" numero="50"/>
 <canal nombre="SBS" numero="49"/>
-<canal nombre="WIN" numero="40"/>
+<canal nombre="WIN" numero="48"/>
+</antena>
+<antena lat="-34.39778" lon="149.8781">
+<canal nombre="ABC" numero="32"/>
+<canal nombre="CBN" numero="28"/>
+<canal nombre="CTC" numero="30"/>
+<canal nombre="SBS" numero="31"/>
+<canal nombre="WIN" numero="29"/>
 </antena>
 <antena lat="-34.80194" lon="150.5761">
-<canal nombre="ABC" numero="66"/>
-<canal nombre="CBN" numero="43"/>
-<canal nombre="CTC" numero="40"/>
-<canal nombre="SBS" numero="63"/>
-<canal nombre="WIN" numero="34"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-34.62444" lon="150.6928">
-<canal nombre="ABC" numero="51"/>
-<canal nombre="SBS" numero="54"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="39"/>
 </antena>
 <antena lat="-34.62056" lon="150.6956">
 <canal nombre="CBN" numero="38"/>
 <canal nombre="CTC" numero="37"/>
 <canal nombre="WIN" numero="36"/>
 </antena>
+<antena lat="-34.14861" lon="150.6694">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="ATN" numero="42"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TCN" numero="43"/>
+<canal nombre="TEN" numero="44"/>
+</antena>
+<antena lat="-34.16861" lon="150.6178">
+<canal nombre="ABC" numero="30"/>
+<canal nombre="ATN" numero="28"/>
+<canal nombre="SBS" numero="32"/>
+<canal nombre="TCN" numero="33"/>
+<canal nombre="TEN" numero="31"/>
+</antena>
 <antena lat="-34.42361" lon="150.8389">
-<canal nombre="ABC" numero="39"/>
-<canal nombre="CBN" numero="45"/>
+<canal nombre="ABC" numero="46"/>
+<canal nombre="CBN" numero="47"/>
 <canal nombre="CTC" numero="49"/>
-<canal nombre="SBS" numero="33"/>
+<canal nombre="SBS" numero="50"/>
 <canal nombre="WIN" numero="48"/>
 </antena>
 <antena lat="-34.36861" lon="150.8747">
-<canal nombre="ABC" numero="52"/>
-<canal nombre="CBN" numero="46"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
 <canal nombre="CTC" numero="43"/>
-<canal nombre="SBS" numero="54"/>
+<canal nombre="SBS" numero="44"/>
 <canal nombre="WIN" numero="40"/>
 </antena>
-<antena lat="-34.22528" lon="150.9936">
-<canal nombre="ABC" numero="52"/>
+<antena lat="-34.225" lon="150.9936">
+<canal nombre="ABC" numero="47"/>
 <canal nombre="CBN" numero="46"/>
-<canal nombre="CTC" numero="43"/>
+<canal nombre="CTC" numero="50"/>
 <canal nombre="SBS" numero="49"/>
-<canal nombre="WIN" numero="40"/>
+<canal nombre="WIN" numero="48"/>
 </antena>
-<antena lat="-33.80889" lon="151.2994">
-<canal nombre="ABC" numero="30"/>
-<canal nombre="ATN" numero="48"/>
-<canal nombre="SBS" numero="34"/>
-<canal nombre="TCN" numero="33"/>
-<canal nombre="TEN" numero="45"/>
+<antena lat="-34.02139" lon="151.0486">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="ATN" numero="42"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TCN" numero="43"/>
+<canal nombre="TEN" numero="44"/>
 </antena>
 <antena lat="-33.8775" lon="151.2214">
 <canal nombre="ABC" numero="30"/>
-<canal nombre="ATN" numero="48"/>
-<canal nombre="SBS" numero="34"/>
+<canal nombre="ATN" numero="28"/>
+<canal nombre="SBS" numero="32"/>
 <canal nombre="TCN" numero="33"/>
-<canal nombre="TEN" numero="45"/>
+<canal nombre="TEN" numero="31"/>
 </antena>
 <antena lat="-33.81306" lon="151.1947">
 <canal nombre="ATN" numero="6"/>
@@ -1885,51 +2294,62 @@
 </antena>
 <antena lat="-33.82167" lon="151.1839">
 <canal nombre="ABC" numero="12"/>
-<canal nombre="SBS" numero="34"/>
+<canal nombre="SBS" numero="7"/>
 <canal nombre="TSN" numero="29"/>
 </antena>
 <antena lat="-33.80694" lon="151.1794">
 <canal nombre="ABC" numero="12"/>
 <canal nombre="ATN" numero="6"/>
-<canal nombre="SBS" numero="34"/>
+<canal nombre="SBS" numero="7"/>
 <canal nombre="TCN" numero="8"/>
 <canal nombre="TEN" numero="11"/>
 </antena>
+<antena lat="-33.80889" lon="151.2994">
+<canal nombre="ABC" numero="30"/>
+<canal nombre="ATN" numero="28"/>
+<canal nombre="SBS" numero="32"/>
+<canal nombre="TCN" numero="33"/>
+<canal nombre="TEN" numero="31"/>
+</antena>
 <antena lat="-33.14194" lon="135.1072">
-<canal nombre="ABC" numero="31"/>
+<canal nombre="ABC" numero="36"/>
 </antena>
 <antena lat="-33.28444" lon="136.1814">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="SBS" numero="57"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
-<antena lat="-33.57833" lon="136.795">
-<canal nombre="ABC" numero="45"/>
+<antena lat="-33.57833" lon="136.7956">
+<canal nombre="ABC" numero="36"/>
 <canal nombre="GDS" numero="37"/>
-<canal nombre="GTS" numero="48"/>
-<canal nombre="SBS" numero="61"/>
+<canal nombre="GTS" numero="34"/>
+<canal nombre="SBS" numero="39"/>
 <canal nombre="SGS" numero="35"/>
 </antena>
-<antena lat="-33.10528" lon="138.1633">
-<canal nombre="ABC" numero="38"/>
+<antena lat="-31.19361" lon="136.8136">
+<canal nombre="ABC" numero="37"/>
+<canal nombre="CDT" numero="33"/>
+<canal nombre="IMP" numero="31"/>
+<canal nombre="QQQ" numero="29"/>
+<canal nombre="SBS" numero="35"/>
+</antena>
+<antena lat="-33.10528" lon="138.1628">
+<canal nombre="ABC" numero="43"/>
 <canal nombre="GDS" numero="42"/>
 <canal nombre="GTS" numero="44"/>
 <canal nombre="SBS" numero="41"/>
 <canal nombre="SGS" numero="40"/>
 </antena>
-<antena lat="-33.67444" lon="138.9394">
-<canal nombre="ABC" numero="55"/>
+<antena lat="-33.67472" lon="138.9394">
+<canal nombre="ABC" numero="35"/>
 <canal nombre="GDS" numero="37"/>
 <canal nombre="GTS" numero="39"/>
-<canal nombre="SBS" numero="53"/>
+<canal nombre="SBS" numero="34"/>
 <canal nombre="SGS" numero="36"/>
 </antena>
 <antena lat="-33.67472" lon="138.8806">
 <canal nombre="GDS" numero="49"/>
 <canal nombre="GTS" numero="50"/>
 <canal nombre="SGS" numero="48"/>
-</antena>
-<antena lat="-32.39972" lon="138.4175">
-<canal nombre="GTS" numero="66"/>
 </antena>
 <antena lat="-32.74083" lon="138.6019">
 <canal nombre="ABC" numero="46"/>
@@ -1939,52 +2359,77 @@
 <canal nombre="SGS" numero="49"/>
 </antena>
 <antena lat="-32.30083" lon="138.0547">
-<canal nombre="ABC" numero="55"/>
+<canal nombre="ABC" numero="47"/>
 <canal nombre="GDS" numero="49"/>
 <canal nombre="GTS" numero="50"/>
-<canal nombre="SBS" numero="53"/>
+<canal nombre="SBS" numero="46"/>
 <canal nombre="SGS" numero="48"/>
 </antena>
-<antena lat="-30.54833" lon="136.8931">
+<antena lat="-31.92222" lon="138.4439">
+<canal nombre="ABC" numero="47"/>
+</antena>
+<antena lat="-30.55583" lon="136.8922">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+</antena>
+<antena lat="-30.54778" lon="136.8931">
 <canal nombre="ABC" numero="40"/>
 <canal nombre="SBS" numero="34"/>
 </antena>
-<antena lat="-30.60083" lon="138.4028">
+<antena lat="-30.47444" lon="137.165">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-30.60111" lon="138.4025">
 <canal nombre="ABC" numero="8"/>
 </antena>
 <antena lat="-31.95278" lon="141.4389">
 <canal nombre="ABC" numero="10"/>
 <canal nombre="BDN" numero="7"/>
-<canal nombre="BKN" numero="9"/>
+<canal nombre="BKN" numero="8"/>
 <canal nombre="SBS" numero="12"/>
 <canal nombre="SCN" numero="6"/>
+</antena>
+<antena lat="-32.33972" lon="142.4128">
+<canal nombre="ABC" numero="41"/>
+</antena>
+<antena lat="-31.55389" lon="143.3794">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-31.54806" lon="143.3903">
 <canal nombre="ABC" numero="9"/>
 </antena>
+<antena lat="-32.92222" lon="144.2756">
+<canal nombre="ABC" numero="8"/>
+</antena>
 <antena lat="-33.47722" lon="145.5347">
 <canal nombre="ABC" numero="41"/>
-<canal nombre="AMN" numero="42"/>
+<canal nombre="AMN" numero="43"/>
 <canal nombre="MDN" numero="44"/>
-<canal nombre="MTN" numero="43"/>
+<canal nombre="MTN" numero="42"/>
 <canal nombre="SBS" numero="40"/>
-</antena>
-<antena lat="-31.5175" lon="145.8553">
-<canal nombre="CDT" numero="32"/>
 </antena>
 <antena lat="-31.51861" lon="145.855">
 <canal nombre="ABC" numero="6"/>
+<canal nombre="CBN" numero="8"/>
 <canal nombre="SBS" numero="11"/>
 </antena>
-<antena lat="-30.08417" lon="145.9447">
-<canal nombre="CDT" numero="44"/>
+<antena lat="-31.5175" lon="145.8553">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
 </antena>
-<antena lat="-28.16167" lon="145.0469">
-<canal nombre="ABC" numero="48"/>
+<antena lat="-30.08417" lon="145.9447">
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
+</antena>
+<antena lat="-30.20028" lon="146.2381">
+<canal nombre="ABC" numero="6"/>
 </antena>
 <antena lat="-25.89806" lon="139.3511">
 <canal nombre="CDT" numero="44"/>
@@ -1992,51 +2437,51 @@
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
-<antena lat="-24.36333" lon="139.4672">
+<antena lat="-25.89778" lon="139.3542">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-24.35944" lon="139.4703">
+<canal nombre="ABC" numero="6"/>
+</antena>
+<antena lat="-24.36306" lon="139.4669">
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
-<antena lat="-26.67028" lon="143.2667">
+<antena lat="-26.67028" lon="143.2683">
 <canal nombre="ABC" numero="48"/>
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
-<antena lat="-25.4225" lon="142.6533">
+<antena lat="-25.42111" lon="142.6581">
 <canal nombre="ABC" numero="48"/>
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
-</antena>
-<antena lat="-27.9725" lon="144.6344">
-<canal nombre="ABC" numero="49"/>
-<canal nombre="CDT" numero="45"/>
-<canal nombre="IMP" numero="43"/>
-<canal nombre="QQQ" numero="41"/>
-<canal nombre="SBS" numero="47"/>
 </antena>
 <antena lat="-28.04917" lon="145.7006">
 <canal nombre="ABC" numero="11"/>
 </antena>
-<antena lat="-27.24944" lon="145.9769">
-<canal nombre="ABC" numero="48"/>
+<antena lat="-28.06722" lon="145.6858">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
+<antena lat="-26.62" lon="144.2694">
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
-<antena lat="-26.62056" lon="144.2631">
+<antena lat="-26.62056" lon="144.2633">
 <canal nombre="ABC" numero="9"/>
-<canal nombre="CDT" numero="44"/>
-<canal nombre="IMP" numero="42"/>
-<canal nombre="QQQ" numero="40"/>
-<canal nombre="SBS" numero="46"/>
 </antena>
-<antena lat="-24.83333" lon="143.0592">
+<antena lat="-24.83278" lon="143.06">
 <canal nombre="ABC" numero="49"/>
 <canal nombre="CDT" numero="45"/>
 <canal nombre="IMP" numero="43"/>
@@ -2053,15 +2498,35 @@
 <antena lat="-24.43278" lon="145.4953">
 <canal nombre="ABC" numero="7"/>
 </antena>
+<antena lat="-24.42167" lon="145.4642">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
 <antena lat="-23.4575" lon="144.3503">
 <canal nombre="ABC" numero="10"/>
 <canal nombre="SBS" numero="11"/>
 </antena>
-<antena lat="-22.59667" lon="144.5472">
+<antena lat="-23.4425" lon="144.2581">
+<canal nombre="CDT" numero="51"/>
+<canal nombre="IMP" numero="49"/>
+<canal nombre="QQQ" numero="47"/>
+</antena>
+<antena lat="-22.59583" lon="144.5472">
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
+</antena>
+<antena lat="-22.59972" lon="144.5344">
+<canal nombre="ABC" numero="11"/>
+</antena>
+<antena lat="-23.55806" lon="145.2919">
+<canal nombre="CDT" numero="50"/>
+<canal nombre="IMP" numero="48"/>
+<canal nombre="QQQ" numero="46"/>
+<canal nombre="SBS" numero="44"/>
 </antena>
 <antena lat="-23.53" lon="145.2578">
 <canal nombre="ABC" numero="7"/>
@@ -2072,6 +2537,9 @@
 <canal nombre="QQQ" numero="41"/>
 <canal nombre="SBS" numero="47"/>
 </antena>
+<antena lat="-22.96694" lon="145.2464">
+<canal nombre="ABC" numero="8"/>
+</antena>
 <antena lat="-22.96944" lon="145.2417">
 <canal nombre="CDT" numero="45"/>
 <canal nombre="IMP" numero="43"/>
@@ -2079,29 +2547,29 @@
 <canal nombre="SBS" numero="47"/>
 </antena>
 <antena lat="-33.07944" lon="147.1553">
-<canal nombre="ABC" numero="64"/>
-<canal nombre="SBS" numero="55"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-33.07944" lon="147.1556">
-<canal nombre="CBN" numero="67"/>
-<canal nombre="CTC" numero="58"/>
-<canal nombre="WIN" numero="61"/>
+<canal nombre="CBN" numero="43"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="WIN" numero="42"/>
 </antena>
-<antena lat="-33.45889" lon="148.3692">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="CBN" numero="58"/>
-<canal nombre="CTC" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="WIN" numero="61"/>
+<antena lat="-33.45889" lon="148.3694">
+<canal nombre="ABC" numero="42"/>
+<canal nombre="CBN" numero="43"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="WIN" numero="41"/>
 </antena>
 <antena lat="-33.34389" lon="148.9817">
 <canal nombre="CBN" numero="37"/>
-<canal nombre="CTC" numero="43"/>
-<canal nombre="WIN" numero="40"/>
+<canal nombre="CTC" numero="38"/>
+<canal nombre="WIN" numero="35"/>
 </antena>
 <antena lat="-33.34417" lon="148.9825">
 <canal nombre="ABC" numero="36"/>
-<canal nombre="SBS" numero="42"/>
+<canal nombre="SBS" numero="39"/>
 </antena>
 <antena lat="-32.7225" lon="148.1964">
 <canal nombre="ABC" numero="47"/>
@@ -2117,73 +2585,78 @@
 <canal nombre="SBS" numero="51"/>
 <canal nombre="WIN" numero="49"/>
 </antena>
+<antena lat="-32.21944" lon="147.3319">
+<canal nombre="ABC" numero="47"/>
+</antena>
 <antena lat="-31.58861" lon="147.1794">
-<canal nombre="ABC" numero="53"/>
-<canal nombre="CTC" numero="62"/>
-<canal nombre="WIN" numero="59"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-31.23278" lon="147.6303">
 <canal nombre="CBN" numero="48"/>
 <canal nombre="CTC" numero="50"/>
 <canal nombre="WIN" numero="49"/>
 </antena>
-<antena lat="-32.23833" lon="148.6769">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="CBN" numero="61"/>
-<canal nombre="CTC" numero="67"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="WIN" numero="64"/>
+<antena lat="-32.23806" lon="148.6761">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="43"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="WIN" numero="42"/>
 </antena>
-<antena lat="-31.34389" lon="149.0214">
+<antena lat="-31.34417" lon="149.0219">
 <canal nombre="ABC" numero="12"/>
-<canal nombre="CBN" numero="41"/>
-<canal nombre="CTC" numero="46"/>
-<canal nombre="SBS" numero="44"/>
-<canal nombre="WIN" numero="45"/>
+<canal nombre="CBN" numero="6"/>
+<canal nombre="CTC" numero="11"/>
+<canal nombre="SBS" numero="7"/>
+<canal nombre="WIN" numero="10"/>
 </antena>
-<antena lat="-33.45278" lon="149.5436">
+<antena lat="-33.4525" lon="149.5436">
 <canal nombre="ABC" numero="7"/>
 <canal nombre="CBN" numero="10"/>
-<canal nombre="CTC9A" numero="9A"/>
-<canal nombre="SBS" numero="9"/>
+<canal nombre="CTC" numero="11"/>
+<canal nombre="SBS" numero="8"/>
 <canal nombre="WIN" numero="12"/>
 </antena>
 <antena lat="-33.70444" lon="149.8378">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="66"/>
-<canal nombre="CTC" numero="60"/>
-<canal nombre="SBS" numero="54"/>
-<canal nombre="WIN" numero="63"/>
+<canal nombre="ABC" numero="42"/>
+<canal nombre="CBN" numero="43"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="WIN" numero="41"/>
 </antena>
 <antena lat="-33.40667" lon="149.9461">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="59"/>
-<canal nombre="CTC" numero="62"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="WIN" numero="65"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="CBN" numero="43"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="WIN" numero="42"/>
 </antena>
 <antena lat="-33.47028" lon="150.1606">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="CBN" numero="59"/>
-<canal nombre="CTC" numero="62"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="WIN" numero="65"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
-<antena lat="-33.49556" lon="150.1447">
+<antena lat="-33.49528" lon="150.1447">
 <canal nombre="ABC" numero="31"/>
 <canal nombre="CBN" numero="30"/>
-<canal nombre="CTC" numero="34"/>
+<canal nombre="CTC" numero="32"/>
 <canal nombre="SBS" numero="28"/>
-<canal nombre="WIN" numero="35"/>
+<canal nombre="WIN" numero="29"/>
 </antena>
 <antena lat="-32.61222" lon="149.5633">
-<canal nombre="CBN" numero="59"/>
-<canal nombre="CTC" numero="65"/>
-<canal nombre="WIN" numero="62"/>
+<canal nombre="CBN" numero="42"/>
+<canal nombre="CTC" numero="44"/>
+<canal nombre="WIN" numero="43"/>
 </antena>
 <antena lat="-32.61139" lon="149.5642">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="SBS" numero="67"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-32.62028" lon="149.5728">
 <canal nombre="ABC" numero="47"/>
@@ -2193,150 +2666,208 @@
 <canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-32.87306" lon="149.9886">
-<canal nombre="CBN" numero="59"/>
-<canal nombre="CTC" numero="62"/>
-<canal nombre="WIN" numero="65"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-32.87306" lon="149.9883">
-<canal nombre="ABC" numero="56"/>
+<canal nombre="ABC" numero="47"/>
 <canal nombre="SBS" numero="50"/>
 </antena>
-<antena lat="-33.40639" lon="151.4739">
-<canal nombre="ABC" numero="37"/>
-<canal nombre="ATN" numero="61"/>
-<canal nombre="NBN" numero="68"/>
-<canal nombre="NEN" numero="59"/>
-<canal nombre="NRN" numero="56"/>
-<canal nombre="SBS" numero="38"/>
-<canal nombre="TCN" numero="62"/>
-<canal nombre="TEN" numero="65"/>
+<antena lat="-33.54833" lon="150.6153">
+<canal nombre="ABC" numero="30"/>
+<canal nombre="ATN" numero="28"/>
+<canal nombre="SBS" numero="32"/>
+<canal nombre="TCN" numero="33"/>
+<canal nombre="TEN" numero="31"/>
 </antena>
 <antena lat="-33.42444" lon="151.3478">
-<canal nombre="ABC" numero="37"/>
-<canal nombre="ATN" numero="61"/>
-<canal nombre="NBN" numero="68"/>
-<canal nombre="NEN" numero="59"/>
-<canal nombre="SBS" numero="34"/>
-<canal nombre="TCN" numero="62"/>
-<canal nombre="TEN" numero="65"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="ATN" numero="42"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TCN" numero="43"/>
+<canal nombre="TEN" numero="44"/>
 </antena>
 <antena lat="-33.51167" lon="151.4011">
-<canal nombre="ABC" numero="37"/>
-<canal nombre="ATN" numero="61"/>
-<canal nombre="NBN" numero="68"/>
-<canal nombre="NEN" numero="59"/>
-<canal nombre="SBS" numero="34"/>
-<canal nombre="TCN" numero="62"/>
-<canal nombre="TEN" numero="65"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="ATN" numero="42"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TCN" numero="43"/>
+<canal nombre="TEN" numero="44"/>
+</antena>
+<antena lat="-33.40639" lon="151.4739">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="ATN" numero="42"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="NRN" numero="48"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TCN" numero="43"/>
+<canal nombre="TEN" numero="44"/>
 </antena>
 <antena lat="-32.89333" lon="151.5369">
-<canal nombre="NEN" numero="53"/>
-<canal nombre="NRN" numero="51"/>
-</antena>
-<antena lat="-32.95722" lon="151.7033">
-<canal nombre="ABC" numero="37"/>
-<canal nombre="NBN" numero="36"/>
-<canal nombre="NEN" numero="53"/>
-<canal nombre="NRN" numero="51"/>
+<canal nombre="NEN" numero="35"/>
+<canal nombre="NRN" numero="39"/>
 <canal nombre="SBS" numero="38"/>
 </antena>
-<antena lat="-32.93333" lon="151.775">
+<antena lat="-32.95611" lon="151.64">
+<canal nombre="ABC" numero="30"/>
+<canal nombre="NBN" numero="28"/>
+<canal nombre="NEN" numero="32"/>
+<canal nombre="NRN" numero="33"/>
+<canal nombre="SBS" numero="31"/>
+</antena>
+<antena lat="-32.9325" lon="151.7756">
 <canal nombre="ABC" numero="37"/>
 <canal nombre="NBN" numero="36"/>
-<canal nombre="NEN" numero="53"/>
-<canal nombre="NRN" numero="51"/>
+<canal nombre="NEN" numero="35"/>
+<canal nombre="NRN" numero="39"/>
 <canal nombre="SBS" numero="38"/>
+</antena>
+<antena lat="-33.01056" lon="151.6722">
+<canal nombre="ABC" numero="30"/>
+<canal nombre="NBN" numero="28"/>
+<canal nombre="NEN" numero="32"/>
+<canal nombre="NRN" numero="33"/>
+<canal nombre="SBS" numero="31"/>
 </antena>
 <antena lat="-32.89167" lon="151.5375">
 <canal nombre="ABC" numero="37"/>
 <canal nombre="NBN" numero="36"/>
 <canal nombre="SBS" numero="38"/>
 </antena>
-<antena lat="-32.53889" lon="151.6506">
+<antena lat="-32.95722" lon="151.7033">
+<canal nombre="ABC" numero="37"/>
+<canal nombre="NBN" numero="36"/>
+<canal nombre="NEN" numero="35"/>
+<canal nombre="NRN" numero="39"/>
+<canal nombre="SBS" numero="38"/>
+</antena>
+<antena lat="-32.53806" lon="151.6503">
 <canal nombre="ABC" numero="32"/>
 <canal nombre="SBS" numero="30"/>
 </antena>
+<antena lat="-32.66111" lon="151.8281">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="44"/>
+<canal nombre="NEN" numero="43"/>
+<canal nombre="NRN" numero="45"/>
+<canal nombre="SBS" numero="42"/>
+</antena>
 <antena lat="-32.39667" lon="151.7839">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="NBN" numero="68"/>
-<canal nombre="NEN" numero="62"/>
-<canal nombre="NRN" numero="65"/>
-<canal nombre="SBS" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="44"/>
+<canal nombre="NEN" numero="43"/>
+<canal nombre="NRN" numero="45"/>
+<canal nombre="SBS" numero="42"/>
 </antena>
 <antena lat="-31.7775" lon="149.7253">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="CBN" numero="58"/>
-<canal nombre="CTC" numero="64"/>
-<canal nombre="SBS" numero="52"/>
-<canal nombre="WIN" numero="61"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="CBN" numero="48"/>
+<canal nombre="CTC" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="WIN" numero="49"/>
 </antena>
 <antena lat="-32.0225" lon="149.9944">
 <canal nombre="ABC" numero="30"/>
 <canal nombre="NBN" numero="33"/>
 </antena>
-<antena lat="-32.13528" lon="150.1567">
-<canal nombre="NBN" numero="63"/>
+<antena lat="-32.12833" lon="150.3114">
+<canal nombre="ABC" numero="43"/>
+<canal nombre="NBN" numero="45"/>
+<canal nombre="NEN" numero="44"/>
+<canal nombre="NRN" numero="42"/>
 </antena>
 <antena lat="-32.12861" lon="150.3117">
-<canal nombre="SBS" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
-<antena lat="-32.12889" lon="150.3117">
-<canal nombre="ABC" numero="48"/>
-<canal nombre="NBN" numero="45"/>
-<canal nombre="NEN" numero="44"/>
-<canal nombre="NRN" numero="47"/>
+<antena lat="-32.13444" lon="150.1578">
+<canal nombre="NBN" numero="47"/>
 </antena>
 <antena lat="-32.14333" lon="150.7817">
-<canal nombre="ABC" numero="7"/>
-<canal nombre="NBN" numero="9"/>
-<canal nombre="NEN" numero="61"/>
-<canal nombre="NRN" numero="58"/>
-<canal nombre="SBS" numero="64"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="NBN" numero="49"/>
+<canal nombre="NEN" numero="48"/>
+<canal nombre="NRN" numero="50"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-32.12361" lon="150.7611">
-<canal nombre="NBN" numero="68"/>
+<canal nombre="NBN" numero="31"/>
 </antena>
-<antena lat="-31.72944" lon="150.8431">
+<antena lat="-31.72917" lon="150.8425">
+<canal nombre="NBN" numero="36"/>
+<canal nombre="NEN" numero="35"/>
+<canal nombre="NRN" numero="39"/>
+</antena>
+<antena lat="-31.72972" lon="150.8425">
 <canal nombre="SBS" numero="34"/>
 </antena>
-<antena lat="-31.72917" lon="150.8428">
-<canal nombre="NBN" numero="45"/>
-<canal nombre="NEN" numero="44"/>
-<canal nombre="NRN" numero="46"/>
-</antena>
 <antena lat="-31.72889" lon="150.8428">
-<canal nombre="ABC" numero="41"/>
+<canal nombre="ABC" numero="37"/>
 </antena>
 <antena lat="-31.32278" lon="150.7486">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="NBN" numero="60"/>
-<canal nombre="NEN" numero="57"/>
-<canal nombre="NRN" numero="63"/>
-<canal nombre="SBS" numero="51"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
-<antena lat="-30.99028" lon="151.5831">
-<canal nombre="ABC" numero="48"/>
-<canal nombre="NBN" numero="62"/>
-<canal nombre="NEN" numero="59"/>
-<canal nombre="NRN" numero="65"/>
+<antena lat="-30.99" lon="151.5828">
+<canal nombre="ABC" numero="45"/>
+<canal nombre="NBN" numero="44"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="43"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-29.96472" lon="146.8642">
 <canal nombre="CDT" numero="51"/>
+<canal nombre="IMP" numero="49"/>
+<canal nombre="QQQ" numero="47"/>
+<canal nombre="SBS" numero="45"/>
+</antena>
+<antena lat="-30.01" lon="148.1339">
+<canal nombre="CDT" numero="50"/>
+<canal nombre="IMP" numero="46"/>
+<canal nombre="QQQ" numero="48"/>
 </antena>
 <antena lat="-30.00944" lon="148.1314">
 <canal nombre="ABC" numero="40"/>
+<canal nombre="SBS" numero="42"/>
+</antena>
+<antena lat="-29.13417" lon="147.4808">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-29.40611" lon="147.9703">
+<canal nombre="CDT" numero="49"/>
+<canal nombre="IMP" numero="47"/>
+<canal nombre="QQQ" numero="43"/>
 </antena>
 <antena lat="-29.40778" lon="147.9708">
 <canal nombre="ABC" numero="11"/>
+<canal nombre="SBS" numero="51"/>
+</antena>
+<antena lat="-28.55944" lon="148.2489">
+<canal nombre="ABC" numero="7"/>
 </antena>
 <antena lat="-30.28583" lon="150.1661">
-<canal nombre="ABC" numero="8"/>
-<canal nombre="NBN" numero="37"/>
-<canal nombre="NEN9A" numero="9A"/>
-<canal nombre="NRN" numero="40"/>
-<canal nombre="SBS" numero="36"/>
+<canal nombre="ABC" numero="29"/>
+<canal nombre="NBN" numero="31"/>
+<canal nombre="NEN" numero="30"/>
+<canal nombre="NRN" numero="32"/>
+<canal nombre="SBS" numero="28"/>
 </antena>
-<antena lat="-30.63556" lon="151.495">
+<antena lat="-29.56444" lon="150.4575">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="NRN" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+</antena>
+<antena lat="-30.63611" lon="151.495">
 <canal nombre="ABC" numero="47"/>
 <canal nombre="NBN" numero="49"/>
 <canal nombre="NEN" numero="51"/>
@@ -2345,124 +2876,184 @@
 </antena>
 <antena lat="-30.54278" lon="151.6503">
 <canal nombre="ABC" numero="7"/>
+<canal nombre="NBN" numero="11"/>
+<canal nombre="NEN" numero="10"/>
+<canal nombre="NRN" numero="6"/>
+<canal nombre="SBS" numero="12"/>
 </antena>
 <antena lat="-30.37778" lon="151.6">
-<canal nombre="ABC" numero="32"/>
+<canal nombre="ABC" numero="36"/>
 <canal nombre="NBN" numero="38"/>
 <canal nombre="NEN" numero="35"/>
-<canal nombre="NRN" numero="41"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="NRN" numero="37"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
-<antena lat="-29.77306" lon="151.1483">
-<canal nombre="NBN" numero="62"/>
-<canal nombre="NEN" numero="60"/>
-<canal nombre="NRN" numero="63"/>
+<antena lat="-29.77278" lon="151.1478">
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
 </antena>
-<antena lat="-29.7725" lon="151.1483">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="SBS" numero="65"/>
-</antena>
-<antena lat="-29.71889" lon="151.69">
-<canal nombre="NBN" numero="62"/>
-<canal nombre="NEN" numero="60"/>
-<canal nombre="NRN" numero="63"/>
+<antena lat="-29.7725" lon="151.1481">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-29.71833" lon="151.6903">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="SBS" numero="65"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
+</antena>
+<antena lat="-29.71889" lon="151.69">
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
 </antena>
 <antena lat="-28.52083" lon="150.3372">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="60"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-29.33139" lon="151.1175">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="NEN" numero="60"/>
-<canal nombre="SBS" numero="65"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-28.84417" lon="151.2036">
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-28.84444" lon="151.2033">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="SBS" numero="60"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="45"/>
 </antena>
 <antena lat="-28.5375" lon="151.8317">
-<canal nombre="ABC" numero="45"/>
-<canal nombre="RTQ" numero="43"/>
-<canal nombre="SBS" numero="48"/>
-<canal nombre="STQ" numero="51"/>
-<canal nombre="TNQ" numero="52"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="39"/>
+<canal nombre="STQ" numero="34"/>
+<canal nombre="TNQ" numero="38"/>
+</antena>
+<antena lat="-32.78333" lon="152.0961">
+<canal nombre="ABC" numero="50"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="NRN" numero="48"/>
+<canal nombre="SBS" numero="49"/>
 </antena>
 <antena lat="-32.73278" lon="152.13">
 <canal nombre="ABC" numero="30"/>
 <canal nombre="NBN" numero="28"/>
-<canal nombre="NEN" numero="42"/>
+<canal nombre="NEN" numero="32"/>
 <canal nombre="NRN" numero="33"/>
 <canal nombre="SBS" numero="31"/>
+</antena>
+<antena lat="-32.40472" lon="152.2164">
+<canal nombre="ABC" numero="50"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="NRN" numero="48"/>
+<canal nombre="SBS" numero="49"/>
+</antena>
+<antena lat="-32.40583" lon="151.9697">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="44"/>
+<canal nombre="NEN" numero="43"/>
+<canal nombre="NRN" numero="45"/>
+<canal nombre="SBS" numero="42"/>
+</antena>
+<antena lat="-32.37944" lon="152.5006">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-32.195" lon="152.5244">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="NBN" numero="43"/>
 <canal nombre="NEN" numero="42"/>
-<canal nombre="NRN" numero="47"/>
+<canal nombre="NRN" numero="44"/>
 <canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-32.33806" lon="152.5242">
-<canal nombre="ABC" numero="57"/>
-<canal nombre="NBN" numero="63"/>
-<canal nombre="NEN" numero="69"/>
-<canal nombre="NRN" numero="66"/>
-<canal nombre="SBS" numero="60"/>
+<canal nombre="ABC" numero="49"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="NRN" numero="48"/>
+<canal nombre="SBS" numero="50"/>
 </antena>
 <antena lat="-31.96389" lon="151.9458">
-<canal nombre="ABC" numero="41"/>
+<canal nombre="ABC" numero="29"/>
 <canal nombre="NBN" numero="32"/>
 <canal nombre="NEN" numero="28"/>
-<canal nombre="NRN" numero="34"/>
+<canal nombre="NRN" numero="30"/>
 <canal nombre="SBS" numero="31"/>
 </antena>
 <antena lat="-31.70361" lon="152.6775">
 <canal nombre="ABC" numero="7"/>
 <canal nombre="NBN" numero="12"/>
-<canal nombre="NEN" numero="9"/>
-<canal nombre="NRN" numero="44"/>
-<canal nombre="SBS9A" numero="9A"/>
+<canal nombre="NEN" numero="8"/>
+<canal nombre="NRN" numero="11"/>
+<canal nombre="SBS" numero="6"/>
 </antena>
 <antena lat="-31.58056" lon="152.7975">
-<canal nombre="ABC" numero="60"/>
-<canal nombre="NBN" numero="51"/>
-<canal nombre="NEN" numero="48"/>
-<canal nombre="NRN" numero="54"/>
-<canal nombre="SBS" numero="57"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="45"/>
+<canal nombre="SBS" numero="40"/>
+</antena>
+<antena lat="-31.63528" lon="152.8292">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="NBN" numero="31"/>
+<canal nombre="NEN" numero="28"/>
+<canal nombre="NRN" numero="32"/>
+<canal nombre="SBS" numero="30"/>
 </antena>
 <antena lat="-30.31889" lon="152.8586">
 <canal nombre="ABC" numero="36"/>
-<canal nombre="NBN" numero="33"/>
-<canal nombre="NEN" numero="30"/>
+<canal nombre="NBN" numero="37"/>
+<canal nombre="NEN" numero="35"/>
 <canal nombre="NRN" numero="38"/>
 <canal nombre="SBS" numero="39"/>
 </antena>
-<antena lat="-30.26472" lon="153.1169">
-<canal nombre="ABC" numero="61"/>
-<canal nombre="NBN" numero="67"/>
-<canal nombre="NEN" numero="56"/>
-<canal nombre="NRN" numero="64"/>
-<canal nombre="SBS" numero="68"/>
+<antena lat="-30.35444" lon="153.0753">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="NRN" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+</antena>
+<antena lat="-30.26472" lon="153.1175">
+<canal nombre="ABC" numero="45"/>
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
+<canal nombre="SBS" numero="41"/>
+</antena>
+<antena lat="-30.15833" lon="153.1819">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="NBN" numero="31"/>
+<canal nombre="NEN" numero="30"/>
+<canal nombre="NRN" numero="32"/>
+<canal nombre="SBS" numero="28"/>
+</antena>
+<antena lat="-30.12417" lon="153.1775">
+<canal nombre="ABC" numero="50"/>
+<canal nombre="NBN" numero="49"/>
+<canal nombre="NEN" numero="48"/>
+<canal nombre="NRN" numero="46"/>
+<canal nombre="SBS" numero="51"/>
 </antena>
 <antena lat="-29.08806" lon="151.9703">
-<canal nombre="NBN" numero="67"/>
-<canal nombre="NEN" numero="64"/>
-<canal nombre="NRN" numero="61"/>
+<canal nombre="NBN" numero="49"/>
+<canal nombre="NEN" numero="48"/>
+<canal nombre="NRN" numero="50"/>
 </antena>
 <antena lat="-29.08778" lon="151.9653">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="SBS" numero="55"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-29.45889" lon="153.2125">
 <canal nombre="ABC" numero="51"/>
@@ -2472,30 +3063,25 @@
 <canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-28.20028" lon="152.0672">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
-<antena lat="-28.7625" lon="152.6364">
-<canal nombre="ABC" numero="53"/>
-<canal nombre="NBN" numero="63"/>
-<canal nombre="NEN" numero="60"/>
-<canal nombre="NRN" numero="66"/>
+<antena lat="-28.7625" lon="152.6367">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-28.61972" lon="152.9783">
-<canal nombre="ABC" numero="58"/>
-<canal nombre="NBN" numero="55"/>
-<canal nombre="NEN" numero="64"/>
-<canal nombre="NRN" numero="61"/>
-</antena>
-<antena lat="-28.21583" lon="152.8661">
-<canal nombre="ABC" numero="29"/>
-<canal nombre="BTQ" numero="30"/>
-<canal nombre="QTQ" numero="31"/>
-<canal nombre="SBS" numero="33"/>
-<canal nombre="TVQ" numero="32"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="NBN" numero="43"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
+<canal nombre="SBS" numero="45"/>
 </antena>
 <antena lat="-28.17306" lon="152.7047">
 <canal nombre="ABC" numero="47"/>
@@ -2504,199 +3090,287 @@
 <canal nombre="SBS" numero="46"/>
 <canal nombre="TVQ" numero="50"/>
 </antena>
+<antena lat="-28.21556" lon="152.8664">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="BTQ" numero="30"/>
+<canal nombre="QTQ" numero="31"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="TVQ" numero="32"/>
+</antena>
 <antena lat="-28.65278" lon="153.6192">
 <canal nombre="ABC" numero="45"/>
 <canal nombre="NBN" numero="43"/>
-<canal nombre="NEN" numero="53"/>
-<canal nombre="NRN" numero="54"/>
-<canal nombre="SBS" numero="52"/>
+<canal nombre="NEN" numero="42"/>
+<canal nombre="NRN" numero="44"/>
+<canal nombre="SBS" numero="41"/>
 </antena>
 <antena lat="-28.52639" lon="153.5347">
+<canal nombre="ABC" numero="51"/>
+<canal nombre="NBN" numero="49"/>
+<canal nombre="NEN" numero="48"/>
+<canal nombre="NRN" numero="50"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-28.54694" lon="153.2864">
 <canal nombre="ABC" numero="29"/>
-<canal nombre="NBN" numero="37"/>
-<canal nombre="NEN" numero="35"/>
+<canal nombre="NBN" numero="31"/>
+<canal nombre="NEN" numero="30"/>
 <canal nombre="NRN" numero="32"/>
-<canal nombre="SBS" numero="40"/>
+<canal nombre="SBS" numero="33"/>
 </antena>
 <antena lat="-28.23639" lon="153.2878">
 <canal nombre="ABC" numero="29"/>
-<canal nombre="ABC" numero="62"/>
-<canal nombre="BTQ" numero="53"/>
-<canal nombre="NBN" numero="37"/>
-<canal nombre="NBN" numero="68"/>
-<canal nombre="NEN" numero="35"/>
-<canal nombre="NEN" numero="65"/>
+<canal nombre="ABC" numero="50"/>
+<canal nombre="BTQ" numero="34"/>
+<canal nombre="NBN" numero="31"/>
+<canal nombre="NBN" numero="38"/>
+<canal nombre="NEN" numero="30"/>
+<canal nombre="NEN" numero="37"/>
 <canal nombre="NRN" numero="32"/>
-<canal nombre="NRN" numero="43"/>
-<canal nombre="QTQ" numero="59"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="SBS" numero="40"/>
-<canal nombre="TVQ" numero="56"/>
+<canal nombre="NRN" numero="39"/>
+<canal nombre="QTQ" numero="35"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="SBS" numero="49"/>
+<canal nombre="TVQ" numero="36"/>
 </antena>
 <antena lat="-28.13944" lon="153.4797">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="BTQ" numero="53"/>
-<canal nombre="NBN" numero="68"/>
-<canal nombre="NEN" numero="65"/>
-<canal nombre="NRN" numero="43"/>
-<canal nombre="QTQ" numero="59"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="TVQ" numero="56"/>
+<canal nombre="ABC" numero="50"/>
+<canal nombre="BTQ" numero="34"/>
+<canal nombre="NBN" numero="38"/>
+<canal nombre="NEN" numero="37"/>
+<canal nombre="NRN" numero="39"/>
+<canal nombre="QTQ" numero="35"/>
+<canal nombre="SBS" numero="49"/>
+<canal nombre="TVQ" numero="36"/>
 </antena>
-<antena lat="-27.99583" lon="148.565">
+<antena lat="-28.03889" lon="148.5803">
+<canal nombre="CDT" numero="45"/>
+<canal nombre="IMP" numero="43"/>
+<canal nombre="QQQ" numero="41"/>
+</antena>
+<antena lat="-27.99611" lon="148.5656">
 <canal nombre="ABC" numero="12"/>
 <canal nombre="SBS" numero="10"/>
+</antena>
+<antena lat="-26.40833" lon="146.2714">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
 </antena>
 <antena lat="-26.41778" lon="146.3542">
 <canal nombre="ABC" numero="11"/>
 <canal nombre="SBS" numero="12"/>
 </antena>
-<antena lat="-26.41972" lon="147.1092">
+<antena lat="-26.41944" lon="147.1092">
 <canal nombre="CDT" numero="45"/>
 <canal nombre="IMP" numero="43"/>
 <canal nombre="QQQ" numero="41"/>
 <canal nombre="SBS" numero="47"/>
 </antena>
-<antena lat="-25.80333" lon="146.5908">
+<antena lat="-26.50694" lon="147.1328">
+<canal nombre="ABC" numero="8"/>
+</antena>
+<antena lat="-25.79667" lon="146.5864">
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
+<antena lat="-25.80778" lon="146.5875">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-26.54361" lon="148.1114">
+<canal nombre="CDT" numero="33"/>
+<canal nombre="IMP" numero="31"/>
+<canal nombre="QQQ" numero="35"/>
+<canal nombre="SBS" numero="37"/>
+</antena>
 <antena lat="-26.54417" lon="148.11">
 <canal nombre="ABC" numero="12"/>
 </antena>
+<antena lat="-26.57417" lon="148.7778">
+<canal nombre="CDT" numero="38"/>
+<canal nombre="IMP" numero="36"/>
+<canal nombre="QQQ" numero="34"/>
+</antena>
 <antena lat="-26.57389" lon="148.8489">
 <canal nombre="ABC" numero="8"/>
-<canal nombre="SBS9A" numero="9A"/>
+<canal nombre="SBS" numero="7"/>
 </antena>
-<antena lat="-25.88722" lon="148.5192">
+<antena lat="-25.88778" lon="148.5206">
 <canal nombre="ABC" numero="6"/>
 </antena>
-<antena lat="-27.27972" lon="150.4592">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<antena lat="-27.49306" lon="149.6414">
+<canal nombre="ABC" numero="47"/>
 </antena>
-<antena lat="-26.935" lon="151.4558">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="RTQ" numero="64"/>
-<canal nombre="SBS" numero="52"/>
-<canal nombre="STQ" numero="58"/>
-<canal nombre="TNQ" numero="61"/>
+<antena lat="-27.145" lon="149.1342">
+<canal nombre="ABC" numero="10"/>
+</antena>
+<antena lat="-27.27944" lon="150.4589">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-26.93611" lon="151.4544">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-26.89361" lon="151.6069">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="SBS" numero="33"/>
 </antena>
 <antena lat="-26.8925" lon="151.6044">
-<canal nombre="RTQ" numero="46"/>
-<canal nombre="STQ" numero="34"/>
-<canal nombre="TNQ" numero="40"/>
-</antena>
-<antena lat="-26.89389" lon="151.6069">
-<canal nombre="ABC" numero="37"/>
-<canal nombre="SBS" numero="49"/>
+<canal nombre="RTQ" numero="31"/>
+<canal nombre="STQ" numero="30"/>
+<canal nombre="TNQ" numero="32"/>
 </antena>
 <antena lat="-26.65083" lon="150.2694">
-<canal nombre="ABC" numero="63"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
-<antena lat="-26.65194" lon="150.2694">
-<canal nombre="RTQ" numero="66"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
+<antena lat="-26.65194" lon="150.2692">
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
-<antena lat="-25.38611" lon="151.1219">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<antena lat="-26.04944" lon="149.9589">
+<canal nombre="ABC" numero="47"/>
 </antena>
-<antena lat="-25.57472" lon="151.3094">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="55"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="STQ" numero="53"/>
-<canal nombre="TNQ" numero="54"/>
+<antena lat="-25.64528" lon="149.8036">
+<canal nombre="ABC" numero="10"/>
+</antena>
+<antena lat="-25.38639" lon="151.1219">
+<canal nombre="ABC" numero="47"/>
+</antena>
+<antena lat="-25.38639" lon="151.1225">
+<canal nombre="RTQ" numero="50"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STQ" numero="48"/>
+<canal nombre="TNQ" numero="51"/>
+</antena>
+<antena lat="-25.575" lon="151.3092">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-24.88361" lon="146.2531">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
+<antena lat="-24.85" lon="146.2661">
+<canal nombre="ABC" numero="7"/>
 </antena>
 <antena lat="-24.14333" lon="148.1492">
-<canal nombre="ABC" numero="46"/>
-<canal nombre="RTQ" numero="49"/>
-<canal nombre="STQ" numero="47"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="44"/>
 <canal nombre="TNQ" numero="45"/>
 </antena>
-<antena lat="-24.14389" lon="148.1531">
-<canal nombre="SBS" numero="54"/>
+<antena lat="-23.62639" lon="146.255">
+<canal nombre="ABC" numero="6"/>
 </antena>
-<antena lat="-23.65222" lon="146.63">
+<antena lat="-23.6525" lon="146.6294">
+<canal nombre="CDT" numero="50"/>
+<canal nombre="IMP" numero="51"/>
+<canal nombre="QQQ" numero="48"/>
+<canal nombre="SBS" numero="46"/>
+</antena>
+<antena lat="-23.61917" lon="146.6286">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-23.73972" lon="147.5358">
+<canal nombre="ABC" numero="47"/>
 <canal nombre="CDT" numero="50"/>
 <canal nombre="IMP" numero="49"/>
 <canal nombre="QQQ" numero="48"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-22.85778" lon="147.6428">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="66"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="STQ" numero="60"/>
-<canal nombre="TNQ" numero="63"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
-<antena lat="-23.47722" lon="148.1492">
-<canal nombre="RTQ" numero="7"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="STQ" numero="60"/>
-<canal nombre="TNQ" numero="63"/>
+<antena lat="-23.46056" lon="147.7186">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STQ" numero="48"/>
+<canal nombre="TNQ" numero="50"/>
+</antena>
+<antena lat="-23.55139" lon="147.7483">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-23.47583" lon="148.15">
-<canal nombre="ABC" numero="9"/>
+<canal nombre="ABC" numero="11"/>
+</antena>
+<antena lat="-23.4775" lon="148.1489">
+<canal nombre="RTQ" numero="7"/>
+<canal nombre="SBS" numero="12"/>
+<canal nombre="STQ" numero="6"/>
+<canal nombre="TNQ" numero="8"/>
 </antena>
 <antena lat="-23.575" lon="149.0314">
 <canal nombre="RTQ" numero="50"/>
-<canal nombre="STQ" numero="45"/>
+<canal nombre="STQ" numero="49"/>
 <canal nombre="TNQ" numero="48"/>
 </antena>
 <antena lat="-23.57556" lon="149.0314">
 <canal nombre="ABC" numero="47"/>
-<canal nombre="SBS" numero="42"/>
+<canal nombre="SBS" numero="46"/>
 </antena>
 <antena lat="-23.02833" lon="148.3419">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="63"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="STQ" numero="66"/>
-<canal nombre="TNQ" numero="60"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="39"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-22.90694" lon="148.1486">
 <canal nombre="ABC" numero="31"/>
 <canal nombre="RTQ" numero="30"/>
 <canal nombre="SBS" numero="28"/>
-<canal nombre="STQ" numero="34"/>
-<canal nombre="TNQ" numero="33"/>
+<canal nombre="STQ" numero="29"/>
+<canal nombre="TNQ" numero="32"/>
 </antena>
-<antena lat="-22.56028" lon="148.2808">
-<canal nombre="RTQ" numero="67"/>
-<canal nombre="STQ" numero="58"/>
-<canal nombre="TNQ" numero="64"/>
+<antena lat="-22.56111" lon="148.2811">
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
-<antena lat="-22.58111" lon="148.3172">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="SBS" numero="61"/>
+<antena lat="-22.58139" lon="148.3169">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-22.815" lon="148.6772">
-<canal nombre="ABC" numero="43"/>
-<canal nombre="SBS" numero="49"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-22.81111" lon="148.6739">
-<canal nombre="RTQ" numero="53"/>
-<canal nombre="STQ" numero="46"/>
-<canal nombre="TNQ" numero="52"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
-<antena lat="-24.94694" lon="150.0606">
-<canal nombre="ABC" numero="53"/>
+<antena lat="-24.95333" lon="150.0603">
+<canal nombre="ABC" numero="41"/>
 </antena>
 <antena lat="-24.56528" lon="149.9739">
-<canal nombre="ABC" numero="53"/>
+<canal nombre="ABC" numero="47"/>
 <canal nombre="RTQ" numero="50"/>
 <canal nombre="SBS" numero="46"/>
 <canal nombre="STQ" numero="48"/>
@@ -2710,11 +3384,11 @@
 <canal nombre="TNQ" numero="51"/>
 </antena>
 <antena lat="-24.99056" lon="151.1853">
-<canal nombre="ABC" numero="57"/>
-<canal nombre="RTQ" numero="66"/>
-<canal nombre="SBS" numero="50"/>
-<canal nombre="STQ" numero="60"/>
-<canal nombre="TNQ" numero="63"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-24.82861" lon="151.1786">
 <canal nombre="ABC" numero="35"/>
@@ -2723,36 +3397,36 @@
 <canal nombre="STQ" numero="36"/>
 <canal nombre="TNQ" numero="38"/>
 </antena>
-<antena lat="-24.31361" lon="151.6233">
-<canal nombre="ABC" numero="56"/>
+<antena lat="-24.31361" lon="151.6231">
+<canal nombre="ABC" numero="41"/>
 </antena>
 <antena lat="-23.94667" lon="151.3453">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="45"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
-<antena lat="-23.65333" lon="150.3925">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="62"/>
-<canal nombre="SBS" numero="68"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="65"/>
+<antena lat="-23.65333" lon="150.3928">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="RTQ" numero="47"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STQ" numero="46"/>
+<canal nombre="TNQ" numero="48"/>
 </antena>
 <antena lat="-23.73111" lon="150.5347">
-<canal nombre="ABC" numero="11"/>
-<canal nombre="RTQ" numero="12"/>
+<canal nombre="ABC" numero="34"/>
+<canal nombre="RTQ" numero="35"/>
 <canal nombre="SBS" numero="37"/>
 <canal nombre="STQ" numero="38"/>
 <canal nombre="TNQ" numero="36"/>
 </antena>
 <antena lat="-23.34833" lon="150.5497">
-<canal nombre="ABC" numero="57"/>
-<canal nombre="RTQ" numero="66"/>
-<canal nombre="SBS" numero="54"/>
-<canal nombre="STQ" numero="60"/>
-<canal nombre="TNQ" numero="63"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-23.25556" lon="150.8233">
 <canal nombre="ABC" numero="47"/>
@@ -2761,12 +3435,12 @@
 <canal nombre="STQ" numero="48"/>
 <canal nombre="TNQ" numero="50"/>
 </antena>
-<antena lat="-23.86167" lon="151.2656">
+<antena lat="-23.86139" lon="151.2661">
 <canal nombre="ABC" numero="33"/>
-<canal nombre="RTQ" numero="8"/>
+<canal nombre="RTQ" numero="31"/>
 <canal nombre="SBS" numero="30"/>
-<canal nombre="STQ" numero="39"/>
-<canal nombre="TNQ" numero="42"/>
+<canal nombre="STQ" numero="29"/>
+<canal nombre="TNQ" numero="32"/>
 </antena>
 <antena lat="-23.87" lon="151.2542">
 <canal nombre="ABC" numero="47"/>
@@ -2775,49 +3449,49 @@
 <canal nombre="STQ" numero="48"/>
 <canal nombre="TNQ" numero="49"/>
 </antena>
-<antena lat="-23.11917" lon="150.7428">
-<canal nombre="ABC" numero="57"/>
-<canal nombre="RTQ" numero="66"/>
-<canal nombre="SBS" numero="54"/>
-<canal nombre="STQ" numero="60"/>
-<canal nombre="TNQ" numero="63"/>
+<antena lat="-23.11944" lon="150.7428">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-28.075" lon="152.5667">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="BTQ" numero="58"/>
-<canal nombre="QTQ" numero="61"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="TVQ" numero="64"/>
+<canal nombre="ABC" numero="49"/>
+<canal nombre="BTQ" numero="46"/>
+<canal nombre="QTQ" numero="47"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="TVQ" numero="48"/>
 </antena>
 <antena lat="-27.63194" lon="151.9406">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="RTQ" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="STQ" numero="58"/>
-<canal nombre="TNQ" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-27.54472" lon="151.9692">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="RTQ" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="STQ" numero="58"/>
-<canal nombre="TNQ" numero="61"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STQ" numero="48"/>
+<canal nombre="TNQ" numero="50"/>
 </antena>
 <antena lat="-27.58167" lon="151.9864">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="RTQ" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="STQ" numero="58"/>
-<canal nombre="TNQ" numero="61"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-28.00139" lon="152.6756">
 <canal nombre="ABC" numero="42"/>
-<canal nombre="BTQ" numero="51"/>
+<canal nombre="BTQ" numero="41"/>
 <canal nombre="QTQ" numero="45"/>
-<canal nombre="SBS" numero="39"/>
-<canal nombre="TVQ" numero="48"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TVQ" numero="44"/>
 </antena>
-<antena lat="-28.09444" lon="152.8228">
+<antena lat="-28.09472" lon="152.8222">
 <canal nombre="ABC" numero="29"/>
 <canal nombre="BTQ" numero="30"/>
 <canal nombre="QTQ" numero="31"/>
@@ -2832,14 +3506,32 @@
 <canal nombre="TVQ" numero="32"/>
 </antena>
 <antena lat="-27.97111" lon="153.2122">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="BTQ" numero="53"/>
-<canal nombre="NBN" numero="68"/>
-<canal nombre="NEN" numero="65"/>
-<canal nombre="NRN" numero="43"/>
-<canal nombre="QTQ" numero="59"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="TVQ" numero="56"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="BTQ" numero="42"/>
+<canal nombre="NBN" numero="47"/>
+<canal nombre="NEN" numero="46"/>
+<canal nombre="NRN" numero="48"/>
+<canal nombre="QTQ" numero="45"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="TVQ" numero="44"/>
+</antena>
+<antena lat="-27.78972" lon="153.2119">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="BTQ" numero="30"/>
+<canal nombre="QTQ" numero="31"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="TVQ" numero="32"/>
+</antena>
+<antena lat="-27.46444" lon="152.9469">
+<canal nombre="BTQ" numero="6"/>
+<canal nombre="QTQ" numero="8"/>
+<canal nombre="SBS" numero="7"/>
+<canal nombre="TVQ" numero="11"/>
+</antena>
+<antena lat="-27.46611" lon="152.9461">
+<canal nombre="ABC" numero="12"/>
+<canal nombre="CTQ" numero="28"/>
+<canal nombre="SBS" numero="7"/>
 </antena>
 <antena lat="-27.46778" lon="152.9422">
 <canal nombre="ABC" numero="12"/>
@@ -2847,150 +3539,246 @@
 <canal nombre="QTQ" numero="8"/>
 <canal nombre="TVQ" numero="11"/>
 </antena>
-<antena lat="-27.47306" lon="152.9411">
-<canal nombre="SBS" numero="36"/>
-</antena>
-<antena lat="-27.46444" lon="152.9469">
-<canal nombre="BTQ" numero="6"/>
-<canal nombre="QTQ" numero="8"/>
-<canal nombre="TVQ" numero="11"/>
-</antena>
-<antena lat="-27.46611" lon="152.9464">
-<canal nombre="ABC" numero="12"/>
-<canal nombre="CTQ" numero="38"/>
-<canal nombre="SBS" numero="36"/>
-</antena>
 <antena lat="-27.31" lon="152.0767">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="RTQ" numero="68"/>
-<canal nombre="SBS" numero="56"/>
-<canal nombre="STQ" numero="62"/>
-<canal nombre="TNQ" numero="65"/>
+<canal nombre="ABC" numero="49"/>
+<canal nombre="RTQ" numero="47"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STQ" numero="46"/>
+<canal nombre="TNQ" numero="48"/>
 </antena>
 <antena lat="-27.25333" lon="152.435">
 <canal nombre="ABC" numero="39"/>
-<canal nombre="BTQ" numero="45"/>
-<canal nombre="QTQ" numero="42"/>
-<canal nombre="SBS" numero="51"/>
-<canal nombre="TVQ" numero="48"/>
+<canal nombre="BTQ" numero="35"/>
+<canal nombre="QTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="TVQ" numero="38"/>
 </antena>
-<antena lat="-26.835" lon="151.9806">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="RTQ" numero="64"/>
-<canal nombre="SBS" numero="67"/>
-<canal nombre="STQ" numero="58"/>
-<canal nombre="TNQ" numero="61"/>
+<antena lat="-26.835" lon="151.9808">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="39"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
+</antena>
+<antena lat="-26.99361" lon="152.43">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="BTQ" numero="42"/>
+<canal nombre="QTQ" numero="43"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="TVQ" numero="44"/>
+</antena>
+<antena lat="-26.79167" lon="152.9169">
+<canal nombre="ABC" numero="39"/>
+<canal nombre="BTQ" numero="34"/>
+<canal nombre="QTQ" numero="37"/>
+<canal nombre="SBS" numero="35"/>
+<canal nombre="TVQ" numero="38"/>
 </antena>
 <antena lat="-26.79139" lon="152.9172">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="BTQ" numero="53"/>
-<canal nombre="QTQ" numero="59"/>
-<canal nombre="RTQ" numero="68"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="STQ" numero="65"/>
+<canal nombre="ABC" numero="49"/>
+<canal nombre="RTQ" numero="46"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STQ" numero="48"/>
 <canal nombre="TNQ" numero="47"/>
-<canal nombre="TVQ" numero="56"/>
 </antena>
 <antena lat="-26.66639" lon="152.0075">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="68"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="ABC" numero="49"/>
+<canal nombre="RTQ" numero="47"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STQ" numero="46"/>
+<canal nombre="TNQ" numero="48"/>
 </antena>
-<antena lat="-26.18667" lon="151.9558">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<antena lat="-26.18667" lon="151.9561">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-26.63361" lon="152.9097">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="RTQ" numero="68"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="STQ" numero="65"/>
-<canal nombre="TNQ" numero="47"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-26.42417" lon="152.8528">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="RTQ" numero="68"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="STQ" numero="65"/>
-<canal nombre="TNQ" numero="47"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-26.54861" lon="153.0978">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="RTQ" numero="31"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="STQ" numero="30"/>
+<canal nombre="TNQ" numero="32"/>
+</antena>
+<antena lat="-26.66222" lon="153.1028">
+<canal nombre="ABC" numero="6"/>
+<canal nombre="RTQ" numero="11"/>
+<canal nombre="SBS" numero="7"/>
+<canal nombre="STQ" numero="8"/>
+<canal nombre="TNQ" numero="12"/>
+</antena>
+<antena lat="-26.61889" lon="153.0981">
+<canal nombre="ABC" numero="39"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="35"/>
+<canal nombre="STQ" numero="34"/>
+<canal nombre="TNQ" numero="38"/>
+</antena>
+<antena lat="-26.39583" lon="153.0728">
+<canal nombre="ABC" numero="39"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="35"/>
+<canal nombre="STQ" numero="34"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-26.41806" lon="153.0011">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="RTQ" numero="68"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="STQ" numero="65"/>
-<canal nombre="TNQ" numero="47"/>
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-26.47167" lon="153.0947">
+<canal nombre="ABC" numero="29"/>
+<canal nombre="RTQ" numero="31"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="STQ" numero="30"/>
+<canal nombre="TNQ" numero="32"/>
+</antena>
+<antena lat="-26.53" lon="153.09">
+<canal nombre="ABC" numero="6"/>
+<canal nombre="RTQ" numero="11"/>
+<canal nombre="SBS" numero="7"/>
+<canal nombre="STQ" numero="8"/>
+<canal nombre="TNQ" numero="12"/>
 </antena>
 <antena lat="-26.18611" lon="152.6733">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="RTQ" numero="68"/>
-<canal nombre="SBS" numero="36"/>
-<canal nombre="STQ" numero="65"/>
+<canal nombre="ABC" numero="49"/>
+<canal nombre="RTQ" numero="46"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STQ" numero="48"/>
 <canal nombre="TNQ" numero="47"/>
 </antena>
 <antena lat="-25.42833" lon="152.1158">
-<canal nombre="ABC9A" numero="9A"/>
+<canal nombre="ABC" numero="11"/>
 <canal nombre="RTQ" numero="10"/>
-<canal nombre="SBS" numero="28"/>
+<canal nombre="SBS" numero="6"/>
 <canal nombre="STQ" numero="7"/>
-<canal nombre="TNQ" numero="9"/>
+<canal nombre="TNQ" numero="8"/>
+</antena>
+<antena lat="-25.9075" lon="153.0803">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="39"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-25.97472" lon="152.9672">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="69"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="STQ" numero="63"/>
-<canal nombre="TNQ" numero="66"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="39"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-25.91306" lon="153.0028">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="69"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="STQ" numero="63"/>
-<canal nombre="TNQ" numero="66"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="39"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
-<antena lat="-25.90972" lon="153.0817">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="69"/>
-<canal nombre="SBS" numero="57"/>
-<canal nombre="STQ" numero="63"/>
-<canal nombre="TNQ" numero="66"/>
+<antena lat="-24.67" lon="152.2">
+<canal nombre="ABC" numero="31"/>
+<canal nombre="RTQ" numero="32"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="STQ" numero="29"/>
+<canal nombre="TNQ" numero="30"/>
 </antena>
-<antena lat="-25.31278" lon="152.83">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="62"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="68"/>
+<antena lat="-24.92139" lon="152.4903">
+<canal nombre="ABC" numero="31"/>
+<canal nombre="RTQ" numero="32"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="STQ" numero="29"/>
+<canal nombre="TNQ" numero="30"/>
 </antena>
-<antena lat="-24.2175" lon="151.8944">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="60"/>
-<canal nombre="SBS" numero="66"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="63"/>
+<antena lat="-24.7175" lon="152.2767">
+<canal nombre="ABC" numero="31"/>
+<canal nombre="RTQ" numero="32"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="STQ" numero="29"/>
+<canal nombre="TNQ" numero="30"/>
+</antena>
+<antena lat="-24.76472" lon="152.4072">
+<canal nombre="ABC" numero="31"/>
+<canal nombre="RTQ" numero="32"/>
+<canal nombre="SBS" numero="33"/>
+<canal nombre="STQ" numero="29"/>
+<canal nombre="TNQ" numero="30"/>
+</antena>
+<antena lat="-25.31222" lon="152.8308">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-24.2175" lon="151.895">
+<canal nombre="ABC" numero="49"/>
+<canal nombre="RTQ" numero="47"/>
+<canal nombre="SBS" numero="50"/>
+<canal nombre="STQ" numero="46"/>
+<canal nombre="TNQ" numero="48"/>
+</antena>
+<antena lat="-19.92167" lon="138.1744">
+<canal nombre="ABC" numero="7"/>
 </antena>
 <antena lat="-20.73583" lon="139.5111">
 <canal nombre="ABC" numero="7"/>
 <canal nombre="SBS9A" numero="9A"/>
 </antena>
-<antena lat="-20.73556" lon="139.4922">
+<antena lat="-20.73583" lon="139.4925">
 <canal nombre="IDQ" numero="41"/>
+<canal nombre="IMP" numero="39"/>
+<canal nombre="ITQ" numero="37"/>
+</antena>
+<antena lat="-20.71694" lon="140.4994">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-20.72417" lon="140.5378">
 <canal nombre="ABC" numero="6"/>
 </antena>
+<antena lat="-17.74167" lon="139.545">
+<canal nombre="ABC" numero="48"/>
+<canal nombre="CDT" numero="44"/>
+<canal nombre="IMP" numero="42"/>
+<canal nombre="QQQ" numero="40"/>
+<canal nombre="SBS" numero="46"/>
+</antena>
+<antena lat="-22.38778" lon="143.0361">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
 <antena lat="-22.2425" lon="143.0497">
 <canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-20.65361" lon="141.7383">
+<canal nombre="ABC" numero="11"/>
 </antena>
 <antena lat="-20.75139" lon="143.1564">
 <canal nombre="ABC" numero="7"/>
 </antena>
-<antena lat="-20.73639" lon="143.1447">
+<antena lat="-20.73611" lon="143.1447">
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
@@ -2998,71 +3786,107 @@
 </antena>
 <antena lat="-20.84917" lon="144.1842">
 <canal nombre="ABC" numero="8"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
+<antena lat="-20.84667" lon="144.1856">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+</antena>
+<antena lat="-17.68083" lon="141.0844">
+<canal nombre="ABC" numero="8"/>
+</antena>
+<antena lat="-17.67194" lon="141.0756">
+<canal nombre="CDT" numero="45"/>
+<canal nombre="IMP" numero="43"/>
+<canal nombre="QQQ" numero="41"/>
+<canal nombre="SBS" numero="47"/>
+</antena>
+<antena lat="-17.49917" lon="140.8372">
+<canal nombre="ABC" numero="7"/>
+<canal nombre="CDT" numero="44"/>
+<canal nombre="IMP" numero="42"/>
+<canal nombre="QQQ" numero="40"/>
+<canal nombre="SBS" numero="46"/>
+</antena>
+<antena lat="-18.30361" lon="143.5436">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-17.15917" lon="144.5217">
+<canal nombre="ABC" numero="48"/>
+<canal nombre="CDT" numero="44"/>
+<canal nombre="IMP" numero="42"/>
+<canal nombre="QQQ" numero="40"/>
+<canal nombre="SBS" numero="46"/>
+</antena>
+<antena lat="-17.68667" lon="145.1189">
+<canal nombre="ABC" numero="35"/>
 </antena>
 <antena lat="-17.61083" lon="145.4656">
 <canal nombre="ABC" numero="42"/>
-<canal nombre="RTQ" numero="49"/>
-<canal nombre="SBS" numero="52"/>
+<canal nombre="RTQ" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 <canal nombre="STQ" numero="43"/>
-<canal nombre="TNQ" numero="46"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-18.24972" lon="145.9906">
 <canal nombre="ABC" numero="48"/>
 <canal nombre="RTQ" numero="49"/>
 <canal nombre="SBS" numero="47"/>
-<canal nombre="STQ" numero="43"/>
+<canal nombre="STQ" numero="50"/>
 <canal nombre="TNQ" numero="46"/>
 </antena>
 <antena lat="-17.93722" lon="146.1428">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="40"/>
-<canal nombre="SBS" numero="50"/>
-<canal nombre="STQ" numero="53"/>
-<canal nombre="TNQ" numero="68"/>
+<canal nombre="ABC" numero="48"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="47"/>
+<canal nombre="STQ" numero="50"/>
+<canal nombre="TNQ" numero="46"/>
 </antena>
 <antena lat="-17.87028" lon="146.0064">
-<canal nombre="ABC" numero="56"/>
+<canal nombre="ABC" numero="41"/>
 <canal nombre="RTQ" numero="40"/>
-<canal nombre="SBS" numero="50"/>
-<canal nombre="STQ" numero="53"/>
-<canal nombre="TNQ" numero="68"/>
+<canal nombre="SBS" numero="45"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-17.26806" lon="145.4908">
-<canal nombre="ABC" numero="67"/>
-<canal nombre="RTQ" numero="58"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="STQ" numero="61"/>
-<canal nombre="TNQ" numero="64"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STQ" numero="48"/>
+<canal nombre="TNQ" numero="50"/>
 </antena>
 <antena lat="-17.37833" lon="145.3786">
-<canal nombre="ABC" numero="67"/>
-<canal nombre="RTQ" numero="58"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="STQ" numero="61"/>
-<canal nombre="TNQ" numero="64"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-17.12833" lon="145.0678">
+<canal nombre="ABC" numero="42"/>
 <canal nombre="SBS" numero="40"/>
 </antena>
 <antena lat="-17.01972" lon="145.3228">
 <canal nombre="ABC" numero="42"/>
-<canal nombre="RTQ" numero="49"/>
-<canal nombre="SBS" numero="52"/>
+<canal nombre="RTQ" numero="41"/>
+<canal nombre="SBS" numero="40"/>
 <canal nombre="STQ" numero="43"/>
-<canal nombre="TNQ" numero="46"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-17.26556" lon="145.8525">
 <canal nombre="ABC" numero="8"/>
 <canal nombre="RTQ" numero="12"/>
-<canal nombre="SBS" numero="29"/>
+<canal nombre="SBS" numero="7"/>
 <canal nombre="STQ" numero="11"/>
 <canal nombre="TNQ" numero="6"/>
 </antena>
 <antena lat="-17.38472" lon="146.0019">
-<canal nombre="ABC" numero="42"/>
+<canal nombre="ABC" numero="48"/>
 <canal nombre="RTQ" numero="49"/>
-<canal nombre="SBS" numero="52"/>
-<canal nombre="STQ" numero="43"/>
+<canal nombre="SBS" numero="47"/>
+<canal nombre="STQ" numero="50"/>
 <canal nombre="TNQ" numero="46"/>
 </antena>
 <antena lat="-17.16222" lon="145.7453">
@@ -3073,10 +3897,10 @@
 <canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-17.04722" lon="145.8183">
-<canal nombre="ABC" numero="42"/>
+<canal nombre="ABC" numero="48"/>
 <canal nombre="RTQ" numero="49"/>
-<canal nombre="SBS" numero="52"/>
-<canal nombre="STQ" numero="43"/>
+<canal nombre="SBS" numero="47"/>
+<canal nombre="STQ" numero="50"/>
 <canal nombre="TNQ" numero="46"/>
 </antena>
 <antena lat="-16.94389" lon="145.7669">
@@ -3084,57 +3908,74 @@
 </antena>
 <antena lat="-16.90583" lon="145.8419">
 <canal nombre="ABC" numero="42"/>
-<canal nombre="RTQ" numero="49"/>
-<canal nombre="SBS" numero="52"/>
+<canal nombre="RTQ" numero="41"/>
+<canal nombre="SBS" numero="45"/>
 <canal nombre="STQ" numero="43"/>
-<canal nombre="TNQ" numero="46"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-16.885" lon="145.6042">
-<canal nombre="ABC" numero="55"/>
-<canal nombre="RTQ" numero="64"/>
-<canal nombre="SBS" numero="58"/>
-<canal nombre="STQ" numero="61"/>
-<canal nombre="TNQ" numero="67"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STQ" numero="48"/>
+<canal nombre="TNQ" numero="50"/>
 </antena>
 <antena lat="-16.91639" lon="145.6889">
-<canal nombre="ABC" numero="61"/>
-<canal nombre="RTQ" numero="55"/>
-<canal nombre="SBS" numero="58"/>
-<canal nombre="STQ" numero="64"/>
-<canal nombre="TNQ" numero="67"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="48"/>
+<canal nombre="STQ" numero="46"/>
+<canal nombre="TNQ" numero="50"/>
+</antena>
+<antena lat="-16.055" lon="136.305">
+<canal nombre="ABC" numero="10"/>
+</antena>
+<antena lat="-13.85167" lon="136.4242">
+<canal nombre="ABC" numero="7"/>
+</antena>
+<antena lat="-12.02306" lon="135.5722">
+<canal nombre="ABC" numero="10"/>
 </antena>
 <antena lat="-12.18278" lon="136.7756">
+<canal nombre="ABC" numero="7"/>
 <canal nombre="CDT" numero="44"/>
 <canal nombre="IMP" numero="42"/>
 <canal nombre="QQQ" numero="40"/>
+<canal nombre="SBS" numero="6"/>
 </antena>
-<antena lat="-16.43528" lon="145.385">
-<canal nombre="ABC" numero="40"/>
-<canal nombre="RTQ" numero="51"/>
-<canal nombre="SBS" numero="38"/>
-<canal nombre="STQ" numero="45"/>
-<canal nombre="TNQ" numero="48"/>
+<antena lat="-12.25056" lon="136.8897">
+<canal nombre="ACT" numero="41"/>
+</antena>
+<antena lat="-16.66056" lon="145.3222">
+<canal nombre="ABC" numero="42"/>
+</antena>
+<antena lat="-16.435" lon="145.3847">
+<canal nombre="ABC" numero="33"/>
+<canal nombre="RTQ" numero="31"/>
+<canal nombre="SBS" numero="28"/>
+<canal nombre="STQ" numero="30"/>
+<canal nombre="TNQ" numero="32"/>
 </antena>
 <antena lat="-16.47194" lon="145.3625">
-<canal nombre="ABC" numero="59"/>
-<canal nombre="RTQ" numero="68"/>
-<canal nombre="SBS" numero="56"/>
-<canal nombre="STQ" numero="65"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="39"/>
 </antena>
 <antena lat="-16.34833" lon="145.4086">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="68"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-16.48333" lon="145.4658">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="63"/>
-<canal nombre="SBS" numero="66"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
+<canal nombre="ABC" numero="47"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STQ" numero="48"/>
+<canal nombre="TNQ" numero="50"/>
 </antena>
 <antena lat="-16.25083" lon="145.3217">
 <canal nombre="ABC" numero="41"/>
@@ -3150,129 +3991,148 @@
 <canal nombre="QQQ" numero="48"/>
 <canal nombre="SBS" numero="46"/>
 </antena>
-<antena lat="-16.81972" lon="145.6619">
+<antena lat="-16.73833" lon="145.6606">
 <canal nombre="ABC" numero="42"/>
-<canal nombre="RTQ" numero="49"/>
-<canal nombre="SBS" numero="52"/>
-<canal nombre="STQ" numero="43"/>
-<canal nombre="TNQ" numero="46"/>
 </antena>
-<antena lat="-16.73833" lon="145.6614">
-<canal nombre="ABC" numero="42"/>
+<antena lat="-16.81972" lon="145.6619">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
+</antena>
+<antena lat="-15.46972" lon="145.2503">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
 </antena>
 <antena lat="-15.47444" lon="145.2497">
 <canal nombre="ABC" numero="40"/>
+<canal nombre="SBS" numero="34"/>
+</antena>
+<antena lat="-12.63111" lon="141.8789">
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 <antena lat="-12.62694" lon="141.8867">
 <canal nombre="ABC" numero="6"/>
 </antena>
 <antena lat="-22.00194" lon="148.0594">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="63"/>
-<canal nombre="SBS" numero="66"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
-</antena>
-<antena lat="-21.9275" lon="148.3175">
-<canal nombre="ABC" numero="48"/>
-<canal nombre="SBS" numero="50"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-21.92333" lon="148.3117">
-<canal nombre="RTQ" numero="44"/>
-<canal nombre="STQ" numero="47"/>
-<canal nombre="TNQ" numero="41"/>
-</antena>
-<antena lat="-21.35944" lon="148.1081">
-<canal nombre="ABC" numero="46"/>
-<canal nombre="RTQ" numero="43"/>
-<canal nombre="SBS" numero="52"/>
-<canal nombre="STQ" numero="49"/>
-<canal nombre="TNQ" numero="40"/>
-</antena>
-<antena lat="-21.63528" lon="148.7053">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="63"/>
-<canal nombre="SBS" numero="66"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
-</antena>
-<antena lat="-21.2225" lon="148.5292">
-<canal nombre="RTQ" numero="63"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
-</antena>
-<antena lat="-20.09111" lon="146.2514">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="63"/>
-<canal nombre="SBS" numero="51"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
-</antena>
-<antena lat="-19.74694" lon="147.4947">
-<canal nombre="ABC" numero="62"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="56"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="53"/>
-</antena>
-<antena lat="-20.39833" lon="147.8597">
 <canal nombre="RTQ" numero="49"/>
 <canal nombre="STQ" numero="47"/>
 <canal nombre="TNQ" numero="46"/>
 </antena>
+<antena lat="-21.92722" lon="148.3172">
+<canal nombre="ABC" numero="48"/>
+<canal nombre="SBS" numero="50"/>
+</antena>
+<antena lat="-21.35944" lon="148.1081">
+<canal nombre="ABC" numero="41"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="44"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="40"/>
+</antena>
+<antena lat="-21.63528" lon="148.7053">
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="39"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
+</antena>
+<antena lat="-21.2225" lon="148.5292">
+<canal nombre="RTQ" numero="48"/>
+<canal nombre="STQ" numero="47"/>
+<canal nombre="TNQ" numero="49"/>
+</antena>
+<antena lat="-20.09083" lon="146.2514">
+<canal nombre="ABC" numero="45"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-19.74694" lon="147.4947">
+<canal nombre="ABC" numero="45"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-20.39861" lon="147.8597">
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="STQ" numero="41"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
 <antena lat="-20.52556" lon="147.8375">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<canal nombre="ABC" numero="35"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-21.03389" lon="148.9422">
-<canal nombre="ABC" numero="10"/>
-<canal nombre="RTQ" numero="35"/>
+<canal nombre="ABC" numero="28"/>
+<canal nombre="RTQ" numero="33"/>
 <canal nombre="SBS" numero="29"/>
-<canal nombre="STQ9A" numero="9A"/>
+<canal nombre="STQ" numero="30"/>
 <canal nombre="TNQ" numero="32"/>
 </antena>
 <antena lat="-20.05528" lon="148.0833">
-<canal nombre="RTQ" numero="42"/>
-<canal nombre="STQ" numero="51"/>
-<canal nombre="TNQ" numero="45"/>
+<canal nombre="RTQ" numero="48"/>
+<canal nombre="STQ" numero="47"/>
+<canal nombre="TNQ" numero="49"/>
 </antena>
 <antena lat="-20.00778" lon="148.2372">
-<canal nombre="ABC" numero="49"/>
-<canal nombre="RTQ" numero="43"/>
+<canal nombre="ABC" numero="39"/>
+<canal nombre="RTQ" numero="37"/>
 <canal nombre="SBS" numero="34"/>
-<canal nombre="STQ" numero="46"/>
-<canal nombre="TNQ" numero="40"/>
-</antena>
-<antena lat="-20.27472" lon="148.7089">
-<canal nombre="ABC" numero="50"/>
-<canal nombre="RTQ" numero="44"/>
-<canal nombre="SBS" numero="28"/>
-<canal nombre="STQ" numero="47"/>
-<canal nombre="TNQ" numero="41"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
 <antena lat="-20.32778" lon="148.5847">
-<canal nombre="ABC" numero="52"/>
-<canal nombre="RTQ" numero="64"/>
-<canal nombre="SBS" numero="55"/>
-<canal nombre="STQ" numero="58"/>
-<canal nombre="TNQ" numero="61"/>
+<canal nombre="ABC" numero="45"/>
+<canal nombre="RTQ" numero="43"/>
+<canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
+</antena>
+<antena lat="-20.27444" lon="148.7089">
+<canal nombre="ABC" numero="39"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
+</antena>
+<antena lat="-20.28556" lon="148.7367">
+<canal nombre="ABC" numero="30"/>
+<canal nombre="RTQ" numero="32"/>
+<canal nombre="SBS" numero="29"/>
+<canal nombre="STQ" numero="31"/>
+<canal nombre="TNQ" numero="33"/>
 </antena>
 <antena lat="-20.26972" lon="148.7411">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="60"/>
-<canal nombre="SBS" numero="66"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="63"/>
+<canal nombre="ABC" numero="39"/>
+<canal nombre="RTQ" numero="37"/>
+<canal nombre="SBS" numero="34"/>
+<canal nombre="STQ" numero="36"/>
+<canal nombre="TNQ" numero="38"/>
 </antena>
-<antena lat="-20.28556" lon="148.7819">
-<canal nombre="ABC" numero="56"/>
-<canal nombre="RTQ" numero="65"/>
-<canal nombre="SBS" numero="53"/>
-<canal nombre="STQ" numero="59"/>
-<canal nombre="TNQ" numero="62"/>
+<antena lat="-20.28556" lon="148.7822">
+<canal nombre="ABC" numero="47"/>
+<canal nombre="RTQ" numero="49"/>
+<canal nombre="SBS" numero="46"/>
+<canal nombre="STQ" numero="48"/>
+<canal nombre="TNQ" numero="50"/>
 </antena>
 <antena lat="-22.34778" lon="149.5253">
 <canal nombre="ABC" numero="41"/>
@@ -3281,7 +4141,7 @@
 <canal nombre="QQQ" numero="42"/>
 <canal nombre="SBS" numero="40"/>
 </antena>
-<antena lat="-21.9275" lon="149.4089">
+<antena lat="-21.92778" lon="149.4089">
 <canal nombre="ABC" numero="47"/>
 <canal nombre="RTQ" numero="49"/>
 <canal nombre="SBS" numero="46"/>
@@ -3290,12 +4150,12 @@
 </antena>
 <antena lat="-22.10694" lon="149.5261">
 <canal nombre="ABC" numero="41"/>
-<canal nombre="CDT" numero="44"/>
-<canal nombre="IMP" numero="43"/>
-<canal nombre="QQQ" numero="42"/>
+<canal nombre="RTQ" numero="43"/>
 <canal nombre="SBS" numero="40"/>
+<canal nombre="STQ" numero="42"/>
+<canal nombre="TNQ" numero="44"/>
 </antena>
-<antena lat="-21.39472" lon="149.2367">
+<antena lat="-21.39528" lon="149.2367">
 <canal nombre="ABC" numero="41"/>
 <canal nombre="RTQ" numero="43"/>
 <canal nombre="SBS" numero="45"/>
@@ -3303,27 +4163,31 @@
 <canal nombre="TNQ" numero="44"/>
 </antena>
 <antena lat="-19.34917" lon="146.8467">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="63"/>
+<canal nombre="ABC" numero="46"/>
+<canal nombre="RTQ" numero="49"/>
 <canal nombre="SBS" numero="51"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
+<canal nombre="STQ" numero="47"/>
+<canal nombre="TNQ" numero="48"/>
 </antena>
-<antena lat="-19.34528" lon="146.7794">
-<canal nombre="ABC" numero="31"/>
-<canal nombre="RTQ" numero="41"/>
+<antena lat="-19.345" lon="146.7792">
+<canal nombre="ABC" numero="34"/>
+<canal nombre="RTQ" numero="35"/>
 <canal nombre="SBS" numero="37"/>
 <canal nombre="STQ" numero="38"/>
 <canal nombre="TNQ" numero="36"/>
 </antena>
 <antena lat="-19.25139" lon="146.7986">
-<canal nombre="ABC" numero="54"/>
-<canal nombre="RTQ" numero="63"/>
+<canal nombre="ABC" numero="46"/>
+<canal nombre="RTQ" numero="49"/>
 <canal nombre="SBS" numero="51"/>
-<canal nombre="STQ" numero="57"/>
-<canal nombre="TNQ" numero="60"/>
+<canal nombre="STQ" numero="47"/>
+<canal nombre="TNQ" numero="48"/>
 </antena>
-<antena lat="-10.58333" lon="142.2108">
+<antena lat="-10.58389" lon="142.2114">
 <canal nombre="ABC" numero="9"/>
+<canal nombre="CDT" numero="32"/>
+<canal nombre="IMP" numero="30"/>
+<canal nombre="QQQ" numero="28"/>
+<canal nombre="SBS" numero="34"/>
 </antena>
 </antenas>
