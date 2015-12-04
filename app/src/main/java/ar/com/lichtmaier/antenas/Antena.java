@@ -189,6 +189,12 @@ public class Antena implements Serializable
 
 	public static void antenasEnRectángulo(double topLeftLat, double topLeftLon, double bottomRightLat, double bottomRightLon, List<Antena> antenas)
 	{
+		if(topLeftLon > bottomRightLon)
+		{
+			antenasEnRectángulo(topLeftLat, topLeftLon, bottomRightLat, 180, antenas);
+			antenasEnRectángulo(topLeftLat, -180, bottomRightLat, bottomRightLon, antenas);
+			return;
+		}
 		Coverage coverage = GeoHash.coverBoundingBox(topLeftLat, topLeftLon, bottomRightLat, bottomRightLon);
 		if(coverage == null)
 		{
