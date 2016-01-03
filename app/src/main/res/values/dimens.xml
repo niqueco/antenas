@@ -10,5 +10,6 @@
 	<dimen name="textoChicoInfoMapa">10sp</dimen>
 	<dimen name="paddingColumnasInfoMapa">6sp</dimen>
 	<dimen name="paddingContorno">16dp</dimen>
+	<dimen name="ancho_contorno">2dp</dimen>
 
 </resources>

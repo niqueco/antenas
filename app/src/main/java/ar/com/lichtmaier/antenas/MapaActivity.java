@@ -492,6 +492,7 @@ public class MapaActivity extends AppCompatActivity
 					PolygonOptions poly = new PolygonOptions();
 					poly.addAll(polygon.getPuntos());
 					poly.fillColor(ContextCompat.getColor(getActivity(), R.color.contorno));
+					poly.strokeWidth(getResources().getDimension(R.dimen.ancho_contorno));
 					contornoActual = mapa.addPolygon(poly);
 					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), (int)getActivity().getResources().getDimension(R.dimen.paddingContorno));
 					mapa.animateCamera(cameraUpdate);
