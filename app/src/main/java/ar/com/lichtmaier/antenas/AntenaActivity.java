@@ -199,7 +199,9 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 		huboSavedInstanceState = savedInstanceState != null;
 
-		publicidad = new Publicidad(this, "ca-app-pub-0461170458442008/6164714153");
+		publicidad = new Publicidad(this, this instanceof UnaAntenaActivity
+				? "ca-app-pub-0461170458442008/1711829752"
+				: "ca-app-pub-0461170458442008/6164714153");
 
 		rotación = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
 

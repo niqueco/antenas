@@ -15,14 +15,14 @@ class Publicidad
 
 	Publicidad(Activity act, String adUnitId)
 	{
-		if(act instanceof UnaAntenaActivity)
-			return;
 		adView = new AdView(act);
 		adView.setAdUnitId(adUnitId);
-		adView.setAdSize(AdSize.BANNER);
-		ViewGroup v = (ViewGroup)act.findViewById(R.id.principal);
+		adView.setAdSize(AdSize.SMART_BANNER);
+		ViewGroup v = (ViewGroup)act.findViewById(R.id.principal_para_pub);
+		if(v == null)
+			v = (ViewGroup)act.findViewById(R.id.principal);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-				(int)(50 * act.getResources().getDisplayMetrics().density), 0);
+				ViewGroup.LayoutParams.WRAP_CONTENT, 0);
 		v.addView(adView, params);
 	}
 
