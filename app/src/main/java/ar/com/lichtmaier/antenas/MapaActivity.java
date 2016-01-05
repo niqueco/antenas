@@ -423,34 +423,27 @@ public class MapaActivity extends AppCompatActivity
 			canalSeleccionado(null, null);
 
 			FragmentManager fm = getFragmentManager();
-			CanalesFragment fr = (CanalesFragment)fm.findFragmentByTag("canales");
+			boolean yaEstaba = fm.findFragmentByTag("canales") != null;
 
 			Antena antena = markerAAntena.get(marker);
 			if(antena.canales == null)
 			{
-				if(fr != null)
+				if(yaEstaba)
 					fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 				mapa.setPadding(0, altoActionBar, 0, 0);
 				return false;
 			}
 
-			if(fr != null)
-			{
-				fr = CanalesFragment.crear(antena);
-				fm.beginTransaction()
-						.setCustomAnimations(0, 0, R.anim.canales_enter, R.anim.canales_exit)
-						.replace(R.id.bottom_sheet, fr, "canales")
-						.addToBackStack("canales")
-						.commit();
-			} else
-			{
-				fr = CanalesFragment.crear(antena);
-				fm.beginTransaction()
-					.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit)
-					.replace(R.id.bottom_sheet, fr, "canales")
-					.addToBackStack("canales")
-					.commit();
-			}
+			FragmentTransaction tr = fm.beginTransaction();
+			if(yaEstaba)
+				tr.setCustomAnimations(0, 0, R.anim.canales_enter, R.anim.canales_exit);
+			else
+				tr.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit);
+
+			tr.replace(R.id.bottom_sheet, CanalesFragment.crear(antena), "canales")
+				.addToBackStack("canales")
+				.commit();
+
 			return false;
 		}
 
