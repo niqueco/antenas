@@ -440,7 +440,7 @@ public class MapaActivity extends AppCompatActivity
 			else
 				tr.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit);
 
-			tr.replace(R.id.bottom_sheet, CanalesFragment.crear(antena), "canales")
+			tr.replace(R.id.canales, CanalesFragment.crear(antena), "canales")
 				.addToBackStack("canales")
 				.commit();
 
@@ -556,7 +556,7 @@ public class MapaActivity extends AppCompatActivity
 
 			boolean hayImágenes = antena.hayImágenes();
 			ContextThemeWrapper ctx = new ContextThemeWrapper(getActivity(), R.style.InfoMapa);
-			final View v = inflater.inflate(R.layout.info_mapa, container, false);
+			final ViewGroup v = (ViewGroup)inflater.inflate(R.layout.info_mapa, container, false);
 			TextView tv = (TextView)v.findViewById(R.id.antena_desc);
 			if(tv != null)
 			{
@@ -575,9 +575,16 @@ public class MapaActivity extends AppCompatActivity
 				int selectableItemBackground = arr.getResourceId(0, -1);
 				arr.recycle();
 				n = antena.canales.size();
-				int ncolumns = (n + 1) / (antena.descripción != null ? 2 : 3);
-				if(ncolumns == 0)
-					ncolumns++;
+				int ncolumns;
+				if(l.getParent().getParent().getClass() != ScrollView.class)
+				{
+					ncolumns = (n + 1) / (antena.descripción != null ? 2 : 3);
+					if(ncolumns == 0)
+						ncolumns++;
+				} else
+				{
+					ncolumns = 2;
+				}
 				for(int i = 0; i < (n+ncolumns-1) / ncolumns; i++)
 				{
 					TableRow row = new TableRow(ctx);
@@ -638,9 +645,13 @@ public class MapaActivity extends AppCompatActivity
 				{
 					v.getViewTreeObserver().removeOnPreDrawListener(this);
 
+					boolean esTablet = v.getChildAt(0).getClass() == ScrollView.class;
+
 					MapaFragment mfr = (MapaFragment)getFragmentManager().findFragmentById(R.id.container);
 					//int height = getActivity().findViewById(R.id.bottom_sheet).getHeight();
-					int height = v.getHeight();
+					int height = 0;
+					if(!esTablet)
+						height = v.getHeight();
 					height -= ((MapaActivity)getActivity()).publicidad.getHeight();
 					if(height < 0)
 						height = 0;
