@@ -1,0 +1,59 @@
+<antenas>
+<antena lat="1.339102" lon="-77.88902" desc="Caracol, RCN"/>
+<antena lat="1.210639" lon="-77.35717" desc="Caracol, RCN"/>
+<antena lat="1.884889" lon="-75.67408" desc="RTVC, RTVC 2"/>
+<antena lat="2.810944" lon="-75.16328" desc="Caracol, RCN"/>
+<antena lat="2.810139" lon="-75.16194" desc="RTVC, RTVC 2"/>
+<antena lat="3.454328" lon="-76.59199" desc="Caracol, RCN"/>
+<antena lat="3.432833" lon="-76.56589" desc="Caracol, RCN"/>
+<antena lat="3.467986" lon="-76.54589" desc="RTVC, RTVC 2"/>
+<antena lat="3.840839" lon="-76.97517" desc="Caracol, RCN"/>
+<antena lat="3.574784" lon="-76.53529" desc="Caracol, RCN"/>
+<antena lat="3.867833" lon="-76.24436" desc="RTVC, RTVC 2"/>
+<antena lat="4.154972" lon="-73.68383" desc="Caracol, RCN"/>
+<antena lat="4.438972" lon="-75.62353" desc="RTVC, RTVC 2"/>
+<antena lat="4.453978" lon="-75.57888" desc="Caracol, RCN"/>
+<antena lat="4.611194" lon="-75.63028" desc="Caracol, RCN"/>
+<antena lat="4.830694" lon="-75.71983" desc="Caracol, RCN"/>
+<antena lat="4.847361" lon="-75.71467" desc="RTVC, RTVC 2"/>
+<antena lat="4.406972" lon="-75.22467" desc="Caracol, RCN"/>
+<antena lat="5.062806" lon="-75.52511" desc="Caracol, RCN"/>
+<antena lat="5.056339" lon="-75.46566" desc="Caracol, RCN"/>
+<antena lat="4.961052" lon="-75.3726" desc="Caracol, RCN"/>
+<antena lat="4.52025" lon="-74.10281" desc="Caracol, RCN"/>
+<antena lat="4.521111" lon="-74.07422" desc="RTVC, RTVC 2, RTVC 3"/>
+<antena lat="4.803083" lon="-74.39347" desc="RTVC, RTVC 2, RTVC 3"/>
+<antena lat="4.802639" lon="-74.39044" desc="Caracol, RCN"/>
+<antena lat="4.727056" lon="-74.08061" desc="RTVC, RTVC 2, RTVC 3"/>
+<antena lat="4.727692" lon="-74.08045" desc="CityTV"/>
+<antena lat="4.743583" lon="-74.07484" desc="Caracol, RCN"/>
+<antena lat="4.631425" lon="-74.05114" desc="RTVC, RTVC 2, RTVC 3"/>
+<antena lat="4.302306" lon="-73.74183" desc="RTVC, RTVC 2"/>
+<antena lat="6.143389" lon="-75.6015" desc="RTVC, RTVC 2"/>
+<antena lat="6.279944" lon="-75.68619" desc="Caracol, RCN, RTVC, RTVC 2"/>
+<antena lat="6.32275" lon="-75.58861" desc="Caracol, RCN"/>
+<antena lat="6.218639" lon="-75.54503" desc="Caracol, RCN"/>
+<antena lat="6.282444" lon="-75.53383" desc="RTVC, RTVC 2"/>
+<antena lat="6.977172" lon="-75.41044" desc="Caracol, RCN"/>
+<antena lat="7.076222" lon="-73.19672" desc="RTVC"/>
+<antena lat="7.083028" lon="-73.19581" desc="Caracol, RCN"/>
+<antena lat="8.72225" lon="-75.59017" desc="Caracol, RCN"/>
+<antena lat="8.873056" lon="-75.64083" desc="RTVC, RTVC 2"/>
+<antena lat="9.637361" lon="-75.20694" desc="Caracol, RCN"/>
+<antena lat="9.636667" lon="-75.20472" desc="RTVC, RTVC 2"/>
+<antena lat="10.33656" lon="-75.42767" desc="Caracol, RCN"/>
+<antena lat="10.42028" lon="-75.52583" desc="RTVC, RTVC 2"/>
+<antena lat="10.4228" lon="-75.52504" desc="Caracol, RCN"/>
+<antena lat="10.99696" lon="-74.83006" desc="Caracol, RCN"/>
+<antena lat="10.99433" lon="-74.83" desc="RTVC, RTVC 2"/>
+<antena lat="10.5075" lon="-73.55694" desc="RTVC"/>
+<antena lat="10.50858" lon="-73.25853" desc="Caracol, RCN"/>
+<antena lat="11.16521" lon="-74.1958" desc="Caracol, RCN"/>
+<antena lat="11.23492" lon="-74.18314" desc="Caracol, RCN"/>
+<antena lat="11.11289" lon="-74.03639" desc="RTVC, RTVC 2"/>
+<antena lat="5.864056" lon="-73.05739" desc="Caracol, RCN"/>
+<antena lat="7.992028" lon="-72.46219" desc="RTVC, RTVC 2"/>
+<antena lat="7.996611" lon="-72.46056" desc="Caracol, RCN"/>
+<antena lat="11.13542" lon="-72.788" desc="Caracol, RCN"/>
+<antena lat="12.55833" lon="-81.71694" desc="RTVC, RTVC 2"/>
+</antenas>

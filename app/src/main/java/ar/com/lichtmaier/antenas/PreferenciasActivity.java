@@ -69,6 +69,9 @@ public class PreferenciasActivity extends AppCompatPreferenceActivity
 				case CA:
 					nombre = R.string.pref_CA;
 					break;
+				case CO:
+					nombre = R.string.pref_CO;
+					break;
 				case NZ:
 					nombre = R.string.pref_NZ;
 					break;

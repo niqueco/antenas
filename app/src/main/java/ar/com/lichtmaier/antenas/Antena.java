@@ -162,7 +162,7 @@ public class Antena implements Serializable
 				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
 					? EnumSet.of(País.AR, País.UY)
-					: EnumSet.of(País.AR, País.BR, País.UY))));
+					: EnumSet.of(País.AR, País.BR, País.CO, País.UY))));
 		if(antenasAlgoCerca.isEmpty())
 		{
 			double distance = 500000.0 * RAÍZ_DE_DOS;
@@ -241,6 +241,9 @@ public class Antena implements Serializable
 					break;
 				case CA:
 					res = R.raw.antenas_ca;
+					break;
+				case CO:
+					res = R.raw.antenas_co;
 					break;
 				case NZ:
 					res = R.raw.antenas_nz;
