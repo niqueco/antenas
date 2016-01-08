@@ -11,7 +11,7 @@ import com.google.android.gms.ads.AdView;
 
 class Publicidad
 {
-	private AdView adView;
+	private final AdView adView;
 
 	Publicidad(Activity act, String adUnitId)
 	{

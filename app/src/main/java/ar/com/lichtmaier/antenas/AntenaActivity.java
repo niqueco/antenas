@@ -125,6 +125,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		if(tb != null)
 		{
 			setSupportActionBar(tb);
+			//noinspection ConstantConditions
 			getSupportActionBar().setDisplayShowTitleEnabled(false);
 		}
 
