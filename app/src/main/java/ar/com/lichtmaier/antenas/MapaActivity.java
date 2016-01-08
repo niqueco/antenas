@@ -593,7 +593,7 @@ public class MapaActivity extends AppCompatActivity
 					{
 						int posCanal = i * ncolumns + j;
 						Canal canal = antena.canales.get(posCanal);
-						View vc = canal.dameViewCanal(ctx, row, hayImágenes);
+						View vc = canal.dameViewCanal(ctx, row, hayImágenes, false, false);
 
 						FrameLayout fl = new FrameLayout(getContext());
 						fl.addView(vc);
@@ -623,7 +623,7 @@ public class MapaActivity extends AppCompatActivity
 			{
 				n = Math.min(antena.canales.size(), 4);
 				for(Canal canal : antena.canales)
-					l.addView(canal.dameViewCanal(ctx, l, hayImágenes));
+					l.addView(canal.dameViewCanal(ctx, l, hayImágenes, false, false));
 			}
 			if(n < antena.canales.size())
 			{

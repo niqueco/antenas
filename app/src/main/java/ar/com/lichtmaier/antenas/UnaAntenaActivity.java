@@ -67,10 +67,14 @@ public class UnaAntenaActivity extends AntenaActivity
 			if(p == null)
 				p = (ViewGroup)findViewById(R.id.principal);
 			boolean hayImágenes = antena.hayImágenes();
+			float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+			float density = getResources().getDisplayMetrics().density;
 			for(Canal canal : antena.canales)
 			{
-				View vc = canal.dameViewCanal(this, p, hayImágenes);
-				p.addView(vc);
+				View vc = canal.dameViewCanal(this, p, hayImágenes, true, antena.país.equals(País.AU));
+				ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams((int)(200 * scaledDensity), ViewGroup.LayoutParams.WRAP_CONTENT);
+				lp.setMargins(0, 0, 0, (int)(8 * density));
+				p.addView(vc, lp);
 				if(p.getId() != R.id.columna_derecha)
 					vistasAnimadas.add(vc);
 			}

@@ -27,6 +27,10 @@
 	<string name="explicacion_permiso_gps">Cette application a besoin d\'accéder à votre GPS pour savoir où vous êtes et ainsi vous aider à trouver l\'antenne la plus proche!</string>
 	<string name="explicacion_permiso_almacenamiento">La carte doit avoir accès au stockage parce qu\'il l\'utilise pour enregistrer les données de carte de fonctionner plus rapidement.</string>
 	<string name="solicitar_permiso">Demander la permission</string>
+	<string name="polarización_horizontal">Pol. horizontale</string>
+	<string name="polarización_vertical">Pol. verticale</string>
+	<string name="polarización_mezclada">Pol. mixte</string>
+	<string name="polarización_dual">Pol. double</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>

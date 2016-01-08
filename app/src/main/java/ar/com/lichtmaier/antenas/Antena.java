@@ -293,6 +293,7 @@ public class Antena implements Serializable
 										xml.getAttributeValue(null, "numero"),
 										xml.getAttributeValue(null, "numero_virtual"),
 										xml.getAttributeValue(null, "cadena"),
+										xml.getAttributeValue(null, "polarizacion"),
 										xml.getAttributeValue(null, "ref")));
 								break;
 						}

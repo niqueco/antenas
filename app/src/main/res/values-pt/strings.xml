@@ -28,6 +28,10 @@
 	<string name="explicacion_permiso_gps">Este aplicativo precisa de acesso para o seu GPS para saber onde você está e assim ajudá-lo a encontrar a antena mais próxima!</string>
 	<string name="explicacion_permiso_almacenamiento">O mapa precisa de acesso ao armazenamento, pois ele usa-lo para salvar os dados de mapas para funcionar mais rápido.</string>
 	<string name="solicitar_permiso">Pedir permissão</string>
+	<string name="polarización_horizontal">Pol. horizontal</string>
+	<string name="polarización_vertical">Pol. vertical</string>
+	<string name="polarización_mezclada">Pol. misto</string>
+	<string name="polarización_dual">Pol. dual</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>

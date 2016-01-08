@@ -18,15 +18,17 @@ public class Canal implements Serializable
 	public final String numero;
 	public final String numeroVirtual;
 	public final String cadena;
+	public final char polarización;
 	public final String ref;
 
-	public Canal(String nombre, String numero, String numeroVirtual, String cadena, String ref)
+	public Canal(String nombre, String numero, String numeroVirtual, String cadena, String polarización, String ref)
 	{
 
 		this.nombre = nombre;
 		this.numero = numero;
 		this.numeroVirtual = numeroVirtual;
 		this.cadena = cadena;
+		this.polarización = polarización == null ? '\0' : polarización.charAt(0);
 		this.ref = ref;
 	}
 
@@ -94,11 +96,13 @@ public class Canal implements Serializable
 	/** Crea una vista que muestra información del canal.
 	 *
 	 * @param ctx un contexto
-	 * @param parent el {@link android.view.ViewGroup} donde se insertará la vista
+	 * @param parent el {@link ViewGroup} donde se insertará la vista
 	 * @param conImagen si incluir ícono asociado al canal
+	 * @param mostrarInfo si mostrar información técnica
+	 * @param mostrarBanda si mostrar la banda (UHF/VHF)
 	 * @return la vista
 	 */
-	public View dameViewCanal(Context ctx, ViewGroup parent, boolean conImagen)
+	public View dameViewCanal(Context ctx, ViewGroup parent, boolean conImagen, boolean mostrarInfo, boolean mostrarBanda)
 	{
 		View vc = ((LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.canal, parent, false);
 		((TextView)vc.findViewById(R.id.nombre_canal)).setText(nombre);
@@ -130,6 +134,16 @@ public class Canal implements Serializable
 		{
 			tv.setVisibility(View.GONE);
 		}
+		if(mostrarInfo && polarización != '\0')
+		{
+			TextView it = (TextView)vc.findViewById(R.id.info_tecnica);
+			StringBuilder str = new StringBuilder();
+			if(mostrarBanda && numero != null)
+				str.append(Integer.parseInt(numero.replaceAll("[A-Z]$|\\..*$", "")) <= 13 ? "VHF" : "UHF").append('\n');
+			str.append(damePolarización(ctx));
+			it.setText(str);
+			it.setVisibility(View.VISIBLE);
+		}
 		return vc;
 	}
 
@@ -144,5 +158,28 @@ public class Canal implements Serializable
 				return true;
 		}
 		return false;
+	}
+
+	String damePolarización(Context context)
+	{
+		int res = 0;
+		switch(polarización)
+		{
+			case 'H':
+				res = R.string.polarización_horizontal;
+				break;
+			case 'V':
+				res = R.string.polarización_vertical;
+				break;
+			case 'M':
+				res = R.string.polarización_mezclada;
+				break;
+			case 'D':
+				res = R.string.polarización_dual;
+				break;
+			default:
+				return null;
+		}
+		return context.getString(res);
 	}
 }
