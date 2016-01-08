@@ -9,7 +9,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 23
         versionName "1.4.4"
-        resConfigs "en", "en-rGB", "en-rUS", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
+        resConfigs "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
     }
 
     buildTypes {
