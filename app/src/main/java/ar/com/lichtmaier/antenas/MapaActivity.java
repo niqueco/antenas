@@ -27,10 +27,7 @@ import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 
 import java.util.*;
@@ -243,18 +240,24 @@ public class MapaActivity extends AppCompatActivity
 		}
 
 		@Override
-		public void onActivityCreated(Bundle savedInstanceState)
+		public void onActivityCreated(final Bundle savedInstanceState)
 		{
 			super.onActivityCreated(savedInstanceState);
-			FragmentActivity act = getActivity();
 			SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
-			mapa = mapFragment.getMap();
-			if(mapa == null)
+			mapFragment.getMapAsync(new OnMapReadyCallback()
 			{
-				Toast.makeText(act, act.getString(R.string.fallo_inicializar_mapa), Toast.LENGTH_SHORT).show();
-				act.finish();
-				return;
-			}
+				@Override
+				public void onMapReady(GoogleMap googleMap)
+				{
+					mapa = googleMap;
+					inicializarMapa(savedInstanceState);
+				}
+			});
+		}
+
+		private void inicializarMapa(Bundle savedInstanceState)
+		{
+			FragmentActivity act = getActivity();
 			mapa.setMyLocationEnabled(true);
 			if(savedInstanceState == null)
 				mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
