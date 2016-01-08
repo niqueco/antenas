@@ -162,7 +162,7 @@ public class Canal implements Serializable
 
 	String damePolarización(Context context)
 	{
-		int res = 0;
+		int res;
 		switch(polarización)
 		{
 			case 'H':

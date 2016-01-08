@@ -6,6 +6,7 @@ import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -90,7 +91,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		result.setResultCallback(new ResultCallback<LocationSettingsResult>()
 		{
 			@Override
-			public void onResult(LocationSettingsResult result)
+			public void onResult(@NonNull LocationSettingsResult result)
 			{
 				Status status = result.getStatus();
 				if(status.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED && !noPreguntar && !activity.huboSavedInstanceState)
@@ -113,7 +114,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	}
 
 	@Override
-	public void onConnectionFailed(ConnectionResult connectionResult)
+	public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
 	{
 		activity.onConnectionFailed(connectionResult);
 	}

@@ -10,7 +10,7 @@ public class Aplicacion extends Application
 {
 	private Tracker tracker;
 
-	private Tracker getTracker()
+	private void startAnalyticsTracker()
 	{
 		if(tracker == null)
 		{
@@ -21,12 +21,11 @@ public class Aplicacion extends Application
 			tracker = analytics.newTracker(R.xml.analytics);
 			tracker.enableAdvertisingIdCollection(true);
 		}
-		return tracker;
 	}
 
 	void reportActivityStart(Activity act)
 	{
-		getTracker();
+		startAnalyticsTracker();
 		GoogleAnalytics.getInstance(this).reportActivityStart(act);
 	}
 

@@ -79,6 +79,7 @@ public class Polígono
 		final private LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
 		final List<LatLng> puntos = new ArrayList<>();
 
+		@SuppressWarnings("UnusedReturnValue")
 		public Builder add(LatLng punto)
 		{
 			boundsBuilder.include(punto);
