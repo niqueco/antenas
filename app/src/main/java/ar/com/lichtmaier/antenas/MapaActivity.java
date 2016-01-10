@@ -244,7 +244,7 @@ public class MapaActivity extends AppCompatActivity
 		{
 			super.onActivityCreated(savedInstanceState);
 			SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
-			mapFragment.getMapAsync(new OnMapReadyCallback()
+			MapCompat.getMapAsync(mapFragment, new MapCompat.OnMapReadyCallback()
 			{
 				@Override
 				public void onMapReady(GoogleMap googleMap)
