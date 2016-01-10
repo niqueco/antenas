@@ -38,6 +38,8 @@ public class MapaActivity extends AppCompatActivity
 	private Publicidad publicidad;
 
 	private static final int PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE = 144;
+	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 145;
+
 	private boolean seMuestraRuegoDePermisos;
 
 	private long comienzoUsoPantalla;
@@ -262,6 +264,11 @@ public class MapaActivity extends AppCompatActivity
 
 		private void inicializarMapa(Bundle savedInstanceState)
 		{
+			if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+			{
+				requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
+				return;
+			}
 			FragmentActivity act = getActivity();
 			mapa.setMyLocationEnabled(true);
 			if(savedInstanceState == null)
@@ -304,6 +311,17 @@ public class MapaActivity extends AppCompatActivity
 					mapa.setPadding(0, altoActionBar, 0, 0);
 				}
 			});
+		}
+
+		@Override
+		public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+		{
+			if(requestCode == PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION)
+			{
+				if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+					inicializarMapa(null);
+			} else
+				super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
 
 		@Override
