@@ -32,6 +32,7 @@ import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -122,12 +123,10 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		asignarLayout();
 
 		Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
-		if(tb != null)
-		{
-			setSupportActionBar(tb);
-			//noinspection ConstantConditions
-			getSupportActionBar().setDisplayShowTitleEnabled(false);
-		}
+		setSupportActionBar(tb);
+		final ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayShowTitleEnabled(false);
 
 		try
 		{
@@ -240,8 +239,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 					@Override
 					public void onScrollChanged()
 					{
-						Log.i("antenas", "scroll=" + sv.getScrollY());
-						getSupportActionBar().setElevation(Math.min(sv.getScrollY() / 8f, density * 8f));
+						actionBar.setElevation(Math.min(sv.getScrollY() / 8f, density * 8f));
 					}
 				};
 				final ViewTreeObserver o = sv.getViewTreeObserver();
