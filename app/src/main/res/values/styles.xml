@@ -47,4 +47,8 @@
 		<attr name="ladoIconoCanal" format="dimension"/>
 	</declare-styleable>
 
+	<style name="Dialogo" parent="Theme.AppCompat.Dialog">
+		<item name="android:colorBackground">@color/celeste_lindo</item>
+		<item name="android:background">@color/celeste_lindo</item>
+	</style>
 </resources>

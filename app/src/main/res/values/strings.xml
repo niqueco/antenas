@@ -26,6 +26,11 @@
 	<string name="polarización_vertical">Vertical pol.</string>
 	<string name="polarización_mezclada">Mixed pol.</string>
 	<string name="polarización_dual">Dual polarization</string>
+	<string name="calif_titulo">Can you help me?</string>
+	<string name="calif_texto">If this application is useful to you and you think it makes sense that I continue to improve I ask that you take a few seconds and you give it a rating of five stars.</string>
+	<string name="calif_boton_si">OK, I\'ll put the stars!</string>
+	<string name="calif_boton_despues">Remember me later</string>
+	<string name="calif_boton_nunca">I\'ll never do that</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d channel</item>

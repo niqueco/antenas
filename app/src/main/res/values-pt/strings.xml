@@ -31,6 +31,11 @@
 	<string name="polarización_vertical">Pol. vertical</string>
 	<string name="polarización_mezclada">Pol. misto</string>
 	<string name="polarización_dual">Pol. dual</string>
+	<string name="calif_titulo">Pode ajudar-me?</string>
+	<string name="calif_texto">Se esta aplicação é útil para você e você acha que faz sentido que eu continue a melhorar peço que você demorar alguns segundos e você dar-lhe uma classificação de cinco estrelas.</string>
+	<string name="calif_boton_si">Ok, eu vou colocar as estrelas!</string>
+	<string name="calif_boton_despues">Lembre-me mais tarde</string>
+	<string name="calif_boton_nunca">Eu nunca vou fazer isso</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>

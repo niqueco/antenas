@@ -70,6 +70,8 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private MenuItem opciónAyudaArgentina, opciónAyudaReinoUnido;
 	private boolean mostrarOpciónAyudaArgentina = false, mostrarOpciónAyudaReinoUnido = false;
 
+	private long comienzoUsoPantalla;
+
 	private final LocationListener locationListener = new LocationListener() {
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras) { }
@@ -256,6 +258,9 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				});
 			}
 		}
+
+		if(!(this instanceof UnaAntenaActivity) && savedInstanceState == null)
+			Calificame.registrarLanzamiento(this);
 	}
 
 	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -416,11 +421,14 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		if(locationClient != null)
 			locationClient.onResume();
 		publicidad.onResume();
+		comienzoUsoPantalla = System.currentTimeMillis();
 	}
 
 	@Override
 	protected void onPause()
 	{
+		if(System.currentTimeMillis() - comienzoUsoPantalla > 1000 * 30)
+			Calificame.registráQueMiróLasAntenas(this);
 		publicidad.onPause();
 		hayInfoDeAcelerómetro = false;
 		hayInfoDeMagnetómetro = false;

@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 public class Aplicacion extends Application
 {
 	private Tracker tracker;
 
-	private void startAnalyticsTracker()
+	private Tracker getTracker()
 	{
 		if(tracker == null)
 		{
@@ -21,16 +22,25 @@ public class Aplicacion extends Application
 			tracker = analytics.newTracker(R.xml.analytics);
 			tracker.enableAdvertisingIdCollection(true);
 		}
+		return tracker;
 	}
 
 	void reportActivityStart(Activity act)
 	{
-		startAnalyticsTracker();
+		getTracker();
 		GoogleAnalytics.getInstance(this).reportActivityStart(act);
 	}
 
 	void reportActivityStop(Activity act)
 	{
 		GoogleAnalytics.getInstance(this).reportActivityStop(act);
+	}
+
+	public void mandarEvento(String categoría, String acción)
+	{
+		HitBuilders.EventBuilder builder = new HitBuilders.EventBuilder()
+				.setCategory(categoría)
+				.setAction(acción);
+		getTracker().send(builder.build());
 	}
 }

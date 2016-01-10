@@ -40,6 +40,8 @@ public class MapaActivity extends AppCompatActivity
 	private static final int PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE = 144;
 	private boolean seMuestraRuegoDePermisos;
 
+	private long comienzoUsoPantalla;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -137,11 +139,14 @@ public class MapaActivity extends AppCompatActivity
 	{
 		super.onResume();
 		publicidad.onResume();
+		comienzoUsoPantalla = System.currentTimeMillis();
 	}
 
 	@Override
 	protected void onPause()
 	{
+		if(System.currentTimeMillis() - comienzoUsoPantalla > 1000 * 10)
+			Calificame.registráQueMiróElMapa(this);
 		publicidad.onPause();
 		super.onPause();
 	}
