@@ -604,7 +604,9 @@ public class MapaActivity extends AppCompatActivity
 				int ncolumns;
 				if(l.getParent().getParent().getClass() != ScrollView.class)
 				{
-					ncolumns = (n + 1) / (antena.descripción != null ? 2 : 3);
+					int filas = n == 2 ? 1 : n > 6 && antena.descripción == null ? 3 : 2;
+
+					ncolumns = (n + 1) / filas;
 					if(ncolumns == 0)
 						ncolumns++;
 				} else

@@ -3,7 +3,10 @@
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_marginTop="6dp">
+		android:paddingTop="6dp"
+		android:paddingBottom="4dp"
+		android:paddingLeft="2dp"
+		android:paddingRight="2dp">
 
 	<ImageView
 		android:layout_width="?ladoIconoCanal"
@@ -19,7 +22,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textAppearance="@style/TextAppearance.AppCompat"
-		android:textSize="20sp"
+		android:textSize="18sp"
 		tools:text="WPNYX-TV"
 		android:id="@+id/nombre_canal"
 		android:layout_alignParentTop="true"
