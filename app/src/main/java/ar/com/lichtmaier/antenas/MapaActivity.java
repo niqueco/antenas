@@ -34,7 +34,7 @@ import java.util.*;
 
 public class MapaActivity extends AppCompatActivity
 {
-	private static BitmapDescriptor íconoAntenita;
+	private static BitmapDescriptor íconoAntenita, íconoAntenitaElegida;
 	private Publicidad publicidad;
 
 	private static final int PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE = 144;
@@ -207,7 +207,7 @@ public class MapaActivity extends AppCompatActivity
 		private final Map<País, List<Marker>> países = new EnumMap<>(País.class);
 
 		private final Map<Marker, Antena> markerAAntena = new HashMap<>();
-		private Marker marker;
+		private Marker markerSeleccionado;
 		private CachéDeContornos cachéDeContornos;
 		private Polygon contornoActual;
 		private int altoActionBar;
@@ -233,7 +233,12 @@ public class MapaActivity extends AppCompatActivity
 					if(getFragmentManager().getBackStackEntryCount() == n)
 					{
 						canalSeleccionado(null, null);
-						marker.hideInfoWindow();
+						if(markerSeleccionado != null)
+						{
+							markerSeleccionado.hideInfoWindow();
+							markerSeleccionado.setIcon(íconoAntenita);
+							markerSeleccionado = null;
+						}
 						mapa.setPadding(0, altoActionBar, 0, 0);
 					}
 				}
@@ -289,6 +294,8 @@ public class MapaActivity extends AppCompatActivity
 			((MapaActivity)act).publicidad.load(loc);
 			if(íconoAntenita == null)
 				íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
+			if(íconoAntenitaElegida == null)
+				íconoAntenitaElegida = BitmapDescriptorFactory.fromResource(R.drawable.antena_seleccionada);
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);
 			prefs.registerOnSharedPreferenceChangeListener(this);
 			for(País país : País.values())
@@ -389,7 +396,7 @@ public class MapaActivity extends AppCompatActivity
 
 						mm.add(new FuturoMarcador(antena, new MarkerOptions()
 								.position(antena.getLatLng())
-								.title(antena.dameNombre(getActivity()))
+								.title((antena.canales == null || antena.canales.isEmpty()) ? antena.dameNombre(getActivity()) : null)
 								.icon(íconoAntenita)));
 					}
 					return mm;
@@ -434,6 +441,14 @@ public class MapaActivity extends AppCompatActivity
 		@Override
 		public void onMapClick(LatLng latLng)
 		{
+			// Esto se hace igual al hacer pop del fragmento de la info,
+			// pero por si no hay info también se hace acá.
+			if(markerSeleccionado != null)
+			{
+				markerSeleccionado.hideInfoWindow();
+				markerSeleccionado.setIcon(íconoAntenita);
+				markerSeleccionado = null;
+			}
 			canalSeleccionado(null, null);
 			FragmentManager fm = getFragmentManager();
 			if(fm.findFragmentByTag("canales") != null)
@@ -444,7 +459,12 @@ public class MapaActivity extends AppCompatActivity
 		@Override
 		public boolean onMarkerClick(Marker marker)
 		{
-			this.marker = marker;
+			if(markerSeleccionado != null)
+				markerSeleccionado.setIcon(íconoAntenita);
+
+			markerSeleccionado = marker;
+
+			marker.setIcon(íconoAntenitaElegida);
 
 			canalSeleccionado(null, null);
 
