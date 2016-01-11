@@ -691,11 +691,15 @@ public class MapaActivity extends AppCompatActivity
 				@Override
 				public boolean onPreDraw()
 				{
+					MapaFragment mfr = (MapaFragment)getFragmentManager().findFragmentById(R.id.container);
+
+					if(mfr.mapa == null)
+						return true;
+
 					v.getViewTreeObserver().removeOnPreDrawListener(this);
 
 					boolean esTablet = v.getChildAt(0).getClass() == ScrollView.class;
 
-					MapaFragment mfr = (MapaFragment)getFragmentManager().findFragmentById(R.id.container);
 					//int height = getActivity().findViewById(R.id.bottom_sheet).getHeight();
 					int height = 0;
 					if(!esTablet)
