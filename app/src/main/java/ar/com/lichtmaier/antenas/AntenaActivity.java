@@ -720,7 +720,10 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		if(!huboSavedInstanceState && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
 		{
-			Snackbar.make(findViewById(R.id.scroll), R.string.gps_is_off, Snackbar.LENGTH_INDEFINITE)
+			View v = findViewById(R.id.scroll);
+			if(v == null)
+				v = findViewById(R.id.root);
+			Snackbar.make(v, R.string.gps_is_off, Snackbar.LENGTH_INDEFINITE)
 					.setAction(R.string.gps_prender, new View.OnClickListener()
 					{
 						@Override
