@@ -526,7 +526,8 @@ public class MapaActivity extends AppCompatActivity
 				@Override
 				protected void onPostExecute(Polígono polygon)
 				{
-					if(polygon == null || isCancelled())
+					tareaTraerContorno = null;
+					if(polygon == null)
 						return;
 					PolygonOptions poly = new PolygonOptions();
 					poly.addAll(polygon.getPuntos());
@@ -536,6 +537,12 @@ public class MapaActivity extends AppCompatActivity
 					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), (int)getActivity().getResources().getDimension(R.dimen.paddingContorno));
 					mapa.animateCamera(cameraUpdate);
 				}
+
+				@Override
+				protected void onCancelled()
+				{
+					tareaTraerContorno = null;
+				}
 			};
 			tareaTraerContorno.execute();
 		}
@@ -543,6 +550,8 @@ public class MapaActivity extends AppCompatActivity
 		@Override
 		public void onDestroy()
 		{
+			if(tareaTraerContorno != null)
+				tareaTraerContorno.cancel(false);
 			if(cachéDeContornos != null)
 				cachéDeContornos.devolver();
 			super.onDestroy();
