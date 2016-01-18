@@ -631,7 +631,7 @@ public class MapaActivity extends AppCompatActivity
 						ncolumns++;
 				} else
 				{
-					ncolumns = 2;
+					ncolumns = 1;
 				}
 				for(int i = 0; i < (n+ncolumns-1) / ncolumns; i++)
 				{
