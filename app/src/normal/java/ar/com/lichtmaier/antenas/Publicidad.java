@@ -72,6 +72,6 @@ class Publicidad
 
 	public int getHeight()
 	{
-		return adView.getHeight();
+		return adView == null ? 0 : adView.getHeight();
 	}
 }
