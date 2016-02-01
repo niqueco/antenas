@@ -19,6 +19,8 @@ public class FlechaView extends View
 	private float cx, cy, z;
 	private float[] líneasFlecha;
 
+	public static final double D = 5;
+
 	public FlechaView(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
@@ -52,9 +54,14 @@ public class FlechaView extends View
 	public void setÁngulo(double ángulo)
 	{
 		double antes = this.ángulo;
-		this.ángulo = ángulo;
+		double dif = ángulo - this.ángulo;
+		while(dif > 180)
+			dif -= 360;
+		while(dif < -180)
+			dif += 360;
+		this.ángulo += dif * (1./ D);
 		if(antes != ángulo)
-			invalidate();
+			ViewCompat.postInvalidateOnAnimation(this);
 	}
 	
 	@Override
