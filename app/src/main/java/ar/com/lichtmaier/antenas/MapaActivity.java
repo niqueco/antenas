@@ -105,7 +105,7 @@ public class MapaActivity extends AppCompatActivity
 					((ViewGroup)findViewById(R.id.container)).removeAllViews();
 
 				// stupid, but needed because of bug https://code.google.com/p/android/issues/detail?id=190966
-				new Handler(Looper.getMainLooper()).post(new Runnable()
+				new Handler(Looper.getMainLooper()).postDelayed(new Runnable()
 				{
 					@Override
 					public void run()
@@ -114,7 +114,7 @@ public class MapaActivity extends AppCompatActivity
 								.add(R.id.container, new MapaFragment())
 								.commit();
 					}
-				});
+				}, 200);
 
 			} else
 				finish();
