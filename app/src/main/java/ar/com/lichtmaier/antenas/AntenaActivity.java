@@ -85,8 +85,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		{
 			if(location.getAccuracy() > 300)
 				return;
-			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-			nuevaUbicación();
+			nuevaUbicación(location.getLatitude(), location.getLongitude());
 		}
 	};
 
@@ -194,10 +193,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
-		{
-			coordsUsuario = new GlobalCoordinates(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
-			nuevaUbicación();
-		}
+			nuevaUbicación(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
 
 		huboSavedInstanceState = savedInstanceState != null;
 
@@ -534,6 +530,12 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 	private boolean menúConfigurado = false;
 
+	protected void nuevaUbicación(double lat, double lon)
+	{
+		coordsUsuario = new GlobalCoordinates(lat, lon);
+		nuevaUbicación();
+	}
+
 	protected void nuevaUbicación()
 	{
 		if(coordsUsuario == null)
@@ -700,17 +702,12 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			{
 				Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 				if(location != null && location.getAccuracy() < 300)
-				{
-					coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-					nuevaUbicación();
-				} else
+					nuevaUbicación(location.getLatitude(), location.getLongitude());
+				else
 				{
 					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 					if(location != null && location.getAccuracy() < 300)
-					{
-						coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-						nuevaUbicación();
-					}
+						nuevaUbicación(location.getLatitude(), location.getLongitude());
 				}
 			}
 		}
@@ -740,10 +737,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		Location location = locationClient.getLastLocation();
 		if(location != null)
-		{
-			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-			nuevaUbicación();
-		}
+			nuevaUbicación(location.getLatitude(), location.getLongitude());
 		locationClient.onConnected();
 		publicidad.load(location);
 	}
@@ -751,8 +745,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	@Override
 	public void onLocationChanged(Location location)
 	{
-		coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-		nuevaUbicación();
+		nuevaUbicación(location.getLatitude(), location.getLongitude());
 	}
 
 	@Override
