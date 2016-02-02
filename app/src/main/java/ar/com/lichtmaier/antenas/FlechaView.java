@@ -14,12 +14,12 @@ import android.view.View;
 
 public class FlechaView extends View
 {
-	private double ángulo;
+	private double ángulo, ánguloDibujado = Float.MAX_VALUE;
 	final private Paint pinturaFlecha, pinturaBorde;
 	private float cx, cy, z;
 	private float[] líneasFlecha;
 
-	public static final double D = 5;
+	public static final double D = 10;
 
 	public FlechaView(Context context, AttributeSet attrs)
 	{
@@ -54,14 +54,13 @@ public class FlechaView extends View
 	public void setÁngulo(double ángulo)
 	{
 		double antes = this.ángulo;
-		double dif = ángulo - this.ángulo;
-		while(dif > 180)
-			dif -= 360;
-		while(dif < -180)
-			dif += 360;
-		this.ángulo += dif * (1./ D);
+		this.ángulo = ángulo;
 		if(antes != ángulo)
+		{
+			if(ánguloDibujado == Float.MAX_VALUE)
+				ánguloDibujado = ángulo;
 			ViewCompat.postInvalidateOnAnimation(this);
+		}
 	}
 	
 	@Override
@@ -107,12 +106,26 @@ public class FlechaView extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
+		if(ánguloDibujado != Float.MAX_VALUE)
+		{
+			double dif = ángulo - this.ánguloDibujado;
+			while(dif > 180)
+				dif -= 360;
+			while(dif < -180)
+				dif += 360;
+			this.ánguloDibujado += dif * (1. / D);
+		}
+
 		canvas.save();
 		canvas.translate(cx, cy);
-		canvas.rotate((float)ángulo);
+		if(ánguloDibujado != Float.MAX_VALUE)
+			canvas.rotate((float)ánguloDibujado);
 		canvas.drawCircle(0, 0, z + pinturaFlecha.getStrokeWidth() * .75f, pinturaBorde);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
 		canvas.restore();
+
+		if(ánguloDibujado != ángulo)
+			ViewCompat.postInvalidateOnAnimation(this);
 	}
 
 	private void instalarDelegadoAccesibilidad()

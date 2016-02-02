@@ -462,7 +462,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	void nuevaOrientación(double brújula)
 	{
 		long now = System.currentTimeMillis();
-		if(now - lastUpdate < 33)
+		if(now - lastUpdate < 20)
 			return;
 		lastUpdate = now;
 		//NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
