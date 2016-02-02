@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
@@ -137,6 +138,7 @@ public class Antena implements Serializable
 		return detalleCanales;
 	}
 
+	@NonNull
 	public LatLng getLatLng()
 	{
 		return new LatLng(c.getLatitude(), c.getLongitude());
@@ -187,7 +189,7 @@ public class Antena implements Serializable
 		return res;
 	}
 
-	public static void antenasEnRectángulo(double topLeftLat, double topLeftLon, double bottomRightLat, double bottomRightLon, List<Antena> antenas)
+	public static void antenasEnRectángulo(double topLeftLat, double topLeftLon, double bottomRightLat, double bottomRightLon, @NonNull List<Antena> antenas)
 	{
 		if(topLeftLon > bottomRightLon)
 		{
@@ -207,6 +209,7 @@ public class Antena implements Serializable
 				antenas.addAll(e.getValue());
 	}
 
+	@NonNull
 	private static String hashMásUno(String hash)
 	{
 		int len = hash.length();
@@ -337,7 +340,7 @@ public class Antena implements Serializable
 		return distCacheada;
 	}
 
-	public double rumboDesde(GlobalCoordinates coords)
+	public double rumboDesde(@NonNull GlobalCoordinates coords)
 	{
 		calcular(coords);
 		return rumboCacheado;

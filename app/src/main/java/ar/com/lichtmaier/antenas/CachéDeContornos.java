@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
@@ -30,6 +32,7 @@ public class CachéDeContornos
 	final private LruCache<Integer, Polígono> lruCache = new LruCache<>(50);
 	private final XmlPullParserFactory xmlPullParserFactory;
 
+	@NonNull
 	public static CachéDeContornos dameInstancia(Context ctx)
 	{
 		if(instancia == null)
@@ -84,6 +87,7 @@ public class CachéDeContornos
 
 	}
 
+	@Nullable
 	Polígono dameContornoFCC(int appId) throws IOException
 	{
 		Polígono contorno = lruCache.get(appId);
