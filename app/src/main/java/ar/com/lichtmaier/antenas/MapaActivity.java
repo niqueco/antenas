@@ -509,18 +509,11 @@ public class MapaActivity extends AppCompatActivity
 				@Override
 				protected Polígono doInBackground(Void... params)
 				{
-					try
-					{
-						if(cachéDeContornos == null)
-							cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
-						if(isCancelled())
-							return null;
-						return cachéDeContornos.dameContornoFCC(Integer.parseInt(canal.ref));
-					} catch(Exception e)
-					{
-						Log.e("antenas", "uh?", e);
-					}
-					return null;
+					if(cachéDeContornos == null)
+						cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
+					if(isCancelled())
+						return null;
+					return cachéDeContornos.dameContornoFCC(Integer.parseInt(canal.ref));
 				}
 
 				@Override

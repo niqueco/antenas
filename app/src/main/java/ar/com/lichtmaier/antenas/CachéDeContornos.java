@@ -88,7 +88,7 @@ public class CachéDeContornos
 	}
 
 	@Nullable
-	Polígono dameContornoFCC(int appId) throws IOException
+	Polígono dameContornoFCC(int appId)
 	{
 		Polígono contorno = lruCache.get(appId);
 		if(contorno == null)
@@ -114,9 +114,11 @@ public class CachéDeContornos
 		if(contorno == null)
 		{
 			Log.i("antenas", "buscando el polígono con appId=" + appId);
-			InputStream in = new URL("http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId).openStream();
+			String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId;
+			InputStream in = null;
 			try
 			{
+				in = new URL(url).openStream();
 				XmlPullParser parser = xmlPullParserFactory.newPullParser();
 				parser.setInput(in, "UTF-8");
 				int t;
@@ -165,12 +167,13 @@ public class CachéDeContornos
 						break;
 					}
 				}
-			} catch(XmlPullParserException e)
+			} catch(XmlPullParserException | IOException e)
 			{
-				throw new RuntimeException(e);
+				Log.e("antenas", "Obteniendo el contorno de " + url, e);
 			} finally
 			{
-				in.close();
+				if(in != null)
+					try { in.close(); } catch (IOException ignored) { }
 			}
 		}
 		return contorno;
