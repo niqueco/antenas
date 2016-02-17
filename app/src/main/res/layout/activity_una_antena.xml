@@ -82,7 +82,7 @@
 
 	</LinearLayout>
 
-	<View
+	<android.support.v4.widget.Space
 		android:id="@+id/antes_de_canales"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

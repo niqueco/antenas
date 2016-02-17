@@ -456,6 +456,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		if(requestCode == PEDIDO_DE_PERMISO_FINE_LOCATION)
 		{
 			if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+				//noinspection ResourceType
 				crearLocationClientCompat();
 			else
 				finish();
@@ -605,6 +606,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		hayInfoDeMagnetómetro = false;
 		sensorManager.unregisterListener(this);
 		if(locationManager != null)
+			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
 		if(locationClient != null)
 			locationClient.onPause();
@@ -916,11 +918,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			locationClient = null;
 			if(coordsUsuario == null)
 			{
+				//noinspection MissingPermission
 				Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 				if(location != null && location.getAccuracy() < 300)
 					nuevaUbicación(location.getLatitude(), location.getLongitude());
 				else
 				{
+					//noinspection MissingPermission
 					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 					if(location != null && location.getAccuracy() < 300)
 						nuevaUbicación(location.getLatitude(), location.getLongitude());
