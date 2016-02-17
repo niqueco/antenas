@@ -1,9 +1,13 @@
 package ar.com.lichtmaier.antenas;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
@@ -25,12 +29,15 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -38,12 +45,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.*;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.model.LatLng;
 
 public class AntenaActivity extends AppCompatActivity implements SensorEventListener, com.google.android.gms.location.LocationListener
 {
@@ -64,6 +73,9 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private int rotación;
 	boolean huboSavedInstanceState;
 	private boolean seMuestraRuegoDePermisos;
+	private CachéDeContornos cachéDeContornos;
+	private Thread threadContornos;
+	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 
 	private LocationManager locationManager;
 
@@ -259,6 +271,169 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			Calificame.registrarLanzamiento(this);
 	}
 
+	private synchronized void crearThreadContornos()
+	{
+		if(threadContornos != null)
+			return;
+		threadContornos = new Thread("antenas-contornos") {
+			@Override
+			public void run()
+			{
+				cachéDeContornos = CachéDeContornos.dameInstancia(AntenaActivity.this);
+				try
+				{
+					//noinspection InfiniteLoopStatement
+					while(true)
+					{
+						final Antena antena = colaParaContornos.poll(15, TimeUnit.SECONDS);
+
+						if(antena == null)
+							break;
+
+						if(Log.isLoggable("antenas", Log.DEBUG))
+							Log.d("antenas", "buscando contorno para " + antena);
+
+						List<Canal> canalesLejos = null;
+
+						for(Canal c : antena.canales)
+						{
+							if(c.ref == null)
+								continue;
+
+							Polígono polígono = cachéDeContornos.dameContornoFCC(Integer.parseInt(c.ref));
+
+							if(polígono == null)
+								continue;
+
+							if(!polígono.contiene(new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude())))
+							{
+								if(canalesLejos == null)
+									canalesLejos = new ArrayList<>();
+								canalesLejos.add(c);
+							}
+						}
+
+						if(canalesLejos != null)
+						{
+							final List<Canal> finalCanalesLejos = canalesLejos;
+							runOnUiThread(new Runnable()
+							{
+								@Override
+								public void run()
+								{
+									marcarCanalesComoLejos(antena, finalCanalesLejos);
+								}
+							});
+						}
+					}
+				} catch(InterruptedException ignored) { }
+				synchronized(AntenaActivity.this)
+				{
+					threadContornos = null;
+				}
+			}
+		};
+		threadContornos.start();
+	}
+
+	private void marcarCanalesComoLejos(Antena antena, List<Canal> canalesLejos)
+	{
+		if(Log.isLoggable("antenas", Log.DEBUG))
+			Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
+		View v = antenaAVista.get(antena);
+		if(antena.canales.size() == canalesLejos.size())
+			bajar(v);
+	}
+
+	final private List<View> vistasABajar = new ArrayList<>();
+
+	private void bajar(View v)
+	{
+		vistasABajar.add(v);
+		bajarHandler.removeMessages(0);
+		if(colaParaContornos.isEmpty())
+			bajarHandler.sendEmptyMessage(0);
+		else
+			bajarHandler.sendEmptyMessageDelayed(0, 1000);
+	}
+
+	final private BajarHandler bajarHandler = new BajarHandler(this);
+
+	static class BajarHandler extends Handler
+	{
+		final private WeakReference<AntenaActivity> actRef;
+
+		public BajarHandler(AntenaActivity antenaActivity)
+		{
+			actRef = new WeakReference<>(antenaActivity);
+		}
+
+		@Override
+		public void handleMessage(Message msg)
+		{
+			final AntenaActivity act = actRef.get();
+			if(act.isFinishing() || act.vistasABajar.isEmpty())
+				return;
+
+			final ViewGroup p = (ViewGroup)act.vistasABajar.get(0).getParent();
+
+			final IdentityHashMap<View, Integer> offsets = new IdentityHashMap<>();
+
+			for(int i = 0 ; i < p.getChildCount() ; i++)
+			{
+				View v = p.getChildAt(i);
+				offsets.put(v, v.getTop());
+			}
+
+			for(View v : act.vistasABajar)
+			{
+				p.removeView(v);
+				p.addView(v);
+				v.findViewById(R.id.aviso_lejos).setVisibility(View.VISIBLE);
+			}
+
+			if(p.getChildCount() > 15)
+				return;
+
+			final ViewTreeObserver vto = p.getViewTreeObserver();
+
+			vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
+			{
+				@Override
+				public boolean onPreDraw()
+				{
+					vto.removeOnPreDrawListener(this);
+					for(int i = 0 ; i < p.getChildCount() ; i++)
+					{
+						View v = p.getChildAt(i);
+						int dif = offsets.get(v) - v.getTop();
+						if(dif != 0)
+						{
+							ViewCompat.setTranslationY(v, dif);
+							ViewCompat.animate(v)
+									.setInterpolator(new AccelerateDecelerateInterpolator())
+									.setDuration(300)
+									.withLayer()
+									.translationY(0);
+						}
+						if(act.vistasABajar.contains(v))
+						{
+							View aviso = v.findViewById(R.id.aviso_lejos);
+							ViewCompat.setAlpha(aviso, 0);
+							ViewCompat.animate(aviso)
+									.setInterpolator(new AccelerateDecelerateInterpolator())
+									.setStartDelay(200)
+									.setDuration(400)
+									.withLayer()
+									.alpha(1);
+						}
+					}
+					return true;
+				}
+			});
+		}
+	}
+
 	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
 	private void crearLocationClientCompat()
 	{
@@ -448,6 +623,19 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	@Override
 	protected void onDestroy()
 	{
+		synchronized(this)
+		{
+			if(threadContornos != null)
+			{
+				threadContornos.interrupt();
+				threadContornos = null;
+			}
+		}
+		if(cachéDeContornos != null)
+		{
+			cachéDeContornos.devolver();
+			cachéDeContornos = null;
+		}
 		publicidad.onDestroy();
 		super.onDestroy();
 	}
@@ -584,6 +772,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		{
 			if(!antenaAVista.containsKey(a))
 			{
+				if(a.país == País.US)
+				{
+					Log.i("antenas", "agregando a la cola a " + a);
+					crearThreadContornos();
+					colaParaContornos.add(a);
+				}
+
 				View v = inf.inflate(R.layout.antena, contenedor, false);
 				int n = contenedor.getChildCount(), i;
 				for(i = 0 ; i < n ; i++)

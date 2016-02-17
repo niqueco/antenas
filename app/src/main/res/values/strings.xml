@@ -31,6 +31,7 @@
 	<string name="calif_boton_si">OK, I\'ll put the stars!</string>
 	<string name="calif_boton_despues">Remember me later</string>
 	<string name="calif_boton_nunca">I\'ll never do that</string>
+	<string name="aviso_lejos_fcc">Out of reach according to FCC computations.</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d channel</item>

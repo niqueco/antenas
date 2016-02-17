@@ -36,6 +36,7 @@
 	<string name="calif_boton_si">Ok, eu vou colocar as estrelas!</string>
 	<string name="calif_boton_despues">Lembre-me mais tarde</string>
 	<string name="calif_boton_nunca">Eu nunca vou fazer isso</string>
+	<string name="aviso_lejos_fcc">Fora do alcance de acordo com cálculos da FCC.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>
