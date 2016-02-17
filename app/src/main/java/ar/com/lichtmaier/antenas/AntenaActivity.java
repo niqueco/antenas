@@ -752,6 +752,27 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			}
 			menúConfigurado = true;
 		}
+
+		// Si estamos en EE.UU. la distancia máxima default se establece en 100 km.
+		if(maxDist == 60000 && !prefs.getBoolean("distancia_configurada", false))
+		{
+			Set<País> países = EnumSet.noneOf(País.class);
+			for(Antena antena : antenasCerca)
+				países.add(antena.país);
+			SharedPreferences.Editor editor = prefs.edit();
+			boolean volver = false;
+			if(países.contains(País.US))
+			{
+				editor.putString("max_dist", "100");
+				volver = true;
+			}
+			Compat.applyPreferences(editor.putBoolean("distancia_configurada", true));
+			if(volver)
+			{
+				nuevaUbicación();
+				return;
+			}
+		}
 		Iterator<Entry<Antena, View>> it = antenaAVista.entrySet().iterator();
 		ViewGroup contenedor = (ViewGroup)findViewById(R.id.antenas);
 		while(it.hasNext())
