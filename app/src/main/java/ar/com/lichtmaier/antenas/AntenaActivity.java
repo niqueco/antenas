@@ -349,7 +349,10 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 	private void bajar(View v)
 	{
-		vistasABajar.add(v);
+		synchronized(vistasABajar)
+		{
+			vistasABajar.add(v);
+		}
 		bajarHandler.removeMessages(0);
 		if(colaParaContornos.isEmpty())
 			bajarHandler.sendEmptyMessage(0);
@@ -372,10 +375,19 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		public void handleMessage(Message msg)
 		{
 			final AntenaActivity act = actRef.get();
-			if(act.isFinishing() || act.vistasABajar.isEmpty())
+
+			final List<View> vistas;
+
+			synchronized(act.vistasABajar)
+			{
+				vistas = new ArrayList<>(act.vistasABajar);
+				act.vistasABajar.clear();
+			}
+
+			if(act.isFinishing() || vistas.isEmpty())
 				return;
 
-			final ViewGroup p = (ViewGroup)act.vistasABajar.get(0).getParent();
+			final ViewGroup p = (ViewGroup)vistas.get(0).getParent();
 
 			final IdentityHashMap<View, Integer> offsets = new IdentityHashMap<>();
 
@@ -385,7 +397,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				offsets.put(v, v.getTop());
 			}
 
-			for(View v : act.vistasABajar)
+			for(View v : vistas)
 			{
 				p.removeView(v);
 				p.addView(v);
@@ -416,7 +428,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 									.withLayer()
 									.translationY(0);
 						}
-						if(act.vistasABajar.contains(v))
+						if(vistas.contains(v))
 						{
 							View aviso = v.findViewById(R.id.aviso_lejos);
 							ViewCompat.setAlpha(aviso, 0);

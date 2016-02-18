@@ -33,19 +33,12 @@ public class CachéDeContornos
 	private final XmlPullParserFactory xmlPullParserFactory;
 
 	@NonNull
-	public static CachéDeContornos dameInstancia(Context ctx)
+	public static synchronized CachéDeContornos dameInstancia(Context ctx)
 	{
 		if(instancia == null)
-		{
-			synchronized(CachéDeContornos.class)
-			{
-				if(instancia == null)
-					instancia = new CachéDeContornos(ctx);
-			}
-		} else
-		{
+			instancia = new CachéDeContornos(ctx);
+		else
 			instancia.db.acquireReference();
-		}
 		return instancia;
 	}
 
