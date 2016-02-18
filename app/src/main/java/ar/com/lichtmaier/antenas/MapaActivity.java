@@ -520,7 +520,7 @@ public class MapaActivity extends AppCompatActivity
 				protected void onPostExecute(Polígono polygon)
 				{
 					tareaTraerContorno = null;
-					if(polygon == null)
+					if(polygon == null || getActivity() == null)
 						return;
 					PolygonOptions poly = new PolygonOptions();
 					poly.addAll(polygon.getPuntos());
