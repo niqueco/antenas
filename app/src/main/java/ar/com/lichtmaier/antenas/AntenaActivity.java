@@ -73,7 +73,6 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private int rotación;
 	boolean huboSavedInstanceState;
 	private boolean seMuestraRuegoDePermisos;
-	private CachéDeContornos cachéDeContornos;
 	private Thread threadContornos;
 	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 
@@ -276,6 +275,9 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		if(threadContornos != null)
 			return;
 		threadContornos = new Thread("antenas-contornos") {
+
+			private CachéDeContornos cachéDeContornos;
+
 			@Override
 			public void run()
 			{
@@ -327,9 +329,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 						}
 					}
 				} catch(InterruptedException ignored) { }
-				synchronized(AntenaActivity.this)
+				finally
 				{
-					threadContornos = null;
+					cachéDeContornos.devolver();
+					synchronized(AntenaActivity.this)
+					{
+						threadContornos = null;
+					}
 				}
 			}
 		};
@@ -644,11 +650,6 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				threadContornos.interrupt();
 				threadContornos = null;
 			}
-		}
-		if(cachéDeContornos != null)
-		{
-			cachéDeContornos.devolver();
-			cachéDeContornos = null;
 		}
 		publicidad.onDestroy();
 		super.onDestroy();
