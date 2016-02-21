@@ -25,6 +25,9 @@
     <string name="pref_menos_title">Show less antennas</string>
     <string name="pref_menos_summary">Show only the closest ones if there seem to be too many around.</string>
 
+    <string name="pref_usar_contornos_title">Use coverage areas (for the US)</string>
+    <string name="pref_usar_contornos_summary">Use the coverage areas informed by the FCC to move stations that are out-of-reach to the bottom of the list.</string>
+
     <string name="pref_header_mapa">Mapa</string>
     <string name="pref_AR">Argentina</string>
     <string name="pref_AU">Australia</string>

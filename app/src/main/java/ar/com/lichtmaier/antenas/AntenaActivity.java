@@ -161,7 +161,8 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			@Override
 			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 			{
-				nuevaUbicación();
+				if(key.equals("usar_contornos"))
+					reset();
 			}
 		});
 		if(!prefs.getBoolean("unidad_configurada", false))
@@ -808,7 +809,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		{
 			if(!antenaAVista.containsKey(a))
 			{
-				if(a.país == País.US)
+				if(a.país == País.US && prefs.getBoolean("usar_contornos", true))
 				{
 					Log.i("antenas", "agregando a la cola a " + a);
 					crearThreadContornos();
@@ -907,6 +908,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		nf.setMaximumFractionDigits(potencia < 1 ? 2 : 1);
 		return nf.format(potencia) + " kW";
+	}
+
+	private void reset()
+	{
+		((ViewGroup)findViewById(R.id.antenas)).removeAllViews();
+		vistaAAntena.clear();
+		antenaAVista.clear();
 	}
 
 	public void onConnectionFailed(ConnectionResult r)

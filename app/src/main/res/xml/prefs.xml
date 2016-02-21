@@ -14,6 +14,13 @@
             android:key="menos"
             android:summary="@string/pref_menos_summary"
             android:title="@string/pref_menos_title"/>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="usar_contornos"
+            android:title="@string/pref_usar_contornos_title"
+            android:summary="@string/pref_usar_contornos_summary"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_header_mapa">

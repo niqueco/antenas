@@ -25,6 +25,9 @@
     <string name="pref_menos_title">Mostrar menos torres</string>
     <string name="pref_menos_summary">Mostrar apenas as mais próximas, se você ver que existem muitas nas proximidades.</string>
 
+    <string name="pref_usar_contornos_title">Use áreas de cobertura para a lista (para os EUA).</string>
+    <string name="pref_usar_contornos_summary">Use as áreas de cobertura informados pela FCC para mover estações que estão fora de chegar à parte inferior da lista.</string>
+
     <string name="pref_header_mapa">Mapa</string>
     <string name="pref_AR">Argentina</string>
     <string name="pref_AU">Australia</string>
