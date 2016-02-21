@@ -31,6 +31,7 @@ public class CachéDeContornos
 	private static CachéDeContornos instancia;
 
 	final private SQLiteDatabase db;
+	private int referencias = 1;
 
 	private static LruCache<Integer, Polígono> lruCache;
 	private final XmlPullParserFactory xmlPullParserFactory;
@@ -48,7 +49,7 @@ public class CachéDeContornos
 		if(instancia == null)
 			instancia = new CachéDeContornos(ctx);
 		else
-			instancia.db.acquireReference();
+			instancia.referencias++;
 		return instancia;
 	}
 
@@ -56,9 +57,11 @@ public class CachéDeContornos
 	{
 		synchronized(CachéDeContornos.class)
 		{
-			db.releaseReference();
-			if(!db.isOpen())
+			if(--referencias == 0)
+			{
+				db.close();
 				instancia = null;
+			}
 		}
 	}
 
