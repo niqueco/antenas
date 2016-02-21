@@ -43,4 +43,19 @@ public class Aplicacion extends Application
 				.setAction(acción);
 		getTracker().send(builder.build());
 	}
+
+	@Override
+	public void onTrimMemory(int level)
+	{
+		super.onTrimMemory(level);
+		if(level >= TRIM_MEMORY_RUNNING_MODERATE)
+			CachéDeContornos.vaciarCache();
+	}
+
+	@Override
+	public void onLowMemory()
+	{
+		super.onLowMemory();
+		CachéDeContornos.vaciarCache();
+	}
 }

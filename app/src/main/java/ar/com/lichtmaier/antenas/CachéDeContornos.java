@@ -1,11 +1,13 @@
 package ar.com.lichtmaier.antenas;
 
+import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityManagerCompat;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
@@ -29,12 +31,17 @@ public class CachéDeContornos
 
 	final private SQLiteDatabase db;
 
-	final private LruCache<Integer, Polígono> lruCache = new LruCache<>(50);
+	private static LruCache<Integer, Polígono> lruCache;
 	private final XmlPullParserFactory xmlPullParserFactory;
 
 	@NonNull
 	public static synchronized CachéDeContornos dameInstancia(Context ctx)
 	{
+		if(lruCache == null)
+		{
+			ActivityManager am = (ActivityManager)ctx.getSystemService(Context.ACTIVITY_SERVICE);
+			lruCache = new LruCache<>(ActivityManagerCompat.isLowRamDevice(am) || am.getMemoryClass() <= 32 ? 3 : 50);
+		}
 		if(instancia == null)
 			instancia = new CachéDeContornos(ctx);
 		else
@@ -48,10 +55,7 @@ public class CachéDeContornos
 		{
 			db.releaseReference();
 			if(!db.isOpen())
-			{
 				instancia = null;
-				lruCache.evictAll();
-			}
 		}
 	}
 
@@ -170,5 +174,11 @@ public class CachéDeContornos
 			}
 		}
 		return contorno;
+	}
+
+	public static void vaciarCache()
+	{
+		Log.i("antenas", "Vaciando vaché de contornos de " + lruCache.size() + " elementos porque hay poca memoria.");
+		lruCache.evictAll();
 	}
 }

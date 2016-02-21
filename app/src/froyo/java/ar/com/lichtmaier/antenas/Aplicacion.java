@@ -11,4 +11,19 @@ public class Aplicacion extends Application
 	void reportActivityStop(Activity act) { }
 
 	void mandarEvento(String categoría, String acción) { }
+
+	@Override
+	public void onTrimMemory(int level)
+	{
+		super.onTrimMemory(level);
+		if(level >= TRIM_MEMORY_RUNNING_MODERATE)
+			CachéDeContornos.vaciarCache();
+	}
+
+	@Override
+	public void onLowMemory()
+	{
+		super.onLowMemory();
+		CachéDeContornos.vaciarCache();
+	}
 }
