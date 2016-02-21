@@ -20,6 +20,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,6 +34,8 @@ public class CachéDeContornos
 
 	private static LruCache<Integer, Polígono> lruCache;
 	private final XmlPullParserFactory xmlPullParserFactory;
+	private static int[] cachéNegativo;
+	private int tamañoCachéNegativo = 0;
 
 	@NonNull
 	public static synchronized CachéDeContornos dameInstancia(Context ctx)
@@ -110,6 +113,12 @@ public class CachéDeContornos
 		}
 		if(contorno == null)
 		{
+			for(int i = 0 ; i < tamañoCachéNegativo ; i++)
+				if(cachéNegativo[i] == appId)
+				{
+					Log.i("antenas", "Al polígono con appId=" + appId + " ya lo buscamos sin éxito.");
+					return null;
+				}
 			Log.i("antenas", "buscando el polígono con appId=" + appId);
 			String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId;
 			InputStream in = null;
@@ -164,7 +173,19 @@ public class CachéDeContornos
 						break;
 					}
 				}
-			} catch(XmlPullParserException | IOException e)
+			} catch(XmlPullParserException e)
+			{
+				Log.e("antenas", "Obteniendo el contorno de " + url, e);
+				if(cachéNegativo == null)
+				{
+					cachéNegativo = new int[16];
+				} else if(tamañoCachéNegativo == cachéNegativo.length)
+				{
+					cachéNegativo = Arrays.copyOf(cachéNegativo, cachéNegativo.length + 16);
+				}
+
+				cachéNegativo[tamañoCachéNegativo++] = appId;
+			} catch(IOException e)
 			{
 				Log.e("antenas", "Obteniendo el contorno de " + url, e);
 			} finally
