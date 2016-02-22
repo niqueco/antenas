@@ -213,6 +213,7 @@ public class MapaActivity extends AppCompatActivity
 		private int altoActionBar;
 		final private EnumSet<País> paísesPrendidos = EnumSet.noneOf(País.class);
 		private AsyncTask<Void, Void, Polígono> tareaTraerContorno;
+		private int originalBackStackEntryCount;
 
 		public MapaFragment()
 		{
@@ -223,14 +224,17 @@ public class MapaActivity extends AppCompatActivity
 		{
 			super.onCreate(savedInstanceState);
 
-			final int n = getFragmentManager().getBackStackEntryCount();
+			if(savedInstanceState != null)
+				originalBackStackEntryCount = savedInstanceState.getInt("originalBackStackEntryCount");
+			else
+				originalBackStackEntryCount = getFragmentManager().getBackStackEntryCount();
 
 			getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener()
 			{
 				@Override
 				public void onBackStackChanged()
 				{
-					if(getFragmentManager().getBackStackEntryCount() == n)
+					if(getFragmentManager().getBackStackEntryCount() == originalBackStackEntryCount)
 					{
 						canalSeleccionado(null, null);
 						if(markerSeleccionado != null)
@@ -243,6 +247,13 @@ public class MapaActivity extends AppCompatActivity
 					}
 				}
 			});
+		}
+
+		@Override
+		public void onSaveInstanceState(Bundle outState)
+		{
+			super.onSaveInstanceState(outState);
+			outState.putInt("originalBackStackEntryCount", originalBackStackEntryCount);
 		}
 
 		@Override
