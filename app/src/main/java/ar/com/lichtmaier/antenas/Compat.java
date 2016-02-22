@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.location.Criteria;
 import android.location.LocationListener;
@@ -13,10 +14,12 @@ public class Compat
 	final private static CompatImpl impl;
 
 	static {
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+			impl = new CompatImplJB1();
+		else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 			impl = new CompatImplHC();
 		else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
-			impl = new CompatImplJB();
+			impl = new CompatImplGB();
 		else
 			impl = new CompatImpl();
 	}
@@ -35,10 +38,15 @@ public class Compat
 		{
 			editor.commit();
 		}
+
+		boolean activityIsDestroyed(Activity activity)
+		{
+			return false;
+		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
-	static class CompatImplJB extends CompatImpl
+	static class CompatImplGB extends CompatImpl
 	{
 		@Override
 		void requestLocationUpdates(LocationManager locationManager, int minTime, int minDistance,
@@ -55,13 +63,22 @@ public class Compat
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	static class CompatImplHC extends CompatImplJB
+	static class CompatImplHC extends CompatImplGB
 	{
 		@Override
 		public void disableHardwareAccelerationForLineCaps(FlechaView view)
 		{
 			if(view.isHardwareAccelerated() && Build.VERSION.SDK_INT < 18)
 				view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+	static class CompatImplJB1 extends CompatImplHC
+	{
+		boolean activityIsDestroyed(Activity activity)
+		{
+			return activity.isDestroyed();
 		}
 	}
 
@@ -82,5 +99,10 @@ public class Compat
 	public static void applyPreferences(SharedPreferences.Editor editor)
 	{
 		impl.applyPreferences(editor);
+	}
+
+	public static boolean activityIsDestroyed(Activity activity)
+	{
+		return impl.activityIsDestroyed(activity);
 	}
 }

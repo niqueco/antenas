@@ -396,7 +396,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				act.vistasABajar.clear();
 			}
 
-			if(act.isFinishing() || vistas.isEmpty())
+			if(act.isFinishing() || Compat.activityIsDestroyed(act) || vistas.isEmpty())
 				return;
 
 			final ViewGroup p = (ViewGroup)vistas.get(0).getParent();

@@ -520,14 +520,17 @@ public class MapaActivity extends AppCompatActivity
 				protected void onPostExecute(Polígono polygon)
 				{
 					tareaTraerContorno = null;
-					if(polygon == null || getActivity() == null)
+					if(polygon == null)
+						return;
+					Activity act = getActivity();
+					if(act == null || Compat.activityIsDestroyed(act) || act.isFinishing())
 						return;
 					PolygonOptions poly = new PolygonOptions();
 					poly.addAll(polygon.getPuntos());
-					poly.fillColor(ContextCompat.getColor(getActivity(), R.color.contorno));
+					poly.fillColor(ContextCompat.getColor(act, R.color.contorno));
 					poly.strokeWidth(getResources().getDimension(R.dimen.ancho_contorno));
 					contornoActual = mapa.addPolygon(poly);
-					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), (int)getActivity().getResources().getDimension(R.dimen.paddingContorno));
+					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), (int)act.getResources().getDimension(R.dimen.paddingContorno));
 					mapa.animateCamera(cameraUpdate);
 				}
 
