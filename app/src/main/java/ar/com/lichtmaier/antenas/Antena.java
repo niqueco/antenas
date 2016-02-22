@@ -380,4 +380,22 @@ public class Antena implements Serializable
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.ukfree.tv/txdetail.php?a=" + ref));
 		ctx.startActivity(intent);
 	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if(this == o)
+			return true;
+		if(!(o instanceof Antena))
+			return false;
+
+		Antena antena = (Antena)o;
+		return index == antena.index && país == antena.país;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return 929 * index + país.ordinal();
+	}
 }
