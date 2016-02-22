@@ -22,7 +22,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
@@ -315,20 +314,31 @@ public class MapaActivity extends AppCompatActivity
 					Antena.dameAntenas(act, país);
 					paísesPrendidos.add(país);
 				}
-			act.findViewById(R.id.map).post(new Runnable() {
-				@Override
-				public void run()
+			AppCompatActivity activity = (AppCompatActivity)getActivity();
+			ActionBar actionBar = activity.getSupportActionBar();
+			if(actionBar != null)
+				altoActionBar = actionBar.getHeight();
+
+			if(altoActionBar == 0)
+			{
+				View v = getView();
+				if(v == null)
+					throw new RuntimeException("uh?");
+				v.post(new Runnable()
 				{
-					AppCompatActivity activity = (AppCompatActivity)getActivity();
-					if(activity == null)
-						return;
-					ActionBar actionBar = activity.getSupportActionBar();
-					if(actionBar == null)
-						return;
-					altoActionBar = actionBar.getHeight();
-					mapa.setPadding(0, altoActionBar, 0, 0);
-				}
-			});
+					@Override
+					public void run()
+					{
+						ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+						if(actionBar != null)
+							altoActionBar = actionBar.getHeight();
+						configurarPaddingMapa();
+					}
+				});
+			} else
+			{
+				configurarPaddingMapa();
+			}
 		}
 
 		@Override
@@ -365,6 +375,27 @@ public class MapaActivity extends AppCompatActivity
 					paísesPrendidos.remove(país);
 				}
 			}
+		}
+
+		private void configurarPaddingMapa()
+		{
+			Fragment frCanales = getFragmentManager().findFragmentByTag("canales");
+			configurarPaddingMapa(frCanales == null ? null : (ViewGroup)frCanales.getView());
+		}
+
+		private void configurarPaddingMapa(ViewGroup v)
+		{
+			int height = 0;
+			if(v != null)
+			{
+				boolean esTablet = v.getChildAt(0).getClass() == ScrollView.class;
+				if(!esTablet)
+					height = v.getHeight();
+			}
+			height -= ((MapaActivity)getActivity()).publicidad.getHeight();
+			if(height < 0)
+				height = 0;
+			mapa.setPadding(0, altoActionBar, 0, height);
 		}
 
 		static class FuturoMarcador
@@ -714,18 +745,7 @@ public class MapaActivity extends AppCompatActivity
 
 					v.getViewTreeObserver().removeOnPreDrawListener(this);
 
-					boolean esTablet = v.getChildAt(0).getClass() == ScrollView.class;
-
-					//int height = getActivity().findViewById(R.id.bottom_sheet).getHeight();
-					int height = 0;
-					if(!esTablet)
-						height = v.getHeight();
-					height -= ((MapaActivity)getActivity()).publicidad.getHeight();
-					if(height < 0)
-						height = 0;
-					if(Log.isLoggable("antenas", Log.DEBUG))
-						Log.d("antenas", "height=" + height);
-					mfr.mapa.setPadding(0, mfr.altoActionBar, 0, height);
+					mfr.configurarPaddingMapa(v);
 
 					return true;
 				}
