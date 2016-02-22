@@ -348,6 +348,11 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		if(Log.isLoggable("antenas", Log.DEBUG))
 			Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
 		View v = antenaAVista.get(antena);
+		if(v == null)
+		{
+			Log.w("antenas", "La antena a bajar " + antena + " no tiene una vista asociada!");
+			return;
+		}
 		if(antena.canales.size() == canalesLejos.size())
 			bajar(v);
 	}
