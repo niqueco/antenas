@@ -16,7 +16,7 @@ public class Aplicacion extends Application
 	public void onTrimMemory(int level)
 	{
 		super.onTrimMemory(level);
-		if(level >= TRIM_MEMORY_RUNNING_MODERATE)
+		if(level >= TRIM_MEMORY_MODERATE)
 			CachéDeContornos.vaciarCache();
 	}
 

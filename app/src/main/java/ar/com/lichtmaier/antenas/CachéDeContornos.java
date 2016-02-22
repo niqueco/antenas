@@ -202,7 +202,9 @@ public class CachéDeContornos
 
 	public static void vaciarCache()
 	{
-		Log.i("antenas", "Vaciando vaché de contornos de " + lruCache.size() + " elementos porque hay poca memoria.");
-		lruCache.evictAll();
+		if(Log.isLoggable("antenas", Log.DEBUG))
+			Log.d("antenas", "Vaciando caché de contornos de " + (lruCache == null ? 0 : lruCache.size()) + " elementos.");
+		if(lruCache != null)
+			lruCache.evictAll();
 	}
 }
