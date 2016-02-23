@@ -38,6 +38,9 @@
 	<string name="calif_boton_nunca">Nunca lo voy a hacer</string>
 	<string name="aviso_lejos_fcc">Fuera de alcance de acuerdo a los cálculos de la FCC.</string>
 	<string name="aviso_no_hay_brújula">No hay brújula, se mostrarán direcciones absolutas.</string>
+	<string name="aviso_brújula_1">Las brújulas en los teléfonos no son muy buenas. No sólo son poco fiables, sino que a menudo tienen que ser “calibradas”. También pueden atascarse, en cuyo caso se puede tratar de golpear suavemente el teléfono hasta que consiga “despegarla”.</string>
+	<string name="aviso_brújula_2">Toque más abajo para leer las instrucciones de Google sobre calibrar la brújula de su dispositivo.</string>
+	<string name="botón_ayuda_brújula">Ayuda para calibrar la brújula</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Hacia adelante</item>

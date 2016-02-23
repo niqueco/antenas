@@ -50,5 +50,6 @@
 	<style name="Dialogo" parent="Theme.AppCompat.Dialog">
 		<item name="android:colorBackground">@color/celeste_lindo</item>
 		<item name="android:background">@color/celeste_lindo</item>
+		<item name="android:colorAccent">#FFE57F</item>
 	</style>
 </resources>

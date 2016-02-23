@@ -33,6 +33,9 @@
 	<string name="calif_boton_nunca">I\'ll never do that</string>
 	<string name="aviso_lejos_fcc">Out of reach according to FCC computations.</string>
 	<string name="aviso_no_hay_brújula">No compass. Showing absolute bearings.</string>
+	<string name="aviso_brújula_1">Compasses in phones are not that good. Not only are they unreliable but often they need to be “calibrated”. They can also get stuck, in which case you may try gentle hitting your phone until they get unstuck.</string>
+	<string name="aviso_brújula_2">Click below to read Google\'s instructions for calibrating your device\'s compass.</string>
+	<string name="botón_ayuda_brújula">Compass calibration help</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d channel</item>

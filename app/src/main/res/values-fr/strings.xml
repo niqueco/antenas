@@ -37,6 +37,9 @@
 	<string name="calif_boton_nunca">Je ne le ferai jamais</string>
 	<string name="aviso_lejos_fcc">Hors de portée selon les calculs de la FCC.</string>
 	<string name="aviso_no_hay_brújula">Aucune boussole, roulements absolus sont affichées.</string>
+	<string name="aviso_brújula_1">Boussoles dans les téléphones ne sont pas très bons. Non seulement ils sont peu fiables, mais souvent ils ont besoin pour être "calibré". Ils peuvent également se coincer, dans ce cas, vous pouvez essayer douce frapper votre téléphone jusqu\'à ce qu\'ils obtiennent décoller.</string>
+	<string name="aviso_brújula_2">Cliquez ci-dessous pour lire les instructions de Google pour calibrer la boussole de votre appareil.</string>
+	<string name="botón_ayuda_brújula">Aide pour calibrer la boussole</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>
