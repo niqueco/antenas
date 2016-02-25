@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -7,6 +8,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -43,6 +45,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	public void onResume()
 	{
 		if(google.isConnected())
+			//noinspection MissingPermission
 			LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
 		else if(!google.isConnecting())
 			google.connect();
@@ -59,11 +62,13 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		google.disconnect();
 	}
 
+	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
 	public Location getLastLocation()
 	{
 		return LocationServices.FusedLocationApi.getLastLocation(google);
 	}
 
+	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
 	public void onConnected()
 	{
 		LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());

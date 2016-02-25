@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 import android.support.v4.app.ActivityManagerCompat;
 import android.support.v4.util.LruCache;
 import android.util.Log;
@@ -91,6 +92,7 @@ public class CachéDeContornos
 	}
 
 	@Nullable
+	@WorkerThread
 	Polígono dameContornoFCC(int appId)
 	{
 		Polígono contorno = lruCache.get(appId);

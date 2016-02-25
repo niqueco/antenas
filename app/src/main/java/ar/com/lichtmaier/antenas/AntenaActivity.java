@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
@@ -606,6 +607,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			criteria.setCostAllowed(true);
 			try
 			{
+				//noinspection MissingPermission
 				Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
 			} catch(IllegalArgumentException e)
 			{
@@ -979,6 +981,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		}
 	}
 
+	@SuppressWarnings("MissingPermission")
 	public void onConnected(Bundle arg0)
 	{
 		Location location = locationClient.getLastLocation();

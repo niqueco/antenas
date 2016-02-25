@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.support.annotation.RequiresPermission;
 import android.view.View;
 
 public class Compat
@@ -26,6 +28,7 @@ public class Compat
 
 	static class CompatImpl
 	{
+		@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
 		void requestLocationUpdates(LocationManager locationManager, int minTime, int minDistance, Criteria criteria, LocationListener locationListener)
 		{
 			String provider = locationManager.getBestProvider(criteria, true);
@@ -49,6 +52,7 @@ public class Compat
 	static class CompatImplGB extends CompatImpl
 	{
 		@Override
+		@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
 		void requestLocationUpdates(LocationManager locationManager, int minTime, int minDistance,
 				Criteria criteria, LocationListener locationListener)
 		{
@@ -82,6 +86,7 @@ public class Compat
 		}
 	}
 
+	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
 	static void requestLocationUpdates(LocationManager locationManager, int minTime, int minDistance, Criteria criteria, LocationListener locationListener)
 	{
 		impl.requestLocationUpdates(locationManager, minTime, minDistance, criteria, locationListener);
