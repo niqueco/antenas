@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionName "1.7.2"
         resConfigs "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -37,15 +38,15 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:support-v4:23.2.0'
     //noinspection GradleDependency
     froyoCompile 'com.google.android.gms:play-services:3.2.65'
     normalCompile 'com.google.android.gms:play-services-location:8.4.0'
     normalCompile 'com.google.android.gms:play-services-maps:8.4.0'
     normalCompile 'com.google.android.gms:play-services-ads:8.4.0'
     normalCompile 'com.google.android.gms:play-services-analytics:8.4.0'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:design:23.2.0'
     compile 'com.github.davidmoten:geo:0.7.4'
     compile files('libs/geodesy.jar')
     compile 'com.google.maps.android:android-maps-utils:0.4.1'
