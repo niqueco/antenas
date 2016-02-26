@@ -12,17 +12,13 @@ import java.util.concurrent.TimeUnit;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
+import android.hardware.*;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -64,12 +60,14 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	final private Map<Antena, View> antenaAVista = new HashMap<>();
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
 	static GlobalCoordinates coordsUsuario;
+	static float alturaUsuario;
 	final private float[] gravity = new float[3];
 	final private float[] geomagnetic = new float[3];
 	private SensorManager sensorManager;
 	private Sensor acelerómetro;
 	private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
+	private float declinaciónMagnética = Float.MAX_VALUE;
 	private Publicidad publicidad;
 	private int rotación;
 	boolean huboSavedInstanceState;
@@ -97,7 +95,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		{
 			if(location.getAccuracy() > 300)
 				return;
-			nuevaUbicación(location.getLatitude(), location.getLongitude());
+			nuevaUbicación(location);
 		}
 	};
 
@@ -206,7 +204,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
-			nuevaUbicación(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"));
+			nuevaUbicación(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"), savedInstanceState.getDouble("alt"));
 
 		huboSavedInstanceState = savedInstanceState != null;
 
@@ -519,6 +517,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		{
 			outState.putDouble("lat", coordsUsuario.getLatitude());
 			outState.putDouble("lon", coordsUsuario.getLongitude());
+			outState.putDouble("alt", alturaUsuario);
 		}
 	}
 
@@ -730,8 +729,12 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			SensorManager.remapCoordinateSystem(r, axisX, axisY, r2);
 			SensorManager.getOrientation(r2, values);
 			double brújula = Math.toDegrees(values[0]);
+			if(declinaciónMagnética != Float.MAX_VALUE)
+				brújula += declinaciónMagnética;
 			if(brújula < 0)
 				brújula += 360;
+			else if(brújula >= 360)
+				brújula -= 360;
 			nuevaOrientación(brújula);
 		}
 	}
@@ -741,9 +744,15 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 	private boolean menúConfigurado = false;
 
-	protected void nuevaUbicación(double lat, double lon)
+	private void nuevaUbicación(Location location)
+	{
+		nuevaUbicación(location.getLatitude(), location.getLongitude(), location.getAltitude());
+	}
+
+	private void nuevaUbicación(double lat, double lon, double altura)
 	{
 		coordsUsuario = new GlobalCoordinates(lat, lon);
+		alturaUsuario = (float)altura;
 		nuevaUbicación();
 	}
 
@@ -751,6 +760,12 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		if(coordsUsuario == null)
 			return;
+		if(declinaciónMagnética == Float.MAX_VALUE)
+		{
+			declinaciónMagnética = new GeomagneticField((float)coordsUsuario.getLatitude(), (float)coordsUsuario.getLongitude(), alturaUsuario, System.currentTimeMillis()).getDeclination();
+			if(Log.isLoggable("antenas", Log.DEBUG))
+				Log.d("antenas", "Declinación magnética: " + declinaciónMagnética);
+		}
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
 				maxDist,
@@ -949,13 +964,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				//noinspection MissingPermission
 				Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 				if(location != null && location.getAccuracy() < 300)
-					nuevaUbicación(location.getLatitude(), location.getLongitude());
+					nuevaUbicación(location);
 				else
 				{
 					//noinspection MissingPermission
 					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 					if(location != null && location.getAccuracy() < 300)
-						nuevaUbicación(location.getLatitude(), location.getLongitude());
+						nuevaUbicación(location);
 				}
 			}
 		}
@@ -986,7 +1001,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		Location location = locationClient.getLastLocation();
 		if(location != null)
-			nuevaUbicación(location.getLatitude(), location.getLongitude());
+			nuevaUbicación(location);
 		locationClient.onConnected();
 		publicidad.load(location);
 	}
@@ -994,7 +1009,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	@Override
 	public void onLocationChanged(Location location)
 	{
-		nuevaUbicación(location.getLatitude(), location.getLongitude());
+		nuevaUbicación(location);
 	}
 
 	@Override
