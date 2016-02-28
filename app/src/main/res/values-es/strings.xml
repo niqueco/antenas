@@ -37,6 +37,7 @@
 	<string name="calif_boton_despues">Recordame más adelante</string>
 	<string name="calif_boton_nunca">Nunca lo voy a hacer</string>
 	<string name="aviso_lejos_fcc">Fuera de alcance de acuerdo a los cálculos de la FCC.</string>
+	<string name="aviso_no_hay_brújula">No hay brújula, se mostrarán direcciones absolutas.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Hacia adelante</item>

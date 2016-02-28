@@ -67,6 +67,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private Sensor acelerómetro;
 	private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
+	private boolean usarBrújula;
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	private Publicidad publicidad;
 	private int rotación;
@@ -176,6 +177,30 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+		usarBrújula = magnetómetro != null && acelerómetro != null;
+
+		if(!usarBrújula && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
+		{
+			Snackbar.make(findViewById(R.id.principal), R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
+					.setAction(android.R.string.ok, new View.OnClickListener()
+					{
+						@Override
+						public void onClick(View v) { }
+					})
+					.setCallback(new Snackbar.Callback()
+					{
+						@Override
+						public void onDismissed(Snackbar snackbar, int event)
+						{
+							if(event == DISMISS_EVENT_ACTION || event == DISMISS_EVENT_SWIPE)
+								Compat.applyPreferences(prefs.edit().putString("aviso_no_brújula", Build.FINGERPRINT));
+						}
+					})
+					.show();
+		}
+		if(usarBrújula)
+			Compat.applyPreferences(prefs.edit().remove("aviso_no_brújula"));
 
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 		{
@@ -597,8 +622,11 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	protected void onResume()
 	{
 		super.onResume();
-		sensorManager.registerListener(this, magnetómetro, SensorManager.SENSOR_DELAY_UI);
-		sensorManager.registerListener(this, acelerómetro, SensorManager.SENSOR_DELAY_UI);
+		if(usarBrújula)
+		{
+			sensorManager.registerListener(this, magnetómetro, SensorManager.SENSOR_DELAY_UI);
+			sensorManager.registerListener(this, acelerómetro, SensorManager.SENSOR_DELAY_UI);
+		}
 		if(locationManager != null)
 		{
 			Criteria criteria = new Criteria();
@@ -874,6 +902,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				ponéDistancia(a, v);
 				antenaAVista.put(a, v);
 				vistaAAntena.put(v, a);
+
+				if(!usarBrújula)
+				{
+					FlechaView f = (FlechaView)v.findViewById(R.id.flecha);
+					f.setÁngulo(a.rumboDesde(coordsUsuario));
+					f.setMostrarPuntosCardinales(true);
+				}
 			}
 		}
 		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);

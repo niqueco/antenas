@@ -36,6 +36,7 @@
 	<string name="calif_boton_despues">Rappelez-moi plus tard</string>
 	<string name="calif_boton_nunca">Je ne le ferai jamais</string>
 	<string name="aviso_lejos_fcc">Hors de portée selon les calculs de la FCC.</string>
+	<string name="aviso_no_hay_brújula">Aucune boussole, roulements absolus sont affichées.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>
