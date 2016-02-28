@@ -329,7 +329,10 @@ public class MapaActivity extends AppCompatActivity
 					@Override
 					public void run()
 					{
-						ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+						AppCompatActivity activity = (AppCompatActivity)getActivity();
+						if(activity == null)
+							return;
+						ActionBar actionBar = activity.getSupportActionBar();
 						if(actionBar != null)
 							altoActionBar = actionBar.getHeight();
 						configurarPaddingMapa();
