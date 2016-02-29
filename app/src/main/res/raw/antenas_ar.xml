@@ -893,6 +893,24 @@
 <canal nombre="Viajar" numero="24.04"/>
 <canal nombre="Vivra" numero="24.02"/>
 </antena>
+<antena lat="-35.2686" lon="-57.5656" desc="Vieytes" ref="76" potencia="1">
+<canal nombre="Arpeggio" numero="24.03"/>
+<canal nombre="C5N" numero="25.02"/>
+<canal nombre="CN23" numero="25.01"/>
+<canal nombre="Construir" numero="23.03"/>
+<canal nombre="DeporTV HD" numero="24.01"/>
+<canal nombre="Encuentro" numero="22.01"/>
+<canal nombre="G360" numero="25.04"/>
+<canal nombre="INCAA TV" numero="22.04"/>
+<canal nombre="Paka Paka" numero="22.02"/>
+<canal nombre="RT" numero="25.05"/>
+<canal nombre="TaTeTi" numero="22.03"/>
+<canal nombre="Tecnópolis" numero="22.05"/>
+<canal nombre="Telesur" numero="25.03"/>
+<canal nombre="TV Pública HD" numero="23.02"/>
+<canal nombre="Viajar" numero="24.04"/>
+<canal nombre="Vivra" numero="24.02"/>
+</antena>
 <antena lat="-35.0254" lon="-58.7327" desc="Cañuelas" ref="12" potencia="1">
 <canal nombre="ACUA Mayor" numero="34.03"/>
 <canal nombre="Arpeggio" numero="24.03"/>
@@ -1344,6 +1362,7 @@
 <canal nombre="Encuentro" numero="22.01"/>
 <canal nombre="G360" numero="25.04"/>
 <canal nombre="INCAA TV" numero="22.04"/>
+<canal nombre="LITUS" numero="28.01"/>
 <canal nombre="Paka Paka" numero="22.02"/>
 <canal nombre="RT" numero="25.05"/>
 <canal nombre="TaTeTi" numero="22.03"/>
