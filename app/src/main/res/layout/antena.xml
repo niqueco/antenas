@@ -57,8 +57,8 @@
             android:text="@string/aviso_lejos_fcc"
             android:textColor="#bfff"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:drawableLeft="@drawable/ic_warning_white_24dp"
-            android:drawableStart="@drawable/ic_warning_white_24dp"
+            android:drawableLeft="@drawable/ic_warning_white_24dp_sl"
+            android:drawableStart="@drawable/ic_warning_white_24dp_sl"
             android:drawablePadding="8dp"
             tools:visibility="visible"
             />
