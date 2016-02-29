@@ -56,6 +56,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
+	public static final int PRECISIÓN_ACEPTABLE = 150;
 
 	final private Map<Antena, View> antenaAVista = new HashMap<>();
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
@@ -774,6 +775,16 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 	private void nuevaUbicación(Location location)
 	{
+		if(location.hasAccuracy())
+		{
+			float accuracy = location.getAccuracy();
+			if(accuracy > PRECISIÓN_ACEPTABLE)
+			{
+				Log.i("antenas", "Rechazando ubicación de poca precisión (" + accuracy + "m)");
+				return;
+			}
+		}
+
 		nuevaUbicación(location.getLatitude(), location.getLongitude(), location.getAltitude());
 	}
 
@@ -998,13 +1009,13 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			{
 				//noinspection MissingPermission
 				Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-				if(location != null && location.getAccuracy() < 300)
+				if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
 					nuevaUbicación(location);
 				else
 				{
 					//noinspection MissingPermission
 					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-					if(location != null && location.getAccuracy() < 300)
+					if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
 						nuevaUbicación(location);
 				}
 			}
