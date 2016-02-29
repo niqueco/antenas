@@ -18,6 +18,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -60,7 +61,8 @@ public class CachéDeContornos
 		{
 			if(--referencias == 0)
 			{
-				db.close();
+				if(db != null)
+					db.close();
 				instancia = null;
 			}
 		}
@@ -68,17 +70,25 @@ public class CachéDeContornos
 
 	private CachéDeContornos(Context ctx)
 	{
-		db = SQLiteDatabase.openDatabase(ctx.getExternalCacheDir() + "/contornos.db", null, SQLiteDatabase.CREATE_IF_NECESSARY);
+		File externalCacheDir = ctx.getExternalCacheDir();
 
-		if(db.getVersion() != VERSION_BASE)
+		if(externalCacheDir != null)
 		{
-			db.execSQL("create table contorno ("
-					+ "app_id integer primary key on conflict replace, "
-					+ "poligono blob not null, "
-					+ "ult_uso integer not null, "
-					+ "fecha_obtenido integer not null"
-					+ ")");
-			db.setVersion(VERSION_BASE);
+			db = SQLiteDatabase.openDatabase(externalCacheDir + "/contornos.db", null, SQLiteDatabase.CREATE_IF_NECESSARY);
+
+			if(db.getVersion() != VERSION_BASE)
+			{
+				db.execSQL("create table contorno ("
+						+ "app_id integer primary key on conflict replace, "
+						+ "poligono blob not null, "
+						+ "ult_uso integer not null, "
+						+ "fecha_obtenido integer not null"
+						+ ")");
+				db.setVersion(VERSION_BASE);
+			}
+		} else {
+			Log.w("leyes", "No hay almacenamiento externo. El caché de contornos será sólo en memoria.");
+			db = null;
 		}
 
 		try
@@ -96,7 +106,7 @@ public class CachéDeContornos
 	Polígono dameContornoFCC(int appId)
 	{
 		Polígono contorno = lruCache.get(appId);
-		if(contorno == null)
+		if(contorno == null && db != null)
 		{
 			String selection = "app_id=?";
 			String[] selectionArgs = {Integer.toString(appId)};
@@ -168,13 +178,16 @@ public class CachéDeContornos
 						}
 						contorno = pb.build();
 						lruCache.put(appId, contorno);
-						ContentValues values = new ContentValues(3);
-						values.put("app_id", appId);
-						values.put("poligono", contorno.aBytes());
-						int ahora = (int)(System.currentTimeMillis() / 1000L);
-						values.put("ult_uso", ahora);
-						values.put("fecha_obtenido", ahora);
-						db.insert("contorno", null, values);
+						if(db != null)
+						{
+							ContentValues values = new ContentValues(3);
+							values.put("app_id", appId);
+							values.put("poligono", contorno.aBytes());
+							int ahora = (int)(System.currentTimeMillis() / 1000L);
+							values.put("ult_uso", ahora);
+							values.put("fecha_obtenido", ahora);
+							db.insert("contorno", null, values);
+						}
 						break;
 					}
 				}
