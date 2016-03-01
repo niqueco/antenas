@@ -165,7 +165,7 @@ public class CachéDeContornos
 							return null;
 						}
 
-						Pattern pat = Pattern.compile("^\\s*([^,]+),([^,]+),.*$", Pattern.MULTILINE);
+						Pattern pat = Pattern.compile("\\s+(-?[0-9.]+),(-?[0-9.]+),.*$", Pattern.MULTILINE);
 
 						Polígono.Builder pb = new Polígono.Builder();
 
@@ -206,6 +206,9 @@ public class CachéDeContornos
 			} catch(IOException e)
 			{
 				Log.e("antenas", "Obteniendo el contorno de " + url, e);
+			} catch(Exception e)
+			{
+				throw new RuntimeException("Obteniendo el contorno de " + url, e);
 			} finally
 			{
 				if(in != null)
