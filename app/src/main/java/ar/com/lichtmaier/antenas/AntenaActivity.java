@@ -175,9 +175,12 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			Compat.applyPreferences(editor);
 		}
 
-		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-		magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-		acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
+		{
+			sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+			magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+			acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		}
 
 		usarBrújula = magnetómetro != null && acelerómetro != null;
 
@@ -658,7 +661,8 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		publicidad.onPause();
 		hayInfoDeAcelerómetro = false;
 		hayInfoDeMagnetómetro = false;
-		sensorManager.unregisterListener(this);
+		if(usarBrújula)
+			sensorManager.unregisterListener(this);
 		if(locationManager != null)
 			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
