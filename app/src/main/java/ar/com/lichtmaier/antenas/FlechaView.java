@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v4.view.AccessibilityDelegateCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -151,6 +153,66 @@ public class FlechaView extends View
 
 		if(ánguloDibujado != ángulo)
 			ViewCompat.postInvalidateOnAnimation(this);
+	}
+
+	public static class SavedState extends BaseSavedState
+	{
+		final private double ángulo, ánguloDibujado;
+		final private boolean mostrarPuntosCardinales;
+
+		public SavedState(Parcelable superState, double ángulo, double ánguloDibujado, boolean mostrarPuntosCardinales)
+		{
+			super(superState);
+			this.ángulo = ángulo;
+			this.ánguloDibujado = ánguloDibujado;
+			this.mostrarPuntosCardinales = mostrarPuntosCardinales;
+		}
+
+		@Override
+		public void writeToParcel(Parcel out, int flags)
+		{
+			super.writeToParcel(out, flags);
+			out.writeDouble(ángulo);
+			out.writeDouble(ánguloDibujado);
+			out.writeInt(mostrarPuntosCardinales ? 1 : 0);
+		}
+
+		public static final Parcelable.Creator<SavedState> CREATOR
+				= new Parcelable.Creator<SavedState>() {
+			public SavedState createFromParcel(Parcel in)
+			{
+				return new SavedState(in);
+			}
+
+			public SavedState[] newArray(int size)
+			{
+				return new SavedState[size];
+			}
+		};
+
+		private SavedState(Parcel in)
+		{
+			super(in);
+			ángulo = in.readDouble();
+			ánguloDibujado = in.readDouble();
+			mostrarPuntosCardinales = in.readInt() == 1;
+		}
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState()
+	{
+		return new SavedState(super.onSaveInstanceState(), ángulo, ánguloDibujado, mostrarPuntosCardinales);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Parcelable state)
+	{
+		SavedState s = (SavedState)state;
+		super.onRestoreInstanceState(s.getSuperState());
+		ángulo = s.ángulo;
+		ánguloDibujado = s.ánguloDibujado;
+		mostrarPuntosCardinales = s.mostrarPuntosCardinales;
 	}
 
 	private void instalarDelegadoAccesibilidad()
