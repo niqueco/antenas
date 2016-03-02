@@ -68,7 +68,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private Sensor acelerómetro;
 	private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
-	private boolean usarBrújula;
+	protected boolean usarBrújula;
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	private Publicidad publicidad;
 	private int rotación;

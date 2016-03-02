@@ -56,7 +56,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		flechaOriginalAncho = bundle.getInt(PACKAGE + ".width");
 		flechaOriginalAlto = bundle.getInt(PACKAGE + ".height");
 		orientaciónOriginal = bundle.getInt(PACKAGE + ".orientation");
-		final double ángulo = bundle.getDouble(PACKAGE + ".ángulo");
+		ángulo = bundle.getDouble(PACKAGE + ".ángulo");
 
 		flecha = (FlechaView)findViewById(R.id.flecha);
 
@@ -88,6 +88,8 @@ public class UnaAntenaActivity extends AntenaActivity
 
 		if(savedInstanceState == null)
 		{
+			if(!usarBrújula)
+				flecha.setMostrarPuntosCardinales(true);
 			flecha.setÁngulo(ángulo);
 			flecha.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
 			{
