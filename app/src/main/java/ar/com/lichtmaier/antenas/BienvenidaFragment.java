@@ -35,7 +35,7 @@ public class BienvenidaFragment extends AppCompatDialogFragment implements View.
 	public void setupDialog(Dialog dialog, int style)
 	{
 		super.setupDialog(dialog, style);
-		dialog.setTitle("Compass calibration");
+		dialog.setTitle(R.string.título_ayuda_calibración_brújula);
 	}
 
 	@Nullable
