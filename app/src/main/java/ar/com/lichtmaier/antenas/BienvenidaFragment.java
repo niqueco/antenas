@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,9 @@ public class BienvenidaFragment extends AppCompatDialogFragment implements View.
 {
 	public static void mostrar(FragmentActivity activity)
 	{
+		if(!activity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
+			return;
+
 		FragmentTransaction tr = activity.getSupportFragmentManager().beginTransaction();
 		tr.addToBackStack(null);
 		new BienvenidaFragment().show(tr, "bienvenida");
