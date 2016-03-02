@@ -186,7 +186,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 		if(!usarBrújula && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
 		{
-			Snackbar.make(findViewById(R.id.principal), R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
+			Snackbar sb = Snackbar.make(findViewById(R.id.principal), R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
 					.setAction(android.R.string.ok, new View.OnClickListener()
 					{
 						@Override
@@ -200,8 +200,11 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 							if(event == DISMISS_EVENT_ACTION || event == DISMISS_EVENT_SWIPE)
 								Compat.applyPreferences(prefs.edit().putString("aviso_no_brújula", Build.FINGERPRINT));
 						}
-					})
-					.show();
+					});
+			TextView tv = (TextView)sb.getView().findViewById(android.support.design.R.id.snackbar_text);
+			if(tv != null)
+				tv.setMaxLines(4);
+			sb.show();
 		}
 		if(usarBrújula)
 			Compat.applyPreferences(prefs.edit().remove("aviso_no_brújula"));
