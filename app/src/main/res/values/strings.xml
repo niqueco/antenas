@@ -20,7 +20,6 @@
 	<string name="gps_is_off">GPS is off!</string>
 	<string name="gps_prender">Turn it on</string>
 	<string name="solicitar_permiso">Ask permission</string>
-	<string name="explicacion_permiso_almacenamiento">The map needs access to storage because it uses it to save map data to function faster.</string>
 	<string name="explicacion_permiso_gps">This app needs access to your GPS to know where you are and thus help you with finding the best TV antennas for you!</string>
 	<string name="polarización_horizontal">Horizontal pol.</string>
 	<string name="polarización_vertical">Vertical pol.</string>

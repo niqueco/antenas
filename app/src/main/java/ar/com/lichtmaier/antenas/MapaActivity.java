@@ -12,8 +12,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,10 +34,7 @@ public class MapaActivity extends AppCompatActivity
 	private static BitmapDescriptor íconoAntenita, íconoAntenitaElegida;
 	private Publicidad publicidad;
 
-	private static final int PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE = 144;
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 145;
-
-	private boolean seMuestraRuegoDePermisos;
 
 	private long comienzoUsoPantalla;
 
@@ -59,66 +54,9 @@ public class MapaActivity extends AppCompatActivity
 		publicidad = new Publicidad(this, "ca-app-pub-0461170458442008/5727485755");
 
 		if(savedInstanceState == null)
-		{
-			if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-			{
-				if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE))
-				{
-					ViewGroup container = (ViewGroup)findViewById(R.id.container);
-					View view = getLayoutInflater().inflate(R.layout.permiso_necesario, container, false);
-					((TextView)view.findViewById(android.R.id.text1)).setText(R.string.explicacion_permiso_almacenamiento);
-					view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener()
-					{
-						@Override
-						public void onClick(View v)
-						{
-							ActivityCompat.requestPermissions(MapaActivity.this,
-								new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE},
-								PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE);
-						}
-					});
-					container.addView(view);
-					seMuestraRuegoDePermisos = true;
-				}
-				if(!seMuestraRuegoDePermisos)
-				{
-					ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE);
-				}
-			} else
-			{
-				getSupportFragmentManager().beginTransaction()
-						.add(R.id.container, new MapaFragment())
-						.commit();
-			}
-		}
-	}
-
-	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-	{
-		if(requestCode == PEDIDO_DE_PERMISO_WRITE_EXTERNAL_STORAGE)
-		{
-			if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-			{
-				if(seMuestraRuegoDePermisos)
-					((ViewGroup)findViewById(R.id.container)).removeAllViews();
-
-				// stupid, but needed because of bug https://code.google.com/p/android/issues/detail?id=190966
-				new Handler(Looper.getMainLooper()).postDelayed(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						getSupportFragmentManager().beginTransaction()
-								.add(R.id.container, new MapaFragment())
-								.commit();
-					}
-				}, 200);
-
-			} else
-				finish();
-		} else
-			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, new MapaFragment())
+					.commit();
 	}
 
 	@Override
