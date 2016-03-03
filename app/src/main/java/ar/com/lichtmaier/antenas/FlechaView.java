@@ -12,6 +12,7 @@ import android.support.v4.view.AccessibilityDelegateCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 public class FlechaView extends View
@@ -22,6 +23,7 @@ public class FlechaView extends View
 	private float cx, cy, z;
 	private float[] líneasFlecha;
 	private boolean mostrarPuntosCardinales;
+	private float altoTexto;
 
 	public static final double D = 10;
 
@@ -80,8 +82,8 @@ public class FlechaView extends View
 	{
 		pinturaFlecha.setStrokeWidth(6f * (float)w / 100f);
 		pinturaBorde.setStrokeWidth(2f * (float)w / 100f);
-		cx = getWidth() / 2.0f;
-		cy = getHeight() / 2.0f;
+		cx = w / 2.0f;
+		cy = h / 2.0f;
 		float maxpadding = Math.max(Math.max(getPaddingLeft(), getPaddingRight()), Math.max(getPaddingTop(), getPaddingBottom()));
 		z = .8f * Math.min(cx, cy) - maxpadding;
 		líneasFlecha = new float[] {
@@ -89,6 +91,18 @@ public class FlechaView extends View
 				0, -z, w / 10f, w / 10f - z,
 				0, -z, -w / 10f, w / 10f - z
 		};
+		if(mostrarPuntosCardinales)
+		{
+			if(pinturaPuntosCardinales == null)
+			{
+				pinturaPuntosCardinales = new Paint(Paint.ANTI_ALIAS_FLAG);
+				pinturaPuntosCardinales.setColor(pinturaBorde.getColor());
+			}
+			DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
+			float scale = dm.scaledDensity / dm.density;
+			altoTexto = h * .14f * scale;
+			pinturaPuntosCardinales.setTextSize(altoTexto);
+		}
 		Compat.disableHardwareAccelerationForLineCaps(this);
 	}
 	
@@ -118,15 +132,8 @@ public class FlechaView extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		if(mostrarPuntosCardinales)
+		if(mostrarPuntosCardinales && pinturaPuntosCardinales != null)
 		{
-			float altoTexto = 14 * getContext().getResources().getDisplayMetrics().scaledDensity;
-			if(pinturaPuntosCardinales == null)
-			{
-				pinturaPuntosCardinales = new Paint(Paint.ANTI_ALIAS_FLAG);
-				pinturaPuntosCardinales.setTextSize(altoTexto);
-				pinturaPuntosCardinales.setColor(pinturaBorde.getColor());
-			}
 			int h = getHeight();
 			canvas.drawText("N", cx - pinturaPuntosCardinales.measureText("N") / 2, altoTexto + h / 10, pinturaPuntosCardinales);
 			String text = (int)ángulo + "°";
