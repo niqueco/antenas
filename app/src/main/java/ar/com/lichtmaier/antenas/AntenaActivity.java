@@ -184,7 +184,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 
 		usarBrújula = magnetómetro != null && acelerómetro != null;
 
-		if(!usarBrújula && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
+		if(!usarBrújula && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
 		{
 			Snackbar sb = Snackbar.make(findViewById(R.id.principal), R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
 					.setAction(android.R.string.ok, new View.OnClickListener()
