@@ -154,9 +154,12 @@ public class FlechaView extends View
 		canvas.translate(cx, cy);
 		if(ánguloDibujado != Float.MAX_VALUE)
 			canvas.rotate((float)ánguloDibujado);
-		canvas.drawCircle(0, 0, z + pinturaFlecha.getStrokeWidth() * .75f, pinturaBorde);
+		float radio = z + pinturaFlecha.getStrokeWidth() * .75f;
+		canvas.drawCircle(0, 0, radio, pinturaBorde);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
 		canvas.restore();
+		if(mostrarPuntosCardinales)
+			canvas.drawLine(cx, pinturaBorde.getStrokeWidth() / 2 + cy - radio, cx, getHeight() * .06f + cy - radio, pinturaBorde);
 
 		if(ánguloDibujado != ángulo)
 			ViewCompat.postInvalidateOnAnimation(this);
