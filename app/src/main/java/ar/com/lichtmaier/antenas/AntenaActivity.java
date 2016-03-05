@@ -18,7 +18,6 @@ import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.hardware.*;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -51,7 +50,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.model.LatLng;
 
-public class AntenaActivity extends AppCompatActivity implements SensorEventListener, com.google.android.gms.location.LocationListener
+public class AntenaActivity extends AppCompatActivity implements Brújula.Callback, com.google.android.gms.location.LocationListener
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
@@ -62,16 +61,8 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	final private Map<View, Antena> vistaAAntena = new HashMap<>();
 	static GlobalCoordinates coordsUsuario;
 	static float alturaUsuario;
-	final private float[] gravity = new float[3];
-	final private float[] geomagnetic = new float[3];
-	private SensorManager sensorManager;
-	private Sensor acelerómetro;
-	private Sensor magnetómetro;
-	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
-	protected boolean usarBrújula;
-	private float declinaciónMagnética = Float.MAX_VALUE;
+	protected Brújula brújula;
 	private Publicidad publicidad;
-	private int rotación;
 	boolean huboSavedInstanceState;
 	private boolean seMuestraRuegoDePermisos;
 	private Thread threadContornos;
@@ -175,16 +166,9 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			Compat.applyPreferences(editor);
 		}
 
-		if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
-		{
-			sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-			magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-			acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-		}
+		brújula = Brújula.crear(this, this);
 
-		usarBrújula = magnetómetro != null && acelerómetro != null;
-
-		if(!usarBrújula && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
+		if(brújula == null && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
 		{
 			Snackbar sb = Snackbar.make(findViewById(R.id.principal), R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
 					.setAction(android.R.string.ok, new View.OnClickListener()
@@ -206,7 +190,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				tv.setMaxLines(4);
 			sb.show();
 		}
-		if(usarBrújula)
+		if(brújula != null)
 			Compat.applyPreferences(prefs.edit().remove("aviso_no_brújula"));
 
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -243,8 +227,6 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		publicidad = new Publicidad(this, this instanceof UnaAntenaActivity
 				? "ca-app-pub-0461170458442008/1711829752"
 				: "ca-app-pub-0461170458442008/6164714153");
-
-		rotación = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getRotation();
 
 		final View principal = findViewById(R.id.principal);
 		ViewTreeObserver tvo = principal.getViewTreeObserver();
@@ -629,11 +611,8 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	protected void onResume()
 	{
 		super.onResume();
-		if(usarBrújula)
-		{
-			sensorManager.registerListener(this, magnetómetro, SensorManager.SENSOR_DELAY_UI);
-			sensorManager.registerListener(this, acelerómetro, SensorManager.SENSOR_DELAY_UI);
-		}
+		if(brújula != null)
+			brújula.onResume(this);
 		if(locationManager != null)
 		{
 			Criteria criteria = new Criteria();
@@ -662,10 +641,8 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 		if(System.currentTimeMillis() - comienzoUsoPantalla > 1000 * 30)
 			Calificame.registráQueMiróLasAntenas(this);
 		publicidad.onPause();
-		hayInfoDeAcelerómetro = false;
-		hayInfoDeMagnetómetro = false;
-		if(usarBrújula)
-			sensorManager.unregisterListener(this);
+		if(brújula != null)
+			brújula.onPause(this);
 		if(locationManager != null)
 			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
@@ -701,7 +678,9 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	private LocationClientCompat locationClient;
 	private SharedPreferences prefs;
 	private long lastUpdate = 0;
-	void nuevaOrientación(double brújula)
+
+	@Override
+	public void nuevaOrientación(double brújula)
 	{
 		long now = System.currentTimeMillis();
 		if(now - lastUpdate < 20)
@@ -718,65 +697,6 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 			f.setÁngulo(rumbo - brújula);
 		}
 	}
-
-	final private float[] r = new float[9];
-	final private float[] values = new float[3];
-	final private float[] r2 = new float[9];
-
-	@SuppressWarnings("SuspiciousNameCombination")
-	@Override
-	public void onSensorChanged(SensorEvent event)
-	{
-		if(event.sensor == magnetómetro)
-		{
-			System.arraycopy(event.values, 0, geomagnetic, 0, 3);
-			hayInfoDeMagnetómetro = true;
-		} else if(event.sensor == acelerómetro)
-		{
-			System.arraycopy(event.values, 0, gravity, 0, 3);
-			hayInfoDeAcelerómetro = true;
-		}
-		if(hayInfoDeAcelerómetro && hayInfoDeMagnetómetro)
-		{
-			SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
-			int axisX;
-			int axisY;
-			switch(rotación)
-			{
-				case Surface.ROTATION_0:
-					axisX = SensorManager.AXIS_X;
-					axisY = SensorManager.AXIS_Y;
-					break;
-				case Surface.ROTATION_90:
-					axisX = SensorManager.AXIS_Y;
-					axisY = SensorManager.AXIS_MINUS_X;
-					break;
-				case Surface.ROTATION_180:
-					axisX = SensorManager.AXIS_MINUS_X;
-					axisY = SensorManager.AXIS_MINUS_Y;
-					break;
-				case Surface.ROTATION_270:
-					axisX = SensorManager.AXIS_MINUS_Y;
-					axisY = SensorManager.AXIS_X;
-					break;
-				default:
-					throw new RuntimeException("rot: " + rotación);
-			}
-			SensorManager.remapCoordinateSystem(r, axisX, axisY, r2);
-			SensorManager.getOrientation(r2, values);
-			double brújula = Math.toDegrees(values[0]);
-			if(declinaciónMagnética != Float.MAX_VALUE)
-				brújula += declinaciónMagnética;
-			if(brújula < 0)
-				brújula += 360;
-			else if(brújula >= 360)
-				brújula -= 360;
-			nuevaOrientación(brújula);
-		}
-	}
-
-	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 
 	private boolean menúConfigurado = false;
 
@@ -806,12 +726,8 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 	{
 		if(coordsUsuario == null)
 			return;
-		if(declinaciónMagnética == Float.MAX_VALUE)
-		{
-			declinaciónMagnética = new GeomagneticField((float)coordsUsuario.getLatitude(), (float)coordsUsuario.getLongitude(), alturaUsuario, System.currentTimeMillis()).getDeclination();
-			if(Log.isLoggable("antenas", Log.DEBUG))
-				Log.d("antenas", "Declinación magnética: " + declinaciónMagnética);
-		}
+		if(brújula != null)
+			brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
 				maxDist,
@@ -921,7 +837,7 @@ public class AntenaActivity extends AppCompatActivity implements SensorEventList
 				antenaAVista.put(a, v);
 				vistaAAntena.put(v, a);
 
-				if(!usarBrújula)
+				if(brújula == null)
 				{
 					FlechaView f = (FlechaView)v.findViewById(R.id.flecha);
 					f.setÁngulo(a.rumboDesde(coordsUsuario));

@@ -88,7 +88,7 @@ public class UnaAntenaActivity extends AntenaActivity
 
 		if(savedInstanceState == null)
 		{
-			if(!usarBrújula)
+			if(brújula == null)
 				flecha.setMostrarPuntosCardinales(true);
 			flecha.setÁngulo(ángulo);
 			flecha.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
@@ -317,7 +317,7 @@ public class UnaAntenaActivity extends AntenaActivity
 	}
 
 	@Override
-	void nuevaOrientación(double brújula)
+	public void nuevaOrientación(double brújula)
 	{
 		double rumbo = antena.rumboDesde(coordsUsuario);
 		FlechaView f = (FlechaView)findViewById(R.id.flecha);
