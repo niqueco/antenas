@@ -677,15 +677,10 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 
 	private LocationClientCompat locationClient;
 	private SharedPreferences prefs;
-	private long lastUpdate = 0;
 
 	@Override
 	public void nuevaOrientación(double brújula)
 	{
-		long now = System.currentTimeMillis();
-		if(now - lastUpdate < 20)
-			return;
-		lastUpdate = now;
 		//NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
 		//((TextView)findViewById(R.id.orientacion)).setText(nf.format(brújula) /*+ " " + nf.format(Math.PI/2.0 - brújula)*/);
 		//Log.d("antenas", "orientacion: " + values[0]);

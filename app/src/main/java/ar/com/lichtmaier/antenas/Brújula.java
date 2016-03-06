@@ -17,6 +17,7 @@ public class Brújula implements SensorEventListener
 	private final Callback callback;
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	final private int rotación;
+	private long lastUpdate = 0;
 
 	private Brújula(Context context, Sensor acelerómetro, Sensor magnetómetro, Callback callback)
 	{
@@ -81,6 +82,12 @@ public class Brújula implements SensorEventListener
 			System.arraycopy(event.values, 0, gravity, 0, 3);
 			hayInfoDeAcelerómetro = true;
 		}
+
+		long now = System.currentTimeMillis();
+		if(now - lastUpdate < 20)
+			return;
+		lastUpdate = now;
+
 		if(hayInfoDeAcelerómetro && hayInfoDeMagnetómetro)
 		{
 			SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
