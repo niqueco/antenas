@@ -32,10 +32,10 @@ public class Brújula implements SensorEventListener
 		if(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
 		{
 			SensorManager sm = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-			Sensor mag = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-			Sensor acc = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-			if(mag != null && acc != null)
-				return new Brújula(context, mag, acc, callback);
+			Sensor magnetómetro = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+			Sensor acelerómetro = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+			if(magnetómetro != null && acelerómetro != null)
+				return new Brújula(context, acelerómetro, magnetómetro, callback);
 		}
 		return null;
 	}
