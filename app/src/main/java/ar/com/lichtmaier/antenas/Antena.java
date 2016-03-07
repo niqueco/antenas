@@ -31,7 +31,6 @@ import java.util.*;
 public class Antena implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	private static final double RAÍZ_DE_DOS = Math.sqrt(2);
 
 	final public String descripción, ref, geohash;
 	private final GlobalCoordinates c;
@@ -42,7 +41,6 @@ public class Antena implements Serializable
 
 	public double dist;
 
-	final static private List<Antena> antenasAlgoCerca = new ArrayList<>();
 	final static private Map<País, List<Antena>> antenasPorPaís = new EnumMap<>(País.class);
 	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();
 
@@ -165,19 +163,19 @@ public class Antena implements Serializable
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
 					? EnumSet.of(País.AR, País.UY)
 					: EnumSet.of(País.AR, País.BR, País.CO, País.UY))));
-		if(antenasAlgoCerca.isEmpty())
-		{
-			double distance = 500000.0 * RAÍZ_DE_DOS;
-			GlobalCoordinates topLeftCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 315, distance);
-			GlobalCoordinates bottomRightCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 135, distance);
-			antenasEnRectángulo(topLeftCoords.getLatitude(), topLeftCoords.getLongitude(),
-					bottomRightCoords.getLatitude(), bottomRightCoords.getLongitude(),
-					antenasAlgoCerca);
-		}
 		List<Antena> res = new ArrayList<>();
-		for(Antena antena : antenasAlgoCerca)
-			if((antena.dist = antena.distanceTo(coordsUsuario)) < maxDist)
-				res.add(antena);
+		double distance = Math.hypot(maxDist, maxDist);
+		GlobalCoordinates topLeftCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 315, distance);
+		GlobalCoordinates bottomRightCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 135, distance);
+		antenasEnRectángulo(topLeftCoords.getLatitude(), topLeftCoords.getLongitude(),
+				bottomRightCoords.getLatitude(), bottomRightCoords.getLongitude(),
+				res);
+		for(Iterator<Antena> it = res.iterator(); it.hasNext() ; )
+		{
+			Antena antena = it.next();
+			if((antena.dist = antena.distanceTo(coordsUsuario)) > maxDist)
+				it.remove();
+		}
 		Collections.sort(res, distComparator);
 		if(mostrarMenos)
 		{
