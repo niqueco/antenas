@@ -72,7 +72,7 @@ public class CachéDeContornos
 	{
 		File externalCacheDir = ctx.getExternalCacheDir();
 
-		if(externalCacheDir != null)
+		if(externalCacheDir != null && externalCacheDir.isDirectory())
 		{
 			db = SQLiteDatabase.openDatabase(externalCacheDir + "/contornos.db", null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
