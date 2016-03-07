@@ -62,11 +62,7 @@ public class FlechaView extends View
 		double antes = this.ángulo;
 		this.ángulo = ángulo;
 		if(antes != ángulo)
-		{
-			if(ánguloDibujado == Float.MAX_VALUE)
-				ánguloDibujado = ángulo;
 			ViewCompat.postInvalidateOnAnimation(this);
-		}
 	}
 
 	public void setMostrarPuntosCardinales(boolean mostrarPuntosCardinales)
@@ -140,7 +136,10 @@ public class FlechaView extends View
 			canvas.drawText(text, cx - pinturaPuntosCardinales.measureText(text) / 2, h - 2.5f * h / 10, pinturaPuntosCardinales);
 		}
 
-		if(ánguloDibujado != Float.MAX_VALUE)
+		if(ánguloDibujado == Float.MAX_VALUE)
+		{
+			this.ánguloDibujado = ángulo;
+		} else
 		{
 			double dif = ángulo - this.ánguloDibujado;
 			while(dif > 180)
