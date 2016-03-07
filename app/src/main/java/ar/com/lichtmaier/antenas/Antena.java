@@ -225,7 +225,7 @@ public class Antena implements Serializable
 		List<Antena> l = antenasPorPaís.get(país);
 		if(l != null)
 			return;
-		long antes = System.currentTimeMillis();
+		long antes = System.nanoTime();
 		try {
 			XmlPullParser xml = XmlPullParserFactory.newInstance().newPullParser();
 			int res;
@@ -311,7 +311,7 @@ public class Antena implements Serializable
 		{
 			throw new RuntimeException(e);
 		}
-		Log.i("antenas", l.size() + " antenas de " + país + " cargadas en " + (System.currentTimeMillis() - antes) + "ms");
+		Log.i("antenas", l.size() + " antenas de " + país + " cargadas en " + (System.nanoTime() - antes) / 1000000 + "ms");
 	}
 
 	private void agregar(Canal canal)
