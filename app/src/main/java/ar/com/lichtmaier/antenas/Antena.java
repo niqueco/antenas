@@ -398,4 +398,10 @@ public class Antena implements Serializable
 	{
 		return 929 * index + país.ordinal();
 	}
+
+	@Override
+	public String toString()
+	{
+		return país + "-" + index;
+	}
 }

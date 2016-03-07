@@ -182,4 +182,10 @@ public class Canal implements Serializable
 		}
 		return context.getString(res);
 	}
+
+	@Override
+	public String toString()
+	{
+		return nombre;
+	}
 }
