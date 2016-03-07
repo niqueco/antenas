@@ -1,13 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
-import java.text.NumberFormat;
 import java.util.*;
-import java.util.Map.Entry;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
@@ -25,48 +19,38 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.*;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.maps.model.LatLng;
 
-public class AntenaActivity extends AppCompatActivity implements Brújula.Callback, com.google.android.gms.location.LocationListener
+public class AntenaActivity extends AppCompatActivity implements com.google.android.gms.location.LocationListener
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
 
-	final private Map<Antena, View> antenaAVista = new HashMap<>();
-	final private Map<View, Antena> vistaAAntena = new HashMap<>();
 	static GlobalCoordinates coordsUsuario;
 	static float alturaUsuario;
 	protected Brújula brújula;
 	private Publicidad publicidad;
 	boolean huboSavedInstanceState;
 	private boolean seMuestraRuegoDePermisos;
-	private Thread threadContornos;
-	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 
 	private LocationManager locationManager;
 
@@ -93,13 +77,12 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	};
 
 	static FlechaView flechaADesaparecer;
-	private final View.OnClickListener onAntenaClickedListener = new View.OnClickListener()
+	private final AntenasAdapter.Callback onAntenaClickedListener = new AntenasAdapter.Callback()
 	{
 		@Override
-		public void onClick(View v)
+		public void onAntenaClicked(Antena antena, View v)
 		{
 			Intent i = new Intent(AntenaActivity.this, UnaAntenaActivity.class);
-			Antena antena = vistaAAntena.get(v);
 
 			int[] screenLocation = new int[2];
 			FlechaView flecha = (FlechaView)v.findViewById(R.id.flecha);
@@ -119,6 +102,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			overridePendingTransition(0, 0);
 		}
 	};
+	private AntenasAdapter antenasAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -154,7 +138,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 			{
 				if(key.equals("usar_contornos"))
-					reset();
+					antenasAdapter.reset();
 			}
 		});
 		if(!prefs.getBoolean("unidad_configurada", false))
@@ -166,7 +150,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			Compat.applyPreferences(editor);
 		}
 
-		brújula = Brújula.crear(this, this);
+		brújula = Brújula.crear(this);
 
 		if(brújula == null && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
 		{
@@ -228,247 +212,40 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				? "ca-app-pub-0461170458442008/1711829752"
 				: "ca-app-pub-0461170458442008/6164714153");
 
-		final View principal = findViewById(R.id.principal);
-		ViewTreeObserver tvo = principal.getViewTreeObserver();
-		if(tvo.isAlive())
-		{
-			tvo.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
-			{
-				private int pw = -1, n = -1;
+		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
 
-				@Override
-				public void onGlobalLayout()
-				{
-					int w = principal.getWidth();
-					if(w == pw && antenaAVista.size() == n)
-						return;
-					pw = w;
-					n = antenaAVista.size();
-					for(Entry<Antena, View> e : antenaAVista.entrySet())
-						actualizarDescripción(e.getValue(), e.getKey());
-				}
-			});
+		if(rv != null)
+		{
+			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener);
+			rv.setAdapter(antenasAdapter);
 		}
 
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		if(rv != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
-			final ScrollView sv = (ScrollView)findViewById(R.id.scroll);
 			final float density = getResources().getDisplayMetrics().density;
-			if(sv != null)
-			{
-				final ViewTreeObserver.OnScrollChangedListener scrollChangedListener;
-				scrollChangedListener = new ViewTreeObserver.OnScrollChangedListener()
+			final RecyclerView.LayoutManager lm = rv.getLayoutManager();
+			rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+				@Override
+				public void onScrolled(RecyclerView recyclerView, int dx, int dy)
 				{
-					@Override
-					public void onScrollChanged()
+					View v = lm.findViewByPosition(0);
+					int y;
+					if(v != null)
 					{
-						actionBar.setElevation(Math.min(sv.getScrollY() / 8f, density * 8f));
-					}
-				};
-				final ViewTreeObserver o = sv.getViewTreeObserver();
-				o.addOnScrollChangedListener(scrollChangedListener);
-				o.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
-				{
-					@Override
-					public boolean onPreDraw()
-					{
-						sv.getViewTreeObserver().removeOnPreDrawListener(this);
-						scrollChangedListener.onScrollChanged();
-						return true;
-					}
-				});
-			}
+						ViewGroup.LayoutParams lp = v.getLayoutParams();
+						int margen = lp instanceof ViewGroup.MarginLayoutParams
+								? ((ViewGroup.MarginLayoutParams)lp).topMargin
+								: 0;
+						y = margen - v.getTop();
+					} else
+						y = 1000;
+					actionBar.setElevation(Math.min(y / 8f, density * 8f));
+				}
+			});
 		}
 
 		if(!(this instanceof UnaAntenaActivity) && savedInstanceState == null)
 			Calificame.registrarLanzamiento(this);
-	}
-
-	private synchronized void crearThreadContornos()
-	{
-		if(threadContornos != null)
-			return;
-		threadContornos = new Thread("antenas-contornos") {
-
-			private CachéDeContornos cachéDeContornos;
-
-			@Override
-			public void run()
-			{
-				cachéDeContornos = CachéDeContornos.dameInstancia(AntenaActivity.this);
-				try
-				{
-					//noinspection InfiniteLoopStatement
-					while(true)
-					{
-						final Antena antena = colaParaContornos.poll(15, TimeUnit.SECONDS);
-
-						if(antena == null)
-							break;
-
-						if(Log.isLoggable("antenas", Log.DEBUG))
-							Log.d("antenas", "buscando contorno para " + antena);
-
-						List<Canal> canalesLejos = null;
-
-						for(Canal c : antena.canales)
-						{
-							if(c.ref == null)
-								continue;
-
-							Polígono polígono = cachéDeContornos.dameContornoFCC(Integer.parseInt(c.ref));
-
-							if(polígono == null)
-								continue;
-
-							if(!polígono.contiene(new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude())))
-							{
-								if(canalesLejos == null)
-									canalesLejos = new ArrayList<>();
-								canalesLejos.add(c);
-							}
-						}
-
-						if(canalesLejos != null)
-						{
-							final List<Canal> finalCanalesLejos = canalesLejos;
-							runOnUiThread(new Runnable()
-							{
-								@Override
-								public void run()
-								{
-									marcarCanalesComoLejos(antena, finalCanalesLejos);
-								}
-							});
-						}
-					}
-				} catch(InterruptedException ignored) { }
-				finally
-				{
-					cachéDeContornos.devolver();
-					synchronized(AntenaActivity.this)
-					{
-						threadContornos = null;
-					}
-				}
-			}
-		};
-		threadContornos.start();
-	}
-
-	private void marcarCanalesComoLejos(Antena antena, List<Canal> canalesLejos)
-	{
-		if(Log.isLoggable("antenas", Log.DEBUG))
-			Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
-		View v = antenaAVista.get(antena);
-		if(v == null)
-		{
-			Log.w("antenas", "La antena a bajar " + antena + " no tiene una vista asociada!");
-			return;
-		}
-		if(antena.canales.size() == canalesLejos.size())
-			bajar(v);
-	}
-
-	final private List<View> vistasABajar = new ArrayList<>();
-
-	private void bajar(View v)
-	{
-		synchronized(vistasABajar)
-		{
-			vistasABajar.add(v);
-		}
-		bajarHandler.removeMessages(0);
-		if(colaParaContornos.isEmpty())
-			bajarHandler.sendEmptyMessage(0);
-		else
-			bajarHandler.sendEmptyMessageDelayed(0, 1000);
-	}
-
-	final private BajarHandler bajarHandler = new BajarHandler(this);
-
-	static class BajarHandler extends Handler
-	{
-		final private WeakReference<AntenaActivity> actRef;
-
-		public BajarHandler(AntenaActivity antenaActivity)
-		{
-			actRef = new WeakReference<>(antenaActivity);
-		}
-
-		@Override
-		public void handleMessage(Message msg)
-		{
-			final AntenaActivity act = actRef.get();
-
-			final List<View> vistas;
-
-			synchronized(act.vistasABajar)
-			{
-				vistas = new ArrayList<>(act.vistasABajar);
-				act.vistasABajar.clear();
-			}
-
-			if(act.isFinishing() || Compat.activityIsDestroyed(act) || vistas.isEmpty())
-				return;
-
-			final ViewGroup p = (ViewGroup)vistas.get(0).getParent();
-
-			final IdentityHashMap<View, Integer> offsets = new IdentityHashMap<>();
-
-			for(int i = 0 ; i < p.getChildCount() ; i++)
-			{
-				View v = p.getChildAt(i);
-				offsets.put(v, v.getTop());
-			}
-
-			for(View v : vistas)
-			{
-				p.removeView(v);
-				p.addView(v);
-				v.findViewById(R.id.aviso_lejos).setVisibility(View.VISIBLE);
-			}
-
-			if(p.getChildCount() > 15)
-				return;
-
-			final ViewTreeObserver vto = p.getViewTreeObserver();
-
-			vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
-			{
-				@Override
-				public boolean onPreDraw()
-				{
-					vto.removeOnPreDrawListener(this);
-					for(int i = 0 ; i < p.getChildCount() ; i++)
-					{
-						View v = p.getChildAt(i);
-						int dif = offsets.get(v) - v.getTop();
-						if(dif != 0)
-						{
-							ViewCompat.setTranslationY(v, dif);
-							ViewCompat.animate(v)
-									.setInterpolator(new AccelerateDecelerateInterpolator())
-									.setDuration(300)
-									.withLayer()
-									.translationY(0);
-						}
-						if(vistas.contains(v))
-						{
-							View aviso = v.findViewById(R.id.aviso_lejos);
-							ViewCompat.setAlpha(aviso, 0);
-							ViewCompat.animate(aviso)
-									.setInterpolator(new AccelerateDecelerateInterpolator())
-									.setStartDelay(200)
-									.setDuration(400)
-									.withLayer()
-									.alpha(1);
-						}
-					}
-					return true;
-				}
-			});
-		}
 	}
 
 	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -499,23 +276,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				finish();
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-	}
-
-	protected void actualizarDescripción(View v, Antena antena)
-	{
-		CharSequence detalleCanales = antena.dameDetalleCanales(this);
-		TextView tvDesc = (TextView)v.findViewById(R.id.antena_desc);
-		TextView tvDet = (TextView)v.findViewById(R.id.antena_detalle_canales);
-
-		if(antena.descripción == null && detalleCanales == null)
-		{
-			Log.e("antenas", "Antena sin nombre ni canales: " + antena);
-			return;
-		}
-
-		tvDesc.setText(TextUtils.commaEllipsize(antena.descripción != null ? antena.descripción : detalleCanales, tvDesc.getPaint(), tvDesc.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
-		if(tvDet.getVisibility() != View.GONE)
-			tvDet.setText(TextUtils.commaEllipsize(detalleCanales, tvDet.getPaint(), tvDet.getWidth() * 3, getString(R.string.one_more), getString(R.string.some_more)));
 	}
 
 	protected void asignarLayout()
@@ -663,35 +423,14 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	@Override
 	protected void onDestroy()
 	{
-		synchronized(this)
-		{
-			if(threadContornos != null)
-			{
-				threadContornos.interrupt();
-				threadContornos = null;
-			}
-		}
+		if(antenasAdapter != null)
+			antenasAdapter.onDestroy();
 		publicidad.onDestroy();
 		super.onDestroy();
 	}
 
 	private LocationClientCompat locationClient;
 	private SharedPreferences prefs;
-
-	@Override
-	public void nuevaOrientación(double brújula)
-	{
-		//NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
-		//((TextView)findViewById(R.id.orientacion)).setText(nf.format(brújula) /*+ " " + nf.format(Math.PI/2.0 - brújula)*/);
-		//Log.d("antenas", "orientacion: " + values[0]);
-		for(Entry<Antena, View> e : antenaAVista.entrySet())
-		{
-			Antena antena = e.getKey();
-			double rumbo = antena.rumboDesde(coordsUsuario);
-			FlechaView f = (FlechaView)e.getValue().findViewById(R.id.flecha);
-			f.setÁngulo(rumbo - brújula);
-		}
-	}
 
 	private boolean menúConfigurado = false;
 
@@ -724,13 +463,12 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		if(brújula != null)
 			brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
-		List<Antena> antenasCerca = Antena.dameAntenasCerca(this, coordsUsuario,
-				maxDist,
-				prefs.getBoolean("menos", true));
+		antenasAdapter.nuevaUbicación(coordsUsuario);
+
 		if(!menúConfigurado)
 		{
 			Set<País> países = EnumSet.noneOf(País.class);
-			for(Antena antena : antenasCerca)
+			for(Antena antena : antenasAdapter.antenas)
 				países.add(antena.país);
 			if(países.contains(País.AR) || países.contains(País.UY))
 				mostrarOpciónAyudaArgentina = true;
@@ -752,7 +490,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		if(maxDist == 60000 && !prefs.getBoolean("distancia_configurada", false))
 		{
 			Set<País> países = EnumSet.noneOf(País.class);
-			for(Antena antena : antenasCerca)
+			for(Antena antena : antenasAdapter.antenas)
 				países.add(antena.país);
 			SharedPreferences.Editor editor = prefs.edit();
 			boolean volver = false;
@@ -765,87 +503,15 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			if(volver)
 			{
 				nuevaUbicación();
-				return;
 			}
 		}
-		Iterator<Entry<Antena, View>> it = antenaAVista.entrySet().iterator();
-		ViewGroup contenedor = (ViewGroup)findViewById(R.id.antenas);
-		while(it.hasNext())
-		{
-			Entry<Antena, View> e = it.next();
-			if(!antenasCerca.contains(e.getKey()))
-			{
-				contenedor.removeView(e.getValue());
-				vistaAAntena.remove(e.getValue());
-				it.remove();
-			} else
-			{
-				ponéDistancia(e.getKey(), e.getValue());
-			}
-		}
-		LayoutInflater inf = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-		for(Antena a : antenasCerca)
-		{
-			if(!antenaAVista.containsKey(a))
-			{
-				if(a.país == País.US && prefs.getBoolean("usar_contornos", true))
-				{
-					Log.i("antenas", "agregando a la cola a " + a);
-					crearThreadContornos();
-					colaParaContornos.add(a);
-				}
 
-				View v = inf.inflate(R.layout.antena, contenedor, false);
-				int n = contenedor.getChildCount(), i;
-				for(i = 0 ; i < n ; i++)
-				{
-					View child = contenedor.getChildAt(i);
-					if(vistaAAntena.get(child).dist > a.dist)
-					{
-						contenedor.addView(v, i);
-						break;
-					}
-				}
-				if(i == n)
-					contenedor.addView(v);
-				v.setOnClickListener(onAntenaClickedListener);
-				v.setFocusable(true);
-				CharSequence detalleCanales = a.dameDetalleCanales(this);
-				TextView tvDesc = (TextView)v.findViewById(R.id.antena_desc);
-				TextView tvDetalle = (TextView)v.findViewById(R.id.antena_detalle_canales);
-				if(a.descripción != null)
-				{
-					tvDesc.setText(a.descripción);
-					if(detalleCanales != null)
-						tvDetalle.setText(detalleCanales);
-					else
-						tvDetalle.setVisibility(View.GONE);
-				} else
-				{
-					tvDesc.setText(detalleCanales);
-					tvDetalle.setVisibility(View.GONE);
-				}
-				TextView tvPotencia = (TextView)v.findViewById(R.id.antena_potencia);
-				if(tvPotencia != null)
-					tvPotencia.setText(a.potencia > 0 ? a.potencia + " kW" : null);
-				ponéDistancia(a, v);
-				antenaAVista.put(a, v);
-				vistaAAntena.put(v, a);
-
-				if(brújula == null)
-				{
-					FlechaView f = (FlechaView)v.findViewById(R.id.flecha);
-					f.setÁngulo(a.rumboDesde(coordsUsuario));
-					f.setMostrarPuntosCardinales(true);
-				}
-			}
-		}
 		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
 		pb.hide();
 		TextView problema = (TextView)findViewById(R.id.problema);
-		if(antenasCerca.isEmpty())
+		if(antenasAdapter.getItemCount() == 0)
 		{
-			StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, formatDistance(maxDist)));
+			StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist)));
 			String[] vv = getResources().getStringArray(R.array.pref_max_dist_values);
 			if(Integer.parseInt(vv[vv.length-1]) * 1000 != maxDist)
 				sb.append(' ').append(getString(R.string.podes_incrementar_radio));
@@ -855,52 +521,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		{
 			problema.setVisibility(View.GONE);
 		}
-	}
-
-	private void ponéDistancia(Antena a, View v)
-	{
-		ponéDistancia(a, (TextView)v.findViewById(R.id.antena_dist));
-	}
-
-	protected void ponéDistancia(Antena a, TextView tv)
-	{
-		tv.setText(formatDistance(a.distanceTo(coordsUsuario)));
-	}
-
-	final static private NumberFormat nf = NumberFormat.getNumberInstance(
-			"es".equals(Locale.getDefault().getLanguage())
-				? new Locale("es", "AR")
-				: Locale.getDefault());
-	private String formatDistance(double distancia)
-	{
-		String unit = prefs.getString("unit", "km");
-		double f;
-		switch(unit)
-		{
-			case "km":
-				f = 1000.0;
-				break;
-			case "mi":
-				f = 1609.344;
-				break;
-			default:
-				throw new RuntimeException("unit: " + unit);
-		}
-		nf.setMaximumFractionDigits(distancia < f ? 2 : 1);
-		return nf.format(distancia / f) + ' ' + unit;
-	}
-
-	protected static String formatPower(float potencia)
-	{
-		nf.setMaximumFractionDigits(potencia < 1 ? 2 : 1);
-		return nf.format(potencia) + " kW";
-	}
-
-	private void reset()
-	{
-		((ViewGroup)findViewById(R.id.antenas)).removeAllViews();
-		vistaAAntena.clear();
-		antenaAVista.clear();
 	}
 
 	public void onConnectionFailed(ConnectionResult r)

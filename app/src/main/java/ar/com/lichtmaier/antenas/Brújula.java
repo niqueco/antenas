@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.WindowManager;
 
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.Set;
+
 public class Brújula implements SensorEventListener
 {
 	final private float[] gravity = new float[3];
@@ -14,20 +18,19 @@ public class Brújula implements SensorEventListener
 	final private Sensor acelerómetro;
 	final private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
-	private final Callback callback;
+	Set<Callback> listeners = Collections.newSetFromMap(new IdentityHashMap<Callback, Boolean>());
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	final private int rotación;
 	private long lastUpdate = 0;
 
-	private Brújula(Context context, Sensor acelerómetro, Sensor magnetómetro, Callback callback)
+	private Brújula(Context context, Sensor acelerómetro, Sensor magnetómetro)
 	{
 		this.acelerómetro = acelerómetro;
 		this.magnetómetro = magnetómetro;
-		this.callback = callback;
 		rotación = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
 	}
 
-	public static Brújula crear(Context context, Callback callback)
+	public static Brújula crear(Context context)
 	{
 		if(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
 		{
@@ -35,9 +38,19 @@ public class Brújula implements SensorEventListener
 			Sensor magnetómetro = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 			Sensor acelerómetro = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 			if(magnetómetro != null && acelerómetro != null)
-				return new Brújula(context, acelerómetro, magnetómetro, callback);
+				return new Brújula(context, acelerómetro, magnetómetro);
 		}
 		return null;
+	}
+
+	public void registerListener(Callback cb)
+	{
+		listeners.add(cb);
+	}
+
+	public void removeListener(Callback cb)
+	{
+		listeners.remove(cb);
 	}
 
 	public void onResume(Context context)
@@ -123,7 +136,9 @@ public class Brújula implements SensorEventListener
 				brújula += 360;
 			else if(brújula >= 360)
 				brújula -= 360;
-			callback.nuevaOrientación(brújula);
+			//Log.d("antenas", "rot=" + rotación + ", declinaciónMagnética="+declinaciónMagnética+", brújula=" + (int) brújula);
+			for(Callback cb : listeners)
+				cb.nuevaOrientación(brújula);
 		}
 	}
 

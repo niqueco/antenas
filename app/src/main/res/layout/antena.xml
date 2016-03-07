@@ -20,7 +20,7 @@
         android:layout_toStartOf="@+id/flecha"
         android:orientation="vertical">
 
-        <TextView
+        <ar.com.lichtmaier.antenas.CommaEllipsizeTextView
             android:id="@+id/antena_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             tools:text="Buenos Aires"
             tools:ignore="UnusedAttribute"/>
 
-        <TextView
+        <ar.com.lichtmaier.antenas.CommaEllipsizeTextView
             android:id="@+id/antena_detalle_canales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

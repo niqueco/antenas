@@ -59,10 +59,17 @@ public class FlechaView extends View
 
 	public void setÁngulo(double ángulo)
 	{
+		setÁngulo(ángulo, true);
+	}
+
+	public void setÁngulo(double ángulo, boolean suave)
+	{
 		double antes = this.ángulo;
 		this.ángulo = ángulo;
 		if(antes != ángulo)
 			ViewCompat.postInvalidateOnAnimation(this);
+		if(!suave)
+			ánguloDibujado = Float.MAX_VALUE;
 	}
 
 	public void setMostrarPuntosCardinales(boolean mostrarPuntosCardinales)

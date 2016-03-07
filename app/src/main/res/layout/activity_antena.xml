@@ -28,23 +28,15 @@
         tools:ignore="UselessParent">
 
 
-    <ScrollView
-        android:id="@+id/scroll"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/antenas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/antenas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divisor"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:showDividers="middle"
-            tools:context="ar.com.lichtmaier.antenas.AntenaActivity"
-            tools:ignore="UnusedAttribute"/>
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:ignore="UnusedAttribute"
+        />
 
     <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/progressBar"

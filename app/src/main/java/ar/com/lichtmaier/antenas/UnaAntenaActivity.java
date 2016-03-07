@@ -48,7 +48,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		else
 			antenaDesc.setVisibility(View.GONE);
 		final TextView tvPotencia = (TextView)findViewById(R.id.antena_potencia);
-		tvPotencia.setText(antena.potencia > 0 ? formatPower(antena.potencia) : null);
+		tvPotencia.setText(antena.potencia > 0 ? Formatos.formatPower(antena.potencia) : null);
 		nuevaUbicación(); // para que se configure la distancia
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
@@ -313,9 +313,10 @@ public class UnaAntenaActivity extends AntenaActivity
 	protected void nuevaUbicación()
 	{
 		if(antena != null)
-			ponéDistancia(antena, (TextView) findViewById(R.id.antena_dist));
+			((TextView)findViewById(R.id.antena_dist)).setText(Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario)));
 	}
 
+	/*
 	@Override
 	public void nuevaOrientación(double brújula)
 	{
@@ -324,6 +325,7 @@ public class UnaAntenaActivity extends AntenaActivity
 		ángulo = rumbo - brújula;
 		f.setÁngulo(ángulo);
 	}
+	*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
