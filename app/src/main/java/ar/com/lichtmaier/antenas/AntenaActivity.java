@@ -177,6 +177,15 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		if(brújula != null)
 			Compat.applyPreferences(prefs.edit().remove("aviso_no_brújula"));
 
+		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
+
+		if(rv != null)
+		{
+			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener);
+			rv.setAdapter(antenasAdapter);
+		}
+
+
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 		{
 			if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION))
@@ -211,14 +220,6 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		publicidad = new Publicidad(this, this instanceof UnaAntenaActivity
 				? "ca-app-pub-0461170458442008/1711829752"
 				: "ca-app-pub-0461170458442008/6164714153");
-
-		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
-
-		if(rv != null)
-		{
-			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener);
-			rv.setAdapter(antenasAdapter);
-		}
 
 		if(rv != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
