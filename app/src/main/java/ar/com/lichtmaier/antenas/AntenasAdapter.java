@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.SphericalUtil;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
@@ -25,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaViewHolder>
 {
 	final private SharedPreferences prefs;
-	List<Antena> antenas, antenasLejos = new ArrayList<>();
+	final List<Antena> antenasCerca = new ArrayList<>(), antenasLejos = new ArrayList<>();
 	private Context context;
 	@Nullable final private Brújula brújula;
 	private final Callback antenaClickedListener;
@@ -134,9 +136,9 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	}
 
 	@Override
-	public synchronized int getItemCount()
+	public int getItemCount()
 	{
-		return (antenas == null ? 0 : antenas.size()) + antenasLejos.size();
+		return (antenasCerca == null ? 0 : antenasCerca.size()) + antenasLejos.size();
 	}
 
 	@Override
@@ -146,38 +148,65 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		return (long)antena.país.ordinal() << 60 | antena.index;
 	}
 
-	private synchronized Antena getAntena(int position)
+	private Antena getAntena(int position)
 	{
-		int s = antenas.size();
-		return position < s ? antenas.get(position) : antenasLejos.get(position - s);
+		int s = antenasCerca.size();
+		return position < s ? antenasCerca.get(position) : antenasLejos.get(position - s);
 	}
 
 	public void nuevaUbicación(GlobalCoordinates coordsUsuario)
 	{
+		if(llamarANuevaUbicación != null)
+			llamarANuevaUbicación.removeMessages(0);
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
-		List<Antena> antenasCerca = Antena.dameAntenasCerca(context, coordsUsuario,
+		List<Antena> antenasAlrededor = Antena.dameAntenasCerca(context, coordsUsuario,
 				maxDist,
 				prefs.getBoolean("menos", true));
-		synchronized(this)
+		Log.d("antenas", "Tengo " + antenasAlrededor.size() + " antenas alrededor.");
+		antenasCerca.clear();
+		antenasLejos.clear();
+		LatLng coords = new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude());
+		boolean renovarCaché = false;
+		if(posCachéCercanía != null)
 		{
-			for(Antena a : antenasCerca)
+			if(SphericalUtil.computeDistanceBetween(posCachéCercanía, coords) > 200)
 			{
-				if((antenas == null || !antenas.contains(a)) && !antenasLejos.contains(a))
-				{
-					if(a.país == País.US && prefs.getBoolean("usar_contornos", true))
-					{
-						Log.i("antenas", "agregando a la cola a " + a);
-						crearThreadContornos();
-						colaParaContornos.add(a);
-					}
-				}
+				if(Log.isLoggable("antenas", Log.DEBUG))
+					Log.d("antenas", "Renuevo caché de cercanía de " + cachéCercaníaAntena.size() + " elementos.");
+				renovarCaché = true;
+				posCachéCercanía = coords;
+				cachéCercaníaAntena.keySet().retainAll(antenasAlrededor);
 			}
-			antenasLejos.retainAll(antenasCerca);
-			antenasCerca.removeAll(antenasLejos);
-			antenas = antenasCerca;
+		} else
+		{
+			posCachéCercanía = coords;
+		}
+		for(Antena a : antenasAlrededor)
+		{
+			if(a.país != País.US || !prefs.getBoolean("usar_contornos", true))
+			{
+				antenasCerca.add(a);
+				continue;
+			}
+			Boolean cerca = cachéCercaníaAntena.get(a);
+			if(cerca == null || cerca)
+				antenasCerca.add(a);
+			else
+				antenasLejos.add(a);
+
+			if(cerca == null || renovarCaché)
+			{
+				Log.i("antenas", "agregando a la cola a " + a);
+				crearThreadContornos();
+				colaParaContornos.add(a);
+			}
 		}
 		notifyDataSetChanged();
 	}
+
+	final private Map<Antena,Boolean> cachéCercaníaAntena = new HashMap<>();
+	private LatLng posCachéCercanía;
+	private Handler llamarANuevaUbicación;
 
 	private synchronized void crearThreadContornos()
 	{
@@ -224,13 +253,27 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 							}
 						}
 
-						if(canalesLejos != null)
+						final boolean cerca = canalesLejos == null || antena.canales.size() != canalesLejos.size();
+						if(!cerca && Log.isLoggable("antenas", Log.DEBUG))
+							Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
+						new Handler(Looper.getMainLooper()).post(new Runnable()
 						{
-							if(Log.isLoggable("antenas", Log.DEBUG))
-								Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
-							if(antena.canales.size() == canalesLejos.size())
-								bajar(antena);
-						}
+							@Override
+							public void run()
+							{
+								cachéCercaníaAntena.put(antena, cerca);
+								if(llamarANuevaUbicación == null)
+									llamarANuevaUbicación = new Handler() {
+										@Override
+										public void handleMessage(Message msg)
+										{
+											nuevaUbicación(AntenaActivity.coordsUsuario);
+										}
+									};
+								llamarANuevaUbicación.sendEmptyMessageDelayed(0, 2000);
+							}
+						});
+
 					}
 				} catch(InterruptedException ignored) { }
 				finally
@@ -246,20 +289,6 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		threadContornos.start();
 	}
 
-	private void bajar(final Antena antena)
-	{
-		new Handler(Looper.getMainLooper()).post(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				antenas.remove(antena);
-				antenasLejos.add(antena);
-				notifyDataSetChanged();
-			}
-		});
-	}
-
 	public void onDestroy()
 	{
 		if(threadContornos != null)
@@ -271,9 +300,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 
 	public void reset()
 	{
-		antenas = null;
-		antenasLejos.clear();
-		notifyDataSetChanged();
+		cachéCercaníaAntena.clear();
 	}
 
 	interface Callback

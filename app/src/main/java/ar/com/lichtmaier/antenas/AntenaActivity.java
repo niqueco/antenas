@@ -468,7 +468,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		if(!menúConfigurado)
 		{
 			Set<País> países = EnumSet.noneOf(País.class);
-			for(Antena antena : antenasAdapter.antenas)
+			for(Antena antena : antenasAdapter.antenasCerca)
 				países.add(antena.país);
 			if(países.contains(País.AR) || países.contains(País.UY))
 				mostrarOpciónAyudaArgentina = true;
@@ -490,7 +490,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		if(maxDist == 60000 && !prefs.getBoolean("distancia_configurada", false))
 		{
 			Set<País> países = EnumSet.noneOf(País.class);
-			for(Antena antena : antenasAdapter.antenas)
+			for(Antena antena : antenasAdapter.antenasCerca)
 				países.add(antena.país);
 			SharedPreferences.Editor editor = prefs.edit();
 			boolean volver = false;
