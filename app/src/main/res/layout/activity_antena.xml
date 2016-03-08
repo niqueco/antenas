@@ -38,7 +38,7 @@
         tools:ignore="UnusedAttribute"
         />
 
-    <android.support.v4.widget.ContentLoadingProgressBar
+    <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"

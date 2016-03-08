@@ -25,13 +25,13 @@ import android.support.design.widget.Snackbar;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.*;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +48,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 	static GlobalCoordinates coordsUsuario;
 	static float alturaUsuario;
 	protected Brújula brújula;
+	private AntenasAdapter antenasAdapter;
 	private Publicidad publicidad;
 	boolean huboSavedInstanceState;
 	private boolean seMuestraRuegoDePermisos;
@@ -108,7 +109,6 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			terminarDeConfigurar();
 		}
 	};
-	private AntenasAdapter antenasAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -132,17 +132,11 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			}
 		} catch(Exception ignored) { }
 
-		final ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
+		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
 		if(pb != null)
 		{
-			pb.post(new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					pb.show();
-				}
-			});
+			prenderAnimación = new PrenderAnimación(pb);
+			pb.postDelayed(prenderAnimación, 400);
 		}
 
 		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
@@ -526,8 +520,28 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			}
 		}
 
-		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
-		pb.hide();
+		final ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		if(pb != null)
+		{
+			if(prenderAnimación.comienzoAnimación != -1)
+			{
+				long falta = 600 - (System.currentTimeMillis() - prenderAnimación.comienzoAnimación);
+				if(falta <= 0)
+					pb.setVisibility(View.GONE);
+				else
+					pb.postDelayed(new Runnable()
+					{
+						@Override
+						public void run()
+						{
+							pb.setVisibility(View.GONE);
+						}
+					}, falta);
+			} else
+			{
+				pb.removeCallbacks(prenderAnimación);
+			}
+		}
 		TextView problema = (TextView)findViewById(R.id.problema);
 		if(antenasAdapter.getItemCount() == 0)
 		{
@@ -631,5 +645,25 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		if(locationClient.onActivityResult(requestCode, resultCode, data))
 			return;
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	private PrenderAnimación prenderAnimación;
+
+	private static class PrenderAnimación implements Runnable
+	{
+		private final View pb;
+		public long comienzoAnimación = -1;
+
+		public PrenderAnimación(View pb)
+		{
+			this.pb = pb;
+		}
+
+		@Override
+		public void run()
+		{
+			pb.setVisibility(View.VISIBLE);
+			comienzoAnimación = System.currentTimeMillis();
+		}
 	}
 }
