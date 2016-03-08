@@ -126,9 +126,18 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			}
 		} catch(Exception ignored) { }
 
-		ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
+		final ContentLoadingProgressBar pb = (ContentLoadingProgressBar)findViewById(R.id.progressBar);
 		if(pb != null)
-			pb.show();
+		{
+			pb.post(new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					pb.show();
+				}
+			});
+		}
 
 		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
