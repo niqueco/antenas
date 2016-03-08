@@ -20,13 +20,12 @@ import org.gavaghan.geodesy.GeodeticCalculator;
 import org.gavaghan.geodesy.GeodeticCurve;
 import org.gavaghan.geodesy.GlobalCoordinates;
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.*;
 
 public class Antena implements Serializable
 {
@@ -41,8 +40,10 @@ public class Antena implements Serializable
 
 	public double dist;
 
-	final static private Map<País, List<Antena>> antenasPorPaís = new EnumMap<>(País.class);
+	final static private Map<País, Future<List<Antena>>> antenasPorPaís = new EnumMap<>(País.class);
 	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();
+
+	private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 
 	private Antena(String descripción, double lat, double lon, int index, País país, String ref, float potencia)
 	{
@@ -152,17 +153,25 @@ public class Antena implements Serializable
 	}
 	final static private DistComparator distComparator = new DistComparator();
 
-	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
+	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos) throws TimeoutException
 	{
 		double latitud = coordsUsuario.getLatitude();
 		double longitud = coordsUsuario.getLongitude();
-		cargar(ctx, longitud > -32
+		Set<País> países = longitud > -32
 			? (longitud < 60 ? EnumSet.of(País.UK, País.PT) : EnumSet.of(País.AU, País.NZ))
 			: ((latitud > 13)
 				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
 					? EnumSet.of(País.AR, País.UY)
-					: EnumSet.of(País.AR, País.BR, País.CO, País.UY))));
+					: EnumSet.of(País.AR, País.BR, País.CO, País.UY)));
+		try
+		{
+			for(País país1 : países)
+				dameAntenasFuturo(ctx, país1).get(5, TimeUnit.MILLISECONDS);
+		} catch(InterruptedException|ExecutionException e)
+		{
+			throw new RuntimeException(e);
+		}
 		List<Antena> res = new ArrayList<>();
 		double distance = Math.hypot(maxDist, maxDist);
 		GlobalCoordinates topLeftCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 315, distance);
@@ -214,19 +223,22 @@ public class Antena implements Serializable
 		return hash.substring(0, len - 1) + (char)((hash.charAt(len - 1) + 1));
 	}
 
-	private synchronized static void cargar(Context ctx, Set<País> países)
+	private static class CargarAntenasPaís implements Callable<List<Antena>>
 	{
-		for(País país : países)
-			cargar(ctx, país);
-	}
+		private final País país;
+		private final Context ctx;
 
-	private synchronized static void cargar(Context ctx, País país)
-	{
-		List<Antena> l = antenasPorPaís.get(país);
-		if(l != null)
-			return;
-		long antes = System.nanoTime();
-		try {
+		public CargarAntenasPaís(País país, Context ctx)
+		{
+			this.país = país;
+			this.ctx = ctx;
+		}
+
+		@Override
+		public List<Antena> call() throws Exception
+		{
+			ArrayList<Antena> l;
+			long antes = System.nanoTime();
 			XmlPullParser xml = XmlPullParserFactory.newInstance().newPullParser();
 			int res;
 			switch(país)
@@ -268,7 +280,6 @@ public class Antena implements Serializable
 			xml.setInput(in, "UTF-8");
 			int t, index = 0;
 			l = new ArrayList<>();
-			antenasPorPaís.put(país, l);
 			Antena antena = null;
 			while( (t = xml.getEventType()) != XmlPullParser.END_DOCUMENT )
 			{
@@ -307,11 +318,9 @@ public class Antena implements Serializable
 				xml.next();
 			}
 			in.close();
-		} catch (XmlPullParserException | IOException e)
-		{
-			throw new RuntimeException(e);
+			Log.i("antenas", l.size() + " antenas de " + país + " cargadas en " + (System.nanoTime() - antes) / 1000000 + "ms");
+			return l;
 		}
-		Log.i("antenas", l.size() + " antenas de " + país + " cargadas en " + (System.nanoTime() - antes) / 1000000 + "ms");
 	}
 
 	private void agregar(Canal canal)
@@ -356,8 +365,23 @@ public class Antena implements Serializable
 
 	public static List<Antena> dameAntenas(Context ctx, País país)
 	{
-		cargar(ctx, país);
-		return antenasPorPaís.get(país);
+		try
+		{
+			return dameAntenasFuturo(ctx, país).get();
+		} catch(InterruptedException|ExecutionException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	private synchronized static Future<List<Antena>> dameAntenasFuturo(final Context ctx, final País país)
+	{
+		Future<List<Antena>> f = antenasPorPaís.get(país);
+		if(f != null)
+			return f;
+		f = executor.submit(new CargarAntenasPaís(país, ctx));
+		antenasPorPaís.put(país, f);
+		return f;
 	}
 
 	/** Devuelve una antena en base al número de orden.
@@ -367,8 +391,13 @@ public class Antena implements Serializable
 	 */
 	public static Antena dameAntena(Context ctx, País país, int index)
 	{
-		cargar(ctx, país);
-		return antenasPorPaís.get(país).get(index);
+		try
+		{
+			return dameAntenasFuturo(ctx, país).get().get(index);
+		} catch(InterruptedException|ExecutionException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 
 	public void mostrarInformacion(Context ctx)

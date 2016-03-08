@@ -465,6 +465,8 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		antenasAdapter.nuevaUbicación(coordsUsuario);
+		if(!antenasAdapter.estáTodoCargado())
+			return;
 
 		if(!menúConfigurado)
 		{

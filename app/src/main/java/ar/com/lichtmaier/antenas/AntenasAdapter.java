@@ -19,10 +19,12 @@ import com.google.maps.android.SphericalUtil;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
+import java.lang.ref.WeakReference;
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaViewHolder>
 {
@@ -33,6 +35,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	private final Callback antenaClickedListener;
 	private Thread threadContornos;
 	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
+	private boolean todoCargado = false;
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -159,9 +162,20 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		if(llamarANuevaUbicación != null)
 			llamarANuevaUbicación.removeMessages(0);
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
-		List<Antena> antenasAlrededor = Antena.dameAntenasCerca(context, coordsUsuario,
-				maxDist,
-				prefs.getBoolean("menos", true));
+		List<Antena> antenasAlrededor;
+		try
+		{
+			antenasAlrededor = Antena.dameAntenasCerca(context, coordsUsuario,
+					maxDist,
+					prefs.getBoolean("menos", true));
+		} catch(TimeoutException e)
+		{
+			Log.d("antenas", "Las antenas no están cargadas, probamos más tarde.");
+			crearHandler();
+			llamarANuevaUbicación.sendEmptyMessageDelayed(0, 100);
+			return;
+		}
+		todoCargado = true;
 		Log.d("antenas", "Tengo " + antenasAlrededor.size() + " antenas alrededor.");
 		antenasCerca.clear();
 		antenasLejos.clear();
@@ -202,6 +216,11 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			}
 		}
 		notifyDataSetChanged();
+	}
+
+	public boolean estáTodoCargado()
+	{
+		return todoCargado;
 	}
 
 	final private Map<Antena,Boolean> cachéCercaníaAntena = new HashMap<>();
@@ -262,14 +281,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 							public void run()
 							{
 								cachéCercaníaAntena.put(antena, cerca);
-								if(llamarANuevaUbicación == null)
-									llamarANuevaUbicación = new Handler() {
-										@Override
-										public void handleMessage(Message msg)
-										{
-											nuevaUbicación(AntenaActivity.coordsUsuario);
-										}
-									};
+								crearHandler();
 								llamarANuevaUbicación.sendEmptyMessageDelayed(0, 2000);
 							}
 						});
@@ -289,6 +301,12 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		threadContornos.start();
 	}
 
+	private void crearHandler()
+	{
+		if(llamarANuevaUbicación == null)
+			llamarANuevaUbicación = new LlamarANuevaUbicación(this);
+	}
+
 	public void onDestroy()
 	{
 		if(threadContornos != null)
@@ -306,5 +324,23 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	interface Callback
 	{
 		void onAntenaClicked(Antena antena, View view);
+	}
+
+	private static class LlamarANuevaUbicación extends Handler
+	{
+		private final WeakReference<AntenasAdapter> antenasAdapterWeakReference;
+
+		public LlamarANuevaUbicación(AntenasAdapter antenasAdapter)
+		{
+			antenasAdapterWeakReference = new WeakReference<>(antenasAdapter);
+		}
+
+		@Override
+		public void handleMessage(Message msg)
+		{
+			AntenasAdapter antenasAdapter = antenasAdapterWeakReference.get();
+			if(antenasAdapter != null)
+				antenasAdapter.nuevaUbicación(AntenaActivity.coordsUsuario);
+		}
 	}
 }
