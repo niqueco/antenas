@@ -101,6 +101,12 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			startActivity(i);
 			overridePendingTransition(0, 0);
 		}
+
+		@Override
+		public void onAdapterReady()
+		{
+			terminarDeConfigurar();
+		}
 	};
 	private AntenasAdapter antenasAdapter;
 
@@ -472,11 +478,13 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			return;
 		if(brújula != null)
 			brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
-		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		antenasAdapter.nuevaUbicación(coordsUsuario);
-		if(!antenasAdapter.estáTodoCargado())
-			return;
+	}
 
+	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
+	private void terminarDeConfigurar()
+	{
+		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		if(!menúConfigurado)
 		{
 			Set<País> países = EnumSet.noneOf(País.class);

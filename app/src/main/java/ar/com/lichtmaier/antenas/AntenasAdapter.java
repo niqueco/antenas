@@ -32,7 +32,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	final List<Antena> antenasCerca = new ArrayList<>(), antenasLejos = new ArrayList<>();
 	private Context context;
 	@Nullable final private Brújula brújula;
-	private final Callback antenaClickedListener;
+	private final Callback listener;
 	private Thread threadContornos;
 	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 	private boolean todoCargado = false;
@@ -74,15 +74,15 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		@Override
 		public void onClick(View v)
 		{
-			antenaClickedListener.onAntenaClicked(antena, v);
+			listener.onAntenaClicked(antena, v);
 		}
 	}
 
-	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback antenaClickedListener)
+	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback listener)
 	{
 		this.context = context;
 		this.brújula = brújula;
-		this.antenaClickedListener = antenaClickedListener;
+		this.listener = listener;
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		setHasStableIds(true);
 	}
@@ -175,7 +175,6 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			llamarANuevaUbicación.sendEmptyMessageDelayed(0, 100);
 			return;
 		}
-		todoCargado = true;
 		Log.d("antenas", "Tengo " + antenasAlrededor.size() + " antenas alrededor.");
 		antenasCerca.clear();
 		antenasLejos.clear();
@@ -216,11 +215,11 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			}
 		}
 		notifyDataSetChanged();
-	}
-
-	public boolean estáTodoCargado()
-	{
-		return todoCargado;
+		if(!todoCargado)
+		{
+			todoCargado = true;
+			listener.onAdapterReady();
+		}
 	}
 
 	final private Map<Antena,Boolean> cachéCercaníaAntena = new HashMap<>();
@@ -324,6 +323,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	interface Callback
 	{
 		void onAntenaClicked(Antena antena, View view);
+
+		void onAdapterReady();
 	}
 
 	private static class LlamarANuevaUbicación extends Handler
