@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnaAntenaActivity extends AntenaActivity
+public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callback
 {
 	private Antena antena;
 	private int orientaciónOriginal;
@@ -39,6 +39,8 @@ public class UnaAntenaActivity extends AntenaActivity
 
 		//noinspection ConstantConditions
 		getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+
+		brújula.registerListener(this);
 
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
@@ -296,6 +298,13 @@ public class UnaAntenaActivity extends AntenaActivity
 	}
 
 	@Override
+	protected void onDestroy()
+	{
+		brújula.removeListener(this);
+		super.onDestroy();
+	}
+
+	@Override
 	public void finish()
 	{
 		super.finish();
@@ -316,7 +325,6 @@ public class UnaAntenaActivity extends AntenaActivity
 			((TextView)findViewById(R.id.antena_dist)).setText(Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario)));
 	}
 
-	/*
 	@Override
 	public void nuevaOrientación(double brújula)
 	{
@@ -325,7 +333,6 @@ public class UnaAntenaActivity extends AntenaActivity
 		ángulo = rumbo - brújula;
 		f.setÁngulo(ángulo);
 	}
-	*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
