@@ -544,8 +544,10 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 					}, falta);
 			} else
 			{
+				prenderAnimación.cancelado = true;
 				pb.removeCallbacks(prenderAnimación);
 			}
+			prenderAnimación = null;
 		}
 		TextView problema = (TextView)findViewById(R.id.problema);
 		if(antenasAdapter.getItemCount() == 0)
@@ -658,6 +660,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 	{
 		private final View pb;
 		public long comienzoAnimación = -1;
+		boolean cancelado = false;
 
 		public PrenderAnimación(View pb)
 		{
@@ -667,6 +670,8 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		@Override
 		public void run()
 		{
+			if(cancelado)
+				return;
 			pb.setVisibility(View.VISIBLE);
 			comienzoAnimación = System.currentTimeMillis();
 		}
