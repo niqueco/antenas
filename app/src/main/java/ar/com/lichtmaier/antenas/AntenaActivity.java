@@ -12,6 +12,10 @@ import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -192,6 +196,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		{
 			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener);
 			rv.setAdapter(antenasAdapter);
+			rv.addItemDecoration(new DivisoresItemDecoration(getResources().getDimension(R.dimen.alto_divisor)));
 		}
 
 
@@ -664,6 +669,42 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		{
 			pb.setVisibility(View.VISIBLE);
 			comienzoAnimación = System.currentTimeMillis();
+		}
+	}
+
+	private static class DivisoresItemDecoration extends RecyclerView.ItemDecoration
+	{
+		private final float alto;
+		private final Paint pintura;
+
+		public DivisoresItemDecoration(float alto)
+		{
+			this.alto = alto;
+			pintura = new Paint();
+			pintura.setColor(0x22ffffff);
+			pintura.setStrokeWidth(alto);
+		}
+
+		@Override
+		public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state)
+		{
+			int left = parent.getPaddingLeft();
+			int right = parent.getWidth() - parent.getPaddingRight();
+			int n = parent.getChildCount() - 1;
+			for(int i = 0 ; i < n ; i++)
+			{
+				View v = parent.getChildAt(i);
+				RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) v.getLayoutParams();
+				int y = v.getBottom() + params.bottomMargin;
+				c.drawLine(left, y, right, y, pintura);
+			}
+		}
+
+		@Override
+		public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state)
+		{
+			super.getItemOffsets(outRect, view, parent, state);
+			outRect.bottom = (int)alto;
 		}
 	}
 }

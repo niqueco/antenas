@@ -11,5 +11,6 @@
 	<dimen name="paddingColumnasInfoMapa">6sp</dimen>
 	<dimen name="paddingContorno">16dp</dimen>
 	<dimen name="ancho_contorno">2dp</dimen>
+	<dimen name="alto_divisor">2dp</dimen>
 
 </resources>
