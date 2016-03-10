@@ -2,5 +2,6 @@
 <resources>
 	<color name="celeste_lindo">#03a9f4</color>
 	<color name="celeste_lindo_oscuro">#0288d1</color>
+	<color name="celeste_clarito">#4fc3f7</color>
 	<color name="contorno">#666f</color>
 </resources>

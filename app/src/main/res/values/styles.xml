@@ -10,7 +10,7 @@
 		<item name="android:windowBackground">@color/celeste_lindo</item>
 		<item name="actionBarStyle">@style/ActionBarPrincipal</item>
 		<item name="colorFlecha">#fff</item>
-		<item name="colorDial">#64ffffff</item>
+		<item name="colorDial">@color/celeste_clarito</item>
 		<item name="ladoIconoCanal">@dimen/ladoIconoCanal</item>
 	</style>
 

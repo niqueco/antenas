@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.location.Criteria;
@@ -693,7 +692,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		{
 			this.alto = alto;
 			pintura = new Paint();
-			pintura.setColor(0x22ffffff);
+			pintura.setColor(0xff29b6f6);
 			pintura.setStrokeWidth(alto);
 		}
 
