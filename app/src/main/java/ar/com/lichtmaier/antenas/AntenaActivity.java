@@ -82,11 +82,16 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 	};
 
 	static FlechaView flechaADesaparecer;
+	private boolean abriendoAntena = false;
 	private final AntenasAdapter.Callback onAntenaClickedListener = new AntenasAdapter.Callback()
 	{
 		@Override
 		public void onAntenaClicked(Antena antena, View v)
 		{
+			if(abriendoAntena)
+				return;
+			abriendoAntena = true;
+
 			Intent i = new Intent(AntenaActivity.this, UnaAntenaActivity.class);
 
 			int[] screenLocation = new int[2];
@@ -386,6 +391,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 	protected void onResume()
 	{
 		super.onResume();
+		abriendoAntena = false;
 		if(brújula != null)
 			brújula.onResume(this);
 		if(locationManager != null)
