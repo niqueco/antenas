@@ -64,12 +64,16 @@ public class FlechaView extends View
 
 	public void setÁngulo(double ángulo, boolean suave)
 	{
+		setÁngulo(ángulo, suave ? ánguloDibujado : Float.MAX_VALUE);
+	}
+
+	void setÁngulo(double ángulo, double ánguloDibujado)
+	{
 		double antes = this.ángulo;
 		this.ángulo = ángulo;
 		if(antes != ángulo)
 			ViewCompat.postInvalidateOnAnimation(this);
-		if(!suave)
-			ánguloDibujado = Float.MAX_VALUE;
+		this.ánguloDibujado = ánguloDibujado;
 	}
 
 	public void setMostrarPuntosCardinales(boolean mostrarPuntosCardinales)
@@ -169,6 +173,11 @@ public class FlechaView extends View
 
 		if(ánguloDibujado != ángulo)
 			ViewCompat.postInvalidateOnAnimation(this);
+	}
+
+	public double getÁnguloDibujado()
+	{
+		return ánguloDibujado;
 	}
 
 	public static class SavedState extends BaseSavedState

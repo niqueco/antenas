@@ -59,6 +59,7 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		flechaOriginalAlto = bundle.getInt(PACKAGE + ".height");
 		orientaciónOriginal = bundle.getInt(PACKAGE + ".orientation");
 		ángulo = bundle.getDouble(PACKAGE + ".ángulo");
+		double ánguloDibujado = bundle.getDouble(PACKAGE + ".ánguloDibujado");
 
 		flecha = (FlechaView)findViewById(R.id.flecha);
 
@@ -92,7 +93,7 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		{
 			if(brújula == null)
 				flecha.setMostrarPuntosCardinales(true);
-			flecha.setÁngulo(ángulo);
+			flecha.setÁngulo(ángulo, ánguloDibujado);
 			flecha.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
 			{
 				@Override
