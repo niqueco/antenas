@@ -90,6 +90,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			if(abriendoAntena)
 				return;
 			abriendoAntena = true;
+			suspender();
 
 			Intent i = new Intent(AntenaActivity.this, UnaAntenaActivity.class);
 
@@ -421,6 +422,12 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 	{
 		if(System.currentTimeMillis() - comienzoUsoPantalla > 1000 * 30)
 			Calificame.registráQueMiróLasAntenas(this);
+		suspender();
+		super.onPause();
+	}
+
+	private void suspender()
+	{
 		publicidad.onPause();
 		if(brújula != null)
 			brújula.onPause(this);
@@ -429,7 +436,6 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 			locationManager.removeUpdates(locationListener);
 		if(locationClient != null)
 			locationClient.onPause();
-		super.onPause();
 	}
 
 	@Override
