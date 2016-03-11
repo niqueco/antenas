@@ -48,11 +48,13 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
 		final TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
+		assert antenaDesc != null;
 		if(antena.descripción != null)
 			antenaDesc.setText(antena.descripción);
 		else
 			antenaDesc.setVisibility(View.GONE);
 		final TextView tvPotencia = (TextView)findViewById(R.id.antena_potencia);
+		assert tvPotencia != null;
 		tvPotencia.setText(antena.potencia > 0 ? Formatos.formatPower(antena.potencia) : null);
 		nuevaUbicación(); // para que se configure la distancia
 
@@ -65,13 +67,17 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		double ánguloDibujado = bundle.getDouble(PACKAGE + ".ánguloDibujado");
 
 		flecha = (FlechaView)findViewById(R.id.flecha);
+		assert flecha != null;
 
 		if(antena.canales != null && !antena.canales.isEmpty())
 		{
-			findViewById(R.id.antes_de_canales).setVisibility(View.VISIBLE);
+			View antes = findViewById(R.id.antes_de_canales);
+			if(antes != null)
+				antes.setVisibility(View.VISIBLE);
 			ViewGroup p = (ViewGroup)findViewById(R.id.columna_derecha);
 			if(p == null)
 				p = (ViewGroup)findViewById(R.id.principal);
+			assert p != null;
 			boolean hayImágenes = antena.hayImágenes();
 			float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
 			float density = getResources().getDisplayMetrics().density;
@@ -107,6 +113,7 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 					calcularDeltas();
 
 					View fondo = findViewById(R.id.fondo);
+					assert fondo != null;
 
 					if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 					{
@@ -206,6 +213,7 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 					}
 
 					Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
+					assert tb != null;
 					int n = tb.getChildCount();
 					for(int i = 0 ; i < n ; i++)
 					{
@@ -288,7 +296,9 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		if(AntenaActivity.flechaADesaparecer != null)
 			AntenaActivity.flechaADesaparecer.setVisibility(View.INVISIBLE);
 		View fondo = findViewById(R.id.fondo);
+		assert fondo != null;
 		View flecha = findViewById(R.id.flecha);
+		assert flecha != null;
 		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		{
 			AlphaAnimation aa = new AlphaAnimation(1, 0);
@@ -438,7 +448,11 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 	protected void nuevaUbicación()
 	{
 		if(antena != null)
-			((TextView)findViewById(R.id.antena_dist)).setText(Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario)));
+		{
+			TextView antenaDist = (TextView)findViewById(R.id.antena_dist);
+			assert antenaDist != null;
+			antenaDist.setText(Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario)));
+		}
 	}
 
 	@Override
@@ -446,6 +460,7 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 	{
 		double rumbo = antena.rumboDesde(coordsUsuario);
 		FlechaView f = (FlechaView)findViewById(R.id.flecha);
+		assert f != null;
 		ángulo = rumbo - brújula;
 		f.setÁngulo(ángulo);
 	}
