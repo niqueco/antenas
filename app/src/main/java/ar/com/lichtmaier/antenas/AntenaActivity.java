@@ -106,7 +106,8 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 					putExtra(PACKAGE + ".width", flecha.getWidth()).
 					putExtra(PACKAGE + ".height", flecha.getHeight()).
 					putExtra(PACKAGE + ".ángulo", flecha.getÁngulo()).
-					putExtra(PACKAGE + ".ánguloDibujado", flecha.getÁnguloDibujado());
+					putExtra(PACKAGE + ".ánguloDibujado", flecha.getÁnguloDibujado()).
+					putExtra(PACKAGE + ".sinValor", brújula != null && brújula.sinValor());
 			flechaADesaparecer = flecha;
 
 			startActivity(i);

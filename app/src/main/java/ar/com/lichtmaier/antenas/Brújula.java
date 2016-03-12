@@ -22,6 +22,7 @@ public class Brújula implements SensorEventListener
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	final private int rotación;
 	private long lastUpdate = 0;
+	private boolean sinValor = false;
 
 	private Brújula(Context context, Sensor acelerómetro, Sensor magnetómetro)
 	{
@@ -103,6 +104,14 @@ public class Brújula implements SensorEventListener
 
 		if(hayInfoDeAcelerómetro && hayInfoDeMagnetómetro)
 		{
+			if(gravity[2] < .5)
+			{
+				sinValor = true;
+				for(Callback l : listeners)
+					l.desorientados();
+				return;
+			}
+
 			SensorManager.getRotationMatrix(r, null, gravity, geomagnetic);
 			int axisX;
 			int axisY;
@@ -136,6 +145,7 @@ public class Brújula implements SensorEventListener
 				brújula += 360;
 			else if(brújula >= 360)
 				brújula -= 360;
+			sinValor = false;
 			//Log.d("antenas", "rot=" + rotación + ", declinaciónMagnética="+declinaciónMagnética+", brújula=" + (int) brújula);
 			for(Callback cb : listeners)
 				cb.nuevaOrientación(brújula);
@@ -145,8 +155,15 @@ public class Brújula implements SensorEventListener
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 
+	public boolean sinValor()
+	{
+		return sinValor;
+	}
+
 	interface Callback
 	{
 		void nuevaOrientación(double orientación);
+
+		void desorientados();
 	}
 }

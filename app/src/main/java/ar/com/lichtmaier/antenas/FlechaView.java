@@ -69,6 +69,17 @@ public class FlechaView extends View
 
 	void setÁngulo(double ángulo, double ánguloDibujado)
 	{
+		if(sinValor)
+		{
+			sinValor = false;
+			if(ánguloDibujado != Float.MAX_VALUE)
+				ViewCompat.animate(this).alpha(1);
+			else
+			{
+				ViewCompat.animate(this).cancel();
+				ViewCompat.setAlpha(this, 1);
+			}
+		}
 		double antes = this.ángulo;
 		this.ángulo = ángulo;
 		if(antes != ángulo)
@@ -178,6 +189,21 @@ public class FlechaView extends View
 	public double getÁnguloDibujado()
 	{
 		return ánguloDibujado;
+	}
+
+	boolean sinValor = false;
+	public void sinValor(boolean suave)
+	{
+		if(sinValor)
+			return;
+		sinValor = true;
+		if(suave)
+			ViewCompat.animate(this).alpha(0);
+		else
+		{
+			ViewCompat.animate(this).cancel();
+			ViewCompat.setAlpha(this, 0);
+		}
 	}
 
 	public static class SavedState extends BaseSavedState

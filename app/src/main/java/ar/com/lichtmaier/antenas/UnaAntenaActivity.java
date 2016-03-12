@@ -69,6 +69,9 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		flecha = (FlechaView)findViewById(R.id.flecha);
 		assert flecha != null;
 
+		if(bundle.getBoolean(PACKAGE + ".sinValor"))
+			flecha.sinValor(false);
+
 		if(antena.canales != null && !antena.canales.isEmpty())
 		{
 			View antes = findViewById(R.id.antes_de_canales);
@@ -328,6 +331,8 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 					if(AntenaActivity.flechaADesaparecer != null)
 					{
 						AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
+						if(brújula.sinValor())
+							AntenaActivity.flechaADesaparecer.sinValor(false);
 						AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 					}
 				}
@@ -376,6 +381,8 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 						if(AntenaActivity.flechaADesaparecer != null)
 						{
 							AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
+							if(brújula.sinValor())
+								AntenaActivity.flechaADesaparecer.sinValor(false);
 							AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 						}
 					}
@@ -463,6 +470,12 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		assert f != null;
 		ángulo = rumbo - brújula;
 		f.setÁngulo(ángulo);
+	}
+
+	@Override
+	public void desorientados()
+	{
+		flecha.sinValor(true);
 	}
 
 	@Override

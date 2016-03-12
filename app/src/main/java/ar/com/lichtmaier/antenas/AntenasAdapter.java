@@ -73,6 +73,12 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 
 		@Override
+		public void desorientados()
+		{
+			flechaView.sinValor(suave);
+		}
+
+		@Override
 		public void onClick(View v)
 		{
 			listener.onAntenaClicked(antena, v);
