@@ -166,8 +166,12 @@ public class Antena implements Serializable
 					: EnumSet.of(País.AR, País.BR, País.CO, País.UY)));
 		try
 		{
+			long t = System.nanoTime() + 4000000;
 			for(País país1 : países)
-				dameAntenasFuturo(ctx, país1).get(5, TimeUnit.MILLISECONDS);
+			{
+				long timeout = Math.max(t - System.nanoTime(), 0);
+				dameAntenasFuturo(ctx, país1).get(timeout, TimeUnit.NANOSECONDS);
+			}
 		} catch(InterruptedException|ExecutionException e)
 		{
 			throw new RuntimeException(e);
