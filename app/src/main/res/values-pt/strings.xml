@@ -41,6 +41,8 @@
 	<string name="aviso_brújula_2">Clique abaixo para ler as instruções do Google para calibrar a bússola do seu dispositivo.</string>
 	<string name="botón_ayuda_brújula">Ajudar a calibrar a bússola</string>
 	<string name="título_ayuda_calibración_brújula">Calibração da bússola</string>
+	<string name="tv_título">Antenas de TV próximas</string>
+	<string name="tv_baja_la_app">Obter o aplicativo móvel para usar o modo bússola!</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>

@@ -43,7 +43,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
 
-public class AntenaActivity extends AppCompatActivity implements com.google.android.gms.location.LocationListener
+public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
@@ -203,7 +203,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener);
+			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener, R.layout.antena);
 			rv.setAdapter(antenasAdapter);
 			final RecyclerView.LayoutManager rvLayoutManager = rv.getLayoutManager();
 			if(rvLayoutManager instanceof LinearLayoutManager)
@@ -299,7 +299,7 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(10000)
 				.setFastestInterval(2000)
-				.setSmallestDisplacement(10));
+				.setSmallestDisplacement(10), this);
 	}
 
 	@Override

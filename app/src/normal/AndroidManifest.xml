@@ -5,7 +5,13 @@
 	<!-- Para Analytics cuando no hay Play Services -->
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 
-    <application>
+	<uses-feature android:name="android.software.leanback"
+				  android:required="false"/>
+
+	<uses-sdk tools:overrideLibrary="android.support.v17.leanback"/>
+
+    <application android:banner="@drawable/banner"
+				 tools:ignore="UnusedAttribute">
         <meta-data android:name="com.google.android.gms.version"
                    android:value="@integer/google_play_services_version"/>
         <activity android:name="com.google.android.gms.ads.AdActivity"
@@ -34,6 +40,14 @@
 			android:enabled="true"
 			android:exported="false"
 			/>
+
+		<activity android:name="ar.com.lichtmaier.antenas.TVActivity"
+				  android:theme="@style/TemaTV">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+			</intent-filter>
+		</activity>
 
 	</application>
 </manifest>

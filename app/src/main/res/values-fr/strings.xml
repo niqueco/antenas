@@ -40,6 +40,8 @@
 	<string name="aviso_brújula_2">Cliquez ci-dessous pour lire les instructions de Google pour calibrer la boussole de votre appareil.</string>
 	<string name="botón_ayuda_brújula">Aide pour calibrer la boussole</string>
 	<string name="título_ayuda_calibración_brújula">Calibrage de la boussole</string>
+	<string name="tv_título">Antennes de télévision à proximité</string>
+	<string name="tv_baja_la_app">Obtenez l\'application mobile pour utiliser le mode de la boussole!</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>

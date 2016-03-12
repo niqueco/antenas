@@ -21,15 +21,17 @@ import com.google.android.gms.location.*;
 public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
 {
 	private final GoogleApiClient google;
-	private final AntenaActivity activity;
+	private final Activity activity;
 	private final LocationRequest locationRequest;
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
+	private final Callback callback;
 
-	public LocationClientCompat(AntenaActivity activity, LocationRequest locationRequest)
+	public LocationClientCompat(Activity activity, LocationRequest locationRequest, Callback callback)
 	{
 		this.activity = activity;
 		this.locationRequest = locationRequest;
+		this.callback = callback;
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
 		google = new GoogleApiClient.Builder(activity).addApi(LocationServices.API)
 			.addConnectionCallbacks(this)
@@ -54,7 +56,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	public void onPause()
 	{
 		if(google.isConnected())
-			LocationServices.FusedLocationApi.removeLocationUpdates(google, activity);
+			LocationServices.FusedLocationApi.removeLocationUpdates(google, callback);
 	}
 
 	public void onStop()
@@ -82,7 +84,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	@Override
 	public void onConnected(Bundle bundle)
 	{
-		activity.onConnected(bundle);
+		callback.onConnected(bundle);
 
 		verificarConfiguración();
 	}
@@ -99,7 +101,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 			public void onResult(@NonNull LocationSettingsResult result)
 			{
 				Status status = result.getStatus();
-				if(status.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED && !noPreguntar && !activity.huboSavedInstanceState)
+				if(status.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED && !noPreguntar /* && !activity.huboSavedInstanceState */)
 				{
 					try
 					{
@@ -121,7 +123,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	@Override
 	public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
 	{
-		activity.onConnectionFailed(connectionResult);
+		callback.onConnectionFailed(connectionResult);
 	}
 
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
@@ -147,7 +149,14 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		@Override
 		public void onLocationResult(LocationResult result)
 		{
-			activity.onLocationChanged(result.getLastLocation());
+			callback.onLocationChanged(result.getLastLocation());
 		}
 	};
+
+	interface Callback extends com.google.android.gms.location.LocationListener
+	{
+		void onConnected(Bundle bundle);
+
+		void onConnectionFailed(ConnectionResult connectionResult);
+	}
 }

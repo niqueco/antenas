@@ -41,6 +41,8 @@
 	<string name="aviso_brújula_2">Toque más abajo para leer las instrucciones de Google sobre calibrar la brújula de su dispositivo.</string>
 	<string name="botón_ayuda_brújula">Ayuda para calibrar la brújula</string>
 	<string name="título_ayuda_calibración_brújula">Calibración de la brújula</string>
+	<string name="tv_título">Antenas de TV cercanas</string>
+	<string name="tv_baja_la_app">¡Obtenga la app móvil para usar el modo brújula!</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Hacia adelante</item>

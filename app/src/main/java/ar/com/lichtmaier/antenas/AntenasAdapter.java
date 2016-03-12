@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 {
 	final private SharedPreferences prefs;
 	final List<Antena> antenasCerca = new ArrayList<>(), antenasLejos = new ArrayList<>();
+	private final int resource;
 	private Context context;
 	@Nullable final private Brújula brújula;
 	private final Callback listener;
@@ -81,15 +83,17 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		@Override
 		public void onClick(View v)
 		{
-			listener.onAntenaClicked(antena, v);
+			if(listener != null)
+				listener.onAntenaClicked(antena, v);
 		}
 	}
 
-	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback listener)
+	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback listener, @LayoutRes int resource)
 	{
 		this.context = context;
 		this.brújula = brújula;
 		this.listener = listener;
+		this.resource = resource;
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		setHasStableIds(true);
 	}
@@ -97,7 +101,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	@Override
 	public AntenaViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
 	{
-		View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.antena, parent, false);
+		View v = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
 		v.setFocusable(true);
 		return new AntenaViewHolder(v);
 	}
@@ -231,7 +235,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		if(!todoCargado)
 		{
 			todoCargado = true;
-			listener.onAdapterReady();
+			if(listener != null)
+				listener.onAdapterReady();
 		}
 	}
 
