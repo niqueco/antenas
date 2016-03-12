@@ -36,6 +36,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	private Thread threadContornos;
 	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 	private boolean todoCargado = false;
+	private GlobalCoordinates coordsUsuario;
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -65,7 +66,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		@Override
 		public void nuevaOrientación(double orientación)
 		{
-			double rumbo = antena.rumboDesde(AntenaActivity.coordsUsuario);
+			double rumbo = antena.rumboDesde(coordsUsuario);
 			//Log.d("antenas", "antena: " + antena.descripción + ", rumbo="+ (int)rumbo + ", ángulo flecha="+ (int)(rumbo - orientación));
 			flechaView.setÁngulo(rumbo - orientación, suave);
 			suave = true;
@@ -116,10 +117,10 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 		if(vh.tvPotencia != null)
 			vh.tvPotencia.setText(a.potencia > 0 ? a.potencia + " kW" : null);
-		vh.tvDistancia.setText(Formatos.formatDistance(context, a.distanceTo(AntenaActivity.coordsUsuario)));
+		vh.tvDistancia.setText(Formatos.formatDistance(context, a.distanceTo(coordsUsuario)));
 		vh.avisoLejos.setVisibility(antenasLejos.contains(a) ? View.VISIBLE : View.GONE);
 		if(brújula == null)
-			vh.flechaView.setÁngulo(a.rumboDesde(AntenaActivity.coordsUsuario), false);
+			vh.flechaView.setÁngulo(a.rumboDesde(coordsUsuario), false);
 		else
 			vh.suave = false;
 	}
@@ -157,8 +158,14 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		return position < s ? antenasCerca.get(position) : antenasLejos.get(position - s);
 	}
 
+	private void refrescar()
+	{
+		nuevaUbicación(coordsUsuario);
+	}
+
 	public void nuevaUbicación(GlobalCoordinates coordsUsuario)
 	{
+		this.coordsUsuario = coordsUsuario;
 		if(llamarANuevaUbicación != null)
 			llamarANuevaUbicación.removeMessages(0);
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
@@ -263,7 +270,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 							if(polígono == null)
 								continue;
 
-							if(!polígono.contiene(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())))
+							if(!polígono.contiene(new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude())))
 							{
 								if(canalesLejos == null)
 									canalesLejos = new ArrayList<>();
@@ -341,7 +348,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		{
 			AntenasAdapter antenasAdapter = antenasAdapterWeakReference.get();
 			if(antenasAdapter != null)
-				antenasAdapter.nuevaUbicación(AntenaActivity.coordsUsuario);
+				antenasAdapter.refrescar();
 		}
 	}
 }
