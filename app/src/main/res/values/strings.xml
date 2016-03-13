@@ -28,7 +28,7 @@
 	<string name="calif_titulo">Can you help me?</string>
 	<string name="calif_texto">If this application is useful to you and you think it makes sense that I continue to improve I ask that you take a few seconds and you give it a rating of five stars.</string>
 	<string name="calif_boton_si">OK, I\'ll put the stars!</string>
-	<string name="calif_boton_despues">Remember me later</string>
+	<string name="calif_boton_despues">Remind me later</string>
 	<string name="calif_boton_nunca">I\'ll never do that</string>
 	<string name="aviso_lejos_fcc">Out of reach according to FCC computations.</string>
 	<string name="aviso_no_hay_brújula">No compass in device. Showing absolute bearings.</string>
