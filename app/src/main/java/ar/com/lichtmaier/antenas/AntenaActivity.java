@@ -30,7 +30,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.*;
@@ -203,7 +205,21 @@ public class AntenaActivity extends AppCompatActivity implements com.google.andr
 		{
 			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener);
 			rv.setAdapter(antenasAdapter);
-			rv.addItemDecoration(new DivisoresItemDecoration(getResources().getDimension(R.dimen.alto_divisor)));
+			final RecyclerView.LayoutManager rvLayoutManager = rv.getLayoutManager();
+			if(rvLayoutManager instanceof LinearLayoutManager)
+				rv.addItemDecoration(new DivisoresItemDecoration(getResources().getDimension(R.dimen.alto_divisor)));
+			else if(rvLayoutManager instanceof StaggeredGridLayoutManager)
+			{
+				rv.addItemDecoration(new RecyclerView.ItemDecoration()
+				{
+					@Override
+					public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state)
+					{
+						super.getItemOffsets(outRect, view, parent, state);
+						outRect.right = outRect.left = (int)(32 * getResources().getDisplayMetrics().density);
+					}
+				});
+			}
 		}
 
 

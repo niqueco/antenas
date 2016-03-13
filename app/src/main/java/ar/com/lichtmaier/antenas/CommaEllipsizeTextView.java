@@ -35,7 +35,7 @@ public class CommaEllipsizeTextView extends AppCompatTextView
 			original = text = getText();
 		else
 			text = original;
-		final CharSequence newText = TextUtils.commaEllipsize(text, getPaint(), w * 3, getContext().getString(R.string.one_more), getContext().getString(R.string.some_more));
+		final CharSequence newText = TextUtils.commaEllipsize(text, getPaint(), w * getContext().getResources().getInteger(R.integer.lineas_resumen), getContext().getString(R.string.one_more), getContext().getString(R.string.some_more));
 		if(!equals(getText(), newText))
 		{
 			nosotros = true;

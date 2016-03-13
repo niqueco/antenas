@@ -34,9 +34,11 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layoutManager="@string/antenas_layout_manager"
+        app:spanCount="2"
         tools:ignore="UnusedAttribute"
         />
+        <!-- app:spanCount sólo se usa con StaggeredGridLayoutManager -->
 
     <ProgressBar
         android:id="@+id/progressBar"
