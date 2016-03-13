@@ -1,6 +1,9 @@
 package ar.com.lichtmaier.antenas;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.lang.ref.SoftReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,6 +95,27 @@ public class Canal implements Serializable
 				break;
 		}
 		return logo;
+	}
+
+	private SoftReference<Bitmap> thumbnailRef;
+
+	@Nullable
+	public Bitmap dameThumbnail(Context context)
+	{
+		Bitmap bmp = null;
+		if(thumbnailRef != null)
+			bmp = thumbnailRef.get();
+		if(bmp != null)
+			return bmp;
+		int logo = dameLogo();
+		if(logo != 0)
+		{
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inSampleSize = 2;
+			bmp = BitmapFactory.decodeResource(context.getResources(), logo, options);
+			thumbnailRef = new SoftReference<>(bmp);
+		}
+		return bmp;
 	}
 
 	/** Crea una vista que muestra información del canal.

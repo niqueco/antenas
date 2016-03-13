@@ -2,11 +2,13 @@ package ar.com.lichtmaier.antenas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -115,7 +117,21 @@ public class Antena implements Serializable
 			else
 				sb.append(", ");
 			if(canal.nombre != null)
-				sb.append(canal.nombre);
+			{
+				String n = canal.nombre;
+				if(país == País.US && canal.cadena != null)
+					n = n.replaceAll("-.*$", "");
+				sb.append(n);
+			}
+			Bitmap bmp = canal.dameThumbnail(context);
+			if(bmp != null)
+			{
+				sb.append(' ');
+				int desde = sb.length();
+				sb.append(canal.cadena);
+				ImageSpan what = new ImageSpan(context, bmp, ImageSpan.ALIGN_BASELINE);
+				sb.setSpan(what, desde, sb.length(), 0);
+			}
 			if(canal.numero != null && (canal.nombre == null || !canal.númeroEnElNombre()))
 			{
 				int desde = 0;
