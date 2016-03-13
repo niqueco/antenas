@@ -70,26 +70,34 @@ public class CachéDeContornos
 
 	private CachéDeContornos(Context ctx)
 	{
-		File externalCacheDir = ctx.getExternalCacheDir();
-
-		if(externalCacheDir != null && externalCacheDir.isDirectory())
+		SQLiteDatabase base = null;
+		try
 		{
-			db = SQLiteDatabase.openDatabase(externalCacheDir + "/contornos.db", null, SQLiteDatabase.CREATE_IF_NECESSARY);
+			File externalCacheDir = ctx.getExternalCacheDir();
 
-			if(db.getVersion() != VERSION_BASE)
+			if(externalCacheDir != null && externalCacheDir.isDirectory())
 			{
-				db.execSQL("create table contorno ("
-						+ "app_id integer primary key on conflict replace, "
-						+ "poligono blob not null, "
-						+ "ult_uso integer not null, "
-						+ "fecha_obtenido integer not null"
-						+ ")");
-				db.setVersion(VERSION_BASE);
+				base = SQLiteDatabase.openDatabase(externalCacheDir + "/contornos.db", null, SQLiteDatabase.CREATE_IF_NECESSARY);
+
+				if(base.getVersion() != VERSION_BASE)
+				{
+					base.execSQL("create table contorno ("
+							+ "app_id integer primary key on conflict replace, "
+							+ "poligono blob not null, "
+							+ "ult_uso integer not null, "
+							+ "fecha_obtenido integer not null"
+							+ ")");
+					base.setVersion(VERSION_BASE);
+				}
+			} else
+			{
+				Log.w("leyes", "No hay almacenamiento externo. El caché de contornos será sólo en memoria.");
 			}
-		} else {
-			Log.w("leyes", "No hay almacenamiento externo. El caché de contornos será sólo en memoria.");
-			db = null;
+		} catch(RuntimeException e)
+		{
+			Log.e("leyes", "Error creando la base. El caché de contornos será sólo en memoria.", e);
 		}
+		db = base;
 
 		try
 		{
