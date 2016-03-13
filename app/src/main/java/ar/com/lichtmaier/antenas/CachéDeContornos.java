@@ -143,7 +143,7 @@ public class CachéDeContornos
 					return null;
 				}
 			Log.i("antenas", "buscando el polígono con appId=" + appId);
-			String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId;
+			String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId + "&.txt";
 			InputStream in = null;
 			try
 			{
