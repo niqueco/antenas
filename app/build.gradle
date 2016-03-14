@@ -21,13 +21,33 @@ android {
         }
     }
 
+    flavorDimensions "level", "device"
+
     productFlavors {
-        normal {
+        v9 {
+            dimension "level"
             versionCode 902000
         }
-        froyo {
+        v8 {
+            dimension "level"
             versionCode 802000
             minSdkVersion 8
+        }
+        phone {
+            dimension "device"
+        }
+        tv {
+            dimension "device"
+            versionCode 1702000
+            minSdkVersion 17
+        }
+    }
+
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+
+        if (names.contains("v8") && names.contains("tv")) {
+            variant.ignore = true
         }
     }
 
@@ -40,16 +60,16 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:23.2.1'
     //noinspection GradleDependency
-    froyoCompile 'com.google.android.gms:play-services:3.2.65'
-    normalCompile 'com.google.android.gms:play-services-location:8.4.0'
-    normalCompile 'com.google.android.gms:play-services-maps:8.4.0'
-    normalCompile 'com.google.android.gms:play-services-ads:8.4.0'
-    normalCompile 'com.google.android.gms:play-services-analytics:8.4.0'
+    v8Compile 'com.google.android.gms:play-services:3.2.65'
+    v9Compile 'com.google.android.gms:play-services-location:8.4.0'
+    v9Compile 'com.google.android.gms:play-services-maps:8.4.0'
+    v9Compile 'com.google.android.gms:play-services-ads:8.4.0'
+    v9Compile 'com.google.android.gms:play-services-analytics:8.4.0'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'com.github.davidmoten:geo:0.7.4'
     compile files('libs/geodesy.jar')
     compile 'com.google.maps.android:android-maps-utils:0.4.1'
-    normalCompile 'com.android.support:leanback-v17:23.2.1'
+    tvCompile 'com.android.support:leanback-v17:23.2.1'
 }
