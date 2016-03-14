@@ -7,6 +7,6 @@
     -->
     <dimen name="activity_horizontal_margin">144dp</dimen>
 
-    <string name="antenas_layout_manager">android.support.v7.widget.StaggeredGridLayoutManager</string>
+    <string name="antenas_layout_manager" translatable="false">android.support.v7.widget.StaggeredGridLayoutManager</string>
     <integer name="lineas_resumen">5</integer>
 </resources>
