@@ -413,25 +413,28 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(brújula != null)
 			brújula.onResume(this);
 		if(locationManager != null)
-		{
-			Criteria criteria = new Criteria();
-			criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-			criteria.setCostAllowed(true);
-			try
-			{
-				//noinspection MissingPermission
-				Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
-			} catch(IllegalArgumentException e)
-			{
-				Log.e("antenas", "Error pidiendo updates de GPS", e);
-				Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
-				finish();
-			}
-		}
+			pedirUbicaciónALocationManager();
 		if(locationClient != null)
 			locationClient.onResume();
 		publicidad.onResume();
 		comienzoUsoPantalla = System.currentTimeMillis();
+	}
+
+	private void pedirUbicaciónALocationManager()
+	{
+		Criteria criteria = new Criteria();
+		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+		criteria.setCostAllowed(true);
+		try
+		{
+			//noinspection MissingPermission
+			Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
+		} catch(IllegalArgumentException e)
+		{
+			Log.e("antenas", "Error pidiendo updates de GPS", e);
+			Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
+			finish();
+		}
 	}
 
 	@Override
@@ -622,11 +625,12 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				else
 				{
 					//noinspection MissingPermission
-					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+					location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 					if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
 						nuevaUbicación(location);
 				}
 			}
+			pedirUbicaciónALocationManager();
 		}
 	}
 
