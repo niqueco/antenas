@@ -43,7 +43,8 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 		//noinspection ConstantConditions
 		getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
 
-		brújula.registerListener(this);
+		if(brújula != null)
+			brújula.registerListener(this);
 
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
@@ -331,7 +332,7 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 					if(AntenaActivity.flechaADesaparecer != null)
 					{
 						AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
-						if(brújula.sinValor())
+						if(brújula != null && brújula.sinValor())
 							AntenaActivity.flechaADesaparecer.sinValor(false);
 						AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 					}
@@ -381,7 +382,7 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 						if(AntenaActivity.flechaADesaparecer != null)
 						{
 							AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
-							if(brújula.sinValor())
+							if(brújula != null && brújula.sinValor())
 								AntenaActivity.flechaADesaparecer.sinValor(false);
 							AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 						}
@@ -433,7 +434,8 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 	@Override
 	protected void onDestroy()
 	{
-		brújula.removeListener(this);
+		if(brújula != null)
+			brújula.removeListener(this);
 		super.onDestroy();
 	}
 
