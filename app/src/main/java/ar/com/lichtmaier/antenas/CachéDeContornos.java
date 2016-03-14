@@ -207,7 +207,10 @@ public class CachéDeContornos
 					cachéNegativo = new int[16];
 				} else if(tamañoCachéNegativo == cachéNegativo.length)
 				{
-					cachéNegativo = Arrays.copyOf(cachéNegativo, cachéNegativo.length + 16);
+					//cachéNegativo = Arrays.copyOf(cachéNegativo, cachéNegativo.length + 16); // no anda en Froyo
+					int[] arr = new int[cachéNegativo.length + 16];
+					System.arraycopy(cachéNegativo, 0, arr, 0, cachéNegativo.length);
+					cachéNegativo = arr;
 				}
 
 				cachéNegativo[tamañoCachéNegativo++] = appId;

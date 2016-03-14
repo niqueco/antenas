@@ -7,9 +7,8 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.WindowManager;
 
-import java.util.Collections;
 import java.util.IdentityHashMap;
-import java.util.Set;
+import java.util.Map;
 
 public class Brújula implements SensorEventListener
 {
@@ -18,7 +17,8 @@ public class Brújula implements SensorEventListener
 	final private Sensor acelerómetro;
 	final private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
-	Set<Callback> listeners = Collections.newSetFromMap(new IdentityHashMap<Callback, Boolean>());
+	Map<Callback, Boolean> listeners = new IdentityHashMap<>();
+	//Set<Callback> listeners = Collections.newSetFromMap(new IdentityHashMap<Callback, Boolean>()); // no anda en Froyo
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	final private int rotación;
 	private long lastUpdate = 0;
@@ -46,7 +46,7 @@ public class Brújula implements SensorEventListener
 
 	public void registerListener(Callback cb)
 	{
-		listeners.add(cb);
+		listeners.put(cb, Boolean.TRUE);
 	}
 
 	public void removeListener(Callback cb)
@@ -107,7 +107,7 @@ public class Brújula implements SensorEventListener
 			if(gravity[2] < .5)
 			{
 				sinValor = true;
-				for(Callback l : listeners)
+				for(Callback l : listeners.keySet())
 					l.desorientados();
 				return;
 			}
@@ -147,7 +147,7 @@ public class Brújula implements SensorEventListener
 				brújula -= 360;
 			sinValor = false;
 			//Log.d("antenas", "rot=" + rotación + ", declinaciónMagnética="+declinaciónMagnética+", brújula=" + (int) brújula);
-			for(Callback cb : listeners)
+			for(Callback cb : listeners.keySet())
 				cb.nuevaOrientación(brújula);
 		}
 	}
