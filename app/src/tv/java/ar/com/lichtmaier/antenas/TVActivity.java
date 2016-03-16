@@ -26,7 +26,9 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
+	public static final int PRECISIÓN_ACEPTABLE = 150;
 
+	private GlobalCoordinates coordsUsuario;
 	private LocationClientCompat locationClient;
 	private AntenasAdapter antenasAdapter;
 	private LocationManager locationManager;
@@ -81,22 +83,27 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		super.onResume();
 		if(locationManager != null)
 		{
-			Criteria criteria = new Criteria();
-			criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-			criteria.setCostAllowed(true);
-			try
-			{
-				//noinspection MissingPermission
-				Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
-			} catch(IllegalArgumentException e)
-			{
-				Log.e("antenas", "Error pidiendo updates de GPS", e);
-				Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
-				finish();
-			}
+			pedirUbicaciónALocationManager();
 		}
 		if(locationClient != null)
 			locationClient.onResume();
+	}
+
+	private void pedirUbicaciónALocationManager()
+	{
+		Criteria criteria = new Criteria();
+		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+		criteria.setCostAllowed(true);
+		try
+		{
+			//noinspection MissingPermission
+			Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
+		} catch(IllegalArgumentException e)
+		{
+			Log.e("antenas", "Error pidiendo updates de GPS", e);
+			Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
+			finish();
+		}
 	}
 
 	@Override
@@ -149,8 +156,8 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	private void nuevaUbicación(Location location)
 	{
 		Log.d("anenas", "loc="+location);
-		GlobalCoordinates coords = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-		antenasAdapter.nuevaUbicación(coords);
+		coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+		antenasAdapter.nuevaUbicación(coordsUsuario);
 	}
 
 	@Override
@@ -172,6 +179,14 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 
 			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 			locationClient = null;
+			if(coordsUsuario == null)
+			{
+				//noinspection MissingPermission
+				Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
+					nuevaUbicación(location);
+			}
+			pedirUbicaciónALocationManager();
 		}
 	}
 
