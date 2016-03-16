@@ -638,7 +638,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	{
 		if(!huboSavedInstanceState && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
 		{
-			View v = findViewById(R.id.scroll);
+			View v = findViewById(R.id.antenas);
 			if(v == null)
 				v = findViewById(R.id.root);
 			Snackbar.make(v, R.string.gps_is_off, Snackbar.LENGTH_INDEFINITE)
