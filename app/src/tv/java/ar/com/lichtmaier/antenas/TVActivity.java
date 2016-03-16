@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -94,12 +95,31 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 			ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_FINE_LOCATION);
 		} else
 		{
-			locationClient = new LocationClientCompat(this, LocationRequest.create()
-					.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-					.setInterval(10000)
-					.setFastestInterval(2000)
-					.setSmallestDisplacement(10), this);
+			crearLocationClientCompat();
 		}
+	}
+
+	private void crearLocationClientCompat()
+	{
+		locationClient = new LocationClientCompat(this, LocationRequest.create()
+				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+				.setInterval(10000)
+				.setFastestInterval(2000)
+				.setSmallestDisplacement(10), this);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	{
+		if(requestCode == PEDIDO_DE_PERMISO_FINE_LOCATION)
+		{
+			if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+				//noinspection ResourceType
+				crearLocationClientCompat();
+			else
+				finish();
+		} else
+			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 	@Override
