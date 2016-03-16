@@ -15,6 +15,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -50,17 +52,40 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		}
 	};
 
+	private final AntenasAdapter.Callback antenasAdapterListener = new AntenasAdapter.Callback()
+	{
+		@Override
+		public void onAntenaClicked(Antena antena, View view)
+		{
+
+		}
+
+		@Override
+		public void onAdapterReady()
+		{
+			terminarDeConfigurar();
+		}
+	};
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.tv_activity);
+
+		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		if(pb != null)
+		{
+			prenderAnimación = new PrenderAnimación(pb);
+			pb.postDelayed(prenderAnimación, 400);
+		}
+
 		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, null, /* onAntenaClickedListener */ null, R.layout.antena_tv);
+			antenasAdapter = new AntenasAdapter(this, null, antenasAdapterListener, R.layout.antena_tv);
 			rv.setAdapter(antenasAdapter);
 		}
 
@@ -120,7 +145,6 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	@Override
 	protected void onStart()
 	{
-		Log.d("antenas", "hola!");
 		super.onStart();
 		if(locationClient != null)
 			locationClient.onStart();
@@ -155,9 +179,38 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 
 	private void nuevaUbicación(Location location)
 	{
-		Log.d("anenas", "loc="+location);
+		Log.d("antenas", "loc="+location);
 		coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 		antenasAdapter.nuevaUbicación(coordsUsuario);
+	}
+
+	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
+	private void terminarDeConfigurar()
+	{
+		final ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		if(pb != null)
+		{
+			if(prenderAnimación.comienzoAnimación != -1)
+			{
+				long falta = 600 - (System.currentTimeMillis() - prenderAnimación.comienzoAnimación);
+				if(falta <= 0)
+					pb.setVisibility(View.GONE);
+				else
+					pb.postDelayed(new Runnable()
+					{
+						@Override
+						public void run()
+						{
+							pb.setVisibility(View.GONE);
+						}
+					}, falta);
+			} else
+			{
+				prenderAnimación.cancelado = true;
+				pb.removeCallbacks(prenderAnimación);
+			}
+			prenderAnimación = null;
+		}
 	}
 
 	@Override
@@ -194,5 +247,28 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	public void onLocationChanged(Location location)
 	{
 		nuevaUbicación(location);
+	}
+
+	private PrenderAnimación prenderAnimación;
+
+	private static class PrenderAnimación implements Runnable
+	{
+		private final View pb;
+		public long comienzoAnimación = -1;
+		boolean cancelado = false;
+
+		public PrenderAnimación(View pb)
+		{
+			this.pb = pb;
+		}
+
+		@Override
+		public void run()
+		{
+			if(cancelado)
+				return;
+			pb.setVisibility(View.VISIBLE);
+			comienzoAnimación = System.currentTimeMillis();
+		}
 	}
 }
