@@ -527,6 +527,20 @@ public class MapaActivity extends AppCompatActivity
 		}
 
 		@Override
+		public void onDestroyView()
+		{
+			/* Importante, porque...
+			 * "Any objects obtained from the GoogleMap are associated with the view.
+			 * It's important to not hold on to objects (e.g. Marker) beyond the view's life.
+			 * Otherwise it will cause a memory leak as the view cannot be released."
+			 */
+			markerAAntena.clear();
+			markerSeleccionado = null;
+			países.clear();
+			super.onDestroyView();
+		}
+
+		@Override
 		public void onDestroy()
 		{
 			if(tareaTraerContorno != null)

@@ -56,7 +56,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	public void onPause()
 	{
 		if(google.isConnected())
-			LocationServices.FusedLocationApi.removeLocationUpdates(google, callback);
+			LocationServices.FusedLocationApi.removeLocationUpdates(google, locationCallback);
 	}
 
 	public void onStop()
