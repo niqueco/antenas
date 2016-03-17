@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
@@ -14,7 +15,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,7 +28,7 @@ import com.google.android.gms.location.LocationRequest;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
-public class TVActivity extends FragmentActivity implements LocationClientCompat.Callback
+public class TVActivity extends Activity implements LocationClientCompat.Callback
 {
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -148,8 +148,9 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		criteria.setCostAllowed(true);
 		try
 		{
+			Log.i("antenas", "Pidiendo ubicación al LocationManager.");
 			//noinspection MissingPermission
-			Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
+			locationManager.requestLocationUpdates(1000 * 60, 0, criteria, locationListener, null);
 		} catch(IllegalArgumentException e)
 		{
 			Log.e("antenas", "Error pidiendo updates de GPS", e);

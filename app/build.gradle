@@ -38,8 +38,8 @@ android {
         }
         tv {
             dimension "device"
-            versionCode 1702000
-            minSdkVersion 17
+            versionCode 2102000
+            minSdkVersion 21
         }
     }
 
