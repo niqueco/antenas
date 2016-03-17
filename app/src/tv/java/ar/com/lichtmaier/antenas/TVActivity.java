@@ -3,12 +3,14 @@ package ar.com.lichtmaier.antenas;
 import android.Manifest;
 import android.content.Context;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -18,6 +20,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -35,6 +38,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	private LocationClientCompat locationClient;
 	private AntenasAdapter antenasAdapter;
 	private LocationManager locationManager;
+	private SharedPreferences prefs;
 
 	private final LocationListener locationListener = new LocationListener() {
 		@Override
@@ -81,6 +85,9 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 			prenderAnimación = new PrenderAnimación(pb);
 			pb.postDelayed(prenderAnimación, 400);
 		}
+
+		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
 
@@ -207,6 +214,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
 	private void terminarDeConfigurar()
 	{
+		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		final ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
 		if(pb != null)
 		{
@@ -230,6 +238,21 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 				pb.removeCallbacks(prenderAnimación);
 			}
 			prenderAnimación = null;
+		}
+		TextView problema = (TextView)findViewById(R.id.problema);
+		if(antenasAdapter.getItemCount() == 0)
+		{
+			//StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist)));
+			//String[] vv = getResources().getStringArray(R.array.pref_max_dist_values);
+			//if(Integer.parseInt(vv[vv.length-1]) * 1000 != maxDist)
+			//	sb.append(' ').append(getString(R.string.podes_incrementar_radio));
+			//String message = sb.toString();
+			String message = getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist));
+			problema.setText(message);
+			problema.setVisibility(View.VISIBLE);
+		} else
+		{
+			problema.setVisibility(View.GONE);
 		}
 	}
 
