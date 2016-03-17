@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.StrictMode;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -10,6 +11,24 @@ import com.google.android.gms.analytics.Tracker;
 public class Aplicacion extends Application
 {
 	private Tracker tracker;
+
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
+
+		if(BuildConfig.DEBUG)
+		{
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+				.detectAll()
+				.penaltyLog()
+				.build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+				.detectAll()
+				.penaltyLog()
+				.build());
+		}
+	}
 
 	private Tracker getTracker()
 	{
