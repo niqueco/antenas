@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.lang.ref.SoftReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /** Un canal que es transmitido por una {@link ar.com.lichtmaier.antenas.Antena}. */
-public class Canal implements Serializable
+public class Canal
 {
 	public final String nombre;
 	public final String numero;

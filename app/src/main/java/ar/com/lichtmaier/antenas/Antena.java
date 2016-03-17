@@ -25,14 +25,11 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.InputStream;
-import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class Antena implements Serializable
+public class Antena
 {
-	private static final long serialVersionUID = 1L;
-
 	final public String descripción, ref, geohash;
 	private final GlobalCoordinates c;
 	final public float potencia;
