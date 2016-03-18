@@ -174,6 +174,7 @@ public class TVActivity extends Activity implements LocationClientCompat.Callbac
 	protected void onStart()
 	{
 		super.onStart();
+		((Aplicacion)getApplication()).reportActivityStart(this);
 		if(locationClient != null)
 			locationClient.onStart();
 	}
@@ -183,6 +184,7 @@ public class TVActivity extends Activity implements LocationClientCompat.Callbac
 	{
 		if(locationClient != null)
 			locationClient.onStop();
+		((Aplicacion)getApplication()).reportActivityStop(this);
 		super.onStop();
 	}
 
