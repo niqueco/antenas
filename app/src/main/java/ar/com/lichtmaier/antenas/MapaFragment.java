@@ -50,6 +50,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private static BitmapDescriptor íconoAntenita, íconoAntenitaElegida;
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 145;
+	private Canal canalSeleccionado;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -401,6 +402,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	public void canalSeleccionado(Antena antena, final Canal canal)
 	{
+		this.canalSeleccionado = canal;
 		if(contornoActual != null)
 		{
 			contornoActual.remove();
@@ -426,7 +428,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			protected void onPostExecute(Polígono polygon)
 			{
 				tareaTraerContorno = null;
-				if(polygon == null)
+				if(polygon == null || canalSeleccionado != canal)
 					return;
 				Activity act = getActivity();
 				if(act == null || Compat.activityIsDestroyed(act) || act.isFinishing())
