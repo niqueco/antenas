@@ -8,7 +8,7 @@ android {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 9
         targetSdkVersion 23
-        versionName "2.0.1"
+        versionName "2.0.2"
         resConfigs "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA", "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
         vectorDrawables.useSupportLibrary = true
     }
@@ -26,11 +26,11 @@ android {
     productFlavors {
         v9 {
             dimension "level"
-            versionCode 902001
+            versionCode 902002
         }
         v8 {
             dimension "level"
-            versionCode 802001
+            versionCode 802002
             minSdkVersion 8
         }
         phone {
@@ -38,7 +38,7 @@ android {
         }
         tv {
             dimension "device"
-            versionCode 2102001
+            versionCode 2102002
             minSdkVersion 21
         }
     }
