@@ -42,6 +42,7 @@
 	<string name="título_ayuda_calibración_brújula">Calibrage de la boussole</string>
 	<string name="tv_título">Antennes de télévision à proximité</string>
 	<string name="tv_baja_la_app">Obtenez l\'application mobile pour utiliser le mode de la boussole!</string>
+	<string name="aviso_demora_ubicación">Obtenir des données de localisation prend plus qu\'il ne devrait. Vérifiez que le GPS est activé ou, si l\'emplacement basé sur le réseau est utilisé, vérifier que l\'utilisation du WiFi est activé.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>

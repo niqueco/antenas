@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -150,6 +151,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		{
 			prenderAnimación = new PrenderAnimación(pb);
 			pb.postDelayed(prenderAnimación, 400);
+			pb.postDelayed(avisoDemora = new AvisoDemora(this), 15000);
 		}
 
 		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
@@ -580,10 +582,16 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				pb.removeCallbacks(prenderAnimación);
 			}
 			prenderAnimación = null;
+
+			avisoDemora.cancelado = true;
+			pb.removeCallbacks(avisoDemora);
+			avisoDemora = null;
 		}
 		TextView problema = (TextView)findViewById(R.id.problema);
+		assert problema != null;
 		if(antenasAdapter.getItemCount() == 0)
 		{
+			((ViewGroup.MarginLayoutParams)problema.getLayoutParams()).topMargin = 0;
 			StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist)));
 			String[] vv = getResources().getStringArray(R.array.pref_max_dist_values);
 			if(Integer.parseInt(vv[vv.length-1]) * 1000 != maxDist)
@@ -707,6 +715,34 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				return;
 			pb.setVisibility(View.VISIBLE);
 			comienzoAnimación = System.currentTimeMillis();
+		}
+	}
+
+	private AvisoDemora avisoDemora;
+
+	private static class AvisoDemora implements Runnable
+	{
+		private final WeakReference<AntenaActivity> actRef;
+		public boolean cancelado = false;
+
+		private AvisoDemora(AntenaActivity act)
+		{
+			this.actRef = new WeakReference<>(act);
+		}
+
+		@Override
+		public void run()
+		{
+			if(cancelado)
+				return;
+			AntenaActivity act = actRef.get();
+			if(act == null)
+				return;
+
+			TextView problemaView = (TextView)act.findViewById(R.id.problema);
+			problemaView.setText(R.string.aviso_demora_ubicación);
+			problemaView.setVisibility(View.VISIBLE);
+			((ViewGroup.MarginLayoutParams)problemaView.getLayoutParams()).topMargin = (int)(48 * act.getResources().getDisplayMetrics().density);
 		}
 	}
 

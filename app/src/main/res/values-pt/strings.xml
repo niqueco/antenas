@@ -43,6 +43,7 @@
 	<string name="título_ayuda_calibración_brújula">Calibração da bússola</string>
 	<string name="tv_título">Antenas de TV próximas</string>
 	<string name="tv_baja_la_app">Obter o aplicativo móvel para usar o modo bússola!</string>
+	<string name="aviso_demora_ubicación">Obtendo dados de localização está levando mais do que deveria. Verifique se o GPS está habilitado ou, se a localização baseada em rede é usado, verifique se o uso de Wi-Fi está activada.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>
