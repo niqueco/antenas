@@ -161,7 +161,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			@Override
 			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 			{
-				if(key.equals("usar_contornos"))
+				if(key.equals("usar_contornos") && antenasAdapter != null)
 					antenasAdapter.reset();
 			}
 		});
