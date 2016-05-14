@@ -120,6 +120,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public void onActivityCreated(final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+		publicidad = new Publicidad(getActivity(), "ca-app-pub-0461170458442008/5727485755");
 		SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
 		MapCompat.getMapAsync(mapFragment, new MapCompat.OnMapReadyCallback()
 		{
@@ -130,7 +131,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				inicializarMapa(savedInstanceState);
 			}
 		});
-		publicidad = new Publicidad(getActivity(), "ca-app-pub-0461170458442008/5727485755");
 	}
 
 	private void inicializarMapa(Bundle savedInstanceState)
