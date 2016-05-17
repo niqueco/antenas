@@ -1201,6 +1201,13 @@
 <canal nombre="SBS" numero="40" polarizacion="H"/>
 <canal nombre="VTV" numero="44" polarizacion="H"/>
 </antena>
+<antena lat="-38.62028" lon="146.1725">
+<canal nombre="ABC" numero="41" polarizacion="H"/>
+<canal nombre="AMV" numero="45" polarizacion="H"/>
+<canal nombre="GLV" numero="43" polarizacion="H"/>
+<canal nombre="SBS" numero="40" polarizacion="H"/>
+<canal nombre="VTV" numero="44" polarizacion="H"/>
+</antena>
 <antena lat="-38.2425" lon="146.1006">
 <canal nombre="ABC" numero="41" polarizacion="V"/>
 <canal nombre="AMV" numero="45" polarizacion="V"/>
@@ -2254,6 +2261,9 @@
 </antena>
 <antena lat="-34.80083" lon="150.5764">
 <canal nombre="ABC" numero="47" polarizacion="V"/>
+<canal nombre="CTC" numero="50" polarizacion="V"/>
+<canal nombre="SBS" numero="46" polarizacion="V"/>
+<canal nombre="WIN" numero="49" polarizacion="V"/>
 </antena>
 <antena lat="-34.80167" lon="150.5758">
 <canal nombre="ABC" numero="47" polarizacion="V"/>
@@ -2262,14 +2272,14 @@
 <canal nombre="SBS" numero="46" polarizacion="V"/>
 <canal nombre="WIN" numero="49" polarizacion="V"/>
 </antena>
-<antena lat="-34.62444" lon="150.6928">
-<canal nombre="ABC" numero="35" polarizacion="H"/>
-<canal nombre="SBS" numero="39" polarizacion="H"/>
-</antena>
 <antena lat="-34.62056" lon="150.6956">
 <canal nombre="CBN" numero="38" polarizacion="H"/>
 <canal nombre="CTC" numero="37" polarizacion="H"/>
 <canal nombre="WIN" numero="36" polarizacion="H"/>
+</antena>
+<antena lat="-34.62444" lon="150.6928">
+<canal nombre="ABC" numero="35" polarizacion="H"/>
+<canal nombre="SBS" numero="39" polarizacion="H"/>
 </antena>
 <antena lat="-34.14861" lon="150.6694">
 <canal nombre="ABC" numero="41" polarizacion="H"/>
@@ -2603,14 +2613,14 @@
 <canal nombre="QQQ" numero="41" polarizacion="H"/>
 <canal nombre="SBS" numero="47" polarizacion="H"/>
 </antena>
-<antena lat="-33.07944" lon="147.1553">
-<canal nombre="ABC" numero="41" polarizacion="V"/>
-<canal nombre="SBS" numero="40" polarizacion="V"/>
-</antena>
 <antena lat="-33.07944" lon="147.1556">
 <canal nombre="CBN" numero="43" polarizacion="V"/>
 <canal nombre="CTC" numero="44" polarizacion="V"/>
 <canal nombre="WIN" numero="42" polarizacion="V"/>
+</antena>
+<antena lat="-33.07944" lon="147.1553">
+<canal nombre="ABC" numero="41" polarizacion="V"/>
+<canal nombre="SBS" numero="40" polarizacion="V"/>
 </antena>
 <antena lat="-33.45889" lon="148.3694">
 <canal nombre="ABC" numero="42" polarizacion="H"/>
@@ -2623,6 +2633,10 @@
 <canal nombre="CBN" numero="37" polarizacion="H"/>
 <canal nombre="CTC" numero="38" polarizacion="H"/>
 <canal nombre="WIN" numero="35" polarizacion="H"/>
+</antena>
+<antena lat="-33.34389" lon="148.9825">
+<canal nombre="ABC" numero="36" polarizacion="H"/>
+<canal nombre="SBS" numero="39" polarizacion="H"/>
 </antena>
 <antena lat="-33.34417" lon="148.9825">
 <canal nombre="ABC" numero="36" polarizacion="H"/>
@@ -2947,14 +2961,14 @@
 <canal nombre="NRN" numero="37" polarizacion="V"/>
 <canal nombre="SBS" numero="34" polarizacion="V"/>
 </antena>
+<antena lat="-29.7725" lon="151.1481">
+<canal nombre="ABC" numero="41" polarizacion="H"/>
+<canal nombre="SBS" numero="40" polarizacion="H"/>
+</antena>
 <antena lat="-29.77278" lon="151.1478">
 <canal nombre="NBN" numero="43" polarizacion="H"/>
 <canal nombre="NEN" numero="42" polarizacion="H"/>
 <canal nombre="NRN" numero="44" polarizacion="H"/>
-</antena>
-<antena lat="-29.7725" lon="151.1481">
-<canal nombre="ABC" numero="41" polarizacion="H"/>
-<canal nombre="SBS" numero="40" polarizacion="H"/>
 </antena>
 <antena lat="-29.71833" lon="151.6903">
 <canal nombre="ABC" numero="41" polarizacion="V"/>
@@ -3185,18 +3199,18 @@
 <canal nombre="SBS" numero="33" polarizacion="H"/>
 </antena>
 <antena lat="-28.23639" lon="153.2878">
-<canal nombre="ABC" numero="50" polarizacion="H"/>
 <canal nombre="ABC" numero="29" polarizacion="V"/>
+<canal nombre="ABC" numero="50" polarizacion="H"/>
 <canal nombre="BTQ" numero="34" polarizacion="H"/>
-<canal nombre="NBN" numero="38" polarizacion="H"/>
 <canal nombre="NBN" numero="31" polarizacion="V"/>
-<canal nombre="NEN" numero="37" polarizacion="H"/>
+<canal nombre="NBN" numero="38" polarizacion="H"/>
 <canal nombre="NEN" numero="30" polarizacion="V"/>
+<canal nombre="NEN" numero="37" polarizacion="H"/>
 <canal nombre="NRN" numero="39" polarizacion="H"/>
 <canal nombre="NRN" numero="32" polarizacion="V"/>
 <canal nombre="QTQ" numero="35" polarizacion="H"/>
-<canal nombre="SBS" numero="49" polarizacion="H"/>
 <canal nombre="SBS" numero="33" polarizacion="V"/>
+<canal nombre="SBS" numero="49" polarizacion="H"/>
 <canal nombre="TVQ" numero="36" polarizacion="H"/>
 </antena>
 <antena lat="-28.13944" lon="153.4797">
