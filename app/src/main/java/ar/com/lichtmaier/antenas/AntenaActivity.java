@@ -31,6 +31,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -65,6 +66,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	private boolean mostrarOpciónAyudaArgentina = false, mostrarOpciónAyudaReinoUnido = false;
 
 	private long comienzoUsoPantalla;
+
+	static {
+		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+	}
 
 	private final LocationListener locationListener = new LocationListener() {
 		@Override
