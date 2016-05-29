@@ -22,10 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 
 import java.util.*;
@@ -122,7 +119,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		super.onActivityCreated(savedInstanceState);
 		publicidad = new Publicidad(getActivity(), "ca-app-pub-0461170458442008/5727485755");
 		SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
-		MapCompat.getMapAsync(mapFragment, new MapCompat.OnMapReadyCallback()
+		mapFragment.getMapAsync(new OnMapReadyCallback()
 		{
 			@Override
 			public void onMapReady(GoogleMap googleMap)

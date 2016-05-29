@@ -21,33 +21,13 @@ android {
         }
     }
 
-    flavorDimensions "level", "device"
-
     productFlavors {
-        v9 {
-            dimension "level"
+        phone {
             versionCode 902003
         }
-        v8 {
-            dimension "level"
-            versionCode 802003
-            minSdkVersion 8
-        }
-        phone {
-            dimension "device"
-        }
         tv {
-            dimension "device"
             versionCode 2102003
             minSdkVersion 21
-        }
-    }
-
-    variantFilter { variant ->
-        def names = variant.flavors*.name
-
-        if (names.contains("v8") && names.contains("tv")) {
-            variant.ignore = true
         }
     }
 
@@ -60,11 +40,10 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     //noinspection GradleDependency
-    v8Compile 'com.google.android.gms:play-services:3.2.65'
-    v9Compile 'com.google.android.gms:play-services-location:9.0.0'
-    v9Compile 'com.google.android.gms:play-services-maps:9.0.0'
-    v9Compile 'com.google.android.gms:play-services-ads:9.0.0'
-    v9Compile 'com.google.android.gms:play-services-analytics:9.0.0'
+    compile 'com.google.android.gms:play-services-location:9.0.1'
+    compile 'com.google.android.gms:play-services-maps:9.0.1'
+    compile 'com.google.android.gms:play-services-ads:9.0.1'
+    compile 'com.google.android.gms:play-services-analytics:9.0.1'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'

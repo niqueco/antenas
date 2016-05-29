@@ -77,8 +77,8 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 	{
 		if(nuncaPreguntar)
 			return;
-		Compat.applyPreferences(PreferenceManager.getDefaultSharedPreferences(context).edit()
-				.putBoolean(pref, true));
+		PreferenceManager.getDefaultSharedPreferences(context).edit()
+				.putBoolean(pref, true).apply();
 	}
 
 	@SuppressLint("CommitPrefEdits")
@@ -111,7 +111,7 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 			int contadorLanzamientos = prefs.getInt(PREF_CONTADOR_LANZAMIENTOS, 0) + 1;
 			editor.putInt(PREF_CONTADOR_LANZAMIENTOS, contadorLanzamientos);
 
-			Compat.applyPreferences(editor);
+			editor.apply();
 
 			if(contadorLanzamientos > LANZAMIENTOS && cuandoPreguntar <= ahora && prefs.getBoolean(PREF_MIRO_ANTENAS, false) && prefs.getBoolean(PREF_MIRO_MAPA, false))
 			{
@@ -174,6 +174,6 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 				throw new RuntimeException("id = " + id);
 		}
 		((Aplicacion)context.getApplication()).mandarEvento("Calificar", acción);
-		Compat.applyPreferences(editor);
+		editor.apply();
 	}
 }

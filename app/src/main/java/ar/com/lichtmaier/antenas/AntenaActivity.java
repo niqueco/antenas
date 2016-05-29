@@ -176,7 +176,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			SharedPreferences.Editor editor = prefs.edit()
 					.putString("unit", ("US".equals(locale.getCountry()) && (!"es".equals(locale.getLanguage()))) ? "mi" : "km")
 					.putBoolean("unidad_configurada", true);
-			Compat.applyPreferences(editor);
+			editor.apply();
 		}
 
 		brújula = Brújula.crear(this);
@@ -195,7 +195,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 						public void onDismissed(Snackbar snackbar, int event)
 						{
 							if(event == DISMISS_EVENT_ACTION || event == DISMISS_EVENT_SWIPE)
-								Compat.applyPreferences(prefs.edit().putString("aviso_no_brújula", Build.FINGERPRINT));
+								prefs.edit().putString("aviso_no_brújula", Build.FINGERPRINT).apply();
 						}
 					});
 			TextView tv = (TextView)sb.getView().findViewById(android.support.design.R.id.snackbar_text);
@@ -204,7 +204,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			sb.show();
 		}
 		if(brújula != null)
-			Compat.applyPreferences(prefs.edit().remove("aviso_no_brújula"));
+			prefs.edit().remove("aviso_no_brújula").apply();
 
 		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
 
@@ -435,7 +435,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		try
 		{
 			//noinspection MissingPermission
-			Compat.requestLocationUpdates(locationManager, 1000 * 60, 0, criteria, locationListener);
+			locationManager.requestLocationUpdates(1000 * 60, 0, criteria, locationListener, null);
 		} catch(IllegalArgumentException e)
 		{
 			Log.e("antenas", "Error pidiendo updates de GPS", e);
@@ -539,7 +539,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				for(País país : País.values())
 					editor.putBoolean("mapa_país_" + país, países.contains(país));
 				editor.putBoolean("paises_configurados", true);
-				Compat.applyPreferences(editor);
+				editor.apply();
 			}
 			menúConfigurado = true;
 		}
@@ -557,7 +557,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				editor.putString("max_dist", "100");
 				volver = true;
 			}
-			Compat.applyPreferences(editor.putBoolean("distancia_configurada", true));
+			editor.putBoolean("distancia_configurada", true).apply();
 			if(volver)
 			{
 				nuevaUbicación();
