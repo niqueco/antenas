@@ -60,6 +60,9 @@ public class PreferenciasActivity extends AppCompatPreferenceActivity
 				case AR:
 					nombre = R.string.pref_AR;
 					break;
+				case AT:
+					nombre = R.string.pref_AT;
+					break;
 				case AU:
 					nombre = R.string.pref_AU;
 					break;

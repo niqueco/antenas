@@ -171,7 +171,7 @@ public class Antena
 		double latitud = coordsUsuario.getLatitude();
 		double longitud = coordsUsuario.getLongitude();
 		Set<País> países = longitud > -32
-			? (longitud < 60 ? EnumSet.of(País.UK, País.PT) : EnumSet.of(País.AU, País.NZ))
+			? (longitud < 60 ? EnumSet.of(País.UK, País.PT, País.AT) : EnumSet.of(País.AU, País.NZ))
 			: ((latitud > 13)
 				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
@@ -262,6 +262,9 @@ public class Antena
 			{
 				case AR:
 					res = R.raw.antenas_ar;
+					break;
+				case AT:
+					res = R.raw.antenas_at;
 					break;
 				case AU:
 					res = R.raw.antenas_au;

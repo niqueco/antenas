@@ -1,0 +1,416 @@
+<antenas>
+<antena lat="47.22615" lon="9.726537" desc="BLUDENZ 1-DUENSERBERG"/>
+<antena lat="47.23611" lon="9.733889" desc="BLUDENZ 2-GASUEND"/>
+<antena lat="47.20972" lon="9.599722" desc="FELDKIRCH - VORDERAELPELE"/>
+<antena lat="47.25917" lon="9.681389" desc="LATERNS-GISCHLANGS"/>
+<antena lat="47.21111" lon="9.836944" desc="RAGGAL-KREUZBUEHEL"/>
+<antena lat="47.44861" lon="9.7025" desc="BREGENZ 2-LAUTERACH"/>
+<antena lat="47.50806" lon="9.780278" desc="BREGENZ 1-PFAENDER"/>
+<antena lat="46.9625" lon="10.05333" desc="GASCHURN"/>
+<antena lat="47.06472" lon="9.845556" desc="SCHRUNS-GOLM"/>
+<antena lat="47.09833" lon="9.975" desc="SILBERTAL"/>
+<antena lat="47.03306" lon="9.967778" desc="ST.GALLENKIRCH"/>
+<antena lat="46.88389" lon="10.49111" desc="NAUDERS"/>
+<antena lat="46.97667" lon="10.22083" desc="GALTUER"/>
+<antena lat="47.08333" lon="10.46889" desc="PAZNAUN 1-SEE"/>
+<antena lat="47.05583" lon="10.35583" desc="PAZNAUN 2-KAPPL"/>
+<antena lat="46.95611" lon="10.50111" desc="PFUNDS-KOBL"/>
+<antena lat="46.93444" lon="10.49889" desc="SPISS"/>
+<antena lat="47.05444" lon="10.86139" desc="PIOESMES"/>
+<antena lat="47.06444" lon="10.67972" desc="PRUTZ-BURGSCHROFEN"/>
+<antena lat="46.90528" lon="11.0525" desc="OBERGURGL-WINDECK"/>
+<antena lat="47.05917" lon="10.96806" desc="LAENGENFELD"/>
+<antena lat="46.97028" lon="11.00639" desc="SOELDEN-BERGHOF"/>
+<antena lat="46.93583" lon="11.00333" desc="VENTERTAL"/>
+<antena lat="47.11806" lon="10.00194" desc="DAMUELS"/>
+<antena lat="47.2725" lon="9.899167" desc="DEUTSCHLANDSBERG-DEMMERKOGEL"/>
+<antena lat="47.25083" lon="9.92" desc="FONTANELLA"/>
+<antena lat="47.13222" lon="10.07389" desc="KLOESTERLE"/>
+<antena lat="47.20306" lon="10.16667" desc="LECH"/>
+<antena lat="47.25944" lon="10.18306" desc="WARTH"/>
+<antena lat="47.32056" lon="9.975833" desc="AU"/>
+<antena lat="47.39972" lon="9.935556" desc="BEZAU-BAUMGARTEN"/>
+<antena lat="47.33806" lon="10.16167" desc="MITTELBERG 2-AM ROHR"/>
+<antena lat="47.26167" lon="10.3725" desc="HOLZGAU-BENGLERWALD"/>
+<antena lat="47.11139" lon="10.49778" desc="LANDECK 2-GIGGL"/>
+<antena lat="47.13417" lon="10.225" desc="ST.ANTON-GALZIG"/>
+<antena lat="47.32" lon="10.52889" desc="HAESELGEHR-HEISEMAD"/>
+<antena lat="47.33778" lon="10.20111" desc="MITTELBERG 1-GUNDKOPF"/>
+<antena lat="47.56944" lon="10.45" desc="JUNGHOLZ"/>
+<antena lat="47.51417" lon="10.47583" desc="TANNHEIM"/>
+<antena lat="47.21944" lon="10.71861" desc="IMST 2"/>
+<antena lat="47.20583" lon="10.75583" desc="IMST 1-BURGSTALL"/>
+<antena lat="47.14583" lon="10.62528" desc="LANDECK 1-GRABBERG"/>
+<antena lat="47.21444" lon="10.88556" desc="OETZ-SCHLATT"/>
+<antena lat="47.14667" lon="10.73333" desc="WENNS"/>
+<antena lat="47.30944" lon="10.85139" desc="NASSEREITH"/>
+<antena lat="47.19028" lon="11.15583" desc="GRIES/SELLRAIN"/>
+<antena lat="47.28306" lon="10.96278" desc="MOETZ"/>
+<antena lat="47.12417" lon="10.95583" desc="NIEDERTHAI"/>
+<antena lat="47.22028" lon="11.20833" desc="SELLRAIN"/>
+<antena lat="47.12972" lon="10.93194" desc="UMHAUSEN"/>
+<antena lat="47.42167" lon="10.98417" desc="EHRWALD 1-ZUGSPITZE"/>
+<antena lat="47.41111" lon="10.92056" desc="EHRWALD 2"/>
+<antena lat="47.34389" lon="11.10556" desc="LEUTASCH-MOOSALM"/>
+<antena lat="47.28861" lon="11.12111" desc="PETTNAU"/>
+<antena lat="47.31417" lon="11.17889" desc="SEEFELD-GSCHWANDKOPF"/>
+<antena lat="47.47861" lon="10.64194" desc="REUTTE 1-HAHNENKAMM"/>
+<antena lat="47.03806" lon="11.48861" desc="GRIES/BRENNER"/>
+<antena lat="47.07556" lon="11.55306" desc="SCHMIRN"/>
+<antena lat="47.05639" lon="11.49639" desc="ST.JODOK"/>
+<antena lat="47.09556" lon="11.45" desc="STEINACH-BRENNER"/>
+<antena lat="47.08694" lon="11.26917" desc="STUBAITAL"/>
+<antena lat="46.71611" lon="12.54444" desc="OBERTILLIACH"/>
+<antena lat="46.73917" lon="12.45667" desc="SILLIAN-HOLLBRUCK"/>
+<antena lat="46.9275" lon="12.49083" desc="HOPFGARTEN/DEF.-LERCHERWALD"/>
+<antena lat="46.92028" lon="12.57917" desc="HUBEN 1-BRUNNERBERG"/>
+<antena lat="46.93278" lon="12.59056" desc="OBERPEISCHLACH"/>
+<antena lat="46.78778" lon="12.41722" desc="VILLGRATEN 3"/>
+<antena lat="46.79139" lon="12.43028" desc="VILLGRATEN 2"/>
+<antena lat="46.77917" lon="12.4225" desc="VILLGRATEN 1"/>
+<antena lat="46.98889" lon="12.64472" desc="KALS"/>
+<antena lat="46.98778" lon="12.55778" desc="MATREI-KLAUNZERBERG"/>
+<antena lat="47.00833" lon="12.42389" desc="PRAEGRATEN"/>
+<antena lat="47.20861" lon="11.46222" desc="INNSBRUCK 1-PATSCHERKOFEL"/>
+<antena lat="47.11278" lon="11.47806" desc="NAVIS"/>
+<antena lat="47.30667" lon="11.38" desc="INNSBRUCK 2-SEEGRUBE"/>
+<antena lat="47.32444" lon="11.57361" desc="WATTENS"/>
+<antena lat="47.2025" lon="11.90472" desc="MAYRHOFEN 1-GERLOSKOEGERL"/>
+<antena lat="47.17667" lon="11.77722" desc="TUX-WANGLALPE"/>
+<antena lat="47.43028" lon="11.70972" desc="EBEN - ZWOELFERKOPF"/>
+<antena lat="47.39639" lon="11.86833" desc="JENBACH-REITHERKOGEL"/>
+<antena lat="47.36611" lon="11.70583" desc="SCHWAZ-BURGBERG"/>
+<antena lat="47.49639" lon="11.93333" desc="BRANDENBERG"/>
+<antena lat="47.55389" lon="11.70722" desc="ACHENKIRCH"/>
+<antena lat="47.23389" lon="12.06167" desc="GERLOS"/>
+<antena lat="47.23333" lon="12.18944" desc="KRIMML-FALKENSTEIN"/>
+<antena lat="47.43139" lon="12.03" desc="WILDSCHOENAU-(SANDECK)"/>
+<antena lat="47.11806" lon="12.505" desc="FELBERTAUERN"/>
+<antena lat="47.2625" lon="12.30833" desc="NEUKIRCHEN-HOHENBRAMBERG"/>
+<antena lat="47.43639" lon="12.38861" desc="KITZBUEHEL"/>
+<antena lat="47.29889" lon="12.47278" desc="MITTERSILL"/>
+<antena lat="47.36778" lon="12.63833" desc="SAALBACH-SCHATTBERG"/>
+<antena lat="47.46444" lon="12.20333" desc="HOPFGARTEN - HOHE SALVE"/>
+<antena lat="47.61861" lon="12.225" desc="NIEDERNDORF"/>
+<antena lat="47.58861" lon="12.07778" desc="THIERSEE"/>
+<antena lat="47.49778" lon="12.03667" desc="WOERGL-ANGERWALD"/>
+<antena lat="47.6375" lon="12.29694" desc="WALCHSEE"/>
+<antena lat="47.47611" lon="12.42944" desc="KUFSTEIN-KITZBUEHELER HORN"/>
+<antena lat="47.50389" lon="12.58833" desc="ST.ULRICH/PILLERSEE"/>
+<antena lat="47.59722" lon="12.52806" desc="WAIDRING"/>
+<antena lat="47.63944" lon="12.37028" desc="KOESSEN-HECHENBICHL"/>
+<antena lat="46.72361" lon="13.15472" desc="GREIFENBURG-EGG"/>
+<antena lat="46.62972" lon="13.33861" desc="HERMAGOR"/>
+<antena lat="46.64472" lon="13.04889" desc="KOETSCHACH-KRONHOF"/>
+<antena lat="46.71472" lon="13.29361" desc="TECHENDORF"/>
+<antena lat="46.66778" lon="13.27194" desc="WEISSBRIACH"/>
+<antena lat="46.79917" lon="12.78306" desc="LIENZ-RAUCHKOFEL"/>
+<antena lat="46.92278" lon="12.9" desc="MOERTSCHACH 2"/>
+<antena lat="46.91361" lon="12.91889" desc="MOERTSCHACH 1"/>
+<antena lat="46.85" lon="12.93056" desc="WINKLERN"/>
+<antena lat="47.0125" lon="12.88333" desc="HEILIGENBLUT"/>
+<antena lat="46.89333" lon="13.04972" desc="STALL"/>
+<antena lat="46.94028" lon="13.10889" desc="FRAGANT"/>
+<antena lat="46.97167" lon="13.17806" desc="MALLNITZ 1-LONZABERG"/>
+<antena lat="46.93417" lon="13.22056" desc="OBERVELLACH"/>
+<antena lat="47.00639" lon="13.06306" desc="UEBERSBACH"/>
+<antena lat="46.57306" lon="13.59861" desc="NOETSCH"/>
+<antena lat="46.62861" lon="13.64556" desc="BLEIBURG-WEISSENEGGERBERG"/>
+<antena lat="46.60333" lon="13.67278" desc="KLAGENFURT 1-DOBRATSCH/VILL.ALPE"/>
+<antena lat="46.73083" lon="13.50944" desc="STOCKENBOI"/>
+<antena lat="46.54556" lon="13.71944" desc="ARNOLDSTEIN"/>
+<antena lat="46.54472" lon="13.92444" desc="VILLACH-FINKENSTEIN"/>
+<antena lat="46.71222" lon="13.84222" desc="ARRIACH"/>
+<antena lat="46.68389" lon="14.05194" desc="FELDKIRCHEN - KANITZERHOEHE"/>
+<antena lat="46.74111" lon="14.05083" desc="HIMMELBERG"/>
+<antena lat="46.71194" lon="13.81" desc="TREFFEN-VERDITZ"/>
+<antena lat="46.91778" lon="13.57417" desc="EISENTRATTEN"/>
+<antena lat="46.90667" lon="13.52861" desc="GMUEND 2"/>
+<antena lat="46.92389" lon="13.5475" desc="GMUEND 1"/>
+<antena lat="46.78472" lon="13.37139" desc="LIND-SIFLITZBERG"/>
+<antena lat="46.75889" lon="13.45806" desc="SPITTAL/DRAU 1-GOLDECK"/>
+<antena lat="46.84722" lon="13.445" desc="SPITTAL/DRAU 2-HUEHNERSBERG"/>
+<antena lat="47.10222" lon="13.60306" desc="OBERWEISSBURG"/>
+<antena lat="47.00444" lon="13.63111" desc="RENNWEG-ATZENSBERG"/>
+<antena lat="47.07278" lon="13.60611" desc="ST.MICHAEL/LUNGAU-BAERENKOGEL"/>
+<antena lat="46.80444" lon="13.77556" desc="BAD KLEINKIRCHHEIM"/>
+<antena lat="46.85306" lon="13.89639" desc="EBENE REICHENAU"/>
+<antena lat="46.79222" lon="13.9025" desc="GNESAU"/>
+<antena lat="46.81944" lon="13.85139" desc="PATERGASSEN"/>
+<antena lat="46.81167" lon="13.71361" desc="RADENTHEIN 1-MITTERBERG"/>
+<antena lat="46.82806" lon="14.06056" desc="SIRNITZ"/>
+<antena lat="46.91639" lon="13.88722" desc="TURRACH"/>
+<antena lat="47.06167" lon="13.84583" desc="RAMINGSTEIN 2"/>
+<antena lat="47.07139" lon="13.8925" desc="RAMINGSTEIN 1-AMBROSENBERG"/>
+<antena lat="47.09694" lon="13.97667" desc="STADL"/>
+<antena lat="47.37722" lon="12.99444" desc="DIENTEN"/>
+<antena lat="47.43028" lon="12.80472" desc="SAALFELDEN-HUGGENBERG"/>
+<antena lat="47.30389" lon="12.97028" desc="TAXENBACH"/>
+<antena lat="47.30278" lon="12.8375" desc="ZELL/SEE 1-LECHNERECK"/>
+<antena lat="47.11389" lon="13.09917" desc="BAD GASTEIN 1-STUBNERKOGEL"/>
+<antena lat="47.11194" lon="13.135" desc="BAD GASTEIN 2"/>
+<antena lat="47.24222" lon="13.20889" desc="ELLMAUTAL"/>
+<antena lat="47.27722" lon="13.19694" desc="GROSSARL-HOLZLEHEN"/>
+<antena lat="47.19556" lon="13.20139" desc="HUETTSCHLAG"/>
+<antena lat="47.16167" lon="13.27222" desc="KARTEIS"/>
+<antena lat="47.28361" lon="13.09833" desc="LEND-LUXKOGEL"/>
+<antena lat="47.40556" lon="13.32889" desc="HUETTAU-SONNEGG"/>
+<antena lat="47.2925" lon="13.31028" desc="KLEINARL"/>
+<antena lat="47.36667" lon="13.12417" desc="MUEHLBACH"/>
+<antena lat="47.34167" lon="13.22722" desc="ST.JOHANN/PONGAU-HAHNBAUM"/>
+<antena lat="47.34528" lon="13.29139" desc="WAGRAIN-FLOITENSBERG"/>
+<antena lat="47.60361" lon="12.68472" desc="LOFER"/>
+<antena lat="47.63722" lon="12.69528" desc="UNKEN"/>
+<antena lat="47.48417" lon="13.17861" desc="WERFEN-FEUERSENG"/>
+<antena lat="47.64917" lon="13.08833" desc="HALLEIN-ZINKENKOGEL"/>
+<antena lat="47.80528" lon="13.11222" desc="SALZBURG-GAISBERG"/>
+<antena lat="47.13083" lon="13.64639" desc="MAUTERNDORF-GROSSECK"/>
+<antena lat="47.24944" lon="13.55806" desc="OBERTAUERN-TAUERNPASS"/>
+<antena lat="47.14528" lon="13.525" desc="ZEDERHAUS"/>
+<antena lat="47.42972" lon="13.39778" desc="EBEN/PONGAU"/>
+<antena lat="47.42639" lon="13.525" desc="FILZMOOS"/>
+<antena lat="47.38083" lon="13.54833" desc="FORSTAU"/>
+<antena lat="47.37417" lon="13.56194" desc="FORSTAU 2"/>
+<antena lat="47.43167" lon="13.46611" desc="NEUBERG"/>
+<antena lat="47.40222" lon="13.67306" desc="SCHLADMING 2-RAMSAU"/>
+<antena lat="47.45306" lon="13.3725" desc="ST.MARTIN"/>
+<antena lat="47.37667" lon="13.49111" desc="UNTERTAUERN"/>
+<antena lat="47.11833" lon="14.04333" desc="ALLGAU"/>
+<antena lat="47.16972" lon="14.04861" desc="KRAKAU"/>
+<antena lat="47.11722" lon="13.80528" desc="TAMSWEG"/>
+<antena lat="47.38083" lon="14.00306" desc="FLEISS NORD"/>
+<antena lat="47.45333" lon="13.90111" desc="GROEBMING-HOFMANINGBERG"/>
+<antena lat="47.37833" lon="13.77" desc="SCHLADMING 1-HAUSER KAIBLING"/>
+<antena lat="47.53167" lon="13.47667" desc="GOESTLING"/>
+<antena lat="47.52833" lon="13.69306" desc="OBERTRAUN-KRIPPENSTEIN"/>
+<antena lat="47.56222" lon="13.43028" desc="ABTENAU-BUCHBERG"/>
+<antena lat="47.69" lon="13.58028" desc="BAD ISCHL-KATRIN"/>
+<antena lat="47.6925" lon="13.63" desc="LAUFFEN"/>
+<antena lat="47.7925" lon="13.46556" desc="UNTERACH-ACKERSCHNEID"/>
+<antena lat="47.62611" lon="13.78861" desc="BAD AUSSEE-TRESSENSTEIN"/>
+<antena lat="47.5475" lon="13.88583" desc="BAD MITTERNDORF-LANGMOOSALM"/>
+<antena lat="47.55694" lon="13.9975" desc="TAUPLITZ-FURTHBERG"/>
+<antena lat="47.80639" lon="13.79361" desc="EBENSEE"/>
+<antena lat="46.57667" lon="14.29722" desc="VIKTRING"/>
+<antena lat="46.48667" lon="14.26083" desc="WINDISCHBLEIBERG 1"/>
+<antena lat="46.48722" lon="14.2325" desc="WINDISCHBLEIBERG 2"/>
+<antena lat="46.46944" lon="14.35778" desc="ZELL PFARRE"/>
+<antena lat="46.73972" lon="14.26944" desc="LIEBENFELS"/>
+<antena lat="46.71694" lon="14.39778" desc="MARIA SAAL"/>
+<antena lat="46.6275" lon="14.19444" desc="MARIA WOERTH-PRITSCHITZ"/>
+<antena lat="46.66083" lon="14.17556" desc="MOOSBURG"/>
+<antena lat="46.49694" lon="14.58833" desc="EISENKAPPEL 1"/>
+<antena lat="46.46333" lon="14.57167" desc="EISENKAPPEL 2"/>
+<antena lat="46.53194" lon="14.6175" desc="SITTERSDORF"/>
+<antena lat="46.73472" lon="14.50889" desc="DALAAS"/>
+<antena lat="46.68583" lon="14.50083" desc="ST.FILIPPEN"/>
+<antena lat="46.66917" lon="14.63028" desc="VOELKERMARKT"/>
+<antena lat="46.77139" lon="14.39" desc="ST.VEIT/GLAN-TAGGENBRUNN"/>
+<antena lat="46.76917" lon="14.10194" desc="STEUERBERG"/>
+<antena lat="46.88694" lon="14.33" desc="STRASSBURG-PIRKERHOEHE"/>
+<antena lat="46.8325" lon="14.16361" desc="WEITENSFELD-ZAMMELSBERG"/>
+<antena lat="46.975" lon="14.32194" desc="METNITZ-OST"/>
+<antena lat="46.96361" lon="14.2325" desc="METNITZ SUED"/>
+<antena lat="46.98278" lon="14.175" desc="METNITZ-WEST"/>
+<antena lat="47.05833" lon="14.27333" desc="ST.LAMBRECHT"/>
+<antena lat="46.93278" lon="14.45944" desc="FRIESACH-LORENZENBERG"/>
+<antena lat="46.88972" lon="14.44778" desc="POECKSTEIN"/>
+<antena lat="46.80167" lon="14.74917" desc="WOLFSBERG 2"/>
+<antena lat="46.94361" lon="14.54917" desc="HUETTENBERG"/>
+<antena lat="47.07" lon="14.52972" desc="NEUMARKT-KULMERALPE"/>
+<antena lat="47.08778" lon="14.69722" desc="OBDACH"/>
+<antena lat="47.06361" lon="14.65333" desc="WARBACH"/>
+<antena lat="46.66333" lon="15.06556" desc="SOBOTH"/>
+<antena lat="46.6625" lon="15.16611" desc="EIBISWALD-HADERNIGG"/>
+<antena lat="46.79444" lon="14.95806" desc="WOLFSBERG 1-KORALPE"/>
+<antena lat="47.05583" lon="15.00972" desc="KOEFLACH-GOESSNITZBERG"/>
+<antena lat="47.09167" lon="15.13389" desc="KAINACH"/>
+<antena lat="47.00194" lon="15.21667" desc="LIGIST"/>
+<antena lat="47.09611" lon="15.21528" desc="STIWOLL"/>
+<antena lat="47.03222" lon="15.17139" desc="THALLEIN"/>
+<antena lat="47.12222" lon="14.19778" desc="MURAU-STOLZALPE"/>
+<antena lat="47.17194" lon="14.10056" desc="SCHOEDER"/>
+<antena lat="47.195" lon="14.18111" desc="ST.PETER/KAMMERSBERG"/>
+<antena lat="47.18917" lon="14.25278" desc="WINKLERN BEI OBERWOELZ"/>
+<antena lat="47.37111" lon="14.11583" desc="DONNERSBACHWALD"/>
+<antena lat="47.25889" lon="14.70139" desc="GAAL"/>
+<antena lat="47.25917" lon="14.47528" desc="OBERZEIRING 1"/>
+<antena lat="47.19167" lon="14.60861" desc="ROTHENTHURM"/>
+<antena lat="47.21667" lon="14.44" desc="UNZMARKT"/>
+<antena lat="47.17056" lon="14.47417" desc="WEISSECK"/>
+<antena lat="47.30139" lon="14.46694" desc="BRUCK/MUR 1-MUGEL"/>
+<antena lat="47.44083" lon="14.45861" desc="HOHENTAUERN"/>
+<antena lat="47.41083" lon="14.74972" desc="KALWANG-STELLERBERG"/>
+<antena lat="47.37" lon="14.47444" desc="ST.JOHANN/TAUERN"/>
+<antena lat="47.48889" lon="14.12944" desc="IRDNING"/>
+<antena lat="47.48611" lon="14.27667" desc="OPPENBERG"/>
+<antena lat="47.54194" lon="14.3375" desc="ROTTENMANN-SONNENBERG"/>
+<antena lat="47.57111" lon="14.2925" desc="SELZTHAL-SALBERG"/>
+<antena lat="47.7" lon="14.14444" desc="HINTERSTODER-OETTLBERG"/>
+<antena lat="47.73389" lon="14.36667" desc="WINDISCHGARSTEN-KLEINERBERG"/>
+<antena lat="47.61778" lon="14.4525" desc="HALL BEI ADMONT"/>
+<antena lat="47.60083" lon="14.73889" desc="HIEFLAU-BUCHEGG"/>
+<antena lat="47.54611" lon="14.75028" desc="RADMER"/>
+<antena lat="47.73556" lon="14.64361" desc="ALTENMARKT/ENNS"/>
+<antena lat="47.66194" lon="14.72361" desc="GROSSREIFLING"/>
+<antena lat="47.15333" lon="14.80111" desc="KNITTELFELD-EIGLERHOEHE"/>
+<antena lat="47.295" lon="15.005" desc="LOBMING"/>
+<antena lat="47.35722" lon="14.98806" desc="ST.MICHAEL/OBERSTMK.-LIESINGBERG"/>
+<antena lat="47.40861" lon="15.0175" desc="TROFAIACH-KULM"/>
+<antena lat="47.15028" lon="15.31667" desc="GRATKORN-GSOLLERKOGEL"/>
+<antena lat="47.19806" lon="15.46528" desc="GRAZ 1-SCHOECKL"/>
+<antena lat="47.11194" lon="15.16722" desc="SOEDINGBERG"/>
+<antena lat="47.22056" lon="15.23806" desc="UEBELBACH"/>
+<antena lat="47.39306" lon="15.40583" desc="BREITENAU-BRAUNHUBERKOGEL"/>
+<antena lat="47.41472" lon="15.28278" desc="BRUECKL-LIPPEKOGEL"/>
+<antena lat="47.36556" lon="15.18389" desc="BRUCK/MUR 2"/>
+<antena lat="47.2875" lon="15.3275" desc="FROHNLEITEN"/>
+<antena lat="47.43917" lon="15.29667" desc="KAPFENBERG-SCHLOSSBERG"/>
+<antena lat="47.33111" lon="15.36389" desc="MIXNITZ"/>
+<antena lat="47.37472" lon="15.32083" desc="PERNEGG"/>
+<antena lat="47.53222" lon="14.96056" desc="EISENERZ 1-POLSTER"/>
+<antena lat="47.53944" lon="14.89139" desc="EISENERZ 2-VOGELBUEHEL"/>
+<antena lat="47.46722" lon="15.09583" desc="ST.KATHAREIN/LAMING-MAXL"/>
+<antena lat="47.5575" lon="14.78667" desc="STUBBACH"/>
+<antena lat="47.65694" lon="14.78139" desc="LANDL"/>
+<antena lat="47.70389" lon="14.77944" desc="PALFAU"/>
+<antena lat="47.48611" lon="15.45972" desc="STANZ"/>
+<antena lat="47.56111" lon="15.2775" desc="AFLENZ-FIRSTKOPF"/>
+<antena lat="47.74361" lon="15.28861" desc="GUSSWERK"/>
+<antena lat="47.81222" lon="15.24889" desc="MITTERBACH-GEMEINDEALPE"/>
+<antena lat="47.75389" lon="15.45833" desc="WILDALPE"/>
+<antena lat="46.66833" lon="15.47333" desc="LEUTSCHACH"/>
+<antena lat="46.84528" lon="15.93194" desc="BAD GLEICHENBERG-STRADNERKOGEL"/>
+<antena lat="46.76722" lon="15.96083" desc="KLOECH"/>
+<antena lat="46.94167" lon="16.12" desc="JENNERSDORF"/>
+<antena lat="47.31056" lon="15.72583" desc="BIRKFELD-BREITENSTEIN"/>
+<antena lat="47.44889" lon="15.81861" desc="WALDBACH"/>
+<antena lat="47.31278" lon="16.01639" desc="GRAFENDORF"/>
+<antena lat="47.41278" lon="16.11083" desc="PINKAFELD"/>
+<antena lat="47.37111" lon="16.03361" desc="ROHRBACH/LAFNITZ"/>
+<antena lat="47.40722" lon="15.87417" desc="VORAU"/>
+<antena lat="47.59528" lon="15.67111" desc="MUERZZUSCHLAG-GANZSTEIN"/>
+<antena lat="47.52111" lon="15.75472" desc="RETTENEGG"/>
+<antena lat="47.47556" lon="15.70583" desc="ST.KATHREIN/H.-HIRSCHEGGKOGEL"/>
+<antena lat="47.57083" lon="15.47917" desc="VEITSCH 2"/>
+<antena lat="47.57056" lon="15.47917" desc="VEITSCH 1-HOCHREITER"/>
+<antena lat="47.67056" lon="15.49583" desc="MUERZSTEG"/>
+<antena lat="47.68278" lon="15.6025" desc="NEUBERG-SCHNEEALPE"/>
+<antena lat="47.71833" lon="15.77917" desc="REICHENAU-RAXALPE"/>
+<antena lat="47.58" lon="16.12111" desc="ASPANG-KOENIGSBERG"/>
+<antena lat="47.62944" lon="15.85833" desc="SEMMERING-SONNWENDSTEIN"/>
+<antena lat="47.60667" lon="15.905" desc="TRATTENBACH"/>
+<antena lat="47.65944" lon="15.93778" desc="GLOGGNITZ-RAACHBERG"/>
+<antena lat="47.7875" lon="15.92333" desc="PUCHBERG-HIMBERG"/>
+<antena lat="47.72472" lon="15.97361" desc="SIEDING"/>
+<antena lat="47.415" lon="16.48083" desc="RATTERSDORF"/>
+<antena lat="47.34528" lon="16.37917" desc="RECHNITZ-HIRSCHENSTEIN"/>
+<antena lat="47.51056" lon="16.305" desc="KIRCHSCHLAG-LEMBACHER HOEHE"/>
+<antena lat="47.50139" lon="16.2125" desc="KRUMBACH"/>
+<antena lat="47.63361" lon="16.36139" desc="SCHWARZENBACH"/>
+<antena lat="47.78694" lon="16.32083" desc="BAD SAUERBRUNN"/>
+<antena lat="47.69833" lon="16.30528" desc="MATTERSBURG-HEUBERG"/>
+<antena lat="47.83389" lon="13.07417" desc="HALLWANG"/>
+<antena lat="48.02417" lon="13.02667" desc="NUSSDORF/HAUNSBERG"/>
+<antena lat="47.89889" lon="13.81861" desc="GMUNDEN-GRUENBERG"/>
+<antena lat="47.88167" lon="13.72111" desc="NEUKIRCHEN"/>
+<antena lat="48.18083" lon="13.44139" desc="RIED/INNKREIS"/>
+<antena lat="48.50639" lon="13.74389" desc="ENGELHARTSZELL"/>
+<antena lat="48.47417" lon="13.75972" desc="RANNA"/>
+<antena lat="48.52194" lon="13.48778" desc="SCHAERDING"/>
+<antena lat="48.54722" lon="13.77" desc="OBERKAPPEL"/>
+<antena lat="48.69583" lon="13.91806" desc="AIGEN"/>
+<antena lat="47.92556" lon="14.24083" desc="GRUENBURG-LANDSBERG"/>
+<antena lat="47.89833" lon="14.07944" desc="KIRCHDORF-ZIEHBERG"/>
+<antena lat="47.90083" lon="14.25694" desc="MOLLN-HAGELEBEN"/>
+<antena lat="47.89278" lon="14.53111" desc="GROSSRAMING - (AUBERG)"/>
+<antena lat="47.92056" lon="14.52389" desc="LAUSSA"/>
+<antena lat="47.90917" lon="14.46611" desc="LOSENSTEIN-HABICHL"/>
+<antena lat="47.95806" lon="14.61056" desc="MARIA NEUSTIFT"/>
+<antena lat="47.8425" lon="14.65222" desc="WEYER-HANGELSBERG"/>
+<antena lat="48.02611" lon="14.43778" desc="STEYR-TROESCHBERG"/>
+<antena lat="47.99361" lon="14.75361" desc="WAIDHOFEN/YBBS 1 -SONNTAGSBERG"/>
+<antena lat="48.2975" lon="14.2675" desc="LINZ 2-FREINBERG"/>
+<antena lat="48.38472" lon="14.25472" desc="LINZ 1-LICHTENBERG"/>
+<antena lat="48.20306" lon="14.56306" desc="ERLA"/>
+<antena lat="48.47833" lon="14.42639" desc="HIRSCHBACH"/>
+<antena lat="48.39444" lon="14.71639" desc="SCHOENAU/MUEHLKREIS"/>
+<antena lat="47.91556" lon="14.78444" desc="GAFLENZ-HUTTERKOGEL"/>
+<antena lat="47.91361" lon="15.05556" desc="GAMING"/>
+<antena lat="47.81389" lon="14.91944" desc="GOSAU-ZWIESELALM"/>
+<antena lat="47.83417" lon="14.93639" desc="KOGELSBACH"/>
+<antena lat="47.87194" lon="15.02639" desc="LUNZ 1"/>
+<antena lat="47.88556" lon="14.79139" desc="OPPONITZ"/>
+<antena lat="47.95639" lon="14.77167" desc="WAIDHOFEN/YBBS 2"/>
+<antena lat="47.93861" lon="14.92611" desc="YBBSITZ-HASELSTEIN"/>
+<antena lat="48.00833" lon="15.01861" desc="GRESTEN"/>
+<antena lat="47.94417" lon="15.38083" desc="SCHWARZENBACH/PIELACH"/>
+<antena lat="47.99556" lon="15.36444" desc="FRANKENFELS"/>
+<antena lat="47.99528" lon="15.41111" desc="LOICH"/>
+<antena lat="48.07194" lon="15.44778" desc="RABENSTEIN-DORF AU"/>
+<antena lat="48.00278" lon="15.13806" desc="SCHEIBBS-LAMPELSBERG"/>
+<antena lat="48.23667" lon="14.925" desc="GREIN"/>
+<antena lat="48.27222" lon="14.95583" desc="WALDHAUSEN/OOE"/>
+<antena lat="48.32083" lon="15.05444" desc="YSPERTAL"/>
+<antena lat="48.43278" lon="14.78639" desc="UNTERWEISSENBACH"/>
+<antena lat="48.30056" lon="15.41528" desc="AGGSBACH"/>
+<antena lat="48.20056" lon="15.13" desc="POECHLARN"/>
+<antena lat="48.33444" lon="15.33861" desc="ST.POELTEN-JAUERLING"/>
+<antena lat="48.35361" lon="15.36472" desc="ELSARN"/>
+<antena lat="48.42889" lon="15.32083" desc="KOTTES"/>
+<antena lat="48.37806" lon="15.35444" desc="MUEHLDORF"/>
+<antena lat="48.56444" lon="14.20083" desc="VORDERWEISSENBACH"/>
+<antena lat="48.54694" lon="14.53778" desc="FREISTADT"/>
+<antena lat="48.69111" lon="14.76417" desc="HARBACH"/>
+<antena lat="48.62083" lon="14.47694" desc="LEOPOLDSCHLAG"/>
+<antena lat="48.65278" lon="14.81333" desc="WEITRA-WACHBERG"/>
+<antena lat="48.59361" lon="15.44528" desc="KRUMAU"/>
+<antena lat="48.89917" lon="15.33083" desc="DOBERSBERG"/>
+<antena lat="47.8125" lon="15.53472" desc="KERNHOF"/>
+<antena lat="47.90083" lon="15.72972" desc="ROHR IM GEBIRGE"/>
+<antena lat="47.87139" lon="15.62222" desc="ST.AEGYD-TETTENHENGST"/>
+<antena lat="47.93167" lon="15.48583" desc="TUERNITZ-KARNERLEITEN"/>
+<antena lat="48.02056" lon="15.78583" desc="HAINFELD"/>
+<antena lat="47.99444" lon="15.73139" desc="KLEINZELL"/>
+<antena lat="48.01528" lon="15.61139" desc="LILIENFELD-SCHOENBUEHEL"/>
+<antena lat="48.10278" lon="15.74194" desc="MICHELBACH"/>
+<antena lat="48.03444" lon="15.58222" desc="TRAISEN-TARSCHBERG"/>
+<antena lat="47.94111" lon="16.095" desc="BERNDORF-GRIESFELD"/>
+<antena lat="47.81417" lon="16.00361" desc="GRUENBACH-PLACKLES"/>
+<antena lat="47.87167" lon="15.87028" desc="GUTENSTEIN-RESIDENZBERG"/>
+<antena lat="47.8475" lon="15.99583" desc="MIESENBACH"/>
+<antena lat="47.87056" lon="16.02" desc="WALDEGG-KRESSENBERG"/>
+<antena lat="48.02472" lon="15.96611" desc="ALTENMARKT/TRIESTING-REISBERG"/>
+<antena lat="48.12889" lon="16.11333" desc="BREITENFURT-KAISERSTEIN"/>
+<antena lat="48.15333" lon="16.01583" desc="HOCHSTRASS-JOCHGRABENBERG"/>
+<antena lat="48.08444" lon="16.00889" desc="KLAUSEN-LEOPOLDSDORF"/>
+<antena lat="48.10444" lon="15.87333" desc="LAABEN"/>
+<antena lat="48.00806" lon="16.13333" desc="RAISENMARKT-LINDKOGEL"/>
+<antena lat="47.98917" lon="16.04139" desc="WEISSENBACH/TRIESTING"/>
+<antena lat="48.37556" lon="15.61889" desc="FURTH"/>
+<antena lat="48.35639" lon="15.62028" desc="PAUDORF"/>
+<antena lat="48.40111" lon="15.50028" desc="ROSSATZ"/>
+<antena lat="48.44889" lon="15.56639" desc="SENFTENBERG"/>
+<antena lat="48.17139" lon="15.87278" desc="ST.CHRISTOPHEN"/>
+<antena lat="47.9875" lon="16.23944" desc="BADEN-HARTERBERG"/>
+<antena lat="47.9325" lon="16.17389" desc="HIRTENBERG-STEINKAMPERL"/>
+<antena lat="47.92944" lon="16.45833" desc="LEITHAPRODERSDORF"/>
+<antena lat="48.08833" lon="16.24833" desc="HINTERBRUEHL-ROEMERWAND"/>
+<antena lat="48.11639" lon="16.20611" desc="KALTENLEUTGEBEN-KALTBRUNN"/>
+<antena lat="48.13611" lon="16.29667" desc="WIEN 8-LIESING"/>
+<antena lat="47.8975" lon="16.63778" desc="DONNERSKIRCHEN-MAHDBERG"/>
+<antena lat="47.84611" lon="16.82472" desc="PODERSDORF-AM SEE"/>
+<antena lat="47.90361" lon="16.54417" desc="STOTZING"/>
+<antena lat="48.32167" lon="16.36278" desc="BISAMBERG-ELISABETHOEHE"/>
+<antena lat="48.23611" lon="16.28278" desc="WIEN 3-NEUWALDEGG"/>
+<antena lat="48.19167" lon="16.25556" desc="WIEN 2-HIMMELHOF"/>
+<antena lat="48.27667" lon="16.33389" desc="WIEN 1-KAHLENBERG"/>
+<antena lat="48.58917" lon="15.66" desc="GARS"/>
+<antena lat="48.65333" lon="15.725" desc="HORN-EICHBERG"/>
+<antena lat="48.54139" lon="15.67556" desc="SCHOENBERG"/>
+<antena lat="48.83778" lon="15.53722" desc="RAABS-KOLLMITZBERG"/>
+<antena lat="48.85556" lon="15.85306" desc="HARDEGG"/>
+<antena lat="48.70444" lon="15.85056" desc="PULKAU"/>
+<antena lat="48.70889" lon="16.58611" desc="POYSDORF-GALGENBERG"/>
+<antena lat="48.095" lon="16.97806" desc="SPITZERBERG"/>
+</antenas>
