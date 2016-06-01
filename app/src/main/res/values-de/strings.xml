@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="app_name">DTV-Antennen</string>
+    <string name="action_settings">Einstellungen</string>
+	<string name="action_ayuda">Help with digital TV</string>
+	<string name="action_ayuda_ar">Help with TVD</string>
+	<string name="action_ayuda_uk">Check Freeview coverage</string>
+    <string name="action_niqueco">\@niqueco</string>
+    <string name="title_activity_mapa">Antennen Karte</string>
+    <string name="action_mapa">Karte</string>
+    <string name="no_se_encontraron_antenas">Keine Antennen im konfigurierten Verhältnis von %s.</string>
+    <string name="podes_incrementar_radio">You can try incrementing that ratio in the preferences.</string>
+    <string name="no_ubicacion">Couldn\'t acquire location… Is GPS off?</string>
+	<string name="app_no_disponible">No application available to handle this operation.</string>
+	<string name="one_more">Eine weitere</string>
+	<string name="some_more" tools:ignore="PluralsCandidate">%d weitere</string>
+	<string name="channel_number">Kanal %s</string>
+	<string name="ch_number">k. %s</string>
+	<string name="gps_is_off">GPS is off!</string>
+	<string name="gps_prender">Turn it on</string>
+	<string name="solicitar_permiso">Ask permission</string>
+	<string name="explicacion_permiso_gps">This app needs access to your GPS to know where you are and thus help you with finding the best TV antennas for you!</string>
+	<string name="polarización_horizontal">Horizontal pol.</string>
+	<string name="polarización_vertical">Vertical pol.</string>
+	<string name="polarización_mezclada">Mixed pol.</string>
+	<string name="polarización_dual">Dual polarization</string>
+	<string name="calif_titulo">Kannst du mir helfen?</string>
+	<string name="calif_texto">If this application is useful to you and you think it makes sense that I continue to improve I ask that you take a few seconds and you give it a rating of five stars.</string>
+	<string name="calif_boton_si">OK, I\'ll put the stars!</string>
+	<string name="calif_boton_despues">Remind me later</string>
+	<string name="calif_boton_nunca">I\'ll never do that</string>
+	<string name="aviso_lejos_fcc">Out of reach according to FCC computations.</string>
+	<string name="aviso_no_hay_brújula">No compass in device. Showing absolute bearings.</string>
+	<string name="aviso_brújula_1">Compasses in phones are not that good. Not only are they unreliable but often they need to be “calibrated”. They can also get stuck, in which case you may try gentle hitting your phone until they get unstuck.</string>
+	<string name="aviso_brújula_2">Click below to read Google\'s instructions for calibrating your device\'s compass.</string>
+	<string name="botón_ayuda_brújula">Compass calibration help</string>
+	<string name="título_ayuda_calibración_brújula">Kompass-Kalibrierung</string>
+	<string name="tv_título">Nearby TV antennas</string>
+	<string name="tv_baja_la_app">Get the mobile app to use compass mode!</string>
+	<string name="aviso_demora_ubicación">Getting location data is taking more than it should. Check the GPS is enabled or, if network based location is used, check that WiFi is working ok.</string>
+
+	<plurals name="senales">
+		<item quantity="one">%1$,d Kanal</item>
+		<item quantity="other">%1$,d Kanäle</item>
+	</plurals>
+	<plurals name="hacia_adelante">
+		<item quantity="other">Forward</item>
+	</plurals>
+	<plurals name="grados_derecha">
+		<item quantity="one">%d degree right</item>
+		<item quantity="other">%d degrees right</item>
+	</plurals>
+	<plurals name="grados_izquierda">
+		<item quantity="one">%d degree left</item>
+		<item quantity="other">%d degrees left</item>
+	</plurals>
+	<plurals name="hacia_atras">
+		<item quantity="other">Backwards</item>
+	</plurals>
+
+</resources>

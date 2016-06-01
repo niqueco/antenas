@@ -9,7 +9,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 23
         versionName "2.0.3"
-        resConfigs "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA", "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
+        resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA", "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
         vectorDrawables.useSupportLibrary = true
     }
 
