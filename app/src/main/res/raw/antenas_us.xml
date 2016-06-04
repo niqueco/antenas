@@ -3021,8 +3021,8 @@
 </antena>
 <antena lat="33.33278" lon="-112.0664">
 <canal nombre="K18JL-D" numero="18" ref="1658076"/>
-<canal nombre="KTVP-LD" numero="25" ref="1646996"/>
 <canal nombre="KTVP-LD" numero="25" ref="1428174"/>
+<canal nombre="KTVP-LD" numero="25" ref="1646996"/>
 </antena>
 <antena lat="33.33331" lon="-112.0625">
 <canal nombre="KPDF-CA" numero="41" ref="2001043"/>
@@ -4063,8 +4063,8 @@
 <antena lat="30.21361" lon="-92.08306">
 <canal nombre="KLAF-LD" numero="46" ref="1502551"/>
 </antena>
-<antena lat="30.32936" lon="-92.49908">
-<canal nombre="K48MK-D" numero="48" ref="2002875"/>
+<antena lat="30.10619" lon="-92.07294">
+<canal nombre="K48MK-D" numero="48" ref="2003109"/>
 </antena>
 <antena lat="30.32203" lon="-92.28292">
 <canal nombre="KLPB-TV" numero="23" numero_virtual="24" cadena="PBS" ref="1569690"/>
@@ -5573,6 +5573,9 @@
 <antena lat="35.78025" lon="-106.5261">
 <canal nombre="KCHF" numero="10" numero_virtual="11" cadena="IND" ref="2001822"/>
 </antena>
+<antena lat="35.66692" lon="-106.0142">
+<canal nombre="K50MI-D" numero="50" ref="2003126"/>
+</antena>
 <antena lat="36.01333" lon="-106.8439">
 <canal nombre="K34HF-D" numero="34" ref="1140666"/>
 </antena>
@@ -5582,17 +5585,14 @@
 <antena lat="36.22083" lon="-106.7614">
 <canal nombre="K31HB-D" numero="31" ref="1431705"/>
 </antena>
+<antena lat="35.95358" lon="-106.0208">
+<canal nombre="K19JK-D" numero="19" ref="2003125"/>
+</antena>
 <antena lat="36.08917" lon="-106.0281">
 <canal nombre="K47MQ-D" numero="47" ref="1639884"/>
 </antena>
-<antena lat="36.08914" lon="-106.028">
-<canal nombre="K50MI-D" numero="50" ref="2002932"/>
-</antena>
 <antena lat="36.21722" lon="-105.7331">
 <canal nombre="K06FT" numero="6" ref="1802"/>
-</antena>
-<antena lat="36.24831" lon="-105.6552">
-<canal nombre="K19JK-D" numero="19" ref="2002930"/>
 </antena>
 <antena lat="36.235" lon="-105.7258">
 <canal nombre="K44CZ-D" numero="44" ref="1378343"/>
@@ -7015,6 +7015,9 @@
 <antena lat="43.4575" lon="-108.2008">
 <canal nombre="K35CV-D" numero="35" ref="1410942"/>
 </antena>
+<antena lat="43.43781" lon="-107.996">
+<canal nombre="K38EK-D" numero="38" ref="2003159"/>
+</antena>
 <antena lat="43.45722" lon="-108.2006">
 <canal nombre="KFNE" numero="10" cadena="FOX" ref="1292767"/>
 <canal nombre="K13NZ-D" numero="13" ref="1503543"/>
@@ -7838,6 +7841,7 @@
 </antena>
 <antena lat="36.19894" lon="-95.72531">
 <canal nombre="K18JV-D" numero="18" ref="2002995"/>
+<canal nombre="K26KY-D" numero="26" ref="2003136"/>
 <canal nombre="KZLL-LD" numero="39" ref="2002998"/>
 </antena>
 <antena lat="36.04306" lon="-95.95306">
@@ -8073,9 +8077,6 @@
 </antena>
 <antena lat="35.96889" lon="-95.61528">
 <canal nombre="KTUL" numero="10" numero_virtual="8" cadena="ABC" ref="1365147"/>
-</antena>
-<antena lat="36.50739" lon="-95.45389">
-<canal nombre="K26KY-D" numero="26" ref="2002628"/>
 </antena>
 <antena lat="36.40083" lon="-95.60833">
 <canal nombre="KRSU-TV" numero="36" numero_virtual="35" cadena="PBS" ref="1144508"/>
@@ -8657,7 +8658,7 @@
 <canal nombre="K08PM-D" numero="8" ref="1505054"/>
 </antena>
 <antena lat="42.49056" lon="-96.30583">
-<canal nombre="KSXC-LP" numero="5" ref="1189065"/>
+<canal nombre="KSXC-LP" numero="26" ref="1189065"/>
 </antena>
 <antena lat="42.51472" lon="-96.30417">
 <canal nombre="KSIN-TV" numero="28" numero_virtual="27" cadena="PBS" ref="1071169"/>
@@ -8751,8 +8752,8 @@
 <antena lat="41.34444" lon="-95.25583">
 <canal nombre="KHIN" numero="35" numero_virtual="36" cadena="PBS" ref="1098676"/>
 </antena>
-<antena lat="42.0075" lon="-94.24078">
-<canal nombre="K28NF-D" numero="28" ref="2002626"/>
+<antena lat="41.67344" lon="-94.55258">
+<canal nombre="K28NF-D" numero="28" ref="2003118"/>
 </antena>
 <antena lat="41.58694" lon="-93.62589">
 <canal nombre="WBXF-CD" numero="28" ref="2002101"/>
@@ -12416,6 +12417,9 @@
 <antena lat="30.41139" lon="-86.62444">
 <canal nombre="W26BV" numero="26" ref="542465"/>
 </antena>
+<antena lat="30.43875" lon="-86.62553">
+<canal nombre="WEDS-LD" numero="29" ref="2003120"/>
+</antena>
 <antena lat="30.43903" lon="-86.62536">
 <canal nombre="WEDS-LD" numero="29" ref="1626710"/>
 </antena>
@@ -12983,9 +12987,6 @@
 <antena lat="32.75278" lon="-83.55889">
 <canal nombre="WMAZ-TV" numero="13" cadena="CBS" ref="1293859"/>
 </antena>
-<antena lat="32.75344" lon="-83.56286">
-<canal nombre="W49EO-D" numero="49" ref="2002868"/>
-</antena>
 <antena lat="32.75111" lon="-83.5575">
 <canal nombre="WPGA-TV" numero="32" numero_virtual="58" cadena="ABC" ref="1224514"/>
 </antena>
@@ -12998,6 +12999,9 @@
 <antena lat="32.76417" lon="-83.55889">
 <canal nombre="WGNM" numero="45" numero_virtual="64" cadena="IND" ref="1047984"/>
 <canal nombre="WMUB-LD" numero="38" ref="1400099"/>
+</antena>
+<antena lat="33.11594" lon="-83.81211">
+<canal nombre="W49EO-D" numero="49" ref="2003164"/>
 </antena>
 <antena lat="33.74458" lon="-84.35997">
 <canal nombre="WDNV-LD" numero="12" ref="2001688"/>
@@ -13032,6 +13036,9 @@
 </antena>
 <antena lat="33.47583" lon="-82.01056">
 <canal nombre="WAAU-LD" numero="23" ref="1501250"/>
+</antena>
+<antena lat="33.72486" lon="-82.20514">
+<canal nombre="W35CU-D" numero="35" ref="2003167"/>
 </antena>
 <antena lat="33.41" lon="-81.84361">
 <canal nombre="WRDW-TV" numero="12" cadena="CBS" ref="1288350"/>
@@ -13102,6 +13109,9 @@
 <canal nombre="W19DX-D" numero="19" ref="2002872"/>
 <canal nombre="W22EQ-D" numero="22" ref="2002879"/>
 </antena>
+<antena lat="33.52089" lon="-79.50886">
+<canal nombre="W40DJ-D" numero="40" ref="2003160"/>
+</antena>
 <antena lat="33.72589" lon="-79.78292">
 <canal nombre="W15CY-D" numero="15" ref="2002228"/>
 <canal nombre="WLDW-LD" numero="23" ref="2002418"/>
@@ -13117,7 +13127,6 @@
 <canal nombre="WGSI-CD" numero="11" ref="1552030"/>
 </antena>
 <antena lat="33.59092" lon="-79.04856">
-<canal nombre="W40DJ-D" numero="40" ref="2002867"/>
 <canal nombre="WGSC-CD" numero="8" ref="2001285"/>
 <canal nombre="WGSI-CD" numero="11" ref="2001678"/>
 </antena>
@@ -13398,7 +13407,7 @@
 <canal nombre="WJFB" numero="44" numero_virtual="66" cadena="IND" ref="1198166"/>
 </antena>
 <antena lat="36.20444" lon="-86.27472">
-<canal nombre="W11BD" numero="18" ref="97941"/>
+<canal nombre="WJFB-LP" numero="18" ref="97941"/>
 </antena>
 <antena lat="36.15" lon="-86.38694">
 <canal nombre="WRTN-LP" numero="6" ref="1248222"/>
@@ -14071,6 +14080,9 @@
 <antena lat="34.36722" lon="-79.33028">
 <canal nombre="WPDE-TV" numero="16" numero_virtual="15" cadena="ABC" ref="1260002"/>
 <canal nombre="WWMB" numero="21" cadena="CW" ref="1317296"/>
+</antena>
+<antena lat="34.80006" lon="-79.52753">
+<canal nombre="WHEH-LD" numero="41" ref="2003139"/>
 </antena>
 <antena lat="35.01917" lon="-79.94722">
 <canal nombre="W24AY-D" numero="24" ref="1479813"/>
@@ -14826,11 +14838,11 @@
 <antena lat="44.88806" lon="-89.65194">
 <canal nombre="W27AU-D" numero="27" ref="1420344"/>
 </antena>
-<antena lat="44.98308" lon="-89.60264">
-<canal nombre="W29EH-D" numero="29" ref="2002751"/>
-</antena>
 <antena lat="44.4175" lon="-88.9175">
 <canal nombre="W36DH" numero="36" ref="1145909"/>
+</antena>
+<antena lat="44.81861" lon="-89.05517">
+<canal nombre="W29EH-D" numero="29" ref="2003133"/>
 </antena>
 <antena lat="44.965" lon="-89.005">
 <canal nombre="W26EE-D" numero="26" ref="1504806"/>
@@ -15126,9 +15138,6 @@
 <antena lat="41.05556" lon="-81.59389">
 <canal nombre="WDLI-TV" numero="49" numero_virtual="17" cadena="TRINITY BROADCASTING NETWORK" ref="1408530"/>
 </antena>
-<antena lat="41.13467" lon="-81.70597">
-<canal nombre="WQDI-LD" numero="21" ref="2002237"/>
-</antena>
 <antena lat="41.13475" lon="-81.70589">
 <canal nombre="W43DB-D" numero="43" ref="2002238"/>
 <canal nombre="WUEK-LD" numero="25" ref="2002421"/>
@@ -15163,6 +15172,7 @@
 </antena>
 <antena lat="41.48694" lon="-81.68378">
 <canal nombre="WEKA-LD" numero="27" ref="2002535"/>
+<canal nombre="WQDI-LD" numero="21" numero_virtual="20" ref="2003112"/>
 </antena>
 <antena lat="39.38444" lon="-81.44583">
 <canal nombre="W08EK-D" numero="8" ref="1639116"/>
@@ -15707,8 +15717,8 @@
 <canal nombre="W23DR-D" numero="23" ref="1304717"/>
 </antena>
 <antena lat="38.87208" lon="-77.69861">
-<canal nombre="WAZT-CD" numero="45" ref="2000821"/>
 <canal nombre="WAZT-CD" numero="45" ref="2001241"/>
+<canal nombre="WAZT-CD" numero="45" ref="2000821"/>
 </antena>
 <antena lat="39.29542" lon="-77.70408">
 <canal nombre="WAZF-CD" numero="20" ref="2001247"/>
