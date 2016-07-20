@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 9
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionName "2.1"
         resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA", "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
         vectorDrawables.useSupportLibrary = true
@@ -38,17 +38,17 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:support-v4:24.1.0'
     //noinspection GradleDependency
-    compile 'com.google.android.gms:play-services-location:9.0.2'
-    compile 'com.google.android.gms:play-services-maps:9.0.2'
-    compile 'com.google.android.gms:play-services-ads:9.0.2'
-    compile 'com.google.android.gms:play-services-analytics:9.0.2'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.google.android.gms:play-services-location:9.2.1'
+    compile 'com.google.android.gms:play-services-maps:9.2.1'
+    compile 'com.google.android.gms:play-services-ads:9.2.1'
+    compile 'com.google.android.gms:play-services-analytics:9.2.1'
+    compile 'com.android.support:appcompat-v7:24.1.0'
+    compile 'com.android.support:design:24.1.0'
+    compile 'com.android.support:recyclerview-v7:24.1.0'
     compile 'com.github.davidmoten:geo:0.7.4'
     compile files('libs/geodesy.jar')
     compile 'com.google.maps.android:android-maps-utils:0.4.1'
-    tvCompile 'com.android.support:leanback-v17:23.4.0'
+    tvCompile 'com.android.support:leanback-v17:24.1.0'
 }
