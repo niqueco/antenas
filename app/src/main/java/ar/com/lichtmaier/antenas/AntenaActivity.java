@@ -410,13 +410,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		((Aplicacion)getApplication()).reportActivityStart(this);
 		if(locationClient != null)
 			locationClient.onStart();
-	}
-
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
-		abriendoAntena = false;
 		if(brújula != null)
 			brújula.onResume(this);
 		if(locationManager != null)
@@ -424,6 +417,13 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(locationClient != null)
 			locationClient.onResume();
 		publicidad.onResume();
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		abriendoAntena = false;
 		comienzoUsoPantalla = System.currentTimeMillis();
 	}
 
@@ -449,7 +449,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	{
 		if(System.currentTimeMillis() - comienzoUsoPantalla > 1000 * 30)
 			Calificame.registráQueMiróLasAntenas(this);
-		suspender();
 		super.onPause();
 	}
 
@@ -468,6 +467,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	protected void onStop()
 	{
+		suspender();
 		if(locationClient != null)
 			locationClient.onStop();
 		((Aplicacion)getApplication()).reportActivityStop(this);
