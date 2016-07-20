@@ -32,7 +32,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	final private SharedPreferences prefs;
 	final List<Antena> antenasCerca = new ArrayList<>(), antenasLejos = new ArrayList<>();
 	private final int resource;
-	private Context context;
+	private final Context context;
 	@Nullable final private Brújula brújula;
 	private final Callback listener;
 	private Thread threadContornos;

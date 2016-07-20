@@ -17,7 +17,7 @@ public class Brújula implements SensorEventListener
 	final private Sensor acelerómetro;
 	final private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
-	Map<Callback, Boolean> listeners = new IdentityHashMap<>();
+	final Map<Callback, Boolean> listeners = new IdentityHashMap<>();
 	//Set<Callback> listeners = Collections.newSetFromMap(new IdentityHashMap<Callback, Boolean>()); // no anda en Froyo
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	final private int rotación;

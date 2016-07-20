@@ -45,7 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:animateLayoutChanges="true">
+            android:animateLayoutChanges="true"
+            tools:targetApi="honeycomb">
 
             <ProgressBar
                 android:id="@+id/progressBar"

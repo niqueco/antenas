@@ -61,12 +61,6 @@ public class MapaActivity extends AppCompatActivity
 	}
 
 	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
-	}
-
-	@Override
 	public void onBackPressed()
 	{
 		FragmentManager fm = getSupportFragmentManager();

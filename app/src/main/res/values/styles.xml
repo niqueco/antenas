@@ -1,4 +1,4 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<style name="TemaApp" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/celeste_lindo</item>
@@ -51,6 +51,6 @@
 	<style name="Dialogo" parent="Theme.AppCompat.Dialog">
 		<item name="android:colorBackground">@color/celeste_lindo</item>
 		<item name="android:background">@color/celeste_lindo</item>
-		<item name="android:colorAccent">#FFE57F</item>
+		<item name="android:colorAccent" tools:ignore="NewApi">#FFE57F</item>
 	</style>
 </resources>

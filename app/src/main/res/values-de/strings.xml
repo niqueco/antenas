@@ -44,7 +44,7 @@
 		<item quantity="one">%1$,d Kanal</item>
 		<item quantity="other">%1$,d Kanäle</item>
 	</plurals>
-	<plurals name="hacia_adelante">
+	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Forward</item>
 	</plurals>
 	<plurals name="grados_derecha">
@@ -55,7 +55,7 @@
 		<item quantity="one">%d degree left</item>
 		<item quantity="other">%d degrees left</item>
 	</plurals>
-	<plurals name="hacia_atras">
+	<plurals name="hacia_atras" tools:ignore="MissingQuantity">
 		<item quantity="other">Backwards</item>
 	</plurals>
 

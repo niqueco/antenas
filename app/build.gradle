@@ -39,7 +39,6 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:24.1.0'
-    //noinspection GradleDependency
     compile 'com.google.android.gms:play-services-location:9.2.1'
     compile 'com.google.android.gms:play-services-maps:9.2.1'
     compile 'com.google.android.gms:play-services-ads:9.2.1'
