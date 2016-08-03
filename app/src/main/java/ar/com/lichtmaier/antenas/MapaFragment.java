@@ -29,13 +29,13 @@ import java.util.*;
 
 public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
-		GoogleMap.OnCameraChangeListener, GoogleMap.OnMarkerClickListener
+		GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraIdleListener,
+		GoogleMap.OnMarkerClickListener
 {
 	private GoogleMap mapa;
 
 	private final Map<País, List<Marker>> países = new EnumMap<>(País.class);
 
-	private final Map<Marker, Antena> markerAAntena = new HashMap<>();
 	private Marker markerSeleccionado;
 	private CachéDeContornos cachéDeContornos;
 	private Polygon contornoActual;
@@ -143,7 +143,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 		mapa.setOnInfoWindowClickListener(this);
 		mapa.setOnMapClickListener(this);
-		mapa.setOnCameraChangeListener(this);
+		mapa.setOnCameraMoveListener(this);
+		mapa.setOnCameraIdleListener(this);
 		mapa.setOnMarkerClickListener(this);
 		Location loc = null;
 		if(AntenaActivity.coordsUsuario != null)
@@ -225,7 +226,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				if(markers != null)
 					for(Marker marker : markers)
 					{
-						antenasDentro.remove(markerAAntena.get(marker));
+						Antena antena = (Antena)marker.getTag();
+						antenasDentro.remove(antena);
 						marker.remove();
 					}
 				paísesPrendidos.remove(país);
@@ -264,7 +266,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		final Antena antena;
 		final MarkerOptions markerOptions;
 
-		public FuturoMarcador(Antena antena, MarkerOptions markerOptions)
+		FuturoMarcador(Antena antena, MarkerOptions markerOptions)
 		{
 			this.antena = antena;
 			this.markerOptions = markerOptions;
@@ -312,7 +314,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				for(FuturoMarcador m : mm)
 				{
 					Marker marker = mapa.addMarker(m.markerOptions);
-					markerAAntena.put(marker, m.antena);
+					marker.setTag(m.antena);
 
 					List<Marker> markers = países.get(m.antena.país);
 					if(markers == null)
@@ -330,7 +332,13 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	final private Set<Antena> antenasDentro = new HashSet<>();
 
 	@Override
-	public void onCameraChange(CameraPosition cameraPosition)
+	public void onCameraMove()
+	{
+		ponerMarcadores();
+	}
+
+	@Override
+	public void onCameraIdle()
 	{
 		ponerMarcadores();
 	}
@@ -338,7 +346,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	@Override
 	public void onInfoWindowClick(Marker marker)
 	{
-		Antena antena = markerAAntena.get(marker);
+		Antena antena = (Antena)marker.getTag();
 		antena.mostrarInformacion(getActivity());
 	}
 
@@ -375,7 +383,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		FragmentManager fm = getFragmentManager();
 		boolean yaEstaba = fm.findFragmentByTag("canales") != null;
 
-		Antena antena = markerAAntena.get(marker);
+		Antena antena = (Antena)marker.getTag();
 		if(antena.canales == null)
 		{
 			if(yaEstaba)
@@ -456,7 +464,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		 * It's important to not hold on to objects (e.g. Marker) beyond the view's life.
 		 * Otherwise it will cause a memory leak as the view cannot be released."
 		 */
-		markerAAntena.clear();
 		markerSeleccionado = null;
 		países.clear();
 		super.onDestroyView();
