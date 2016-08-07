@@ -34,7 +34,7 @@
 		android:layout_height="?actionBarSize"
 		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 		app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-		android:background="@drawable/x_ab_solid_dark_holo"
+		android:background="@color/action_bar_mapa"
 		/>
 
 	</FrameLayout>
