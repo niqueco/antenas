@@ -1,9 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.*;
@@ -12,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,11 +26,9 @@ import com.google.android.gms.location.LocationRequest;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
-public class TVActivity extends Activity implements LocationClientCompat.Callback
+public class TVActivity extends FragmentActivity implements LocationClientCompat.Callback
 {
-	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
 
@@ -131,18 +128,6 @@ public class TVActivity extends Activity implements LocationClientCompat.Callbac
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
-		if(locationManager != null)
-		{
-			pedirUbicaciónALocationManager();
-		}
-		if(locationClient != null)
-			locationClient.onResume();
-	}
-
 	private void pedirUbicaciónALocationManager()
 	{
 		Criteria criteria = new Criteria();
@@ -162,31 +147,19 @@ public class TVActivity extends Activity implements LocationClientCompat.Callbac
 	}
 
 	@Override
-	protected void onPause()
-	{
-		super.onPause();
-		if(locationManager != null)
-			//noinspection MissingPermission
-			locationManager.removeUpdates(locationListener);
-		if(locationClient != null)
-			locationClient.onPause();
-	}
-
-	@Override
 	protected void onStart()
 	{
 		super.onStart();
-		((Aplicacion)getApplication()).reportActivityStart(this);
-		if(locationClient != null)
-			locationClient.onStart();
+		if(locationManager != null)
+			pedirUbicaciónALocationManager();
 	}
 
 	@Override
 	protected void onStop()
 	{
-		if(locationClient != null)
-			locationClient.onStop();
-		((Aplicacion)getApplication()).reportActivityStop(this);
+		if(locationManager != null)
+			//noinspection MissingPermission
+			locationManager.removeUpdates(locationListener);
 		super.onStop();
 	}
 
@@ -269,31 +242,18 @@ public class TVActivity extends Activity implements LocationClientCompat.Callbac
 	@Override
 	public void onConnectionFailed(ConnectionResult r)
 	{
-		if(r.hasResolution())
-		{
-			Log.w("antenas", "Play Services: " + r);
-			try
-			{
-				r.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
-			} catch(IntentSender.SendIntentException e)
-			{
-				Log.e("antenas", "uh?", e);
-			}
-		} else
-		{
-			Log.e("antenas", "Play Services no disponible: " + r + ". No importa, sobreviviremos.");
+		Log.e("antenas", "Play Services no disponible: " + r + ". No importa, sobreviviremos.");
 
-			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-			locationClient = null;
-			if(coordsUsuario == null)
-			{
-				//noinspection MissingPermission
-				Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
-					nuevaUbicación(location);
-			}
-			pedirUbicaciónALocationManager();
+		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		locationClient = null;
+		if(coordsUsuario == null)
+		{
+			//noinspection MissingPermission
+			Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+			if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
+				nuevaUbicación(location);
 		}
+		pedirUbicaciónALocationManager();
 	}
 
 	@Override
