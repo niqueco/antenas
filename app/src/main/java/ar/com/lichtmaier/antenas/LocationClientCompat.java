@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -27,41 +29,26 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	private static boolean noPreguntar;
 	private final Callback callback;
 
-	public LocationClientCompat(Activity activity, LocationRequest locationRequest, Callback callback)
+	public LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
 	{
 		this.activity = activity;
 		this.locationRequest = locationRequest;
 		this.callback = callback;
+
+		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity);
+		if(googlePlayServicesAvailable == ConnectionResult.SERVICE_MISSING || googlePlayServicesAvailable == ConnectionResult.SERVICE_INVALID)
+		{
+			callback.onConnectionFailed(null);
+			google = null;
+			return;
+		}
+
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
-		google = new GoogleApiClient.Builder(activity).addApi(LocationServices.API)
+		google = new GoogleApiClient.Builder(activity)
+			.addApi(LocationServices.API)
+			.enableAutoManage(activity, this)
 			.addConnectionCallbacks(this)
-			.addOnConnectionFailedListener(this)
 			.build();
-	}
-
-	public void onStart()
-	{
-		google.connect();
-	}
-
-	public void onResume()
-	{
-		if(google.isConnected())
-			//noinspection MissingPermission
-			LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
-		else if(!google.isConnecting())
-			google.connect();
-	}
-
-	public void onPause()
-	{
-		if(google.isConnected())
-			LocationServices.FusedLocationApi.removeLocationUpdates(google, locationCallback);
-	}
-
-	public void onStop()
-	{
-		google.disconnect();
 	}
 
 	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
@@ -74,11 +61,6 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	public void onConnected()
 	{
 		LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
-	}
-
-	public void connect()
-	{
-		google.connect();
 	}
 
 	@Override

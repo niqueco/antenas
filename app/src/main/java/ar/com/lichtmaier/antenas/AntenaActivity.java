@@ -48,7 +48,6 @@ import com.google.firebase.crash.FirebaseCrash;
 
 public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback
 {
-	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
@@ -408,14 +407,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	protected void onStart()
 	{
 		super.onStart();
-		if(locationClient != null)
-			locationClient.onStart();
 		if(brújula != null)
 			brújula.onResume(this);
 		if(locationManager != null)
 			pedirUbicaciónALocationManager();
-		if(locationClient != null)
-			locationClient.onResume();
 		publicidad.onResume();
 	}
 
@@ -461,16 +456,12 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(locationManager != null)
 			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
-		if(locationClient != null)
-			locationClient.onPause();
 	}
 
 	@Override
 	protected void onStop()
 	{
 		suspender();
-		if(locationClient != null)
-			locationClient.onStop();
 		super.onStop();
 	}
 
@@ -611,40 +602,27 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	public void onConnectionFailed(ConnectionResult r)
 	{
-		if(r.hasResolution())
-		{
-			Log.w("antenas", "Play Services: " + r);
-			try
-			{
-				r.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
-			} catch(SendIntentException e)
-			{
-				e.printStackTrace();
-			}
-		} else
-		{
-			Log.e("antenas", "Play Services no disponible: " + r + ". No importa, sobreviviremos.");
+		Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
 
-			pedirCambioConfiguración();
+		pedirCambioConfiguración();
 
-			locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-			locationClient = null;
-			if(coordsUsuario == null)
+		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		locationClient = null;
+		if(coordsUsuario == null)
+		{
+			//noinspection MissingPermission
+			Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
+				nuevaUbicación(location);
+			else
 			{
 				//noinspection MissingPermission
-				Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 				if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
 					nuevaUbicación(location);
-				else
-				{
-					//noinspection MissingPermission
-					location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-					if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
-						nuevaUbicación(location);
-				}
 			}
-			pedirUbicaciónALocationManager();
 		}
+		pedirUbicaciónALocationManager();
 	}
 
 	void pedirCambioConfiguración()
@@ -686,15 +664,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		switch(requestCode)
-		{
-			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
-				if(resultCode == RESULT_OK)
-				{
-					locationClient.connect();
-				}
-				return;
-		}
 		if(locationClient.onActivityResult(requestCode, resultCode, data))
 			return;
 		super.onActivityResult(requestCode, resultCode, data);
