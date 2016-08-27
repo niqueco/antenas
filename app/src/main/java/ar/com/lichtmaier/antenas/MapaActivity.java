@@ -32,20 +32,6 @@ public class MapaActivity extends AppCompatActivity
 	}
 
 	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		((Aplicacion)getApplication()).reportActivityStart(this);
-	}
-
-	@Override
-	protected void onStop()
-	{
-		((Aplicacion)getApplication()).reportActivityStop(this);
-		super.onStop();
-	}
-
-	@Override
 	protected void onResume()
 	{
 		super.onResume();

@@ -1,17 +1,12 @@
 package ar.com.lichtmaier.antenas;
 
-import android.app.Activity;
 import android.app.Application;
 import android.os.StrictMode;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class Aplicacion extends Application
 {
-	private Tracker tracker;
-
 	@Override
 	public void onCreate()
 	{
@@ -28,39 +23,9 @@ public class Aplicacion extends Application
 				.penaltyLog()
 				.build());
 		}
-	}
 
-	private Tracker getTracker()
-	{
-		if(tracker == null)
-		{
-			GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-			if(Publicidad.crearAdRequestBuilder().build().isTestDevice(this))
-				analytics.setDryRun(true);
-			analytics.enableAutoActivityReports(this);
-			tracker = analytics.newTracker(R.xml.analytics);
-			tracker.enableAdvertisingIdCollection(true);
-		}
-		return tracker;
-	}
-
-	void reportActivityStart(Activity act)
-	{
-		getTracker();
-		GoogleAnalytics.getInstance(this).reportActivityStart(act);
-	}
-
-	void reportActivityStop(Activity act)
-	{
-		GoogleAnalytics.getInstance(this).reportActivityStop(act);
-	}
-
-	public void mandarEvento(String categoría, String acción)
-	{
-		HitBuilders.EventBuilder builder = new HitBuilders.EventBuilder()
-				.setCategory(categoría)
-				.setAction(acción);
-		getTracker().send(builder.build());
+		if(Publicidad.crearAdRequestBuilder().build().isTestDevice(this))
+			FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
 	}
 
 	@Override

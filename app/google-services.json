@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "882629840832",
+    "firebase_url": "https://antenas-tda.firebaseio.com",
+    "project_id": "antenas-tda",
+    "storage_bucket": "antenas-tda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882629840832:android:3f27530f32105a46",
+        "android_client_info": {
+          "package_name": "ar.com.lichtmaier.antenas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882629840832-vo1jh7dmn74p3ap77vi33m63iuoha1t3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ar.com.lichtmaier.antenas",
+            "certificate_hash": "D95FA0CD61FD6946CE450B54B8AA5AE49F04F853"
+          }
+        },
+        {
+          "client_id": "882629840832-2ifn62llofm71pskpik1e4p4sc1njn63.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ar.com.lichtmaier.antenas",
+            "certificate_hash": "671C9260A139A8172C4CF77CE5923FDD47957A0A"
+          }
+        },
+        {
+          "client_id": "882629840832-438680uh79g7islcefmsvg3ceo5k0474.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCASMaZi6MEf6mNETzjcGxTAaGZL2ukvJI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882629840832-438680uh79g7islcefmsvg3ceo5k0474.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -50,8 +50,8 @@
         </activity>
 
         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAskBnEXlmSgDGDKqp_IknIcTJFqbueB0A"/>
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDvGHL3aTGp0wFMYNpXB9IMORZH1HigOI4"/>
 
         <activity
             android:name=".MapaActivity"

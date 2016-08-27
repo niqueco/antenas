@@ -418,20 +418,6 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 	}
 
 	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		((Aplicacion)getApplication()).reportActivityStart(this);
-	}
-
-	@Override
-	protected void onStop()
-	{
-		((Aplicacion)getApplication()).reportActivityStop(this);
-		super.onStop();
-	}
-
-	@Override
 	protected void onDestroy()
 	{
 		if(brújula != null)

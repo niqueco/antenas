@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
+import com.google.firebase.crash.FirebaseCrash;
 
 public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback
 {
@@ -407,7 +408,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	protected void onStart()
 	{
 		super.onStart();
-		((Aplicacion)getApplication()).reportActivityStart(this);
 		if(locationClient != null)
 			locationClient.onStart();
 		if(brújula != null)
@@ -439,6 +439,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		} catch(IllegalArgumentException e)
 		{
 			Log.e("antenas", "Error pidiendo updates de GPS", e);
+			FirebaseCrash.report(e);
 			Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
 			finish();
 		}
@@ -470,7 +471,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		suspender();
 		if(locationClient != null)
 			locationClient.onStop();
-		((Aplicacion)getApplication()).reportActivityStop(this);
 		super.onStop();
 	}
 

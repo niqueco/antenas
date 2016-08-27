@@ -20,6 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
+
 public class Calificame extends AppCompatDialogFragment implements View.OnClickListener
 {
 	private static final String PREF_CONTADOR_LANZAMIENTOS = "calif_contador_lanzamientos";
@@ -126,6 +129,7 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 		} catch(Exception e)
 		{
 			Log.e("antenas", "Al pedir calificación...", e);
+			FirebaseCrash.report(e);
 		}
 	}
 
@@ -173,7 +177,9 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 			default:
 				throw new RuntimeException("id = " + id);
 		}
-		((Aplicacion)context.getApplication()).mandarEvento("Calificar", acción);
+		Bundle bundle = new Bundle();
+		bundle.putString("accion", acción);
+		FirebaseAnalytics.getInstance(context).logEvent("califica", bundle);
 		editor.apply();
 	}
 }
