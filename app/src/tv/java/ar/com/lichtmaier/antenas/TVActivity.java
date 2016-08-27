@@ -267,7 +267,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	private static class PrenderAnimación implements Runnable
 	{
 		private final View pb;
-		public long comienzoAnimación = -1;
+		long comienzoAnimación = -1;
 		boolean cancelado = false;
 
 		public PrenderAnimación(View pb)
@@ -290,7 +290,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	private static class AvisoDemora implements Runnable
 	{
 		private final WeakReference<TVActivity> actRef;
-		public boolean cancelado = false;
+		boolean cancelado = false;
 
 		private AvisoDemora(TVActivity act)
 		{

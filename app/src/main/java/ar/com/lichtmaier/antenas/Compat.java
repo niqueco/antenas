@@ -30,7 +30,7 @@ public class Compat
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	static class CompatImplHC extends CompatImpl
+	private static class CompatImplHC extends CompatImpl
 	{
 		@Override
 		public void disableHardwareAccelerationForLineCaps(FlechaView view)
@@ -41,7 +41,7 @@ public class Compat
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-	static class CompatImplJB1 extends CompatImplHC
+	private static class CompatImplJB1 extends CompatImplHC
 	{
 		boolean activityIsDestroyed(Activity activity)
 		{
