@@ -15,7 +15,6 @@
 <canal nombre="CFTK-TV" numero="3"/>
 </antena>
 <antena lat="54.44222" lon="-126.66">
-<canal nombre="CBCY-TV" numero="2"/>
 <canal nombre="CFHO-TV" numero="8"/>
 </antena>
 <antena lat="54.74083" lon="-126.9822">
@@ -33,9 +32,6 @@
 <antena lat="54.25611" lon="-125.6786">
 <canal nombre="CH4333" numero="7"/>
 <canal nombre="CKHS-TV" numero="13"/>
-</antena>
-<antena lat="54.25667" lon="-125.6783">
-<canal nombre="CBCY-TV-1" numero="4"/>
 </antena>
 <antena lat="54.03306" lon="-124.6294">
 <canal nombre="CFFL-TV-1" numero="9"/>
@@ -130,9 +126,6 @@
 </antena>
 <antena lat="53.91333" lon="-122.4542">
 <canal nombre="CIFG-DT" numero="29"/>
-</antena>
-<antena lat="55.66833" lon="-121.5831">
-<canal nombre="CBCD-TV-2" numero="7"/>
 </antena>
 <antena lat="55.72889" lon="-120.4464">
 <canal nombre="CJDC-TV" numero="5"/>
