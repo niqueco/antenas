@@ -22,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -238,5 +240,39 @@ public class CachéDeContornos
 		}
 		if(lruCache != null)
 			lruCache.evictAll();
+	}
+
+	/** Busca si un punto dado está cubierto por el contorno de algún canal de la antena.
+	 */
+	@WorkerThread
+	public boolean enContorno(Antena antena, LatLng coords)
+	{
+		if(Log.isLoggable("antenas", Log.DEBUG))
+			Log.d("antenas", "buscando contorno para " + antena);
+
+		List<Canal> canalesLejos = null;
+
+		for(Canal c : antena.canales)
+		{
+			if(c.ref == null)
+				continue;
+
+			Polígono polígono = dameContornoFCC(Integer.parseInt(c.ref));
+
+			if(polígono == null)
+				continue;
+
+			if(!polígono.contiene(coords))
+			{
+				if(canalesLejos == null)
+					canalesLejos = new ArrayList<>();
+				canalesLejos.add(c);
+			}
+		}
+
+		final boolean cerca = canalesLejos == null || antena.canales.size() != canalesLejos.size();
+		if(!cerca && Log.isLoggable("antenas", Log.DEBUG))
+			Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
+		return cerca;
 	}
 }

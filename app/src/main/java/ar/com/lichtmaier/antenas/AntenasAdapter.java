@@ -266,32 +266,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 						if(antena == null)
 							break;
 
-						if(Log.isLoggable("antenas", Log.DEBUG))
-							Log.d("antenas", "buscando contorno para " + antena);
-
-						List<Canal> canalesLejos = null;
-
-						for(Canal c : antena.canales)
-						{
-							if(c.ref == null)
-								continue;
-
-							Polígono polígono = cachéDeContornos.dameContornoFCC(Integer.parseInt(c.ref));
-
-							if(polígono == null)
-								continue;
-
-							if(!polígono.contiene(new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude())))
-							{
-								if(canalesLejos == null)
-									canalesLejos = new ArrayList<>();
-								canalesLejos.add(c);
-							}
-						}
-
-						final boolean cerca = canalesLejos == null || antena.canales.size() != canalesLejos.size();
-						if(!cerca && Log.isLoggable("antenas", Log.DEBUG))
-							Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
+						final boolean cerca = cachéDeContornos.enContorno(antena, new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude()));
 						new Handler(Looper.getMainLooper()).post(new Runnable()
 						{
 							@Override
@@ -302,7 +277,6 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 								llamarANuevaUbicación.sendEmptyMessageDelayed(0, 2000);
 							}
 						});
-
 					}
 				} catch(InterruptedException ignored) { }
 				finally
