@@ -24,6 +24,15 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_header_mapa">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="dibujar_líneas"
+            android:title="@string/pref_dibujar_líneas_title"
+            android:summary="@string/pref_dibujar_líneas_summary"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_header_paises_mapa">
         <CheckBoxPreference android:title="@string/pref_AR" android:key="mapa_país_AR" android:defaultValue="false"/>
         <CheckBoxPreference android:title="@string/pref_AT" android:key="mapa_país_AT" android:defaultValue="false"/>
         <CheckBoxPreference android:title="@string/pref_AU" android:key="mapa_país_AU" android:defaultValue="false"/>

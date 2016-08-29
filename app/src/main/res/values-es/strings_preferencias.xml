@@ -29,6 +29,11 @@
     <string name="pref_usar_contornos_summary">Usar el área de cobertura informada por la FCC para mover las antenas fuera de alcance al final de la lista.</string>
 
     <string name="pref_header_mapa">Mapa</string>
+
+    <string name="pref_dibujar_líneas_title">Dibujar líneas</string>
+    <string name="pref_dibujar_líneas_summary">Mostrar líneas conectando tu ubicación con las antenas más cercanas.</string>
+
+    <string name="pref_header_paises_mapa">Países en el mapa</string>
     <string name="pref_AR">Argentina</string>
     <string name="pref_AT">Austria</string>
     <string name="pref_AU">Australia</string>

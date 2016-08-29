@@ -10,27 +10,31 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.*;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 
+import org.gavaghan.geodesy.GlobalCoordinates;
+
 import java.util.*;
+import java.util.concurrent.TimeoutException;
 
 public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
 		GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraIdleListener,
-		GoogleMap.OnMarkerClickListener
+		GoogleMap.OnMarkerClickListener, GoogleMap.OnPolylineClickListener,
+		LocationClientCompat.Callback
 {
 	private GoogleMap mapa;
 
@@ -49,6 +53,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private static BitmapDescriptor íconoAntenita, íconoAntenitaElegida;
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 145;
 	private Canal canalSeleccionado;
+	private LocationClientCompat locationClient;
+	private double latitudActual, longitudActual;
+	final private Map<Antena, Polyline> líneas = new HashMap<>();
+	final private Map<Antena, Marker> antenaAMarker = new HashMap<>();
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -74,6 +82,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 					{
 						markerSeleccionado.hideInfoWindow();
 						markerSeleccionado.setIcon(íconoAntenita);
+						estiloLínea((Antena)markerSeleccionado.getTag(), false);
 						markerSeleccionado = null;
 					}
 					mapa.setPadding(0, altoActionBar, 0, 0);
@@ -149,6 +158,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		mapa.setOnCameraMoveListener(this);
 		mapa.setOnCameraIdleListener(this);
 		mapa.setOnMarkerClickListener(this);
+		mapa.setOnPolylineClickListener(this);
 		Location loc = null;
 		if(AntenaActivity.coordsUsuario != null)
 		{
@@ -198,6 +208,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		{
 			configurarPaddingMapa();
 		}
+
+		dibujarLíneas(prefs.getBoolean("dibujar_líneas", true));
 	}
 
 	@Override
@@ -234,6 +246,13 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 					}
 				paísesPrendidos.remove(país);
 			}
+			actualizarLíneas();
+		} else if(key.equals("max_dist"))
+		{
+			actualizarLíneas();
+		} else if(key.equals("dibujar_líneas"))
+		{
+			dibujarLíneas(sharedPreferences.getBoolean("dibujar_líneas", true));
 		}
 	}
 
@@ -261,6 +280,29 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public boolean mapaInicializado()
 	{
 		return mapa != null;
+	}
+
+	@Override
+	public void onConnected(Bundle bundle)
+	{
+		if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+			return;
+		locationClient.onConnected();
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult connectionResult)
+	{
+
+	}
+
+	@Override
+	public void onLocationChanged(Location location)
+	{
+		latitudActual = location.getLatitude();
+		longitudActual = location.getLongitude();
+
+		actualizarLíneas();
 	}
 
 	static class FuturoMarcador
@@ -325,6 +367,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						países.put(m.antena.país, markers);
 					}
 					markers.add(marker);
+
+					antenaAMarker.put(m.antena, marker);
 				}
 			}
 
@@ -361,6 +405,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		{
 			markerSeleccionado.hideInfoWindow();
 			markerSeleccionado.setIcon(íconoAntenita);
+			estiloLínea((Antena)markerSeleccionado.getTag(), false);
 			markerSeleccionado = null;
 		}
 		canalSeleccionado(null, null);
@@ -374,7 +419,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public boolean onMarkerClick(Marker marker)
 	{
 		if(markerSeleccionado != null)
+		{
 			markerSeleccionado.setIcon(íconoAntenita);
+			estiloLínea((Antena)markerSeleccionado.getTag(), false);
+		}
 
 		markerSeleccionado = marker;
 
@@ -386,6 +434,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		boolean yaEstaba = fm.findFragmentByTag("canales") != null;
 
 		Antena antena = (Antena)marker.getTag();
+		estiloLínea(antena, true);
+
 		if(antena.canales == null)
 		{
 			if(yaEstaba)
@@ -405,6 +455,17 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				.commit();
 
 		return false;
+	}
+
+	private void estiloLínea(Antena antena, boolean sel)
+	{
+		Polyline línea = líneas.get(antena);
+		Log.d("antenas", "estiloLínea " + antena + ", sel=" +sel + ", línea="+línea);
+		if(línea != null)
+		{
+			línea.setColor(ContextCompat.getColor(getActivity(), sel ? R.color.línea_mapa_sel : R.color.línea_mapa));
+			línea.setWidth(getActivity().getResources().getDimension(sel? R.dimen.ancho_línea_antena_sel : R.dimen.ancho_línea_antena));
+		}
 	}
 
 	public void canalSeleccionado(Antena antena, final Canal canal)
@@ -468,6 +529,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		 */
 		markerSeleccionado = null;
 		países.clear();
+		líneas.clear();
+		antenaAMarker.clear();
 		super.onDestroyView();
 	}
 
@@ -479,5 +542,119 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(cachéDeContornos != null)
 			cachéDeContornos.devolver();
 		super.onDestroy();
+	}
+
+	/** Prende y apaga el dibujado de líneas. */
+	private void dibujarLíneas(boolean dibujarLíneas)
+	{
+		if(dibujarLíneas)
+		{
+			if(locationClient == null)
+				locationClient = new LocationClientCompat(getActivity(), LocationRequest.create()
+						.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+						.setInterval(1000)
+						.setFastestInterval(500)
+						.setSmallestDisplacement(10), this);
+			else
+			{
+				if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+				{
+					return;
+				}
+				locationClient.onConnected();
+			}
+		} else
+		{
+			if(locationClient != null)
+				locationClient.stop();
+			for(Polyline p : líneas.values())
+				p.remove();
+			líneas.clear();
+		}
+	}
+
+	private void actualizarLíneas()
+	{
+		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
+		Set<Antena> antenasCerca;
+		try
+		{
+			antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), new GlobalCoordinates(latitudActual, longitudActual), maxDist, false));
+		} catch(TimeoutException e)
+		{
+			Log.w("antenas", "No hay antenas todavía para hacer líneas");
+			return;
+		}
+		Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
+		LatLng posNosotros = new LatLng(latitudActual, longitudActual);
+		float ancho = 0;
+
+		Iterator<Antena> itA = antenasCerca.iterator();
+		while(itA.hasNext())
+		{
+			Antena antena = itA.next();
+
+			if(cachéDeContornos == null)
+				cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
+
+			if(!cachéDeContornos.enContorno(antena, posNosotros, false))
+			{
+				if(Log.isLoggable("antenas", Log.DEBUG))
+					Log.d("antenas", "No se dibuja línea de antena " + antena + " porque estamos fuera de su contorno de alcance.");
+				itA.remove();
+				continue;
+			}
+
+			Polyline polyline = líneas.get(antena);
+			if(polyline != null)
+			{
+				//Log.d("antenas", "modifico "+polyline);
+				List<LatLng> points = new ArrayList<>(2);
+				points.add(posNosotros);
+				points.add(antena.getLatLng());
+				polyline.setPoints(points);
+			} else
+			{
+				if(ancho == 0)
+					ancho = getActivity().getResources().getDimension(R.dimen.ancho_línea_antena);
+				polyline = mapa.addPolyline(new PolylineOptions()
+						.add(posNosotros, antena.getLatLng())
+						.geodesic(true)
+						.width(ancho)
+						.color(ContextCompat.getColor(getActivity(), R.color.línea_mapa)));
+				polyline.setClickable(true);
+				//Log.d("antenas", "agrego "+polyline);
+				líneas.put(antena, polyline);
+			}
+		}
+
+		Iterator<Map.Entry<Antena, Polyline>> itL = líneas.entrySet().iterator();
+		while(itL.hasNext())
+		{
+			Map.Entry<Antena, Polyline> e = itL.next();
+			if(!antenasCerca.contains(e.getKey()))
+			{
+				e.getValue().remove();
+				itL.remove();
+			}
+		}
+	}
+
+	@Override
+	public void onPolylineClick(Polyline polyline)
+	{
+		Log.d("antenas", "click en " + polyline);
+		Antena antena = null;
+		for(Map.Entry<Antena, Polyline> e : líneas.entrySet())
+			if(polyline.equals(e.getValue()))
+			{
+				antena = e.getKey();
+				break;
+			}
+		if(antena == null)
+			throw new RuntimeException("uh? " + polyline);
+		Log.d("antenas", "click en línea de " + antena);
+		Marker marker = antenaAMarker.get(antena);
+		onMarkerClick(marker);
 	}
 }

@@ -28,6 +28,11 @@
 	<string name="pref_usar_contornos_summary">Utilisez les zones de couverture informés par la FCC pour déplacer les stations qui sont hors de portée pour le bas de la liste.</string>
 
 	<string name="pref_header_mapa">Carte</string>
+
+	<string name="pref_dibujar_líneas_title">Draw lines</string>
+	<string name="pref_dibujar_líneas_summary">Afficher les lignes reliant votre position avec les antennes les plus proches.</string>
+
+	<string name="pref_header_paises_mapa">Les pays de la carte</string>
 	<string name="pref_AR">Argentina</string>
 	<string name="pref_AT">Autriche</string>
 	<string name="pref_AU">Australia</string>

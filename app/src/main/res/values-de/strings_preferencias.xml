@@ -29,6 +29,11 @@
     <string name="pref_usar_contornos_summary">Use the coverage areas informed by the FCC to move stations that are out-of-reach to the bottom of the list.</string>
 
     <string name="pref_header_mapa">Karte</string>
+
+    <string name="pref_dibujar_líneas_title">Linien zeichnen</string>
+    <string name="pref_dibujar_líneas_summary">Zeige Zeilen von Ihrem Standort aus zu den nächsten Antennen.</string>
+
+    <string name="pref_header_paises_mapa">Die Länder in der Karte</string>
     <string name="pref_AR">Argentinien</string>
     <string name="pref_AT">Österreich</string>
     <string name="pref_AU">Australien</string>
