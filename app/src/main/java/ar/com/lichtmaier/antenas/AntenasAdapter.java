@@ -266,7 +266,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 						if(antena == null)
 							break;
 
-						final boolean cerca = cachéDeContornos.enContorno(antena, new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude()));
+						final boolean cerca = cachéDeContornos.enContorno(antena, new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude()), true);
 						new Handler(Looper.getMainLooper()).post(new Runnable()
 						{
 							@Override

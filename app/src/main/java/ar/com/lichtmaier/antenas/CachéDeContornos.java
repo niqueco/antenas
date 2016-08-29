@@ -5,13 +5,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.support.v4.app.ActivityManagerCompat;
 import android.support.v4.util.LruCache;
 import android.util.Log;
+import android.util.Pair;
 
+import com.github.davidmoten.geo.GeoHash;
+import com.github.davidmoten.geo.LatLong;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -240,13 +244,48 @@ public class CachéDeContornos
 		}
 		if(lruCache != null)
 			lruCache.evictAll();
+		if(cachéEnContorno != null)
+			cachéEnContorno.evictAll();
 	}
+
+	private static LruCache<Pair<String, Antena>, Boolean> cachéEnContorno;
 
 	/** Busca si un punto dado está cubierto por el contorno de algún canal de la antena.
 	 */
-	@WorkerThread
-	public boolean enContorno(Antena antena, LatLng coords)
+	public boolean enContorno(final Antena antena, final LatLng coords, boolean puedoEsperar)
 	{
+		if(antena.país != País.US)
+			return true;
+
+		if(cachéEnContorno == null)
+		{
+			synchronized(this)
+			{
+				if(cachéEnContorno == null)
+					cachéEnContorno = new LruCache<>(400);
+			}
+		}
+
+		String hashCoords = GeoHash.encodeHash(new LatLong(coords.latitude, coords.longitude), 8);
+
+		Pair<String, Antena> claveCaché = Pair.create(hashCoords, antena);
+		Boolean cached = cachéEnContorno.get(claveCaché);
+		if(cached != null)
+			return cached;
+
+		if(!puedoEsperar)
+		{
+			new AsyncTask<Void, Void, Void>() {
+				@Override
+				protected Void doInBackground(Void... voids)
+				{
+					enContorno(antena, coords, true);
+					return null;
+				}
+			}.execute();
+			return true;
+		}
+
 		if(Log.isLoggable("antenas", Log.DEBUG))
 			Log.d("antenas", "buscando contorno para " + antena);
 
@@ -273,6 +312,8 @@ public class CachéDeContornos
 		final boolean cerca = canalesLejos == null || antena.canales.size() != canalesLejos.size();
 		if(!cerca && Log.isLoggable("antenas", Log.DEBUG))
 			Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
+
+		cachéEnContorno.put(claveCaché, cerca);
 		return cerca;
 	}
 }
