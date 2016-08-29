@@ -44,6 +44,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private AsyncTask<Void, Void, Polígono> tareaTraerContorno;
 	private int originalBackStackEntryCount;
 	private Publicidad publicidad;
+	private SharedPreferences prefs;
 
 	private static BitmapDescriptor íconoAntenita, íconoAntenitaElegida;
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 145;
@@ -53,6 +54,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public void onCreate(@Nullable Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
 		if(savedInstanceState != null)
 			originalBackStackEntryCount = savedInstanceState.getInt("originalBackStackEntryCount");
@@ -160,7 +163,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
 		if(íconoAntenitaElegida == null)
 			íconoAntenitaElegida = BitmapDescriptorFactory.fromResource(R.drawable.antena_seleccionada);
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(act);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 		for(País país : País.values())
 			if(prefs.getBoolean("mapa_país_" + país, false))
