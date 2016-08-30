@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -28,7 +30,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class Antena
+public class Antena implements Parcelable
 {
 	final public String descripción, ref, geohash;
 	private final GlobalCoordinates c;
@@ -451,4 +453,35 @@ public class Antena
 	{
 		return país + "-" + index;
 	}
+
+	@Override
+	public int describeContents()
+	{
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel parcel, int i)
+	{
+		parcel.writeInt(país.ordinal());
+		parcel.writeInt(index);
+	}
+
+	public static final Parcelable.Creator<Antena> CREATOR
+			= new Parcelable.Creator<Antena>()
+	{
+		@Override
+		public Antena createFromParcel(Parcel parcel)
+		{
+			País país = País.values()[parcel.readInt()];
+			int index = parcel.readInt();
+			return dameAntena(null, país, index);
+		}
+
+		@Override
+		public Antena[] newArray(int tam)
+		{
+			return new Antena[tam];
+		}
+	};
 }
