@@ -41,6 +41,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private final Map<País, List<Marker>> países = new EnumMap<>(País.class);
 
+	private Antena antenaSeleccionada;
 	private Marker markerSeleccionado;
 	private CachéDeContornos cachéDeContornos;
 	private Polygon contornoActual;
@@ -59,6 +60,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	final private Map<Antena, Polyline> líneas = new HashMap<>();
 	final private Map<Antena, Marker> antenaAMarker = new HashMap<>();
 
+	private boolean markersCargados;
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
 	{
@@ -67,8 +70,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
 		if(savedInstanceState != null)
+		{
 			originalBackStackEntryCount = savedInstanceState.getInt("originalBackStackEntryCount");
-		else
+			antenaSeleccionada = savedInstanceState.getParcelable("antenaSeleccionada");
+		} else
 			originalBackStackEntryCount = getFragmentManager().getBackStackEntryCount();
 
 		getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener()
@@ -83,8 +88,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 					{
 						markerSeleccionado.hideInfoWindow();
 						markerSeleccionado.setIcon(íconoAntenita);
-						estiloLínea((Antena)markerSeleccionado.getTag(), false);
+						estiloLínea(antenaSeleccionada, false);
 						markerSeleccionado = null;
+						antenaSeleccionada = null;
 					}
 					mapa.setPadding(0, altoActionBar, 0, 0);
 				}
@@ -97,6 +103,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	{
 		super.onSaveInstanceState(outState);
 		outState.putInt("originalBackStackEntryCount", originalBackStackEntryCount);
+		if(antenaSeleccionada != null)
+			outState.putParcelable("antenaSeleccionada", antenaSeleccionada);
 	}
 
 	@Override
@@ -337,6 +345,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			markers.add(marker);
 
 			mapaFragment.antenaAMarker.put(antena, marker);
+			mapaFragment.markersCargados = true;
 		}
 	}
 
@@ -377,6 +386,18 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			{
 				for(FuturoMarcador m : mm)
 					m.crear(MapaFragment.this);
+
+				if(markerSeleccionado == null && antenaSeleccionada != null)
+				{
+					markerSeleccionado = antenaAMarker.get(antenaSeleccionada);
+					if(markerSeleccionado == null)
+					{
+						Log.e("antenas", "La antena seleccionada " + antenaSeleccionada + " no tiene marker?");
+						return;
+					}
+					markerSeleccionado.setIcon(íconoAntenitaElegida);
+					estiloLínea(antenaSeleccionada, true);
+				}
 			}
 
 		}.execute();
@@ -414,6 +435,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			markerSeleccionado.setIcon(íconoAntenita);
 			estiloLínea((Antena)markerSeleccionado.getTag(), false);
 			markerSeleccionado = null;
+			antenaSeleccionada = null;
 		}
 		canalSeleccionado(null, null);
 		FragmentManager fm = getFragmentManager();
@@ -428,10 +450,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(markerSeleccionado != null)
 		{
 			markerSeleccionado.setIcon(íconoAntenita);
-			estiloLínea((Antena)markerSeleccionado.getTag(), false);
+			estiloLínea(antenaSeleccionada, false);
 		}
 
 		markerSeleccionado = marker;
+		antenaSeleccionada = (Antena)marker.getTag();
 
 		marker.setIcon(íconoAntenitaElegida);
 
@@ -594,7 +617,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 		Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
 		LatLng posNosotros = new LatLng(latitudActual, longitudActual);
-		float ancho = 0;
 
 		Iterator<Antena> itA = antenasCerca.iterator();
 		while(itA.hasNext())
@@ -630,13 +652,16 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			{
 				if(!antenasDentro.contains(antena))
 					new FuturoMarcador(antena, getContext()).crear(this);
-				if(ancho == 0)
-					ancho = getActivity().getResources().getDimension(R.dimen.ancho_línea_antena);
+				boolean sel = antena == antenaSeleccionada;
 				polyline = mapa.addPolyline(new PolylineOptions()
 						.add(posNosotros, antena.getLatLng())
 						.geodesic(true)
-						.width(ancho)
-						.color(ContextCompat.getColor(getActivity(), R.color.línea_mapa)));
+						.width(getActivity().getResources().getDimension(sel
+								? R.dimen.ancho_línea_antena_sel
+								: R.dimen.ancho_línea_antena))
+						.color(ContextCompat.getColor(getActivity(), sel
+								? R.color.línea_mapa_sel
+								: R.color.línea_mapa)));
 				polyline.setClickable(true);
 				//Log.d("antenas", "agrego "+polyline);
 				líneas.put(antena, polyline);
@@ -669,7 +694,16 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(antena == null)
 			throw new RuntimeException("uh? " + polyline);
 		Log.d("antenas", "click en línea de " + antena);
+
+		if(!markersCargados)
+		{
+			antenaSeleccionada = antena;
+			return;
+		}
+
 		Marker marker = antenaAMarker.get(antena);
+		if(marker == null)
+			throw new NullPointerException("la antena " + antena + "no tiene marker?? antenas: " + antenaAMarker.keySet());
 		onMarkerClick(marker);
 	}
 }
