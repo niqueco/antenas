@@ -1,12 +1,17 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -493,8 +498,22 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		Log.d("antenas", "estiloLínea " + antena + ", sel=" +sel + ", línea="+línea);
 		if(línea != null)
 		{
-			línea.setColor(ContextCompat.getColor(getActivity(), sel ? R.color.línea_mapa_sel : R.color.línea_mapa));
-			línea.setWidth(getActivity().getResources().getDimension(sel? R.dimen.ancho_línea_antena_sel : R.dimen.ancho_línea_antena));
+			int color = ContextCompat.getColor(getActivity(), sel ? R.color.línea_mapa_sel : R.color.línea_mapa);
+			float ancho = getActivity().getResources().getDimension(sel ? R.dimen.ancho_línea_antena_sel : R.dimen.ancho_línea_antena);
+
+			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+			{
+				PropertyValuesHolder h1 = PropertyValuesHolder.ofFloat("width", línea.getWidth(), ancho);
+				PropertyValuesHolder h2 = PropertyValuesHolder.ofInt("color", línea.getColor(), color);
+				h2.setEvaluator(new ArgbEvaluator());
+				ValueAnimator animator = ObjectAnimator.ofPropertyValuesHolder(línea, h1, h2);
+				animator.setDuration(150);
+				animator.start();
+			} else
+			{
+				línea.setColor(color);
+				línea.setWidth(ancho);
+			}
 		}
 	}
 
