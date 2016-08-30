@@ -244,6 +244,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						Antena antena = (Antena)marker.getTag();
 						antenasDentro.remove(antena);
 						marker.remove();
+						Polyline polyline = líneas.remove(antena);
+						if(polyline != null)
+							polyline.remove();
 					}
 				paísesPrendidos.remove(país);
 			}
@@ -597,6 +600,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		while(itA.hasNext())
 		{
 			Antena antena = itA.next();
+
+			if(!paísesPrendidos.contains(antena.país))
+			{
+				itA.remove();
+				continue;
+			}
 
 			if(cachéDeContornos == null)
 				cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
