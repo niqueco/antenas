@@ -152,6 +152,8 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		super.onStart();
 		if(locationManager != null)
 			pedirUbicaciónALocationManager();
+		if(locationClient != null)
+			locationClient.start();
 	}
 
 	@Override
@@ -160,6 +162,8 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		if(locationManager != null)
 			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
+		if(locationClient != null)
+			locationClient.stop();
 		super.onStop();
 	}
 
@@ -169,17 +173,6 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		if(antenasAdapter != null)
 			antenasAdapter.onDestroy();
 		super.onDestroy();
-	}
-
-	@Override
-	public void onConnected(Bundle bundle)
-	{
-		//noinspection MissingPermission
-		Location location = locationClient.getLastLocation();
-		if(location != null)
-			nuevaUbicación(location);
-		//noinspection MissingPermission
-		locationClient.onConnected();
 	}
 
 	private void nuevaUbicación(Location location)

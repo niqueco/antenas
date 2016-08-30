@@ -4,11 +4,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
@@ -58,16 +60,26 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	}
 
 	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
-	public void onConnected()
+	public void start()
 	{
+		if(!google.isConnected())
+		{
+			google.connect();
+			return;
+		}
 		LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
 	}
 
 	@Override
 	public void onConnected(Bundle bundle)
 	{
-		callback.onConnected(bundle);
-
+		if(ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+				&& ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+			return;
+		Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(google);
+		if(lastLocation != null)
+			callback.onLocationChanged(lastLocation);
+		start();
 		verificarConfiguración();
 	}
 
@@ -100,7 +112,10 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	public void stop()
 	{
 		if(google.isConnected())
+		{
 			LocationServices.FusedLocationApi.removeLocationUpdates(google, locationCallback);
+			google.disconnect(); // No debería ser necesario... =/
+		}
 	}
 
 	@Override
@@ -143,8 +158,6 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 
 	interface Callback extends com.google.android.gms.location.LocationListener
 	{
-		void onConnected(Bundle bundle);
-
 		void onConnectionFailed(ConnectionResult connectionResult);
 	}
 }

@@ -12,6 +12,7 @@ import com.google.android.gms.ads.AdView;
 class Publicidad
 {
 	private final AdView adView;
+	private boolean loaded;
 
 	Publicidad(Activity act, String adUnitId)
 	{
@@ -28,8 +29,9 @@ class Publicidad
 
 	void load(Location loc)
 	{
-		if(adView == null)
+		if(adView == null || loaded)
 			return;
+		loaded = true;
 		AdRequest.Builder builder = crearAdRequestBuilder()
 				.addKeyword("antenna")
 				.addKeyword("tv")

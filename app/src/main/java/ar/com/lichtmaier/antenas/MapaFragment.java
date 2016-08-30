@@ -26,8 +26,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 
@@ -39,8 +37,7 @@ import java.util.concurrent.TimeoutException;
 public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
 		GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraIdleListener,
-		GoogleMap.OnMarkerClickListener, GoogleMap.OnPolylineClickListener,
-		LocationClientCompat.Callback
+		GoogleMap.OnMarkerClickListener, GoogleMap.OnPolylineClickListener
 {
 	private GoogleMap mapa;
 
@@ -60,11 +57,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private static BitmapDescriptor íconoAntenita, íconoAntenitaElegida;
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 145;
 	private Canal canalSeleccionado;
-	private LocationClientCompat locationClient;
 	private double latitudActual, longitudActual;
 	final private Map<Antena, Polyline> líneas = new HashMap<>();
 	final private Map<Antena, Marker> antenaAMarker = new HashMap<>();
-
+	private boolean dibujandoLíneas;
 	private boolean markersCargados;
 
 	@Override
@@ -299,21 +295,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		return mapa != null;
 	}
 
-	@Override
-	public void onConnected(Bundle bundle)
-	{
-		if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-			return;
-		locationClient.onConnected();
-	}
-
-	@Override
-	public void onConnectionFailed(ConnectionResult connectionResult)
-	{
-
-	}
-
-	@Override
 	public void onLocationChanged(Location location)
 	{
 		latitudActual = location.getLatitude();
@@ -596,26 +577,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	/** Prende y apaga el dibujado de líneas. */
 	private void dibujarLíneas(boolean dibujarLíneas)
 	{
-		if(dibujarLíneas)
+		if(dibujarLíneas == dibujandoLíneas)
+			return;
+		this.dibujandoLíneas = dibujarLíneas;
+		if(!dibujarLíneas)
 		{
-			if(locationClient == null)
-				locationClient = new LocationClientCompat(getActivity(), LocationRequest.create()
-						.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-						.setInterval(1000)
-						.setFastestInterval(500)
-						.setSmallestDisplacement(10), this);
-			else
-			{
-				if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-				{
-					return;
-				}
-				locationClient.onConnected();
-			}
-		} else
-		{
-			if(locationClient != null)
-				locationClient.stop();
 			for(Polyline p : líneas.values())
 				p.remove();
 			líneas.clear();
@@ -624,6 +590,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private void actualizarLíneas()
 	{
+		if(!dibujandoLíneas)
+			return;
 		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
 		Set<Antena> antenasCerca;
 		try

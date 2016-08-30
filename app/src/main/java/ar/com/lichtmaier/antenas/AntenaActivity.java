@@ -9,7 +9,6 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -411,6 +410,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			brújula.onResume(this);
 		if(locationManager != null)
 			pedirUbicaciónALocationManager();
+		if(locationClient != null)
+			locationClient.start();
 		publicidad.onResume();
 	}
 
@@ -456,6 +457,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(locationManager != null)
 			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
+		if(locationClient != null)
+			locationClient.stop();
 	}
 
 	@Override
@@ -645,19 +648,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 	}
 
-	@SuppressWarnings("MissingPermission")
-	public void onConnected(Bundle arg0)
-	{
-		Location location = locationClient.getLastLocation();
-		if(location != null)
-			nuevaUbicación(location);
-		locationClient.onConnected();
-		publicidad.load(location);
-	}
-
 	@Override
 	public void onLocationChanged(Location location)
 	{
+		publicidad.load(location);
 		nuevaUbicación(location);
 	}
 
