@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -310,10 +311,29 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		final Antena antena;
 		final MarkerOptions markerOptions;
 
-		FuturoMarcador(Antena antena, MarkerOptions markerOptions)
+		FuturoMarcador(Antena antena, Context context)
 		{
 			this.antena = antena;
-			this.markerOptions = markerOptions;
+			this.markerOptions = new MarkerOptions()
+					.position(antena.getLatLng())
+					.title((antena.canales == null || antena.canales.isEmpty()) ? antena.dameNombre(context) : null)
+					.icon(íconoAntenita);
+		}
+
+		private void crear(MapaFragment mapaFragment)
+		{
+			Marker marker = mapaFragment.mapa.addMarker(markerOptions);
+			marker.setTag(antena);
+
+			List<Marker> markers = mapaFragment.países.get(antena.país);
+			if(markers == null)
+			{
+				markers = new ArrayList<>();
+				mapaFragment.países.put(antena.país, markers);
+			}
+			markers.add(marker);
+
+			mapaFragment.antenaAMarker.put(antena, marker);
 		}
 	}
 
@@ -344,10 +364,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 					if(!antenasDentro.add(antena))
 						continue;
 
-					mm.add(new FuturoMarcador(antena, new MarkerOptions()
-							.position(antena.getLatLng())
-							.title((antena.canales == null || antena.canales.isEmpty()) ? antena.dameNombre(getActivity()) : null)
-							.icon(íconoAntenita)));
+					mm.add(new FuturoMarcador(antena, getActivity()));
 				}
 				return mm;
 			}
@@ -356,20 +373,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			protected void onPostExecute(List<FuturoMarcador> mm)
 			{
 				for(FuturoMarcador m : mm)
-				{
-					Marker marker = mapa.addMarker(m.markerOptions);
-					marker.setTag(m.antena);
-
-					List<Marker> markers = países.get(m.antena.país);
-					if(markers == null)
-					{
-						markers = new ArrayList<>();
-						países.put(m.antena.país, markers);
-					}
-					markers.add(marker);
-
-					antenaAMarker.put(m.antena, marker);
-				}
+					m.crear(MapaFragment.this);
 			}
 
 		}.execute();
@@ -615,6 +619,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				polyline.setPoints(points);
 			} else
 			{
+				if(!antenasDentro.contains(antena))
+					new FuturoMarcador(antena, getContext()).crear(this);
 				if(ancho == 0)
 					ancho = getActivity().getResources().getDimension(R.dimen.ancho_línea_antena);
 				polyline = mapa.addPolyline(new PolylineOptions()
