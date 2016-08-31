@@ -590,7 +590,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private void actualizarLíneas()
 	{
-		if(!dibujandoLíneas)
+		if(!dibujandoLíneas || !isVisible())
 			return;
 		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
 		Set<Antena> antenasCerca;
