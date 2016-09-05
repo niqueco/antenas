@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +19,7 @@ import com.google.android.gms.location.LocationRequest;
 public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback
 {
 	private long comienzoUsoPantalla;
-	private LocationClientCompat locationClient;
+	@Nullable private LocationClientCompat locationClient;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +39,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 					.add(R.id.container, new MapaFragment())
 					.commit();
 
-		locationClient = new LocationClientCompat(this, LocationRequest.create()
+		locationClient = LocationClientCompat.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(1000)
 				.setFastestInterval(500)
@@ -63,7 +64,8 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	@Override
 	protected void onStop()
 	{
-		locationClient.stop();
+		if(locationClient != null)
+			locationClient.stop();
 		super.onStop();
 	}
 
@@ -71,7 +73,8 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	protected void onStart()
 	{
 		super.onStart();
-		locationClient.start();
+		if(locationClient != null)
+			locationClient.start();
 	}
 
 	@Override
@@ -115,7 +118,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if(locationClient.onActivityResult(requestCode, resultCode, data))
+		if(locationClient != null && locationClient.onActivityResult(requestCode, resultCode, data))
 			return;
 		super.onActivityResult(requestCode, resultCode, data);
 	}

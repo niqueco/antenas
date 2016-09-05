@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -31,19 +32,11 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	private static boolean noPreguntar;
 	private final Callback callback;
 
-	public LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
+	private LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
 	{
 		this.activity = activity;
 		this.locationRequest = locationRequest;
 		this.callback = callback;
-
-		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity);
-		if(googlePlayServicesAvailable == ConnectionResult.SERVICE_MISSING || googlePlayServicesAvailable == ConnectionResult.SERVICE_INVALID)
-		{
-			callback.onConnectionFailed(null);
-			google = null;
-			return;
-		}
 
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
 		google = new GoogleApiClient.Builder(activity)
@@ -51,6 +44,18 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 			.enableAutoManage(activity, this)
 			.addConnectionCallbacks(this)
 			.build();
+	}
+
+	@Nullable
+	public static LocationClientCompat create(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
+	{
+		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity);
+		if(googlePlayServicesAvailable == ConnectionResult.SERVICE_MISSING || googlePlayServicesAvailable == ConnectionResult.SERVICE_INVALID)
+		{
+			callback.onConnectionFailed(null);
+			return null;
+		}
+		return new LocationClientCompat(activity, locationRequest, callback);
 	}
 
 	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})

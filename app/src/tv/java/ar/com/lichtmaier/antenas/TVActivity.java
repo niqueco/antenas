@@ -33,7 +33,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	public static final int PRECISIÓN_ACEPTABLE = 150;
 
 	private GlobalCoordinates coordsUsuario;
-	private LocationClientCompat locationClient;
+	@Nullable private LocationClientCompat locationClient;
 	private AntenasAdapter antenasAdapter;
 	private LocationManager locationManager;
 	private SharedPreferences prefs;
@@ -107,7 +107,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 
 	private void crearLocationClientCompat()
 	{
-		locationClient = new LocationClientCompat(this, LocationRequest.create()
+		locationClient = LocationClientCompat.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(10000)
 				.setFastestInterval(2000)
