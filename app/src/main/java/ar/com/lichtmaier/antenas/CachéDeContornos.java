@@ -51,7 +51,7 @@ public class CachéDeContornos
 		if(lruCache == null)
 		{
 			ActivityManager am = (ActivityManager)ctx.getSystemService(Context.ACTIVITY_SERVICE);
-			lruCache = new LruCache<>(ActivityManagerCompat.isLowRamDevice(am) || am.getMemoryClass() <= 32 ? 30 : 150);
+			lruCache = new LruCache<>(ActivityManagerCompat.isLowRamDevice(am) || am.getMemoryClass() <= 96 ? 30 : 150);
 		}
 		if(instancia == null)
 			instancia = new CachéDeContornos(ctx);
