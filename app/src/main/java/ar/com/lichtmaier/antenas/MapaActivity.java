@@ -78,6 +78,14 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	}
 
 	@Override
+	protected void onDestroy()
+	{
+		if(locationClient != null)
+			locationClient.destroy();
+		super.onDestroy();
+	}
+
+	@Override
 	public void onBackPressed()
 	{
 		FragmentManager fm = getSupportFragmentManager();

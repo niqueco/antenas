@@ -123,6 +123,12 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		}
 	}
 
+	public void destroy()
+	{
+		google.unregisterConnectionCallbacks(this);
+		google.unregisterConnectionFailedListener(this);
+	}
+
 	@Override
 	public void onConnectionSuspended(int i)
 	{
