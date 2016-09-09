@@ -246,6 +246,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				paísesPrendidos.add(país);
 			} else
 			{
+				if(antenaSeleccionada != null && antenaSeleccionada.país == país)
+				{
+					antenaSeleccionada = null;
+					markerSeleccionado = null;
+				}
 				List<Marker> markers = países.remove(país);
 				if(markers != null)
 					for(Marker marker : markers)
