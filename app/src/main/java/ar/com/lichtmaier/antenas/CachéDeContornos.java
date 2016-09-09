@@ -96,11 +96,11 @@ public class CachéDeContornos
 				}
 			} else
 			{
-				Log.w("leyes", "No hay almacenamiento externo. El caché de contornos será sólo en memoria.");
+				Log.w("antenas", "No hay almacenamiento externo. El caché de contornos será sólo en memoria.");
 			}
 		} catch(RuntimeException e)
 		{
-			Log.e("leyes", "Error creando la base. El caché de contornos será sólo en memoria.", e);
+			Log.e("antenas", "Error creando la base. El caché de contornos será sólo en memoria.", e);
 		}
 		db = base;
 
