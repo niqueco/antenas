@@ -55,13 +55,16 @@ public class Antena implements Parcelable
 		this.país = país;
 		this.ref = ref;
 		geohash = GeoHash.encodeHash(lat, lon, 4);
-		List<Antena> l = geohashAAntenas.get(geohash);
-		if(l == null)
+		synchronized(geohashAAntenas)
 		{
-			l = new ArrayList<>();
-			geohashAAntenas.put(geohash, l);
+			List<Antena> l = geohashAAntenas.get(geohash);
+			if(l == null)
+			{
+				l = new ArrayList<>();
+				geohashAAntenas.put(geohash, l);
+			}
+			l.add(this);
 		}
-		l.add(this);
 	}
 
 	private transient String nombre = null;
@@ -230,9 +233,12 @@ public class Antena implements Parcelable
 					+ bottomRightLat + ", " + bottomRightLon + ") dio null");
 			return;
 		}
-		for(String hash : coverage.getHashes())
-			for(Map.Entry<String, List<Antena>> e : geohashAAntenas.subMap(hash, hashMásUno(hash)).entrySet())
-				antenas.addAll(e.getValue());
+		synchronized(geohashAAntenas)
+		{
+			for(String hash : coverage.getHashes())
+				for(Map.Entry<String, List<Antena>> e : geohashAAntenas.subMap(hash, hashMásUno(hash)).entrySet())
+					antenas.addAll(e.getValue());
+		}
 	}
 
 	@NonNull
