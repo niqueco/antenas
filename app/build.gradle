@@ -9,7 +9,9 @@ android {
         minSdkVersion 9
         targetSdkVersion 24
         versionName "2.2.1"
-        resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA", "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "pt", "pt-rBR", "pt-rPT"
+        resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA",
+                "en-rNZ", "es", "es-rUS", "fr", "fr-rCA",
+                "pt", "pt-rBR", "pt-rPT"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -41,7 +43,7 @@ dependencies {
     compile 'com.android.support:support-fragment:24.2.0'
     compile 'com.google.android.gms:play-services-location:9.4.0'
     compile 'com.google.android.gms:play-services-maps:9.4.0'
-    compile 'com.google.android.gms:play-services-ads:9.4.0'
+    compile 'com.google.firebase:firebase-ads:9.4.0'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
     compile 'com.android.support:recyclerview-v7:24.2.0'
