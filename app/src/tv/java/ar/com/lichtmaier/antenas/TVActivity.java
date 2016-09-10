@@ -233,9 +233,9 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	}
 
 	@Override
-	public void onConnectionFailed(ConnectionResult r)
+	public void onConnectionFailed()
 	{
-		Log.e("antenas", "Play Services no disponible: " + r + ". No importa, sobreviviremos.");
+		Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
 
 		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		locationClient = null;
