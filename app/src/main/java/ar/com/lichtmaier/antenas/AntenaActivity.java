@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -216,7 +217,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			rv.setAdapter(antenasAdapter);
 			final RecyclerView.LayoutManager rvLayoutManager = rv.getLayoutManager();
 			if(rvLayoutManager instanceof LinearLayoutManager)
-				rv.addItemDecoration(new DivisoresItemDecoration(getResources().getDimension(R.dimen.alto_divisor)));
+				rv.addItemDecoration(new DivisoresItemDecoration(getResources().getDimension(R.dimen.alto_divisor), ContextCompat.getColor(this, R.color.líneas)));
 			else if(rvLayoutManager instanceof StaggeredGridLayoutManager)
 			{
 				rv.addItemDecoration(new RecyclerView.ItemDecoration()
@@ -738,11 +739,11 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		private final float alto;
 		private final Paint pintura;
 
-		public DivisoresItemDecoration(float alto)
+		public DivisoresItemDecoration(float alto, @ColorInt int color)
 		{
 			this.alto = alto;
 			pintura = new Paint();
-			pintura.setColor(0xff29b6f6);
+			pintura.setColor(color);
 			pintura.setStrokeWidth(alto);
 		}
 

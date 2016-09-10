@@ -7,4 +7,5 @@
 	<color name="línea_mapa">#6603a9f4</color>
 	<color name="línea_mapa_sel">#03a9f4</color>
 	<color name="action_bar_mapa">#bf33b5e5</color>
+	<color name="líneas">#29b6f6</color>
 </resources>
