@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callback
+public class UnaAntenaActivity extends AntenaActivity
 {
 	private Antena antena;
 	private int orientaciónOriginal;
@@ -42,9 +42,6 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 
 		//noinspection ConstantConditions
 		getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
-
-		if(brújula != null)
-			brújula.registerListener(this);
 
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
@@ -415,14 +412,6 @@ public class UnaAntenaActivity extends AntenaActivity implements Brújula.Callba
 					.withLayer();
 
 		}
-	}
-
-	@Override
-	protected void onDestroy()
-	{
-		if(brújula != null)
-			brújula.removeListener(this);
-		super.onDestroy();
 	}
 
 	@Override

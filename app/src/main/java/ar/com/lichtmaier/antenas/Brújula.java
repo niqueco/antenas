@@ -153,7 +153,16 @@ public class Brújula implements SensorEventListener
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) { }
+	public void onAccuracyChanged(Sensor sensor, int accuracy)
+	{
+		if(sensor != magnetómetro)
+			return;
+		if(accuracy != SensorManager.SENSOR_STATUS_ACCURACY_HIGH && accuracy != SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM)
+		{
+			for(Callback cb : listeners.keySet())
+				cb.faltaCalibrar();
+		}
+	}
 
 	public boolean sinValor()
 	{
@@ -165,5 +174,7 @@ public class Brújula implements SensorEventListener
 		void nuevaOrientación(double orientación);
 
 		void desorientados();
+
+		void faltaCalibrar();
 	}
 }

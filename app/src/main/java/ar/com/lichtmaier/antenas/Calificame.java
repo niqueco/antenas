@@ -108,7 +108,6 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 			{
 				primerLanzamiento = ahora;
 				editor.putLong(PREF_PRIMER_LANZAMIENTO, primerLanzamiento);
-				BienvenidaFragment.mostrar(activity);
 			}
 
 			int contadorLanzamientos = prefs.getInt(PREF_CONTADOR_LANZAMIENTOS, 0) + 1;

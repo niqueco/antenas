@@ -81,6 +81,9 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 
 		@Override
+		public void faltaCalibrar() { }
+
+		@Override
 		public void onClick(View v)
 		{
 			if(listener != null)

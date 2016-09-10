@@ -13,16 +13,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BienvenidaFragment extends AppCompatDialogFragment implements View.OnClickListener
+public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements View.OnClickListener
 {
+
+	public static final String FRAGMENT_TAG = "calibrar";
+
 	public static void mostrar(FragmentActivity activity)
 	{
 		if(!activity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
 			return;
 
+		if(activity.getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) != null)
+			return;
+
 		FragmentTransaction tr = activity.getSupportFragmentManager().beginTransaction();
 		tr.addToBackStack(null);
-		new BienvenidaFragment().show(tr, "bienvenida");
+		new CalibrarBrújulaFragment().show(tr, FRAGMENT_TAG);
 	}
 
 	@Override
@@ -42,7 +48,7 @@ public class BienvenidaFragment extends AppCompatDialogFragment implements View.
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
-		View v = inflater.inflate(R.layout.bienvenida, container, false);
+		View v = inflater.inflate(R.layout.calibrar, container, false);
 		v.findViewById(R.id.botón_ayuda_calibración).setOnClickListener(this);
 		return v;
 	}

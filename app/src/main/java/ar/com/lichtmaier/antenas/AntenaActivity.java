@@ -46,7 +46,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
 import com.google.firebase.crash.FirebaseCrash;
 
-public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback
+public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -204,7 +204,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			sb.show();
 		}
 		if(brújula != null)
+		{
 			prefs.edit().remove("aviso_no_brújula").apply();
+			brújula.registerListener(this);
+		}
 
 		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
 
@@ -472,6 +475,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	protected void onDestroy()
 	{
+		if(brújula != null)
+			brújula.removeListener(this);
 		if(antenasAdapter != null)
 			antenasAdapter.onDestroy();
 		publicidad.onDestroy();
@@ -665,6 +670,18 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			return;
 		super.onActivityResult(requestCode, resultCode, data);
 	}
+
+	@Override
+	public void faltaCalibrar()
+	{
+		CalibrarBrújulaFragment.mostrar(this);
+	}
+
+	@Override
+	public void desorientados() { }
+
+	@Override
+	public void nuevaOrientación(double orientación) { }
 
 	private PrenderAnimación prenderAnimación;
 
