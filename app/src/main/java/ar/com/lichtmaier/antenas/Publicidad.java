@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import android.app.Activity;
 import android.location.Location;
+import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -37,6 +38,12 @@ class Publicidad
 		if(adView == null || loaded)
 			return;
 		loaded = true;
+		adView.loadAd(getAdRequest(loc));
+	}
+
+	@NonNull
+	private static AdRequest getAdRequest(Location loc)
+	{
 		AdRequest.Builder builder = crearAdRequestBuilder()
 				.addKeyword("antenna")
 				.addKeyword("tv")
@@ -46,7 +53,7 @@ class Publicidad
 				.addKeyword("cordcutter");
 		if(loc != null)
 			builder.setLocation(loc);
-		adView.loadAd(builder.build());
+		return builder.build();
 	}
 
 	static AdRequest.Builder crearAdRequestBuilder()
