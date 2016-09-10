@@ -16,12 +16,17 @@ class Publicidad
 
 	Publicidad(Activity act, String adUnitId)
 	{
-		adView = new AdView(act);
-		adView.setAdUnitId(adUnitId);
-		adView.setAdSize(AdSize.SMART_BANNER);
 		ViewGroup v = (ViewGroup)act.findViewById(R.id.principal_para_pub);
 		if(v == null)
 			v = (ViewGroup)act.findViewById(R.id.principal);
+		if(v == null)
+		{
+			adView = null;
+			return;
+		}
+		adView = new AdView(act);
+		adView.setAdUnitId(adUnitId);
+		adView.setAdSize(AdSize.SMART_BANNER);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT, 0);
 		v.addView(adView, params);
