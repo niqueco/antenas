@@ -52,16 +52,10 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity);
 		if(googlePlayServicesAvailable == ConnectionResult.SERVICE_MISSING || googlePlayServicesAvailable == ConnectionResult.SERVICE_INVALID)
 		{
-			callback.onConnectionFailed(null);
+			callback.onConnectionFailed();
 			return null;
 		}
 		return new LocationClientCompat(activity, locationRequest, callback);
-	}
-
-	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
-	public Location getLastLocation()
-	{
-		return LocationServices.FusedLocationApi.getLastLocation(google);
 	}
 
 	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
@@ -137,7 +131,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	@Override
 	public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
 	{
-		callback.onConnectionFailed(connectionResult);
+		callback.onConnectionFailed();
 	}
 
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
@@ -169,6 +163,6 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 
 	interface Callback extends com.google.android.gms.location.LocationListener
 	{
-		void onConnectionFailed(ConnectionResult connectionResult);
+		void onConnectionFailed();
 	}
 }

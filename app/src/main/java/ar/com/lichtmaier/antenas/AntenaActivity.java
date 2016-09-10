@@ -42,7 +42,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -611,7 +610,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 	}
 
-	public void onConnectionFailed(ConnectionResult r)
+	public void onConnectionFailed()
 	{
 		Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
 
