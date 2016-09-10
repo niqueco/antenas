@@ -1,15 +1,13 @@
 package ar.com.lichtmaier.antenas;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.*;
 
 class Publicidad
 {
@@ -96,5 +94,50 @@ class Publicidad
 			return;
 		((ViewGroup)adView.getParent()).removeView(adView);
 		adView.destroy();
+	}
+
+	Intersticial crearIntersticial(Activity activity, String adUnitId)
+	{
+		return new Intersticial(activity, adUnitId);
+	}
+
+	static class Intersticial extends AdListener
+	{
+		final InterstitialAd ad;
+		final Activity activity;
+		Intent intent;
+
+		Intersticial(Activity activity, String adUnitId)
+		{
+			this.activity = activity;
+			ad = new InterstitialAd(activity);
+			ad.setAdUnitId(adUnitId);
+			ad.setAdListener(this);
+			pedir();
+		}
+
+		@Override
+		public void onAdClosed()
+		{
+			activity.startActivity(intent);
+		}
+
+		private void pedir()
+		{
+			ad.loadAd(getAdRequest(null));
+		}
+
+		void siguienteActividad(Intent intent)
+		{
+			this.intent = intent;
+			if(ad.isLoaded())
+			{
+				ad.show();
+			} else
+			{
+				activity.startActivity(intent);
+				this.intent = null;
+			}
+		}
 	}
 }

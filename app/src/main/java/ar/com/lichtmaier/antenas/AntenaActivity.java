@@ -130,6 +130,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			terminarDeConfigurar();
 		}
 	};
+	private Publicidad.Intersticial intersticial;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -388,7 +389,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				return true;
 			case R.id.action_mapa:
 				i = new Intent(this, MapaActivity.class);
-				startActivity(i);
+				if(intersticial != null)
+					intersticial.siguienteActividad(i);
+				else
+					startActivity(i);
 				return true;
 			case R.id.action_ayuda_ar:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://poné-tda.com.ar/"));
@@ -728,6 +732,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				publicidad = new Publicidad(this, this instanceof UnaAntenaActivity
 						? "ca-app-pub-0461170458442008/1711829752"
 						: "ca-app-pub-0461170458442008/6164714153");
+				intersticial = publicidad.crearIntersticial(this, "ca-app-pub-0461170458442008/1312574153");
 			}
 		}
 	}
