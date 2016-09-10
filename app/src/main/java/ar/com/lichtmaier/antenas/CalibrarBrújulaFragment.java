@@ -15,15 +15,13 @@ import android.view.ViewGroup;
 
 public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements View.OnClickListener
 {
-
 	public static final String FRAGMENT_TAG = "calibrar";
+
+	private static boolean seMostró = false;
 
 	public static void mostrar(FragmentActivity activity)
 	{
-		if(!activity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
-			return;
-
-		if(activity.getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) != null)
+		if(seMostró || !activity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS) || activity.getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) != null)
 			return;
 
 		FragmentTransaction tr = activity.getSupportFragmentManager().beginTransaction();
@@ -48,6 +46,7 @@ public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
+		seMostró = true;
 		View v = inflater.inflate(R.layout.calibrar, container, false);
 		v.findViewById(R.id.botón_ayuda_calibración).setOnClickListener(this);
 		return v;
