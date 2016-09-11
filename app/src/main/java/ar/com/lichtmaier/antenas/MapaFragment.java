@@ -62,6 +62,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	final private Map<Antena, Marker> antenaAMarker = new HashMap<>();
 	private boolean dibujandoLíneas;
 	private boolean markersCargados;
+	private boolean mapaMovido;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -74,6 +75,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		{
 			originalBackStackEntryCount = savedInstanceState.getInt("originalBackStackEntryCount");
 			antenaSeleccionada = savedInstanceState.getParcelable("antenaSeleccionada");
+			mapaMovido = savedInstanceState.getBoolean("mapaMovido");
 		} else
 			originalBackStackEntryCount = getFragmentManager().getBackStackEntryCount();
 
@@ -106,6 +108,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		outState.putInt("originalBackStackEntryCount", originalBackStackEntryCount);
 		if(antenaSeleccionada != null)
 			outState.putParcelable("antenaSeleccionada", antenaSeleccionada);
+		outState.putBoolean("mapaMovido", mapaMovido);
 	}
 
 	@Override
@@ -173,7 +176,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(AntenaActivity.coordsUsuario != null)
 		{
 			if(savedInstanceState == null)
+			{
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
+				mapaMovido = true;
+			}
 			loc = new Location("*");
 			loc.setLatitude(AntenaActivity.coordsUsuario.getLatitude());
 			loc.setLongitude(AntenaActivity.coordsUsuario.getLongitude());
@@ -304,6 +310,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	{
 		latitudActual = location.getLatitude();
 		longitudActual = location.getLongitude();
+
+		if(!mapaMovido)
+		{
+			mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitudActual, longitudActual)));
+			mapaMovido = true;
+		}
 
 		actualizarLíneas();
 	}
