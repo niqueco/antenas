@@ -605,21 +605,29 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 	}
 
+	private Set<Antena> antenasCerca;
+	private long últimaVezQueSeBuscóAntenas;
+
 	private void actualizarLíneas()
 	{
 		if(!dibujandoLíneas || !isVisible())
 			return;
 		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
-		Set<Antena> antenasCerca;
-		try
+
+		if(antenasCerca == null || (System.nanoTime() - últimaVezQueSeBuscóAntenas) > 1000000000L * 60)
 		{
-			antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), new GlobalCoordinates(latitudActual, longitudActual), maxDist, false));
-		} catch(TimeoutException e)
-		{
-			Log.w("antenas", "No hay antenas todavía para hacer líneas");
-			return;
+			try
+			{
+				antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), new GlobalCoordinates(latitudActual, longitudActual), maxDist, false));
+			} catch(TimeoutException e)
+			{
+				Log.w("antenas", "No hay antenas todavía para hacer líneas");
+				return;
+			}
+			últimaVezQueSeBuscóAntenas = System.nanoTime();
+			Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
 		}
-		Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
+
 		LatLng posNosotros = new LatLng(latitudActual, longitudActual);
 
 		Iterator<Antena> itA = antenasCerca.iterator();

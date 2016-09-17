@@ -38,9 +38,9 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 
 		locationClient = LocationClientCompat.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-				.setInterval(1000)
-				.setFastestInterval(500)
-				.setSmallestDisplacement(10), this);
+				.setInterval(200)
+				.setFastestInterval(200)
+				.setSmallestDisplacement(1), this);
 	}
 
 	@Override
