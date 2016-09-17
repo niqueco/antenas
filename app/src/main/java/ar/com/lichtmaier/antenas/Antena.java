@@ -72,7 +72,7 @@ public class Antena implements Parcelable
 
 	public String dameNombre(Context context)
 	{
-		Locale locale = context.getResources().getConfiguration().locale;
+		Locale locale = Locale.getDefault();
 		if(nombre == null || !locale.equals(localeNombre))
 		{
 			StringBuilder sb = new StringBuilder();
@@ -106,7 +106,7 @@ public class Antena implements Parcelable
 			spannableString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spannableString.length(), 0);
 			return spannableString;
 		}
-		Locale locale = context.getResources().getConfiguration().locale;
+		Locale locale = Locale.getDefault();
 		if(detalleCanales != null && locale.equals(localeDetalleCanales))
 			return detalleCanales;
 
