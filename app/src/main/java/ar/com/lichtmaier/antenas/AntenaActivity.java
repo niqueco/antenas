@@ -57,7 +57,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	protected Brújula brújula;
 	private AntenasAdapter antenasAdapter;
 	private Publicidad publicidad;
-	boolean huboSavedInstanceState;
+	private boolean huboSavedInstanceState;
 	private boolean seMuestraRuegoDePermisos;
 
 	private LocationManager locationManager;
@@ -636,7 +636,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		pedirUbicaciónALocationManager();
 	}
 
-	void pedirCambioConfiguración()
+	private void pedirCambioConfiguración()
 	{
 		if(!huboSavedInstanceState && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
 		{

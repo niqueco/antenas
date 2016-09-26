@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 public class CommaEllipsizeTextView extends AppCompatTextView
 {
 	private CharSequence original;
-	boolean nosotros = false;
+	private boolean nosotros = false;
 
 	public CommaEllipsizeTextView(Context context)
 	{

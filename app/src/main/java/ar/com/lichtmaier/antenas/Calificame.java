@@ -140,7 +140,7 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 	}
 
 	@SuppressLint("CommitPrefEdits")
-	static void acción(final int id, Activity context)
+	private static void acción(final int id, Activity context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = prefs.edit();

@@ -25,7 +25,7 @@ public class FlechaView extends View
 	private boolean mostrarPuntosCardinales;
 	private float altoTexto;
 
-	public static final double D = 10;
+	private static final double D = 10;
 
 	public FlechaView(Context context, AttributeSet attrs)
 	{
@@ -191,7 +191,7 @@ public class FlechaView extends View
 		return ánguloDibujado;
 	}
 
-	boolean sinValor = false;
+	private boolean sinValor = false;
 	public void sinValor(boolean suave)
 	{
 		if(sinValor)

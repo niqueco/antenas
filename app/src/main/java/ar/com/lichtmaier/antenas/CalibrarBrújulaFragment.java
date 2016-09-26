@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements View.OnClickListener
 {
-	public static final String FRAGMENT_TAG = "calibrar";
+	private static final String FRAGMENT_TAG = "calibrar";
 
 	private static boolean seMostró = false;
 

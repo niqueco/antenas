@@ -11,10 +11,10 @@ import java.util.List;
 
 public class Polígono
 {
-	final List<LatLng> puntos;
+	private final List<LatLng> puntos;
 	private final LatLngBounds bounds;
 
-	public Polígono(List<LatLng> puntos, LatLngBounds bounds)
+	private Polígono(List<LatLng> puntos, LatLngBounds bounds)
 	{
 		this.puntos = puntos;
 		this.bounds = bounds;

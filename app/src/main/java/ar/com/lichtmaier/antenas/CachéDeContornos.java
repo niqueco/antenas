@@ -35,7 +35,7 @@ import de.lighti.clipper.*;
 
 public class CachéDeContornos
 {
-	public static final int VERSION_BASE = 1;
+	private static final int VERSION_BASE = 1;
 
 	private static CachéDeContornos instancia;
 

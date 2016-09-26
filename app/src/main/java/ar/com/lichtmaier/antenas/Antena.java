@@ -32,14 +32,15 @@ import java.util.concurrent.*;
 
 public class Antena implements Parcelable
 {
-	final public String descripción, ref, geohash;
+	final public String descripción;
+	final private String ref, geohash;
 	private final GlobalCoordinates c;
 	final public float potencia;
 	public final int index;
 	final public País país;
 	public List<Canal> canales;
 
-	public double dist;
+	private double dist;
 
 	final static private Map<País, Future<List<Antena>>> antenasPorPaís = new EnumMap<>(País.class);
 	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();

@@ -13,8 +13,8 @@ import android.widget.*;
 
 public class CanalesMapaFragment extends Fragment
 {
-	Antena antena;
-	MapaActivity callback;
+	private Antena antena;
+	private MapaActivity callback;
 	private View selectedView;
 
 	static CanalesMapaFragment crear(Antena antena)
