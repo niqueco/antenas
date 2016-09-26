@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.lighti.clipper.*;
+
 public class CachéDeContornos
 {
 	public static final int VERSION_BASE = 1;
@@ -112,6 +114,35 @@ public class CachéDeContornos
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	public Polígono dameContornoFCC(String ref)
+	{
+		if(ref.indexOf(',') == -1)
+			return dameContornoFCC(Integer.parseInt(ref));
+		DefaultClipper clipper = new DefaultClipper();
+
+		for(String str : ref.split(","))
+		{
+			Polígono p = dameContornoFCC(Integer.parseInt(str));
+			if(p == null)
+				continue;
+
+			Path path = new Path();
+			for(LatLng punto : p.getPuntos())
+				path.add(new Point.LongPoint((long)(punto.longitude * 1000000), (long)(punto.latitude * 1000000)));
+			clipper.addPath(path, Clipper.PolyType.CLIP, true);
+		}
+		Paths union = new Paths();
+		if(!clipper.execute(Clipper.ClipType.UNION, union))
+		{
+			Log.e("antenas", "Falló la unión de los polígonos " + ref);
+			return null;
+		}
+		Polígono.Builder builder = new Polígono.Builder();
+		for(Point.LongPoint punto : union.iterator().next())
+			builder.add(new LatLng((double)punto.getY() / 1000000.0, (double)punto.getX() / 1000000.0));
+		return builder.build();
 	}
 
 	@Nullable
@@ -296,7 +327,7 @@ public class CachéDeContornos
 			if(c.ref == null)
 				continue;
 
-			Polígono polígono = dameContornoFCC(Integer.parseInt(c.ref));
+			Polígono polígono = dameContornoFCC(c.ref);
 
 			if(polígono == null)
 				continue;

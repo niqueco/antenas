@@ -536,7 +536,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 					cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
 				if(isCancelled())
 					return null;
-				return cachéDeContornos.dameContornoFCC(Integer.parseInt(canal.ref));
+				return cachéDeContornos.dameContornoFCC(canal.ref);
 			}
 
 			@Override
