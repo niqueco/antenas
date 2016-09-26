@@ -40,19 +40,19 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-fragment:24.2.0'
-    compile 'com.google.android.gms:play-services-location:9.4.0'
-    compile 'com.google.android.gms:play-services-maps:9.4.0'
-    compile 'com.google.firebase:firebase-ads:9.4.0'
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
-    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.android.support:support-fragment:24.2.1'
+    compile 'com.google.android.gms:play-services-location:9.6.1'
+    compile 'com.google.android.gms:play-services-maps:9.6.1'
+    compile 'com.google.firebase:firebase-ads:9.6.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.github.davidmoten:geo:0.7.4'
     compile files('libs/geodesy.jar')
-    compile 'com.google.maps.android:android-maps-utils:0.4.1'
-    compile 'com.google.firebase:firebase-core:9.4.0'
-    compile 'com.google.firebase:firebase-crash:9.4.0'
-    tvCompile 'com.android.support:leanback-v17:24.2.0'
+    compile 'com.google.maps.android:android-maps-utils:0.4.4'
+    compile 'com.google.firebase:firebase-core:9.6.1'
+    compile 'com.google.firebase:firebase-crash:9.6.1'
+    tvCompile 'com.android.support:leanback-v17:24.2.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
