@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -140,7 +141,13 @@ public class CachéDeContornos
 			return null;
 		}
 		Polígono.Builder builder = new Polígono.Builder();
-		for(Point.LongPoint punto : union.iterator().next())
+		Iterator<Path> it = union.iterator();
+		if(!it.hasNext())
+		{
+			Log.e("antenas", "¿La unión de " + ref + " es vacía?");
+			return null;
+		}
+		for(Point.LongPoint punto : it.next())
 			builder.add(new LatLng((double)punto.getY() / 1000000.0, (double)punto.getX() / 1000000.0));
 		return builder.build();
 	}
