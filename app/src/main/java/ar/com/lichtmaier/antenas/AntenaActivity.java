@@ -156,7 +156,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		{
 			prenderAnimación = new PrenderAnimación(pb);
 			pb.postDelayed(prenderAnimación, 400);
-			pb.postDelayed(avisoDemora = new AvisoDemora(this), 15000);
 		}
 
 		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
@@ -305,6 +304,11 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			View pedido = principal.findViewById(R.id.pedido_de_permisos);
 			principal.removeView(pedido);
 		}
+
+		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		if(pb != null)
+			pb.postDelayed(avisoDemora = new AvisoDemora(this), 15000);
+
 		locationClient = LocationClientCompat.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(10000)
