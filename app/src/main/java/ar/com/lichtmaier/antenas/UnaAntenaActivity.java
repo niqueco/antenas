@@ -1,7 +1,9 @@
 package ar.com.lichtmaier.antenas;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorUpdateListener;
 import android.support.v7.app.ActionBar;
@@ -18,7 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnaAntenaActivity extends AntenaActivity
+public class UnaAntenaActivity extends AntenaActivity implements SharedPreferences.OnSharedPreferenceChangeListener
 {
 	private Antena antena;
 	private int orientaciónOriginal;
@@ -66,6 +68,10 @@ public class UnaAntenaActivity extends AntenaActivity
 
 		flecha = (FlechaView)findViewById(R.id.flecha);
 		assert flecha != null;
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		flecha.setMostrarAlineación(prefs.getBoolean("mostrarAlineación", false));
+		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		if(bundle.getBoolean(PACKAGE + ".sinValor"))
 			flecha.sinValor(false);
@@ -464,5 +470,12 @@ public class UnaAntenaActivity extends AntenaActivity
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+	{
+		if(key.equals("mostrarAlineación"))
+			flecha.setMostrarAlineación(sharedPreferences.getBoolean("mostrarAlineación", false));
 	}
 }

@@ -27,6 +27,9 @@
 	<string name="pref_usar_contornos_title">Utilisez les zones de couverture (aux États-Unis).</string>
 	<string name="pref_usar_contornos_summary">Utilisez les zones de couverture informés par la FCC pour déplacer les stations qui sont hors de portée pour le bas de la liste.</string>
 
+	<string name="pref_alineacion_title">Afficher lorsque la flèche est alignée</string>
+	<string name="pref_alineacion_summary">Afficher lorsque le téléphone est aligné avec la direction de l\'antenne en changeant la couleur de la flèche et de faire vibrer le téléphone.</string>
+
 	<string name="pref_header_mapa">Carte</string>
 
 	<string name="pref_dibujar_líneas_title">Draw lines</string>

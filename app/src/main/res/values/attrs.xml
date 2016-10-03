@@ -2,6 +2,8 @@
 <resources>
 	<declare-styleable name="ArrowView">
 		<attr name="colorFlecha" format="color"/>
+		<attr name="colorFlechaAlineada" format="color"/>
 		<attr name="colorDial" format="color"/>
+		<attr name="mostrarAlineacion" format="boolean"/>
 	</declare-styleable>
 </resources>

@@ -1,13 +1,19 @@
 package ar.com.lichtmaier.antenas;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Vibrator;
+import android.support.annotation.ColorInt;
 import android.support.v4.view.AccessibilityDelegateCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -27,6 +33,15 @@ public class FlechaView extends View
 
 	private static final double D = 10;
 
+	private boolean flechaAlineada, mostrarAlineación;
+	@ColorInt private final int colorFlecha, colorFlechaAlineada;
+	@ColorInt private int colorFlechaDibujado;
+	public static final float TOLERANCIA_ALINEACIÓN = 2, TOLERANCIA_DESALINEACIÓN = 6;
+
+	private ValueAnimator.AnimatorUpdateListener setColorListener;
+	private ValueAnimator animaciónDeColor;
+	private static ArgbEvaluator argbEvaluator;
+
 	public FlechaView(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
@@ -34,11 +49,13 @@ public class FlechaView extends View
 		try
 		{
 			pinturaFlecha = new Paint(Paint.ANTI_ALIAS_FLAG);
-			pinturaFlecha.setColor(values.getColor(R.styleable.ArrowView_colorFlecha, Color.BLACK));
+			colorFlechaDibujado = colorFlecha = values.getColor(R.styleable.ArrowView_colorFlecha, Color.BLACK);
+			colorFlechaAlineada = values.getColor(R.styleable.ArrowView_colorFlechaAlineada, Color.BLACK);
 			pinturaFlecha.setStrokeCap(Cap.ROUND);
 			pinturaBorde = new Paint(Paint.ANTI_ALIAS_FLAG);
 			pinturaBorde.setColor(values.getColor(R.styleable.ArrowView_colorDial, Color.BLACK));
 			pinturaBorde.setStyle(Paint.Style.STROKE);
+			setMostrarAlineación(values.getBoolean(R.styleable.ArrowView_mostrarAlineacion, false));
 		} finally
 		{
 			values.recycle();
@@ -96,6 +113,36 @@ public class FlechaView extends View
 		this.mostrarPuntosCardinales = mostrarPuntosCardinales;
 		if(mpc != mostrarPuntosCardinales)
 			invalidate();
+	}
+
+	public void setMostrarAlineación(boolean mostrarAlineación)
+	{
+		this.mostrarAlineación = mostrarAlineación;
+
+		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
+			return;
+
+		if(mostrarAlineación)
+		{
+			setColorListener = new ValueAnimator.AnimatorUpdateListener()
+			{
+				@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+				@Override
+				public void onAnimationUpdate(ValueAnimator animation)
+				{
+					colorFlechaDibujado = (Integer)animation.getAnimatedValue();
+				}
+			};
+			if(argbEvaluator == null)
+				argbEvaluator = new ArgbEvaluator();
+		} else
+		{
+			if(flechaAlineada)
+			{
+				flechaAlineada = false;
+				animarColorA(colorFlecha);
+			}
+		}
 	}
 
 	@Override
@@ -178,6 +225,11 @@ public class FlechaView extends View
 		canvas.translate(cx, cy);
 		if(ánguloDibujado != Float.MAX_VALUE)
 			canvas.rotate((float)ánguloDibujado);
+
+		if(mostrarAlineación)
+			verAlineación();
+
+		pinturaFlecha.setColor(colorFlechaDibujado);
 		float radio = z + pinturaFlecha.getStrokeWidth() * .75f;
 		canvas.drawCircle(0, 0, radio, pinturaBorde);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
@@ -187,6 +239,59 @@ public class FlechaView extends View
 
 		if(ánguloDibujado != ángulo)
 			ViewCompat.postInvalidateOnAnimation(this);
+	}
+
+	private void verAlineación()
+	{
+		if(flechaAlineada)
+		{
+			if(!entre(TOLERANCIA_DESALINEACIÓN))
+			{
+				flechaAlineada = false;
+				animarColorA(colorFlecha);
+			}
+		} else
+		{
+			if(entre(TOLERANCIA_ALINEACIÓN))
+			{
+				flechaAlineada = true;
+				animarColorA(colorFlechaAlineada);
+				if(!isInEditMode())
+				{
+					Vibrator vibrador = (Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE);
+					if(vibrador != null)
+						vibrador.vibrate(150);
+				}
+			}
+		}
+	}
+
+	private void animarColorA(@ColorInt int color)
+	{
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+		{
+			if(animaciónDeColor == null)
+			{
+				animaciónDeColor = new ValueAnimator();
+				animaciónDeColor.addUpdateListener(setColorListener);
+				animaciónDeColor.setDuration(200);
+			} else
+			{
+				animaciónDeColor.cancel();
+			}
+			animaciónDeColor.setIntValues(colorFlechaDibujado, color);
+			animaciónDeColor.setEvaluator(argbEvaluator);
+			animaciónDeColor.start();
+		} else
+		{
+			colorFlechaDibujado = color;
+		}
+
+	}
+
+	private boolean entre(double t)
+	{
+		return Math.abs(ánguloDibujado) <= t / 2 || ánguloDibujado > 360 - t / 2;
 	}
 
 	public double getÁnguloDibujado()
@@ -212,14 +317,15 @@ public class FlechaView extends View
 	public static class SavedState extends BaseSavedState
 	{
 		final private double ángulo, ánguloDibujado;
-		final private boolean mostrarPuntosCardinales;
+		final private boolean mostrarPuntosCardinales, mostrarAlineación;
 
-		SavedState(Parcelable superState, double ángulo, double ánguloDibujado, boolean mostrarPuntosCardinales)
+		SavedState(Parcelable superState, double ángulo, double ánguloDibujado, boolean mostrarPuntosCardinales, boolean mostrarAlineación)
 		{
 			super(superState);
 			this.ángulo = ángulo;
 			this.ánguloDibujado = ánguloDibujado;
 			this.mostrarPuntosCardinales = mostrarPuntosCardinales;
+			this.mostrarAlineación = mostrarAlineación;
 		}
 
 		@Override
@@ -229,6 +335,7 @@ public class FlechaView extends View
 			out.writeDouble(ángulo);
 			out.writeDouble(ánguloDibujado);
 			out.writeInt(mostrarPuntosCardinales ? 1 : 0);
+			out.writeInt(mostrarAlineación ? 1 : 0);
 		}
 
 		public static final Parcelable.Creator<SavedState> CREATOR
@@ -250,13 +357,14 @@ public class FlechaView extends View
 			ángulo = in.readDouble();
 			ánguloDibujado = in.readDouble();
 			mostrarPuntosCardinales = in.readInt() == 1;
+			mostrarAlineación = in.readInt() == 1;
 		}
 	}
 
 	@Override
 	protected Parcelable onSaveInstanceState()
 	{
-		return new SavedState(super.onSaveInstanceState(), ángulo, ánguloDibujado, mostrarPuntosCardinales);
+		return new SavedState(super.onSaveInstanceState(), ángulo, ánguloDibujado, mostrarPuntosCardinales, mostrarAlineación);
 	}
 
 	@Override
@@ -267,6 +375,7 @@ public class FlechaView extends View
 		ángulo = s.ángulo;
 		ánguloDibujado = s.ánguloDibujado;
 		mostrarPuntosCardinales = s.mostrarPuntosCardinales;
+		setMostrarAlineación(s.mostrarAlineación);
 	}
 
 	private void instalarDelegadoAccesibilidad()

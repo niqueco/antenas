@@ -28,6 +28,9 @@
     <string name="pref_usar_contornos_title">Use áreas de cobertura para a lista (para os EUA).</string>
     <string name="pref_usar_contornos_summary">Use as áreas de cobertura informados pela FCC para mover estações que estão fora de chegar à parte inferior da lista.</string>
 
+    <string name="pref_alineacion_title">Mostrar quando a seta está alinhado</string>
+    <string name="pref_alineacion_summary">Mostrar quando o telefone está alinhado com a direcção da antena, alterando a cor da seta e fazendo o telefone vibrar.</string>
+
     <string name="pref_header_mapa">Mapa</string>
 
     <string name="pref_dibujar_líneas_title">Desenhar linhas</string>

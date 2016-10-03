@@ -28,6 +28,9 @@
     <string name="pref_usar_contornos_title">Use coverage areas (for the US)</string>
     <string name="pref_usar_contornos_summary">Use the coverage areas informed by the FCC to move stations that are out-of-reach to the bottom of the list.</string>
 
+    <string name="pref_alineacion_title">Zeigen Sie, wenn der Pfeil ausgerichtet ist.</string>
+    <string name="pref_alineacion_summary">Zeigen Sie, wenn das Telefon mit der Richtung in Richtung der Antenne durch Änderung der Pfeil Farbe und machen das Telefon zum Vibrieren ausgerichtet ist.</string>
+
     <string name="pref_header_mapa">Karte</string>
 
     <string name="pref_dibujar_líneas_title">Linien zeichnen</string>
