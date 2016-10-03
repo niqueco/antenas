@@ -50,6 +50,9 @@ public class FlechaView extends View
 
 		instalarDelegadoAccesibilidad();
 		ViewCompat.setImportantForAccessibility(this, ViewCompat.IMPORTANT_FOR_ACCESSIBILITY_YES);
+
+		if(BuildConfig.DEBUG && isInEditMode())
+			ánguloDibujado = ángulo = 45;
 	}
 
 	public double getÁngulo()
@@ -211,7 +214,7 @@ public class FlechaView extends View
 		final private double ángulo, ánguloDibujado;
 		final private boolean mostrarPuntosCardinales;
 
-		public SavedState(Parcelable superState, double ángulo, double ánguloDibujado, boolean mostrarPuntosCardinales)
+		SavedState(Parcelable superState, double ángulo, double ánguloDibujado, boolean mostrarPuntosCardinales)
 		{
 			super(superState);
 			this.ángulo = ángulo;
