@@ -256,6 +256,8 @@ public class Antena implements Parcelable
 
 		public CargarAntenasPaís(País país, Context ctx)
 		{
+			if(ctx == null)
+				throw new NullPointerException("ctx");
 			this.país = país;
 			this.ctx = ctx;
 		}
