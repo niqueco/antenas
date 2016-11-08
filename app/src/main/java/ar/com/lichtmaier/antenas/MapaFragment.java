@@ -182,6 +182,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 		FragmentActivity act = getActivity();
 		mapa.setMyLocationEnabled(true);
+		mapa.setIndoorEnabled(false);
 		if(savedInstanceState == null)
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
 		mapa.setOnInfoWindowClickListener(this);
