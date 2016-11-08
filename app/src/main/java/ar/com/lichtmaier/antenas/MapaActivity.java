@@ -85,6 +85,13 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	@Override
 	public void onBackPressed()
 	{
+		// Si fuimos llamados sólo para mostrar una antena, al primer "back" nos vamos.
+		if(((MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container)).modoMostrarAntena)
+		{
+			finish();
+			return;
+		}
+
 		FragmentManager fm = getSupportFragmentManager();
 		if(fm.getBackStackEntryCount() == 0)
 		{

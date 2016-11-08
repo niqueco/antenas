@@ -7,6 +7,7 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -63,6 +64,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private boolean dibujandoLíneas;
 	private boolean markersCargados;
 	private boolean mapaMovido;
+	private boolean huboEjecuciónPrevia;
+
+	/** Estamos mostrando un canal porque cliquearon en la lista de antenas. Un back debería cerrar la actividad sin miramientos. */
+	boolean modoMostrarAntena;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -71,13 +76,25 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-		if(savedInstanceState != null)
+		huboEjecuciónPrevia = savedInstanceState != null;
+		if(huboEjecuciónPrevia)
 		{
 			originalBackStackEntryCount = savedInstanceState.getInt("originalBackStackEntryCount");
 			antenaSeleccionada = savedInstanceState.getParcelable("antenaSeleccionada");
 			mapaMovido = savedInstanceState.getBoolean("mapaMovido");
+			modoMostrarAntena = savedInstanceState.getBoolean("modoMostrarAntena");
 		} else
+		{
 			originalBackStackEntryCount = getFragmentManager().getBackStackEntryCount();
+
+			Intent intent = getActivity().getIntent();
+			antenaSeleccionada = intent.getParcelableExtra("ar.com.lichtmaier.antenas.antena");
+			if(antenaSeleccionada != null)
+			{
+				canalSeleccionado = antenaSeleccionada.canales.get(intent.getIntExtra("ar.com.lichtmaier.antenas.canal", -1));
+				modoMostrarAntena = true;
+			}
+		}
 
 		getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener()
 		{
@@ -109,6 +126,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(antenaSeleccionada != null)
 			outState.putParcelable("antenaSeleccionada", antenaSeleccionada);
 		outState.putBoolean("mapaMovido", mapaMovido);
+		outState.putBoolean("modoMostrarAntena", modoMostrarAntena);
 	}
 
 	@Override
@@ -398,8 +416,20 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						Log.e("antenas", "La antena seleccionada " + antenaSeleccionada + " no tiene marker?");
 						return;
 					}
-					markerSeleccionado.setIcon(íconoAntenitaElegida);
-					estiloLínea(antenaSeleccionada, true);
+
+					if(huboEjecuciónPrevia)
+					{
+						markerSeleccionado.setIcon(íconoAntenitaElegida);
+						estiloLínea(antenaSeleccionada, true);
+					} else
+					{
+						if(!mapa.getProjection().getVisibleRegion().latLngBounds.contains(markerSeleccionado.getPosition()))
+						{
+							CameraUpdate u = CameraUpdateFactory.newLatLng(markerSeleccionado.getPosition());
+							mapa.moveCamera(u);
+						}
+						onMarkerClick(markerSeleccionado);
+					}
 				}
 			}
 
@@ -445,12 +475,13 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(fm.findFragmentByTag("canales") != null)
 			fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		mapa.setPadding(0, altoActionBar, 0, 0);
+		modoMostrarAntena = false;
 	}
 
 	@Override
 	public boolean onMarkerClick(Marker marker)
 	{
-		if(markerSeleccionado != null)
+		if(markerSeleccionado != null && marker != markerSeleccionado)
 		{
 			markerSeleccionado.setIcon(íconoAntenita);
 			estiloLínea(antenaSeleccionada, false);
@@ -460,8 +491,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		antenaSeleccionada = (Antena)marker.getTag();
 
 		marker.setIcon(íconoAntenitaElegida);
-
-		canalSeleccionado(null, null);
 
 		FragmentManager fm = getFragmentManager();
 		boolean yaEstaba = fm.findFragmentByTag("canales") != null;
@@ -483,7 +512,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		else
 			tr.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit);
 
-		tr.replace(R.id.canales, CanalesMapaFragment.crear(antena), "canales")
+		CanalesMapaFragment fr = CanalesMapaFragment.crear(antena, canalSeleccionado == null || !antenaSeleccionada.canales.contains(canalSeleccionado) ? null : canalSeleccionado);
+		tr.replace(R.id.canales, fr, "canales")
 				.addToBackStack("canales")
 				.commit();
 

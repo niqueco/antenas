@@ -1,9 +1,12 @@
 package ar.com.lichtmaier.antenas;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorUpdateListener;
 import android.support.v7.app.ActionBar;
@@ -20,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnaAntenaActivity extends AntenaActivity implements SharedPreferences.OnSharedPreferenceChangeListener
+public class UnaAntenaActivity extends AntenaActivity implements SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener
 {
 	private Antena antena;
 	private int orientaciónOriginal;
@@ -96,6 +99,14 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 				p.addView(vc, lp);
 				if(p.getId() != R.id.columna_derecha)
 					vistasAnimadas.add(vc);
+
+				if(antena.país == País.US)
+				{
+					vc.setClickable(true);
+					vc.setFocusable(true);
+					vc.setTag(canal);
+					vc.setOnClickListener(this);
+				}
 			}
 			if(p.getId() == R.id.columna_derecha)
 			{
@@ -477,5 +488,16 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	{
 		if(key.equals("mostrarAlineación"))
 			flecha.setMostrarAlineación(sharedPreferences.getBoolean("mostrarAlineación", false));
+	}
+
+	@Override
+	public void onClick(View view)
+	{
+		Canal canal = (Canal)view.getTag();
+		Intent intent = new Intent(this, MapaActivity.class);
+		intent.putExtra("ar.com.lichtmaier.antenas.antena", antena);
+		intent.putExtra("ar.com.lichtmaier.antenas.canal", antena.canales.indexOf(canal));
+		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, 0, 0, view.getWidth(), view.getHeight());
+		ActivityCompat.startActivity(this, intent, options.toBundle());
 	}
 }

@@ -6,7 +6,8 @@
 		android:paddingTop="6dp"
 		android:paddingBottom="4dp"
 		android:paddingLeft="2dp"
-		android:paddingRight="2dp">
+		android:paddingRight="2dp"
+		android:background="?selectableItemBackground">
 
 	<ImageView
 		android:layout_width="?ladoIconoCanal"

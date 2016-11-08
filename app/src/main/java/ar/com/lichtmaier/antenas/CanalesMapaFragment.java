@@ -16,14 +16,16 @@ public class CanalesMapaFragment extends Fragment
 	private Antena antena;
 	private MapaActivity callback;
 	private View selectedView;
+	private Canal canalSeleccionadoInicialmente;
 
-	static CanalesMapaFragment crear(Antena antena)
+	static CanalesMapaFragment crear(Antena antena, Canal canal)
 	{
 		CanalesMapaFragment fr = new CanalesMapaFragment();
 		Bundle args = new Bundle();
 		args.putInt("país", antena.país.ordinal());
 		args.putInt("index", antena.index);
 		fr.setArguments(args);
+		fr.canalSeleccionadoInicialmente = canal;
 		return fr;
 	}
 
@@ -39,20 +41,33 @@ public class CanalesMapaFragment extends Fragment
 		@Override
 		public void onClick(View v)
 		{
-			if(selectedView != null)
-			{
-				selectedView.setSelected(false);
-				//noinspection RedundantCast
-				((FrameLayout)selectedView).setForeground(null);
-			}
-			selectedView = v;
-			v.setSelected(true);
-			//noinspection RedundantCast
-			((FrameLayout)selectedView).setForeground(new ColorDrawable(0x55eeeeee));
-			v.requestRectangleOnScreen(new Rect(0, 0, v.getWidth(), v.getHeight()));
-			callback.canalSeleccionado(antena, (Canal)v.getTag());
+			seleccionar(v);
 		}
 	};
+
+	private void seleccionar(View v)
+	{
+		if(selectedView != null)
+		{
+			selectedView.setSelected(false);
+			//noinspection RedundantCast
+			((FrameLayout)selectedView).setForeground(null);
+		}
+		selectedView = v;
+		v.setSelected(true);
+		//noinspection RedundantCast
+		((FrameLayout)selectedView).setForeground(new ColorDrawable(0x55eeeeee));
+		v.requestRectangleOnScreen(new Rect(0, 0, v.getWidth(), v.getHeight()));
+		callback.canalSeleccionado(antena, (Canal)v.getTag());
+	}
+
+	void seleccionar(Canal canal)
+	{
+		View rootView = getView();
+		assert rootView != null;
+		View v = rootView.findViewWithTag(canal);
+		seleccionar(v);
+	}
 
 	@Nullable
 	@Override
@@ -168,6 +183,18 @@ public class CanalesMapaFragment extends Fragment
 		if(viewCanalASeleccionar != null)
 			canalClickListener.onClick(viewCanalASeleccionar);
 		return v;
+	}
+
+	@Override
+	public void onActivityCreated(@Nullable Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+
+		if(canalSeleccionadoInicialmente != null)
+		{
+			seleccionar(canalSeleccionadoInicialmente);
+			canalSeleccionadoInicialmente = null;
+		}
 	}
 
 	@Override
