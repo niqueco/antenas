@@ -219,6 +219,8 @@ public class FlechaView extends View
 			while(dif < -180)
 				dif += 360;
 			this.ánguloDibujado += dif * (1. / D);
+
+			ánguloDibujado = (ánguloDibujado + 180.0 * Math.signum(ánguloDibujado)) % 360.0 - 180.0 * Math.signum(ánguloDibujado);
 		}
 
 		canvas.save();
