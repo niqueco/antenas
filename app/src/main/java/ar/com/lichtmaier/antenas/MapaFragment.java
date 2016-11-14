@@ -191,14 +191,21 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		mapa.setOnCameraIdleListener(this);
 		mapa.setOnMarkerClickListener(this);
 		mapa.setOnPolylineClickListener(this);
-		Location loc = null;
-		if(AntenaActivity.coordsUsuario != null)
+		if(!huboEjecuciónPrevia && antenaSeleccionada != null)
+		{
+			mapa.moveCamera(CameraUpdateFactory.newLatLng(antenaSeleccionada.getLatLng()));
+			mapaMovido = true;
+		} else if(AntenaActivity.coordsUsuario != null)
 		{
 			if(savedInstanceState == null)
 			{
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
 				mapaMovido = true;
 			}
+		}
+		Location loc = null;
+		if(AntenaActivity.coordsUsuario != null)
+		{
 			loc = new Location("*");
 			loc.setLatitude(AntenaActivity.coordsUsuario.getLatitude());
 			loc.setLongitude(AntenaActivity.coordsUsuario.getLongitude());
@@ -424,11 +431,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						estiloLínea(antenaSeleccionada, true);
 					} else
 					{
-						if(!mapa.getProjection().getVisibleRegion().latLngBounds.contains(markerSeleccionado.getPosition()))
-						{
-							CameraUpdate u = CameraUpdateFactory.newLatLng(markerSeleccionado.getPosition());
-							mapa.moveCamera(u);
-						}
 						onMarkerClick(markerSeleccionado);
 					}
 				}
