@@ -39,6 +39,7 @@
 	<string name="tv_título">Nearby TV antennas</string>
 	<string name="tv_baja_la_app">Get the mobile app to use compass mode!</string>
 	<string name="aviso_demora_ubicación">Getting location data is taking more than it should. Check the GPS is enabled or, if network based location is used, check that WiFi is working ok.</string>
+	<string name="shortcut_mapa_short_label">Antennenkarte</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d Kanal</item>

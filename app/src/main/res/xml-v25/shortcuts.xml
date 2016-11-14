@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+	<shortcut
+		android:shortcutId="mapa"
+		android:enabled="true"
+		android:icon="@drawable/ic_shortcut_mapa_antenas"
+		android:shortcutShortLabel="@string/shortcut_mapa_short_label">
+
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:targetPackage="ar.com.lichtmaier.antenas"
+			android:targetClass="ar.com.lichtmaier.antenas.MapaActivity"
+			/>
+
+	</shortcut>
+</shortcuts>
