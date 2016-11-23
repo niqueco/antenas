@@ -46,7 +46,7 @@ import android.widget.Toast;
 import com.google.android.gms.location.LocationRequest;
 import com.google.firebase.crash.FirebaseCrash;
 
-public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback
+public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, AyudanteDePagos.CallbackPagos
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -62,7 +62,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	private LocationManager locationManager;
 
-	private MenuItem opciónAyudaArgentina, opciónAyudaReinoUnido;
+	private MenuItem opciónAyudaArgentina, opciónAyudaReinoUnido, opciónPagar;
 	private boolean mostrarOpciónAyudaArgentina = false, mostrarOpciónAyudaReinoUnido = false;
 
 	private long comienzoUsoPantalla;
@@ -70,6 +70,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	static {
 		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 	}
+
+	final private AyudanteDePagos ayudanteDePagos = new AyudanteDePagos(this, this);
 
 	private final LocationListener locationListener = new LocationListener() {
 		@Override
@@ -150,6 +152,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				menuKeyField.setBoolean(ViewConfiguration.get(this), false);
 			}
 		} catch(Exception ignored) { }
+
+		ayudanteDePagos.registrarServicio();
 
 		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
 		if(pb != null)
@@ -263,10 +267,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 		huboSavedInstanceState = savedInstanceState != null;
 
-		publicidad = new Publicidad(this, this instanceof UnaAntenaActivity
-				? "ca-app-pub-0461170458442008/1711829752"
-				: "ca-app-pub-0461170458442008/6164714153");
-
 		if(rv != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
 			final float density = getResources().getDisplayMetrics().density;
@@ -354,6 +354,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		opciónAyudaArgentina = menu.findItem(R.id.action_ayuda_ar);
 		opciónAyudaReinoUnido = menu.findItem(R.id.action_ayuda_uk);
 		configurarMenú();
+		opciónPagar = menu.findItem(R.id.action_pagar);
+		opciónPagar.setVisible(!ayudanteDePagos.pro);
 		return true;
 	}
 
@@ -390,6 +392,9 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				if(i.resolveActivity(getPackageManager()) != null)
 					startActivity(i);
 				return true;
+			case R.id.action_pagar:
+				ayudanteDePagos.pagar();
+				return true;
 			case R.id.action_niqueco:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://twitter.com/niqueco"));
 				PackageManager pm = getPackageManager();
@@ -420,7 +425,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			pedirUbicaciónALocationManager();
 		if(locationClient != null)
 			locationClient.start();
-		publicidad.onResume();
+		if(publicidad != null)
+			publicidad.onResume();
 	}
 
 	@Override
@@ -459,7 +465,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	private void suspender()
 	{
-		publicidad.onPause();
+		if(publicidad != null)
+			publicidad.onPause();
 		if(brújula != null)
 			brújula.onPause(this);
 		if(locationManager != null)
@@ -483,9 +490,11 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			brújula.removeListener(this);
 		if(antenasAdapter != null)
 			antenasAdapter.onDestroy();
-		publicidad.onDestroy();
+		if(publicidad != null)
+			publicidad.onDestroy();
 		if(locationClient != null)
 			locationClient.destroy();
+		ayudanteDePagos.destroy();
 		super.onDestroy();
 	}
 
@@ -663,7 +672,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	public void onLocationChanged(Location location)
 	{
-		publicidad.load(location);
+		if(publicidad != null)
+			publicidad.load(location);
 		nuevaUbicación(location);
 	}
 
@@ -671,6 +681,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		if(locationClient != null && locationClient.onActivityResult(requestCode, resultCode, data))
+			return;
+		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -688,6 +700,29 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	public void nuevaOrientación(double orientación) { }
 
 	private PrenderAnimación prenderAnimación;
+
+	@Override
+	public void esPro(boolean pro)
+	{
+		if(opciónPagar != null)
+			opciónPagar.setVisible(!pro);
+		if(pro)
+		{
+			if(publicidad != null)
+			{
+				publicidad.sacar();
+				publicidad = null;
+			}
+		} else
+		{
+			if(publicidad == null)
+			{
+				publicidad = new Publicidad(this, this instanceof UnaAntenaActivity
+						? "ca-app-pub-0461170458442008/1711829752"
+						: "ca-app-pub-0461170458442008/6164714153");
+			}
+		}
+	}
 
 	private static class PrenderAnimación implements Runnable
 	{

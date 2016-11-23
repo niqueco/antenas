@@ -9,4 +9,10 @@
         android:title="@string/action_settings"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_pagar"
+        android:title="@string/pagar"
+        app:showAsAction="never"
+        />
+
 </menu>

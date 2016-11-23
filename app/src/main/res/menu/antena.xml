@@ -25,6 +25,12 @@
 		android:title="@string/action_ayuda_uk"
 		app:showAsAction="never"/>
 
+	<item
+		android:id="@+id/action_pagar"
+		android:title="@string/pagar"
+		app:showAsAction="never"
+		/>
+
     <item
         android:id="@+id/action_niqueco"
         android:title="@string/action_niqueco"

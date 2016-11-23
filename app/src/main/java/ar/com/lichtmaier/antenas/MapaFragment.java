@@ -133,20 +133,23 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public void onResume()
 	{
 		super.onResume();
-		publicidad.onResume();
+		if(publicidad != null)
+			publicidad.onResume();
 	}
 
 	@Override
 	public void onPause()
 	{
-		publicidad.onPause();
+		if(publicidad != null)
+			publicidad.onPause();
 		super.onPause();
 	}
 
 	@Override
 	public void onDetach()
 	{
-		publicidad.onDestroy();
+		if(publicidad != null)
+			publicidad.onDestroy();
 		super.onDetach();
 	}
 
@@ -160,7 +163,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public void onActivityCreated(final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		publicidad = new Publicidad(getActivity(), "ca-app-pub-0461170458442008/5727485755");
 		SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
 		mapFragment.getMapAsync(new OnMapReadyCallback()
 		{
@@ -203,14 +205,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				mapaMovido = true;
 			}
 		}
-		Location loc = null;
-		if(AntenaActivity.coordsUsuario != null)
-		{
-			loc = new Location("*");
-			loc.setLatitude(AntenaActivity.coordsUsuario.getLatitude());
-			loc.setLongitude(AntenaActivity.coordsUsuario.getLongitude());
-		}
-		publicidad.load(loc);
 		if(íconoAntenita == null)
 			íconoAntenita = BitmapDescriptorFactory.fromResource(R.drawable.antena);
 		if(íconoAntenitaElegida == null)
@@ -321,7 +315,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			if(!esTablet)
 				height = v.getHeight();
 		}
-		height -= publicidad.getHeight();
+		if(publicidad != null)
+			height -= publicidad.getHeight();
 		if(height < 0)
 			height = 0;
 		mapa.setPadding(0, altoActionBar, 0, height);
@@ -334,6 +329,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	public void onLocationChanged(Location location)
 	{
+		if(publicidad != null)
+			publicidad.load(location);
+
 		latitudActual = location.getLatitude();
 		longitudActual = location.getLongitude();
 
@@ -344,6 +342,25 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 
 		actualizarLíneas();
+	}
+
+	public void esPro(boolean pro)
+	{
+		Log.i("antenas", "mapa: es pro: " + pro);
+		if(pro)
+		{
+			if(publicidad == null)
+				return;
+			publicidad.sacar();
+			publicidad = null;
+			configurarPaddingMapa();
+		} else
+		{
+			if(publicidad != null)
+				return;
+			publicidad = new Publicidad(getActivity(), "ca-app-pub-0461170458442008/5727485755");
+			configurarPaddingMapa();
+		}
 	}
 
 	static class FuturoMarcador

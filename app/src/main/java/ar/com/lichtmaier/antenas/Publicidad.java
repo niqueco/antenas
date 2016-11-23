@@ -3,6 +3,7 @@ package ar.com.lichtmaier.antenas;
 import android.app.Activity;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -87,5 +88,13 @@ class Publicidad
 	public int getHeight()
 	{
 		return adView == null ? 0 : adView.getHeight();
+	}
+
+	void sacar()
+	{
+		if(adView == null)
+			return;
+		((ViewGroup)adView.getParent()).removeView(adView);
+		adView.destroy();
 	}
 }

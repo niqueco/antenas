@@ -15,10 +15,13 @@ import android.view.MenuItem;
 
 import com.google.android.gms.location.LocationRequest;
 
-public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback
+public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback, AyudanteDePagos.CallbackPagos
 {
 	private long comienzoUsoPantalla;
 	@Nullable private LocationClientCompat locationClient;
+
+	final private AyudanteDePagos ayudanteDePagos = new AyudanteDePagos(this, this);
+	private MenuItem opciónPagar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +35,8 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 			//noinspection ConstantConditions
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		}
+
+		ayudanteDePagos.registrarServicio();
 
 		if(savedInstanceState == null)
 		{
@@ -85,6 +90,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	{
 		if(locationClient != null)
 			locationClient.destroy();
+		ayudanteDePagos.destroy();
 		super.onDestroy();
 	}
 
@@ -111,6 +117,8 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.mapa, menu);
+		opciónPagar = menu.findItem(R.id.action_pagar);
+		opciónPagar.setVisible(!ayudanteDePagos.pro);
 		return true;
 	}
 
@@ -118,11 +126,15 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		int id = item.getItemId();
-		if(id == R.id.action_settings)
+		switch(id)
 		{
-			Intent i = new Intent(this, PreferenciasActivity.class);
-			startActivity(i);
-			return true;
+			case R.id.action_pagar:
+				ayudanteDePagos.pagar();
+				return true;
+			case R.id.action_settings:
+				Intent i = new Intent(this, PreferenciasActivity.class);
+				startActivity(i);
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -137,6 +149,8 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		if(locationClient != null && locationClient.onActivityResult(requestCode, resultCode, data))
+			return;
+		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -153,5 +167,13 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		MapaFragment fr = (MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container);
 		if(fr != null)
 			fr.onLocationChanged(location);
+	}
+
+	@Override
+	public void esPro(boolean pro)
+	{
+		if(opciónPagar != null)
+			opciónPagar.setVisible(!pro);
+		((MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container)).esPro(pro);
 	}
 }
