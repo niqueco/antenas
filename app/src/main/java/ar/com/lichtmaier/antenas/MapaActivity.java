@@ -26,7 +26,9 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		Antena.applicationContext = getApplicationContext();
 		super.onCreate(savedInstanceState);
+		Antena.applicationContext = null;
 		setContentView(R.layout.activity_mapa);
 		Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
 		if(tb != null)

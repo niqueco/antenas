@@ -45,6 +45,8 @@ public class Antena implements Parcelable
 	final static private Map<País, Future<List<Antena>>> antenasPorPaís = new EnumMap<>(País.class);
 	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();
 
+	static Context applicationContext;
+
 	private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 
 	private Antena(String descripción, double lat, double lon, int index, País país, String ref, float potencia)
@@ -256,10 +258,16 @@ public class Antena implements Parcelable
 
 		public CargarAntenasPaís(País país, Context ctx)
 		{
-			if(ctx == null)
-				throw new NullPointerException("ctx");
 			this.país = país;
-			this.ctx = ctx;
+			if(ctx == null)
+			{
+				if(applicationContext == null)
+					throw new NullPointerException("applicationContext");
+				this.ctx = applicationContext;
+			} else
+			{
+				this.ctx = ctx;
+			}
 		}
 
 		@Override
