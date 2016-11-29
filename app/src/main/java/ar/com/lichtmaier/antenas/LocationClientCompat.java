@@ -146,7 +146,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		return false;
 	}
 
-	final private LocationCallback locationCallback = new LocationCallback()
+	private class MyLocationCallback extends LocationCallback
 	{
 		@Override
 		public void onLocationAvailability(LocationAvailability locationAvailability)
@@ -159,7 +159,8 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		{
 			callback.onLocationChanged(result.getLastLocation());
 		}
-	};
+	}
+	final private LocationCallback locationCallback = new MyLocationCallback();
 
 	interface Callback extends com.google.android.gms.location.LocationListener
 	{
