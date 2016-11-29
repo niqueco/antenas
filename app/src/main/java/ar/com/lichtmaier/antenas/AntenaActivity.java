@@ -324,7 +324,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			if(grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 			{
 				if(locationClient != null)
-					throw new IllegalStateException("locationClient no es null!");
+				{
+					FirebaseCrash.logcat(Log.ERROR, "antenas", "locationClient no es null en onRequestPermissionsResult");
+					return;
+				}
 
 				//noinspection ResourceType
 				crearLocationClientCompat();
