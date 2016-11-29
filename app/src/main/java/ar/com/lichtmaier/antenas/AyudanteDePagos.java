@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -38,7 +39,8 @@ class AyudanteDePagos implements ServiceConnection
 		}
 	};
 
-	public boolean pro;
+	@Nullable
+	Boolean pro;
 
 	private void mandarBroadcast(boolean pro)
 	{

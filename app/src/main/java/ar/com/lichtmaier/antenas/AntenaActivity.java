@@ -359,7 +359,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		opciónAyudaReinoUnido = menu.findItem(R.id.action_ayuda_uk);
 		configurarMenú();
 		opciónPagar = menu.findItem(R.id.action_pagar);
-		opciónPagar.setVisible(!ayudanteDePagos.pro);
+		if(ayudanteDePagos.pro != null)
+			opciónPagar.setVisible(!ayudanteDePagos.pro);
 		return true;
 	}
 

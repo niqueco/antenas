@@ -128,7 +128,8 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	{
 		getMenuInflater().inflate(R.menu.mapa, menu);
 		opciónPagar = menu.findItem(R.id.action_pagar);
-		opciónPagar.setVisible(!ayudanteDePagos.pro);
+		if(ayudanteDePagos.pro != null)
+			opciónPagar.setVisible(!ayudanteDePagos.pro);
 		return true;
 	}
 
