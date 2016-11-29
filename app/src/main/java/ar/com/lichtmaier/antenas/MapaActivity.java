@@ -22,6 +22,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 
 	final private AyudanteDePagos ayudanteDePagos = new AyudanteDePagos(this, this);
 	private MenuItem opciónPagar;
+	private MapaFragment mapaFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -42,12 +43,19 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 
 		if(savedInstanceState == null)
 		{
+			mapaFragment = new MapaFragment();
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new MapaFragment())
+					.add(R.id.container, mapaFragment)
 					.commit();
 			if(getIntent().getExtras() == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
 				getSystemService(ShortcutManager.class).reportShortcutUsed("mapa");
+		} else
+		{
+			mapaFragment = (MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container);
 		}
+
+		if(mapaFragment == null)
+			throw new NullPointerException("mapaFragment es null, activity = " + this);
 
 		locationClient = LocationClientCompat.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -166,9 +174,8 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	@Override
 	public void onLocationChanged(Location location)
 	{
-		MapaFragment fr = (MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container);
-		if(fr != null)
-			fr.onLocationChanged(location);
+		if(mapaFragment != null)
+			mapaFragment.onLocationChanged(location);
 	}
 
 	@Override
@@ -176,6 +183,6 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	{
 		if(opciónPagar != null)
 			opciónPagar.setVisible(!pro);
-		((MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container)).esPro(pro);
+		mapaFragment.esPro(pro);
 	}
 }
