@@ -359,7 +359,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			if(publicidad != null)
 				return;
 			publicidad = new Publicidad(getActivity(), "ca-app-pub-0461170458442008/5727485755");
-			configurarPaddingMapa();
+			if(mapa != null)
+				configurarPaddingMapa();
 		}
 	}
 
