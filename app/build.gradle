@@ -8,7 +8,7 @@ android {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 9
         targetSdkVersion 25
-        versionName "2.4"
+        versionName "2.4.1"
         resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA",
                 "en-rNZ", "es", "es-rUS", "fr", "fr-rCA",
                 "pt", "pt-rBR", "pt-rPT"
@@ -25,10 +25,10 @@ android {
 
     productFlavors {
         phone {
-            versionCode 902040
+            versionCode 902041
         }
         tv {
-            versionCode 2102040
+            versionCode 2102041
             minSdkVersion 21
         }
     }
