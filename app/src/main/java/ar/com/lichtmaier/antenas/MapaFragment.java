@@ -430,6 +430,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			@Override
 			protected void onPostExecute(List<FuturoMarcador> mm)
 			{
+				if(!isAdded())
+				{
+					Log.e("antenas", "setting markers at a wong time? fr=" + MapaFragment.this);
+					return;
+				}
+
 				for(FuturoMarcador m : mm)
 					m.crear(MapaFragment.this);
 
