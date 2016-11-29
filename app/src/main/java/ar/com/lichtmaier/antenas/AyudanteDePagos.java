@@ -143,7 +143,7 @@ class AyudanteDePagos implements ServiceConnection
 
 		if(resultCode == RESULT_OK)
 		{
-			Toast.makeText(activity, "Gracias!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, R.string.thankyou, Toast.LENGTH_SHORT).show();
 			mandarBroadcast(true);
 		}
 		return true;

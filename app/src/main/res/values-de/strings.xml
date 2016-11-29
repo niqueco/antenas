@@ -41,6 +41,7 @@
 	<string name="aviso_demora_ubicación">Getting location data is taking more than it should. Check the GPS is enabled or, if network based location is used, check that WiFi is working ok.</string>
 	<string name="shortcut_mapa_short_label">Antennenkarte</string>
 	<string name="pagar">Anzeigen entfernen</string>
+	<string name="thankyou">Danke!</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d Kanal</item>
