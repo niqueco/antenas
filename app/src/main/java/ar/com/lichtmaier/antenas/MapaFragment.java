@@ -88,7 +88,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			originalBackStackEntryCount = getFragmentManager().getBackStackEntryCount();
 
 			Intent intent = getActivity().getIntent();
+			Antena.applicationContext = getActivity().getApplicationContext();
 			antenaSeleccionada = intent.getParcelableExtra("ar.com.lichtmaier.antenas.antena");
+			Antena.applicationContext = null;
 			if(antenaSeleccionada != null)
 			{
 				canalSeleccionado = antenaSeleccionada.canales.get(intent.getIntExtra("ar.com.lichtmaier.antenas.canal", -1));
