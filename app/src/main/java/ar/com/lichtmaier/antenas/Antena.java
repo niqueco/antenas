@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -45,6 +46,7 @@ public class Antena implements Parcelable
 	final static private Map<País, Future<List<Antena>>> antenasPorPaís = new EnumMap<>(País.class);
 	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();
 
+	@SuppressLint("StaticFieldLeak")
 	static Context applicationContext;
 
 	private static final ExecutorService executor = Executors.newSingleThreadExecutor();
