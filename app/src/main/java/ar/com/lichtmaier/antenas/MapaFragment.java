@@ -29,6 +29,7 @@ import android.widget.ScrollView;
 
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
+import com.google.firebase.crash.FirebaseCrash;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
@@ -766,7 +767,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				break;
 			}
 		if(antena == null)
-			throw new RuntimeException("uh? " + polyline);
+		{
+			FirebaseCrash.log("lineas: " + líneas);
+			FirebaseCrash.log("polyline: " + polyline);
+			FirebaseCrash.report(new RuntimeException("onPolylineClick: unknown polyline"));
+			return;
+		}
 		Log.d("antenas", "click en línea de " + antena);
 
 		if(!markersCargados)
