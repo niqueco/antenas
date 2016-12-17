@@ -196,7 +196,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 						@Override
 						public void onClick(View v) { }
 					})
-					.setCallback(new Snackbar.Callback()
+					.addCallback(new Snackbar.Callback()
 					{
 						@Override
 						public void onDismissed(Snackbar snackbar, int event)
