@@ -41,6 +41,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	private boolean todoCargado = false;
 	private GlobalCoordinates coordsUsuario;
 	private boolean mostrarDireccionesRelativas;
+	private boolean forzarDireccionesAbsolutas;
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -252,9 +253,15 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 	}
 
+	public void setForzarDireccionesAbsolutas(boolean forzarDireccionesAbsolutas)
+	{
+		this.forzarDireccionesAbsolutas = forzarDireccionesAbsolutas;
+		configurarMostrarDireccionesRelativas();
+	}
+
 	private void configurarMostrarDireccionesRelativas()
 	{
-		boolean m = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false);
+		boolean m = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false) && !forzarDireccionesAbsolutas;
 		if(m == this.mostrarDireccionesRelativas)
 			return;
 		this.mostrarDireccionesRelativas = m;

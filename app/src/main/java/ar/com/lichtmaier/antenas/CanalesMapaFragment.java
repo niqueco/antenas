@@ -207,7 +207,8 @@ public class CanalesMapaFragment extends LifecycleFragment
 
 	private void ponerDistancia(Location location, TextView tv, boolean comentario)
 	{
-		double distancia = antena.distanceTo(new GlobalCoordinates(location.getLatitude(), location.getLongitude()));
+		Lugar l = Lugar.actual.getValue();
+		double distancia = antena.distanceTo(l == null ? new GlobalCoordinates(location.getLatitude(), location.getLongitude()) : l.coords);
 		if(distancia < 100000)
 		{
 			int res = comentario ? R.string.dist_away_comentario : R.string.dist_away_solo;

@@ -54,6 +54,8 @@
 	<string name="no_se_puede_pagar">No se puede iniciar el pago en este momento. Por favor intente más tarde.</string>
 	<string name="dist_away_comentario">(a %s)</string>
 	<string name="dist_away_solo">A %s</string>
+	<string name="título_lugar">Antennas alrededor de %s</string>
+	<string name="elegir_lugar">Elegir lugar</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Hacia adelante</item>

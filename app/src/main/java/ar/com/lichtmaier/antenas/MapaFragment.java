@@ -70,6 +70,7 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 
 	/** Estamos mostrando un canal porque cliquearon en la lista de antenas. Un back debería cerrar la actividad sin miramientos. */
 	boolean modoMostrarAntena;
+	private Marker markerLugar;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -189,10 +190,24 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 		mapa.setOnCameraIdleListener(this);
 		mapa.setOnMarkerClickListener(this);
 		mapa.setOnPolylineClickListener(this);
+		Lugar l = Lugar.actual.getValue();
+		if(l != null)
+		{
+			LatLng latLng = new LatLng(l.coords.getLatitude(), l.coords.getLongitude());
+			markerLugar = mapa.addMarker(new MarkerOptions().position(latLng).title(l.name));
+		}
 		if(!huboEjecuciónPrevia && antenaSeleccionada != null)
 		{
 			mapa.moveCamera(CameraUpdateFactory.newLatLng(antenaSeleccionada.getLatLng()));
 			mapaMovido = true;
+		} else if(l != null)
+		{
+			if(savedInstanceState == null)
+			{
+				LatLng latLng = new LatLng(l.coords.getLatitude(), l.coords.getLongitude());
+				mapa.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+				mapaMovido = true;
+			}
 		} else if(AntenaActivity.coordsUsuario != null)
 		{
 			if(savedInstanceState == null)
@@ -519,6 +534,9 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 	@Override
 	public boolean onMarkerClick(Marker marker)
 	{
+		if(marker.equals(markerLugar))
+			return false;
+
 		FragmentManager fm = getFragmentManager();
 
 		if(fm == null || isStateSaved())
@@ -660,6 +678,7 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 		países.clear();
 		líneas.clear();
 		antenaAMarker.clear();
+		markerLugar = null;
 		super.onDestroyView();
 	}
 
@@ -700,11 +719,13 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			return;
 		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
 
+		Lugar l = Lugar.actual.getValue();
+
 		if(forzarBusqueda || antenasCerca == null || (System.nanoTime() - últimaVezQueSeBuscóAntenas) > 1000000000L * 60)
 		{
 			try
 			{
-				antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), new GlobalCoordinates(latitudActual, longitudActual), maxDist, false));
+				antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), l == null ? new GlobalCoordinates(latitudActual, longitudActual) : new GlobalCoordinates(l.coords.getLatitude(), l.coords.getLongitude()), maxDist, false));
 			} catch(TimeoutException e)
 			{
 				Log.w("antenas", "No hay antenas todavía para hacer líneas");
@@ -714,7 +735,7 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
 		}
 
-		LatLng posNosotros = new LatLng(latitudActual, longitudActual);
+		LatLng posNosotros = l == null ? new LatLng(latitudActual, longitudActual) : new LatLng(l.coords.getLatitude(), l.coords.getLongitude());
 
 		Iterator<Antena> itA = antenasCerca.iterator();
 		while(itA.hasNext())

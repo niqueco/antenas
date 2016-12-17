@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ar.com.lichtmaier.tda.AntenaActivity">
 
+	<item android:id="@+id/action_elegir_lugar"
+		android:title="@string/elegir_lugar"
+		android:icon="@drawable/ic_place_white_24dp"
+		app:showAsAction="ifRoom"
+		/>
     <item
         android:id="@+id/action_mapa"
         android:title="@string/action_mapa"

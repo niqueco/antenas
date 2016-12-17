@@ -49,6 +49,8 @@
 	<string name="no_se_puede_pagar">Payment cannot be initiated at this time. Please try again later.</string>
 	<string name="dist_away_comentario">(%s away)</string>
 	<string name="dist_away_solo">%s away</string>
+	<string name="título_lugar">Antennas around %s</string>
+	<string name="elegir_lugar">Choose place</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d channel</item>

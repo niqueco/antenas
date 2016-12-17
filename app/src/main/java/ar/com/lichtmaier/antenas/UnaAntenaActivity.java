@@ -19,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.gavaghan.geodesy.GlobalCoordinates;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -317,7 +319,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		{
 			TextView antenaDist = findViewById(R.id.antena_dist);
 			assert antenaDist != null;
-			antenaDist.setText(Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario)));
+			GlobalCoordinates coords = Lugar.actual.getValue() == null ? AntenaActivity.coordsUsuario : Lugar.actual.getValue().coords;
+			antenaDist.setText(Formatos.formatDistance(this, antena.distanceTo(coords)));
 		}
 	}
 
@@ -363,7 +366,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 
 	private void configurarMostrarDireccionesRelativas()
 	{
-		this.mostrarDireccionesRelativas = (brújula != null) && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("forzar_direcciones_absolutas", false);
+		this.mostrarDireccionesRelativas = brújula != null && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("forzar_direcciones_absolutas", false) && Lugar.actual.getValue() == null;
 		flecha.setÁngulo(antena.rumboDesde(coordsUsuario), false);
 		flecha.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
 	}

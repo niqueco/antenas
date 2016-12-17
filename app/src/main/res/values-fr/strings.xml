@@ -53,6 +53,8 @@
 	<string name="no_se_puede_pagar">Le paiement ne peut pas être lancé pour le moment. Veuillez réessayer plus tard.</string>
 	<string name="dist_away_comentario">(à %s)</string>
 	<string name="dist_away_solo">À %s</string>
+	<string name="título_lugar">Antennes autour de %s</string>
+	<string name="elegir_lugar">Choisir son lieu</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>

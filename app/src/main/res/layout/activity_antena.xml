@@ -6,14 +6,50 @@
               android:orientation="vertical"
               tools:context=".AntenaActivity">
 
+    <LinearLayout
+        android:id="@+id/toolbar_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?colorPrimary"
+        >
     <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:background="?colorPrimary"
             />
+
+        <LinearLayout
+            android:id="@+id/place"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/place_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:paddingStart="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="#fff"
+                tools:text="Antenas cerca de La Pharmacie"
+                />
+            <ImageButton
+                android:id="@+id/place_cerrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_clear_white_16dp"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/principal"

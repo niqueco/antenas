@@ -33,6 +33,7 @@ import android.support.design.widget.Snackbar;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -46,7 +47,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.crash.FirebaseCrash;
 
 public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, LifecycleRegistryOwner
@@ -54,6 +59,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
+	public static final int REQUEST_CODE_ELEGIR_LUGAR = 889;
 
 	public static final String PREF_PAGAME_MES_MOSTRADO = "pagame_mes_mostrado";
 	public static final String PREF_LANZAMIENTOS = "lanzamientos";
@@ -287,7 +293,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 						y = margen - v.getTop();
 					} else
 						y = 1000;
-					actionBar.setElevation(Math.min(y / 8f, density * 8f));
+					ViewCompat.setElevation(findViewById(R.id.toolbar_wrapper), Math.min(y / 8f, density * 8f));
 				}
 			});
 		}
@@ -299,6 +305,34 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 			Calificame.registrarLanzamiento(this);
 		}
+
+		View botónLimpiarLugar = findViewById(R.id.place_cerrar);
+		if(botónLimpiarLugar != null)
+			botónLimpiarLugar.setOnClickListener(view -> Lugar.actual.setValue(null));
+
+		Lugar.restore(savedInstanceState);
+
+		Lugar.actual.observe(this, l -> {
+			View pl = findViewById(R.id.place);
+			if(l != null)
+			{
+				if(pl != null)
+				{
+					pl.setVisibility(View.VISIBLE);
+					((TextView)findViewById(R.id.place_text)).setText(String.format(getString(R.string.título_lugar), l.name));
+				}
+				if(antenasAdapter != null)
+					antenasAdapter.setForzarDireccionesAbsolutas(true);
+			} else
+			{
+				if(pl != null)
+					pl.setVisibility(View.GONE);
+				if(antenasAdapter != null)
+					antenasAdapter.setForzarDireccionesAbsolutas(false);
+			}
+			nuevaUbicación();
+
+		});
 	}
 
 	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -358,6 +392,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			outState.putDouble("lon", coordsUsuario.getLongitude());
 			outState.putDouble("alt", alturaUsuario);
 		}
+		Lugar.save(outState);
 	}
 
 	@Override
@@ -399,6 +434,16 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					intersticial.siguienteActividad(this, i, null);
 				else
 					startActivity(i);
+				return true;
+			case R.id.action_elegir_lugar:
+				try
+				{
+					i = new PlacePicker.IntentBuilder().build(this);
+					startActivityForResult(i, REQUEST_CODE_ELEGIR_LUGAR);
+				} catch(GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e)
+				{
+					Log.e("antenas", "PlacePicker error", e);
+				}
 				return true;
 			case R.id.action_ayuda_ar:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://poné-tda.com.ar/"));
@@ -542,11 +587,18 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	protected void nuevaUbicación()
 	{
-		if(coordsUsuario == null)
+		if(coordsUsuario == null && Lugar.actual.getValue() == null)
 			return;
-		if(brújula != null)
+		if(brújula != null && coordsUsuario != null)
 			brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
-		antenasAdapter.nuevaUbicación(coordsUsuario);
+
+		if(Lugar.actual.getValue() != null)
+		{
+			antenasAdapter.nuevaUbicación(Lugar.actual.getValue().coords);
+		} else
+		{
+			antenasAdapter.nuevaUbicación(coordsUsuario);
+		}
 	}
 
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
@@ -682,6 +734,26 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
+		if(requestCode == REQUEST_CODE_ELEGIR_LUGAR)
+		{
+			if(data == null)
+				return;
+
+			if(locationManager != null)
+				//noinspection MissingPermission
+				locationManager.removeUpdates(locationListener);
+			if(locationClient != null)
+				locationClient.stop();
+
+			if(antenasAdapter != null)
+				antenasAdapter.setForzarDireccionesAbsolutas(true);
+
+			Place place = PlacePicker.getPlace(this, data);
+			Log.i("antenas", "place=" + place);
+			Lugar.actual.setValue(Lugar.from(place));
+
+			return;
+		}
 		if(locationClient != null && locationClient.onActivityResult(requestCode, resultCode, data))
 			return;
 		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
@@ -850,4 +922,5 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	{
 		return lifecycleRegistry;
 	}
+
 }

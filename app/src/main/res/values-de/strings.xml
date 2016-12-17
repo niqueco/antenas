@@ -49,6 +49,8 @@
 	<string name="no_se_puede_pagar">Die Zahlung kann derzeit nicht eingeleitet werden. Bitte versuchen Sie es später erneut.</string>
 	<string name="dist_away_comentario">(%s entfernt)</string>
 	<string name="dist_away_solo">%s entfernt</string>
+	<string name="título_lugar">Antennen um %s</string>
+	<string name="elegir_lugar">Wählen Ort</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d Kanal</item>
