@@ -52,6 +52,9 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
 
+	public static final String PREF_PAGAME_MES_MOSTRADO = "pagame_mes_mostrado";
+	public static final String PREF_LANZAMIENTOS = "lanzamientos";
+
 	static GlobalCoordinates coordsUsuario;
 	static float alturaUsuario;
 	protected Brújula brújula;
@@ -292,8 +295,13 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			});
 		}
 
-		if(!(this instanceof UnaAntenaActivity) && savedInstanceState == null)
+		if(!(this instanceof UnaAntenaActivity) && !huboSavedInstanceState)
+		{
+			int lanzamientos = prefs.getInt(PREF_LANZAMIENTOS, 0) + 1;
+			prefs.edit().putInt(PREF_LANZAMIENTOS, lanzamientos).apply();
+
 			Calificame.registrarLanzamiento(this);
+		}
 	}
 
 	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -405,7 +413,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					startActivity(i);
 				return true;
 			case R.id.action_pagar:
-				ayudanteDePagos.pagar();
+				pagar();
 				return true;
 			case R.id.action_niqueco:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://twitter.com/niqueco"));
@@ -425,6 +433,11 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	void pagar()
+	{
+		ayudanteDePagos.pagar();
 	}
 
 	@Override
@@ -733,6 +746,28 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 						? "ca-app-pub-0461170458442008/1711829752"
 						: "ca-app-pub-0461170458442008/6164714153");
 				intersticial = publicidad.crearIntersticial(this, "ca-app-pub-0461170458442008/1312574153");
+			}
+
+			if(!(this instanceof UnaAntenaActivity) && !huboSavedInstanceState)
+			{
+				int lanzamientos = prefs.getInt(PREF_LANZAMIENTOS, 0);
+				if(lanzamientos > 4 && !Calificame.mostrando(this))
+				{
+					try
+					{
+						long installTime = getPackageManager().getPackageInfo(BuildConfig.APPLICATION_ID, 0).firstInstallTime;
+						int mesMostrado = prefs.getInt(PREF_PAGAME_MES_MOSTRADO, -1);
+						int mes = (int)((System.currentTimeMillis() - installTime) / (1000L * 3600L * 24L * 30L));
+						if(mesMostrado < mes)
+						{
+							prefs.edit().putInt(PREF_PAGAME_MES_MOSTRADO, mes).apply();
+							Pagame.mostrar(this);
+						}
+					} catch(Exception e)
+					{
+						FirebaseCrash.report(e);
+					}
+				}
 			}
 		}
 	}

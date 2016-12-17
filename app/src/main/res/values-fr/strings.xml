@@ -46,6 +46,10 @@
 	<string name="shortcut_mapa_short_label">Carte des antennes</string>
 	<string name="pagar">Supprimez la pub</string>
 	<string name="thankyou">Merci!</string>
+	<string name="pagame_texto">Mon nom est Nicolás Lichtmaier. Je suis le créateur unique, concepteur, conservateur de données, etc derrière cette application. Si vous le trouvez utile, je vous demande d\'envisager de verser une petite somme d\'argent. En échange, vous ne verrez plus ces publicités horribles.</string>
+	<string name="pagame_saludo">Salut!</string>
+	<string name="pagame_boton">Acheter l\'édition Pro</string>
+	<string name="pagame_gracias">Merci d\'utiliser cette application!</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>

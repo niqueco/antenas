@@ -132,6 +132,12 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 		}
 	}
 
+	static boolean mostrando(FragmentActivity activity)
+	{
+		FragmentManager fm = activity.getSupportFragmentManager();
+		return fm != null && fm.findFragmentByTag(FRAGMENT_TAG) != null;
+	}
+
 	@Override
 	public void onClick(View v)
 	{

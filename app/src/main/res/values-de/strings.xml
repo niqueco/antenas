@@ -42,6 +42,10 @@
 	<string name="shortcut_mapa_short_label">Antennenkarte</string>
 	<string name="pagar">Anzeigen entfernen</string>
 	<string name="thankyou">Danke!</string>
+	<string name="pagame_texto">Mein Name ist Nicolás Lichtmaier. Ich bin der einzige Schöpfer, Designer, Daten Kurator, etc. hinter dieser App. Wenn Sie es nützlich finden, frage ich Sie zu prüfen, etwas wenig Geld beitragen. Im Gegenzug sehen Sie nicht mehr diese hässlichen Anzeigen.</string>
+	<string name="pagame_saludo">Hallo!</string>
+	<string name="pagame_boton">Kaufen Sie Pro edition</string>
+	<string name="pagame_gracias">Vielen Dank für die Nutzung dieser App!</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d Kanal</item>

@@ -53,5 +53,20 @@
 		<item name="android:colorBackground">@color/celeste_lindo</item>
 		<item name="android:background">@color/celeste_lindo</item>
 		<item name="android:colorAccent" tools:ignore="NewApi">#FFE57F</item>
+
+
+		<item name="windowMinWidthMajor">@dimen/dialog_fragment_width</item>
+		<item name="windowMinWidthMinor">@dimen/dialog_fragment_width</item>
+		<item name="android:windowMinWidthMajor" tools:ignore="NewApi">@dimen/dialog_fragment_width</item>
+		<item name="android:windowMinWidthMinor" tools:ignore="NewApi">@dimen/dialog_fragment_width</item>
 	</style>
+
+	<style name="Pagame" parent="Theme.AppCompat.Light.Dialog">
+		<item name="windowMinWidthMajor">@dimen/dialog_fragment_width</item>
+		<item name="windowMinWidthMinor">@dimen/dialog_fragment_width</item>
+		<item name="android:windowMinWidthMajor" tools:ignore="NewApi">@dimen/dialog_fragment_width</item>
+		<item name="android:windowMinWidthMinor" tools:ignore="NewApi">@dimen/dialog_fragment_width</item>
+		<item name="colorAccent">@color/celeste_lindo</item>
+	</style>
+
 </resources>

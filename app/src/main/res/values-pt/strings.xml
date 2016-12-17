@@ -47,6 +47,10 @@
 	<string name="shortcut_mapa_short_label">Mapa de antenas</string>
 	<string name="pagar">Remover propagandas</string>
 	<string name="thankyou">Obrigado!</string>
+	<string name="pagame_texto">Meu nome é Nicolás Lichtmaier. Eu sou o único criador, designer, curador de dados, etc atrás deste app. Se você achar útil, peço que você considere contribuir com uma pequena quantia de dinheiro. Em troca, você não verá mais esses anúncios feios.</string>
+	<string name="pagame_saludo">Olá!</string>
+	<string name="pagame_boton">Buy Pro edition</string>
+	<string name="pagame_gracias">Obrigado por usar este aplicativo!</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>

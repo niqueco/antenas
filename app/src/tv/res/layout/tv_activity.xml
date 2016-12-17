@@ -30,9 +30,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/textView"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2">
+        android:layout_below="@+id/label_hi"
+        android:layout_toLeftOf="@+id/label_pagame"
+        android:layout_toStartOf="@+id/label_pagame">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/antenas"
@@ -104,11 +104,11 @@
         android:id="@+id/imageView"
         android:src="@drawable/qr_code"
         android:contentDescription="https://play.google.com/store/apps/details?id=ar.com.lichtmaier.antenas"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/label_pagame"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
+        android:layout_alignLeft="@+id/label_pagame"
+        android:layout_alignStart="@+id/label_pagame"
         android:layout_marginTop="16dp"
         tools:ignore="HardcodedText"
         />
