@@ -103,7 +103,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			if(abriendoAntena)
 				return;
 			abriendoAntena = true;
-			suspender();
 
 			Intent i = new Intent(AntenaActivity.this, UnaAntenaActivity.class);
 
@@ -488,7 +487,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		super.onPause();
 	}
 
-	private void suspender()
+	@Override
+	protected void onStop()
 	{
 		if(publicidad != null)
 			publicidad.onPause();
@@ -499,12 +499,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			locationManager.removeUpdates(locationListener);
 		if(locationClient != null)
 			locationClient.stop();
-	}
-
-	@Override
-	protected void onStop()
-	{
-		suspender();
 		super.onStop();
 	}
 
