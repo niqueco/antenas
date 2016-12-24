@@ -424,7 +424,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 						i.setPackage(info.activityInfo.packageName);
 						break;
 					}
-				startActivity(i);
 				if(i.resolveActivity(getPackageManager()) != null)
 					startActivity(i);
 				else
