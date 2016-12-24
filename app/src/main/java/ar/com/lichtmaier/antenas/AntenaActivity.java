@@ -132,7 +132,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			terminarDeConfigurar();
 		}
 	};
-	private Publicidad.Intersticial intersticial;
+	protected Publicidad.Intersticial intersticial;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -397,7 +397,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			case R.id.action_mapa:
 				i = new Intent(this, MapaActivity.class);
 				if(intersticial != null)
-					intersticial.siguienteActividad(i);
+					intersticial.siguienteActividad(this, i, null);
 				else
 					startActivity(i);
 				return true;

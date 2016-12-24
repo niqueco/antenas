@@ -1,16 +1,24 @@
 package ar.com.lichtmaier.antenas;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.ads.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class Publicidad
 {
+	private final static Map<String, Intersticial> intersticiales = new HashMap<>();
+
 	private final AdView adView;
 	private boolean loaded;
 
@@ -98,19 +106,24 @@ class Publicidad
 
 	Intersticial crearIntersticial(Activity activity, String adUnitId)
 	{
-		return new Intersticial(activity, adUnitId);
+		Intersticial intersticial = intersticiales.get(adUnitId);
+		if(intersticial == null)
+		{
+			intersticial = new Intersticial(activity, adUnitId);
+			intersticiales.put(adUnitId, intersticial);
+		}
+		return intersticial;
 	}
 
 	static class Intersticial extends AdListener
 	{
 		final InterstitialAd ad;
-		final Activity activity;
+		Activity activity;
 		Intent intent;
 
-		Intersticial(Activity activity, String adUnitId)
+		Intersticial(Context context, String adUnitId)
 		{
-			this.activity = activity;
-			ad = new InterstitialAd(activity);
+			ad = new InterstitialAd(context.getApplicationContext());
 			ad.setAdUnitId(adUnitId);
 			ad.setAdListener(this);
 			pedir();
@@ -120,6 +133,8 @@ class Publicidad
 		public void onAdClosed()
 		{
 			activity.startActivity(intent);
+			activity = null;
+			intent = null;
 		}
 
 		private void pedir()
@@ -127,15 +142,16 @@ class Publicidad
 			ad.loadAd(getAdRequest(null));
 		}
 
-		void siguienteActividad(Intent intent)
+		void siguienteActividad(Activity activity, Intent intent, Bundle options)
 		{
-			this.intent = intent;
 			if(ad.isLoaded())
 			{
+				this.intent = intent;
+				this.activity = activity;
 				ad.show();
 			} else
 			{
-				activity.startActivity(intent);
+				ActivityCompat.startActivity(activity, intent, options);
 				this.intent = null;
 			}
 		}

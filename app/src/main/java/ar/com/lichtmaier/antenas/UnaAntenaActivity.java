@@ -498,6 +498,9 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		intent.putExtra("ar.com.lichtmaier.antenas.antena", antena);
 		intent.putExtra("ar.com.lichtmaier.antenas.canal", antena.canales.indexOf(canal));
 		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, 0, 0, view.getWidth(), view.getHeight());
-		ActivityCompat.startActivity(this, intent, options.toBundle());
+		if(intersticial != null)
+			intersticial.siguienteActividad(this, intent, options.toBundle());
+		else
+			ActivityCompat.startActivity(this, intent, options.toBundle());
 	}
 }
