@@ -123,7 +123,7 @@ class AyudanteDePagos implements ServiceConnection
 			}
 			PendingIntent pendingIntent = b.getParcelable("BUY_INTENT");
 			assert pendingIntent != null;
-			activity.startIntentSenderForResult(pendingIntent.getIntentSender(), REQUEST_CODE_COMPRAR, new Intent(), 0, 0, 0, null);
+			activity.startIntentSenderForResult(pendingIntent.getIntentSender(), REQUEST_CODE_COMPRAR, new Intent(), 0, 0, 0);
 		} catch(RemoteException|IntentSender.SendIntentException e)
 		{
 			FirebaseCrash.report(e);
