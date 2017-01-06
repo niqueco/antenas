@@ -105,6 +105,11 @@ class AyudanteDePagos implements ServiceConnection
 
 	void pagar()
 	{
+		if(pagosDeGoogle == null)
+		{
+			Toast.makeText(activity, R.string.no_se_puede_pagar, Toast.LENGTH_SHORT).show();
+			return;
+		}
 		try
 		{
 			Bundle b = pagosDeGoogle.getBuyIntent(3, BuildConfig.APPLICATION_ID, ID_PRODUCTO, "inapp", "");

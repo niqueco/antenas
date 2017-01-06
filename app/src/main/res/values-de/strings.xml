@@ -46,6 +46,7 @@
 	<string name="pagame_saludo">Hallo!</string>
 	<string name="pagame_boton">Kaufen Sie Pro edition</string>
 	<string name="pagame_gracias">Vielen Dank für die Nutzung dieser App!</string>
+	<string name="no_se_puede_pagar">Die Zahlung kann derzeit nicht eingeleitet werden. Bitte versuchen Sie es später erneut.</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d Kanal</item>
