@@ -60,10 +60,6 @@ public class FlechaView extends View
 		{
 			values.recycle();
 		}
-		float density = getResources().getDisplayMetrics().density;
-		int z = (int)(100 * density);
-		setMinimumHeight(z);
-		setMinimumWidth(z);
 
 		instalarDelegadoAccesibilidad();
 		ViewCompat.setImportantForAccessibility(this, ViewCompat.IMPORTANT_FOR_ACCESSIBILITY_YES);
@@ -153,7 +149,7 @@ public class FlechaView extends View
 		cx = w / 2.0f;
 		cy = h / 2.0f;
 		float maxpadding = Math.max(Math.max(getPaddingLeft(), getPaddingRight()), Math.max(getPaddingTop(), getPaddingBottom()));
-		z = .8f * Math.min(cx, cy) - maxpadding;
+		z = Math.min(cx, cy) - maxpadding - pinturaBorde.getStrokeWidth() - pinturaFlecha.getStrokeWidth() * .75f;
 		líneasFlecha = new float[] {
 				0, w / 5f, 0, -z,
 				0, -z, w / 10f, w / 10f - z,
