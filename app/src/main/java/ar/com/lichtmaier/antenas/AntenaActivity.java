@@ -98,12 +98,30 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	private final AntenasAdapter.Callback onAntenaClickedListener = new AntenasAdapter.Callback()
 	{
 		@Override
-		public void onAntenaClicked(Antena antena, View v)
+		public void onAntenaClicked(final Antena antena, final View v)
 		{
 			if(abriendoAntena)
 				return;
 			abriendoAntena = true;
 
+			if(intersticial == null || prefs.getInt(PREF_LANZAMIENTOS, 0) < 4)
+			{
+				abrir(antena, v, true);
+			} else
+			{
+				intersticial.mostrar(new Publicidad.Intersticial.Callback()
+				{
+					@Override
+					public void run(boolean huboAviso)
+					{
+						abrir(antena, v, !huboAviso);
+					}
+				});
+			}
+		}
+
+		private void abrir(Antena antena, View v, boolean animar)
+		{
 			Intent i = new Intent(AntenaActivity.this, UnaAntenaActivity.class);
 
 			int[] screenLocation = new int[2];
@@ -119,11 +137,14 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					putExtra(PACKAGE + ".height", flecha.getHeight()).
 					putExtra(PACKAGE + ".ángulo", flecha.getÁngulo()).
 					putExtra(PACKAGE + ".ánguloDibujado", flecha.getÁnguloDibujado()).
-					putExtra(PACKAGE + ".sinValor", brújula != null && brújula.sinValor());
+					putExtra(PACKAGE + ".sinValor", brújula != null && brújula.sinValor()).
+					putExtra(PACKAGE + ".animar", animar);
 			flechaADesaparecer = flecha;
 
 			startActivity(i);
-			overridePendingTransition(0, 0);
+
+			if(animar)
+				overridePendingTransition(0, 0);
 		}
 
 		@Override

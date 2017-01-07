@@ -68,6 +68,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		orientaciónOriginal = bundle.getInt(PACKAGE + ".orientation");
 		ángulo = bundle.getDouble(PACKAGE + ".ángulo");
 		double ánguloDibujado = bundle.getDouble(PACKAGE + ".ánguloDibujado");
+		boolean animar = bundle.getBoolean(PACKAGE + ".animar");
 
 		flecha = (FlechaView)findViewById(R.id.flecha);
 		assert flecha != null;
@@ -116,7 +117,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			}
 		}
 
-		if(savedInstanceState == null)
+		if(savedInstanceState == null && animar)
 		{
 			if(brújula == null)
 				flecha.setMostrarPuntosCardinales(true);

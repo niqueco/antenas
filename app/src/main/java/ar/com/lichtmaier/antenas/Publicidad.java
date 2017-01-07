@@ -117,9 +117,10 @@ class Publicidad
 
 	static class Intersticial extends AdListener
 	{
-		final InterstitialAd ad;
-		Activity activity;
-		Intent intent;
+		final private InterstitialAd ad;
+		private Activity activity;
+		private Intent intent;
+		private Callback callback;
 
 		Intersticial(Context context, String adUnitId)
 		{
@@ -132,9 +133,16 @@ class Publicidad
 		@Override
 		public void onAdClosed()
 		{
-			activity.startActivity(intent);
-			activity = null;
-			intent = null;
+			if(intent != null)
+			{
+				activity.startActivity(intent);
+				intent = null;
+				activity = null;
+			} else if (callback != null)
+			{
+				callback.run(true);
+				intent = null;
+			}
 		}
 
 		private void pedir()
@@ -147,6 +155,7 @@ class Publicidad
 			if(ad.isLoaded())
 			{
 				this.intent = intent;
+				this.callback = null;
 				this.activity = activity;
 				ad.show();
 			} else
@@ -154,6 +163,26 @@ class Publicidad
 				ActivityCompat.startActivity(activity, intent, options);
 				this.intent = null;
 			}
+		}
+
+		void mostrar(Callback callback)
+		{
+			if(ad.isLoaded())
+			{
+				this.intent = null;
+				this.callback = callback;
+				this.activity = null;
+				ad.show();
+			} else
+			{
+				callback.run(false);
+				this.callback = null;
+			}
+		}
+
+		interface Callback
+		{
+			void run(boolean huboAviso);
 		}
 	}
 }
