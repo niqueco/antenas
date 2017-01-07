@@ -461,7 +461,13 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						estiloLínea(antenaSeleccionada, true);
 					} else
 					{
-						onMarkerClick(markerSeleccionado);
+						try {
+							onMarkerClick(markerSeleccionado);
+						} catch(IllegalStateException e)
+						{
+							FirebaseCrash.log("fragment: " + MapaFragment.this);
+							FirebaseCrash.report(e);
+						}
 					}
 				}
 			}
