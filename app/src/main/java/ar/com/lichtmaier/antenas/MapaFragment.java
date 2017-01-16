@@ -465,7 +465,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 							onMarkerClick(markerSeleccionado);
 						} catch(IllegalStateException e)
 						{
-							FirebaseCrash.log("fragment: " + MapaFragment.this);
+							FirebaseCrash.log("activity: " + getActivity());
 							FirebaseCrash.report(e);
 						}
 					}
