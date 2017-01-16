@@ -14,3 +14,4 @@ local.properties
 manifest-merger-*.txt
 *.iml
 /device-*.png
+/captures
