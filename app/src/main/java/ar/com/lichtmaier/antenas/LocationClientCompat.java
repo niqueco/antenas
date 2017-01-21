@@ -58,7 +58,6 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		return new LocationClientCompat(activity, locationRequest, callback);
 	}
 
-	@RequiresPermission(anyOf = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
 	public void start()
 	{
 		if(!google.isConnected())
@@ -66,7 +65,9 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 			google.connect();
 			return;
 		}
-		LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
+		try {
+			LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
+		} catch(SecurityException ignored) { }
 	}
 
 	@Override

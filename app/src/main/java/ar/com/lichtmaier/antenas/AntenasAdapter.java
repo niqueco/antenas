@@ -326,7 +326,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	{
 		private final WeakReference<AntenasAdapter> antenasAdapterWeakReference;
 
-		public LlamarANuevaUbicación(AntenasAdapter antenasAdapter)
+		LlamarANuevaUbicación(AntenasAdapter antenasAdapter)
 		{
 			antenasAdapterWeakReference = new WeakReference<>(antenasAdapter);
 		}

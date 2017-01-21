@@ -370,7 +370,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 	}
 
-	static class FuturoMarcador
+	private static class FuturoMarcador
 	{
 		final Antena antena;
 		final MarkerOptions markerOptions;

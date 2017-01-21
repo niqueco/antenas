@@ -1,6 +1,5 @@
 package ar.com.lichtmaier.antenas;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -42,13 +41,5 @@ public class Pagame extends AppCompatDialogFragment
 	public int getTheme()
 	{
 		return R.style.Pagame;
-	}
-
-	@Override
-	public void setupDialog(Dialog dialog, int style)
-	{
-		super.setupDialog(dialog, style);
-		//dialog.setCanceledOnTouchOutside(false);
-		//dialog.setTitle(R.string.calif_titulo);
 	}
 }

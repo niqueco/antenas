@@ -789,10 +789,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	private static class PrenderAnimación implements Runnable
 	{
 		private final View pb;
-		public long comienzoAnimación = -1;
+		long comienzoAnimación = -1;
 		boolean cancelado = false;
 
-		public PrenderAnimación(View pb)
+		PrenderAnimación(View pb)
 		{
 			this.pb = pb;
 		}
@@ -812,7 +812,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	private static class AvisoDemora implements Runnable
 	{
 		private final WeakReference<AntenaActivity> actRef;
-		public boolean cancelado = false;
+		boolean cancelado = false;
 
 		private AvisoDemora(AntenaActivity act)
 		{
@@ -840,7 +840,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		private final float alto;
 		private final Paint pintura;
 
-		public DivisoresItemDecoration(float alto, @ColorInt int color)
+		DivisoresItemDecoration(float alto, @ColorInt int color)
 		{
 			this.alto = alto;
 			pintura = new Paint();
