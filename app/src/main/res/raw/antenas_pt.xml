@@ -1,6 +1,6 @@
 <antenas>
-<antena lat="38.54768" lon="-28.61605" desc="Espalamaca (Ilha do Faial, Açores)"/>
 <antena lat="38.59183" lon="-28.79677" desc="Pico Verde (Ilha do Faial, Açores)"/>
+<antena lat="38.54768" lon="-28.61605" desc="Espalamaca (Ilha do Faial, Açores)"/>
 <antena lat="38.38784" lon="-28.25018" desc="Castelete (Ilha do Pico, Açores)"/>
 <antena lat="38.40091" lon="-28.23467" desc="Pico Geraldo (Ilha do Pico, Açores)"/>
 <antena lat="38.68122" lon="-28.19588" desc="Velas (ilha de São Jorge – Açores)"/>
@@ -13,14 +13,14 @@
 <antena lat="38.71213" lon="-27.10762" desc="Serra do Cume (Ilha Terceira, Açores)"/>
 <antena lat="36.9794" lon="-25.09085" desc="Pico Alto (Ilha de Santa Maria, Açores)"/>
 <antena lat="37.77832" lon="-25.16949" desc="Pico Bartolomeu (Ilha de S. Miguel, Açores)"/>
-<antena lat="32.65991" lon="-16.91041" desc="Funchal (Madeira)"/>
 <antena lat="32.67719" lon="-17.05121" desc="Pedra Mole (Madeira)"/>
-<antena lat="32.64237" lon="-16.93924" desc="Pico da Cruz (Madeira)"/>
 <antena lat="32.65897" lon="-17.00516" desc="Pico do Galo (Madeira)"/>
-<antena lat="32.75354" lon="-17.01786" desc="Encumeada (Madeira)"/>
+<antena lat="32.64237" lon="-16.93924" desc="Pico da Cruz (Madeira)"/>
+<antena lat="32.65991" lon="-16.91041" desc="Funchal (Madeira)"/>
 <antena lat="32.72586" lon="-17.13699" desc="Pico Arco Calheta (Madeira)"/>
-<antena lat="32.81647" lon="-16.95228" desc="Pico Arco de São Jorge (Madeira)"/>
+<antena lat="32.75354" lon="-17.01786" desc="Encumeada (Madeira)"/>
 <antena lat="32.82402" lon="-16.98142" desc="Ponta Delgada (Madeira)"/>
+<antena lat="32.81647" lon="-16.95228" desc="Pico Arco de São Jorge (Madeira)"/>
 <antena lat="32.69038" lon="-16.87447" desc="Pico do Silva (Madeira)"/>
 <antena lat="32.72415" lon="-16.75915" desc="Pico do Facho (Madeira)"/>
 <antena lat="33.07037" lon="-16.3191" desc="Porto Santo (Ilha Porto Santo, Madeira)"/>
@@ -32,55 +32,55 @@
 <antena lat="37.59606" lon="-8.660836" desc="Odemira"/>
 <antena lat="37.95305" lon="-8.842214" desc="Sines"/>
 <antena lat="38.65964" lon="-9.235433" desc="Caparica"/>
-<antena lat="38.13389" lon="-8.719611" desc="Melides"/>
 <antena lat="38.01983" lon="-8.696667" desc="Santiago do Cacém"/>
+<antena lat="38.13389" lon="-8.719611" desc="Melides"/>
 <antena lat="38.20615" lon="-8.583528" desc="Grândola"/>
 <antena lat="38.45913" lon="-9.098908" desc="Sesimbra"/>
 <antena lat="38.61772" lon="-9.117308" desc="Cruz de Pau"/>
 <antena lat="38.55639" lon="-8.907656" desc="Palmela"/>
 <antena lat="38.57511" lon="-8.899592" desc="Volta da Pedra, Palmela"/>
 <antena lat="38.37272" lon="-8.505667" desc="Alcácer do Sal"/>
-<antena lat="38.72676" lon="-9.444008" desc="Aldeia de Juso"/>
-<antena lat="38.80799" lon="-9.332572" desc="Algueirão"/>
-<antena lat="38.67386" lon="-9.176906" desc="Almada"/>
-<antena lat="38.77944" lon="-9.476111" desc="Azóia, Sintra"/>
-<antena lat="38.73679" lon="-9.274683" desc="Barcarena"/>
-<antena lat="38.74055" lon="-9.192392" desc="Benfica, Lisboa"/>
-<antena lat="38.78658" lon="-9.380522" desc="Bezerra"/>
-<antena lat="38.75989" lon="-9.3063" desc="Cacém"/>
 <antena lat="38.69946" lon="-9.4238" desc="Cascais"/>
 <antena lat="38.71037" lon="-9.409133" desc="Estoril"/>
+<antena lat="38.72676" lon="-9.444008" desc="Aldeia de Juso"/>
+<antena lat="38.77944" lon="-9.476111" desc="Azóia, Sintra"/>
 <antena lat="38.82783" lon="-9.421722" desc="Janas"/>
-<antena lat="38.71249" lon="-9.159531" desc="Lisboa - Estrela"/>
+<antena lat="38.79989" lon="-9.383075" desc="Sintra"/>
+<antena lat="38.78658" lon="-9.380522" desc="Bezerra"/>
+<antena lat="38.80799" lon="-9.332572" desc="Algueirão"/>
+<antena lat="38.73679" lon="-9.274683" desc="Barcarena"/>
 <antena lat="38.71089" lon="-9.211144" desc="Lisboa - Restelo"/>
+<antena lat="38.67386" lon="-9.176906" desc="Almada"/>
+<antena lat="38.71249" lon="-9.159531" desc="Lisboa - Estrela"/>
 <antena lat="38.71155" lon="-9.14255" desc="Lisboa - Trindade"/>
+<antena lat="38.74055" lon="-9.192392" desc="Benfica, Lisboa"/>
 <antena lat="38.72719" lon="-9.189139" desc="Monsanto, Lisboa"/>
-<antena lat="38.81212" lon="-9.198767" desc="Odivelas"/>
+<antena lat="38.75989" lon="-9.3063" desc="Cacém"/>
 <antena lat="38.78623" lon="-9.181517" desc="Odivelas - Centro"/>
 <antena lat="38.79768" lon="-9.167669" desc="Póvoa de Santo Adrião"/>
-<antena lat="38.79989" lon="-9.383075" desc="Sintra"/>
+<antena lat="38.81212" lon="-9.198767" desc="Odivelas"/>
 <antena lat="38.88417" lon="-9.323264" desc="Cheleiros"/>
 <antena lat="38.94139" lon="-9.257831" desc="Malveira"/>
 <antena lat="39.09" lon="-9.259442" desc="Torres Vedras"/>
-<antena lat="39.35743" lon="-9.143178" desc="Óbidos"/>
 <antena lat="39.2949" lon="-9.314403" desc="Peniche"/>
-<antena lat="38.72572" lon="-9.129122" desc="Graça"/>
+<antena lat="39.35743" lon="-9.143178" desc="Óbidos"/>
 <antena lat="38.71499" lon="-9.134092" desc="Lisboa - Castelo"/>
+<antena lat="38.72572" lon="-9.129122" desc="Graça"/>
 <antena lat="38.72516" lon="-9.116206" desc="Lisboa - Xabregas"/>
 <antena lat="38.77074" lon="-9.113097" desc="Olivais"/>
 <antena lat="38.87595" lon="-9.064447" desc="Alverca"/>
 <antena lat="38.96063" lon="-9.050311" desc="Arruda dos Vinhos"/>
-<antena lat="38.95363" lon="-8.989664" desc="Vila Franca de Xira"/>
 <antena lat="38.96239" lon="-8.993" desc="Vila Franca de Xira - Montegordo"/>
+<antena lat="38.95363" lon="-8.989664" desc="Vila Franca de Xira"/>
 <antena lat="38.93634" lon="-8.487172" desc="Coruche"/>
 <antena lat="39.04896" lon="-9.014528" desc="Alenquer"/>
 <antena lat="39.17375" lon="-9.059303" desc="Montejunto"/>
 <antena lat="39.3535" lon="-8.962592" desc="Rio Maior"/>
 <antena lat="39.23503" lon="-8.685725" desc="Santarém"/>
-<antena lat="37.09149" lon="-8.252942" desc="Albufeira"/>
 <antena lat="37.09183" lon="-8.270953" desc="Cerro Águia (Albufeira)"/>
-<antena lat="37.15587" lon="-8.113253" desc="Picota (Loulé)"/>
 <antena lat="37.18474" lon="-8.427336" desc="Silves"/>
+<antena lat="37.09149" lon="-8.252942" desc="Albufeira"/>
+<antena lat="37.15587" lon="-8.113253" desc="Picota (Loulé)"/>
 <antena lat="37.0215" lon="-7.9344" desc="Faro"/>
 <antena lat="37.13962" lon="-8.021319" desc="Loulé"/>
 <antena lat="37.10133" lon="-7.830478" desc="São Miguel, Faro"/>
@@ -106,11 +106,11 @@
 <antena lat="38.94086" lon="-8.164167" desc="Mora"/>
 <antena lat="39.05367" lon="-7.890578" desc="Avis"/>
 <antena lat="39.27875" lon="-8.071917" desc="Bufão (Ponte de Sôr)"/>
-<antena lat="38.81468" lon="-7.465764" desc="Borba"/>
 <antena lat="38.76809" lon="-7.430611" desc="Vila Viçosa"/>
-<antena lat="38.86041" lon="-7.589339" desc="Estremoz"/>
-<antena lat="38.85456" lon="-7.60625" desc="Estremoz - Quinta da Esperança"/>
+<antena lat="38.81468" lon="-7.465764" desc="Borba"/>
 <antena lat="38.93059" lon="-7.686142" desc="Sousel"/>
+<antena lat="38.85456" lon="-7.60625" desc="Estremoz - Quinta da Esperança"/>
+<antena lat="38.86041" lon="-7.589339" desc="Estremoz"/>
 <antena lat="38.88331" lon="-7.162456" desc="Elvas"/>
 <antena lat="39.20802" lon="-7.661139" desc="Alter do Chão"/>
 <antena lat="39.29795" lon="-7.442775" desc="Portalegre"/>
@@ -119,51 +119,53 @@
 <antena lat="39.31346" lon="-7.360075" desc="São Mamede"/>
 <antena lat="38.12876" lon="-6.981786" desc="Barrancos"/>
 <antena lat="39.40605" lon="-9.134597" desc="Caldas da Rainha"/>
-<antena lat="39.55586" lon="-8.968547" desc="Alcobaça"/>
-<antena lat="39.65821" lon="-8.808456" desc="Batalha"/>
-<antena lat="39.57403" lon="-8.849839" desc="Candeeiros"/>
-<antena lat="39.70648" lon="-8.861069" desc="Monte do Facho"/>
-<antena lat="39.59925" lon="-9.069908" desc="Nazaré Centro"/>
-<antena lat="39.59708" lon="-8.810056" desc="Porto de Mós"/>
 <antena lat="39.60711" lon="-9.070056" desc="Sítio da Nazaré"/>
+<antena lat="39.59925" lon="-9.069908" desc="Nazaré Centro"/>
+<antena lat="39.55586" lon="-8.968547" desc="Alcobaça"/>
+<antena lat="39.57403" lon="-8.849839" desc="Candeeiros"/>
+<antena lat="39.59708" lon="-8.810056" desc="Porto de Mós"/>
+<antena lat="39.65821" lon="-8.808456" desc="Batalha"/>
+<antena lat="39.70648" lon="-8.861069" desc="Monte do Facho"/>
 <antena lat="39.53194" lon="-8.731333" desc="Mira de Aire"/>
 <antena lat="39.4847" lon="-8.560961" desc="Trancão - Torres Novas"/>
 <antena lat="39.60856" lon="-8.677564" desc="Fátima"/>
 <antena lat="39.64238" lon="-8.591681" desc="Ourém"/>
 <antena lat="39.74544" lon="-8.799339" desc="Leiria"/>
 <antena lat="39.91372" lon="-8.641286" desc="Pombal"/>
+<antena lat="40.19777" lon="-8.860697" desc="Boa Viagem 2"/>
 <antena lat="40.19777" lon="-8.860697" desc="Boa Viagem"/>
 <antena lat="40.20013" lon="-8.442664" desc="Coimbra Observatório"/>
-<antena lat="40.38395" lon="-8.496142" desc="Mealhada"/>
 <antena lat="40.31138" lon="-8.751003" desc="Tocha"/>
+<antena lat="40.38395" lon="-8.496142" desc="Mealhada"/>
 <antena lat="40.57334" lon="-8.448628" desc="Águeda"/>
 <antena lat="40.64261" lon="-8.652367" desc="Aveiro Centro"/>
 <antena lat="40.62115" lon="-8.624536" desc="S.Bernardo"/>
-<antena lat="41.1275" lon="-8.613269" desc="Gaia"/>
 <antena lat="40.96846" lon="-8.517983" desc="Lourosa"/>
+<antena lat="41.1275" lon="-8.613269" desc="Gaia"/>
 <antena lat="41.11317" lon="-8.598464" desc="Monte da Virgem, Porto"/>
 <antena lat="41.05254" lon="-8.518511" desc="Seixo-Alvo, Porto"/>
-<antena lat="41.15112" lon="-8.595778" desc="Bonfim, Porto"/>
-<antena lat="41.16065" lon="-8.669503" desc="Foz"/>
-<antena lat="41.14023" lon="-8.624678" desc="Gaia Centro"/>
-<antena lat="41.20074" lon="-8.694183" desc="Leça"/>
 <antena lat="41.16074" lon="-8.683089" desc="Porto - Av. Brasil"/>
+<antena lat="41.16065" lon="-8.669503" desc="Foz"/>
 <antena lat="41.1513" lon="-8.665528" desc="Porto - Fernão Lopes"/>
 <antena lat="41.15063" lon="-8.658389" desc="Porto - Pedro Escobar"/>
+<antena lat="41.14023" lon="-8.624678" desc="Gaia Centro"/>
+<antena lat="41.20074" lon="-8.694183" desc="Leça"/>
+<antena lat="41.15112" lon="-8.595778" desc="Bonfim, Porto"/>
 <antena lat="41.17204" lon="-8.493603" desc="Valongo"/>
 <antena lat="41.38089" lon="-8.684497" desc="Junqueira"/>
 <antena lat="41.32481" lon="-8.443669" desc="Santo Tirso"/>
+<antena lat="41.69729" lon="-8.832828" desc="Viana do Castelo"/>
 <antena lat="41.67767" lon="-8.795206" desc="Alto do Galeão (Darque – Viana do Castelo)"/>
 <antena lat="41.75097" lon="-8.873194" desc="Montedor"/>
-<antena lat="41.69729" lon="-8.832828" desc="Viana do Castelo"/>
 <antena lat="41.81546" lon="-8.8626" desc="Vila Praia de Âncora"/>
-<antena lat="41.48958" lon="-8.645417" desc="Monte Franqueira (Barcelos)"/>
 <antena lat="41.54092" lon="-8.752808" desc="Palmeira de Faro"/>
+<antena lat="41.48958" lon="-8.645417" desc="Monte Franqueira (Barcelos)"/>
 <antena lat="41.78072" lon="-8.606056" desc="Ponte de Lima"/>
 <antena lat="41.86132" lon="-8.841369" desc="Moledo"/>
-<antena lat="41.84817" lon="-8.450994" desc="Arcos de Valdevez"/>
 <antena lat="41.90754" lon="-8.775853" desc="Monte Gois (Caminha)"/>
+<antena lat="41.84817" lon="-8.450994" desc="Arcos de Valdevez"/>
 <antena lat="41.93314" lon="-8.55575" desc="Paredes de Coura"/>
+<antena lat="42.02249" lon="-8.593331" desc="Covas"/>
 <antena lat="42.02249" lon="-8.593331" desc="Valença"/>
 <antena lat="39.46278" lon="-8.204028" desc="Abrantes"/>
 <antena lat="39.59925" lon="-8.416753" desc="Tomar"/>
@@ -172,57 +174,58 @@
 <antena lat="39.55634" lon="-7.993044" desc="Mação"/>
 <antena lat="39.82824" lon="-8.411114" desc="Alvaiázere"/>
 <antena lat="39.78759" lon="-8.089167" desc="Sertã"/>
-<antena lat="40.00114" lon="-8.207028" desc="Castanheira de Pêra"/>
 <antena lat="40.01747" lon="-8.402583" desc="Espinhal (Penela)"/>
-<antena lat="39.92494" lon="-7.907694" desc="Oleiros"/>
+<antena lat="40.00114" lon="-8.207028" desc="Castanheira de Pêra"/>
 <antena lat="40.04869" lon="-7.969917" desc="Pampilhosa da Serra"/>
-<antena lat="39.41205" lon="-7.467372" desc="Castelo de Vide"/>
+<antena lat="39.92494" lon="-7.907694" desc="Oleiros"/>
 <antena lat="39.5034" lon="-7.642858" desc="Nisa"/>
+<antena lat="39.41205" lon="-7.467372" desc="Castelo de Vide"/>
 <antena lat="39.67961" lon="-7.700667" desc="Penedo Gordo"/>
 <antena lat="39.39487" lon="-7.378478" desc="Marvão"/>
 <antena lat="40.18778" lon="-8.370572" desc="Coimbra - Ceira"/>
 <antena lat="40.21291" lon="-8.431872" desc="Coimbra - Centro"/>
-<antena lat="40.08974" lon="-8.178836" desc="Lousã"/>
 <antena lat="40.21114" lon="-8.410444" desc="Penedo da Saudade, Coimbra"/>
+<antena lat="40.08974" lon="-8.178836" desc="Lousã"/>
 <antena lat="40.26328" lon="-8.429339" desc="Logo de Deus - Coimbra"/>
-<antena lat="40.38698" lon="-8.230242" desc="Mortágua"/>
 <antena lat="40.27143" lon="-8.293889" desc="Penacova"/>
+<antena lat="40.38698" lon="-8.230242" desc="Mortágua"/>
 <antena lat="40.22723" lon="-8.054172" desc="Arganil"/>
-<antena lat="40.16332" lon="-7.757303" desc="Barroca Grande"/>
 <antena lat="40.09545" lon="-7.771" desc="Machialinho"/>
+<antena lat="40.16332" lon="-7.757303" desc="Barroca Grande"/>
 <antena lat="40.25067" lon="-7.833306" desc="Piódão"/>
 <antena lat="40.2823" lon="-7.818297" desc="Alvôco das Várzeas"/>
 <antena lat="40.58215" lon="-8.409239" desc="Águeda Zona Industrial"/>
 <antena lat="40.55271" lon="-8.1797" desc="Caramulo"/>
 <antena lat="40.72148" lon="-8.095239" desc="Vouzela"/>
+<antena lat="40.64838" lon="-7.919744" desc="Viseu Sul"/>
+<antena lat="40.65809" lon="-7.911986" desc="Viseu Centro"/>
 <antena lat="40.61397" lon="-7.739575" desc="Mangualde"/>
 <antena lat="40.74803" lon="-7.736167" desc="Sátão"/>
-<antena lat="40.65809" lon="-7.911986" desc="Viseu Centro"/>
-<antena lat="40.64838" lon="-7.919744" desc="Viseu Sul"/>
 <antena lat="40.08006" lon="-7.526392" desc="Gardunha"/>
-<antena lat="40.28769" lon="-7.507531" desc="Covilhã Carpinteira"/>
 <antena lat="40.27508" lon="-7.510847" desc="Covilhã Reitoria"/>
+<antena lat="40.28769" lon="-7.507531" desc="Covilhã Carpinteira"/>
 <antena lat="40.41786" lon="-7.543306" desc="Manteigas"/>
 <antena lat="40.16786" lon="-7.166711" desc="Penamacor"/>
 <antena lat="40.30958" lon="-7.145056" desc="Mosteiro (Sabugal)"/>
 <antena lat="40.61019" lon="-7.507797" desc="Fornos de Algodres"/>
-<antena lat="40.5374" lon="-7.272342" desc="Guarda"/>
 <antena lat="40.52207" lon="-7.286419" desc="Pedra do Vento"/>
+<antena lat="40.5374" lon="-7.272342" desc="Guarda"/>
 <antena lat="40.77601" lon="-7.348631" desc="Trancoso FH"/>
 <antena lat="40.00213" lon="-6.880275" desc="Termas de Monfortinho"/>
 <antena lat="40.60204" lon="-6.835183" desc="Vilar Formoso"/>
-<antena lat="40.93316" lon="-8.225322" desc="Arouca"/>
 <antena lat="40.86432" lon="-8.424189" desc="Vale de Cambra"/>
+<antena lat="40.93316" lon="-8.225322" desc="Arouca"/>
 <antena lat="41.02554" lon="-8.345956" desc="Rio Arda"/>
-<antena lat="41.10863" lon="-7.826622" desc="Lamego"/>
+<antena lat="41.03993" lon="-8.254311" desc="Castelo de Paiva"/>
 <antena lat="41.10065" lon="-7.937972" desc="Resende"/>
+<antena lat="41.10863" lon="-7.826622" desc="Lamego"/>
 <antena lat="41.1208" lon="-7.746389" desc="São Domingos"/>
-<antena lat="41.26717" lon="-8.101272" desc="Amarante"/>
-<antena lat="41.16718" lon="-8.181642" desc="Avessadas"/>
 <antena lat="41.21435" lon="-8.265969" desc="Penafiel"/>
+<antena lat="41.16718" lon="-8.181642" desc="Avessadas"/>
+<antena lat="41.26717" lon="-8.101272" desc="Amarante"/>
 <antena lat="41.34946" lon="-8.319114" desc="Caldas de Vizela"/>
-<antena lat="41.44401" lon="-8.294453" desc="Guimarães Centro"/>
 <antena lat="41.43383" lon="-8.268947" desc="Guimarães Penha"/>
+<antena lat="41.44401" lon="-8.294453" desc="Guimarães Centro"/>
 <antena lat="41.15653" lon="-8.044492" desc="Baião"/>
 <antena lat="41.20456" lon="-7.753056" desc="Santa Marta de Penaguião"/>
 <antena lat="41.3863" lon="-7.95575" desc="Celorico de Basto"/>
@@ -247,8 +250,8 @@
 <antena lat="41.11353" lon="-6.815761" desc="Pirocão (Freixo de Espada à Cinta)"/>
 <antena lat="41.43402" lon="-7.006389" desc="Bornes"/>
 <antena lat="41.31756" lon="-6.731178" desc="Mogadouro"/>
+<antena lat="41.83493" lon="-6.990186" desc="Vinhais"/>
 <antena lat="41.81056" lon="-6.763306" desc="Bragança Centro"/>
 <antena lat="41.79586" lon="-6.746733" desc="São Bartolomeu (Bragança)"/>
-<antena lat="41.83493" lon="-6.990186" desc="Vinhais"/>
 <antena lat="41.49171" lon="-6.3116" desc="Vale de Mira (Miranda do Douro)"/>
 </antenas>
