@@ -729,7 +729,11 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	public void faltaCalibrar()
 	{
-		CalibrarBrújulaFragment.mostrar(this);
+		try {
+			CalibrarBrújulaFragment.mostrar(this);
+		} catch(Exception e) {
+			FirebaseCrash.report(e);
+		}
 	}
 
 	@Override

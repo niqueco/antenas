@@ -17,6 +17,7 @@ import android.util.Pair;
 import com.github.davidmoten.geo.GeoHash;
 import com.github.davidmoten.geo.LatLong;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.crash.FirebaseCrash;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -156,6 +157,11 @@ public class CachéDeContornos
 	@WorkerThread
 	Polígono dameContornoFCC(int appId)
 	{
+		if(referencias == 0)
+		{
+			FirebaseCrash.report(new IllegalStateException("referencias==0"));
+			return null;
+		}
 		Polígono contorno = lruCache.get(appId);
 		if(contorno == null && db != null)
 		{
