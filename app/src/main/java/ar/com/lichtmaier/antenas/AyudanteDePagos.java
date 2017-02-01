@@ -60,6 +60,7 @@ class AyudanteDePagos implements ServiceConnection
 	public void onServiceDisconnected(ComponentName name)
 	{
 		pagosDeGoogle = null;
+		FirebaseCrash.logcat(Log.WARN, "antenas", "servicio de pagos offline");
 	}
 
 	@Override
@@ -83,9 +84,10 @@ class AyudanteDePagos implements ServiceConnection
 					}
 					compras = resp.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
 					Log.i("antenas", "compras: " + compras);
-				} catch(RemoteException e)
+				} catch(Exception e)
 				{
 					Log.e("antenas", "Obteniendo información sobre el pago:", e);
+					FirebaseCrash.report(e);
 				}
 				boolean pro = compras != null && compras.contains(ID_PRODUCTO);
 				mandarBroadcast(pro);
