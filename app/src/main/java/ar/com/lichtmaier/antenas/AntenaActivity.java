@@ -104,7 +104,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				return;
 			abriendoAntena = true;
 
-			if(intersticial == null || prefs.getInt(PREF_LANZAMIENTOS, 0) < 3)
+			if(intersticial == null || prefs.getInt(PREF_LANZAMIENTOS, 0) < 2)
 			{
 				abrir(antena, v, true);
 			} else
