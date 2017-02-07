@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -22,6 +21,8 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.*;
+
+import java.lang.ref.WeakReference;
 
 public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
 {
@@ -147,21 +148,29 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		return false;
 	}
 
-	private class MyLocationCallback extends LocationCallback
+	private static class MyLocationCallback extends LocationCallback
 	{
+		// because https://code.google.com/p/android/issues/detail?id=227856 =(
+		final private WeakReference<LocationClientCompat> lcc;
+
+		private MyLocationCallback(LocationClientCompat lcc)
+		{
+			this.lcc = new WeakReference<>(lcc);
+		}
+
 		@Override
 		public void onLocationAvailability(LocationAvailability locationAvailability)
 		{
-			verificarConfiguración();
+			lcc.get().verificarConfiguración();
 		}
 
 		@Override
 		public void onLocationResult(LocationResult result)
 		{
-			callback.onLocationChanged(result.getLastLocation());
+			lcc.get().callback.onLocationChanged(result.getLastLocation());
 		}
 	}
-	final private LocationCallback locationCallback = new MyLocationCallback();
+	final private LocationCallback locationCallback = new MyLocationCallback(this);
 
 	interface Callback extends com.google.android.gms.location.LocationListener
 	{
