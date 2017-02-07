@@ -117,10 +117,11 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			}
 		}
 
+		if(savedInstanceState == null && brújula == null)
+			flecha.setMostrarPuntosCardinales(true);
+
 		if(savedInstanceState == null && animar)
 		{
-			if(brújula == null)
-				flecha.setMostrarPuntosCardinales(true);
 			flecha.setÁngulo(ángulo, ánguloDibujado);
 			flecha.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
 			{
