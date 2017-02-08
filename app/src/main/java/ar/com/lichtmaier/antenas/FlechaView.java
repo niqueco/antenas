@@ -106,9 +106,12 @@ public class FlechaView extends View
 	public void setMostrarPuntosCardinales(boolean mostrarPuntosCardinales)
 	{
 		boolean mpc = this.mostrarPuntosCardinales;
+		if(mpc == mostrarPuntosCardinales)
+			return;
 		this.mostrarPuntosCardinales = mostrarPuntosCardinales;
-		if(mpc != mostrarPuntosCardinales)
-			invalidate();
+		invalidate();
+		if(mostrarPuntosCardinales)
+			crearPinturaPuntosCardinales(getWidth());
 	}
 
 	public void setMostrarAlineación(boolean mostrarAlineación)
@@ -157,19 +160,24 @@ public class FlechaView extends View
 		};
 		if(mostrarPuntosCardinales)
 		{
-			if(pinturaPuntosCardinales == null)
-			{
-				pinturaPuntosCardinales = new Paint(Paint.ANTI_ALIAS_FLAG);
-				pinturaPuntosCardinales.setColor(pinturaBorde.getColor());
-			}
-			DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
-			float scale = dm.scaledDensity / dm.density;
-			altoTexto = h * .14f * scale;
-			pinturaPuntosCardinales.setTextSize(altoTexto);
+			crearPinturaPuntosCardinales(h);
 		}
 		Compat.disableHardwareAccelerationForLineCaps(this);
 	}
-	
+
+	private void crearPinturaPuntosCardinales(int h)
+	{
+		if(pinturaPuntosCardinales == null)
+		{
+			pinturaPuntosCardinales = new Paint(Paint.ANTI_ALIAS_FLAG);
+			pinturaPuntosCardinales.setColor(pinturaBorde.getColor());
+		}
+		DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
+		float scale = dm.scaledDensity / dm.density;
+		altoTexto = h * .14f * scale;
+		pinturaPuntosCardinales.setTextSize(altoTexto);
+	}
+
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
@@ -196,7 +204,7 @@ public class FlechaView extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		if(mostrarPuntosCardinales && pinturaPuntosCardinales != null)
+		if(mostrarPuntosCardinales)
 		{
 			int h = getHeight();
 			canvas.drawText("N", cx - pinturaPuntosCardinales.measureText("N") / 2, altoTexto + h / 10, pinturaPuntosCardinales);

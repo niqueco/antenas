@@ -27,7 +27,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaViewHolder>
+public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaViewHolder> implements SharedPreferences.OnSharedPreferenceChangeListener
 {
 	final private SharedPreferences prefs;
 	final List<Antena> antenasCerca = new ArrayList<>(), antenasLejos = new ArrayList<>();
@@ -39,6 +39,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 	private boolean todoCargado = false;
 	private GlobalCoordinates coordsUsuario;
+	private boolean mostrarDireccionesRelativas = true, realmenteMostrarDireccionesRelativas;
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -61,13 +62,14 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			flechaView = (FlechaView)v.findViewById(R.id.flecha);
 			avisoLejos = v.findViewById(R.id.aviso_lejos);
 			v.setOnClickListener(this);
-			if(brújula == null)
-				flechaView.setMostrarPuntosCardinales(true);
+			flechaView.setMostrarPuntosCardinales(!realmenteMostrarDireccionesRelativas);
 		}
 
 		@Override
 		public void nuevaOrientación(double orientación)
 		{
+			if(!realmenteMostrarDireccionesRelativas)
+				return;
 			double rumbo = antena.rumboDesde(coordsUsuario);
 			//Log.d("antenas", "antena: " + antena.descripción + ", rumbo="+ (int)rumbo + ", ángulo flecha="+ (int)(rumbo - orientación));
 			flechaView.setÁngulo(rumbo - orientación, suave);
@@ -77,7 +79,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		@Override
 		public void desorientados()
 		{
-			flechaView.sinValor(suave);
+			if(realmenteMostrarDireccionesRelativas)
+				flechaView.sinValor(suave);
 		}
 
 		@Override
@@ -98,7 +101,9 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		this.listener = listener;
 		this.resource = resource;
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		prefs.registerOnSharedPreferenceChangeListener(this);
 		setHasStableIds(true);
+		realmenteMostrarDireccionesRelativas = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false) && mostrarDireccionesRelativas;
 	}
 
 	@Override
@@ -114,6 +119,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	{
 		Antena a = getAntena(position);
 		vh.antena = a;
+
+		vh.flechaView.setMostrarPuntosCardinales(!realmenteMostrarDireccionesRelativas);
 
 		CharSequence detalleCanales = a.dameDetalleCanales(context);
 		if(a.descripción != null)
@@ -132,7 +139,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			vh.tvPotencia.setText(a.potencia > 0 ? a.potencia + " kW" : null);
 		vh.tvDistancia.setText(Formatos.formatDistance(context, a.distanceTo(coordsUsuario)));
 		vh.avisoLejos.setVisibility(antenasLejos.contains(a) ? View.VISIBLE : View.GONE);
-		if(brújula == null)
+		if(!realmenteMostrarDireccionesRelativas)
 			vh.flechaView.setÁngulo(a.rumboDesde(coordsUsuario), false);
 		else
 			vh.suave = false;
@@ -243,6 +250,21 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 	}
 
+	void setMostrarDireccionesRelativas(boolean mostrarDireccionesRelativas)
+	{
+		this.mostrarDireccionesRelativas = mostrarDireccionesRelativas;
+		configurarRealmenteMostrarDireccionesRelativas();
+	}
+
+	private void configurarRealmenteMostrarDireccionesRelativas()
+	{
+		boolean m = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false) && mostrarDireccionesRelativas;
+		if(m == this.realmenteMostrarDireccionesRelativas)
+			return;
+		this.realmenteMostrarDireccionesRelativas = m;
+		notifyDataSetChanged();
+	}
+
 	final private Map<Antena,Boolean> cachéCercaníaAntena = new HashMap<>();
 	private LatLng posCachéCercanía;
 	private Handler llamarANuevaUbicación;
@@ -313,6 +335,13 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	public void reset()
 	{
 		cachéCercaníaAntena.clear();
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+	{
+		if(key.equals("forzar_direcciones_absolutas"))
+			configurarRealmenteMostrarDireccionesRelativas();
 	}
 
 	interface Callback

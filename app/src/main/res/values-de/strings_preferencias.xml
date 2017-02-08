@@ -31,6 +31,9 @@
     <string name="pref_alineacion_title">Zeigen Sie, wenn der Pfeil ausgerichtet ist.</string>
     <string name="pref_alineacion_summary">Zeigen Sie, wenn das Telefon mit der Richtung in Richtung der Antenne durch Änderung der Pfeil Farbe und machen das Telefon zum Vibrieren ausgerichtet ist.</string>
 
+    <string name="pref_forzar_direcciones_absolutas_title">Erzwingen Sie die Anzeige der absoluten Richtungen</string>
+    <string name="pref_forzar_direcciones_absolutas_summary">Ignorieren Sie die Anwesenheit eines Kompasses und zeigen Sie feste Pfeile und Richtungen in Grad.</string>
+
     <string name="pref_header_mapa">Karte</string>
 
     <string name="pref_dibujar_líneas_title">Linien zeichnen</string>

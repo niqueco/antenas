@@ -31,6 +31,9 @@
     <string name="pref_alineacion_title">Show when the arrow is aligned</string>
     <string name="pref_alineacion_summary">Show when the phone is aligned with the direction towards the antenna by changing the arrow\'s color and making the phone vibrate.</string>
 
+    <string name="pref_forzar_direcciones_absolutas_title">Force the display of absolute directions</string>
+    <string name="pref_forzar_direcciones_absolutas_summary">Ignore the presence of a compass and show fixed arrows and directions in degrees.</string>
+
     <string name="pref_header_mapa">Mapa</string>
 
     <string name="pref_dibujar_líneas_title">Draw lines</string>

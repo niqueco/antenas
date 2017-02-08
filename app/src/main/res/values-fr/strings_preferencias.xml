@@ -30,6 +30,9 @@
 	<string name="pref_alineacion_title">Afficher lorsque la flèche est alignée</string>
 	<string name="pref_alineacion_summary">Afficher lorsque le téléphone est aligné avec la direction de l\'antenne en changeant la couleur de la flèche et de faire vibrer le téléphone.</string>
 
+	<string name="pref_forzar_direcciones_absolutas_title">Force l\'affichage des directions absolues</string>
+	<string name="pref_forzar_direcciones_absolutas_summary">Ignorer la présence d\'une boussole et montrer des flèches et directions fixes en degrés.</string>
+
 	<string name="pref_header_mapa">Carte</string>
 
 	<string name="pref_dibujar_líneas_title">Draw lines</string>

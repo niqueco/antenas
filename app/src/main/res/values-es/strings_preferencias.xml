@@ -31,6 +31,9 @@
     <string name="pref_alineacion_title">Mostrar cuando la flecha esté alineada</string>
     <string name="pref_alineacion_summary">Mostrar cuando el teléfono está alineado con la dirección hacia la antena mediante el cambio de color de la flecha y haciendo que el teléfono vibre.</string>
 
+    <string name="pref_forzar_direcciones_absolutas_title">Forzar mostrado de direcciones absolutas</string>
+    <string name="pref_forzar_direcciones_absolutas_summary">Ignorar la presencia de una brújula y mostrar flechas fijas con rumbos en grados.</string>
+
     <string name="pref_header_mapa">Mapa</string>
 
     <string name="pref_dibujar_líneas_title">Dibujar líneas</string>

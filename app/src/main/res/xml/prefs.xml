@@ -28,6 +28,13 @@
             android:title="@string/pref_alineacion_title"
             android:summary="@string/pref_alineacion_summary"
             />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="forzar_direcciones_absolutas"
+            android:title="@string/pref_forzar_direcciones_absolutas_title"
+            android:summary="@string/pref_forzar_direcciones_absolutas_summary"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_header_mapa">
