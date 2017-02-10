@@ -188,15 +188,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener()
-		{
-			@Override
-			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
-			{
-				if(key.equals("usar_contornos") && antenasAdapter != null)
-					antenasAdapter.reset();
-			}
-		});
 		if(!prefs.getBoolean("unidad_configurada", false))
 		{
 			Locale locale = Locale.getDefault();
