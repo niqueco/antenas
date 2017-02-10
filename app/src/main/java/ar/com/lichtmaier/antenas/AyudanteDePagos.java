@@ -107,6 +107,12 @@ class AyudanteDePagos implements ServiceConnection
 
 	void pagar()
 	{
+		if(BuildConfig.DEBUG)
+		{
+			mandarBroadcast(true);
+			return;
+		}
+
 		if(pagosDeGoogle == null)
 		{
 			Toast.makeText(activity, R.string.no_se_puede_pagar, Toast.LENGTH_SHORT).show();
