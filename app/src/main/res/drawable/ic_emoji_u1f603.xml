@@ -1,7 +1,9 @@
 <vector android:height="24dp" android:viewportHeight="128.0"
     android:viewportWidth="128.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="cara" android:pivotX="64" android:pivotY="60">
     <path android:fillColor="#FBB817" android:pathData="M127.13,94.29c0,13.81 -28.17,25 -62.96,25c-34.78,0 -62.98,-11.2 -62.98,-25c0,-13.82 1.47,-83.61 62.98,-83.61C125.67,10.69 127.13,80.48 127.13,94.29"/>
     <path android:fillColor="#2F2F2F" android:pathData="M48.55,58.42c0,5.39 -3.61,9.75 -8.07,9.75s-8.09,-4.37 -8.09,-9.75c0,-5.39 3.63,-9.76 8.09,-9.76S48.55,53.03 48.55,58.42"/>
-    <path android:fillColor="#2F2F2F" android:pathData="M80.07,58.42c0,5.39 3.61,9.75 8.08,9.75c4.46,0 8.09,-4.37 8.09,-9.75c0,-5.39 -3.63,-9.76 -8.09,-9.76C83.67,48.66 80.07,53.03 80.07,58.42"/>
-    <path android:fillColor="#E75625" android:pathData="M36.36,76.47c-0.98,1 -1.17,2.75 -0.87,4.04c2.31,9.87 14.72,16.16 29.91,16.16c16.44,0 25.81,-7.05 27.4,-16.16c0.2,-1.16 -0.05,-2.51 -1.33,-3.56c-3.51,-2.89 -10.75,0.61 -25.54,0.61C50.59,77.56 40.31,72.44 36.36,76.47z"/>
+    <path android:name="ojo" android:fillColor="#2F2F2F" android:pathData="M80.07,58.42c0,5.39 3.61,9.75 8.08,9.75c4.46,0 8.09,-4.37 8.09,-9.75c0,-5.39 -3.63,-9.76 -8.09,-9.76C83.67,48.66 80.07,53.03 80.07,58.42"/>
+    <path android:name="boca" android:fillColor="#E75625" android:pathData="M36.36,76.47c-0.98,1 -1.17,2.75 -0.87,4.04c2.31,9.87 14.72,16.16 29.91,16.16c16.44,0 25.81,-7.05 27.4,-16.16c0.2,-1.16 -0.05,-2.51 -1.33,-3.56c-3.51,-2.89 -10.75,0.61 -25.54,0.61C50.59,77.56 40.31,72.44 36.36,76.47z"/>
+    </group>
 </vector>

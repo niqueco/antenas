@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+                 xmlns:tools="http://schemas.android.com/tools"
+                 android:drawable="@drawable/ic_emoji_u1f603"
+                 tools:targetApi="lollipop">
+
+    <target
+        android:name="ojo"
+        android:animation="@anim/cerrar_ojo"
+        />
+
+    <target
+        android:name="boca"
+        android:animation="@anim/mover_boca"
+        />
+
+    <target
+        android:name="cara"
+        android:animation="@anim/rotar_cara"
+        />
+
+</animated-vector>

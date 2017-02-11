@@ -54,6 +54,7 @@
         />
 
     <ImageView
+        android:id="@+id/carita"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
