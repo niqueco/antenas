@@ -568,19 +568,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			int color = ContextCompat.getColor(getActivity(), sel ? R.color.línea_mapa_sel : R.color.línea_mapa);
 			float ancho = getActivity().getResources().getDimension(sel ? R.dimen.ancho_línea_antena_sel : R.dimen.ancho_línea_antena);
 
-			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			{
-				PropertyValuesHolder h1 = PropertyValuesHolder.ofFloat("width", línea.getWidth(), ancho);
-				PropertyValuesHolder h2 = PropertyValuesHolder.ofInt("color", línea.getColor(), color);
-				h2.setEvaluator(new ArgbEvaluator());
-				ValueAnimator animator = ObjectAnimator.ofPropertyValuesHolder(línea, h1, h2);
-				animator.setDuration(150);
-				animator.start();
-			} else
-			{
-				línea.setColor(color);
-				línea.setWidth(ancho);
-			}
+			PropertyValuesHolder h1 = PropertyValuesHolder.ofFloat("width", línea.getWidth(), ancho);
+			PropertyValuesHolder h2 = PropertyValuesHolder.ofInt("color", línea.getColor(), color);
+			h2.setEvaluator(new ArgbEvaluator());
+			ValueAnimator animator = ObjectAnimator.ofPropertyValuesHolder(línea, h1, h2);
+			animator.setDuration(150);
+			animator.start();
 		}
 	}
 

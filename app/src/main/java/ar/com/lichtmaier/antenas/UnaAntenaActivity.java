@@ -135,102 +135,43 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					View fondo = findViewById(R.id.fondo);
 					assert fondo != null;
 
-					if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-					{
-						AnimationSet anim = new AnimationSet(true);
-						anim.addAnimation(new ScaleAnimation(escalaAncho, 1, escalaAlto, 1, 0, 0));
-						anim.addAnimation(new TranslateAnimation(mLeftDelta, 0, mTopDelta, 0));
-						anim.setInterpolator(new AccelerateDecelerateInterpolator());
-						anim.setDuration(400);
-						flecha.startAnimation(anim);
-
-						AlphaAnimation aa = new AlphaAnimation(0, 1);
-						aa.setDuration(500);
-						aa.setInterpolator(new AccelerateInterpolator());
-						fondo.startAnimation(aa);
-
-						if(AntenaActivity.flechaADesaparecer != null)
-						{
-							anim.setAnimationListener(new Animation.AnimationListener()
+					ViewCompat.setScaleX(flecha, escalaAncho);
+					ViewCompat.setScaleY(flecha, escalaAlto);
+					ViewCompat.setPivotX(flecha, 0);
+					ViewCompat.setPivotY(flecha, 0);
+					ViewCompat.setTranslationX(flecha, mLeftDelta);
+					ViewCompat.setTranslationY(flecha, mTopDelta);
+					ViewCompat.animate(flecha)
+							.scaleX(1)
+							.scaleY(1)
+							.translationX(0)
+							.translationY(0)
+							.setInterpolator(new AccelerateDecelerateInterpolator())
+							.setDuration(400)
+							.setUpdateListener(new ViewPropertyAnimatorUpdateListener()
 							{
+								private int fr = 0;
 								@Override
-								public void onAnimationStart(Animation animation)
+								public void onAnimationUpdate(View view)
 								{
-									flechaADesaparecer.setVisibility(View.INVISIBLE);
-								/*
-								flechaADesaparecer.postDelayed(new Runnable()
-								{
-									@Override
-									public void run()
-									{
+									if(fr++ == 1 && AntenaActivity.flechaADesaparecer != null)
 										flechaADesaparecer.setVisibility(View.INVISIBLE);
-									}
-								}, 200);*/
 								}
-
-								@Override
-								public void onAnimationEnd(Animation animation) { }
-
-								@Override
-								public void onAnimationRepeat(Animation animation) { }
 							});
 
-							aa.setAnimationListener(new Animation.AnimationListener()
+					ViewCompat.setAlpha(fondo, 0);
+					ViewCompat.animate(fondo)
+							.alpha(1)
+							.setDuration(500)
+							.setInterpolator(new AccelerateInterpolator())
+							.withEndAction(new Runnable()
 							{
 								@Override
-								public void onAnimationStart(Animation animation) { }
-
-								@Override
-								public void onAnimationEnd(Animation animation)
+								public void run()
 								{
 									AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 								}
-
-								@Override
-								public void onAnimationRepeat(Animation animation) { }
 							});
-						}
-
-					} else
-					{
-						ViewCompat.setScaleX(flecha, escalaAncho);
-						ViewCompat.setScaleY(flecha, escalaAlto);
-						ViewCompat.setPivotX(flecha, 0);
-						ViewCompat.setPivotY(flecha, 0);
-						ViewCompat.setTranslationX(flecha, mLeftDelta);
-						ViewCompat.setTranslationY(flecha, mTopDelta);
-						ViewCompat.animate(flecha)
-								.scaleX(1)
-								.scaleY(1)
-								.translationX(0)
-								.translationY(0)
-								.setInterpolator(new AccelerateDecelerateInterpolator())
-								.setDuration(400)
-								.setUpdateListener(new ViewPropertyAnimatorUpdateListener()
-								{
-									private int fr = 0;
-									@Override
-									public void onAnimationUpdate(View view)
-									{
-										if(fr++ == 1 && AntenaActivity.flechaADesaparecer != null)
-											flechaADesaparecer.setVisibility(View.INVISIBLE);
-									}
-								});
-
-						ViewCompat.setAlpha(fondo, 0);
-						ViewCompat.animate(fondo)
-								.alpha(1)
-								.setDuration(500)
-								.setInterpolator(new AccelerateInterpolator())
-								.withEndAction(new Runnable()
-								{
-									@Override
-									public void run()
-									{
-										AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
-									}
-								});
-					}
 
 					Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
 					assert tb != null;
@@ -263,23 +204,13 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					{
 						if(v.getTop() > d)
 							continue;
-						if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-						{
-							TranslateAnimation ta = new TranslateAnimation(0, 0, d, 0);
-							ta.setInterpolator(new DecelerateInterpolator());
-							ta.setDuration(500);
-							ta.setStartOffset(200);
-							v.startAnimation(ta);
-						} else
-						{
-							v.setTranslationY(d);
-							ViewCompat.animate(v)
-								.translationY(0)
-								.setInterpolator(new DecelerateInterpolator())
-								.setDuration(500)
-								.setStartDelay(200)
-								.withLayer();
-						}
+						v.setTranslationY(d);
+						ViewCompat.animate(v)
+							.translationY(0)
+							.setInterpolator(new DecelerateInterpolator())
+							.setDuration(500)
+							.setStartDelay(200)
+							.withLayer();
 					}
 
 					return true;
@@ -319,30 +250,20 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		assert fondo != null;
 		View flecha = findViewById(R.id.flecha);
 		assert flecha != null;
-		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-		{
-			AlphaAnimation aa = new AlphaAnimation(1, 0);
-			aa.setDuration(400);
-			aa.setInterpolator(new AccelerateInterpolator());
-			aa.setFillAfter(true);
-			fondo.startAnimation(aa);
-			if(navigationIcon != null)
-			{
-				AlphaAnimation ab = new AlphaAnimation(1, 0);
-				ab.setDuration(400);
-				ab.setInterpolator(new AccelerateInterpolator());
-				ab.setFillAfter(true);
-				navigationIcon.startAnimation(ab);
-			}
-			aa.setAnimationListener(new Animation.AnimationListener()
-			{
-				@Override
-				public void onAnimationStart(Animation animation)
-				{
-				}
+		AlphaAnimation aa = new AlphaAnimation(1, 0);
+		aa.setDuration(400);
+		aa.setInterpolator(new AccelerateInterpolator());
+		aa.setFillAfter(true);
+		fondo.startAnimation(aa);
 
+		ViewCompat.animate(fondo)
+			.alpha(0)
+			.setDuration(400)
+			.setInterpolator(new AccelerateInterpolator())
+			.withEndAction(new Runnable()
+			{
 				@Override
-				public void onAnimationEnd(Animation animation)
+				public void run()
 				{
 					finish();
 					if(AntenaActivity.flechaADesaparecer != null)
@@ -353,84 +274,33 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 						AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 					}
 				}
-
-				@Override
-				public void onAnimationRepeat(Animation animation)
-				{
-				}
 			});
 
-			AnimationSet anim = new AnimationSet(true);
-			anim.addAnimation(new ScaleAnimation(1, escalaAncho, 1, escalaAlto, 0, 0));
-			anim.addAnimation(new TranslateAnimation(0, mLeftDelta, 0, mTopDelta));
-			anim.setInterpolator(new AccelerateDecelerateInterpolator());
-			anim.setDuration(400);
-			anim.setFillAfter(true);
-			flecha.startAnimation(anim);
-
-			int d = getWindow().getDecorView().getBottom();
-			for(View v : vistasAnimadas)
-			{
-				TranslateAnimation ta = new TranslateAnimation(0, 0, 0, d);
-				ta.setInterpolator(new AccelerateInterpolator());
-				ta.setDuration(400);
-				ta.setFillAfter(true);
-				v.startAnimation(ta);
-			}
-		} else
-		{
-			AlphaAnimation aa = new AlphaAnimation(1, 0);
-			aa.setDuration(400);
-			aa.setInterpolator(new AccelerateInterpolator());
-			aa.setFillAfter(true);
-			fondo.startAnimation(aa);
-
-			ViewCompat.animate(fondo)
+		if(navigationIcon != null)
+			ViewCompat.animate(navigationIcon)
 				.alpha(0)
 				.setDuration(400)
 				.setInterpolator(new AccelerateInterpolator())
-				.withEndAction(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						finish();
-						if(AntenaActivity.flechaADesaparecer != null)
-						{
-							AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
-							if(brújula != null && brújula.sinValor())
-								AntenaActivity.flechaADesaparecer.sinValor(false);
-							AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
-						}
-					}
-				});
+				.withLayer();
 
-			if(navigationIcon != null)
-				ViewCompat.animate(navigationIcon)
-					.alpha(0)
-					.setDuration(400)
-					.setInterpolator(new AccelerateInterpolator())
-					.withLayer();
+		ViewCompat.setPivotX(flecha, 0);
+		ViewCompat.setPivotY(flecha, 0);
+		ViewCompat.animate(flecha)
+			.scaleX(escalaAncho)
+			.scaleY(escalaAlto)
+			.translationX(mLeftDelta)
+			.translationY(mTopDelta)
+			.setInterpolator(new AccelerateDecelerateInterpolator())
+			.setDuration(400);
 
-			ViewCompat.setPivotX(flecha, 0);
-			ViewCompat.setPivotY(flecha, 0);
-			ViewCompat.animate(flecha)
-				.scaleX(escalaAncho)
-				.scaleY(escalaAlto)
-				.translationX(mLeftDelta)
-				.translationY(mTopDelta)
-				.setInterpolator(new AccelerateDecelerateInterpolator())
-				.setDuration(400);
+		int d = getWindow().getDecorView().getBottom();
+		for(View v : vistasAnimadas)
+			ViewCompat.animate(v)
+				.translationY(d)
+				.setInterpolator(new AccelerateInterpolator())
+				.setDuration(400)
+				.withLayer();
 
-			int d = getWindow().getDecorView().getBottom();
-			for(View v : vistasAnimadas)
-				ViewCompat.animate(v)
-					.translationY(d)
-					.setInterpolator(new AccelerateInterpolator())
-					.setDuration(400)
-					.withLayer();
-
-		}
 	}
 
 	@Override

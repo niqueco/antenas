@@ -12,16 +12,17 @@ public class Compat
 	static {
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
 			impl = new CompatImplJB1();
-		else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			impl = new CompatImplHC();
 		else
 			impl = new CompatImpl();
 	}
 
-	static class CompatImpl
+	private static class CompatImpl
 	{
-
-		void disableHardwareAccelerationForLineCaps(FlechaView view) { }
+		public void disableHardwareAccelerationForLineCaps(FlechaView view)
+		{
+			if(view.isHardwareAccelerated() && Build.VERSION.SDK_INT < 18)
+				view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+		}
 
 		boolean activityIsDestroyed(Activity activity)
 		{
@@ -29,19 +30,8 @@ public class Compat
 		}
 	}
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private static class CompatImplHC extends CompatImpl
-	{
-		@Override
-		public void disableHardwareAccelerationForLineCaps(FlechaView view)
-		{
-			if(view.isHardwareAccelerated() && Build.VERSION.SDK_INT < 18)
-				view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-		}
-	}
-
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-	private static class CompatImplJB1 extends CompatImplHC
+	private static class CompatImplJB1 extends CompatImpl
 	{
 		boolean activityIsDestroyed(Activity activity)
 		{

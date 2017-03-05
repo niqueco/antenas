@@ -118,9 +118,6 @@ public class FlechaView extends View
 	{
 		this.mostrarAlineación = mostrarAlineación;
 
-		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
-			return;
-
 		if(mostrarAlineación)
 		{
 			setColorListener = new ValueAnimator.AnimatorUpdateListener()
@@ -274,24 +271,18 @@ public class FlechaView extends View
 
 	private void animarColorA(@ColorInt int color)
 	{
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+		if(animaciónDeColor == null)
 		{
-			if(animaciónDeColor == null)
-			{
-				animaciónDeColor = new ValueAnimator();
-				animaciónDeColor.addUpdateListener(setColorListener);
-				animaciónDeColor.setDuration(200);
-			} else
-			{
-				animaciónDeColor.cancel();
-			}
-			animaciónDeColor.setIntValues(colorFlechaDibujado, color);
-			animaciónDeColor.setEvaluator(argbEvaluator);
-			animaciónDeColor.start();
+			animaciónDeColor = new ValueAnimator();
+			animaciónDeColor.addUpdateListener(setColorListener);
+			animaciónDeColor.setDuration(200);
 		} else
 		{
-			colorFlechaDibujado = color;
+			animaciónDeColor.cancel();
 		}
+		animaciónDeColor.setIntValues(colorFlechaDibujado, color);
+		animaciónDeColor.setEvaluator(argbEvaluator);
+		animaciónDeColor.start();
 
 	}
 
