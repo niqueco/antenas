@@ -293,10 +293,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 					}
 				paísesPrendidos.remove(país);
 			}
-			actualizarLíneas();
+			actualizarLíneas(false);
 		} else if(key.equals("max_dist"))
 		{
-			actualizarLíneas();
+			actualizarLíneas(true);
 		} else if(key.equals("dibujar_líneas"))
 		{
 			dibujarLíneas(sharedPreferences.getBoolean("dibujar_líneas", true));
@@ -344,7 +344,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			mapaMovido = true;
 		}
 
-		actualizarLíneas();
+		actualizarLíneas(false);
 	}
 
 	public void esPro(boolean pro)
@@ -670,13 +670,13 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private Set<Antena> antenasCerca;
 	private long últimaVezQueSeBuscóAntenas;
 
-	private void actualizarLíneas()
+	private void actualizarLíneas(boolean forzarBusqueda)
 	{
 		if(!dibujandoLíneas || !isVisible())
 			return;
 		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
 
-		if(antenasCerca == null || (System.nanoTime() - últimaVezQueSeBuscóAntenas) > 1000000000L * 60)
+		if(forzarBusqueda || antenasCerca == null || (System.nanoTime() - últimaVezQueSeBuscóAntenas) > 1000000000L * 60)
 		{
 			try
 			{
