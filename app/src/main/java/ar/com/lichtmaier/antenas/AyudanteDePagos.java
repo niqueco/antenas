@@ -30,7 +30,7 @@ class AyudanteDePagos implements ServiceConnection
 	private final FragmentActivity activity;
 	private final CallbackPagos callback;
 	private IInAppBillingService pagosDeGoogle;
-	private BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
+	private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
 		public void onReceive(Context context, Intent intent)

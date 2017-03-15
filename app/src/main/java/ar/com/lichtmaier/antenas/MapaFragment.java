@@ -12,7 +12,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -466,6 +465,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						} catch(IllegalStateException e)
 						{
 							FirebaseCrash.log("activity: " + getActivity());
+							logFragmentStatus();
 							FirebaseCrash.report(e);
 						}
 					}
@@ -493,6 +493,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public void onInfoWindowClick(Marker marker)
 	{
 		Antena antena = (Antena)marker.getTag();
+		//noinspection ConstantConditions
 		antena.mostrarInformacion(getActivity());
 	}
 
@@ -511,7 +512,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 		canalSeleccionado(null, null);
 		FragmentManager fm = getFragmentManager();
-		if(fm.findFragmentByTag("canales") != null)
+		if(fm == null)
+		{
+			logFragmentStatus();
+			FirebaseCrash.report(new NullPointerException("fm es null!"));
+		} else if(fm.findFragmentByTag("canales") != null)
 			fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		mapa.setPadding(0, altoActionBar, 0, 0);
 		modoMostrarAntena = false;
@@ -537,6 +542,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		Antena antena = (Antena)marker.getTag();
 		estiloLínea(antena, true);
 
+		//noinspection ConstantConditions
 		if(antena.canales == null)
 		{
 			if(yaEstaba)
@@ -769,6 +775,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		{
 			FirebaseCrash.log("lineas: " + líneas);
 			FirebaseCrash.log("polyline: " + polyline);
+			logFragmentStatus();
 			FirebaseCrash.report(new RuntimeException("onPolylineClick: unknown polyline"));
 			return;
 		}
@@ -784,5 +791,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(marker == null)
 			throw new NullPointerException("la antena " + antena + "no tiene marker?? antenas: " + antenaAMarker.keySet());
 		onMarkerClick(marker);
+	}
+
+	private void logFragmentStatus()
+	{
+		FirebaseCrash.log("antenaSeleccionada: " + antenaSeleccionada);
+		FirebaseCrash.log("markerSeleccionado: " + markerSeleccionado);
+		FirebaseCrash.log("canalSeleccionado: " + canalSeleccionado);
 	}
 }
