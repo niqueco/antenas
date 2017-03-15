@@ -744,6 +744,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 								? R.color.línea_mapa_sel
 								: R.color.línea_mapa))
 						.endCap(ROUND_CAP));
+				polyline.setTag(antena);
 				polyline.setClickable(true);
 				//Log.d("antenas", "agrego "+polyline);
 				líneas.put(antena, polyline);
@@ -766,13 +767,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	public void onPolylineClick(Polyline polyline)
 	{
 		Log.d("antenas", "click en " + polyline);
-		Antena antena = null;
-		for(Map.Entry<Antena, Polyline> e : líneas.entrySet())
-			if(polyline.equals(e.getValue()))
-			{
-				antena = e.getKey();
-				break;
-			}
+		Antena antena = (Antena)polyline.getTag();
 		if(antena == null)
 		{
 			FirebaseCrash.log("lineas: " + líneas);
