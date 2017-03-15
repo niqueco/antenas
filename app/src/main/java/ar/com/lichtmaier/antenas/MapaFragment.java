@@ -675,6 +675,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private Set<Antena> antenasCerca;
 	private long últimaVezQueSeBuscóAntenas;
+	private final static Cap ROUND_CAP = new RoundCap();
 
 	private void actualizarLíneas(boolean forzarBusqueda)
 	{
@@ -741,7 +742,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 								: R.dimen.ancho_línea_antena))
 						.color(ContextCompat.getColor(getActivity(), sel
 								? R.color.línea_mapa_sel
-								: R.color.línea_mapa)));
+								: R.color.línea_mapa))
+						.endCap(ROUND_CAP));
 				polyline.setClickable(true);
 				//Log.d("antenas", "agrego "+polyline);
 				líneas.put(antena, polyline);
