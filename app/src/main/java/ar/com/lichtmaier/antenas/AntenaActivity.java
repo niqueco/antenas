@@ -7,6 +7,8 @@ import java.util.*;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,7 +48,7 @@ import android.widget.Toast;
 import com.google.android.gms.location.LocationRequest;
 import com.google.firebase.crash.FirebaseCrash;
 
-public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, AyudanteDePagos.CallbackPagos
+public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, LifecycleRegistryOwner
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -74,7 +76,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 	}
 
-	final private AyudanteDePagos ayudanteDePagos = new AyudanteDePagos(this, this);
+	private AyudanteDePagos ayudanteDePagos;
 
 	private final LocationListener locationListener = new LocationListener() {
 		@Override
@@ -177,7 +179,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			}
 		} catch(Exception ignored) { }
 
-		ayudanteDePagos.registrarServicio();
+		ayudanteDePagos = AyudanteDePagos.dameInstancia(this);
+		ayudanteDePagos.observe(this, this::esPro);
 
 		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
 		if(pb != null)
@@ -382,8 +385,9 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		opciónAyudaReinoUnido = menu.findItem(R.id.action_ayuda_uk);
 		configurarMenú();
 		opciónPagar = menu.findItem(R.id.action_pagar);
-		if(ayudanteDePagos.pro != null)
-			opciónPagar.setVisible(!ayudanteDePagos.pro);
+		Boolean pro = ayudanteDePagos.getValue();
+		if(pro != null)
+			opciónPagar.setVisible(!pro);
 		return true;
 	}
 
@@ -447,7 +451,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	void pagar()
 	{
-		ayudanteDePagos.pagar();
+		ayudanteDePagos.pagar(this);
 	}
 
 	@Override
@@ -524,7 +528,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			publicidad.onDestroy();
 		if(locationClient != null)
 			locationClient.destroy();
-		ayudanteDePagos.destroy();
 		super.onDestroy();
 	}
 
@@ -735,9 +738,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	private PrenderAnimación prenderAnimación;
 
-	@Override
-	public void esPro(boolean pro)
+	private void esPro(Boolean pro)
 	{
+		if(pro == null)
+			return;
 		if(opciónPagar != null)
 			opciónPagar.setVisible(!pro);
 		if(pro)
@@ -746,6 +750,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			{
 				publicidad.sacar();
 				publicidad = null;
+			}
+			if(intersticial != null)
+			{
+				intersticial = null;
 			}
 		} else
 		{
@@ -864,5 +872,13 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			super.getItemOffsets(outRect, view, parent, state);
 			outRect.bottom = (int)alto;
 		}
+	}
+
+	LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+
+	@Override
+	public LifecycleRegistry getLifecycle()
+	{
+		return lifecycleRegistry;
 	}
 }

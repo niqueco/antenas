@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.arch.lifecycle.*;
 import android.content.Intent;
 import android.content.pm.ShortcutManager;
 import android.location.Location;
@@ -15,12 +16,12 @@ import android.view.MenuItem;
 
 import com.google.android.gms.location.LocationRequest;
 
-public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback, AyudanteDePagos.CallbackPagos
+public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback, LifecycleRegistryOwner
 {
 	private long comienzoUsoPantalla;
 	@Nullable private LocationClientCompat locationClient;
 
-	final private AyudanteDePagos ayudanteDePagos = new AyudanteDePagos(this, this);
+	private AyudanteDePagos ayudanteDePagos;
 	private MenuItem opciónPagar;
 	private MapaFragment mapaFragment;
 
@@ -39,7 +40,13 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
-		ayudanteDePagos.registrarServicio();
+		ayudanteDePagos = AyudanteDePagos.dameInstancia(this);
+		ayudanteDePagos.observe(this, (pro) -> {
+			if(pro == null)
+				return;
+			if(opciónPagar != null)
+				opciónPagar.setVisible(!pro);
+		});
 
 		if(savedInstanceState == null)
 		{
@@ -100,7 +107,6 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	{
 		if(locationClient != null)
 			locationClient.destroy();
-		ayudanteDePagos.destroy();
 		super.onDestroy();
 	}
 
@@ -128,8 +134,9 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	{
 		getMenuInflater().inflate(R.menu.mapa, menu);
 		opciónPagar = menu.findItem(R.id.action_pagar);
-		if(ayudanteDePagos.pro != null)
-			opciónPagar.setVisible(!ayudanteDePagos.pro);
+		Boolean pro = ayudanteDePagos.getValue();
+		if(pro != null)
+			opciónPagar.setVisible(!pro);
 		return true;
 	}
 
@@ -140,7 +147,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		switch(id)
 		{
 			case R.id.action_pagar:
-				ayudanteDePagos.pagar();
+				ayudanteDePagos.pagar(this);
 				return true;
 			case R.id.action_settings:
 				Intent i = new Intent(this, PreferenciasActivity.class);
@@ -179,11 +186,11 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 			mapaFragment.onLocationChanged(location);
 	}
 
+	LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+
 	@Override
-	public void esPro(boolean pro)
+	public LifecycleRegistry getLifecycle()
 	{
-		if(opciónPagar != null)
-			opciónPagar.setVisible(!pro);
-		mapaFragment.esPro(pro);
+		return lifecycleRegistry;
 	}
 }

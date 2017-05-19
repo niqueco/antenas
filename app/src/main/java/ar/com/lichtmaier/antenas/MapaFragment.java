@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.arch.lifecycle.LifecycleFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,7 +36,7 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 import java.util.*;
 import java.util.concurrent.TimeoutException;
 
-public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
+public class MapaFragment extends LifecycleFragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
 		GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraIdleListener,
 		GoogleMap.OnMarkerClickListener, GoogleMap.OnPolylineClickListener
@@ -118,6 +119,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				}
 			}
 		});
+
+		AyudanteDePagos.dameInstancia(getContext()).observe(this, this::esPro);
 	}
 
 	@Override
@@ -346,9 +349,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		actualizarLíneas(false);
 	}
 
-	public void esPro(boolean pro)
+	private void esPro(Boolean pro)
 	{
 		Log.i("antenas", "mapa: es pro: " + pro);
+		if(pro == null)
+			return;
 		if(pro)
 		{
 			if(publicidad == null)

@@ -1,14 +1,14 @@
 package ar.com.lichtmaier.antenas;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
+import android.arch.lifecycle.LiveData;
 import android.content.*;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,40 +20,28 @@ import java.util.ArrayList;
 import static android.app.Activity.RESULT_OK;
 
 
-class AyudanteDePagos implements ServiceConnection
+class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 {
 	private static final String ID_PRODUCTO = "pro";
 	private static final int REQUEST_CODE_COMPRAR = 152;
 
 	private static final int RESULT_ITEM_ALREADY_OWNED = 7;
 
-	private final FragmentActivity activity;
-	private final CallbackPagos callback;
+	private final Context context;
 	private IInAppBillingService pagosDeGoogle;
-	private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
-	{
-		@Override
-		public void onReceive(Context context, Intent intent)
-		{
-			callback.esPro(intent.getBooleanExtra("pro", false));
-		}
-	};
 
-	@Nullable
-	Boolean pro;
+	private static AyudanteDePagos instance;
 
-	private void mandarBroadcast(boolean pro)
+	private AyudanteDePagos(Context context)
 	{
-		this.pro = pro;
-		Intent intent = new Intent("pro");
-		intent.putExtra("pro", pro);
-		LocalBroadcastManager.getInstance(activity).sendBroadcast(intent);
+		this.context = context.getApplicationContext();
 	}
 
-	AyudanteDePagos(FragmentActivity activity, CallbackPagos callback)
+	public static AyudanteDePagos dameInstancia(Context context)
 	{
-		this.activity = activity;
-		this.callback = callback;
+		if(instance == null)
+			instance = new AyudanteDePagos(context);
+		return instance;
 	}
 
 	@Override
@@ -63,6 +51,7 @@ class AyudanteDePagos implements ServiceConnection
 		FirebaseCrash.logcat(Log.WARN, "antenas", "servicio de pagos offline");
 	}
 
+	@SuppressLint("StaticFieldLeak")
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder service)
 	{
@@ -89,33 +78,36 @@ class AyudanteDePagos implements ServiceConnection
 					Log.e("antenas", "Obteniendo información sobre el pago:", e);
 					FirebaseCrash.report(e);
 				}
-				boolean pro = compras != null && compras.contains(ID_PRODUCTO);
-				mandarBroadcast(pro);
-				return pro;
+				return compras != null && compras.contains(ID_PRODUCTO);
+			}
+
+			@Override
+			protected void onPostExecute(Boolean pro)
+			{
+				setValue(pro);
 			}
 		}.execute();
 	}
 
-	void registrarServicio()
+	@Override
+	protected void onActive()
 	{
 		Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
 		serviceIntent.setPackage("com.android.vending");
-		activity.bindService(serviceIntent, this, Context.BIND_AUTO_CREATE);
-		IntentFilter intentFilter = new IntentFilter("pro");
-		LocalBroadcastManager.getInstance(activity).registerReceiver(broadcastReceiver, intentFilter);
+		context.bindService(serviceIntent, this, Context.BIND_AUTO_CREATE);
 	}
 
-	void pagar()
+	void pagar(FragmentActivity act)
 	{
 		if(BuildConfig.DEBUG)
 		{
-			mandarBroadcast(true);
+			setValue(true);
 			return;
 		}
 
 		if(pagosDeGoogle == null)
 		{
-			Toast.makeText(activity, R.string.no_se_puede_pagar, Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, R.string.no_se_puede_pagar, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		try
@@ -126,7 +118,7 @@ class AyudanteDePagos implements ServiceConnection
 			{
 				if(res == RESULT_ITEM_ALREADY_OWNED)
 				{
-					Toast.makeText(activity, "Ya está usando la versión Pro", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "Ya está usando la versión Pro", Toast.LENGTH_SHORT).show();
 
 					pagosDeGoogle.consumePurchase(3, BuildConfig.APPLICATION_ID, ID_PRODUCTO);
 				}
@@ -136,7 +128,7 @@ class AyudanteDePagos implements ServiceConnection
 			}
 			PendingIntent pendingIntent = b.getParcelable("BUY_INTENT");
 			assert pendingIntent != null;
-			activity.startIntentSenderForResult(pendingIntent.getIntentSender(), REQUEST_CODE_COMPRAR, new Intent(), 0, 0, 0);
+			act.startIntentSenderForResult(pendingIntent.getIntentSender(), REQUEST_CODE_COMPRAR, new Intent(), 0, 0, 0);
 		} catch(RemoteException|IntentSender.SendIntentException e)
 		{
 			FirebaseCrash.report(e);
@@ -144,10 +136,10 @@ class AyudanteDePagos implements ServiceConnection
 		}
 	}
 
-	void destroy()
+	@Override
+	protected void onInactive()
 	{
-		activity.unbindService(this);
-		LocalBroadcastManager.getInstance(activity).unregisterReceiver(broadcastReceiver);
+		context.unbindService(this);
 	}
 
 	@SuppressWarnings("UnusedParameters")
@@ -158,14 +150,9 @@ class AyudanteDePagos implements ServiceConnection
 
 		if(resultCode == RESULT_OK)
 		{
-			Toast.makeText(activity, R.string.thankyou, Toast.LENGTH_SHORT).show();
-			mandarBroadcast(true);
+			Toast.makeText(context, R.string.thankyou, Toast.LENGTH_SHORT).show();
+			setValue(true);
 		}
 		return true;
-	}
-
-	interface CallbackPagos
-	{
-		void esPro(boolean pro);
 	}
 }
