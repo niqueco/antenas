@@ -18,7 +18,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.*;
 
@@ -90,21 +89,16 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 			.addLocationRequest(locationRequest);
 		PendingResult<LocationSettingsResult> result =
 				LocationServices.SettingsApi.checkLocationSettings(google, builder.build());
-		result.setResultCallback(new ResultCallback<LocationSettingsResult>()
-		{
-			@Override
-			public void onResult(@NonNull LocationSettingsResult result)
+		result.setResultCallback(result1 -> {
+			Status status = result1.getStatus();
+			if(status.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED && !noPreguntar /* && !activity.huboSavedInstanceState */)
 			{
-				Status status = result.getStatus();
-				if(status.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED && !noPreguntar /* && !activity.huboSavedInstanceState */)
+				try
 				{
-					try
-					{
-						status.startResolutionForResult(activity, REQUEST_CHECK_SETTINGS);
-						noPreguntar = true;
-					} catch(IntentSender.SendIntentException ignored)
-					{
-					}
+					status.startResolutionForResult(activity, REQUEST_CHECK_SETTINGS);
+					noPreguntar = true;
+				} catch(IntentSender.SendIntentException ignored)
+				{
 				}
 			}
 		});

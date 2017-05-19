@@ -99,24 +99,19 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			}
 		}
 
-		getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener()
-		{
-			@Override
-			public void onBackStackChanged()
+		getFragmentManager().addOnBackStackChangedListener(() -> {
+			if(getFragmentManager().getBackStackEntryCount() == originalBackStackEntryCount)
 			{
-				if(getFragmentManager().getBackStackEntryCount() == originalBackStackEntryCount)
+				canalSeleccionado(null, null);
+				if(markerSeleccionado != null)
 				{
-					canalSeleccionado(null, null);
-					if(markerSeleccionado != null)
-					{
-						markerSeleccionado.hideInfoWindow();
-						markerSeleccionado.setIcon(íconoAntenita);
-						estiloLínea(antenaSeleccionada, false);
-						markerSeleccionado = null;
-						antenaSeleccionada = null;
-					}
-					mapa.setPadding(0, altoActionBar, 0, 0);
+					markerSeleccionado.hideInfoWindow();
+					markerSeleccionado.setIcon(íconoAntenita);
+					estiloLínea(antenaSeleccionada, false);
+					markerSeleccionado = null;
+					antenaSeleccionada = null;
 				}
+				mapa.setPadding(0, altoActionBar, 0, 0);
 			}
 		});
 
@@ -169,14 +164,9 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 	{
 		super.onActivityCreated(savedInstanceState);
 		SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
-		mapFragment.getMapAsync(new OnMapReadyCallback()
-		{
-			@Override
-			public void onMapReady(GoogleMap googleMap)
-			{
-				mapa = googleMap;
-				inicializarMapa(savedInstanceState);
-			}
+		mapFragment.getMapAsync(googleMap -> {
+			mapa = googleMap;
+			inicializarMapa(savedInstanceState);
 		});
 	}
 
@@ -231,19 +221,14 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			View v = getView();
 			if(v == null)
 				throw new RuntimeException("uh?");
-			v.post(new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					AppCompatActivity activity = (AppCompatActivity)getActivity();
-					if(activity == null)
-						return;
-					ActionBar actionBar = activity.getSupportActionBar();
-					if(actionBar != null)
-						altoActionBar = actionBar.getHeight();
-					configurarPaddingMapa();
-				}
+			v.post(() -> {
+				AppCompatActivity activity1 = (AppCompatActivity)getActivity();
+				if(activity1 == null)
+					return;
+				ActionBar actionBar1 = activity1.getSupportActionBar();
+				if(actionBar1 != null)
+					altoActionBar = actionBar1.getHeight();
+				configurarPaddingMapa();
 			});
 		} else
 		{

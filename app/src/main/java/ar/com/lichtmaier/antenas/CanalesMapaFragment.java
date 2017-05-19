@@ -36,15 +36,6 @@ public class CanalesMapaFragment extends Fragment
 		callback = (MapaActivity)context;
 	}
 
-	private final View.OnClickListener canalClickListener = new View.OnClickListener()
-	{
-		@Override
-		public void onClick(View v)
-		{
-			seleccionar(v);
-		}
-	};
-
 	private void seleccionar(View v)
 	{
 		if(selectedView != null)
@@ -134,7 +125,7 @@ public class CanalesMapaFragment extends Fragment
 						vc.setTag(canal);
 						//noinspection deprecation
 						vc.setBackgroundResource(selectableItemBackground);
-						vc.setOnClickListener(canalClickListener);
+						vc.setOnClickListener(this::seleccionar);
 					}
 					vc.setMinimumHeight((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics()));
 					if(j > 0)
@@ -181,7 +172,7 @@ public class CanalesMapaFragment extends Fragment
 			}
 		});
 		if(viewCanalASeleccionar != null)
-			canalClickListener.onClick(viewCanalASeleccionar);
+			seleccionar(viewCanalASeleccionar);
 		return v;
 	}
 

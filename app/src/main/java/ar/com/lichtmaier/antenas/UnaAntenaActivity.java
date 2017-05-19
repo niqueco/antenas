@@ -163,14 +163,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 							.alpha(1)
 							.setDuration(500)
 							.setInterpolator(new AccelerateInterpolator())
-							.withEndAction(new Runnable()
-							{
-								@Override
-								public void run()
-								{
-									AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
-								}
-							});
+							.withEndAction(() -> AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE));
 
 					Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
 					assert tb != null;
@@ -259,19 +252,14 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			.alpha(0)
 			.setDuration(400)
 			.setInterpolator(new AccelerateInterpolator())
-			.withEndAction(new Runnable()
-			{
-				@Override
-				public void run()
+			.withEndAction(() -> {
+				finish();
+				if(AntenaActivity.flechaADesaparecer != null)
 				{
-					finish();
-					if(AntenaActivity.flechaADesaparecer != null)
-					{
-						AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
-						if(brújula != null && brújula.sinValor())
-							AntenaActivity.flechaADesaparecer.sinValor(false);
-						AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
-					}
+					AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
+					if(brújula != null && brújula.sinValor())
+						AntenaActivity.flechaADesaparecer.sinValor(false);
+					AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 				}
 			});
 

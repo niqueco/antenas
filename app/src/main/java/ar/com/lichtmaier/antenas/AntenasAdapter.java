@@ -292,15 +292,10 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 							break;
 
 						final boolean cerca = cachéDeContornos.enContorno(antena, new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude()), true);
-						new Handler(Looper.getMainLooper()).post(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								cachéCercaníaAntena.put(antena, cerca);
-								crearHandler();
-								llamarANuevaUbicación.sendEmptyMessageDelayed(0, 2000);
-							}
+						new Handler(Looper.getMainLooper()).post(() -> {
+							cachéCercaníaAntena.put(antena, cerca);
+							crearHandler();
+							llamarANuevaUbicación.sendEmptyMessageDelayed(0, 2000);
 						});
 					}
 				} catch(InterruptedException ignored) { }

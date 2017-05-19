@@ -35,14 +35,9 @@ public class Pagame extends AppCompatDialogFragment
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
 		View v = inflater.inflate(R.layout.pagame, container, false);
-		v.findViewById(R.id.boton_comprar).setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View view)
-			{
-				((AntenaActivity)getActivity()).pagar();
-				dismiss();
-			}
+		v.findViewById(R.id.boton_comprar).setOnClickListener(view -> {
+			((AntenaActivity)getActivity()).pagar();
+			dismiss();
 		});
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{

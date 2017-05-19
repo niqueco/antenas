@@ -111,14 +111,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				abrir(antena, v, true);
 			} else
 			{
-				intersticial.mostrar(new Publicidad.Intersticial.Callback()
-				{
-					@Override
-					public void run(boolean huboAviso)
-					{
-						abrir(antena, v, !huboAviso);
-					}
-				});
+				intersticial.mostrar(huboAviso -> abrir(antena, v, !huboAviso));
 			}
 		}
 
@@ -205,11 +198,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(brújula == null && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
 		{
 			Snackbar sb = Snackbar.make(findViewById(R.id.principal), R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
-					.setAction(android.R.string.ok, new View.OnClickListener()
-					{
-						@Override
-						public void onClick(View v) { }
-					})
 					.addCallback(new Snackbar.Callback()
 					{
 						@Override
@@ -261,14 +249,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				ViewGroup principal = (ViewGroup)findViewById(R.id.principal);
 				View view = getLayoutInflater().inflate(R.layout.permiso_necesario, principal, false);
 				((TextView)view.findViewById(android.R.id.text1)).setText(R.string.explicacion_permiso_gps);
-				view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener()
-				{
-					@Override
-					public void onClick(View v)
-					{
-						ActivityCompat.requestPermissions(AntenaActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_FINE_LOCATION);
-					}
-				});
+				view.findViewById(R.id.button).setOnClickListener(v -> ActivityCompat.requestPermissions(AntenaActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_FINE_LOCATION));
 				principal.addView(view);
 				seMuestraRuegoDePermisos = true;
 			} else
@@ -621,14 +602,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				if(falta <= 0)
 					pb.setVisibility(View.GONE);
 				else
-					pb.postDelayed(new Runnable()
-					{
-						@Override
-						public void run()
-						{
-							pb.setVisibility(View.GONE);
-						}
-					}, falta);
+					pb.postDelayed(() -> pb.setVisibility(View.GONE), falta);
 			} else
 			{
 				prenderAnimación.cancelado = true;
@@ -690,14 +664,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			if(v == null)
 				v = findViewById(R.id.root);
 			Snackbar.make(v, R.string.gps_is_off, Snackbar.LENGTH_INDEFINITE)
-					.setAction(R.string.gps_prender, new View.OnClickListener()
-					{
-						@Override
-						public void onClick(View v)
-						{
-							startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-						}
-					})
+					.setAction(R.string.gps_prender, v1 -> startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
 					.show();
 		}
 	}

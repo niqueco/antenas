@@ -2,14 +2,12 @@ package ar.com.lichtmaier.antenas;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Vibrator;
@@ -120,15 +118,7 @@ public class FlechaView extends View
 
 		if(mostrarAlineación)
 		{
-			setColorListener = new ValueAnimator.AnimatorUpdateListener()
-			{
-				@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-				@Override
-				public void onAnimationUpdate(ValueAnimator animation)
-				{
-					colorFlechaDibujado = (Integer)animation.getAnimatedValue();
-				}
-			};
+			setColorListener = animation -> colorFlechaDibujado = (Integer)animation.getAnimatedValue();
 			if(argbEvaluator == null)
 				argbEvaluator = new ArgbEvaluator();
 		} else
