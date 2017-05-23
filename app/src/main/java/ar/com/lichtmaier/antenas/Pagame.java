@@ -42,7 +42,7 @@ public class Pagame extends AppCompatDialogFragment
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
 			AnimatedVectorDrawable ojito = (AnimatedVectorDrawable)getContext().getDrawable(R.drawable.ic_emoji_u1f603_ojito);
-			((ImageView)v.findViewById(R.id.carita)).setImageDrawable(ojito);
+			((ImageView)v.findViewById(R.id.pagame_carita)).setImageDrawable(ojito);
 			guiño = new Guiño(ojito);
 		}
 		return v;
