@@ -334,11 +334,18 @@ public class CachéDeContornos
 
 		if(!puedoEsperar)
 		{
+			synchronized(CachéDeContornos.class) {
+				referencias++;
+			}
 			new AsyncTask<Void, Void, Void>() {
 				@Override
 				protected Void doInBackground(Void... voids)
 				{
-					enContorno(antena, coords, true);
+					try {
+						enContorno(antena, coords, true);
+					} finally {
+						devolver();
+					}
 					return null;
 				}
 			}.execute();

@@ -585,16 +585,23 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			tareaTraerContorno.cancel(false);
 		if(antena == null || antena.país != País.US || canal == null || canal.ref == null)
 			return;
+		if(cachéDeContornos == null)
+			cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
 		tareaTraerContorno = new AsyncTask<Void, Void, Polígono>()
 		{
+			private CachéDeContornos cache = CachéDeContornos.dameInstancia(getActivity());
+
 			@Override
 			protected Polígono doInBackground(Void... params)
 			{
-				if(cachéDeContornos == null)
-					cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
-				if(isCancelled())
-					return null;
-				return cachéDeContornos.dameContornoFCC(canal.ref);
+				try {
+					if(isCancelled())
+						return null;
+					return cache.dameContornoFCC(canal.ref);
+				} finally {
+					cache.devolver();
+					cache = null;
+				}
 			}
 
 			@Override
@@ -619,6 +626,11 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			protected void onCancelled()
 			{
 				tareaTraerContorno = null;
+				if(cache != null)
+				{
+					cache.devolver();
+					cache = null;
+				}
 			}
 		};
 		tareaTraerContorno.execute();
