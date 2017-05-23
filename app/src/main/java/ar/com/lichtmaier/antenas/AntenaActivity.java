@@ -631,6 +631,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 	}
 
+	@Override
 	public void onConnectionFailed()
 	{
 		Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");

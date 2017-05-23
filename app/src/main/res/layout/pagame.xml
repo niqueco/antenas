@@ -60,6 +60,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         app:srcCompat="@drawable/ic_emoji_u1f603"
+        android:contentDescription="@null"
         />
 
     <android.support.v4.widget.Space
