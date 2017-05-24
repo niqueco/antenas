@@ -38,6 +38,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	private FlechaView flecha;
 	final private List<View> vistasAnimadas = new ArrayList<>();
 	private View navigationIcon;
+	private boolean mostrarDireccionesRelativas;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -79,6 +80,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		if(bundle.getBoolean(PACKAGE + ".sinValor"))
 			flecha.sinValor(false);
 
+		configurarMostrarDireccionesRelativas();
+
 		if(antena.canales != null && !antena.canales.isEmpty())
 		{
 			View antes = findViewById(R.id.antes_de_canales);
@@ -116,7 +119,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			}
 		}
 
-		if(savedInstanceState == null && brújula == null)
+		if(savedInstanceState == null && brújula == null && !mostrarDireccionesRelativas)
 			flecha.setMostrarPuntosCardinales(true);
 
 		if(savedInstanceState == null && animar)
@@ -318,6 +321,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	@Override
 	public void nuevaOrientación(double brújula)
 	{
+		if(!mostrarDireccionesRelativas)
+			return;
 		double rumbo = antena.rumboDesde(coordsUsuario);
 		FlechaView f = (FlechaView)findViewById(R.id.flecha);
 		assert f != null;
@@ -328,6 +333,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	@Override
 	public void desorientados()
 	{
+		if(!mostrarDireccionesRelativas)
+			return;
 		flecha.sinValor(true);
 	}
 
@@ -347,6 +354,15 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	{
 		if(key.equals("mostrarAlineación"))
 			flecha.setMostrarAlineación(sharedPreferences.getBoolean("mostrarAlineación", false));
+		else if(key.equals("forzar_direcciones_absolutas"))
+			configurarMostrarDireccionesRelativas();
+	}
+
+	private void configurarMostrarDireccionesRelativas()
+	{
+		this.mostrarDireccionesRelativas = (brújula != null) && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("forzar_direcciones_absolutas", false);
+		flecha.setÁngulo(antena.rumboDesde(coordsUsuario), false);
+		flecha.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
 	}
 
 	@Override

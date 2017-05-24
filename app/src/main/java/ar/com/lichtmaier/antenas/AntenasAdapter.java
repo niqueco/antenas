@@ -30,7 +30,8 @@ import java.util.concurrent.TimeoutException;
 public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaViewHolder> implements SharedPreferences.OnSharedPreferenceChangeListener
 {
 	final private SharedPreferences prefs;
-	final List<Antena> antenasCerca = new ArrayList<>(), antenasLejos = new ArrayList<>();
+	final List<Antena> antenasCerca = new ArrayList<>();
+	final private List<Antena> antenasLejos = new ArrayList<>();
 	private final int resource;
 	private final Context context;
 	@Nullable final private Brújula brújula;
@@ -39,7 +40,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 	private boolean todoCargado = false;
 	private GlobalCoordinates coordsUsuario;
-	private boolean mostrarDireccionesRelativas = true, realmenteMostrarDireccionesRelativas;
+	private boolean mostrarDireccionesRelativas;
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -62,13 +63,13 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			flechaView = (FlechaView)v.findViewById(R.id.flecha);
 			avisoLejos = v.findViewById(R.id.aviso_lejos);
 			v.setOnClickListener(this);
-			flechaView.setMostrarPuntosCardinales(!realmenteMostrarDireccionesRelativas);
+			flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
 		}
 
 		@Override
 		public void nuevaOrientación(double orientación)
 		{
-			if(!realmenteMostrarDireccionesRelativas)
+			if(!mostrarDireccionesRelativas)
 				return;
 			double rumbo = antena.rumboDesde(coordsUsuario);
 			//Log.d("antenas", "antena: " + antena.descripción + ", rumbo="+ (int)rumbo + ", ángulo flecha="+ (int)(rumbo - orientación));
@@ -79,8 +80,9 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		@Override
 		public void desorientados()
 		{
-			if(realmenteMostrarDireccionesRelativas)
-				flechaView.sinValor(suave);
+			if(!mostrarDireccionesRelativas)
+				return;
+			flechaView.sinValor(suave);
 		}
 
 		@Override
@@ -103,7 +105,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 		setHasStableIds(true);
-		realmenteMostrarDireccionesRelativas = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false) && mostrarDireccionesRelativas;
+		mostrarDireccionesRelativas = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false);
 	}
 
 	@Override
@@ -120,7 +122,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		Antena a = getAntena(position);
 		vh.antena = a;
 
-		vh.flechaView.setMostrarPuntosCardinales(!realmenteMostrarDireccionesRelativas);
+		vh.flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
 
 		CharSequence detalleCanales = a.dameDetalleCanales(context);
 		if(a.descripción != null)
@@ -139,7 +141,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			vh.tvPotencia.setText(a.potencia > 0 ? a.potencia + " kW" : null);
 		vh.tvDistancia.setText(Formatos.formatDistance(context, a.distanceTo(coordsUsuario)));
 		vh.avisoLejos.setVisibility(antenasLejos.contains(a) ? View.VISIBLE : View.GONE);
-		if(!realmenteMostrarDireccionesRelativas)
+		if(!mostrarDireccionesRelativas)
 			vh.flechaView.setÁngulo(a.rumboDesde(coordsUsuario), false);
 		else
 			vh.suave = false;
@@ -250,18 +252,12 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 	}
 
-	void setMostrarDireccionesRelativas(boolean mostrarDireccionesRelativas)
+	private void configurarMostrarDireccionesRelativas()
 	{
-		this.mostrarDireccionesRelativas = mostrarDireccionesRelativas;
-		configurarRealmenteMostrarDireccionesRelativas();
-	}
-
-	private void configurarRealmenteMostrarDireccionesRelativas()
-	{
-		boolean m = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false) && mostrarDireccionesRelativas;
-		if(m == this.realmenteMostrarDireccionesRelativas)
+		boolean m = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false);
+		if(m == this.mostrarDireccionesRelativas)
 			return;
-		this.realmenteMostrarDireccionesRelativas = m;
+		this.mostrarDireccionesRelativas = m;
 		notifyDataSetChanged();
 	}
 
@@ -331,7 +327,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 	{
 		if(key.equals("forzar_direcciones_absolutas"))
-			configurarRealmenteMostrarDireccionesRelativas();
+			configurarMostrarDireccionesRelativas();
 		else if(key.equals("usar_contornos"))
 			cachéCercaníaAntena.clear();
 	}
