@@ -34,7 +34,7 @@ import java.util.concurrent.*;
 public class Antena implements Parcelable
 {
 	final public String descripción;
-	final private String ref, geohash;
+	final private String ref;
 	private final GlobalCoordinates c;
 	final public float potencia;
 	public final int index;
@@ -59,7 +59,7 @@ public class Antena implements Parcelable
 		c = new GlobalCoordinates(lat, lon);
 		this.país = país;
 		this.ref = ref;
-		geohash = GeoHash.encodeHash(lat, lon, 4);
+		String geohash = GeoHash.encodeHash(lat, lon, 4);
 		synchronized(geohashAAntenas)
 		{
 			List<Antena> l = geohashAAntenas.get(geohash);
