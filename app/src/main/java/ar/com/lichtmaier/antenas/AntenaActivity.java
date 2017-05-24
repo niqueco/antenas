@@ -7,6 +7,7 @@ import java.util.*;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.content.Context;
@@ -320,6 +321,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				.setSmallestDisplacement(10), this);
 	}
 
+	@SuppressLint("MissingPermission")
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
@@ -333,7 +335,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					return;
 				}
 
-				//noinspection ResourceType
 				crearLocationClientCompat();
 			} else
 				finish();
@@ -464,7 +465,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		criteria.setCostAllowed(true);
 		try
 		{
-			//noinspection MissingPermission
+			if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+				return;
 			locationManager.requestLocationUpdates(1000 * 60, 0, criteria, locationListener, null);
 		} catch(IllegalArgumentException e)
 		{
