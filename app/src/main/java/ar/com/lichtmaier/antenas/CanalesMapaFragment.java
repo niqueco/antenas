@@ -1,17 +1,20 @@
 package ar.com.lichtmaier.antenas;
 
+import android.arch.lifecycle.LifecycleFragment;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
 
-public class CanalesMapaFragment extends Fragment
+import org.gavaghan.geodesy.GlobalCoordinates;
+
+public class CanalesMapaFragment extends LifecycleFragment
 {
 	private Antena antena;
 	private MapaActivity callback;
@@ -79,6 +82,9 @@ public class CanalesMapaFragment extends Fragment
 			else
 				tv.setText(antena.descripción);
 		}
+		TextView distView = (TextView)v.findViewById(R.id.antena_dist);
+		if(distView != null)
+			((MapaActivity)getActivity()).getLocation().observe(this, location -> ponerDistancia(location, distView));
 		View viewCanalASeleccionar = null;
 		final int canalSeleccionadoPos = savedInstanceState != null ? savedInstanceState.getInt("canal", -1) : -1;
 		ViewGroup l = (ViewGroup)v.findViewById(R.id.lista_canales);
@@ -197,5 +203,11 @@ public class CanalesMapaFragment extends Fragment
 			//noinspection SuspiciousMethodCalls
 			outState.putInt("canal", antena.canales.indexOf(selectedView.getTag()));
 
+	}
+
+	private void ponerDistancia(Location location, TextView tv)
+	{
+		double distancia = antena.distanceTo(new GlobalCoordinates(location.getLatitude(), location.getLongitude()));
+		tv.setText(distancia < 100000 ? getString(R.string.dist_away, Formatos.formatDistance(getActivity(), distancia)) : null);
 	}
 }

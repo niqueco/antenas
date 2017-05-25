@@ -16,16 +16,33 @@
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
 
-	<TextView
+	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-		android:fontFamily="sans-serif-light"
 		android:layout_margin="6dp"
-		tools:text="Buenos Aires"
-		android:id="@+id/antena_desc"
-		android:textColor="@android:color/white"
-		/>
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+			android:fontFamily="sans-serif-light"
+			tools:text="Buenos Aires"
+			android:id="@+id/antena_desc"
+			android:textColor="@android:color/white"
+			/>
+
+		<TextView
+			android:id="@+id/antena_dist"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+			android:layout_marginLeft="16sp"
+			android:layout_marginStart="16sp"
+			tools:text="(a 1,3 km)"
+			/>
+
+	</LinearLayout>
 
 	<TableLayout
 		android:layout_width="wrap_content"

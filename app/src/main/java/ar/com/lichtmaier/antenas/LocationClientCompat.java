@@ -2,6 +2,8 @@ package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
 import android.app.Activity;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -31,6 +33,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
 	private final Callback callback;
+	private final MutableLiveData<Location> location = new MutableLiveData<>();
 
 	private LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
 	{
@@ -78,7 +81,10 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 			return;
 		Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(google);
 		if(lastLocation != null)
+		{
 			callback.onLocationChanged(lastLocation);
+			location.setValue(lastLocation);
+		}
 		start();
 		verificarConfiguración();
 	}
@@ -162,6 +168,7 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		public void onLocationResult(LocationResult result)
 		{
 			lcc.get().callback.onLocationChanged(result.getLastLocation());
+			lcc.get().location.setValue(result.getLastLocation());
 		}
 	}
 	final private LocationCallback locationCallback = new MyLocationCallback(this);
@@ -169,5 +176,10 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 	interface Callback extends com.google.android.gms.location.LocationListener
 	{
 		void onConnectionFailed();
+	}
+
+	public LiveData<Location> getLocation()
+	{
+		return location;
 	}
 }

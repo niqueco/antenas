@@ -186,6 +186,11 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 			mapaFragment.onLocationChanged(location);
 	}
 
+	LiveData<Location> getLocation()
+	{
+		return locationClient == null ? null : locationClient.getLocation();
+	}
+
 	LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
 	@Override
