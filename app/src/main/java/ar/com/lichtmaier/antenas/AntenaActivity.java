@@ -198,7 +198,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 		if(brújula == null && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
 		{
-			Snackbar sb = Snackbar.make(findViewById(R.id.principal), R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
+			View principal = findViewById(R.id.principal);
+			Snackbar sb = Snackbar.make(principal, R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
 					.addCallback(new Snackbar.Callback()
 					{
 						@Override
