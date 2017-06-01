@@ -166,7 +166,10 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 							.alpha(1)
 							.setDuration(500)
 							.setInterpolator(new AccelerateInterpolator())
-							.withEndAction(() -> AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE));
+							.withEndAction(() -> {
+								if(AntenaActivity.flechaADesaparecer != null)
+									AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
+							});
 
 					Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
 					assert tb != null;
