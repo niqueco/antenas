@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -611,7 +612,7 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 				if(polygon == null || canalSeleccionado != canal)
 					return;
 				Activity act = getActivity();
-				if(act == null || Compat.activityIsDestroyed(act) || act.isFinishing())
+				if(act == null || !getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED))
 					return;
 				PolygonOptions poly = new PolygonOptions();
 				poly.addAll(polygon.getPuntos());

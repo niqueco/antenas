@@ -8,16 +8,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.annotation.ColorInt;
-import android.support.v4.view.AccessibilityDelegateCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 
 public class FlechaView extends View
 {
@@ -87,11 +87,11 @@ public class FlechaView extends View
 		{
 			sinValor = false;
 			if(ánguloDibujado != Float.MAX_VALUE)
-				ViewCompat.animate(this).alpha(1);
+				animate().alpha(1);
 			else
 			{
-				ViewCompat.animate(this).cancel();
-				ViewCompat.setAlpha(this, 1);
+				animate().cancel();
+				setAlpha(1);
 			}
 		}
 		double antes = this.ángulo;
@@ -149,7 +149,10 @@ public class FlechaView extends View
 		{
 			crearPinturaPuntosCardinales(h);
 		}
-		Compat.disableHardwareAccelerationForLineCaps(this);
+
+		// disable hardware acceleration if needed for correct line caps
+		if(isHardwareAccelerated() && Build.VERSION.SDK_INT < 18)
+			setLayerType(LAYER_TYPE_SOFTWARE, null);
 	}
 
 	private void crearPinturaPuntosCardinales(int h)
@@ -293,11 +296,11 @@ public class FlechaView extends View
 			return;
 		sinValor = true;
 		if(suave)
-			ViewCompat.animate(this).alpha(0);
+			animate().alpha(0);
 		else
 		{
-			ViewCompat.animate(this).cancel();
-			ViewCompat.setAlpha(this, 0);
+			animate().cancel();
+			setAlpha(0);
 		}
 	}
 
@@ -367,10 +370,10 @@ public class FlechaView extends View
 
 	private void instalarDelegadoAccesibilidad()
 	{
-		ViewCompat.setAccessibilityDelegate(this, new AccessibilityDelegateCompat() {
+		setAccessibilityDelegate(new AccessibilityDelegate() {
 
 			@Override
-			public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfoCompat info)
+			public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfo info)
 			{
 				super.onInitializeAccessibilityNodeInfo(host, info);
 

@@ -137,12 +137,12 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					View fondo = findViewById(R.id.fondo);
 					assert fondo != null;
 
-					ViewCompat.setScaleX(flecha, escalaAncho);
-					ViewCompat.setScaleY(flecha, escalaAlto);
-					ViewCompat.setPivotX(flecha, 0);
-					ViewCompat.setPivotY(flecha, 0);
-					ViewCompat.setTranslationX(flecha, mLeftDelta);
-					ViewCompat.setTranslationY(flecha, mTopDelta);
+					flecha.setScaleX(escalaAncho);
+					flecha.setScaleY(escalaAlto);
+					flecha.setPivotX(0);
+					flecha.setPivotY(0);
+					flecha.setTranslationX(mLeftDelta);
+					flecha.setTranslationY(mTopDelta);
 					ViewCompat.animate(flecha)
 							.scaleX(1)
 							.scaleY(1)
@@ -161,7 +161,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 								}
 							});
 
-					ViewCompat.setAlpha(fondo, 0);
+					fondo.setAlpha(0);
 					ViewCompat.animate(fondo)
 							.alpha(1)
 							.setDuration(500)
@@ -273,9 +273,9 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 				.setInterpolator(new AccelerateInterpolator())
 				.withLayer();
 
-		ViewCompat.setPivotX(flecha, 0);
-		ViewCompat.setPivotY(flecha, 0);
-		ViewCompat.animate(flecha)
+		flecha.setPivotX(0);
+		flecha.setPivotY(0);
+		flecha.animate()
 			.scaleX(escalaAncho)
 			.scaleY(escalaAlto)
 			.translationX(mLeftDelta)
