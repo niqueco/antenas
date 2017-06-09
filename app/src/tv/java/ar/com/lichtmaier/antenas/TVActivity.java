@@ -195,14 +195,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 				if(falta <= 0)
 					pb.setVisibility(View.GONE);
 				else
-					pb.postDelayed(new Runnable()
-					{
-						@Override
-						public void run()
-						{
-							pb.setVisibility(View.GONE);
-						}
-					}, falta);
+					pb.postDelayed(() -> pb.setVisibility(View.GONE), falta);
 			} else
 			{
 				prenderAnimación.cancelado = true;
@@ -263,7 +256,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		long comienzoAnimación = -1;
 		boolean cancelado = false;
 
-		public PrenderAnimación(View pb)
+		PrenderAnimación(View pb)
 		{
 			this.pb = pb;
 		}

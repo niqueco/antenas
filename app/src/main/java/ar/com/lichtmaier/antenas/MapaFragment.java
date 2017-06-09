@@ -326,6 +326,9 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 		latitudActual = location.getLatitude();
 		longitudActual = location.getLongitude();
 
+		if(mapa == null)
+			return; // El mapa todavía no se terminó de inicializar.
+
 		if(!mapaMovido)
 		{
 			mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitudActual, longitudActual)));
@@ -516,6 +519,11 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 	@Override
 	public boolean onMarkerClick(Marker marker)
 	{
+		FragmentManager fm = getFragmentManager();
+
+		if(fm == null || isStateSaved())
+			return true;
+
 		if(markerSeleccionado != null && marker != markerSeleccionado)
 		{
 			markerSeleccionado.setIcon(íconoAntenita);
@@ -527,7 +535,6 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 
 		marker.setIcon(íconoAntenitaElegida);
 
-		FragmentManager fm = getFragmentManager();
 		boolean yaEstaba = fm.findFragmentByTag("canales") != null;
 
 		Antena antena = (Antena)marker.getTag();
@@ -619,8 +626,12 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 				poly.fillColor(ContextCompat.getColor(act, R.color.contorno));
 				poly.strokeWidth(getResources().getDimension(R.dimen.ancho_contorno));
 				contornoActual = mapa.addPolygon(poly);
-				CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), (int)act.getResources().getDimension(R.dimen.paddingContorno));
-				mapa.animateCamera(cameraUpdate);
+				View view = getView();
+				if(view != null)
+				{
+					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), view.getWidth(), view.getHeight(), (int)act.getResources().getDimension(R.dimen.paddingContorno));
+					mapa.animateCamera(cameraUpdate);
+				}
 			}
 
 			@Override
@@ -781,15 +792,20 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 		}
 		Log.d("antenas", "click en línea de " + antena);
 
+		Marker marker = antenaAMarker.get(antena);
+		if(marker == null)
+		{
+			logFragmentStatus();
+			FirebaseCrash.report(new NullPointerException("la antena " + antena + " no tiene marker?? antenas: " + antenaAMarker.keySet()));
+			return;
+		}
+
 		if(!markersCargados)
 		{
 			antenaSeleccionada = antena;
 			return;
 		}
 
-		Marker marker = antenaAMarker.get(antena);
-		if(marker == null)
-			throw new NullPointerException("la antena " + antena + "no tiene marker?? antenas: " + antenaAMarker.keySet());
 		onMarkerClick(marker);
 	}
 
@@ -798,5 +814,6 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 		FirebaseCrash.log("antenaSeleccionada: " + antenaSeleccionada);
 		FirebaseCrash.log("markerSeleccionado: " + markerSeleccionado);
 		FirebaseCrash.log("canalSeleccionado: " + canalSeleccionado);
+		FirebaseCrash.log("estado en el ciclo de vida: " + getLifecycle().getCurrentState());
 	}
 }
