@@ -172,8 +172,6 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	{
 		if(antenasAdapter != null)
 			antenasAdapter.onDestroy();
-		if(locationClient != null)
-			locationClient.destroy();
 		super.onDestroy();
 	}
 

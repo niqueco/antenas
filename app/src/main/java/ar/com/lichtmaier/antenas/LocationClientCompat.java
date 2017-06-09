@@ -5,12 +5,9 @@ import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Bundle;
 import android.os.Looper;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -18,16 +15,17 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.*;
+import com.google.android.gms.tasks.Task;
 
 import java.lang.ref.WeakReference;
 
-public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
+@SuppressWarnings("WeakerAccess")
+public class LocationClientCompat
 {
-	private final GoogleApiClient google;
+	private final FusedLocationProviderClient flpc;
 	private final Activity activity;
 	private final LocationRequest locationRequest;
 	private final int REQUEST_CHECK_SETTINGS = 9988;
@@ -42,11 +40,29 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 		this.callback = callback;
 
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
-		google = new GoogleApiClient.Builder(activity)
-			.addApi(LocationServices.API)
-			.enableAutoManage(activity, this)
-			.addConnectionCallbacks(this)
-			.build();
+
+		flpc = LocationServices.getFusedLocationProviderClient(activity);
+
+		if(ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+			return;
+		Task<Location> task = flpc.getLastLocation();
+		task.addOnCompleteListener(activity, t -> {
+			try
+			{
+				Location lastLocation = t.getResult(ApiException.class);
+				if(lastLocation != null && location.getValue() == null)
+				{
+					callback.onLocationChanged(lastLocation);
+					location.setValue(lastLocation);
+				}
+			} catch(ApiException e)
+			{
+				Log.e("antenas", "Error", e);
+				callback.onConnectionFailed();
+			}
+		});
+		start();
+		verificarConfiguración();
 	}
 
 	@Nullable
@@ -63,77 +79,43 @@ public class LocationClientCompat implements GoogleApiClient.ConnectionCallbacks
 
 	public void start()
 	{
-		if(!google.isConnected())
-		{
-			google.connect();
-			return;
-		}
 		try {
-			LocationServices.FusedLocationApi.requestLocationUpdates(google, locationRequest, locationCallback, Looper.getMainLooper());
+			flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 		} catch(SecurityException ignored) { }
-	}
-
-	@Override
-	public void onConnected(Bundle bundle)
-	{
-		if(ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-				&& ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-			return;
-		Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(google);
-		if(lastLocation != null)
-		{
-			callback.onLocationChanged(lastLocation);
-			location.setValue(lastLocation);
-		}
-		start();
-		verificarConfiguración();
 	}
 
 	private void verificarConfiguración()
 	{
 		LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
 			.addLocationRequest(locationRequest);
-		PendingResult<LocationSettingsResult> result =
-				LocationServices.SettingsApi.checkLocationSettings(google, builder.build());
-		result.setResultCallback(result1 -> {
-			Status status = result1.getStatus();
-			if(status.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED && !noPreguntar /* && !activity.huboSavedInstanceState */)
+		Task<LocationSettingsResponse> result =
+				LocationServices.getSettingsClient(activity).checkLocationSettings(builder.build());
+
+		result.addOnCompleteListener(task -> {
+			try
 			{
-				try
+				task.getResult(ApiException.class);
+			} catch(ApiException e)
+			{
+				if(e.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED && !noPreguntar /* && !activity.huboSavedInstanceState */)
 				{
-					status.startResolutionForResult(activity, REQUEST_CHECK_SETTINGS);
-					noPreguntar = true;
-				} catch(IntentSender.SendIntentException ignored)
-				{
+					try {
+						ResolvableApiException resolvable = (ResolvableApiException)e;
+						resolvable.startResolutionForResult(activity, REQUEST_CHECK_SETTINGS);
+						noPreguntar = true;
+					} catch(Exception e1)
+					{
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
+
 	}
 
 	public void stop()
 	{
-		if(google.isConnected())
-		{
-			LocationServices.FusedLocationApi.removeLocationUpdates(google, locationCallback);
-			google.disconnect(); // No debería ser necesario... =/
-		}
-	}
-
-	public void destroy()
-	{
-		google.unregisterConnectionCallbacks(this);
-		google.unregisterConnectionFailedListener(this);
-	}
-
-	@Override
-	public void onConnectionSuspended(int i)
-	{
-	}
-
-	@Override
-	public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
-	{
-		callback.onConnectionFailed();
+		flpc.removeLocationUpdates(locationCallback);
 	}
 
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)

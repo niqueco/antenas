@@ -103,14 +103,6 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	}
 
 	@Override
-	protected void onDestroy()
-	{
-		if(locationClient != null)
-			locationClient.destroy();
-		super.onDestroy();
-	}
-
-	@Override
 	public void onBackPressed()
 	{
 		// Si fuimos llamados sólo para mostrar una antena, al primer "back" nos vamos.

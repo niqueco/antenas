@@ -510,8 +510,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			antenasAdapter.onDestroy();
 		if(publicidad != null)
 			publicidad.onDestroy();
-		if(locationClient != null)
-			locationClient.destroy();
 		super.onDestroy();
 	}
 
