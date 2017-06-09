@@ -32,7 +32,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		super.onCreate(savedInstanceState);
 		Antena.applicationContext = null;
 		setContentView(R.layout.activity_mapa);
-		Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
+		Toolbar tb = findViewById(R.id.toolbar);
 		if(tb != null)
 		{
 			setSupportActionBar(tb);

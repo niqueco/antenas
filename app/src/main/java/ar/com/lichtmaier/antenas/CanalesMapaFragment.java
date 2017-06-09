@@ -74,7 +74,7 @@ public class CanalesMapaFragment extends LifecycleFragment
 		boolean hayImágenes = antena.hayImágenes();
 		ContextThemeWrapper ctx = new ContextThemeWrapper(getActivity(), R.style.InfoMapa);
 		final ViewGroup v = (ViewGroup)inflater.inflate(R.layout.info_mapa, container, false);
-		TextView tv = (TextView)v.findViewById(R.id.antena_desc);
+		TextView tv = v.findViewById(R.id.antena_desc);
 		if(tv != null)
 		{
 			if(antena.descripción == null)
@@ -82,12 +82,12 @@ public class CanalesMapaFragment extends LifecycleFragment
 			else
 				tv.setText(antena.descripción);
 		}
-		TextView distView = (TextView)v.findViewById(R.id.antena_dist);
+		TextView distView = v.findViewById(R.id.antena_dist);
 		if(distView != null)
 			((MapaActivity)getActivity()).getLocation().observe(this, location -> ponerDistancia(location, distView));
 		View viewCanalASeleccionar = null;
 		final int canalSeleccionadoPos = savedInstanceState != null ? savedInstanceState.getInt("canal", -1) : -1;
-		ViewGroup l = (ViewGroup)v.findViewById(R.id.lista_canales);
+		ViewGroup l = v.findViewById(R.id.lista_canales);
 		int n;
 		if(l instanceof TableLayout)
 		{

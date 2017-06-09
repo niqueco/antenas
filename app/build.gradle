@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.0-rc2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionName "2.6.3"
         resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA",
                 "en-rNZ", "es", "es-rUS", "fr", "fr-rCA",
@@ -45,20 +45,20 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-fragment:25.3.1'
+    compile 'com.android.support:support-fragment:26.0.0-beta2'
     compile 'com.google.android.gms:play-services-location:11.0.0'
     compile 'com.google.android.gms:play-services-maps:11.0.0'
     compile 'com.google.firebase:firebase-ads:11.0.0'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.0.0-beta2'
+    compile 'com.android.support:design:26.0.0-beta2'
+    compile 'com.android.support:recyclerview-v7:26.0.0-beta2'
     compile 'com.github.davidmoten:geo:0.7.5'
     compile files('libs/geodesy.jar')
     compile 'com.google.maps.android:android-maps-utils:0.5'
     compile 'com.google.firebase:firebase-core:11.0.0'
     compile 'com.google.firebase:firebase-crash:11.0.0'
     compile 'com.google.firebase:firebase-perf:11.0.0'
-    tvCompile 'com.android.support:leanback-v17:25.3.1'
+    tvCompile 'com.android.support:leanback-v17:26.0.0-beta2'
     compile files('libs/clipper.jar')
     compile "android.arch.lifecycle:runtime:1.0.0-alpha1"
     compile "android.arch.lifecycle:extensions:1.0.0-alpha1"

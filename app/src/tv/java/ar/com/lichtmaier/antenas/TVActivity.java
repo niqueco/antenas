@@ -77,7 +77,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 
 		setContentView(R.layout.tv_activity);
 
-		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		ProgressBar pb = findViewById(R.id.progressBar);
 		if(pb != null)
 		{
 			prenderAnimación = new PrenderAnimación(pb);
@@ -88,7 +88,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
+		final RecyclerView rv = findViewById(R.id.antenas);
 
 		if(rv != null)
 		{
@@ -186,7 +186,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	private void terminarDeConfigurar()
 	{
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
-		final ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		final ProgressBar pb = findViewById(R.id.progressBar);
 		if(pb != null)
 		{
 			if(prenderAnimación.comienzoAnimación != -1)
@@ -214,7 +214,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 			pb.removeCallbacks(avisoDemora);
 			avisoDemora = null;
 		}
-		TextView problema = (TextView)findViewById(R.id.problema);
+		TextView problema = findViewById(R.id.problema);
 		if(antenasAdapter.getItemCount() == 0)
 		{
 			((ViewGroup.MarginLayoutParams)problema.getLayoutParams()).topMargin = 0;
@@ -299,7 +299,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 			if(act == null)
 				return;
 
-			TextView problemaView = (TextView)act.findViewById(R.id.problema);
+			TextView problemaView = act.findViewById(R.id.problema);
 			problemaView.setText(R.string.aviso_demora_ubicación);
 			problemaView.setVisibility(View.VISIBLE);
 			((ViewGroup.MarginLayoutParams)problemaView.getLayoutParams()).topMargin = (int)(48 * act.getResources().getDisplayMetrics().density);

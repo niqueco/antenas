@@ -50,13 +50,13 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 
 		Bundle bundle = getIntent().getExtras();
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
-		final TextView antenaDesc = (TextView) findViewById(R.id.antena_desc);
+		final TextView antenaDesc = findViewById(R.id.antena_desc);
 		assert antenaDesc != null;
 		if(antena.descripción != null)
 			antenaDesc.setText(antena.descripción);
 		else
 			antenaDesc.setVisibility(View.GONE);
-		final TextView tvPotencia = (TextView)findViewById(R.id.antena_potencia);
+		final TextView tvPotencia = findViewById(R.id.antena_potencia);
 		assert tvPotencia != null;
 		tvPotencia.setText(antena.potencia > 0 ? Formatos.formatPower(antena.potencia) : null);
 		nuevaUbicación(); // para que se configure la distancia
@@ -70,7 +70,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		double ánguloDibujado = bundle.getDouble(PACKAGE + ".ánguloDibujado");
 		boolean animar = bundle.getBoolean(PACKAGE + ".animar");
 
-		flecha = (FlechaView)findViewById(R.id.flecha);
+		flecha = findViewById(R.id.flecha);
 		assert flecha != null;
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -87,9 +87,9 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			View antes = findViewById(R.id.antes_de_canales);
 			if(antes != null)
 				antes.setVisibility(View.VISIBLE);
-			ViewGroup p = (ViewGroup)findViewById(R.id.columna_derecha);
+			ViewGroup p = findViewById(R.id.columna_derecha);
 			if(p == null)
-				p = (ViewGroup)findViewById(R.id.principal);
+				p = findViewById(R.id.principal);
 			assert p != null;
 			boolean hayImágenes = antena.hayImágenes();
 			float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
@@ -171,7 +171,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 									AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 							});
 
-					Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
+					Toolbar tb = findViewById(R.id.toolbar);
 					assert tb != null;
 					int n = tb.getChildCount();
 					for(int i = 0 ; i < n ; i++)
@@ -194,7 +194,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					}
 
 					vistasAnimadas.add(antenaDesc);
-					TextView antenaDist = (TextView) findViewById(R.id.antena_dist);
+					TextView antenaDist = findViewById(R.id.antena_dist);
 					vistasAnimadas.add(antenaDist);
 					vistasAnimadas.add(tvPotencia);
 					int d = getWindow().getDecorView().getBottom();
@@ -315,7 +315,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	{
 		if(antena != null)
 		{
-			TextView antenaDist = (TextView)findViewById(R.id.antena_dist);
+			TextView antenaDist = findViewById(R.id.antena_dist);
 			assert antenaDist != null;
 			antenaDist.setText(Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario)));
 		}
@@ -327,7 +327,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		if(!mostrarDireccionesRelativas)
 			return;
 		double rumbo = antena.rumboDesde(coordsUsuario);
-		FlechaView f = (FlechaView)findViewById(R.id.flecha);
+		FlechaView f = findViewById(R.id.flecha);
 		assert f != null;
 		ángulo = rumbo - brújula;
 		f.setÁngulo(ángulo);

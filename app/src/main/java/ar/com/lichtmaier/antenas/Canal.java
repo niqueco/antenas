@@ -136,7 +136,7 @@ public class Canal
 			logo = dameLogo();
 			if(logo > 0)
 			{
-				ImageView iv = (ImageView)vc.findViewById(R.id.imagen_canal);
+				ImageView iv = vc.findViewById(R.id.imagen_canal);
 				iv.setImageResource(logo);
 				iv.setContentDescription(cadena);
 			}
@@ -144,7 +144,7 @@ public class Canal
 		{
 			vc.findViewById(R.id.imagen_canal).setVisibility(View.GONE);
 		}
-		TextView tv = (TextView)vc.findViewById(R.id.desc_canal);
+		TextView tv = vc.findViewById(R.id.desc_canal);
 		if(nombre == null || !númeroEnElNombre())
 		{
 			StringBuilder sb = new StringBuilder();
@@ -160,7 +160,7 @@ public class Canal
 		}
 		if(mostrarInfo && polarización != '\0')
 		{
-			TextView it = (TextView)vc.findViewById(R.id.info_tecnica);
+			TextView it = vc.findViewById(R.id.info_tecnica);
 			StringBuilder str = new StringBuilder();
 			if(mostrarBanda && numero != null)
 				str.append(Integer.parseInt(numero.replaceAll("[A-Z]$|\\..*$", "")) <= 13 ? "VHF" : "UHF").append('\n');

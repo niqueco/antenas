@@ -121,7 +121,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			Intent i = new Intent(AntenaActivity.this, UnaAntenaActivity.class);
 
 			int[] screenLocation = new int[2];
-			FlechaView flecha = (FlechaView)v.findViewById(R.id.flecha);
+			FlechaView flecha = v.findViewById(R.id.flecha);
 			flecha.getLocationOnScreen(screenLocation);
 			int orientation = getResources().getConfiguration().orientation;
 			i.putExtra(PACKAGE + ".antenaIndex", antena.index).
@@ -157,7 +157,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		super.onCreate(savedInstanceState);
 		asignarLayout();
 
-		Toolbar tb = (Toolbar)findViewById(R.id.toolbar);
+		Toolbar tb = findViewById(R.id.toolbar);
 		setSupportActionBar(tb);
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
@@ -176,7 +176,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		ayudanteDePagos = AyudanteDePagos.dameInstancia(this);
 		ayudanteDePagos.observe(this, this::esPro);
 
-		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		ProgressBar pb = findViewById(R.id.progressBar);
 		if(pb != null)
 		{
 			prenderAnimación = new PrenderAnimación(pb);
@@ -209,7 +209,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 								prefs.edit().putString("aviso_no_brújula", Build.FINGERPRINT).apply();
 						}
 					});
-			TextView tv = (TextView)sb.getView().findViewById(android.support.design.R.id.snackbar_text);
+			TextView tv = sb.getView().findViewById(android.support.design.R.id.snackbar_text);
 			if(tv != null)
 				tv.setMaxLines(4);
 			sb.show();
@@ -220,7 +220,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			brújula.registerListener(this);
 		}
 
-		final RecyclerView rv = (RecyclerView)findViewById(R.id.antenas);
+		final RecyclerView rv = findViewById(R.id.antenas);
 
 		if(rv != null)
 		{
@@ -248,7 +248,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		{
 			if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION))
 			{
-				ViewGroup principal = (ViewGroup)findViewById(R.id.principal);
+				ViewGroup principal = findViewById(R.id.principal);
 				View view = getLayoutInflater().inflate(R.layout.permiso_necesario, principal, false);
 				((TextView)view.findViewById(android.R.id.text1)).setText(R.string.explicacion_permiso_gps);
 				view.findViewById(R.id.button).setOnClickListener(v -> ActivityCompat.requestPermissions(AntenaActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_FINE_LOCATION));
@@ -306,12 +306,12 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	{
 		if(seMuestraRuegoDePermisos)
 		{
-			ViewGroup principal = (ViewGroup)findViewById(R.id.principal);
+			ViewGroup principal = findViewById(R.id.principal);
 			View pedido = principal.findViewById(R.id.pedido_de_permisos);
 			principal.removeView(pedido);
 		}
 
-		ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		ProgressBar pb = findViewById(R.id.progressBar);
 		if(pb != null)
 			pb.postDelayed(avisoDemora = new AvisoDemora(this), 15000);
 
@@ -594,7 +594,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			}
 		}
 
-		final ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar);
+		final ProgressBar pb = findViewById(R.id.progressBar);
 		if(pb != null)
 		{
 			if(prenderAnimación.comienzoAnimación != -1)
@@ -615,7 +615,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			pb.removeCallbacks(avisoDemora);
 			avisoDemora = null;
 		}
-		TextView problema = (TextView)findViewById(R.id.problema);
+		TextView problema = findViewById(R.id.problema);
 		assert problema != null;
 		if(antenasAdapter.getItemCount() == 0)
 		{
@@ -800,7 +800,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			if(act == null)
 				return;
 
-			TextView problemaView = (TextView)act.findViewById(R.id.problema);
+			TextView problemaView = act.findViewById(R.id.problema);
 			problemaView.setText(R.string.aviso_demora_ubicación);
 			problemaView.setVisibility(View.VISIBLE);
 			((ViewGroup.MarginLayoutParams)problemaView.getLayoutParams()).topMargin = (int)(48 * act.getResources().getDisplayMetrics().density);

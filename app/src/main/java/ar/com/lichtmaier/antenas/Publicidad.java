@@ -24,9 +24,9 @@ class Publicidad
 
 	Publicidad(Activity act, String adUnitId)
 	{
-		ViewGroup v = (ViewGroup)act.findViewById(R.id.principal_para_pub);
+		ViewGroup v = act.findViewById(R.id.principal_para_pub);
 		if(v == null)
-			v = (ViewGroup)act.findViewById(R.id.principal);
+			v = act.findViewById(R.id.principal);
 		if(v == null)
 		{
 			adView = null;

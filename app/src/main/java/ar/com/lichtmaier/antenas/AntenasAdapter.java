@@ -56,11 +56,11 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		public AntenaViewHolder(View v)
 		{
 			super(v);
-			tvDesc = (TextView)v.findViewById(R.id.antena_desc);
-			tvDetalle = (TextView)v.findViewById(R.id.antena_detalle_canales);
-			tvDistancia = (TextView)v.findViewById(R.id.antena_dist);
-			tvPotencia = (TextView)v.findViewById(R.id.antena_potencia);
-			flechaView = (FlechaView)v.findViewById(R.id.flecha);
+			tvDesc = v.findViewById(R.id.antena_desc);
+			tvDetalle = v.findViewById(R.id.antena_detalle_canales);
+			tvDistancia = v.findViewById(R.id.antena_dist);
+			tvPotencia = v.findViewById(R.id.antena_potencia);
+			flechaView = v.findViewById(R.id.flecha);
 			avisoLejos = v.findViewById(R.id.aviso_lejos);
 			v.setOnClickListener(this);
 			flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
