@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -35,11 +36,13 @@ public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements
 		return R.style.Dialogo;
 	}
 
+	@NonNull
 	@Override
-	public void setupDialog(Dialog dialog, int style)
+	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
-		super.setupDialog(dialog, style);
+		Dialog dialog = super.onCreateDialog(savedInstanceState);
 		dialog.setTitle(R.string.título_ayuda_calibración_brújula);
+		return dialog;
 	}
 
 	@Nullable

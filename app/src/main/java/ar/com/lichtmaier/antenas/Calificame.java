@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -57,12 +58,14 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 		return R.style.Dialogo;
 	}
 
+	@NonNull
 	@Override
-	public void setupDialog(Dialog dialog, int style)
+	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
-		super.setupDialog(dialog, style);
+		Dialog dialog = super.onCreateDialog(savedInstanceState);
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setTitle(R.string.calif_titulo);
+		return dialog;
 	}
 
 	public static void registráQueMiróLasAntenas(Context context)

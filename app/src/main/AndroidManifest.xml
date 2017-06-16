@@ -36,7 +36,7 @@
         android:name=".Aplicacion"
         android:theme="@style/TemaApp.Antenas"
         android:supportsRtl="true"
-        tools:ignore="AllowBackup,UnusedAttribute">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity
             android:name=".AntenaActivity"

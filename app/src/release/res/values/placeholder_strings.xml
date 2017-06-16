@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="placeholder_nombre_antena" tools:ignore="MissingTranslation"/>
-	<string name="placeholder_distancia_antena" tools:ignore="MissingTranslation"/>
-	<string name="placeholder_nombre_canal" tools:ignore="MissingTranslation"/>
-	<string name="placeholder_desc_canal" tools:ignore="MissingTranslation"/>
-	<string name="placeholder_detalle_canales" tools:ignore="MissingTranslation"/>
-</resources>

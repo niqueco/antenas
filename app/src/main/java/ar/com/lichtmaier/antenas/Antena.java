@@ -489,6 +489,7 @@ public class Antena implements Parcelable
 		parcel.writeInt(index);
 	}
 
+	@SuppressWarnings("unused")
 	public static final Parcelable.Creator<Antena> CREATOR
 			= new Parcelable.Creator<Antena>()
 	{

@@ -843,7 +843,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 	}
 
-	LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+	final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
 	@Override
 	public LifecycleRegistry getLifecycle()

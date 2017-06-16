@@ -328,6 +328,7 @@ public class FlechaView extends View
 			out.writeInt(mostrarAlineación ? 1 : 0);
 		}
 
+		@SuppressWarnings("unused")
 		public static final Parcelable.Creator<SavedState> CREATOR
 				= new Parcelable.Creator<SavedState>() {
 			public SavedState createFromParcel(Parcel in)
