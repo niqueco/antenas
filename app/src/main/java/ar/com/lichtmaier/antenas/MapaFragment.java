@@ -684,6 +684,9 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			for(Polyline p : líneas.values())
 				p.remove();
 			líneas.clear();
+		} else
+		{
+			actualizarLíneas(false);
 		}
 	}
 
