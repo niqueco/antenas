@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.TrafficStats;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -202,6 +203,7 @@ public class CachéDeContornos
 				InputStream in = null;
 				try
 				{
+					TrafficStats.setThreadStatsTag(0xfcc);
 					in = new URL(url).openStream();
 					XmlPullParser parser = xmlPullParserFactory.newPullParser();
 					parser.setInput(in, "UTF-8");
@@ -284,6 +286,7 @@ public class CachéDeContornos
 						} catch(IOException ignored)
 						{
 						}
+					TrafficStats.clearThreadStatsTag();
 				}
 			}
 			return contorno;
