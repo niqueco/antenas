@@ -19,7 +19,6 @@ import android.util.Log;
 import com.github.davidmoten.geo.Coverage;
 import com.github.davidmoten.geo.GeoHash;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.perf.metrics.AddTrace;
 
 import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GeodeticCalculator;
@@ -177,7 +176,6 @@ public class Antena implements Parcelable
 	}
 	final static private DistComparator distComparator = new DistComparator();
 
-	@AddTrace(name = "dameAntenasCerca")
 	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos) throws TimeoutException
 	{
 		double latitud = coordsUsuario.getLatitude();
@@ -406,7 +404,6 @@ public class Antena implements Parcelable
 		coordsCache = coords;
 	}
 
-	@AddTrace(name = "dameAntenas")
 	public static List<Antena> dameAntenas(Context ctx, País país)
 	{
 		try
