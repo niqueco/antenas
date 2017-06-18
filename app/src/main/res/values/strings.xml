@@ -47,7 +47,8 @@
 	<string name="pagame_boton">Buy Pro edition</string>
 	<string name="pagame_gracias">Thanks for using this app!!!</string>
 	<string name="no_se_puede_pagar">Payment cannot be initiated at this time. Please try again later.</string>
-	<string name="dist_away">(%s away)</string>
+	<string name="dist_away_comentario">(%s away)</string>
+	<string name="dist_away_solo">%s away</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d channel</item>

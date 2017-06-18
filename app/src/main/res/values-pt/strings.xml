@@ -52,7 +52,8 @@
 	<string name="pagame_boton">Buy Pro edition</string>
 	<string name="pagame_gracias">Obrigado por usar este aplicativo!</string>
 	<string name="no_se_puede_pagar">O pagamento não pode ser iniciado neste momento. Por favor, tente novamente mais tarde.</string>
-	<string name="dist_away">(a %s)</string>
+	<string name="dist_away_comentario">(a %s)</string>
+	<string name="dist_away_solo">A %s</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>

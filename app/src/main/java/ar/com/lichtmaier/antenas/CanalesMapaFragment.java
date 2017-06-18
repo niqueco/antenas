@@ -84,7 +84,7 @@ public class CanalesMapaFragment extends LifecycleFragment
 		}
 		TextView distView = v.findViewById(R.id.antena_dist);
 		if(distView != null)
-			((MapaActivity)getActivity()).getLocation().observe(this, location -> ponerDistancia(location, distView));
+			((MapaActivity)getActivity()).getLocation().observe(this, location -> ponerDistancia(location, distView, antena.descripción != null));
 		View viewCanalASeleccionar = null;
 		final int canalSeleccionadoPos = savedInstanceState != null ? savedInstanceState.getInt("canal", -1) : -1;
 		ViewGroup l = v.findViewById(R.id.lista_canales);
@@ -205,9 +205,17 @@ public class CanalesMapaFragment extends LifecycleFragment
 
 	}
 
-	private void ponerDistancia(Location location, TextView tv)
+	private void ponerDistancia(Location location, TextView tv, boolean comentario)
 	{
 		double distancia = antena.distanceTo(new GlobalCoordinates(location.getLatitude(), location.getLongitude()));
-		tv.setText(distancia < 100000 ? getString(R.string.dist_away, Formatos.formatDistance(getActivity(), distancia)) : null);
+		if(distancia < 100000)
+		{
+			int res = comentario ? R.string.dist_away_comentario : R.string.dist_away_solo;
+			tv.setText(getString(res, Formatos.formatDistance(getActivity(), distancia)));
+			tv.setVisibility(View.VISIBLE);
+		} else
+		{
+			tv.setVisibility(View.GONE);
+		}
 	}
 }
