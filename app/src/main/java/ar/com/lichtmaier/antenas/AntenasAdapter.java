@@ -333,10 +333,17 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 	{
-		if(key.equals("forzar_direcciones_absolutas"))
-			configurarMostrarDireccionesRelativas();
-		else if(key.equals("usar_contornos"))
-			cachéCercaníaAntena.clear();
+		switch(key)
+		{
+			case "forzar_direcciones_absolutas":
+				configurarMostrarDireccionesRelativas();
+				break;
+			case "usar_contornos":
+				cachéCercaníaAntena.clear();
+			case "max_dist":
+				refrescar();
+				break;
+		}
 	}
 
 	interface Callback
