@@ -36,8 +36,9 @@ public class Pagame extends AppCompatDialogFragment
 	{
 		View v = inflater.inflate(R.layout.pagame, container, false);
 		v.findViewById(R.id.boton_comprar).setOnClickListener(view -> {
+			if(!isStateSaved())
+				dismiss();
 			((AntenaActivity)getActivity()).pagar();
-			dismiss();
 		});
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{

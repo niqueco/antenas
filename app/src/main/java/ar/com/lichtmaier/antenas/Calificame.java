@@ -144,8 +144,9 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 	@Override
 	public void onClick(View v)
 	{
+		if(!isStateSaved())
+			dismiss();
 		acción(v.getId(), getActivity());
-		dismiss();
 	}
 
 	@SuppressLint("CommitPrefEdits")
