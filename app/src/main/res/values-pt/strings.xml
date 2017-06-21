@@ -46,6 +46,7 @@
 	<string name="aviso_demora_ubicación">Obtendo dados de localização está levando mais do que deveria. Verifique se o GPS está habilitado ou, se a localização baseada em rede é usado, verifique se o uso de Wi-Fi está activada.</string>
 	<string name="shortcut_mapa_short_label">Mapa de antenas</string>
 	<string name="pagar">Remover propagandas</string>
+	<string name="comprar">Comprar</string>
 	<string name="thankyou">Obrigado!</string>
 	<string name="pagame_texto">Meu nome é Nicolás Lichtmaier. Eu sou o único criador, designer, curador de dados, etc atrás deste app. Se você achar útil, peço que você considere contribuir com uma pequena quantia de dinheiro. Em troca, você não verá mais esses anúncios feios.</string>
 	<string name="pagame_saludo">Olá!</string>
@@ -56,6 +57,8 @@
 	<string name="dist_away_solo">A %s</string>
 	<string name="título_lugar">Antenas em torno de %s</string>
 	<string name="elegir_lugar">Escolher lugar</string>
+	<string name="cambiar_lugar_cuesta">Obter informações relativas a outro local está disponível apenas na versão paga.</string>
+	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>

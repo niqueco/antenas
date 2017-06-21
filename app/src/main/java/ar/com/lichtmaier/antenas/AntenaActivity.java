@@ -436,6 +436,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					startActivity(i);
 				return true;
 			case R.id.action_elegir_lugar:
+				if(!funciónProHabilitada())
+					return true;
 				try
 				{
 					i = new PlacePicker.IntentBuilder().build(this);
@@ -475,6 +477,22 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private boolean funciónProHabilitada()
+	{
+		if(ayudanteDePagos.getValue() == null)
+		{
+			Toast.makeText(this, R.string.pago_no_verificado, Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		if(!ayudanteDePagos.getValue())
+		{
+			View v = findViewById(R.id.principal);
+			Snackbar.make(v, R.string.cambiar_lugar_cuesta, 7000).setAction(R.string.comprar, view -> pagar()).show();
+			return false;
+		}
+		return true;
 	}
 
 	void pagar()
