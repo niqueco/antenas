@@ -2,9 +2,6 @@
 <antena lat="49.74833" lon="-125.2494">
 <canal nombre="CHAN-DT-4" numero="25"/>
 </antena>
-<antena lat="49.59333" lon="-125.0114">
-<canal nombre="CKVU-TV-1" numero="5"/>
-</antena>
 <antena lat="49.22194" lon="-124.0042">
 <canal nombre="CHAN-DT-6" numero="23"/>
 </antena>
@@ -50,6 +47,9 @@
 </antena>
 <antena lat="49.06972" lon="-122.0272">
 <canal nombre="CHAN-DT-1" numero="31"/>
+</antena>
+<antena lat="49.39056" lon="-123.3786">
+<canal nombre="CHAN-DT-2" numero="39"/>
 </antena>
 <antena lat="49.6475" lon="-123.2108">
 <canal nombre="CHAN-DT-3" numero="7"/>
@@ -215,6 +215,9 @@
 <antena lat="55.47167" lon="-114.7858">
 <canal nombre="CFRN-TV-9" numero="4"/>
 </antena>
+<antena lat="56.27917" lon="-121.0444">
+<canal nombre="CJDC-TV-1" numero="9"/>
+</antena>
 <antena lat="56.27972" lon="-121.0425">
 <canal nombre="CBCD-TV-3" numero="9"/>
 </antena>
@@ -345,9 +348,6 @@
 <canal nombre="CBWFT-DT" numero="51"/>
 <canal nombre="CBWT-DT" numero="27"/>
 </antena>
-<antena lat="49.76778" lon="-94.52306">
-<canal nombre="CJBN-TV" numero="13"/>
-</antena>
 <antena lat="51.47056" lon="-100.72">
 <canal nombre="CKYD-TV" numero="12"/>
 </antena>
@@ -420,6 +420,7 @@
 </antena>
 <antena lat="43.6425" lon="-79.38722">
 <canal nombre="CBLFT-DT" numero="25"/>
+<canal nombre="CBLT-DT" numero="20"/>
 <canal nombre="CFMT-DT" numero="47"/>
 <canal nombre="CFTO-DT" numero="9"/>
 <canal nombre="CICA-DT" numero="19"/>
@@ -622,6 +623,7 @@
 <canal nombre="CHLT-DT" numero="7"/>
 <canal nombre="CIVS-DT" numero="24"/>
 <canal nombre="CKMI-DT-2" numero="11"/>
+<canal nombre="CKSH-DT" numero="9"/>
 </antena>
 <antena lat="46.49083" lon="-72.64944">
 <canal nombre="CFKM-DT" numero="34"/>
@@ -682,9 +684,6 @@
 </antena>
 <antena lat="48.42722" lon="-68.48722">
 <canal nombre="CJPC-DT" numero="18"/>
-</antena>
-<antena lat="48.46722" lon="-68.21417">
-<canal nombre="CFER-TV" numero="11"/>
 </antena>
 <antena lat="48.46722" lon="-68.21083">
 <canal nombre="CFER-DT" numero="11"/>
@@ -823,9 +822,6 @@
 </antena>
 <antena lat="49.39111" lon="-67.47083">
 <canal nombre="CIVF-DT" numero="12"/>
-</antena>
-<antena lat="50.17194" lon="-66.73806">
-<canal nombre="CFER-TV-2" numero="5"/>
 </antena>
 <antena lat="50.17167" lon="-66.73778">
 <canal nombre="CIVG-DT" numero="9"/>
