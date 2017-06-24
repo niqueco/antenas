@@ -55,7 +55,7 @@ public class CanalesMapaFragment extends LifecycleFragment
 		callback.canalSeleccionado(antena, (Canal)v.getTag());
 	}
 
-	void seleccionar(Canal canal)
+	private void seleccionar(Canal canal)
 	{
 		View rootView = getView();
 		assert rootView != null;

@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.StrictMode;
 
@@ -7,6 +8,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class Aplicacion extends Application
 {
+	@SuppressLint("MissingPermission")
 	@Override
 	public void onCreate()
 	{

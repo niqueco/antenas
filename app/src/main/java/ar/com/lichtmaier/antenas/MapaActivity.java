@@ -183,7 +183,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		return locationClient == null ? null : locationClient.getLocation();
 	}
 
-	final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+	private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
 	@Override
 	public LifecycleRegistry getLifecycle()

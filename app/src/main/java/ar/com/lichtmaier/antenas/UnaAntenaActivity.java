@@ -19,8 +19,6 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import org.gavaghan.geodesy.GlobalCoordinates;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -317,10 +315,9 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	{
 		if(antena != null)
 		{
+			Lugar l = Lugar.actual.getValue();
 			TextView antenaDist = findViewById(R.id.antena_dist);
-			assert antenaDist != null;
-			GlobalCoordinates coords = Lugar.actual.getValue() == null ? AntenaActivity.coordsUsuario : Lugar.actual.getValue().coords;
-			antenaDist.setText(Formatos.formatDistance(this, antena.distanceTo(coords)));
+			antenaDist.setText(Formatos.formatDistance(this, antena.distanceTo(l == null ? AntenaActivity.coordsUsuario : l.coords)));
 		}
 	}
 

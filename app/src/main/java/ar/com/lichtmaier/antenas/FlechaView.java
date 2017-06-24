@@ -34,7 +34,7 @@ public class FlechaView extends View
 	private boolean flechaAlineada, mostrarAlineación;
 	@ColorInt private final int colorFlecha, colorFlechaAlineada;
 	@ColorInt private int colorFlechaDibujado;
-	public static final float TOLERANCIA_ALINEACIÓN = 2, TOLERANCIA_DESALINEACIÓN = 6;
+	private static final float TOLERANCIA_ALINEACIÓN = 2, TOLERANCIA_DESALINEACIÓN = 6;
 
 	private ValueAnimator.AnimatorUpdateListener setColorListener;
 	private ValueAnimator animaciónDeColor;

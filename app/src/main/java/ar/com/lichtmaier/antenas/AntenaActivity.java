@@ -58,14 +58,14 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
-	public static final int PRECISIÓN_ACEPTABLE = 150;
-	public static final int REQUEST_CODE_ELEGIR_LUGAR = 889;
+	private static final int PRECISIÓN_ACEPTABLE = 150;
+	private static final int REQUEST_CODE_ELEGIR_LUGAR = 889;
 
-	public static final String PREF_PAGAME_MES_MOSTRADO = "pagame_mes_mostrado";
-	public static final String PREF_LANZAMIENTOS = "lanzamientos";
+	private static final String PREF_PAGAME_MES_MOSTRADO = "pagame_mes_mostrado";
+	private static final String PREF_LANZAMIENTOS = "lanzamientos";
 
 	static GlobalCoordinates coordsUsuario;
-	static float alturaUsuario;
+	private static float alturaUsuario;
 	protected Brújula brújula;
 	private AntenasAdapter antenasAdapter;
 	private Publicidad publicidad;
@@ -605,18 +605,13 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	protected void nuevaUbicación()
 	{
-		if(coordsUsuario == null && Lugar.actual.getValue() == null)
+		Lugar l = Lugar.actual.getValue();
+		if(coordsUsuario == null && l == null)
 			return;
 		if(brújula != null && coordsUsuario != null)
 			brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 
-		if(Lugar.actual.getValue() != null)
-		{
-			antenasAdapter.nuevaUbicación(Lugar.actual.getValue().coords);
-		} else
-		{
-			antenasAdapter.nuevaUbicación(coordsUsuario);
-		}
+		antenasAdapter.nuevaUbicación(l != null ? l.coords : coordsUsuario);
 	}
 
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
@@ -702,6 +697,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 	}
 
+	@SuppressLint("MissingPermission")
 	@Override
 	public void onConnectionFailed()
 	{
@@ -713,13 +709,11 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		locationClient = null;
 		if(coordsUsuario == null)
 		{
-			//noinspection MissingPermission
 			Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
 				nuevaUbicación(location);
 			else
 			{
-				//noinspection MissingPermission
 				location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 				if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
 					nuevaUbicación(location);
@@ -933,7 +927,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 	}
 
-	final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+	private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
 	@Override
 	public LifecycleRegistry getLifecycle()

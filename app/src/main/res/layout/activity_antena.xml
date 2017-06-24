@@ -43,12 +43,14 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="#fff"
                 tools:text="Antenas cerca de La Pharmacie"
+                tools:ignore="RtlSymmetry"
                 />
             <ImageButton
                 android:id="@+id/place_cerrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_clear_white_16dp"
+                android:contentDescription="@android:string/cancel"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 />
         </LinearLayout>
