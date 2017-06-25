@@ -56,6 +56,7 @@
 	<string name="dist_away_solo">À %s</string>
 	<string name="título_lugar">Antennes autour de %s</string>
 	<string name="elegir_lugar">Choisir son lieu</string>
+	<string name="distancia_de">%1$s de %2$s</string>
 	<string name="cambiar_lugar_cuesta">L\'obtention d\'informations relatives à un autre emplacement n\'est disponible que dans la version payante.</string>
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
 

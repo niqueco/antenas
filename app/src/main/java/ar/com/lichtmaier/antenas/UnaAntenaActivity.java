@@ -39,6 +39,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	final private List<View> vistasAnimadas = new ArrayList<>();
 	private View navigationIcon;
 	private boolean mostrarDireccionesRelativas;
+	private TextView antenaDist;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -59,6 +60,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		final TextView tvPotencia = findViewById(R.id.antena_potencia);
 		assert tvPotencia != null;
 		tvPotencia.setText(antena.potencia > 0 ? Formatos.formatPower(antena.potencia) : null);
+		antenaDist = findViewById(R.id.antena_dist);
 		nuevaUbicación(); // para que se configure la distancia
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
@@ -201,7 +203,6 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					}
 
 					vistasAnimadas.add(antenaDesc);
-					TextView antenaDist = findViewById(R.id.antena_dist);
 					vistasAnimadas.add(antenaDist);
 					vistasAnimadas.add(tvPotencia);
 					int d = getWindow().getDecorView().getBottom();
@@ -331,8 +332,16 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		if(antena != null)
 		{
 			Lugar l = Lugar.actual.getValue();
-			TextView antenaDist = findViewById(R.id.antena_dist);
-			antenaDist.setText(Formatos.formatDistance(this, antena.distanceTo(l == null ? AntenaActivity.coordsUsuario : l.coords)));
+			String str;
+			if(l == null)
+			{
+				str = Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario));
+			} else
+			{
+				str = Formatos.formatDistance(this, antena.distanceTo(l.coords));
+				str = getString(R.string.distancia_de, str, l.name);
+			}
+			antenaDist.setText(str);
 		}
 	}
 

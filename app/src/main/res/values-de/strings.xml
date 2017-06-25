@@ -52,6 +52,7 @@
 	<string name="dist_away_solo">%s entfernt</string>
 	<string name="título_lugar">Antennen um %s</string>
 	<string name="elegir_lugar">Wählen Ort</string>
+	<string name="distancia_de">%1$s von %2$s</string>
 	<string name="cambiar_lugar_cuesta">Informationen über einen anderen Standort zu erhalten, ist nur in der bezahlten Version verfügbar.</string>
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
 
