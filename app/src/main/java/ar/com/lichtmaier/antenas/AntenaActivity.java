@@ -406,6 +406,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		Boolean pro = ayudanteDePagos.getValue();
 		if(pro != null)
 			opciónPagar.setVisible(!pro);
+		if(this instanceof UnaAntenaActivity)
+			menu.findItem(R.id.action_elegir_lugar).setVisible(false);
 		return true;
 	}
 

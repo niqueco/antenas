@@ -173,6 +173,13 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 
 					Toolbar tb = findViewById(R.id.toolbar);
 					assert tb != null;
+
+					tb.setAlpha(0);
+					tb.animate()
+						.alpha(1)
+						.setDuration(200)
+						.setInterpolator(new AccelerateInterpolator());
+
 					int n = tb.getChildCount();
 					for(int i = 0 ; i < n ; i++)
 					{
@@ -268,6 +275,14 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 				}
 			});
+
+		Toolbar tb = findViewById(R.id.toolbar);
+		assert tb != null;
+		tb.animate()
+			.alpha(0)
+			.setStartDelay(200)
+			.setDuration(200)
+			.setInterpolator(new AccelerateInterpolator());
 
 		if(navigationIcon != null)
 			ViewCompat.animate(navigationIcon)
