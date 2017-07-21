@@ -96,7 +96,12 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			Antena.applicationContext = null;
 			if(antenaSeleccionada != null)
 			{
-				canalSeleccionado = antenaSeleccionada.canales.get(intent.getIntExtra("ar.com.lichtmaier.antenas.canal", -1));
+				if(antenaSeleccionada.canales != null)
+				{
+					int canalPos = intent.getIntExtra("ar.com.lichtmaier.antenas.canal", -1);
+					if(canalPos != -1)
+						canalSeleccionado = antenaSeleccionada.canales.get(canalPos);
+				}
 				modoMostrarAntena = true;
 			}
 		}

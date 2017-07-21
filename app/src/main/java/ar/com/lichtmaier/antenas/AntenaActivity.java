@@ -432,6 +432,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				return true;
 			case R.id.action_mapa:
 				i = new Intent(this, MapaActivity.class);
+				configurarIntentParaAbrirMapa(i);
 				if(intersticial != null)
 					intersticial.siguienteActividad(this, i, null);
 				else
@@ -480,6 +481,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	protected void configurarIntentParaAbrirMapa(Intent i) { }
 
 	private boolean funciónProHabilitada()
 	{

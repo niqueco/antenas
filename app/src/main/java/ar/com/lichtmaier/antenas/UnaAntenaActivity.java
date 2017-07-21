@@ -393,6 +393,12 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	}
 
 	@Override
+	protected void configurarIntentParaAbrirMapa(Intent i)
+	{
+		i.putExtra("ar.com.lichtmaier.antenas.antena", antena);
+	}
+
+	@Override
 	public void onClick(View view)
 	{
 		Canal canal = (Canal)view.getTag();
