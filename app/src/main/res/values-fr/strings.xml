@@ -45,7 +45,7 @@
 	<string name="aviso_demora_ubicación">Obtenir des données de localisation prend plus qu\'il ne devrait. Vérifiez que le GPS est activé ou, si l\'emplacement basé sur le réseau est utilisé, vérifier que l\'utilisation du WiFi est activé.</string>
 	<string name="shortcut_mapa_short_label">Carte des antennes</string>
 	<string name="pagar">Supprimez la pub</string>
-	<string name="comprar">Acheter</string>
+	<string name="ver_precio">Prix</string>
 	<string name="thankyou">Merci!</string>
 	<string name="pagame_texto">Mon nom est Nicolás Lichtmaier. Je suis le créateur unique, concepteur, conservateur de données, etc derrière cette application. Si vous le trouvez utile, je vous demande d\'envisager de verser une petite somme d\'argent. En échange, vous ne verrez plus ces publicités horribles.</string>
 	<string name="pagame_saludo">Salut!</string>
@@ -57,7 +57,7 @@
 	<string name="título_lugar">Antennes autour de %s</string>
 	<string name="elegir_lugar">Choisir son lieu</string>
 	<string name="distancia_de">%1$s de %2$s</string>
-	<string name="cambiar_lugar_cuesta">L\'obtention d\'informations relatives à un autre emplacement n\'est disponible que dans la version payante.</string>
+	<string name="cambiar_lugar_cuesta">L\'nformation pour un autre emplacement n\'est disponible que dans la version payante.</string>
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
 	<string name="ayuda_una_antena_mapa_titulo">Regardez cette antenne sur la carte</string>
 	<string name="ayuda_una_antena_mapa_texto">Lorsque vous accédez à la carte à partir de cette vue, l\'antenne actuelle sera sélectionnée.</string>

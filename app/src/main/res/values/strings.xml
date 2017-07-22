@@ -41,7 +41,7 @@
 	<string name="aviso_demora_ubicación">Getting location data is taking more than it should. Check the GPS is enabled or, if network based location is used, check that WiFi is working OK.</string>
 	<string name="shortcut_mapa_short_label">Antenna map</string>
 	<string name="pagar">Remove ads</string>
-	<string name="comprar">Buy</string>
+	<string name="ver_precio">Check price</string>
 	<string name="thankyou">Thank you!</string>
 	<string name="pagame_texto">My name is Nicolás Lichtmaier. I\'m the sole creator, designer, data curator behind this app. If you find it useful I ask you to consider contributing some small amount of money. In exchange you will no longer see those ugly ads.</string>
 	<string name="pagame_saludo">Hi!</string>
@@ -53,7 +53,7 @@
 	<string name="título_lugar">Antennas around %s</string>
 	<string name="elegir_lugar">Choose place</string>
 	<string name="distancia_de">%1$s from %2$s</string>
-	<string name="cambiar_lugar_cuesta">Getting information relative to another location is only available in the paid version.</string>
+	<string name="cambiar_lugar_cuesta">Getting information for another location is only available in the paid version.</string>
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
 	<string name="ayuda_una_antena_mapa_titulo">View this antenna on the map</string>
 	<string name="ayuda_una_antena_mapa_texto">When you go to the map from this view the current antenna will be selected.</string>

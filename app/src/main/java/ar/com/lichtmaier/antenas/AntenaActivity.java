@@ -494,7 +494,9 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(!ayudanteDePagos.getValue())
 		{
 			View v = findViewById(R.id.principal);
-			Snackbar.make(v, R.string.cambiar_lugar_cuesta, 7000).setAction(R.string.comprar, view -> pagar()).show();
+			Snackbar.make(v, R.string.cambiar_lugar_cuesta, 7000)
+					.setAction(R.string.ver_precio, view -> pagar())
+					.show();
 			return false;
 		}
 		return true;
