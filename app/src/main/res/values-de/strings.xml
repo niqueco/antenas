@@ -55,6 +55,8 @@
 	<string name="distancia_de">%1$s von %2$s</string>
 	<string name="cambiar_lugar_cuesta">Informationen über einen anderen Standort zu erhalten, ist nur in der bezahlten Version verfügbar.</string>
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
+	<string name="ayuda_una_antena_mapa_titulo">Diese Antenne auf der Karte ansehen</string>
+	<string name="ayuda_una_antena_mapa_texto">Wenn du von dieser Ansicht zur Karte gehst, wird die aktuelle Antenne ausgewählt.</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d Kanal</item>

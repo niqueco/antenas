@@ -59,6 +59,8 @@
 	<string name="distancia_de">%1$s de %2$s</string>
 	<string name="cambiar_lugar_cuesta">L\'obtention d\'informations relatives à un autre emplacement n\'est disponible que dans la version payante.</string>
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
+	<string name="ayuda_una_antena_mapa_titulo">Regardez cette antenne sur la carte</string>
+	<string name="ayuda_una_antena_mapa_texto">Lorsque vous accédez à la carte à partir de cette vue, l\'antenne actuelle sera sélectionnée.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>

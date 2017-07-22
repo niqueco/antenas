@@ -60,6 +60,8 @@
 	<string name="distancia_de">%1$s de %2$s</string>
 	<string name="cambiar_lugar_cuesta">Obter informações relativas a outro local está disponível apenas na versão paga.</string>
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
+	<string name="ayuda_una_antena_mapa_titulo">Veja esta antena no mapa</string>
+	<string name="ayuda_una_antena_mapa_texto">Quando você vai ao mapa a partir desta visualização, a antena atual será selecionada.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>

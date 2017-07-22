@@ -7,23 +7,27 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 import android.support.v4.view.ViewPropertyAnimatorUpdateListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+import android.view.*;
 import android.view.animation.*;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UnaAntenaActivity extends AntenaActivity implements SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener
 {
+	public static final String PREF_AYUDA = "ayuda_una_antena_a_mapa";
+
 	private Antena antena;
 	private int orientaciónOriginal;
 	private int flechaOriginalY;
@@ -216,13 +220,47 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 							.setInterpolator(new DecelerateInterpolator())
 							.setDuration(500)
 							.setStartDelay(200)
-							.withLayer();
+							.withLayer()
+							.setListener(new ViewPropertyAnimatorListenerAdapter() {
+								@Override
+								public void onAnimationEnd(View view)
+								{
+									mostrarAyuda();
+								}
+							});
 					}
 
 					return true;
 				}
 			});
+		} else
+		{
+			flecha.postDelayed(this::mostrarAyuda, 200);
 		}
+	}
+
+	private boolean seMostróAyuda = false;
+	private void mostrarAyuda()
+	{
+		if(seMostróAyuda)
+			return;
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if(prefs.getBoolean(PREF_AYUDA, false))
+			return;
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		View v = toolbar.findViewById(R.id.action_mapa);
+		if(!BuildConfig.DEBUG && v == null)
+		{
+			FirebaseCrash.report(new IllegalStateException());
+			return;
+		}
+		seMostróAyuda = true;
+		TapTargetView.showFor(this, TapTarget.forToolbarMenuItem(toolbar,
+				R.id.action_mapa,
+				getString(R.string.ayuda_una_antena_mapa_titulo),
+				getString(R.string.ayuda_una_antena_mapa_texto))
+			.outerCircleColor(R.color.fondo_ayuda));
+		prefs.edit().putBoolean(PREF_AYUDA, true).apply();
 	}
 
 	private void calcularDeltas()
