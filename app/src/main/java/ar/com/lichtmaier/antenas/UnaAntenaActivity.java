@@ -170,7 +170,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					fondo.setAlpha(0);
 					ViewCompat.animate(fondo)
 							.alpha(1)
-							.setDuration(500)
+							.setDuration(400)
 							.setInterpolator(new AccelerateInterpolator())
 							.withEndAction(() -> {
 								if(AntenaActivity.flechaADesaparecer != null)
@@ -215,11 +215,13 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 						if(v.getTop() > d)
 							continue;
 						v.setTranslationY(d);
+						v.setAlpha(0);
 						ViewCompat.animate(v)
 							.translationY(0)
 							.setInterpolator(new DecelerateInterpolator())
-							.setDuration(500)
-							.setStartDelay(200)
+							.setDuration(400)
+							.setStartDelay(0)
+							.alpha(1)
 							.withLayer()
 							.setListener(new ViewPropertyAnimatorListenerAdapter() {
 								@Override
@@ -346,8 +348,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 				.translationY(d)
 				.setInterpolator(new AccelerateInterpolator())
 				.setDuration(400)
+				.alpha(0)
 				.withLayer();
-
 	}
 
 	@Override
