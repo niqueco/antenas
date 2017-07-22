@@ -180,7 +180,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 
 	LiveData<Location> getLocation()
 	{
-		return locationClient == null ? null : locationClient.getLocation();
+		return locationClient;
 	}
 
 	private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);

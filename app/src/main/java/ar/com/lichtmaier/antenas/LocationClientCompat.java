@@ -3,7 +3,6 @@ package ar.com.lichtmaier.antenas;
 import android.Manifest;
 import android.app.Activity;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -23,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 import java.lang.ref.WeakReference;
 
 @SuppressWarnings("WeakerAccess")
-public class LocationClientCompat
+public class LocationClientCompat extends LiveData<Location>
 {
 	private final FusedLocationProviderClient flpc;
 	private final Activity activity;
@@ -31,7 +30,6 @@ public class LocationClientCompat
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
 	private final Callback callback;
-	private final MutableLiveData<Location> location = new MutableLiveData<>();
 
 	private LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
 	{
@@ -50,10 +48,10 @@ public class LocationClientCompat
 			try
 			{
 				Location lastLocation = t.getResult(ApiException.class);
-				if(lastLocation != null && location.getValue() == null)
+				if(lastLocation != null && getValue() == null)
 				{
 					callback.onLocationChanged(lastLocation);
-					location.setValue(lastLocation);
+					setValue(lastLocation);
 				}
 			} catch(ApiException e)
 			{
@@ -150,7 +148,7 @@ public class LocationClientCompat
 		public void onLocationResult(LocationResult result)
 		{
 			lcc.get().callback.onLocationChanged(result.getLastLocation());
-			lcc.get().location.setValue(result.getLastLocation());
+			lcc.get().setValue(result.getLastLocation());
 		}
 	}
 	final private LocationCallback locationCallback = new MyLocationCallback(this);
@@ -158,10 +156,5 @@ public class LocationClientCompat
 	interface Callback extends com.google.android.gms.location.LocationListener
 	{
 		void onConnectionFailed();
-	}
-
-	public LiveData<Location> getLocation()
-	{
-		return location;
 	}
 }
