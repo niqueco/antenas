@@ -61,6 +61,8 @@
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
 	<string name="ayuda_una_antena_mapa_titulo">Regardez cette antenne sur la carte</string>
 	<string name="ayuda_una_antena_mapa_texto">Lorsque vous accédez à la carte à partir de cette vue, l\'antenne actuelle sera sélectionnée.</string>
+	<string name="ayuda_una_antena_mapa_estacion_titulo">Vérifiez la couverture</string>
+	<string name="ayuda_una_antena_mapa_estacion_texto">En touchant une station, vous allez à la carte avec cette station sélectionnée.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>

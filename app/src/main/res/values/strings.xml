@@ -57,6 +57,8 @@
 	<string name="pago_no_verificado">No se pudo verificar la situación de pago</string>
 	<string name="ayuda_una_antena_mapa_titulo">View this antenna on the map</string>
 	<string name="ayuda_una_antena_mapa_texto">When you go to the map from this view the current antenna will be selected.</string>
+	<string name="ayuda_una_antena_mapa_estacion_titulo">Check coverage</string>
+	<string name="ayuda_una_antena_mapa_estacion_texto">Touching a station you go to the map with that station selected.</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d channel</item>

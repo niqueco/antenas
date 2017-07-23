@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
@@ -18,7 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetView;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	private View navigationIcon;
 	private boolean mostrarDireccionesRelativas;
 	private TextView antenaDist;
+	private View primerVistaCanal; // para mostrar ayuda
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -111,6 +113,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 
 				if(antena.país == País.US)
 				{
+					if(primerVistaCanal == null)
+						primerVistaCanal = vc;
 					vc.setClickable(true);
 					vc.setFocusable(true);
 					vc.setTag(canal);
@@ -257,11 +261,24 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			return;
 		}
 		seMostróAyuda = true;
-		TapTargetView.showFor(this, TapTarget.forToolbarMenuItem(toolbar,
+		TapTargetSequence seq = new TapTargetSequence(this).targets(TapTarget.forToolbarMenuItem(toolbar,
 				R.id.action_mapa,
 				getString(R.string.ayuda_una_antena_mapa_titulo),
 				getString(R.string.ayuda_una_antena_mapa_texto))
 			.outerCircleColor(R.color.fondo_ayuda));
+		seq.continueOnCancel(true);
+		if(primerVistaCanal != null)
+		{
+			int[] location = new int[2];
+			primerVistaCanal.getLocationOnScreen(location);
+			Rect bounds = new Rect(location[0], location[1], location[0] + primerVistaCanal.getWidth() / 2, location[1] + primerVistaCanal.getHeight());
+			seq.target(TapTarget.forBounds(bounds, getString(R.string.ayuda_una_antena_mapa_estacion_titulo),
+					getString(R.string.ayuda_una_antena_mapa_estacion_texto))
+					.outerCircleColor(R.color.fondo_ayuda)
+					.targetRadius(66)
+					.transparentTarget(true));
+		}
+		seq.start();
 		prefs.edit().putBoolean(PREF_AYUDA, true).apply();
 	}
 
