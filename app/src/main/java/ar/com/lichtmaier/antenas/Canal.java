@@ -41,26 +41,22 @@ public class Canal
 	 */
 	public int dameLogo()
 	{
-		int logo = 0;
-		if(cadena != null) switch(cadena)
+		if(cadena == null)
+			return 0;
+		switch(cadena)
 		{
 			case "ABC":
-				logo = R.drawable.logo_abc;
-				break;
+				return R.drawable.logo_abc;
 			case "CBS":
-				logo = R.drawable.logo_cbs;
-				break;
+				return R.drawable.logo_cbs;
 			case "CW":
 			case "THE CW NETWORK":
 			case "CW TELEVISION NETWOR":
-				logo = R.drawable.logo_cw;
-				break;
+				return R.drawable.logo_cw;
 			case "FOX":
-				logo = R.drawable.logo_fox;
-				break;
+				return R.drawable.logo_fox;
 			case "ION":
-				logo = R.drawable.logo_ion;
-				break;
+				return R.drawable.logo_ion;
 			case "MYTV":
 			case "MY NETWORK TV":
 			case "MYNETWORK TV":
@@ -68,32 +64,26 @@ public class Canal
 			case "MYNETWORK":
 			case "MY NETWORK":
 			case "MNT":
-				logo = R.drawable.logo_mytv;
-				break;
+				return R.drawable.logo_mytv;
 			case "NBC":
-				logo = R.drawable.logo_nbc;
-				break;
+				return R.drawable.logo_nbc;
 			case "PBS":
 			case "PUBLIC BROADCASTING SERVICE":
-				logo = R.drawable.logo_pbs;
-				break;
+				return R.drawable.logo_pbs;
 			case "TELEMUNDO":
 			case "TELMUNDO":
-				logo = R.drawable.logo_telemundo;
-				break;
+				return R.drawable.logo_telemundo;
 			case "TRINITY BROADCASTING NETWORK":
 			case "TBN":
-				logo = R.drawable.logo_tbn;
-				break;
+				return R.drawable.logo_tbn;
 			case "UNIMAS":
-				logo = R.drawable.logo_unimas;
-				break;
+				return R.drawable.logo_unimas;
 			case "UNIVISION":
 			case "UNVISION":
-				logo = R.drawable.logo_univision;
-				break;
+				return R.drawable.logo_univision;
+			default:
+				return 0;
 		}
-		return logo;
 	}
 
 	private SoftReference<Bitmap> thumbnailRef;
@@ -128,21 +118,24 @@ public class Canal
 	 */
 	public View dameViewCanal(Context ctx, ViewGroup parent, boolean conImagen, boolean mostrarInfo, boolean mostrarBanda)
 	{
-		View vc = ((LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.canal, parent, false);
+		View vc = LayoutInflater.from(ctx).inflate(R.layout.canal, parent, false);
 		((TextView)vc.findViewById(R.id.nombre_canal)).setText(nombre);
 		int logo = 0;
+		ImageView imagenCanal = vc.findViewById(R.id.imagen_canal);
 		if(conImagen)
 		{
 			logo = dameLogo();
 			if(logo > 0)
 			{
-				ImageView iv = vc.findViewById(R.id.imagen_canal);
-				iv.setImageResource(logo);
-				iv.setContentDescription(cadena);
+				imagenCanal.setImageResource(logo);
+				imagenCanal.setContentDescription(cadena);
+			} else
+			{
+				imagenCanal.setVisibility(View.INVISIBLE);
 			}
 		} else
 		{
-			vc.findViewById(R.id.imagen_canal).setVisibility(View.GONE);
+			imagenCanal.setVisibility(View.GONE);
 		}
 		TextView tv = vc.findViewById(R.id.desc_canal);
 		if(nombre == null || !númeroEnElNombre())
@@ -184,7 +177,7 @@ public class Canal
 		return false;
 	}
 
-	String damePolarización(Context context)
+	private String damePolarización(Context context)
 	{
 		int res;
 		switch(polarización)
