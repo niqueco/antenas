@@ -29,13 +29,11 @@ public class LocationClientCompat extends LiveData<Location>
 	private final LocationRequest locationRequest;
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
-	private final Callback callback;
 
 	private LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
 	{
 		this.activity = activity;
 		this.locationRequest = locationRequest;
-		this.callback = callback;
 
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
 
@@ -49,17 +47,13 @@ public class LocationClientCompat extends LiveData<Location>
 			{
 				Location lastLocation = t.getResult(ApiException.class);
 				if(lastLocation != null && getValue() == null)
-				{
-					callback.onLocationChanged(lastLocation);
 					setValue(lastLocation);
-				}
 			} catch(ApiException e)
 			{
 				Log.e("antenas", "Error", e);
 				callback.onConnectionFailed();
 			}
 		});
-		start();
 		verificarConfiguración();
 	}
 
@@ -75,7 +69,8 @@ public class LocationClientCompat extends LiveData<Location>
 		return new LocationClientCompat(activity, locationRequest, callback);
 	}
 
-	public void start()
+	@Override
+	protected void onActive()
 	{
 		try {
 			flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
@@ -108,10 +103,10 @@ public class LocationClientCompat extends LiveData<Location>
 				}
 			}
 		});
-
 	}
 
-	public void stop()
+	@Override
+	protected void onInactive()
 	{
 		flpc.removeLocationUpdates(locationCallback);
 	}
@@ -147,13 +142,12 @@ public class LocationClientCompat extends LiveData<Location>
 		@Override
 		public void onLocationResult(LocationResult result)
 		{
-			lcc.get().callback.onLocationChanged(result.getLastLocation());
 			lcc.get().setValue(result.getLastLocation());
 		}
 	}
 	final private LocationCallback locationCallback = new MyLocationCallback(this);
 
-	interface Callback extends com.google.android.gms.location.LocationListener
+	interface Callback
 	{
 		void onConnectionFailed();
 	}

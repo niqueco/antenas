@@ -8,8 +8,7 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
+import android.arch.lifecycle.*;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,7 +53,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.crash.FirebaseCrash;
 
-public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, LifecycleRegistryOwner
+public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, LifecycleRegistryOwner, android.arch.lifecycle.Observer<Location>
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -329,6 +328,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					pl.setVisibility(View.GONE);
 				if(antenasAdapter != null)
 					antenasAdapter.setForzarDireccionesAbsolutas(false);
+				if(locationClient != null)
+					locationClient.observe(this, this);
 			}
 			nuevaUbicación();
 
@@ -354,6 +355,9 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				.setInterval(10000)
 				.setFastestInterval(2000)
 				.setSmallestDisplacement(10), this);
+
+		if(locationClient != null)
+			locationClient.observe(this, this);
 	}
 
 	@SuppressLint("MissingPermission")
@@ -515,8 +519,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			brújula.onResume(this);
 		if(locationManager != null)
 			pedirUbicaciónALocationManager();
-		if(locationClient != null)
-			locationClient.start();
 		if(publicidad != null)
 			publicidad.onResume();
 	}
@@ -566,8 +568,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(locationManager != null)
 			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
-		if(locationClient != null)
-			locationClient.stop();
 		super.onStop();
 	}
 
@@ -743,7 +743,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	}
 
 	@Override
-	public void onLocationChanged(Location location)
+	public void onChanged(Location location)
 	{
 		if(publicidad != null)
 			publicidad.load(location);
@@ -762,7 +762,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				//noinspection MissingPermission
 				locationManager.removeUpdates(locationListener);
 			if(locationClient != null)
-				locationClient.stop();
+				locationClient.removeObservers(this);
 
 			if(antenasAdapter != null)
 				antenasAdapter.setForzarDireccionesAbsolutas(true);

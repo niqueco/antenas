@@ -87,22 +87,6 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	}
 
 	@Override
-	protected void onStop()
-	{
-		if(locationClient != null)
-			locationClient.stop();
-		super.onStop();
-	}
-
-	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		if(locationClient != null)
-			locationClient.start();
-	}
-
-	@Override
 	public void onBackPressed()
 	{
 		// Si fuimos llamados sólo para mostrar una antena, al primer "back" nos vamos.
@@ -169,13 +153,6 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	public void onConnectionFailed()
 	{
 		Log.e("antenas", "No se pudo inicializar Play Services: El mapa no accederá a la ubicación actual.");
-	}
-
-	@Override
-	public void onLocationChanged(Location location)
-	{
-		if(mapaFragment != null)
-			mapaFragment.onLocationChanged(location);
 	}
 
 	LiveData<Location> getLocation()

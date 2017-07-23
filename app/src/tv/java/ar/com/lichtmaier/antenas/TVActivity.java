@@ -1,6 +1,10 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -20,20 +24,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.lang.ref.WeakReference;
 
-public class TVActivity extends FragmentActivity implements LocationClientCompat.Callback
+public class TVActivity extends FragmentActivity implements LocationClientCompat.Callback, Observer<Location>, LifecycleOwner
 {
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
 
 	private GlobalCoordinates coordsUsuario;
-	@Nullable private LocationClientCompat locationClient;
 	private AntenasAdapter antenasAdapter;
 	private LocationManager locationManager;
 	private SharedPreferences prefs;
@@ -107,11 +109,13 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 
 	private void crearLocationClientCompat()
 	{
-		locationClient = LocationClientCompat.create(this, LocationRequest.create()
+		LocationClientCompat locationClient = LocationClientCompat.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(10000)
 				.setFastestInterval(2000)
 				.setSmallestDisplacement(10), this);
+		if(locationClient != null)
+			locationClient.observe(this, this);
 	}
 
 	@Override
@@ -152,8 +156,6 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		super.onStart();
 		if(locationManager != null)
 			pedirUbicaciónALocationManager();
-		if(locationClient != null)
-			locationClient.start();
 	}
 
 	@Override
@@ -162,8 +164,6 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		if(locationManager != null)
 			//noinspection MissingPermission
 			locationManager.removeUpdates(locationListener);
-		if(locationClient != null)
-			locationClient.stop();
 		super.onStop();
 	}
 
@@ -231,7 +231,6 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
 
 		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		locationClient = null;
 		if(coordsUsuario == null)
 		{
 			//noinspection MissingPermission
@@ -243,7 +242,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	}
 
 	@Override
-	public void onLocationChanged(Location location)
+	public void onChanged(Location location)
 	{
 		nuevaUbicación(location);
 	}
@@ -297,5 +296,13 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 			problemaView.setVisibility(View.VISIBLE);
 			((ViewGroup.MarginLayoutParams)problemaView.getLayoutParams()).topMargin = (int)(48 * act.getResources().getDisplayMetrics().density);
 		}
+	}
+
+	private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+
+	@Override
+	public Lifecycle getLifecycle()
+	{
+		return lifecycleRegistry;
 	}
 }

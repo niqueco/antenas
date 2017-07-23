@@ -175,6 +175,7 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			mapa = googleMap;
 			inicializarMapa(savedInstanceState);
 		});
+		((MapaActivity)getActivity()).getLocation().observe(this, this::onLocationChanged);
 	}
 
 	private void inicializarMapa(Bundle savedInstanceState)
