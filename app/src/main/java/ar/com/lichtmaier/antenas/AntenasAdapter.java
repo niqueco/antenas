@@ -183,7 +183,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 
 	private void refrescar()
 	{
-		nuevaUbicación(coordsUsuario);
+		if(coordsUsuario != null)
+			nuevaUbicación(coordsUsuario);
 	}
 
 	public void nuevaUbicación(GlobalCoordinates coordsUsuario)
