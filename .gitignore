@@ -15,3 +15,5 @@ manifest-merger-*.txt
 *.iml
 /device-*.png
 /captures
+/app/phone/
+/app/tv/
