@@ -56,6 +56,8 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 	public void onServiceConnected(ComponentName name, IBinder service)
 	{
 		pagosDeGoogle = IInAppBillingService.Stub.asInterface(service);
+		if(BuildConfig.DEBUG && Boolean.TRUE.equals(getValue()))
+			return;
 		new AsyncTask<Void, Void, Boolean>() {
 			@Override
 			protected Boolean doInBackground(Void... voids)
