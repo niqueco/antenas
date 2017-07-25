@@ -76,7 +76,7 @@ class Publicidad implements LifecycleObserver
 				.addTestDevice("341C11CC2A47D92A590EF87DA9E8125E")
 				.addTestDevice("DE769C8D98D3DACE221A6675804E8CAA")
 				.addTestDevice("C34A7B13BA1B16DE0CABA7247F94C289")
-				.addTestDevice("79414D986F49CB7FB2D4E2D7872DBD03") // Nexus 6P
+				.addTestDevice("F46546E8E614B8A8886A62006FA3AFB7") // Nexus 6P
 				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 	}
 
