@@ -139,30 +139,6 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 	}
 
 	@Override
-	public void onResume()
-	{
-		super.onResume();
-		if(publicidad != null)
-			publicidad.onResume();
-	}
-
-	@Override
-	public void onPause()
-	{
-		if(publicidad != null)
-			publicidad.onPause();
-		super.onPause();
-	}
-
-	@Override
-	public void onDetach()
-	{
-		if(publicidad != null)
-			publicidad.onDestroy();
-		super.onDetach();
-	}
-
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_mapa, container, false);
@@ -380,7 +356,7 @@ public class MapaFragment extends LifecycleFragment implements SharedPreferences
 			FragmentActivity activity = getActivity();
 			if(activity == null)
 				return;
-			publicidad = new Publicidad(activity, "ca-app-pub-0461170458442008/5727485755");
+			publicidad = new Publicidad(activity, getLifecycle(), "ca-app-pub-0461170458442008/5727485755");
 			if(mapa != null)
 				configurarPaddingMapa();
 		}

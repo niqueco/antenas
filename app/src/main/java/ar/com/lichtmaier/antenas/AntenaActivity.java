@@ -519,8 +519,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			brújula.onResume(this);
 		if(locationManager != null)
 			pedirUbicaciónALocationManager();
-		if(publicidad != null)
-			publicidad.onResume();
 	}
 
 	@Override
@@ -561,8 +559,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	protected void onStop()
 	{
-		if(publicidad != null)
-			publicidad.onPause();
 		if(brújula != null)
 			brújula.onPause(this);
 		if(locationManager != null)
@@ -578,8 +574,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			brújula.removeListener(this);
 		if(antenasAdapter != null)
 			antenasAdapter.onDestroy();
-		if(publicidad != null)
-			publicidad.onDestroy();
 		super.onDestroy();
 	}
 
@@ -819,7 +813,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		{
 			if(publicidad == null)
 			{
-				publicidad = new Publicidad(this, this instanceof UnaAntenaActivity
+				publicidad = new Publicidad(this, getLifecycle(), this instanceof UnaAntenaActivity
 						? "ca-app-pub-0461170458442008/1711829752"
 						: "ca-app-pub-0461170458442008/6164714153");
 				intersticial = publicidad.crearIntersticial(this, "ca-app-pub-0461170458442008/1312574153");

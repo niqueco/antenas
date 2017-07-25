@@ -1,6 +1,9 @@
 package ar.com.lichtmaier.antenas;
 
 import android.app.Activity;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -15,15 +18,17 @@ import com.google.android.gms.ads.*;
 import java.util.HashMap;
 import java.util.Map;
 
-class Publicidad
+class Publicidad implements LifecycleObserver
 {
 	private final static Map<String, Intersticial> intersticiales = new HashMap<>();
 
 	private final AdView adView;
 	private boolean loaded;
+	private Lifecycle lifecycle;
 
-	Publicidad(Activity act, String adUnitId)
+	Publicidad(Activity act, Lifecycle lifecycle, String adUnitId)
 	{
+		this.lifecycle = lifecycle;
 		ViewGroup v = act.findViewById(R.id.principal_para_pub);
 		if(v == null)
 			v = act.findViewById(R.id.principal);
@@ -38,6 +43,8 @@ class Publicidad
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT, 0);
 		v.addView(adView, params);
+
+		lifecycle.addObserver(this);
 	}
 
 	void load(Location loc)
@@ -73,22 +80,26 @@ class Publicidad
 				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 	}
 
+	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
 	void onPause()
 	{
 		if(adView != null)
 			adView.pause();
 	}
 
+	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	void onResume()
 	{
 		if(adView != null)
 			adView.resume();
 	}
 
+	@OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
 	void onDestroy()
 	{
 		if(adView != null)
 			adView.destroy();
+		lifecycle.removeObserver(this);
 	}
 
 	public int getHeight()
@@ -98,6 +109,7 @@ class Publicidad
 
 	void sacar()
 	{
+		lifecycle.removeObserver(this);
 		if(adView == null)
 			return;
 		((ViewGroup)adView.getParent()).removeView(adView);
