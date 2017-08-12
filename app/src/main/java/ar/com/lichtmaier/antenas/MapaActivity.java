@@ -16,7 +16,7 @@ import android.view.MenuItem;
 
 import com.google.android.gms.location.LocationRequest;
 
-public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback, LifecycleRegistryOwner
+public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback
 {
 	private long comienzoUsoPantalla;
 	@Nullable private LocationClientCompat locationClient;
@@ -158,13 +158,5 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	LiveData<Location> getLocation()
 	{
 		return locationClient;
-	}
-
-	private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
-
-	@Override
-	public LifecycleRegistry getLifecycle()
-	{
-		return lifecycleRegistry;
 	}
 }

@@ -77,3 +77,5 @@
 -keepclassmembers class * extends android.arch.lifecycle.ViewModel {
 	<init>(...);
 }
+
+-keep class * implements android.arch.lifecycle.GeneratedAdapter {<init>(...);}

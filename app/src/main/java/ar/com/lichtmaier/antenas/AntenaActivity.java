@@ -8,7 +8,6 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.*;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -53,7 +52,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.crash.FirebaseCrash;
 
-public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, LifecycleRegistryOwner, android.arch.lifecycle.Observer<Location>
+public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, android.arch.lifecycle.Observer<Location>
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -927,13 +926,4 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			outRect.bottom = (int)alto;
 		}
 	}
-
-	private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
-
-	@Override
-	public LifecycleRegistry getLifecycle()
-	{
-		return lifecycleRegistry;
-	}
-
 }

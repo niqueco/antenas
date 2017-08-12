@@ -7,7 +7,6 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,7 +36,7 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 import java.util.*;
 import java.util.concurrent.TimeoutException;
 
-public class MapaFragment extends LifecycleFragment implements SharedPreferences.OnSharedPreferenceChangeListener,
+public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
 		GoogleMap.OnCameraMoveListener, GoogleMap.OnCameraIdleListener,
 		GoogleMap.OnMarkerClickListener, GoogleMap.OnPolylineClickListener

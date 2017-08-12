@@ -1,9 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,7 +27,7 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.lang.ref.WeakReference;
 
-public class TVActivity extends FragmentActivity implements LocationClientCompat.Callback, Observer<Location>, LifecycleOwner
+public class TVActivity extends FragmentActivity implements LocationClientCompat.Callback, Observer<Location>
 {
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
@@ -296,13 +293,5 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 			problemaView.setVisibility(View.VISIBLE);
 			((ViewGroup.MarginLayoutParams)problemaView.getLayoutParams()).topMargin = (int)(48 * act.getResources().getDisplayMetrics().density);
 		}
-	}
-
-	private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
-
-	@Override
-	public Lifecycle getLifecycle()
-	{
-		return lifecycleRegistry;
 	}
 }

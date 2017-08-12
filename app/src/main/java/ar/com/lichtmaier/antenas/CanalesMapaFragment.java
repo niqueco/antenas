@@ -1,6 +1,5 @@
 package ar.com.lichtmaier.antenas;
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -8,13 +7,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
-public class CanalesMapaFragment extends LifecycleFragment
+public class CanalesMapaFragment extends Fragment
 {
 	private Antena antena;
 	private MapaActivity callback;
