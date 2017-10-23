@@ -1,9 +1,9 @@
 package ar.com.lichtmaier.antenas;
 
 import android.app.Activity;
+import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
+import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -18,7 +18,7 @@ import com.google.android.gms.ads.*;
 import java.util.HashMap;
 import java.util.Map;
 
-class Publicidad implements LifecycleObserver
+class Publicidad implements DefaultLifecycleObserver
 {
 	private final static Map<String, Intersticial> intersticiales = new HashMap<>();
 
@@ -80,22 +80,22 @@ class Publicidad implements LifecycleObserver
 				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 	}
 
-	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-	void onPause()
+	@Override
+	public void onPause(@NonNull LifecycleOwner owner)
 	{
 		if(adView != null)
 			adView.pause();
 	}
 
-	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-	void onResume()
+	@Override
+	public void onResume(@NonNull LifecycleOwner owner)
 	{
 		if(adView != null)
 			adView.resume();
 	}
 
-	@OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-	void onDestroy()
+	@Override
+	public void onDestroy(@NonNull LifecycleOwner owner)
 	{
 		if(adView != null)
 			adView.destroy();
