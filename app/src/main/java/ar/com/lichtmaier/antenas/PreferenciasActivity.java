@@ -41,7 +41,6 @@ public class PreferenciasActivity extends AppCompatPreferenceActivity
 		return super.onOptionsItemSelected(item);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState)
 	{

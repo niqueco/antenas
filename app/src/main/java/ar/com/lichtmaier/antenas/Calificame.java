@@ -78,7 +78,6 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 		registrá(context, PREF_MIRO_MAPA);
 	}
 
-	@SuppressLint("CommitPrefEdits")
 	private static void registrá(Context context, String pref)
 	{
 		if(nuncaPreguntar)
@@ -87,7 +86,6 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 				.putBoolean(pref, true).apply();
 	}
 
-	@SuppressLint("CommitPrefEdits")
 	public static void registrarLanzamiento(FragmentActivity activity)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
