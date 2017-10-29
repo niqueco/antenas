@@ -73,10 +73,6 @@ class Publicidad implements DefaultLifecycleObserver
 	static AdRequest.Builder crearAdRequestBuilder()
 	{
 		return new AdRequest.Builder()
-				.addTestDevice("341C11CC2A47D92A590EF87DA9E8125E")
-				.addTestDevice("DE769C8D98D3DACE221A6675804E8CAA")
-				.addTestDevice("C34A7B13BA1B16DE0CABA7247F94C289")
-				.addTestDevice("F46546E8E614B8A8886A62006FA3AFB7") // Nexus 6P
 				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 	}
 
