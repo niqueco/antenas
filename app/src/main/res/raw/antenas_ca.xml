@@ -17,6 +17,7 @@
 <antena lat="54.74083" lon="-126.9822">
 <canal nombre="CBCY-TV-2" numero="5"/>
 <canal nombre="CFHO-TV-1" numero="13"/>
+<canal nombre="CFTK-TV-2" numero="5"/>
 </antena>
 <antena lat="55.20306" lon="-127.6967">
 <canal nombre="CHHZ-TV" numero="9"/>
