@@ -676,9 +676,12 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			}
 			prenderAnimación = null;
 
-			avisoDemora.cancelado = true;
-			pb.removeCallbacks(avisoDemora);
-			avisoDemora = null;
+			if(avisoDemora != null)
+			{
+				avisoDemora.cancelado = true;
+				pb.removeCallbacks(avisoDemora);
+				avisoDemora = null;
+			}
 		}
 		TextView problema = findViewById(R.id.problema);
 		assert problema != null;
