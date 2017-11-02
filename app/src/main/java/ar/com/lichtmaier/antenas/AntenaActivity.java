@@ -356,7 +356,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 				.setSmallestDisplacement(10), this);
 
 		if(locationClient != null)
+		{
+			locationClient.inicializarConPermiso();
 			locationClient.observe(this, this);
+		}
 	}
 
 	@SuppressLint("MissingPermission")

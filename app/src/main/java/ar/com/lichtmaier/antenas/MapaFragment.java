@@ -5,6 +5,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
@@ -70,6 +71,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	/** Estamos mostrando un canal porque cliquearon en la lista de antenas. Un back debería cerrar la actividad sin miramientos. */
 	boolean modoMostrarAntena;
 	private Marker markerLugar;
+	private boolean myLocationEnabled;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -157,13 +159,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private void inicializarMapa(Bundle savedInstanceState)
 	{
-		if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-		{
-			requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
-			return;
-		}
+		boolean hayPermiso = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+		if(!hayPermiso)
+			requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
 		FragmentActivity act = getActivity();
-		mapa.setMyLocationEnabled(true);
+		mapa.setMyLocationEnabled(hayPermiso);
+		myLocationEnabled = hayPermiso;
 		mapa.setIndoorEnabled(false);
 		if(savedInstanceState == null)
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
@@ -243,7 +244,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(requestCode == PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION)
 		{
 			if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-				inicializarMapa(null);
+				mapa.setMyLocationEnabled(true);
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
@@ -316,6 +317,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		return mapa != null;
 	}
 
+	@SuppressLint("MissingPermission")
 	public void onLocationChanged(Location location)
 	{
 		if(publicidad != null)
@@ -326,6 +328,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 		if(mapa == null)
 			return; // El mapa todavía no se terminó de inicializar.
+
+		if(!myLocationEnabled)
+			mapa.setMyLocationEnabled(true);
 
 		if(!mapaMovido)
 		{

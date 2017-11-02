@@ -24,11 +24,12 @@ import java.lang.ref.WeakReference;
 @SuppressWarnings("WeakerAccess")
 public class LocationClientCompat extends LiveData<Location>
 {
-	private final FusedLocationProviderClient flpc;
+	private FusedLocationProviderClient flpc;
 	private final Activity activity;
 	private final LocationRequest locationRequest;
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
+	private final Callback callback;
 
 	private LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
 	{
@@ -37,10 +38,16 @@ public class LocationClientCompat extends LiveData<Location>
 
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
 
-		flpc = LocationServices.getFusedLocationProviderClient(activity);
+		this.callback = callback;
+	}
 
-		if(ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+	void inicializarConPermiso()
+	{
+		if(ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
+		flpc = LocationServices.getFusedLocationProviderClient(activity);
+		if(hasActiveObservers())
+			flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 		Task<Location> task = flpc.getLastLocation();
 		task.addOnCompleteListener(activity, t -> {
 			try
@@ -73,7 +80,8 @@ public class LocationClientCompat extends LiveData<Location>
 	protected void onActive()
 	{
 		try {
-			flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+			if(flpc != null)
+				flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 		} catch(SecurityException ignored) { }
 	}
 
@@ -108,7 +116,8 @@ public class LocationClientCompat extends LiveData<Location>
 	@Override
 	protected void onInactive()
 	{
-		flpc.removeLocationUpdates(locationCallback);
+		if(flpc != null)
+			flpc.removeLocationUpdates(locationCallback);
 	}
 
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)

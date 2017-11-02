@@ -111,8 +111,12 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 				.setInterval(10000)
 				.setFastestInterval(2000)
 				.setSmallestDisplacement(10), this);
+
 		if(locationClient != null)
+		{
+			locationClient.inicializarConPermiso();
 			locationClient.observe(this, this);
+		}
 	}
 
 	@Override

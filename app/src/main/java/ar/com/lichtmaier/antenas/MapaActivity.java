@@ -1,13 +1,18 @@
 package ar.com.lichtmaier.antenas;
 
+import android.Manifest;
 import android.arch.lifecycle.*;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ShortcutManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,8 +23,10 @@ import com.google.android.gms.location.LocationRequest;
 
 public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback
 {
+	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 11112;
+
 	private long comienzoUsoPantalla;
-	@Nullable private LocationClientCompat locationClient;
+	private LocationClientCompat locationClient;
 
 	private AyudanteDePagos ayudanteDePagos;
 	private MenuItem opciónPagar;
@@ -69,6 +76,24 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 				.setInterval(200)
 				.setFastestInterval(200)
 				.setSmallestDisplacement(1), this);
+
+		if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+		{
+			if(locationClient != null)
+				locationClient.inicializarConPermiso();
+		} else
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	{
+		if(requestCode == PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION)
+		{
+			if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+				locationClient.inicializarConPermiso();
+		} else
+			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 	@Override
