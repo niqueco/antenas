@@ -636,7 +636,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				if(view != null)
 				{
 					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), view.getWidth(), view.getHeight(), (int)act.getResources().getDimension(R.dimen.paddingContorno));
-					mapa.animateCamera(cameraUpdate);
+					try {
+						mapa.animateCamera(cameraUpdate);
+					} catch(Exception e) {
+						logFragmentStatus();
+						FirebaseCrash.report(e);
+					}
 				}
 			}
 
