@@ -124,7 +124,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 	{
 		if(requestCode == PEDIDO_DE_PERMISO_FINE_LOCATION)
 		{
-			if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+			if(grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 				//noinspection ResourceType
 				crearLocationClientCompat();
 			else
