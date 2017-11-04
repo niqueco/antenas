@@ -129,7 +129,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	}
 
 	@Override
-	public void onSaveInstanceState(Bundle outState)
+	public void onSaveInstanceState(@NonNull Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 		outState.putInt("originalBackStackEntryCount", originalBackStackEntryCount);
@@ -140,7 +140,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_mapa, container, false);
 	}
@@ -159,7 +159,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private void inicializarMapa(Bundle savedInstanceState)
 	{
-		boolean hayPermiso = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+		boolean hayPermiso = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 		if(!hayPermiso)
 			requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
 		FragmentActivity act = getActivity();
@@ -763,7 +763,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				polyline = mapa.addPolyline(new PolylineOptions()
 						.add(posNosotros, antena.getLatLng())
 						.geodesic(true)
-						.width(getActivity().getResources().getDimension(sel
+						.width(getResources().getDimension(sel
 								? R.dimen.ancho_línea_antena_sel
 								: R.dimen.ancho_línea_antena))
 						.color(ContextCompat.getColor(getActivity(), sel
