@@ -15,10 +15,10 @@ import android.support.v4.util.LruCache;
 import android.util.Log;
 import android.util.Pair;
 
+import com.crashlytics.android.Crashlytics;
 import com.github.davidmoten.geo.GeoHash;
 import com.github.davidmoten.geo.LatLong;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.crash.FirebaseCrash;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -162,7 +162,7 @@ public class CachéDeContornos
 		{
 			if(referencias == 0)
 			{
-				FirebaseCrash.report(new IllegalStateException("referencias==0"));
+				Crashlytics.logException(new IllegalStateException("referencias==0"));
 				return null;
 			}
 			referencias++;

@@ -13,7 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
-import com.google.firebase.crash.FirebaseCrash;
+import com.crashlytics.android.Crashlytics;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 	public void onServiceDisconnected(ComponentName name)
 	{
 		pagosDeGoogle = null;
-		FirebaseCrash.logcat(Log.WARN, "antenas", "servicio de pagos offline");
+		Crashlytics.log(Log.WARN, "antenas", "servicio de pagos offline");
 	}
 
 	@SuppressLint("StaticFieldLeak")
@@ -78,7 +78,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 				} catch(Exception e)
 				{
 					Log.e("antenas", "Obteniendo información sobre el pago:", e);
-					FirebaseCrash.report(e);
+					Crashlytics.logException(e);
 				}
 				return compras != null && compras.contains(ID_PRODUCTO);
 			}
@@ -133,7 +133,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 			act.startIntentSenderForResult(pendingIntent.getIntentSender(), REQUEST_CODE_COMPRAR, new Intent(), 0, 0, 0);
 		} catch(RemoteException|IntentSender.SendIntentException e)
 		{
-			FirebaseCrash.report(e);
+			Crashlytics.logException(e);
 			Log.e("antenas", "comprando", e);
 		}
 	}

@@ -18,9 +18,9 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -257,7 +257,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		View v = toolbar.findViewById(R.id.action_mapa);
 		if(!BuildConfig.DEBUG && v == null)
 		{
-			FirebaseCrash.report(new IllegalStateException());
+			Crashlytics.logException(new IllegalStateException());
 			return;
 		}
 		seMostróAyuda = true;

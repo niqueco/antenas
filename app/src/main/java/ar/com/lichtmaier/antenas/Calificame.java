@@ -21,8 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crash.FirebaseCrash;
 
 public class Calificame extends AppCompatDialogFragment implements View.OnClickListener
 {
@@ -129,7 +129,7 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 		} catch(Exception e)
 		{
 			Log.e("antenas", "Al pedir calificación...", e);
-			FirebaseCrash.report(e);
+			Crashlytics.logException(e);
 		}
 	}
 

@@ -45,12 +45,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.firebase.crash.FirebaseCrash;
 
 public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, android.arch.lifecycle.Observer<Location>
 {
@@ -372,7 +372,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			{
 				if(locationClient != null)
 				{
-					FirebaseCrash.logcat(Log.ERROR, "antenas", "locationClient no es null en onRequestPermissionsResult");
+					Crashlytics.log(Log.ERROR, "antenas", "locationClient no es null en onRequestPermissionsResult");
 					return;
 				}
 
@@ -544,7 +544,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		} catch(IllegalArgumentException e)
 		{
 			Log.e("antenas", "Error pidiendo updates de GPS", e);
-			FirebaseCrash.report(e);
+			Crashlytics.logException(e);
 			Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
 			finish();
 		}
@@ -785,7 +785,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		try {
 			CalibrarBrújulaFragment.mostrar(this);
 		} catch(Exception e) {
-			FirebaseCrash.report(e);
+			Crashlytics.logException(e);
 		}
 	}
 
@@ -841,7 +841,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 						}
 					} catch(Exception e)
 					{
-						FirebaseCrash.report(e);
+						Crashlytics.logException(e);
 					}
 				}
 			}

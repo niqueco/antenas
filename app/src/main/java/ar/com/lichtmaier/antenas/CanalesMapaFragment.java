@@ -13,7 +13,7 @@ import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
 
-import com.google.firebase.crash.FirebaseCrash;
+import com.crashlytics.android.Crashlytics;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
@@ -192,7 +192,7 @@ public class CanalesMapaFragment extends Fragment
 
 		if(canalSeleccionadoInicialmente != null)
 		{
-			FirebaseCrash.log("recuperando canal: " + canalSeleccionadoInicialmente);
+			Crashlytics.log("recuperando canal: " + canalSeleccionadoInicialmente);
 			seleccionar(canalSeleccionadoInicialmente);
 			canalSeleccionadoInicialmente = null;
 		}

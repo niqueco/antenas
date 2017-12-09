@@ -28,9 +28,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
-import com.google.firebase.crash.FirebaseCrash;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
@@ -464,9 +464,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 							onMarkerClick(markerSeleccionado);
 						} catch(IllegalStateException e)
 						{
-							FirebaseCrash.log("activity: " + getActivity());
+							Crashlytics.log("activity: " + getActivity());
 							logFragmentStatus();
-							FirebaseCrash.report(e);
+							Crashlytics.logException(e);
 						}
 					}
 				}
@@ -515,7 +515,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(fm == null)
 		{
 			logFragmentStatus();
-			FirebaseCrash.report(new NullPointerException("fm es null!"));
+			Crashlytics.logException(new NullPointerException("fm es null!"));
 		} else if(fm.findFragmentByTag("canales") != null)
 			fm.popBackStack("canales", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		mapa.setPadding(0, altoActionBar, 0, 0);
@@ -643,7 +643,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						mapa.animateCamera(cameraUpdate);
 					} catch(Exception e) {
 						logFragmentStatus();
-						FirebaseCrash.report(e);
+						Crashlytics.logException(e);
 					}
 				}
 			}
@@ -804,10 +804,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		Antena antena = (Antena)polyline.getTag();
 		if(antena == null)
 		{
-			FirebaseCrash.log("lineas: " + líneas);
-			FirebaseCrash.log("polyline: " + polyline);
+			Crashlytics.log("lineas: " + líneas);
+			Crashlytics.log("polyline: " + polyline);
 			logFragmentStatus();
-			FirebaseCrash.report(new RuntimeException("onPolylineClick: unknown polyline"));
+			Crashlytics.logException(new RuntimeException("onPolylineClick: unknown polyline"));
 			return;
 		}
 		Log.d("antenas", "click en línea de " + antena);
@@ -816,7 +816,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(marker == null)
 		{
 			logFragmentStatus();
-			FirebaseCrash.report(new NullPointerException("la antena " + antena + " no tiene marker?? antenas: " + antenaAMarker.keySet()));
+			Crashlytics.logException(new NullPointerException("la antena " + antena + " no tiene marker?? antenas: " + antenaAMarker.keySet()));
 			return;
 		}
 
@@ -831,9 +831,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private void logFragmentStatus()
 	{
-		FirebaseCrash.log("antenaSeleccionada: " + antenaSeleccionada);
-		FirebaseCrash.log("markerSeleccionado: " + markerSeleccionado);
-		FirebaseCrash.log("canalSeleccionado: " + canalSeleccionado);
-		FirebaseCrash.log("estado en el ciclo de vida: " + getLifecycle().getCurrentState());
+		Crashlytics.log("antenaSeleccionada: " + antenaSeleccionada);
+		Crashlytics.log("markerSeleccionado: " + markerSeleccionado);
+		Crashlytics.log("canalSeleccionado: " + canalSeleccionado);
+		Crashlytics.log("estado en el ciclo de vida: " + getLifecycle().getCurrentState());
 	}
 }

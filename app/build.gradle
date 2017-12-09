@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 27
@@ -57,8 +58,10 @@ dependencies {
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.10.0'
     compile 'com.google.maps.android:android-maps-utils:0.5'
     compile 'com.google.firebase:firebase-core:11.6.2'
-    compile 'com.google.firebase:firebase-crash:11.6.2'
     compile 'com.google.firebase:firebase-perf:11.6.2'
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
     tvCompile 'com.android.support:leanback-v17:27.0.2'
     compile files('libs/clipper.jar')
     compile "android.arch.lifecycle:extensions:1.0.0"
