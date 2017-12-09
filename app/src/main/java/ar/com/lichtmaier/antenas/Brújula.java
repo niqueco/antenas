@@ -36,6 +36,8 @@ public class Brújula implements SensorEventListener
 		if(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
 		{
 			SensorManager sm = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+			if(sm == null)
+				return null;
 			Sensor magnetómetro = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 			Sensor acelerómetro = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 			if(magnetómetro != null && acelerómetro != null)
@@ -57,6 +59,8 @@ public class Brújula implements SensorEventListener
 	public void onResume(Context context)
 	{
 		SensorManager sm = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+		if(sm == null)
+			return;
 		sm.registerListener(this, magnetómetro, SensorManager.SENSOR_DELAY_UI);
 		sm.registerListener(this, acelerómetro, SensorManager.SENSOR_DELAY_UI);
 	}
@@ -66,6 +70,8 @@ public class Brújula implements SensorEventListener
 		hayInfoDeAcelerómetro = false;
 		hayInfoDeMagnetómetro = false;
 		SensorManager sm = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+		if(sm == null)
+			return;
 		sm.unregisterListener(this);
 	}
 

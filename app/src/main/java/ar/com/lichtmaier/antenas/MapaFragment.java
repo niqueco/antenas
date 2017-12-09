@@ -79,6 +79,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		super.onCreate(savedInstanceState);
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		FragmentManager fm = getFragmentManager();
+		if(fm == null)
+			throw new NullPointerException();
 
 		huboEjecuciónPrevia = savedInstanceState != null;
 		if(huboEjecuciónPrevia)
@@ -89,7 +92,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			modoMostrarAntena = savedInstanceState.getBoolean("modoMostrarAntena");
 		} else
 		{
-			originalBackStackEntryCount = getFragmentManager().getBackStackEntryCount();
+			originalBackStackEntryCount = fm.getBackStackEntryCount();
 
 			Intent intent = getActivity().getIntent();
 			Antena.applicationContext = getActivity().getApplicationContext();
@@ -109,7 +112,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			}
 		}
 
-		getFragmentManager().addOnBackStackChangedListener(() -> {
+		fm.addOnBackStackChangedListener(() -> {
 			if(getFragmentManager().getBackStackEntryCount() == originalBackStackEntryCount)
 			{
 				canalSeleccionado(null, null);

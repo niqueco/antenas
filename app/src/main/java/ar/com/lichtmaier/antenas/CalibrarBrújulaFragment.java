@@ -47,7 +47,7 @@ public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements
 
 	@Nullable
 	@Override
-	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
 		seMostró = true;
 		View v = inflater.inflate(R.layout.calibrar, container, false);

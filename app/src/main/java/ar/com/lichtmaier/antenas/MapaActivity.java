@@ -9,7 +9,6 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -30,7 +29,6 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 
 	private AyudanteDePagos ayudanteDePagos;
 	private MenuItem opciónPagar;
-	private MapaFragment mapaFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +53,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 				opciónPagar.setVisible(!pro);
 		});
 
+		MapaFragment mapaFragment;
 		if(savedInstanceState == null)
 		{
 			mapaFragment = new MapaFragment();

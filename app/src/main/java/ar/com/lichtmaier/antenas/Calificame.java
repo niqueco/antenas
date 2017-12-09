@@ -41,7 +41,7 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 
 	@Nullable
 	@Override
-	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
 		View v = inflater.inflate(R.layout.calificame, container, false);
 
