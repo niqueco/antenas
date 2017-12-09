@@ -3,7 +3,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.0"
+    buildToolsVersion "27.0.1"
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
@@ -45,25 +45,25 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-location:11.4.2'
-    compile 'com.google.android.gms:play-services-maps:11.4.2'
-    compile 'com.google.android.gms:play-services-places:11.4.2'
-    compile 'com.google.firebase:firebase-ads:11.4.2'
-    compile 'com.android.support:appcompat-v7:27.0.0'
-    compile 'com.android.support:design:27.0.0'
-    compile 'com.android.support:recyclerview-v7:27.0.0'
+    compile 'com.google.android.gms:play-services-location:11.6.2'
+    compile 'com.google.android.gms:play-services-maps:11.6.2'
+    compile 'com.google.android.gms:play-services-places:11.6.2'
+    compile 'com.google.firebase:firebase-ads:11.6.2'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.github.davidmoten:geo:0.7.6'
     compile files('libs/geodesy.jar')
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.10.0'
     compile 'com.google.maps.android:android-maps-utils:0.5'
-    compile 'com.google.firebase:firebase-core:11.4.2'
-    compile 'com.google.firebase:firebase-crash:11.4.2'
-    compile 'com.google.firebase:firebase-perf:11.4.2'
-    tvCompile 'com.android.support:leanback-v17:27.0.0'
+    compile 'com.google.firebase:firebase-core:11.6.2'
+    compile 'com.google.firebase:firebase-crash:11.6.2'
+    compile 'com.google.firebase:firebase-perf:11.6.2'
+    tvCompile 'com.android.support:leanback-v17:27.0.2'
     compile files('libs/clipper.jar')
-    compile "android.arch.lifecycle:extensions:1.0.0-rc1"
-    compile "android.arch.lifecycle:common-java8:1.0.0-rc1"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-rc1"
+    compile "android.arch.lifecycle:extensions:1.0.0"
+    compile "android.arch.lifecycle:common-java8:1.0.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
 }
 
 apply plugin: 'com.google.gms.google-services'
