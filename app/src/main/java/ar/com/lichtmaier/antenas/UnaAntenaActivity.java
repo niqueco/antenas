@@ -56,6 +56,12 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
 
 		Bundle bundle = getIntent().getExtras();
+		if(bundle == null)
+		{
+			Crashlytics.logException(new NullPointerException("no extras?"));
+			finish();
+			return;
+		}
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
 		final TextView antenaDesc = findViewById(R.id.antena_desc);
 		assert antenaDesc != null;
