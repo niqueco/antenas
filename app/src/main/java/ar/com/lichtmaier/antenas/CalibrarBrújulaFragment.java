@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements View.OnClickListener
 {
@@ -59,7 +61,14 @@ public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements
 	public void onClick(View v)
 	{
 		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://support.google.com/gmm/answer/6145351"));
-		getActivity().startActivity(i);
+		Context context = getContext();
+		if(context != null)
+		{
+			if(i.resolveActivity(context.getPackageManager()) != null)
+				startActivity(i);
+			else
+				Toast.makeText(context, R.string.app_no_disponible, Toast.LENGTH_SHORT).show();
+		}
 		dismiss();
 	}
 }
