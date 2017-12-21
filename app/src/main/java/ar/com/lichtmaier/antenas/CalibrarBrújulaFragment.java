@@ -69,6 +69,7 @@ public class CalibrarBrújulaFragment extends AppCompatDialogFragment implements
 			else
 				Toast.makeText(context, R.string.app_no_disponible, Toast.LENGTH_SHORT).show();
 		}
-		dismiss();
+		if(!isStateSaved())
+			dismiss();
 	}
 }
