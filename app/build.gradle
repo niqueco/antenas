@@ -4,7 +4,7 @@ apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
@@ -46,10 +46,10 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-location:11.6.2'
-    compile 'com.google.android.gms:play-services-maps:11.6.2'
-    compile 'com.google.android.gms:play-services-places:11.6.2'
-    compile 'com.google.firebase:firebase-ads:11.6.2'
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
+    compile 'com.google.android.gms:play-services-places:11.8.0'
+    compile 'com.google.firebase:firebase-ads:11.8.0'
     compile 'com.android.support:appcompat-v7:27.0.2'
     compile 'com.android.support:design:27.0.2'
     compile 'com.android.support:recyclerview-v7:27.0.2'
@@ -57,8 +57,8 @@ dependencies {
     compile files('libs/geodesy.jar')
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.10.0'
     compile 'com.google.maps.android:android-maps-utils:0.5'
-    compile 'com.google.firebase:firebase-core:11.6.2'
-    compile 'com.google.firebase:firebase-perf:11.6.2'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-perf:11.8.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
