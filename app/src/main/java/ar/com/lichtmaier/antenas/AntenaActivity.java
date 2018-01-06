@@ -1,7 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
 import java.util.*;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
@@ -166,16 +165,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayShowTitleEnabled(false);
-
-		try
-		{
-			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-			if(menuKeyField != null)
-			{
-				menuKeyField.setAccessible(true);
-				menuKeyField.setBoolean(ViewConfiguration.get(this), false);
-			}
-		} catch(Exception ignored) { }
 
 		ayudanteDePagos = AyudanteDePagos.dameInstancia(this);
 		ayudanteDePagos.observe(this, this::esPro);
