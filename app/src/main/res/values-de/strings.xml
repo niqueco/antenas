@@ -59,6 +59,8 @@
 	<string name="ayuda_una_antena_mapa_texto">Wenn du von dieser Ansicht zur Karte gehst, wird die aktuelle Antenne ausgewählt.</string>
 	<string name="ayuda_una_antena_mapa_estacion_titulo">Überprüfen Sie die Abdeckung</string>
 	<string name="ayuda_una_antena_mapa_estacion_texto">Al tocar una estación se va al mapa con esa estación seleccionada.</string>
+	<string name="mapa_físico">Physikalische Karte</string>
+	<string name="mapa_satelital">Satellitenkarte</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d Kanal</item>

@@ -23,9 +23,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ScrollView;
 
 import com.crashlytics.android.Crashlytics;
@@ -72,6 +70,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	boolean modoMostrarAntena;
 	private Marker markerLugar;
 	private boolean myLocationEnabled;
+	private boolean mapaSatelital;
+	private MenuItem tipoMapaMenúItem;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -83,6 +83,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(fm == null)
 			throw new NullPointerException();
 
+		setHasOptionsMenu(true);
+
 		huboEjecuciónPrevia = savedInstanceState != null;
 		if(huboEjecuciónPrevia)
 		{
@@ -90,6 +92,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			antenaSeleccionada = savedInstanceState.getParcelable("antenaSeleccionada");
 			mapaMovido = savedInstanceState.getBoolean("mapaMovido");
 			modoMostrarAntena = savedInstanceState.getBoolean("modoMostrarAntena");
+			setMapaSatelital(savedInstanceState.getBoolean("mapaSatelital"));
 		} else
 		{
 			originalBackStackEntryCount = fm.getBackStackEntryCount();
@@ -140,6 +143,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			outState.putParcelable("antenaSeleccionada", antenaSeleccionada);
 		outState.putBoolean("mapaMovido", mapaMovido);
 		outState.putBoolean("modoMostrarAntena", modoMostrarAntena);
+		outState.putBoolean("mapaSatelital", mapaSatelital);
 	}
 
 	@Override
@@ -177,6 +181,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		mapa.setOnCameraIdleListener(this);
 		mapa.setOnMarkerClickListener(this);
 		mapa.setOnPolylineClickListener(this);
+		configurarTipoMapa();
 		Lugar l = Lugar.actual.getValue();
 		if(l != null)
 		{
@@ -250,6 +255,50 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				mapa.setMyLocationEnabled(true);
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		if(item.getItemId() == R.id.action_tipo_mapa)
+		{
+			setMapaSatelital(!this.mapaSatelital);
+			return true;
+		} else
+			return super.onOptionsItemSelected(item);
+	}
+
+	private void setMapaSatelital(boolean ms)
+	{
+		if(ms == mapaSatelital)
+			return;
+		mapaSatelital = ms;
+		if(mapa != null)
+		{
+			configurarTipoMapa();
+		}
+		if(tipoMapaMenúItem != null)
+			configurarMenúItems();
+	}
+
+	private void configurarTipoMapa()
+	{
+		mapa.setMapType(mapaSatelital ? GoogleMap.MAP_TYPE_HYBRID : GoogleMap.MAP_TYPE_TERRAIN);
+	}
+
+	private void configurarMenúItems()
+	{
+		tipoMapaMenúItem.setIcon(mapaSatelital ? R.drawable.ic_terrain_white_24dp : R.drawable.ic_satellite_white_24dp);
+		tipoMapaMenúItem.setTitle(mapaSatelital ? getString(R.string.mapa_físico) : getString(R.string.mapa_satelital));
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	{
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.mapa_fragment, menu);
+		tipoMapaMenúItem = menu.findItem(R.id.action_tipo_mapa);
+		configurarMenúItems();
 	}
 
 	@Override

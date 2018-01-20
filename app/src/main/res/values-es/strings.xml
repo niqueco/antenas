@@ -64,6 +64,8 @@
 	<string name="ayuda_una_antena_mapa_texto">Al ir al mapa desde esta vista la antena actual aparecerá seleccionada.</string>
 	<string name="ayuda_una_antena_mapa_estacion_titulo">Comprobá la cobertura</string>
 	<string name="ayuda_una_antena_mapa_estacion_texto">Al tocar una estación se va al mapa con esa estación seleccionada.</string>
+	<string name="mapa_físico">Mapa físico</string>
+	<string name="mapa_satelital">Mapa satelital</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Hacia adelante</item>
