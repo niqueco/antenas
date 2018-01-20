@@ -165,7 +165,15 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			mapa = googleMap;
 			inicializarMapa(savedInstanceState);
 		});
-		((MapaActivity)getActivity()).getLocation().observe(this, this::onLocationChanged);
+		MapaActivity activity = (MapaActivity)getActivity();
+		if(activity == null)
+		{
+			logFragmentStatus();
+			Crashlytics.log("fragment status: detached: " + isDetached() + ", hidden: " + isHidden() + ", added: " + isAdded() + ", removing: " + isRemoving());
+			Crashlytics.logException(new RuntimeException("getActivity es null"));
+			return;
+		}
+		activity.getLocation().observe(this, this::onLocationChanged);
 	}
 
 	private void inicializarMapa(Bundle savedInstanceState)
