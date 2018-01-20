@@ -563,6 +563,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	@Override
 	public void onMapClick(LatLng latLng)
 	{
+		if(isStateSaved())
+			return;
+
 		// Esto se hace igual al hacer pop del fragmento de la info,
 		// pero por si no hay info también se hace acá.
 		if(markerSeleccionado != null)
