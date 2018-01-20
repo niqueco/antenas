@@ -61,7 +61,11 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 					.add(R.id.container, mapaFragment)
 					.commit();
 			if(getIntent().getExtras() == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
-				getSystemService(ShortcutManager.class).reportShortcutUsed("mapa");
+			{
+				ShortcutManager sm = getSystemService(ShortcutManager.class);
+				if(sm != null)
+					sm.reportShortcutUsed("mapa");
+			}
 		} else
 		{
 			mapaFragment = (MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container);

@@ -70,8 +70,11 @@ public class CanalesMapaFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
-		País país = País.values()[getArguments().getInt("país")];
-		int index = getArguments().getInt("index");
+		Bundle arguments = getArguments();
+		if(arguments == null)
+			throw new NullPointerException("no arguments?");
+		País país = País.values()[arguments.getInt("país")];
+		int index = arguments.getInt("index");
 		antena = Antena.dameAntena(getActivity(), país, index);
 
 		boolean hayImágenes = antena.hayImágenes();

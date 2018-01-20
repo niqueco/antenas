@@ -78,7 +78,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	{
 		super.onCreate(savedInstanceState);
 
-		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		FragmentActivity activity = getActivity();
+		if(activity == null)
+			throw new NullPointerException("no activity?");
+
+		prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 		FragmentManager fm = getFragmentManager();
 		if(fm == null)
 			throw new NullPointerException();
@@ -97,8 +101,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		{
 			originalBackStackEntryCount = fm.getBackStackEntryCount();
 
-			Intent intent = getActivity().getIntent();
-			Antena.applicationContext = getActivity().getApplicationContext();
+			Intent intent = activity.getIntent();
+			Antena.applicationContext = activity.getApplicationContext();
 			antenaSeleccionada = intent.getParcelableExtra("ar.com.lichtmaier.antenas.antena");
 			Antena.applicationContext = null;
 			if(antenaSeleccionada != null)
@@ -220,6 +224,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				paísesPrendidos.add(país);
 			}
 		AppCompatActivity activity = (AppCompatActivity)getActivity();
+		if(activity == null)
+			throw new NullPointerException("no activity?");
 		ActionBar actionBar = activity.getSupportActionBar();
 		if(actionBar != null)
 			altoActionBar = actionBar.getHeight();
