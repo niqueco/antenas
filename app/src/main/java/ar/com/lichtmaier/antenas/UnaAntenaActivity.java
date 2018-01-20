@@ -451,7 +451,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	private void configurarMostrarDireccionesRelativas()
 	{
 		this.mostrarDireccionesRelativas = brújula != null && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("forzar_direcciones_absolutas", false) && Lugar.actual.getValue() == null;
-		flecha.setÁngulo(antena.rumboDesde(coordsUsuario), false);
+		if(coordsUsuario != null)
+			flecha.setÁngulo(antena.rumboDesde(coordsUsuario), false);
 		flecha.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
 	}
 

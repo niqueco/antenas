@@ -382,7 +382,7 @@ public class Antena implements Parcelable
 	private GlobalCoordinates coordsCache = null;
 	private double rumboCacheado, distCacheada;
 
-	public double distanceTo(GlobalCoordinates coords)
+	public double distanceTo(@NonNull GlobalCoordinates coords)
 	{
 		calcular(coords);
 		return distCacheada;
@@ -394,7 +394,7 @@ public class Antena implements Parcelable
 		return rumboCacheado;
 	}
 
-	private void calcular(GlobalCoordinates coords)
+	private void calcular(@NonNull GlobalCoordinates coords)
 	{
 		if(coords == coordsCache || coords.equals(coordsCache))
 			return;
