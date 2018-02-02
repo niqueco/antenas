@@ -55,7 +55,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.github.davidmoten:geo:0.7.6'
     compile files('libs/geodesy.jar')
-    compile 'com.getkeepsafe.taptargetview:taptargetview:1.10.0'
+    compile 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
     compile 'com.google.maps.android:android-maps-utils:0.5'
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.google.firebase:firebase-perf:11.8.0'
@@ -64,9 +64,9 @@ dependencies {
     }
     tvCompile 'com.android.support:leanback-v17:27.0.2'
     compile files('libs/clipper.jar')
-    compile "android.arch.lifecycle:extensions:1.0.0"
-    compile "android.arch.lifecycle:common-java8:1.0.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    compile "android.arch.lifecycle:extensions:1.1.0"
+    compile "android.arch.lifecycle:common-java8:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 }
 
 apply plugin: 'com.google.gms.google-services'

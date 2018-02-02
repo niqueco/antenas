@@ -15,12 +15,8 @@
 <canal nombre="CFHO-TV" numero="8"/>
 </antena>
 <antena lat="54.74083" lon="-126.9822">
-<canal nombre="CBCY-TV-2" numero="5"/>
 <canal nombre="CFHO-TV-1" numero="13"/>
 <canal nombre="CFTK-TV-2" numero="5"/>
-</antena>
-<antena lat="55.20306" lon="-127.6967">
-<canal nombre="CHHZ-TV" numero="9"/>
 </antena>
 <antena lat="53.87056" lon="-126.0114">
 <canal nombre="CH4467" numero="5"/>
@@ -111,7 +107,6 @@
 <canal nombre="CFCN-TV-9" numero="5"/>
 </antena>
 <antena lat="49.53167" lon="-114.1947">
-<canal nombre="CFCN-TV-4" numero="5"/>
 <canal nombre="CISA-TV-1" numero="3"/>
 </antena>
 <antena lat="49.73306" lon="-112.9611">
@@ -177,9 +172,6 @@
 <antena lat="51.065" lon="-114.2142">
 <canal nombre="CBRT-DT" numero="21"/>
 </antena>
-<antena lat="52.5225" lon="-114.8792">
-<canal nombre="CFRN-TV-10" numero="12"/>
-</antena>
 <antena lat="52.23667" lon="-113.6483">
 <canal nombre="CKEM-TV-1" numero="4"/>
 </antena>
@@ -195,9 +187,6 @@
 </antena>
 <antena lat="54.03194" lon="-115.7178">
 <canal nombre="CFRN-TV-3" numero="12"/>
-</antena>
-<antena lat="56.14639" lon="-117.3389">
-<canal nombre="CFRN-TV-2" numero="3"/>
 </antena>
 <antena lat="53.53194" lon="-113.7814">
 <canal nombre="CJEO-DT" numero="44"/>
@@ -229,14 +218,8 @@
 <antena lat="50.40389" lon="-110.0528">
 <canal nombre="CHAT-TV-1" numero="4"/>
 </antena>
-<antena lat="50.20556" lon="-109.5961">
-<canal nombre="CKMC-TV-1" numero="10"/>
-</antena>
 <antena lat="50.30861" lon="-107.8772">
 <canal nombre="CKMC-TV" numero="12"/>
-</antena>
-<antena lat="49.35083" lon="-105.6356">
-<canal nombre="CKCK-TV-2" numero="6"/>
 </antena>
 <antena lat="50.59556" lon="-105.07">
 <canal nombre="CFRE-DT" numero="11"/>
@@ -247,18 +230,6 @@
 </antena>
 <antena lat="50.44972" lon="-104.5014">
 <canal nombre="CKCK-DT" numero="8"/>
-</antena>
-<antena lat="49.43778" lon="-103.7986">
-<canal nombre="CKCK-TV-1" numero="12"/>
-</antena>
-<antena lat="49.81028" lon="-102.6878">
-<canal nombre="CIEW-TV" numero="7"/>
-</antena>
-<antena lat="51.56278" lon="-112.33">
-<canal nombre="CFCN-TV-1" numero="12"/>
-</antena>
-<antena lat="51.35556" lon="-110.3839">
-<canal nombre="CFCN-TV-16" numero="2"/>
 </antena>
 <antena lat="52.5375" lon="-111.5194">
 <canal nombre="CFRN-TV-7" numero="7"/>
@@ -273,9 +244,6 @@
 <antena lat="52.76083" lon="-108.5653">
 <canal nombre="CFQC-TV-2" numero="6"/>
 </antena>
-<antena lat="53.20139" lon="-107.5147">
-<canal nombre="CIPA-TV-1" numero="10"/>
-</antena>
 <antena lat="54.13528" lon="-111.6056">
 <canal nombre="CFRN-TV-4" numero="12"/>
 </antena>
@@ -285,14 +253,8 @@
 <antena lat="54.19833" lon="-110.8419">
 <canal nombre="CKSA-TV-2" numero="9"/>
 </antena>
-<antena lat="53.82778" lon="-107.0294">
-<canal nombre="CIPA-TV-2" numero="7"/>
-</antena>
 <antena lat="50.64528" lon="-105.7692">
 <canal nombre="CKMJ-TV" numero="7"/>
-</antena>
-<antena lat="51.70833" lon="-104.2994">
-<canal nombre="CIWH-TV" numero="12"/>
 </antena>
 <antena lat="52.17444" lon="-106.4353">
 <canal nombre="CFSK-DT" numero="42"/>
@@ -303,23 +265,8 @@
 <antena lat="53.0575" lon="-105.8431">
 <canal nombre="CIPA-TV" numero="9"/>
 </antena>
-<antena lat="52.83944" lon="-104.3192">
-<canal nombre="CKBQ-TV" numero="2"/>
-</antena>
-<antena lat="53.33528" lon="-104.1492">
-<canal nombre="CKBQ-TV-1" numero="12"/>
-</antena>
-<antena lat="50.78333" lon="-103.7847">
-<canal nombre="CKCK-TV-7" numero="7"/>
-</antena>
 <antena lat="51.20917" lon="-102.7336">
 <canal nombre="CICC-TV" numero="10"/>
-</antena>
-<antena lat="52.05" lon="-102.0556">
-<canal nombre="CICC-TV-2" numero="7"/>
-</antena>
-<antena lat="52.85417" lon="-102.4911">
-<canal nombre="CICC-TV-3" numero="11"/>
 </antena>
 <antena lat="53.83583" lon="-101.2533">
 <canal nombre="CKYP-TV" numero="12"/>
@@ -413,9 +360,6 @@
 <antena lat="43.05167" lon="-79.30083">
 <canal nombre="CKVP-DT" numero="42"/>
 </antena>
-<antena lat="44.09056" lon="-81.20694">
-<canal nombre="CKNX-TV" numero="8"/>
-</antena>
 <antena lat="44.44583" lon="-80.99972">
 <canal nombre="CIII-DT-4" numero="26"/>
 </antena>
@@ -489,17 +433,11 @@
 <canal nombre="CHFD-DT" numero="4"/>
 <canal nombre="CKPR-DT" numero="2"/>
 </antena>
-<antena lat="48.02028" lon="-84.75">
-<canal nombre="CHBX-TV-1" numero="7"/>
-</antena>
 <antena lat="46.59444" lon="-84.35">
 <canal nombre="CHBX-TV" numero="2"/>
 </antena>
 <antena lat="46.59722" lon="-84.28139">
 <canal nombre="CIII-DT-12" numero="15"/>
-</antena>
-<antena lat="46.42972" lon="-82.66917">
-<canal nombre="CICI-TV-1" numero="3"/>
 </antena>
 <antena lat="45.32889" lon="-78.96528">
 <canal nombre="CKNY-TV-11" numero="11"/>
@@ -518,12 +456,6 @@
 </antena>
 <antena lat="47.25444" lon="-79.37694">
 <canal nombre="CKRN-TV-3" numero="3"/>
-</antena>
-<antena lat="47.85417" lon="-83.41889">
-<canal nombre="CITO-TV-4" numero="9"/>
-</antena>
-<antena lat="49.64722" lon="-83.51389">
-<canal nombre="CITO-TV-3" numero="4"/>
 </antena>
 <antena lat="49.39111" lon="-82.3575">
 <canal nombre="CITO-TV-1" numero="10"/>
@@ -583,9 +515,6 @@
 </antena>
 <antena lat="45.44278" lon="-75.64667">
 <canal nombre="CRC-DT-4" numero="46"/>
-</antena>
-<antena lat="45.17639" lon="-74.52694">
-<canal nombre="CJOH-TV-8" numero="8"/>
 </antena>
 <antena lat="45.50306" lon="-73.61556">
 <canal nombre="CFTU-DT" numero="29"/>
@@ -684,6 +613,7 @@
 <canal nombre="CJBR-DT" numero="45"/>
 </antena>
 <antena lat="48.42722" lon="-68.48722">
+<canal nombre="CFTF-DT-12" numero="18"/>
 <canal nombre="CJPC-DT" numero="18"/>
 </antena>
 <antena lat="48.46722" lon="-68.21083">
@@ -692,32 +622,6 @@
 </antena>
 <antena lat="49.23361" lon="-68.14028">
 <canal nombre="CFTF-DT-5" numero="9"/>
-</antena>
-<antena lat="51.70528" lon="-76.03361">
-<canal nombre="CH3214" numero="2542"/>
-<canal nombre="CH3215" numero="2548"/>
-<canal nombre="CH3216" numero="2554"/>
-<canal nombre="CH3217" numero="2560"/>
-<canal nombre="CH3218" numero="2566"/>
-<canal nombre="CH3219" numero="2572"/>
-<canal nombre="CH3220" numero="2578"/>
-<canal nombre="CH3221" numero="2584"/>
-<canal nombre="CH3222" numero="2590"/>
-<canal nombre="CH3223" numero="2596"/>
-<canal nombre="CH3224" numero="2602"/>
-<canal nombre="CH3225" numero="2608"/>
-<canal nombre="CH3226" numero="2614"/>
-<canal nombre="CH3227" numero="2620"/>
-<canal nombre="CH3228" numero="2626"/>
-<canal nombre="CH3229" numero="2632"/>
-<canal nombre="CH3230" numero="2638"/>
-<canal nombre="CH3231" numero="2644"/>
-<canal nombre="CH3232" numero="2650"/>
-<canal nombre="CH3233" numero="2626"/>
-<canal nombre="CH3234" numero="2662"/>
-<canal nombre="CH3235" numero="2668"/>
-<canal nombre="CH3236" numero="2674"/>
-<canal nombre="CH3237" numero="2680"/>
 </antena>
 <antena lat="52.19167" lon="-76.07417">
 <canal nombre="CH3190" numero="2542"/>
@@ -799,14 +703,8 @@
 <antena lat="45.64278" lon="-62.12472">
 <canal nombre="CIHF-DT-15" numero="21"/>
 </antena>
-<antena lat="46.89278" lon="-64.14806">
-<canal nombre="CKCW-TV-2" numero="5"/>
-</antena>
 <antena lat="48.31139" lon="-67.08417">
 <canal nombre="CHAU-DT-1" numero="3"/>
-</antena>
-<antena lat="48.08278" lon="-66.58056">
-<canal nombre="CKCD-TV" numero="7"/>
 </antena>
 <antena lat="48.13556" lon="-66.11778">
 <canal nombre="CFTF-DT-11" numero="44"/>
@@ -823,6 +721,9 @@
 </antena>
 <antena lat="49.39111" lon="-67.47083">
 <canal nombre="CIVF-DT" numero="12"/>
+</antena>
+<antena lat="50.17194" lon="-66.73806">
+<canal nombre="CFER-TV-2" numero="5"/>
 </antena>
 <antena lat="50.17167" lon="-66.73778">
 <canal nombre="CIVG-DT" numero="9"/>
