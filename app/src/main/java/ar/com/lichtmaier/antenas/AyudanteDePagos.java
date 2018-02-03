@@ -22,6 +22,8 @@ import static android.app.Activity.RESULT_OK;
 
 class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 {
+	private static final String TAG = "antenas-pagos";
+
 	private static final String ID_PRODUCTO = "pro";
 	private static final int REQUEST_CODE_COMPRAR = 152;
 
@@ -48,7 +50,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 	public void onServiceDisconnected(ComponentName name)
 	{
 		pagosDeGoogle = null;
-		Crashlytics.log(Log.WARN, "antenas", "servicio de pagos offline");
+		Crashlytics.log(Log.WARN, TAG, "servicio de pagos offline");
 	}
 
 	@SuppressLint("StaticFieldLeak")
@@ -66,18 +68,18 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 				try
 				{
 					Bundle resp = pagosDeGoogle.getPurchases(3, BuildConfig.APPLICATION_ID, "inapp", null);
-					Log.i("antenas", "resp: " + resp.keySet());
 					int responseCode = resp.getInt("RESPONSE_CODE", -1);
 					if(responseCode != 0)
 					{
-						Log.e("antenas", "Obteniendo información sobre el pago: responseCode = " + responseCode);
+						Log.e(TAG, "Obteniendo información sobre el pago: responseCode = " + responseCode);
 						return false;
 					}
 					compras = resp.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
-					Log.i("antenas", "compras: " + compras);
+					if(Log.isLoggable(TAG, Log.DEBUG))
+						Log.d(TAG, "compras: " + compras);
 				} catch(Exception e)
 				{
-					Log.e("antenas", "Obteniendo información sobre el pago:", e);
+					Log.e(TAG, "Obteniendo información sobre el pago:", e);
 					Crashlytics.logException(e);
 				}
 				return compras != null && compras.contains(ID_PRODUCTO);
@@ -125,7 +127,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 					pagosDeGoogle.consumePurchase(3, BuildConfig.APPLICATION_ID, ID_PRODUCTO);
 				}
 				else
-					Log.e("antenas", "Comprando RESPONSE_CODE = " + res);
+					Log.e(TAG, "Comprando RESPONSE_CODE = " + res);
 				return;
 			}
 			PendingIntent pendingIntent = b.getParcelable("BUY_INTENT");
@@ -134,7 +136,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 		} catch(RemoteException|IntentSender.SendIntentException e)
 		{
 			Crashlytics.logException(e);
-			Log.e("antenas", "comprando", e);
+			Log.e(TAG, "comprando", e);
 		}
 	}
 
