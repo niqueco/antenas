@@ -171,8 +171,7 @@ public class Canal
 		if(nombre != null)
 		{
 			Matcher m = patternCanal.matcher(nombre);
-			if(m.find() && m.group(1).equals(numero))
-				return true;
+			return m.find() && m.group(1).equals(numero);
 		}
 		return false;
 	}

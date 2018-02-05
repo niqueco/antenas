@@ -27,7 +27,7 @@ import java.util.List;
 
 public class UnaAntenaActivity extends AntenaActivity implements SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener
 {
-	public static final String PREF_AYUDA = "ayuda_una_antena_a_mapa";
+	private static final String PREF_AYUDA = "ayuda_una_antena_a_mapa";
 
 	private Antena antena;
 	private int orientaciónOriginal;
