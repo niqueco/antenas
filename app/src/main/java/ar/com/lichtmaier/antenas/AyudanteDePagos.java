@@ -34,6 +34,15 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 
 	private static AyudanteDePagos instance;
 
+	private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
+	{
+		@Override
+		public void onReceive(Context context, Intent intent)
+		{
+			verificarCompras();
+		}
+	};
+
 	private AyudanteDePagos(Context context)
 	{
 		this.context = context.getApplicationContext();
@@ -60,6 +69,11 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 		pagosDeGoogle = IInAppBillingService.Stub.asInterface(service);
 		if(BuildConfig.DEBUG && Boolean.TRUE.equals(getValue()))
 			return;
+		verificarCompras();
+	}
+
+	private void verificarCompras()
+	{
 		new AsyncTask<Void, Void, Boolean>() {
 			@Override
 			protected Boolean doInBackground(Void... voids)
@@ -99,6 +113,9 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 		Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
 		serviceIntent.setPackage("com.android.vending");
 		context.bindService(serviceIntent, this, Context.BIND_AUTO_CREATE);
+
+		IntentFilter promoFilter = new IntentFilter("com.android.vending.billing.PURCHASES_UPDATED");
+		context.registerReceiver(broadcastReceiver, promoFilter);
 	}
 
 	void pagar(FragmentActivity act)
@@ -143,6 +160,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 	@Override
 	protected void onInactive()
 	{
+		context.unregisterReceiver(broadcastReceiver);
 		context.unbindService(this);
 	}
 
