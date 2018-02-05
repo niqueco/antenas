@@ -14436,7 +14436,7 @@
 <canal nombre="WXCB-CD" numero="25" ref="1483701"/>
 </antena>
 <antena lat="40.6275" lon="-83.13">
-<canal nombre="WMNO-CD" numero="28" ref="1605631"/>
+<canal nombre="WCBZ-CD" numero="28" ref="1605631"/>
 </antena>
 <antena lat="39.92833" lon="-81.98528">
 <canal nombre="WHIZ-TV" numero="40" numero_virtual="18" cadena="NBC" ref="1231999"/>
@@ -15043,7 +15043,7 @@
 <canal nombre="WFDC-DT" numero="15" numero_virtual="14" cadena="UNIVISION" ref="1495232"/>
 <canal nombre="WWTD-LD" numero="14" ref="1630655"/>
 <canal nombre="WRZB-LD" numero="32" ref="1630949,2004374"/>
-<canal nombre="WZDC-CD" numero="48" ref="2001651"/>
+<canal nombre="WZDC-CD" numero="48" numero_virtual="44" ref="2001651"/>
 </antena>
 <antena lat="38.95028" lon="-77.08">
 <canal nombre="WWPX-TV" numero="13" numero_virtual="60" cadena="ION" ref="1434611"/>
@@ -15683,7 +15683,7 @@
 <canal nombre="W28DA-D" numero="28" ref="1316178"/>
 </antena>
 <antena lat="42.78556" lon="-73.62917">
-<canal nombre="WNGN-LD" numero="23" ref="1203041"/>
+<canal nombre="WNGN-LD" numero="23" numero_virtual="38" ref="1203041"/>
 </antena>
 <antena lat="42.78583" lon="-73.62861">
 <canal nombre="WNYT" numero="12" numero_virtual="13" cadena="NBC" ref="1360811"/>
@@ -15797,7 +15797,7 @@
 <canal nombre="WFSB" numero="33" numero_virtual="3" cadena="CBS" ref="1559315"/>
 </antena>
 <antena lat="41.79667" lon="-72.79778">
-<canal nombre="WRDM-CD" numero="35" numero_virtual="50" ref="1551846"/>
+<canal nombre="WRDM-CD" numero="35" numero_virtual="19" ref="1551846"/>
 <canal nombre="WHCT-LD" numero="38" ref="1558571"/>
 </antena>
 <antena lat="41.79667" lon="-72.79725">
@@ -15905,7 +15905,7 @@
 </antena>
 <antena lat="42.73528" lon="-71.39361">
 <canal nombre="WWJE-DT" numero="27" numero_virtual="50" cadena="MYTV" ref="1166391"/>
-<canal nombre="WYCN-CD" numero="43" numero_virtual="13" ref="1640881"/>
+<canal nombre="WYCN-CD" numero="43" numero_virtual="15" ref="1640881"/>
 </antena>
 <antena lat="42.98361" lon="-71.59028">
 <canal nombre="WMUR-TV" numero="9" cadena="ABC" ref="1342273"/>
