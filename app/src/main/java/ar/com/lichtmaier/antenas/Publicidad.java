@@ -73,6 +73,7 @@ class Publicidad implements DefaultLifecycleObserver
 	static AdRequest.Builder crearAdRequestBuilder()
 	{
 		return new AdRequest.Builder()
+				.addTestDevice("8B1260447C80CBDD838ECB86F1DA61B1") // Galaxy S8
 				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 	}
 
