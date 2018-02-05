@@ -772,7 +772,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	public void faltaCalibrar()
 	{
 		try {
-			CalibrarBrújulaFragment.mostrar(this);
+			if(!getSupportFragmentManager().isStateSaved())
+				CalibrarBrújulaFragment.mostrar(this);
 		} catch(Exception e) {
 			Crashlytics.logException(e);
 		}
