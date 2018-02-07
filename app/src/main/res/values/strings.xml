@@ -46,7 +46,7 @@
 	<string name="pagame_texto">My name is Nicolás Lichtmaier. I\'m the sole creator, designer, data curator behind this app. If you find it useful I ask you to consider contributing some small amount of money. In exchange you will no longer see those ugly ads.</string>
 	<string name="pagame_saludo">Hi!</string>
 	<string name="pagame_boton">Buy Pro edition</string>
-	<string name="pagame_gracias">Thanks for using this app!!!</string>
+	<string name="pagame_gracias">Thanks for using this app!</string>
 	<string name="no_se_puede_pagar">Payment cannot be initiated at this time. Please try again later.</string>
 	<string name="dist_away_comentario">(%s away)</string>
 	<string name="dist_away_solo">%s away</string>

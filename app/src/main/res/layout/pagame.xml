@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -22,11 +23,12 @@
         android:layout_marginTop="16dp"
         android:layout_weight="0"
         android:id="@+id/label_pagame"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:lineSpacingMultiplier="1.2"
-        android:textSize="18sp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:breakStrategy="simple"
+        tools:ignore="UnusedAttribute"
         />
 
     <Button
@@ -48,6 +50,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="?android:textColorSecondary"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:gravity="center_horizontal"

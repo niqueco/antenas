@@ -51,7 +51,7 @@
 	<string name="pagame_texto">Mi nombre es <b>Nicolás Lichtmaier</b>. Soy el creador, diseñador, curador de datos, etc. detrás de esta aplicación. Si ésta te parece útil te pido que consideres conribuir una pequeña cantidad de dinero. A cambio, no tendrás que ver más esos molestos avisos.</string>
 	<string name="pagame_saludo">¡Hola!</string>
 	<string name="pagame_boton">Comprar edición pro</string>
-	<string name="pagame_gracias">¡¡Gracias por usar esta app!!</string>
+	<string name="pagame_gracias">¡Gracias por usar esta app!</string>
 	<string name="no_se_puede_pagar">No se puede iniciar el pago en este momento. Por favor intente más tarde.</string>
 	<string name="dist_away_comentario">(a %s)</string>
 	<string name="dist_away_solo">A %s</string>

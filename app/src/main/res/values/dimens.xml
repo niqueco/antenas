@@ -14,7 +14,7 @@
 	<dimen name="alto_divisor">2dp</dimen>
 	<dimen name="ancho_línea_antena">1.5dp</dimen>
 	<dimen name="ancho_línea_antena_sel">2.5dp</dimen>
-	<dimen name="dialog_fragment_width">400dp</dimen>
+	<dimen name="dialog_fragment_width">360dp</dimen>
 
 	<string name="antenas_layout_manager" translatable="false">android.support.v7.widget.LinearLayoutManager</string>
 	<integer name="lineas_resumen">3</integer>
