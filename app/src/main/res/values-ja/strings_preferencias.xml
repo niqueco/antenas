@@ -1,0 +1,72 @@
+<resources>
+
+    <string name="pref_header_antenas">近くのアンテナのリスト</string>
+    <string name="pref_max_dist_title">最大距離</string>
+
+    <string-array name="pref_max_dist_titles">
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>20 km</item>
+        <item>40 km</item>
+        <item>60 km</item>
+        <item>100 km</item>
+        <item>300 km</item>
+        </string-array>
+    <string-array name="pref_max_dist_values">
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>100</item>
+        <item>300</item>
+        </string-array>
+
+    <string name="pref_menos_title">Show less antennas</string>
+    <string name="pref_menos_summary">Show only the closest ones if there seem to be too many around.</string>
+
+    <string name="pref_usar_contornos_title">Use coverage areas (for the US)</string>
+    <string name="pref_usar_contornos_summary">Use the coverage areas informed by the FCC to move stations that are out-of-reach to the bottom of the list.</string>
+
+    <string name="pref_alineacion_title">Show when the arrow is aligned</string>
+    <string name="pref_alineacion_summary">Show when the phone is aligned with the direction towards the antenna by changing the arrow\'s color and making the phone vibrate.</string>
+
+    <string name="pref_forzar_direcciones_absolutas_title">Force the display of absolute directions</string>
+    <string name="pref_forzar_direcciones_absolutas_summary">Ignore the presence of a compass and show fixed arrows and directions in degrees.</string>
+
+    <string name="pref_header_mapa">地図</string>
+
+    <string name="pref_dibujar_líneas_title">Draw lines</string>
+    <string name="pref_dibujar_líneas_summary">Show lines connecting your location with the nearest antennas.</string>
+
+    <string name="pref_header_paises_mapa">Countries in the map</string>
+    <string name="pref_AR">アルゼンチン</string>
+    <string name="pref_AT">オーストリア</string>
+    <string name="pref_AU">オーストラリア</string>
+    <string name="pref_BR">ブラジル</string>
+    <string name="pref_CA">カナダ</string>
+    <string name="pref_CO">コロンビア</string>
+    <string name="pref_JA">日本</string>
+    <string name="pref_NZ">ニュージーランド</string>
+    <string name="pref_PT">ポルトガル</string>
+    <string name="pref_UK">イギリス</string>
+    <string name="pref_US">アメリカ</string>
+    <string name="pref_UY">ウルグアイ</string>
+
+	<plurals name="pref_país_summary">
+		<item quantity="one">Show the %1$,d antenna of %2$s.</item>
+		<item quantity="other">Show all %1$,d antennas of %2$s.</item>
+	</plurals>
+
+	<string name="pref_header_general">General</string>
+	<string name="pref_unit_title">距離単位</string>
+	<string-array name="pref_unit_titles">
+		<item>キロメートル</item>
+		<item>マイル</item>
+	</string-array>
+	<string-array name="pref_unit_values">
+		<item>km</item>
+		<item>mi</item>
+	</string-array>
+
+</resources>

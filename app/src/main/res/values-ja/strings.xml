@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="action_settings">設定</string>
+	<string name="title_activity_mapa">アンテナ地図</string>
+	<string name="action_mapa">地図</string>
+	<string name="gps_is_off">GPSはオフです！</string>
+	<string name="aviso_no_hay_brújula">デバイスにはコンパスはありません。 絶対的なベアリングを示します。</string>
+	<string name="shortcut_mapa_short_label">アンテナ地図</string>
+	<string name="thankyou">ありがとうございました！</string>
+	<string name="pagame_saludo">こんにちは！</string>
+
+</resources>

@@ -12,7 +12,7 @@ android {
         targetSdkVersion 26
         versionName "2.8"
         resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA",
-                "en-rNZ", "es", "es-rUS", "fr", "fr-rCA",
+                "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "ja", 'ja-rJP',
                 "pt", "pt-rBR", "pt-rPT"
         vectorDrawables.useSupportLibrary = true
     }
@@ -42,6 +42,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        warning "MissingTranslation"
     }
 }
 
