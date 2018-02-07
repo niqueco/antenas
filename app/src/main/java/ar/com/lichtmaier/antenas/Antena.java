@@ -181,7 +181,7 @@ public class Antena implements Parcelable
 		double latitud = coordsUsuario.getLatitude();
 		double longitud = coordsUsuario.getLongitude();
 		Set<País> países = longitud > -32
-			? (longitud < 60 ? EnumSet.of(País.UK, País.PT, País.AT) : EnumSet.of(País.AU, País.NZ))
+			? (longitud < 60 ? EnumSet.of(País.UK, País.PT, País.AT) : (latitud > 0 ? EnumSet.of(País.JA) : EnumSet.of(País.AU, País.NZ)))
 			: ((latitud > 13)
 				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
 				: (latitud < -34 || (latitud < -18 && longitud < -58)
@@ -298,6 +298,9 @@ public class Antena implements Parcelable
 					break;
 				case CO:
 					res = R.raw.antenas_co;
+					break;
+				case JA:
+					res = R.raw.antenas_ja;
 					break;
 				case NZ:
 					res = R.raw.antenas_nz;
