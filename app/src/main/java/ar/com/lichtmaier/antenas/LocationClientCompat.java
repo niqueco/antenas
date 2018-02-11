@@ -151,7 +151,9 @@ public class LocationClientCompat extends LiveData<Location>
 		@Override
 		public void onLocationResult(LocationResult result)
 		{
-			lcc.get().setValue(result.getLastLocation());
+			Location loc = result.getLastLocation();
+			if(loc != null)
+				lcc.get().setValue(loc);
 		}
 	}
 	final private LocationCallback locationCallback = new MyLocationCallback(this);
