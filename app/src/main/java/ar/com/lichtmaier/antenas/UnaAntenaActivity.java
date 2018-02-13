@@ -398,6 +398,8 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			String str;
 			if(l == null)
 			{
+				if(AntenaActivity.coordsUsuario == null)
+					return;
 				str = Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario));
 			} else
 			{
