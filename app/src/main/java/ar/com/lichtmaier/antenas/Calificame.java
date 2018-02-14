@@ -144,11 +144,11 @@ public class Calificame extends AppCompatDialogFragment implements View.OnClickL
 	{
 		if(!isStateSaved())
 			dismiss();
-		acción(v.getId(), getActivity());
+		acción(v.getId(), getContext());
 	}
 
 	@SuppressLint({"CommitPrefEdits", "MissingPermission"})
-	private static void acción(final int id, Activity context)
+	private static void acción(final int id, Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = prefs.edit();
