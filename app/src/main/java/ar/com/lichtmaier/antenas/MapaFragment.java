@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -173,7 +174,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			Crashlytics.logException(new RuntimeException("getActivity es null"));
 			return;
 		}
-		activity.getLocation().observe(this, this::onLocationChanged);
+		LiveData<Location> location = activity.getLocation();
+		if(location != null)
+			location.observe(this, this::onLocationChanged);
 	}
 
 	private void inicializarMapa(Bundle savedInstanceState)

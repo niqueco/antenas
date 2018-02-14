@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -90,7 +91,11 @@ public class CanalesMapaFragment extends Fragment
 		}
 		TextView distView = v.findViewById(R.id.antena_dist);
 		if(distView != null)
-			((MapaActivity)getActivity()).getLocation().observe(this, location -> ponerDistancia(location, distView, antena.descripción != null));
+		{
+			LiveData<Location> loc = ((MapaActivity)getActivity()).getLocation();
+			if(loc != null)
+				loc.observe(this, location -> ponerDistancia(location, distView, antena.descripción != null));
+		}
 		View viewCanalASeleccionar = null;
 		final int canalSeleccionadoPos = savedInstanceState != null ? savedInstanceState.getInt("canal", -1) : -1;
 		ViewGroup l = v.findViewById(R.id.lista_canales);

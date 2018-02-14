@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -183,6 +184,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		Log.e("antenas", "No se pudo inicializar Play Services: El mapa no accederá a la ubicación actual.");
 	}
 
+	@Nullable
 	LiveData<Location> getLocation()
 	{
 		return locationClient;
