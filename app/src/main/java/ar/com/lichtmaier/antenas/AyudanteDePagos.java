@@ -7,7 +7,6 @@ import android.content.*;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -150,9 +149,10 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 			PendingIntent pendingIntent = b.getParcelable("BUY_INTENT");
 			assert pendingIntent != null;
 			act.startIntentSenderForResult(pendingIntent.getIntentSender(), REQUEST_CODE_COMPRAR, new Intent(), 0, 0, 0);
-		} catch(RemoteException|IntentSender.SendIntentException e)
+		} catch(Exception e)
 		{
 			Crashlytics.logException(e);
+			Toast.makeText(context, R.string.no_se_puede_pagar, Toast.LENGTH_SHORT).show();
 			Log.e(TAG, "comprando", e);
 		}
 	}
