@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<string name="app_name">テレビアンテナ</string>
 	<string name="action_settings">設定</string>
 	<string name="title_activity_mapa">アンテナ地図</string>
 	<string name="action_mapa">地図</string>
+	<string name="channel_number">チャンネル%s</string>
 	<string name="gps_is_off">GPSはオフです！</string>
+	<string name="polarización_horizontal">水平偏波</string>
+	<string name="polarización_vertical">垂直偏波</string>
 	<string name="aviso_no_hay_brújula">デバイスにはコンパスはありません。 絶対的なベアリングを示します。</string>
+	<string name="título_ayuda_calibración_brújula">コンパス較正</string>
 	<string name="shortcut_mapa_short_label">アンテナ地図</string>
 	<string name="thankyou">ありがとうございました！</string>
 	<string name="pagame_saludo">こんにちは！</string>
 	<string name="pagame_gracias">このアプリを使用してくれてありがとう！</string>
+	<string name="dist_away_comentario">(%s先)</string>
+	<string name="dist_away_solo">%s先</string>
+
+	<plurals name="grados_derecha">
+		<item quantity="other">%d度右</item>
+	</plurals>
+	<plurals name="grados_izquierda">
+		<item quantity="other">%d度左</item>
+	</plurals>
 
 </resources>
