@@ -30,6 +30,7 @@ import android.widget.ScrollView;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
@@ -280,6 +281,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(item.getItemId() == R.id.action_tipo_mapa)
 		{
 			setMapaSatelital(!this.mapaSatelital);
+			Context context = getContext();
+			if(context != null)
+				FirebaseAnalytics.getInstance(context).logEvent(mapaSatelital ? "mapa_satelital" :  "mapa_fisico", null);
 			return true;
 		} else
 			return super.onOptionsItemSelected(item);

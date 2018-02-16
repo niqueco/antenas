@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.Random;
 
 public class Pagame extends AppCompatDialogFragment
@@ -29,6 +31,7 @@ public class Pagame extends AppCompatDialogFragment
 		FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
 		ft.addToBackStack(null);
 		new Pagame().show(ft, FRAGMENT_TAG);
+		FirebaseAnalytics.getInstance(activity).logEvent("pagame", null);
 	}
 
 	@Nullable
