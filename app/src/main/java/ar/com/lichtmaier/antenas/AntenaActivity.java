@@ -701,6 +701,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		pedirCambioConfiguración();
 
 		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		if(locationManager == null)
+			throw new NullPointerException();
 		locationClient = null;
 		if(coordsUsuario == null)
 		{
@@ -719,7 +721,10 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 	private void pedirCambioConfiguración()
 	{
-		if(!huboSavedInstanceState && !((LocationManager)getSystemService(Context.LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
+		LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		if(locationManager == null)
+			throw new NullPointerException();
+		if(!huboSavedInstanceState && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
 		{
 			View v = findViewById(R.id.antenas);
 			if(v == null)

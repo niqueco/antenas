@@ -28,7 +28,8 @@ public class Brújula implements SensorEventListener
 	{
 		this.acelerómetro = acelerómetro;
 		this.magnetómetro = magnetómetro;
-		rotación = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+		WindowManager windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+		rotación = windowManager != null ? windowManager.getDefaultDisplay().getRotation() : 0;
 	}
 
 	public static Brújula crear(Context context)
