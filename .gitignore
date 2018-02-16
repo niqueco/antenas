@@ -9,6 +9,8 @@ build/
 .idea/tasks.xml
 .idea/libraries
 .idea/dictionaries
+.idea/assetWizardSettings.xml
+.idea/caches
 local.properties
 .navigation/
 manifest-merger-*.txt
