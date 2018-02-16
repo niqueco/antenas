@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.TrafficStats;
 import android.os.AsyncTask;
@@ -183,15 +184,24 @@ public class CachéDeContornos
 				{
 					if(cursor.moveToFirst())
 						contorno = Polígono.deBytes(cursor.getBlob(0));
+				} catch(SQLException e)
+				{
+					Crashlytics.logException(e);
 				} finally
 				{
 					cursor.close();
 				}
 				if(contorno != null)
 				{
-					ContentValues values = new ContentValues(1);
-					values.put("ult_uso", (int)(System.currentTimeMillis() / 1000L));
-					db.update("contorno", values, selection, selectionArgs);
+					try
+					{
+						ContentValues values = new ContentValues(1);
+						values.put("ult_uso", (int)(System.currentTimeMillis() / 1000L));
+						db.update("contorno", values, selection, selectionArgs);
+					} catch (SQLException e)
+					{
+						Crashlytics.logException(e);
+					}
 				}
 			}
 			if(contorno == null)
