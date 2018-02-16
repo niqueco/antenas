@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.TrafficStats;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
@@ -87,7 +88,10 @@ public class CachéDeContornos
 
 			if(externalCacheDir != null && externalCacheDir.isDirectory())
 			{
-				base = SQLiteDatabase.openDatabase(externalCacheDir + "/contornos.db", null, SQLiteDatabase.CREATE_IF_NECESSARY);
+				int flags = SQLiteDatabase.CREATE_IF_NECESSARY;
+				if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+					flags |= SQLiteDatabase.ENABLE_WRITE_AHEAD_LOGGING;
+				base = SQLiteDatabase.openDatabase(externalCacheDir + "/contornos.db", null, flags);
 
 				if(base.getVersion() != VERSION_BASE)
 				{
