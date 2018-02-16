@@ -1,4 +1,7 @@
 <antenas>
+<antena lat="-34.611365" lon="-58.426968" desc="IMPA">
+<canal nombre="Barricada TV" numero="32.01"/>
+</antena>
 <antena lat="-54.8011" lon="-68.2219" desc="Ushuaia" ref="265" potencia="1">
 <canal nombre="Arpeggio" numero="24.03"/>
 <canal nombre="C5N" numero="25.02"/>
