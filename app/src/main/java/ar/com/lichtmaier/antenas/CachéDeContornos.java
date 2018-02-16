@@ -162,7 +162,7 @@ public class CachéDeContornos
 
 	@Nullable
 	@WorkerThread
-	Polígono dameContornoFCC(int appId)
+	private Polígono dameContornoFCC(int appId)
 	{
 		synchronized(CachéDeContornos.class)
 		{
@@ -177,135 +177,148 @@ public class CachéDeContornos
 		{
 			Polígono contorno = lruCache.get(appId);
 			if(contorno == null && db != null)
-			{
-				String selection = "app_id=?";
-				String[] selectionArgs = {Integer.toString(appId)};
-				Cursor cursor = db.query("contorno", new String[]{"poligono"}, selection, selectionArgs, null, null, null);
-				try
-				{
-					if(cursor.moveToFirst())
-						contorno = Polígono.deBytes(cursor.getBlob(0));
-				} catch(SQLException e)
-				{
-					Crashlytics.logException(e);
-				} finally
-				{
-					cursor.close();
-				}
-				if(contorno != null)
-				{
-					try
-					{
-						ContentValues values = new ContentValues(1);
-						values.put("ult_uso", (int)(System.currentTimeMillis() / 1000L));
-						db.update("contorno", values, selection, selectionArgs);
-					} catch (SQLException e)
-					{
-						Crashlytics.logException(e);
-					}
-				}
-			}
+				contorno = dameContornoFCCDeLaBase(appId);
 			if(contorno == null)
-			{
-				for(int i = 0; i < tamañoCachéNegativo; i++)
-					if(cachéNegativo[i] == appId)
-					{
-						Log.i("antenas", "Al polígono con appId=" + appId + " ya lo buscamos sin éxito.");
-						return null;
-					}
-				Log.i("antenas", "buscando el polígono con appId=" + appId);
-				String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId + "&.txt";
-				InputStream in = null;
-				try
-				{
-					TrafficStats.setThreadStatsTag(0xfcc);
-					in = new URL(url).openStream();
-					XmlPullParser parser = xmlPullParserFactory.newPullParser();
-					parser.setInput(in, "UTF-8");
-					int t;
-					boolean inLineString = false;
-					while((t = parser.next()) != XmlPullParser.END_DOCUMENT)
-					{
-						if(t == XmlPullParser.START_TAG && parser.getName().equals("LineString"))
-						{
-							inLineString = true;
-							continue;
-						}
-						if(t == XmlPullParser.END_TAG && parser.getName().equals("LineString"))
-						{
-							inLineString = false;
-							continue;
-						}
-						if(inLineString && t == XmlPullParser.START_TAG && parser.getName().equals("coordinates"))
-						{
-							t = parser.next();
-							if(t != XmlPullParser.TEXT)
-							{
-								Log.e("antenas", "No se encontró el texto esperado en la línea " + parser.getLineNumber() + " de contorno appid=" + appId);
-								return null;
-							}
-
-							Pattern pat = Pattern.compile("\\s+(-?[0-9.]+),(-?[0-9.]+),.*$", Pattern.MULTILINE);
-
-							Polígono.Builder pb = new Polígono.Builder();
-
-							Matcher m = pat.matcher(parser.getText());
-							while(m.find())
-							{
-								float lat = Float.parseFloat(m.group(2));
-								float lon = Float.parseFloat(m.group(1));
-								pb.add(new LatLng(lat, lon));
-							}
-							contorno = pb.build();
-							lruCache.put(appId, contorno);
-							if(db != null)
-							{
-								ContentValues values = new ContentValues(3);
-								values.put("app_id", appId);
-								values.put("poligono", contorno.aBytes());
-								int ahora = (int)(System.currentTimeMillis() / 1000L);
-								values.put("ult_uso", ahora);
-								values.put("fecha_obtenido", ahora);
-								db.insert("contorno", null, values);
-							}
-							break;
-						}
-					}
-				} catch(XmlPullParserException e)
-				{
-					Log.e("antenas", "Obteniendo el contorno de " + url, e);
-					if(cachéNegativo == null)
-					{
-						cachéNegativo = new int[16];
-					} else if(tamañoCachéNegativo == cachéNegativo.length)
-					{
-						cachéNegativo = Arrays.copyOf(cachéNegativo, cachéNegativo.length + 16);
-					}
-
-					cachéNegativo[tamañoCachéNegativo++] = appId;
-				} catch(IOException e)
-				{
-					Log.e("antenas", "Obteniendo el contorno de " + url, e);
-				} catch(Exception e)
-				{
-					throw new RuntimeException("Obteniendo el contorno de " + url, e);
-				} finally
-				{
-					if(in != null)
-						try
-						{
-							in.close();
-						} catch(IOException ignored)
-						{
-						}
-					TrafficStats.clearThreadStatsTag();
-				}
-			}
+				contorno = dameContornoFCCDeLaRed(appId);
 			return contorno;
 		} finally
 		{
 			devolver();
 		}
+	}
+
+	@Nullable
+	private Polígono dameContornoFCCDeLaBase(int appId)
+	{
+		Polígono contorno = null;
+		String selection = "app_id=?";
+		String[] selectionArgs = {Integer.toString(appId)};
+		Cursor cursor = db.query("contorno", new String[]{"poligono"}, selection, selectionArgs, null, null, null);
+		try
+		{
+			if(cursor.moveToFirst())
+				contorno = Polígono.deBytes(cursor.getBlob(0));
+		} catch(SQLException e)
+		{
+			Crashlytics.logException(e);
+		} finally
+		{
+			cursor.close();
+		}
+		if(contorno != null)
+		{
+			try
+			{
+				ContentValues values = new ContentValues(1);
+				values.put("ult_uso", (int)(System.currentTimeMillis() / 1000L));
+				db.update("contorno", values, selection, selectionArgs);
+			} catch (SQLException e)
+			{
+				Crashlytics.logException(e);
+			}
+		}
+		return contorno;
+	}
+
+	@Nullable
+	private Polígono dameContornoFCCDeLaRed(int appId)
+	{
+		Polígono contorno = null;
+		for(int i = 0; i < tamañoCachéNegativo; i++)
+			if(cachéNegativo[i] == appId)
+			{
+				Log.i("antenas", "Al polígono con appId=" + appId + " ya lo buscamos sin éxito.");
+				return null;
+			}
+		Log.i("antenas", "buscando el polígono con appId=" + appId);
+		String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId + "&.txt";
+		InputStream in = null;
+		try
+		{
+			TrafficStats.setThreadStatsTag(0xfcc);
+			in = new URL(url).openStream();
+			XmlPullParser parser = xmlPullParserFactory.newPullParser();
+			parser.setInput(in, "UTF-8");
+			int t;
+			boolean inLineString = false;
+			while((t = parser.next()) != XmlPullParser.END_DOCUMENT)
+			{
+				if(t == XmlPullParser.START_TAG && parser.getName().equals("LineString"))
+				{
+					inLineString = true;
+					continue;
+				}
+				if(t == XmlPullParser.END_TAG && parser.getName().equals("LineString"))
+				{
+					inLineString = false;
+					continue;
+				}
+				if(inLineString && t == XmlPullParser.START_TAG && parser.getName().equals("coordinates"))
+				{
+					t = parser.next();
+					if(t != XmlPullParser.TEXT)
+					{
+						Log.e("antenas", "No se encontró el texto esperado en la línea " + parser.getLineNumber() + " de contorno appid=" + appId);
+						return null;
+					}
+
+					Pattern pat = Pattern.compile("\\s+(-?[0-9.]+),(-?[0-9.]+),.*$", Pattern.MULTILINE);
+
+					Polígono.Builder pb = new Polígono.Builder();
+
+					Matcher m = pat.matcher(parser.getText());
+					while(m.find())
+					{
+						float lat = Float.parseFloat(m.group(2));
+						float lon = Float.parseFloat(m.group(1));
+						pb.add(new LatLng(lat, lon));
+					}
+					contorno = pb.build();
+					lruCache.put(appId, contorno);
+					if(db != null)
+					{
+						ContentValues values = new ContentValues(3);
+						values.put("app_id", appId);
+						values.put("poligono", contorno.aBytes());
+						int ahora = (int)(System.currentTimeMillis() / 1000L);
+						values.put("ult_uso", ahora);
+						values.put("fecha_obtenido", ahora);
+						db.insert("contorno", null, values);
+					}
+					break;
+				}
+			}
+			return contorno;
+		} catch(XmlPullParserException e)
+		{
+			Log.e("antenas", "Obteniendo el contorno de " + url, e);
+			if(cachéNegativo == null)
+			{
+				cachéNegativo = new int[16];
+			} else if(tamañoCachéNegativo == cachéNegativo.length)
+			{
+				cachéNegativo = Arrays.copyOf(cachéNegativo, cachéNegativo.length + 16);
+			}
+
+			cachéNegativo[tamañoCachéNegativo++] = appId;
+		} catch(IOException e)
+		{
+			Log.e("antenas", "Obteniendo el contorno de " + url, e);
+		} catch(Exception e)
+		{
+			throw new RuntimeException("Obteniendo el contorno de " + url, e);
+		} finally
+		{
+			if(in != null)
+				try
+				{
+					in.close();
+				} catch(IOException ignored)
+				{
+				}
+			TrafficStats.clearThreadStatsTag();
+		}
+		return null;
 	}
 
 	public static void vaciarCache()
