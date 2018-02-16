@@ -828,10 +828,11 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					{
 						long installTime = getPackageManager().getPackageInfo(BuildConfig.APPLICATION_ID, 0).firstInstallTime;
 						int mesMostrado = prefs.getInt(PREF_PAGAME_MES_MOSTRADO, -1);
-						int mes = (int)((System.currentTimeMillis() - installTime) / (1000L * 3600L * 24L * 30L));
-						if(mesMostrado < mes)
+						int días = (int)((System.currentTimeMillis() - installTime) / (1000L * 3600L * 24L));
+						int meses = días / 30;
+						if((mesMostrado < meses) && (días > 1))
 						{
-							prefs.edit().putInt(PREF_PAGAME_MES_MOSTRADO, mes).apply();
+							prefs.edit().putInt(PREF_PAGAME_MES_MOSTRADO, meses).apply();
 							Pagame.mostrar(this);
 						}
 					} catch(Exception e)
