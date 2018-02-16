@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -278,10 +279,7 @@ public class CachéDeContornos
 						cachéNegativo = new int[16];
 					} else if(tamañoCachéNegativo == cachéNegativo.length)
 					{
-						//cachéNegativo = Arrays.copyOf(cachéNegativo, cachéNegativo.length + 16); // no anda en Froyo
-						int[] arr = new int[cachéNegativo.length + 16];
-						System.arraycopy(cachéNegativo, 0, arr, 0, cachéNegativo.length);
-						cachéNegativo = arr;
+						cachéNegativo = Arrays.copyOf(cachéNegativo, cachéNegativo.length + 16);
 					}
 
 					cachéNegativo[tamañoCachéNegativo++] = appId;

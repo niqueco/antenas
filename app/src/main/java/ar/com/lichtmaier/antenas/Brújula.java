@@ -7,8 +7,9 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.WindowManager;
 
+import java.util.Collections;
 import java.util.IdentityHashMap;
-import java.util.Map;
+import java.util.Set;
 
 public class Brújula implements SensorEventListener
 {
@@ -17,8 +18,7 @@ public class Brújula implements SensorEventListener
 	final private Sensor acelerómetro;
 	final private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
-	private final Map<Callback, Boolean> listeners = new IdentityHashMap<>();
-	//Set<Callback> listeners = Collections.newSetFromMap(new IdentityHashMap<Callback, Boolean>()); // no anda en Froyo
+	private final Set<Callback> listeners = Collections.newSetFromMap(new IdentityHashMap<Callback, Boolean>());
 	private float declinaciónMagnética = Float.MAX_VALUE;
 	final private int rotación;
 	private long lastUpdate = 0;
@@ -48,7 +48,7 @@ public class Brújula implements SensorEventListener
 
 	public void registerListener(Callback cb)
 	{
-		listeners.put(cb, Boolean.TRUE);
+		listeners.add(cb);
 	}
 
 	public void removeListener(Callback cb)
@@ -113,7 +113,7 @@ public class Brújula implements SensorEventListener
 			if(gravity[2] < .5)
 			{
 				sinValor = true;
-				for(Callback l : listeners.keySet())
+				for(Callback l : listeners)
 					l.desorientados();
 				return;
 			}
@@ -153,7 +153,7 @@ public class Brújula implements SensorEventListener
 				brújula -= 360;
 			sinValor = false;
 			//Log.d("antenas", "rot=" + rotación + ", declinaciónMagnética="+declinaciónMagnética+", brújula=" + (int) brújula);
-			for(Callback cb : listeners.keySet())
+			for(Callback cb : listeners)
 				cb.nuevaOrientación(brújula);
 		}
 	}
@@ -165,7 +165,7 @@ public class Brújula implements SensorEventListener
 			return;
 		if(accuracy != SensorManager.SENSOR_STATUS_ACCURACY_HIGH && accuracy != SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM)
 		{
-			for(Callback cb : listeners.keySet())
+			for(Callback cb : listeners)
 				cb.faltaCalibrar();
 		}
 	}
