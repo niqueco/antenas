@@ -50,7 +50,7 @@ public class CachéDeContornos
 
 	private static LruCache<Integer, Polígono> lruCache;
 	private final XmlPullParserFactory xmlPullParserFactory;
-	private static int[] cachéNegativo;
+	private int[] cachéNegativo;
 	private int tamañoCachéNegativo = 0;
 
 	@NonNull
