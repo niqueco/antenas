@@ -258,7 +258,7 @@ public class Antena implements Parcelable
 		private final País país;
 		private final Context ctx;
 
-		public CargarAntenasPaís(País país, Context ctx)
+		CargarAntenasPaís(País país, Context ctx)
 		{
 			this.país = país;
 			if(ctx == null)
