@@ -42,11 +42,11 @@ public class Pagame extends AppCompatDialogFragment
 		v.findViewById(R.id.boton_comprar).setOnClickListener(view -> {
 			if(!isStateSaved())
 				dismiss();
-			((AntenaActivity)getActivity()).pagar();
+			((AntenaActivity)requireActivity()).pagar();
 		});
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
-			AnimatedVectorDrawable ojito = (AnimatedVectorDrawable)getContext().getDrawable(R.drawable.ic_emoji_u1f603_ojito);
+			AnimatedVectorDrawable ojito = (AnimatedVectorDrawable)requireContext().getDrawable(R.drawable.ic_emoji_u1f603_ojito);
 			((ImageView)v.findViewById(R.id.pagame_carita)).setImageDrawable(ojito);
 			guiño = new Guiño(ojito);
 		}

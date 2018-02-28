@@ -54,9 +54,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     implementation 'com.google.android.gms:play-services-places:11.8.0'
     implementation 'com.google.firebase:firebase-ads:11.8.0'
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'com.github.davidmoten:geo:0.7.6'
     implementation files('libs/geodesy.jar')
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
@@ -66,7 +66,7 @@ dependencies {
     implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
-    tvImplementation 'com.android.support:leanback-v17:27.0.2'
+    tvImplementation 'com.android.support:leanback-v17:27.1.0'
     implementation files('libs/clipper.jar')
     implementation "android.arch.lifecycle:extensions:1.1.0"
     implementation "android.arch.lifecycle:common-java8:1.1.0"

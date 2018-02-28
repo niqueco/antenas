@@ -92,7 +92,7 @@ public class CanalesMapaFragment extends Fragment
 		TextView distView = v.findViewById(R.id.antena_dist);
 		if(distView != null)
 		{
-			LiveData<Location> loc = ((MapaActivity)getActivity()).getLocation();
+			LiveData<Location> loc = ((MapaActivity)requireActivity()).getLocation();
 			if(loc != null)
 				loc.observe(this, location -> ponerDistancia(location, distView, antena.descripción != null));
 		}
@@ -102,7 +102,7 @@ public class CanalesMapaFragment extends Fragment
 		int n;
 		if(l instanceof TableLayout)
 		{
-			TypedArray arr = getActivity().getTheme().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
+			TypedArray arr = requireActivity().getTheme().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
 			int selectableItemBackground = arr.getResourceId(0, -1);
 			arr.recycle();
 			n = antena.canales.size();
@@ -128,7 +128,7 @@ public class CanalesMapaFragment extends Fragment
 					Canal canal = antena.canales.get(posCanal);
 					View vc = canal.dameViewCanal(ctx, row, hayImágenes, false, false);
 
-					FrameLayout fl = new FrameLayout(getContext());
+					FrameLayout fl = new FrameLayout(requireContext());
 					fl.addView(vc);
 					vc = fl;
 
@@ -176,7 +176,7 @@ public class CanalesMapaFragment extends Fragment
 			@Override
 			public boolean onPreDraw()
 			{
-				MapaFragment mfr = (MapaFragment)getFragmentManager().findFragmentById(R.id.container);
+				MapaFragment mfr = (MapaFragment)requireFragmentManager().findFragmentById(R.id.container);
 
 				if(!mfr.mapaInicializado())
 					return true;

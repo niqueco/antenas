@@ -80,14 +80,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	{
 		super.onCreate(savedInstanceState);
 
-		FragmentActivity activity = getActivity();
-		if(activity == null)
-			throw new NullPointerException("no activity?");
+		FragmentActivity activity = requireActivity();
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-		FragmentManager fm = getFragmentManager();
-		if(fm == null)
-			throw new NullPointerException();
+		FragmentManager fm = requireFragmentManager();
 
 		setHasOptionsMenu(true);
 
@@ -122,7 +118,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 
 		fm.addOnBackStackChangedListener(() -> {
-			if(getFragmentManager().getBackStackEntryCount() == originalBackStackEntryCount)
+			if(requireFragmentManager().getBackStackEntryCount() == originalBackStackEntryCount)
 			{
 				canalSeleccionado(null, null);
 				if(markerSeleccionado != null)
@@ -182,7 +178,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private void inicializarMapa(Bundle savedInstanceState)
 	{
-		boolean hayPermiso = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+		boolean hayPermiso = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 		if(!hayPermiso)
 			requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
 		FragmentActivity act = getActivity();
@@ -235,10 +231,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				Antena.dameAntenas(act, país);
 				paísesPrendidos.add(país);
 			}
-		AppCompatActivity activity = (AppCompatActivity)getActivity();
-		if(activity == null)
-			throw new NullPointerException("no activity?");
-		ActionBar actionBar = activity.getSupportActionBar();
+		ActionBar actionBar = ((AppCompatActivity)requireActivity()).getSupportActionBar();
 		if(actionBar != null)
 			altoActionBar = actionBar.getHeight();
 
@@ -269,7 +262,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	{
 		if(requestCode == PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION)
 		{
-			if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+			if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
 				mapa.setMyLocationEnabled(true);
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -365,7 +358,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	private void configurarPaddingMapa()
 	{
-		Fragment frCanales = getFragmentManager().findFragmentByTag("canales");
+		Fragment frCanales = requireFragmentManager().findFragmentByTag("canales");
 		configurarPaddingMapa(frCanales == null ? null : (ViewGroup)frCanales.getView());
 	}
 
@@ -651,8 +644,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		Log.d("antenas", "estiloLínea " + antena + ", sel=" +sel + ", línea="+línea);
 		if(línea != null)
 		{
-			int color = ContextCompat.getColor(getActivity(), sel ? R.color.línea_mapa_sel : R.color.línea_mapa);
-			float ancho = getActivity().getResources().getDimension(sel ? R.dimen.ancho_línea_antena_sel : R.dimen.ancho_línea_antena);
+			Context context = requireContext();
+			int color = ContextCompat.getColor(context, sel ? R.color.línea_mapa_sel : R.color.línea_mapa);
+			float ancho = context.getResources().getDimension(sel ? R.dimen.ancho_línea_antena_sel : R.dimen.ancho_línea_antena);
 
 			PropertyValuesHolder h1 = PropertyValuesHolder.ofFloat("width", línea.getWidth(), ancho);
 			PropertyValuesHolder h2 = PropertyValuesHolder.ofInt("color", línea.getColor(), color);
@@ -847,7 +841,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 						.width(getResources().getDimension(sel
 								? R.dimen.ancho_línea_antena_sel
 								: R.dimen.ancho_línea_antena))
-						.color(ContextCompat.getColor(getActivity(), sel
+						.color(ContextCompat.getColor(requireContext(), sel
 								? R.color.línea_mapa_sel
 								: R.color.línea_mapa))
 						.endCap(ROUND_CAP));
