@@ -26,16 +26,16 @@ public class CommaEllipsizeTextView extends AppCompatTextView
 	}
 
 	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh)
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
-		super.onSizeChanged(w, h, oldw, oldh);
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
 		CharSequence text;
 		if(original == null)
 			original = text = getText();
 		else
 			text = original;
-		final CharSequence newText = TextUtils.commaEllipsize(text, getPaint(), w * getContext().getResources().getInteger(R.integer.lineas_resumen), getContext().getString(R.string.one_more), getContext().getString(R.string.some_more));
+		final CharSequence newText = TextUtils.commaEllipsize(text, getPaint(), getMeasuredWidth() * getContext().getResources().getInteger(R.integer.lineas_resumen), getContext().getString(R.string.one_more), getContext().getString(R.string.some_more));
 		if(!equals(getText(), newText))
 		{
 			nosotros = true;
@@ -44,10 +44,9 @@ public class CommaEllipsizeTextView extends AppCompatTextView
 			} finally  {
 				nosotros = false;
 			}
-			if(pedirLayout == null)
-				pedirLayout = new PedirLayout();
-			post(pedirLayout);
 		}
+
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
 	private static boolean equals(Object a, Object b) {
@@ -62,14 +61,4 @@ public class CommaEllipsizeTextView extends AppCompatTextView
 		if(!nosotros)
 			original = null;
 	}
-
-	private class PedirLayout implements Runnable
-	{
-		@Override
-		public void run()
-		{
-			requestLayout();
-		}
-	}
-	private Runnable pedirLayout;
 }
