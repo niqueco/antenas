@@ -13,7 +13,6 @@
     <string name="podes_incrementar_radio">Você pode tentar incrementá-lo nas opções.</string>
     <string name="no_ubicacion">Não foi possível obter a localização… É o GPS off?</string>
 	<string name="app_no_disponible">Nenhum aplicativo disponível para lidar com essa operação.</string>
-	<string name="one_more">mais um</string>
 	<string name="some_more">%d mais</string>
 	<string name="channel_number">canal %s</string>
 	<string name="ch_number">canal %s</string>
@@ -66,6 +65,7 @@
 	<string name="ayuda_una_antena_mapa_estacion_texto">Tocando uma estação, você vai ao mapa com essa estação selecionada.</string>
 	<string name="mapa_físico">Mapa físico</string>
 	<string name="mapa_satelital">Mapa de satélite</string>
+	<string name="separator">", "</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Para a frente</item>
@@ -80,6 +80,10 @@
 	</plurals>
 	<plurals name="hacia_atras" tools:ignore="MissingQuantity">
 		<item quantity="other">Para trás</item>
+	</plurals>
+	<plurals name="more">
+		<item quantity="one">%d mais</item>
+		<item quantity="other">%d mais</item>
 	</plurals>
 
 </resources>

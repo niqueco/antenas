@@ -17,6 +17,7 @@
 	<string name="pagame_gracias">このアプリを使用してくれてありがとう！</string>
 	<string name="dist_away_comentario">(%s先)</string>
 	<string name="dist_away_solo">%s先</string>
+	<string name="separator">、</string>
 
 	<plurals name="grados_derecha">
 		<item quantity="other">%d度右</item>

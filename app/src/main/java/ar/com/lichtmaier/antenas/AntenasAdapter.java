@@ -45,8 +45,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
-		private final TextView tvDesc;
-		private final TextView tvDetalle;
+		private final CommaEllipsizeTextView tvDesc;
+		private final CommaEllipsizeTextView tvDetalle;
 		private final TextView tvDistancia;
 		private final TextView tvPotencia;
 		private final FlechaView flechaView;
@@ -125,17 +125,16 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 
 		vh.flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
 
-		CharSequence detalleCanales = a.dameDetalleCanales(context);
 		if(a.descripción != null)
 		{
 			vh.tvDesc.setText(a.descripción);
-			if(detalleCanales != null)
-				vh.tvDetalle.setText(detalleCanales);
+			if(a.canales != null && !a.canales.isEmpty())
+				a.ponéDetalles(vh.tvDetalle);
 			else
 				vh.tvDetalle.setVisibility(View.GONE);
 		} else
 		{
-			vh.tvDesc.setText(detalleCanales);
+			a.ponéDetalles(vh.tvDesc);
 			vh.tvDetalle.setVisibility(View.GONE);
 		}
 		if(vh.tvPotencia != null)

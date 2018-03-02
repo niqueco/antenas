@@ -5,7 +5,6 @@
 	<string name="action_settings">Paramètres</string>
 	<string name="title_activity_mapa">Carte antennes</string>
 	<string name="some_more">%d plus</string>
-	<string name="one_more">une plus</string>
 	<string name="action_mapa">Carte</string>
 	<string name="app_no_disponible">Aucune application disponible pour gérer l\'opération.</string>
 	<string name="action_ayuda">Aide à la télévision numérique</string>
@@ -65,6 +64,7 @@
 	<string name="ayuda_una_antena_mapa_estacion_texto">En touchant une station, vous allez à la carte avec cette station sélectionnée.</string>
 	<string name="mapa_físico">Carte physique</string>
 	<string name="mapa_satelital">Carte satellite</string>
+	<string name="separator">", "</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>
@@ -79,6 +79,10 @@
 	</plurals>
 	<plurals name="hacia_atras" tools:ignore="MissingQuantity">
 		<item quantity="other">En arrière</item>
+	</plurals>
+	<plurals name="more">
+		<item quantity="one">%d plus</item>
+		<item quantity="other">%d plus</item>
 	</plurals>
 
 </resources>

@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
@@ -31,6 +32,8 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.*;
 
+import ar.com.lichtmaier.util.StringUtils;
+
 public class Antena implements Parcelable
 {
 	final public String descripción;
@@ -39,7 +42,7 @@ public class Antena implements Parcelable
 	final public float potencia;
 	public final int index;
 	final public País país;
-	public List<Canal> canales;
+	@Nullable public List<Canal> canales;
 
 	private double dist;
 
@@ -98,31 +101,45 @@ public class Antena implements Parcelable
 		return nombre;
 	}
 
-	private transient CharSequence detalleCanales = null;
-	private transient Locale localeDetalleCanales = null;
+	private transient List<CharSequence> listaDetallesCanales = null;
+	private transient Locale localeListaDetallesCanales = null;
 
-	public CharSequence dameDetalleCanales(Context context)
+	@Nullable
+	private CharSequence dameDetalleCanales(@NonNull Context context)
 	{
 		if(canales == null || canales.isEmpty())
 			return null;
-		if(canales.size() > 12)
-		{
-			SpannableString spannableString = new SpannableString(context.getResources().getQuantityString(R.plurals.senales, canales.size(), canales.size()));
-			spannableString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spannableString.length(), 0);
-			return spannableString;
-		}
-		Locale locale = Locale.getDefault();
-		if(detalleCanales != null && locale.equals(localeDetalleCanales))
-			return detalleCanales;
+		return canales.size() > 12 ? dameResumenCanales(context) : StringUtils.join(dameListaDetallesCanales(context), ", ");
+	}
 
-		SpannableStringBuilder sb = new SpannableStringBuilder();
-		boolean primero = true;
+	@NonNull
+	private CharSequence dameResumenCanales(@NonNull Context context)
+	{
+		assert canales != null;
+		SpannableString spannableString = new SpannableString(context.getResources().getQuantityString(R.plurals.senales, canales.size(), canales.size()));
+		spannableString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spannableString.length(), 0);
+		return spannableString;
+	}
+
+	@NonNull
+	private List<CharSequence> dameListaDetallesCanales(@NonNull Context context)
+	{
+		if(canales == null)
+			return Collections.emptyList();
+		Locale locale = Locale.getDefault();
+		if(listaDetallesCanales == null)
+			listaDetallesCanales = new ArrayList<>(canales.size());
+		else
+		{
+			if(locale.equals(localeListaDetallesCanales))
+				return listaDetallesCanales;
+			else
+				listaDetallesCanales.clear();
+		}
+
 		for(Canal canal : canales)
 		{
-			if(primero)
-				primero = false;
-			else
-				sb.append(", ");
+			SpannableStringBuilder sb = new SpannableStringBuilder();
 			if(canal.nombre != null)
 			{
 				String n = canal.nombre;
@@ -154,10 +171,22 @@ public class Antena implements Parcelable
 					sb.setSpan(new RelativeSizeSpan(.8f), desde, sb.length(), 0);
 				}
 			}
+			listaDetallesCanales.add(sb);
 		}
-		detalleCanales = sb;
-		localeDetalleCanales = locale;
-		return detalleCanales;
+
+		localeListaDetallesCanales = locale;
+
+		return listaDetallesCanales;
+	}
+
+	void ponéDetalles(CommaEllipsizeTextView v)
+	{
+		Context context = v.getContext();
+		assert canales != null;
+		if(canales.size() > 12)
+			v.setText(dameResumenCanales(context));
+		else
+			v.setItems(dameListaDetallesCanales(context));
 	}
 
 	@NonNull
@@ -376,6 +405,7 @@ public class Antena implements Parcelable
 
 	public boolean hayImágenes()
 	{
+		assert canales != null;
 		for(Canal canal : canales)
 			if(canal.dameLogo() != 0)
 				return true;

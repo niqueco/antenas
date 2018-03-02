@@ -13,7 +13,6 @@
     <string name="podes_incrementar_radio">You can try incrementing that ratio in the preferences.</string>
     <string name="no_ubicacion">Couldn\'t acquire location… Is GPS off?</string>
 	<string name="app_no_disponible">No application available to handle this operation.</string>
-	<string name="one_more">one more</string>
 	<string name="some_more" tools:ignore="PluralsCandidate">%d more</string>
 	<string name="channel_number">channel %s</string>
 	<string name="ch_number">ch. %s</string>
@@ -61,6 +60,7 @@
 	<string name="ayuda_una_antena_mapa_estacion_texto">Touching a station you go to the map with that station selected.</string>
 	<string name="mapa_físico">Physical map</string>
 	<string name="mapa_satelital">Satellite map</string>
+	<string name="separator">", "</string>
 
 	<plurals name="senales">
 		<item quantity="one">%1$,d channel</item>
@@ -79,6 +79,10 @@
 	</plurals>
 	<plurals name="hacia_atras">
 		<item quantity="other">Backwards</item>
+	</plurals>
+	<plurals name="more">
+		<item quantity="one">one more</item>
+		<item quantity="other">%d more</item>
 	</plurals>
 
 </resources>
