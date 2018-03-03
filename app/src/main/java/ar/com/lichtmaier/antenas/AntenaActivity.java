@@ -610,11 +610,12 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	private void terminarDeConfigurar()
 	{
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
+		int cantAntenas = antenasAdapter.getItemCount();
 		if(!menúConfigurado)
 		{
 			Set<País> países = EnumSet.noneOf(País.class);
-			for(Antena antena : antenasAdapter.antenasCerca)
-				países.add(antena.país);
+			for(int i = 0; i < cantAntenas; i++)
+				países.add(antenasAdapter.getItem(i).antena.país);
 			if(países.contains(País.AR) || países.contains(País.UY))
 				mostrarOpciónAyudaArgentina = true;
 			if(países.contains(País.UK))
@@ -635,8 +636,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(maxDist == 60000 && !prefs.getBoolean("distancia_configurada", false))
 		{
 			Set<País> países = EnumSet.noneOf(País.class);
-			for(Antena antena : antenasAdapter.antenasCerca)
-				países.add(antena.país);
+			for(int i = 0 ; i < cantAntenas ; i++)
+				países.add(antenasAdapter.getItem(i).antena.país);
 			SharedPreferences.Editor editor = prefs.edit();
 			boolean volver = false;
 			if(países.contains(País.US))
@@ -677,7 +678,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		}
 		TextView problema = findViewById(R.id.problema);
 		assert problema != null;
-		if(antenasAdapter.getItemCount() == 0)
+		if(cantAntenas == 0)
 		{
 			((ViewGroup.MarginLayoutParams)problema.getLayoutParams()).topMargin = 0;
 			StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist)));

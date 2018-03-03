@@ -7,7 +7,10 @@ import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,11 +30,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaViewHolder> implements SharedPreferences.OnSharedPreferenceChangeListener
+public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, AntenasAdapter.AntenaViewHolder> implements SharedPreferences.OnSharedPreferenceChangeListener
 {
 	final private SharedPreferences prefs;
-	final List<Antena> antenasCerca = new ArrayList<>();
-	final private List<Antena> antenasLejos = new ArrayList<>();
 	private final int resource;
 	private final Context context;
 	@Nullable final private Brújula brújula;
@@ -42,6 +43,31 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	private GlobalCoordinates coordsUsuario;
 	private boolean mostrarDireccionesRelativas;
 	private boolean forzarDireccionesAbsolutas;
+
+	static class AntenaListada
+	{
+		final Antena antena;
+		double distancia;
+		final boolean lejos;
+
+		AntenaListada(Antena antena, double distancia, boolean lejos)
+		{
+			this.antena = antena;
+			this.distancia = distancia;
+			this.lejos = lejos;
+		}
+
+		@Override
+		public String toString()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append('{').append(antena).append(' ').append((int)distancia).append('m');
+			if(lejos)
+				sb.append(" lejos");
+			sb.append('}');
+			return sb.toString();
+		}
+	}
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -54,7 +80,7 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		private Antena antena;
 		private boolean suave;
 
-		public AntenaViewHolder(View v)
+		AntenaViewHolder(View v)
 		{
 			super(v);
 			tvDesc = v.findViewById(R.id.antena_desc);
@@ -97,8 +123,30 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 	}
 
+	private static final DiffUtil.ItemCallback<AntenaListada> diffCallback = new DiffUtil.ItemCallback<AntenaListada>()
+	{
+		@Override
+		public boolean areItemsTheSame(AntenaListada oldItem, AntenaListada newItem)
+		{
+			return oldItem.antena.equals(newItem.antena);
+		}
+
+		@Override
+		public boolean areContentsTheSame(AntenaListada oldItem, AntenaListada newItem)
+		{
+			return oldItem.lejos == newItem.lejos && Math.abs(oldItem.distancia - newItem.distancia) < (newItem.distancia > 500 ? 100 : 10);
+		}
+
+		@Override
+		public Object getChangePayload(AntenaListada oldItem, AntenaListada newItem)
+		{
+			return oldItem.lejos == newItem.lejos ? Boolean.TRUE : null;
+		}
+	};
+
 	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback listener, @LayoutRes int resource)
 	{
+		super(diffCallback);
 		this.context = context;
 		this.brújula = brújula;
 		this.listener = listener;
@@ -109,8 +157,9 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		mostrarDireccionesRelativas = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false);
 	}
 
+	@NonNull
 	@Override
-	public AntenaViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+	public AntenaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
 	{
 		View v = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
 		v.setFocusable(true);
@@ -118,9 +167,10 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	}
 
 	@Override
-	public void onBindViewHolder(AntenaViewHolder vh, int position)
+	public void onBindViewHolder(@NonNull AntenaViewHolder vh, int position)
 	{
-		Antena a = getAntena(position);
+		AntenaListada al = getItem(position);
+		Antena a = al.antena;
 		vh.antena = a;
 
 		vh.flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
@@ -139,8 +189,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 		if(vh.tvPotencia != null)
 			vh.tvPotencia.setText(a.potencia > 0 ? a.potencia + " kW" : null);
-		vh.tvDistancia.setText(Formatos.formatDistance(context, a.distanceTo(coordsUsuario)));
-		vh.avisoLejos.setVisibility(antenasLejos.contains(a) ? View.VISIBLE : View.GONE);
+		vh.tvDistancia.setText(Formatos.formatDistance(context, al.distancia));
+		vh.avisoLejos.setVisibility(al.lejos ? View.VISIBLE : View.GONE);
 		if(!mostrarDireccionesRelativas)
 			vh.flechaView.setÁngulo(a.rumboDesde(coordsUsuario), false);
 		else
@@ -148,36 +198,30 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 	}
 
 	@Override
-	public void onViewAttachedToWindow(final AntenaViewHolder holder)
+	public void onViewAttachedToWindow(@NonNull final AntenaViewHolder holder)
 	{
 		if(brújula != null)
 			brújula.registerListener(holder);
 	}
 
 	@Override
-	public void onViewDetachedFromWindow(AntenaViewHolder holder)
+	public void onViewDetachedFromWindow(@NonNull AntenaViewHolder holder)
 	{
 		if(brújula != null)
 			brújula.removeListener(holder);
 	}
 
 	@Override
-	public int getItemCount()
-	{
-		return (antenasCerca == null ? 0 : antenasCerca.size()) + antenasLejos.size();
-	}
-
-	@Override
 	public long getItemId(int position)
 	{
-		Antena antena = getAntena(position);
+		Antena antena = getItem(position).antena;
 		return (long)antena.país.ordinal() << 60 | antena.index;
 	}
 
-	private Antena getAntena(int position)
+	@Override
+	public AntenaListada getItem(int position)
 	{
-		int s = antenasCerca.size();
-		return position < s ? antenasCerca.get(position) : antenasLejos.get(position - s);
+		return super.getItem(position);
 	}
 
 	private void refrescar()
@@ -206,8 +250,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 			return;
 		}
 		Log.d("antenas", "Tengo " + antenasAlrededor.size() + " antenas alrededor.");
-		antenasCerca.clear();
-		antenasLejos.clear();
+		List<AntenaListada> antenasCerca = new ArrayList<>();
+		List<AntenaListada> antenasLejos = new ArrayList<>();
 		LatLng coords = new LatLng(coordsUsuario.getLatitude(), coordsUsuario.getLongitude());
 		boolean renovarCaché = false;
 		if(posCachéCercanía != null)
@@ -226,16 +270,17 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 		}
 		for(Antena a : antenasAlrededor)
 		{
+			double distancia = a.distanceTo(coordsUsuario);
 			if(a.país != País.US || !prefs.getBoolean("usar_contornos", true))
 			{
-				antenasCerca.add(a);
+				antenasCerca.add(new AntenaListada(a, distancia, false));
 				continue;
 			}
 			Boolean cerca = cachéCercaníaAntena.get(a);
 			if(cerca == null || cerca)
-				antenasCerca.add(a);
+				antenasCerca.add(new AntenaListada(a, distancia, false));
 			else
-				antenasLejos.add(a);
+				antenasLejos.add(new AntenaListada(a, distancia, true));
 
 			if(cerca == null || renovarCaché)
 			{
@@ -244,7 +289,8 @@ public class AntenasAdapter extends RecyclerView.Adapter<AntenasAdapter.AntenaVi
 				colaParaContornos.add(a);
 			}
 		}
-		notifyDataSetChanged();
+		antenasCerca.addAll(antenasLejos);
+		submitList(antenasCerca);
 		if(!todoCargado)
 		{
 			todoCargado = true;
