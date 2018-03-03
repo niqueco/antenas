@@ -121,6 +121,34 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 			if(listener != null)
 				listener.onAntenaClicked(antena, v);
 		}
+
+		private void bindTo(AntenaListada al)
+		{
+			antena = al.antena;
+
+			flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
+
+			if(antena.descripción != null)
+			{
+				tvDesc.setText(antena.descripción);
+				if(antena.canales != null && !antena.canales.isEmpty())
+					antena.ponéDetalles(tvDetalle);
+				else
+					tvDetalle.setVisibility(View.GONE);
+			} else
+			{
+				antena.ponéDetalles(tvDesc);
+				tvDetalle.setVisibility(View.GONE);
+			}
+			if(tvPotencia != null)
+				tvPotencia.setText(antena.potencia > 0 ? antena.potencia + " kW" : null);
+			tvDistancia.setText(Formatos.formatDistance(context, al.distancia));
+			avisoLejos.setVisibility(al.lejos ? View.VISIBLE : View.GONE);
+			if(!mostrarDireccionesRelativas)
+				flechaView.setÁngulo(antena.rumboDesde(coordsUsuario), false);
+			else
+				suave = false;
+		}
 	}
 
 	private static final DiffUtil.ItemCallback<AntenaListada> diffCallback = new DiffUtil.ItemCallback<AntenaListada>()
@@ -169,32 +197,7 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 	@Override
 	public void onBindViewHolder(@NonNull AntenaViewHolder vh, int position)
 	{
-		AntenaListada al = getItem(position);
-		Antena a = al.antena;
-		vh.antena = a;
-
-		vh.flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
-
-		if(a.descripción != null)
-		{
-			vh.tvDesc.setText(a.descripción);
-			if(a.canales != null && !a.canales.isEmpty())
-				a.ponéDetalles(vh.tvDetalle);
-			else
-				vh.tvDetalle.setVisibility(View.GONE);
-		} else
-		{
-			a.ponéDetalles(vh.tvDesc);
-			vh.tvDetalle.setVisibility(View.GONE);
-		}
-		if(vh.tvPotencia != null)
-			vh.tvPotencia.setText(a.potencia > 0 ? a.potencia + " kW" : null);
-		vh.tvDistancia.setText(Formatos.formatDistance(context, al.distancia));
-		vh.avisoLejos.setVisibility(al.lejos ? View.VISIBLE : View.GONE);
-		if(!mostrarDireccionesRelativas)
-			vh.flechaView.setÁngulo(a.rumboDesde(coordsUsuario), false);
-		else
-			vh.suave = false;
+		vh.bindTo(getItem(position));
 	}
 
 	@Override
