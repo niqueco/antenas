@@ -164,12 +164,6 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 		{
 			return oldItem.lejos == newItem.lejos && Math.abs(oldItem.distancia - newItem.distancia) < (newItem.distancia > 500 ? 100 : 10);
 		}
-
-		@Override
-		public Object getChangePayload(AntenaListada oldItem, AntenaListada newItem)
-		{
-			return oldItem.lejos == newItem.lejos ? Boolean.TRUE : null;
-		}
 	};
 
 	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback listener, @LayoutRes int resource)

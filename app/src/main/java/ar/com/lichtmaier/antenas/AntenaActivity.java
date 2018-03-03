@@ -34,10 +34,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.*;
 import android.util.Log;
 import android.view.*;
 import android.widget.ProgressBar;
@@ -234,6 +231,9 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					}
 				});
 			}
+			RecyclerView.ItemAnimator animator = rv.getItemAnimator();
+			if(animator instanceof SimpleItemAnimator)
+				((SimpleItemAnimator)animator).setSupportsChangeAnimations(false);
 		}
 
 
