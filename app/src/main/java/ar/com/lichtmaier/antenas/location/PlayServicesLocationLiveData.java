@@ -1,19 +1,15 @@
-package ar.com.lichtmaier.antenas;
+package ar.com.lichtmaier.antenas.location;
 
 import android.Manifest;
 import android.app.Activity;
-import android.arch.lifecycle.LiveData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Looper;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.*;
@@ -21,8 +17,7 @@ import com.google.android.gms.tasks.Task;
 
 import java.lang.ref.WeakReference;
 
-@SuppressWarnings("WeakerAccess")
-public class LocationClientCompat extends LiveData<Location>
+public class PlayServicesLocationLiveData extends LocationLiveData
 {
 	private FusedLocationProviderClient flpc;
 	private final Activity activity;
@@ -31,8 +26,9 @@ public class LocationClientCompat extends LiveData<Location>
 	private static boolean noPreguntar;
 	private final Callback callback;
 
-	private LocationClientCompat(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
+	PlayServicesLocationLiveData(FragmentActivity activity, LocationRequest locationRequest, Callback callback, float precisiónAceptable)
 	{
+		super(precisiónAceptable);
 		this.activity = activity;
 		this.locationRequest = locationRequest;
 
@@ -41,7 +37,8 @@ public class LocationClientCompat extends LiveData<Location>
 		this.callback = callback;
 	}
 
-	void inicializarConPermiso()
+	@Override
+	public void inicializarConPermiso()
 	{
 		if(ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
@@ -62,18 +59,6 @@ public class LocationClientCompat extends LiveData<Location>
 			}
 		});
 		verificarConfiguración();
-	}
-
-	@Nullable
-	public static LocationClientCompat create(FragmentActivity activity, LocationRequest locationRequest, Callback callback)
-	{
-		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity);
-		if(googlePlayServicesAvailable == ConnectionResult.SERVICE_MISSING || googlePlayServicesAvailable == ConnectionResult.SERVICE_INVALID)
-		{
-			callback.onConnectionFailed();
-			return null;
-		}
-		return new LocationClientCompat(activity, locationRequest, callback);
 	}
 
 	@Override
@@ -120,6 +105,7 @@ public class LocationClientCompat extends LiveData<Location>
 			flpc.removeLocationUpdates(locationCallback);
 	}
 
+	@Override
 	public boolean onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		if(requestCode == REQUEST_CHECK_SETTINGS)
@@ -135,9 +121,9 @@ public class LocationClientCompat extends LiveData<Location>
 	private static class MyLocationCallback extends LocationCallback
 	{
 		// because https://code.google.com/p/android/issues/detail?id=227856 =(
-		final private WeakReference<LocationClientCompat> lcc;
+		final private WeakReference<PlayServicesLocationLiveData> lcc;
 
-		private MyLocationCallback(LocationClientCompat lcc)
+		private MyLocationCallback(PlayServicesLocationLiveData lcc)
 		{
 			this.lcc = new WeakReference<>(lcc);
 		}
@@ -158,7 +144,7 @@ public class LocationClientCompat extends LiveData<Location>
 	}
 	final private LocationCallback locationCallback = new MyLocationCallback(this);
 
-	interface Callback
+	public interface Callback
 	{
 		void onConnectionFailed();
 	}

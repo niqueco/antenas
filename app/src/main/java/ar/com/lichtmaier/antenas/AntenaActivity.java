@@ -15,9 +15,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
@@ -48,7 +46,11 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-public class AntenaActivity extends AppCompatActivity implements LocationClientCompat.Callback, Brújula.Callback, android.arch.lifecycle.Observer<Location>
+import ar.com.lichtmaier.antenas.location.PlayServicesLocationLiveData;
+import ar.com.lichtmaier.antenas.location.LocationLiveData;
+import ar.com.lichtmaier.antenas.location.LocationManagerLiveData;
+
+public class AntenaActivity extends AppCompatActivity implements PlayServicesLocationLiveData.Callback, Brújula.Callback, android.arch.lifecycle.Observer<Location>
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -66,8 +68,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	private boolean huboSavedInstanceState;
 	private boolean seMuestraRuegoDePermisos;
 
-	private LocationManager locationManager;
-
 	private MenuItem opciónAyudaArgentina, opciónAyudaReinoUnido, opciónPagar;
 	private boolean mostrarOpciónAyudaArgentina = false, mostrarOpciónAyudaReinoUnido = false;
 
@@ -78,23 +78,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	}
 
 	private AyudanteDePagos ayudanteDePagos;
-
-	private final LocationListener locationListener = new LocationListener() {
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) { }
-		@Override
-		public void onProviderEnabled(String provider) { }
-		@Override
-		public void onProviderDisabled(String provider) { }
-
-		@Override
-		public void onLocationChanged(Location location)
-		{
-			if(location.getAccuracy() > 300)
-				return;
-			nuevaUbicación(location);
-		}
-	};
 
 	static FlechaView flechaADesaparecer;
 	private boolean abriendoAntena = false;
@@ -316,8 +299,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 					pl.setVisibility(View.GONE);
 				if(antenasAdapter != null)
 					antenasAdapter.setForzarDireccionesAbsolutas(false);
-				if(locationClient != null)
-					locationClient.observe(this, this);
+				if(locationLiveData != null)
+					locationLiveData.observe(this, this);
 			}
 			nuevaUbicación();
 
@@ -338,17 +321,14 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		if(pb != null)
 			pb.postDelayed(avisoDemora = new AvisoDemora(this), 15000);
 
-		locationClient = LocationClientCompat.create(this, LocationRequest.create()
+		locationLiveData = LocationLiveData.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(10000)
 				.setFastestInterval(2000)
-				.setSmallestDisplacement(10), this);
+				.setSmallestDisplacement(10), this, PRECISIÓN_ACEPTABLE);
 
-		if(locationClient != null)
-		{
-			locationClient.inicializarConPermiso();
-			locationClient.observe(this, this);
-		}
+		locationLiveData.inicializarConPermiso();
+		locationLiveData.observe(this, this);
 	}
 
 	@SuppressLint("MissingPermission")
@@ -359,7 +339,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		{
 			if(grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 			{
-				if(locationClient != null)
+				if(locationLiveData != null)
 				{
 					Crashlytics.log(Log.ERROR, "antenas", "locationClient no es null en onRequestPermissionsResult");
 					return;
@@ -508,8 +488,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		super.onStart();
 		if(brújula != null)
 			brújula.onResume(this);
-		if(locationManager != null)
-			pedirUbicaciónALocationManager();
 	}
 
 	@Override
@@ -518,25 +496,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		super.onResume();
 		abriendoAntena = false;
 		comienzoUsoPantalla = System.currentTimeMillis();
-	}
-
-	private void pedirUbicaciónALocationManager()
-	{
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-		criteria.setCostAllowed(true);
-		try
-		{
-			if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-				return;
-			locationManager.requestLocationUpdates(1000 * 60, 0, criteria, locationListener, null);
-		} catch(IllegalArgumentException e)
-		{
-			Log.e("antenas", "Error pidiendo updates de GPS", e);
-			Crashlytics.logException(e);
-			Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
-			finish();
-		}
 	}
 
 	@Override
@@ -552,9 +511,6 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	{
 		if(brújula != null)
 			brújula.onPause(this);
-		if(locationManager != null)
-			//noinspection MissingPermission
-			locationManager.removeUpdates(locationListener);
 		super.onStop();
 	}
 
@@ -568,7 +524,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 		super.onDestroy();
 	}
 
-	@Nullable private LocationClientCompat locationClient;
+	@Nullable private LocationLiveData locationLiveData;
 	private SharedPreferences prefs;
 
 	private boolean menúConfigurado = false;
@@ -697,27 +653,12 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 	@Override
 	public void onConnectionFailed()
 	{
-		Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
+		Log.e("antenas", "La conexión con Play Services falló. No importa, sobreviviremos.");
 
 		pedirCambioConfiguración();
 
-		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		if(locationManager == null)
-			throw new NullPointerException();
-		locationClient = null;
-		if(coordsUsuario == null)
-		{
-			Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-			if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
-				nuevaUbicación(location);
-			else
-			{
-				location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
-					nuevaUbicación(location);
-			}
-		}
-		pedirUbicaciónALocationManager();
+		locationLiveData = new LocationManagerLiveData(this, PRECISIÓN_ACEPTABLE);
+		locationLiveData.inicializarConPermiso();
 	}
 
 	private void pedirCambioConfiguración()
@@ -752,11 +693,8 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 			if(data == null)
 				return;
 
-			if(locationManager != null)
-				//noinspection MissingPermission
-				locationManager.removeUpdates(locationListener);
-			if(locationClient != null)
-				locationClient.removeObservers(this);
+			if(locationLiveData != null)
+				locationLiveData.removeObservers(this);
 
 			if(antenasAdapter != null)
 				antenasAdapter.setForzarDireccionesAbsolutas(true);
@@ -767,7 +705,7 @@ public class AntenaActivity extends AppCompatActivity implements LocationClientC
 
 			return;
 		}
-		if(locationClient != null && locationClient.onActivityResult(requestCode, resultCode, data))
+		if(locationLiveData != null && locationLiveData.onActivityResult(requestCode, resultCode, data))
 			return;
 		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;

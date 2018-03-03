@@ -9,7 +9,6 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -21,12 +20,15 @@ import android.view.MenuItem;
 
 import com.google.android.gms.location.LocationRequest;
 
-public class MapaActivity extends AppCompatActivity implements LocationClientCompat.Callback
+import ar.com.lichtmaier.antenas.location.PlayServicesLocationLiveData;
+import ar.com.lichtmaier.antenas.location.LocationLiveData;
+
+public class MapaActivity extends AppCompatActivity implements PlayServicesLocationLiveData.Callback
 {
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 11112;
 
 	private long comienzoUsoPantalla;
-	private LocationClientCompat locationClient;
+	private LocationLiveData locationLiveData;
 
 	private AyudanteDePagos ayudanteDePagos;
 	private MenuItem opciónPagar;
@@ -75,16 +77,15 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		if(mapaFragment == null)
 			throw new NullPointerException("mapaFragment es null, activity = " + this);
 
-		locationClient = LocationClientCompat.create(this, LocationRequest.create()
+		locationLiveData = LocationLiveData.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(200)
 				.setFastestInterval(200)
-				.setSmallestDisplacement(1), this);
+				.setSmallestDisplacement(1), this, 1);
 
 		if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
 		{
-			if(locationClient != null)
-				locationClient.inicializarConPermiso();
+			locationLiveData.inicializarConPermiso();
 		} else
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
 	}
@@ -95,7 +96,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		if(requestCode == PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION)
 		{
 			if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-				locationClient.inicializarConPermiso();
+				locationLiveData.inicializarConPermiso();
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
@@ -171,7 +172,7 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if(locationClient != null && locationClient.onActivityResult(requestCode, resultCode, data))
+		if(locationLiveData.onActivityResult(requestCode, resultCode, data))
 			return;
 		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;
@@ -184,9 +185,9 @@ public class MapaActivity extends AppCompatActivity implements LocationClientCom
 		Log.e("antenas", "No se pudo inicializar Play Services: El mapa no accederá a la ubicación actual.");
 	}
 
-	@Nullable
+	@NonNull
 	LiveData<Location> getLocation()
 	{
-		return locationClient;
+		return locationLiveData;
 	}
 }

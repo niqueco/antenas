@@ -172,8 +172,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			return;
 		}
 		LiveData<Location> location = activity.getLocation();
-		if(location != null)
-			location.observe(this, this::onLocationChanged);
+		location.observe(this, this::onLocationChanged);
 	}
 
 	private void inicializarMapa(Bundle savedInstanceState)
