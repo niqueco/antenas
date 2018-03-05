@@ -236,7 +236,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			}
 		} else
 		{
-			crearLocationClientCompat();
+			crearLocationLiveData();
 		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
@@ -308,7 +308,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	}
 
 	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-	private void crearLocationClientCompat()
+	private void crearLocationLiveData()
 	{
 		if(seMuestraRuegoDePermisos)
 		{
@@ -348,7 +348,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 					return;
 				}
 
-				crearLocationClientCompat();
+				crearLocationLiveData();
 			} else
 				finish();
 		} else
