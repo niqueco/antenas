@@ -13,6 +13,9 @@ public class AntenasViewModel extends AndroidViewModel
 {
 	private boolean unaAntena;
 
+	@Nullable Brújula brújula;
+	private boolean sinBrújula;
+
 	public AntenasViewModel(@NonNull Application application)
 	{
 		super(application);
@@ -21,5 +24,12 @@ public class AntenasViewModel extends AndroidViewModel
 	public void init(boolean unaAntena)
 	{
 		this.unaAntena = unaAntena;
+
+		if(brújula == null && !sinBrújula)
+		{
+			brújula = Brújula.crear(getApplication());
+			if(brújula == null)
+				sinBrújula = true;
+		}
 	}
 }

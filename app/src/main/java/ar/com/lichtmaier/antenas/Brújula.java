@@ -77,6 +77,12 @@ public class Brújula implements SensorEventListener, DefaultLifecycleObserver
 		sensorManager.unregisterListener(this);
 	}
 
+	@Override
+	public void onDestroy(@NonNull LifecycleOwner owner)
+	{
+		listeners.clear();
+	}
+
 	public void setCoordinates(double latitude, double longitude, float alturaUsuario)
 	{
 		if(declinaciónMagnética == Float.MAX_VALUE)

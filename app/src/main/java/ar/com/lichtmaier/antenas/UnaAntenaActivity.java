@@ -135,7 +135,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			}
 		}
 
-		if(savedInstanceState == null && brújula == null && !mostrarDireccionesRelativas)
+		if(savedInstanceState == null && viewModel.brújula == null && !mostrarDireccionesRelativas)
 			flecha.setMostrarPuntosCardinales(true);
 
 		if(savedInstanceState == null && animar)
@@ -334,7 +334,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 				if(AntenaActivity.flechaADesaparecer != null)
 				{
 					AntenaActivity.flechaADesaparecer.setÁngulo(ángulo);
-					if(brújula != null && brújula.sinValor())
+					if(viewModel.brújula != null && viewModel.brújula.sinValor())
 						AntenaActivity.flechaADesaparecer.sinValor(false);
 					AntenaActivity.flechaADesaparecer.setVisibility(View.VISIBLE);
 				}
@@ -452,7 +452,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 
 	private void configurarMostrarDireccionesRelativas()
 	{
-		this.mostrarDireccionesRelativas = brújula != null && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("forzar_direcciones_absolutas", false) && Lugar.actual.getValue() == null;
+		this.mostrarDireccionesRelativas = viewModel.brújula != null && !PreferenceManager.getDefaultSharedPreferences(this).getBoolean("forzar_direcciones_absolutas", false) && Lugar.actual.getValue() == null;
 		if(coordsUsuario != null)
 			flecha.setÁngulo(antena.rumboDesde(coordsUsuario), false);
 		flecha.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);

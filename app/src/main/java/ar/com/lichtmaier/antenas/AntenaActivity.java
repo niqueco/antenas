@@ -61,10 +61,9 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	private static final String PREF_PAGAME_MES_MOSTRADO = "pagame_mes_mostrado";
 	private static final String PREF_LANZAMIENTOS = "lanzamientos";
 
-	private AntenasViewModel viewModel;
+	protected AntenasViewModel viewModel;
 	static GlobalCoordinates coordsUsuario;
 	private static float alturaUsuario;
-	protected Brújula brújula;
 	private AntenasAdapter antenasAdapter;
 	private Publicidad publicidad;
 	private boolean huboSavedInstanceState;
@@ -118,7 +117,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 					putExtra(PACKAGE + ".height", flecha.getHeight()).
 					putExtra(PACKAGE + ".ángulo", flecha.getÁngulo()).
 					putExtra(PACKAGE + ".ánguloDibujado", flecha.getÁnguloDibujado()).
-					putExtra(PACKAGE + ".sinValor", brújula != null && brújula.sinValor()).
+					putExtra(PACKAGE + ".sinValor", viewModel.brújula != null && viewModel.brújula.sinValor()).
 					putExtra(PACKAGE + ".animar", animar);
 			flechaADesaparecer = flecha;
 
@@ -173,9 +172,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			editor.apply();
 		}
 
-		brújula = Brújula.crear(this);
-
-		if(brújula == null && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_brújula",null)))
+		if(viewModel.brújula == null && !(this instanceof UnaAntenaActivity) && !Build.FINGERPRINT.equals(prefs.getString("aviso_no_viewModel.brújula",null)))
 		{
 			View principal = findViewById(R.id.principal);
 			Snackbar sb = Snackbar.make(principal, R.string.aviso_no_hay_brújula, Snackbar.LENGTH_INDEFINITE)
@@ -193,17 +190,17 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				tv.setMaxLines(4);
 			sb.show();
 		}
-		if(brújula != null)
+		if(viewModel.brújula != null)
 		{
 			prefs.edit().remove("aviso_no_brújula").apply();
-			brújula.registerListener(this, getLifecycle());
+			viewModel.brújula.registerListener(this, getLifecycle());
 		}
 
 		final RecyclerView rv = findViewById(R.id.antenas);
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener, R.layout.antena, getLifecycle());
+			antenasAdapter = new AntenasAdapter(this, viewModel.brújula, onAntenaClickedListener, R.layout.antena, getLifecycle());
 			rv.setAdapter(antenasAdapter);
 			final RecyclerView.LayoutManager rvLayoutManager = rv.getLayoutManager();
 			if(rvLayoutManager instanceof LinearLayoutManager)
@@ -510,8 +507,8 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	@Override
 	protected void onDestroy()
 	{
-		if(brújula != null)
-			brújula.removeListener(this);
+		if(viewModel.brújula != null)
+			viewModel.brújula.removeListener(this);
 		if(antenasAdapter != null)
 			antenasAdapter.onDestroy();
 		super.onDestroy();
@@ -549,8 +546,8 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		Lugar l = Lugar.actual.getValue();
 		if(coordsUsuario == null && l == null)
 			return;
-		if(brújula != null && coordsUsuario != null)
-			brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
+		if(viewModel.brújula != null && coordsUsuario != null)
+			viewModel.brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 
 		antenasAdapter.nuevaUbicación(l != null ? l.coords : coordsUsuario);
 	}
