@@ -7,6 +7,7 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -50,7 +51,7 @@ import ar.com.lichtmaier.antenas.location.PlayServicesLocationLiveData;
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
 import ar.com.lichtmaier.antenas.location.LocationManagerLiveData;
 
-public class AntenaActivity extends AppCompatActivity implements PlayServicesLocationLiveData.Callback, Brújula.Callback, android.arch.lifecycle.Observer<Location>
+public class AntenaActivity extends AppCompatActivity implements PlayServicesLocationLiveData.Callback, Brújula.Callback
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -300,7 +301,7 @@ public class AntenaActivity extends AppCompatActivity implements PlayServicesLoc
 				if(antenasAdapter != null)
 					antenasAdapter.setForzarDireccionesAbsolutas(false);
 				if(locationLiveData != null)
-					locationLiveData.observe(this, this);
+					locationLiveData.observe(this, locationObserver);
 			}
 			nuevaUbicación();
 
@@ -328,7 +329,7 @@ public class AntenaActivity extends AppCompatActivity implements PlayServicesLoc
 				.setSmallestDisplacement(10), this, PRECISIÓN_ACEPTABLE);
 
 		locationLiveData.inicializarConPermiso();
-		locationLiveData.observe(this, this);
+		locationLiveData.observe(this, locationObserver);
 	}
 
 	@SuppressLint("MissingPermission")
@@ -677,13 +678,18 @@ public class AntenaActivity extends AppCompatActivity implements PlayServicesLoc
 		}
 	}
 
-	@Override
-	public void onChanged(Location location)
+	final private Observer<Location> locationObserver = new Observer<Location>()
 	{
-		if(publicidad != null)
-			publicidad.load(location);
-		nuevaUbicación(location);
-	}
+		@Override
+		public void onChanged(@Nullable Location location)
+		{
+			if(location == null)
+				return;
+			if(publicidad != null)
+				publicidad.load(location);
+			nuevaUbicación(location);
+		}
+	};
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
