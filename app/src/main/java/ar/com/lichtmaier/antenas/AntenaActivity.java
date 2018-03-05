@@ -196,14 +196,14 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		if(brújula != null)
 		{
 			prefs.edit().remove("aviso_no_brújula").apply();
-			brújula.registerListener(this);
+			brújula.registerListener(this, getLifecycle());
 		}
 
 		final RecyclerView rv = findViewById(R.id.antenas);
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener, R.layout.antena);
+			antenasAdapter = new AntenasAdapter(this, brújula, onAntenaClickedListener, R.layout.antena, getLifecycle());
 			rv.setAdapter(antenasAdapter);
 			final RecyclerView.LayoutManager rvLayoutManager = rv.getLayoutManager();
 			if(rvLayoutManager instanceof LinearLayoutManager)
@@ -492,14 +492,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	}
 
 	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		if(brújula != null)
-			brújula.onResume(this);
-	}
-
-	@Override
 	protected void onResume()
 	{
 		super.onResume();
@@ -513,14 +505,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		if(System.currentTimeMillis() - comienzoUsoPantalla > 1000 * 30)
 			Calificame.registráQueMiróLasAntenas(this);
 		super.onPause();
-	}
-
-	@Override
-	protected void onStop()
-	{
-		if(brújula != null)
-			brújula.onPause(this);
-		super.onStop();
 	}
 
 	@Override

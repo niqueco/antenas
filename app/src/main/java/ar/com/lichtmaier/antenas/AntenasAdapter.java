@@ -1,5 +1,6 @@
 package ar.com.lichtmaier.antenas;
 
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -37,6 +38,7 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 	private final Context context;
 	@Nullable final private Brújula brújula;
 	private final Callback listener;
+	private final Lifecycle lifecycle;
 	private Thread threadContornos;
 	final private BlockingQueue<Antena> colaParaContornos = new LinkedBlockingQueue<>();
 	private boolean todoCargado = false;
@@ -166,13 +168,14 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 		}
 	};
 
-	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback listener, @LayoutRes int resource)
+	AntenasAdapter(Context context, @Nullable Brújula brújula, Callback listener, @LayoutRes int resource, Lifecycle lifecycle)
 	{
 		super(diffCallback);
 		this.context = context;
 		this.brújula = brújula;
 		this.listener = listener;
 		this.resource = resource;
+		this.lifecycle = lifecycle;
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 		setHasStableIds(true);
@@ -198,7 +201,7 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 	public void onViewAttachedToWindow(@NonNull final AntenaViewHolder holder)
 	{
 		if(brújula != null)
-			brújula.registerListener(holder);
+			brújula.registerListener(holder, lifecycle);
 	}
 
 	@Override

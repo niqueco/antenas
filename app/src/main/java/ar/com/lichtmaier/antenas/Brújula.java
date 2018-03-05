@@ -1,8 +1,10 @@
 package ar.com.lichtmaier.antenas;
 
+import android.arch.lifecycle.*;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.*;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Surface;
 import android.view.WindowManager;
@@ -11,10 +13,11 @@ import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Set;
 
-public class Brújula implements SensorEventListener
+public class Brújula implements SensorEventListener, DefaultLifecycleObserver
 {
 	final private float[] gravity = new float[3];
 	final private float[] geomagnetic = new float[3];
+	private final SensorManager sensorManager;
 	final private Sensor acelerómetro;
 	final private Sensor magnetómetro;
 	private boolean hayInfoDeMagnetómetro = false, hayInfoDeAcelerómetro = false;
@@ -24,8 +27,9 @@ public class Brújula implements SensorEventListener
 	private long lastUpdate = 0;
 	private boolean sinValor = false;
 
-	private Brújula(Context context, Sensor acelerómetro, Sensor magnetómetro)
+	private Brújula(Context context, SensorManager sensorManager, Sensor acelerómetro, Sensor magnetómetro)
 	{
+		this.sensorManager = sensorManager;
 		this.acelerómetro = acelerómetro;
 		this.magnetómetro = magnetómetro;
 		WindowManager windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
@@ -36,20 +40,21 @@ public class Brújula implements SensorEventListener
 	{
 		if(context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
 		{
-			SensorManager sm = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-			if(sm == null)
+			SensorManager sensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+			if(sensorManager == null)
 				return null;
-			Sensor magnetómetro = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-			Sensor acelerómetro = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+			Sensor magnetómetro = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+			Sensor acelerómetro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 			if(magnetómetro != null && acelerómetro != null)
-				return new Brújula(context, acelerómetro, magnetómetro);
+				return new Brújula(context, sensorManager, acelerómetro, magnetómetro);
 		}
 		return null;
 	}
 
-	public void registerListener(Callback cb)
+	public void registerListener(Callback cb, Lifecycle lifecycle)
 	{
 		listeners.add(cb);
+		lifecycle.addObserver(this);
 	}
 
 	public void removeListener(Callback cb)
@@ -57,23 +62,19 @@ public class Brújula implements SensorEventListener
 		listeners.remove(cb);
 	}
 
-	public void onResume(Context context)
+	@Override
+	public void onStart(@NonNull LifecycleOwner owner)
 	{
-		SensorManager sm = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-		if(sm == null)
-			return;
-		sm.registerListener(this, magnetómetro, SensorManager.SENSOR_DELAY_UI);
-		sm.registerListener(this, acelerómetro, SensorManager.SENSOR_DELAY_UI);
+		sensorManager.registerListener(this, magnetómetro, SensorManager.SENSOR_DELAY_UI);
+		sensorManager.registerListener(this, acelerómetro, SensorManager.SENSOR_DELAY_UI);
 	}
 
-	public void onPause(Context context)
+	@Override
+	public void onStop(@NonNull LifecycleOwner owner)
 	{
 		hayInfoDeAcelerómetro = false;
 		hayInfoDeMagnetómetro = false;
-		SensorManager sm = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-		if(sm == null)
-			return;
-		sm.unregisterListener(this);
+		sensorManager.unregisterListener(this);
 	}
 
 	public void setCoordinates(double latitude, double longitude, float alturaUsuario)
