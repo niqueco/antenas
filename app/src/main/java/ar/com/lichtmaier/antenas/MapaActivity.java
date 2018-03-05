@@ -14,16 +14,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.gms.location.LocationRequest;
 
-import ar.com.lichtmaier.antenas.location.PlayServicesLocationLiveData;
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
 
-public class MapaActivity extends AppCompatActivity implements PlayServicesLocationLiveData.Callback
+public class MapaActivity extends AppCompatActivity
 {
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 11112;
 
@@ -81,7 +79,7 @@ public class MapaActivity extends AppCompatActivity implements PlayServicesLocat
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(200)
 				.setFastestInterval(200)
-				.setSmallestDisplacement(1), this, 1);
+				.setSmallestDisplacement(1), 1);
 
 		if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
 		{
@@ -177,12 +175,6 @@ public class MapaActivity extends AppCompatActivity implements PlayServicesLocat
 		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;
 		super.onActivityResult(requestCode, resultCode, data);
-	}
-
-	@Override
-	public void onConnectionFailed()
-	{
-		Log.e("antenas", "No se pudo inicializar Play Services: El mapa no accederá a la ubicación actual.");
 	}
 
 	@NonNull

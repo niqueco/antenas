@@ -47,11 +47,10 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-import ar.com.lichtmaier.antenas.location.PlayServicesLocationLiveData;
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
 import ar.com.lichtmaier.antenas.location.LocationManagerLiveData;
 
-public class AntenaActivity extends AppCompatActivity implements PlayServicesLocationLiveData.Callback, Brújula.Callback
+public class AntenaActivity extends AppCompatActivity implements Brújula.Callback
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
@@ -326,10 +325,13 @@ public class AntenaActivity extends AppCompatActivity implements PlayServicesLoc
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(10000)
 				.setFastestInterval(2000)
-				.setSmallestDisplacement(10), this, PRECISIÓN_ACEPTABLE);
+				.setSmallestDisplacement(10), PRECISIÓN_ACEPTABLE);
 
 		locationLiveData.inicializarConPermiso();
 		locationLiveData.observe(this, locationObserver);
+
+		if(locationLiveData instanceof LocationManagerLiveData)
+			pedirCambioConfiguración();
 	}
 
 	@SuppressLint("MissingPermission")
@@ -648,18 +650,6 @@ public class AntenaActivity extends AppCompatActivity implements PlayServicesLoc
 		{
 			problema.setVisibility(View.GONE);
 		}
-	}
-
-	@SuppressLint("MissingPermission")
-	@Override
-	public void onConnectionFailed()
-	{
-		Log.e("antenas", "La conexión con Play Services falló. No importa, sobreviviremos.");
-
-		pedirCambioConfiguración();
-
-		locationLiveData = new LocationManagerLiveData(this, PRECISIÓN_ACEPTABLE);
-		locationLiveData.inicializarConPermiso();
 	}
 
 	private void pedirCambioConfiguración()

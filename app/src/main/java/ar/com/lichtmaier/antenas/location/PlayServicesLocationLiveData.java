@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.*;
@@ -24,17 +25,14 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 	private final LocationRequest locationRequest;
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
-	private final Callback callback;
 
-	PlayServicesLocationLiveData(FragmentActivity activity, LocationRequest locationRequest, Callback callback, float precisiónAceptable)
+	PlayServicesLocationLiveData(FragmentActivity activity, LocationRequest locationRequest, float precisiónAceptable)
 	{
 		super(precisiónAceptable);
 		this.activity = activity;
 		this.locationRequest = locationRequest;
 
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
-
-		this.callback = callback;
 	}
 
 	@Override
@@ -54,8 +52,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 					setValue(lastLocation);
 			} catch(ApiException e)
 			{
-				Log.e("antenas", "Error", e);
-				callback.onConnectionFailed();
+				Crashlytics.logException(e);
 			}
 		});
 		verificarConfiguración();
@@ -143,9 +140,4 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 		}
 	}
 	final private LocationCallback locationCallback = new MyLocationCallback(this);
-
-	public interface Callback
-	{
-		void onConnectionFailed();
-	}
 }

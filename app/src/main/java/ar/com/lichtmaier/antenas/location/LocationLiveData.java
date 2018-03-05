@@ -21,7 +21,7 @@ public abstract class LocationLiveData extends LiveData<Location>
 	}
 
 	@NonNull
-	public static LocationLiveData create(FragmentActivity activity, LocationRequest locationRequest, PlayServicesLocationLiveData.Callback callback, float precisiónAceptable)
+	public static LocationLiveData create(FragmentActivity activity, LocationRequest locationRequest, float precisiónAceptable)
 	{
 		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity);
 		if(googlePlayServicesAvailable == ConnectionResult.SERVICE_MISSING || googlePlayServicesAvailable == ConnectionResult.SERVICE_INVALID)
@@ -29,7 +29,7 @@ public abstract class LocationLiveData extends LiveData<Location>
 			Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
 			return new LocationManagerLiveData(activity, precisiónAceptable);
 		}
-		return new PlayServicesLocationLiveData(activity, locationRequest, callback, precisiónAceptable);
+		return new PlayServicesLocationLiveData(activity, locationRequest, precisiónAceptable);
 	}
 
 	public abstract void inicializarConPermiso();
