@@ -2,7 +2,6 @@ package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
 import android.arch.lifecycle.Observer;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.*;
@@ -14,12 +13,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.location.LocationRequest;
 
@@ -27,32 +24,15 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.lang.ref.WeakReference;
 
-public class TVActivity extends FragmentActivity implements LocationClientCompat.Callback, Observer<Location>
+import ar.com.lichtmaier.antenas.location.LocationLiveData;
+
+public class TVActivity extends FragmentActivity implements Observer<Location>
 {
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 	public static final int PRECISIÓN_ACEPTABLE = 150;
 
-	private GlobalCoordinates coordsUsuario;
 	private AntenasAdapter antenasAdapter;
-	private LocationManager locationManager;
 	private SharedPreferences prefs;
-
-	private final LocationListener locationListener = new LocationListener() {
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) { }
-		@Override
-		public void onProviderEnabled(String provider) { }
-		@Override
-		public void onProviderDisabled(String provider) { }
-
-		@Override
-		public void onLocationChanged(Location location)
-		{
-			if(location.getAccuracy() > 300)
-				return;
-			nuevaUbicación(location);
-		}
-	};
 
 	private final AntenasAdapter.Callback antenasAdapterListener = new AntenasAdapter.Callback()
 	{
@@ -100,23 +80,20 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 			ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_FINE_LOCATION);
 		} else
 		{
-			crearLocationClientCompat();
+			crearLocationLiveData();
 		}
 	}
 
-	private void crearLocationClientCompat()
+	private void crearLocationLiveData()
 	{
-		LocationClientCompat locationClient = LocationClientCompat.create(this, LocationRequest.create()
+		LocationLiveData locationLiveData = LocationLiveData.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(10000)
 				.setFastestInterval(2000)
-				.setSmallestDisplacement(10), this);
+				.setSmallestDisplacement(10), PRECISIÓN_ACEPTABLE);
 
-		if(locationClient != null)
-		{
-			locationClient.inicializarConPermiso();
-			locationClient.observe(this, this);
-		}
+		locationLiveData.inicializarConPermiso();
+		locationLiveData.observe(this, this);
 	}
 
 	@Override
@@ -126,46 +103,11 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		{
 			if(grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 				//noinspection ResourceType
-				crearLocationClientCompat();
+				crearLocationLiveData();
 			else
 				finish();
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-	}
-
-	private void pedirUbicaciónALocationManager()
-	{
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-		criteria.setCostAllowed(true);
-		try
-		{
-			Log.i("antenas", "Pidiendo ubicación al LocationManager.");
-			//noinspection MissingPermission
-			locationManager.requestLocationUpdates(1000 * 60, 0, criteria, locationListener, null);
-		} catch(IllegalArgumentException e)
-		{
-			Log.e("antenas", "Error pidiendo updates de GPS", e);
-			Toast.makeText(this, getString(R.string.no_ubicacion), Toast.LENGTH_SHORT).show();
-			finish();
-		}
-	}
-
-	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		if(locationManager != null)
-			pedirUbicaciónALocationManager();
-	}
-
-	@Override
-	protected void onStop()
-	{
-		if(locationManager != null)
-			//noinspection MissingPermission
-			locationManager.removeUpdates(locationListener);
-		super.onStop();
 	}
 
 	@Override
@@ -178,9 +120,7 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 
 	private void nuevaUbicación(Location location)
 	{
-		Log.d("antenas", "loc="+location);
-		coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-		antenasAdapter.nuevaUbicación(coordsUsuario);
+		antenasAdapter.nuevaUbicación(new GlobalCoordinates(location.getLatitude(), location.getLongitude()));
 	}
 
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
@@ -224,22 +164,6 @@ public class TVActivity extends FragmentActivity implements LocationClientCompat
 		{
 			problema.setVisibility(View.GONE);
 		}
-	}
-
-	@Override
-	public void onConnectionFailed()
-	{
-		Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
-
-		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		if(coordsUsuario == null)
-		{
-			//noinspection MissingPermission
-			Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-			if(location != null && location.getAccuracy() < PRECISIÓN_ACEPTABLE)
-				nuevaUbicación(location);
-		}
-		pedirUbicaciónALocationManager();
 	}
 
 	@Override
