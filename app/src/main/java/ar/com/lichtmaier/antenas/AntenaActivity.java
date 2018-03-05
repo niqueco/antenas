@@ -8,6 +8,7 @@ import org.gavaghan.geodesy.GlobalCoordinates;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,6 +61,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	private static final String PREF_PAGAME_MES_MOSTRADO = "pagame_mes_mostrado";
 	private static final String PREF_LANZAMIENTOS = "lanzamientos";
 
+	private AntenasViewModel viewModel;
 	static GlobalCoordinates coordsUsuario;
 	private static float alturaUsuario;
 	protected Brújula brújula;
@@ -138,6 +140,10 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		viewModel = ViewModelProviders.of(this).get(AntenasViewModel.class);
+		viewModel.init((this instanceof UnaAntenaActivity));
+
 		asignarLayout();
 
 		Toolbar tb = findViewById(R.id.toolbar);
