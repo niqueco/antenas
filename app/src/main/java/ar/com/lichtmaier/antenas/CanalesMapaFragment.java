@@ -93,8 +93,7 @@ public class CanalesMapaFragment extends Fragment
 		if(distView != null)
 		{
 			LiveData<Location> loc = ((MapaActivity)requireActivity()).getLocation();
-			if(loc != null)
-				loc.observe(this, location -> ponerDistancia(location, distView, antena.descripción != null));
+			loc.observe(this, location -> ponerDistancia(location, distView, antena.descripción != null));
 		}
 		View viewCanalASeleccionar = null;
 		final int canalSeleccionadoPos = savedInstanceState != null ? savedInstanceState.getInt("canal", -1) : -1;
