@@ -54,7 +54,6 @@
     <string name="pref_UY">ウルグアイ</string>
 
 	<plurals name="pref_país_summary">
-		<item quantity="one">%2$sのアンテナを見せてください。</item>
 		<item quantity="other">%2$sの%1$,dアンテナを見せてください。</item>
 	</plurals>
 
