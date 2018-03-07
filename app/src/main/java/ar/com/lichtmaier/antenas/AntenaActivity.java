@@ -130,6 +130,12 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		{
 			terminarDeConfigurar();
 		}
+
+		@Override
+		public void onAntenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
+		{
+			antenasActualizadas(antenasListadas);
+		}
 	};
 	protected Publicidad.Intersticial intersticial;
 
@@ -611,9 +617,13 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				avisoDemora = null;
 			}
 		}
+	}
+
+	private void antenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
+	{
+		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		TextView problema = findViewById(R.id.problema);
-		assert problema != null;
-		if(cantAntenas == 0)
+		if(antenasListadas.isEmpty())
 		{
 			((ViewGroup.MarginLayoutParams)problema.getLayoutParams()).topMargin = 0;
 			StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist)));

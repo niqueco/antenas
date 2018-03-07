@@ -21,6 +21,7 @@ import android.widget.TextView;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class TVActivity extends FragmentActivity
 {
@@ -42,6 +43,12 @@ public class TVActivity extends FragmentActivity
 		public void onAdapterReady()
 		{
 			terminarDeConfigurar();
+		}
+
+		@Override
+		public void onAntenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
+		{
+			antenasActualizadas(antenasListadas);
 		}
 	};
 
@@ -119,7 +126,6 @@ public class TVActivity extends FragmentActivity
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
 	private void terminarDeConfigurar()
 	{
-		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		final ProgressBar pb = findViewById(R.id.progressBar);
 		if(pb != null)
 		{
@@ -141,8 +147,13 @@ public class TVActivity extends FragmentActivity
 			pb.removeCallbacks(avisoDemora);
 			avisoDemora = null;
 		}
+	}
+
+	private void antenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
+	{
+		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		TextView problema = findViewById(R.id.problema);
-		if(antenasAdapter.getItemCount() == 0)
+		if(antenasListadas.isEmpty())
 		{
 			((ViewGroup.MarginLayoutParams)problema.getLayoutParams()).topMargin = 0;
 			//StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist)));

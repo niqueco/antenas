@@ -297,6 +297,9 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 			if(listener != null)
 				listener.onAdapterReady();
 		}
+		if(listener != null)
+			listener.onAntenasActualizadas(antenasCerca);
+
 	}
 
 	public void setForzarDireccionesAbsolutas(boolean forzarDireccionesAbsolutas)
@@ -397,6 +400,8 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 		void onAntenaClicked(Antena antena, View view);
 
 		void onAdapterReady();
+
+		void onAntenasActualizadas(List<AntenaListada> antenasListadas);
 	}
 
 	private static class LlamarANuevaUbicación extends Handler
