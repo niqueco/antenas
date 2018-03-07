@@ -1,10 +1,10 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
-import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.*;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -18,21 +18,17 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.gms.location.LocationRequest;
-
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.lang.ref.WeakReference;
 
-import ar.com.lichtmaier.antenas.location.LocationLiveData;
-
-public class TVActivity extends FragmentActivity implements Observer<Location>
+public class TVActivity extends FragmentActivity
 {
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
-	public static final int PRECISIÓN_ACEPTABLE = 150;
 
 	private AntenasAdapter antenasAdapter;
 	private SharedPreferences prefs;
+	private AntenasViewModel viewModel;
 
 	private final AntenasAdapter.Callback antenasAdapterListener = new AntenasAdapter.Callback()
 	{
@@ -54,6 +50,9 @@ public class TVActivity extends FragmentActivity implements Observer<Location>
 	{
 		super.onCreate(savedInstanceState);
 
+		viewModel = ViewModelProviders.of(this).get(AntenasViewModel.class);
+		viewModel.init(false);
+
 		setContentView(R.layout.tv_activity);
 
 		ProgressBar pb = findViewById(R.id.progressBar);
@@ -71,7 +70,7 @@ public class TVActivity extends FragmentActivity implements Observer<Location>
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, null, antenasAdapterListener, R.layout.antena_tv);
+			antenasAdapter = new AntenasAdapter(this, null, antenasAdapterListener, R.layout.antena_tv, getLifecycle());
 			rv.setAdapter(antenasAdapter);
 		}
 
@@ -86,14 +85,8 @@ public class TVActivity extends FragmentActivity implements Observer<Location>
 
 	private void crearLocationLiveData()
 	{
-		LocationLiveData locationLiveData = LocationLiveData.create(this, LocationRequest.create()
-				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-				.setInterval(10000)
-				.setFastestInterval(2000)
-				.setSmallestDisplacement(10), PRECISIÓN_ACEPTABLE);
-
-		locationLiveData.inicializarConPermiso();
-		locationLiveData.observe(this, this);
+		viewModel.locationLiveData.inicializarConPermiso(this);
+		viewModel.locationLiveData.observe(this, this::nuevaUbicación);
 	}
 
 	@Override
@@ -164,12 +157,6 @@ public class TVActivity extends FragmentActivity implements Observer<Location>
 		{
 			problema.setVisibility(View.GONE);
 		}
-	}
-
-	@Override
-	public void onChanged(Location location)
-	{
-		nuevaUbicación(location);
 	}
 
 	private PrenderAnimación prenderAnimación;

@@ -83,7 +83,7 @@ public class MapaActivity extends AppCompatActivity
 
 		if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
 		{
-			locationLiveData.inicializarConPermiso();
+			locationLiveData.inicializarConPermiso(this);
 		} else
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
 	}
@@ -94,7 +94,7 @@ public class MapaActivity extends AppCompatActivity
 		if(requestCode == PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION)
 		{
 			if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-				locationLiveData.inicializarConPermiso();
+				locationLiveData.inicializarConPermiso(this);
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}

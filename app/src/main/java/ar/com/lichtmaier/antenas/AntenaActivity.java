@@ -44,11 +44,9 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-import ar.com.lichtmaier.antenas.location.LocationLiveData;
 import ar.com.lichtmaier.antenas.location.LocationManagerLiveData;
 
 public class AntenaActivity extends AppCompatActivity implements Brújula.Callback
@@ -302,8 +300,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 					pl.setVisibility(View.GONE);
 				if(antenasAdapter != null)
 					antenasAdapter.setForzarDireccionesAbsolutas(false);
-				if(locationLiveData != null)
-					locationLiveData.observe(this, locationObserver);
+				viewModel.locationLiveData.observe(this, locationObserver);
 			}
 			nuevaUbicación();
 
@@ -324,16 +321,15 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		if(pb != null)
 			pb.postDelayed(avisoDemora = new AvisoDemora(this), 15000);
 
-		locationLiveData = LocationLiveData.create(this, LocationRequest.create()
-				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-				.setInterval(10000)
-				.setFastestInterval(2000)
-				.setSmallestDisplacement(10), PRECISIÓN_ACEPTABLE);
+		viewModel.locationLiveData.inicializarConPermiso(this);
+		viewModel.locationLiveData.observe(this, locationObserver);
 
-		locationLiveData.inicializarConPermiso();
-		locationLiveData.observe(this, locationObserver);
+		viewModel.locationLiveData.disponibilidad.observe(this, (d) -> {
+			if(Boolean.FALSE.equals(d))
+				viewModel.locationLiveData.verificarConfiguración(this);
+		});
 
-		if(locationLiveData instanceof LocationManagerLiveData)
+		if(viewModel.locationLiveData instanceof LocationManagerLiveData)
 			pedirCambioConfiguración();
 	}
 
@@ -345,12 +341,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		{
 			if(grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 			{
-				if(locationLiveData != null)
-				{
-					Crashlytics.log(Log.ERROR, "antenas", "locationClient no es null en onRequestPermissionsResult");
-					return;
-				}
-
 				crearLocationLiveData();
 			} else
 				finish();
@@ -514,7 +504,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		super.onDestroy();
 	}
 
-	@Nullable private LocationLiveData locationLiveData;
 	private SharedPreferences prefs;
 
 	private boolean menúConfigurado = false;
@@ -676,8 +665,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			if(data == null)
 				return;
 
-			if(locationLiveData != null)
-				locationLiveData.removeObservers(this);
+			viewModel.locationLiveData.removeObservers(this);
 
 			if(antenasAdapter != null)
 				antenasAdapter.setForzarDireccionesAbsolutas(true);
@@ -688,7 +676,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 
 			return;
 		}
-		if(locationLiveData != null && locationLiveData.onActivityResult(requestCode, resultCode, data))
+		if(viewModel.locationLiveData.onActivityResult(requestCode, resultCode, data))
 			return;
 		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;

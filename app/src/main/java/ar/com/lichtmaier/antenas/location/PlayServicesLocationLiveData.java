@@ -2,12 +2,12 @@ package ar.com.lichtmaier.antenas.location;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
@@ -21,30 +21,28 @@ import java.lang.ref.WeakReference;
 public class PlayServicesLocationLiveData extends LocationLiveData
 {
 	private FusedLocationProviderClient flpc;
-	private final Activity activity;
 	private final LocationRequest locationRequest;
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
 
-	PlayServicesLocationLiveData(FragmentActivity activity, LocationRequest locationRequest, float precisiónAceptable)
+	PlayServicesLocationLiveData(Context context, LocationRequest locationRequest, float precisiónAceptable)
 	{
-		super(precisiónAceptable);
-		this.activity = activity;
+		super(context, precisiónAceptable);
 		this.locationRequest = locationRequest;
 
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
 	}
 
 	@Override
-	public void inicializarConPermiso()
+	public void inicializarConPermiso(Activity activity)
 	{
-		if(ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+		if(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
-		flpc = LocationServices.getFusedLocationProviderClient(activity);
+		flpc = LocationServices.getFusedLocationProviderClient(context);
 		if(hasActiveObservers())
 			flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 		Task<Location> task = flpc.getLastLocation();
-		task.addOnCompleteListener(activity, t -> {
+		task.addOnCompleteListener(t -> {
 			try
 			{
 				Location lastLocation = t.getResult(ApiException.class);
@@ -55,7 +53,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 				Crashlytics.logException(e);
 			}
 		});
-		verificarConfiguración();
+		verificarConfiguración(activity);
 	}
 
 	@Override
@@ -67,12 +65,15 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 		} catch(SecurityException ignored) { }
 	}
 
-	private void verificarConfiguración()
+	@Override
+	public void verificarConfiguración(Activity activity)
 	{
 		LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
 			.addLocationRequest(locationRequest);
 		Task<LocationSettingsResponse> result =
-				LocationServices.getSettingsClient(activity).checkLocationSettings(builder.build());
+				LocationServices.getSettingsClient(context).checkLocationSettings(builder.build());
+
+		disponibilidad.setValue(true);
 
 		result.addOnCompleteListener(task -> {
 			try
@@ -88,7 +89,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 						noPreguntar = true;
 					} catch(Exception e1)
 					{
-						e1.printStackTrace();
+						Log.e("antenas", "Error configurando ubicación.", e1);
 					}
 				}
 			}
@@ -128,7 +129,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 		@Override
 		public void onLocationAvailability(LocationAvailability locationAvailability)
 		{
-			lcc.get().verificarConfiguración();
+			lcc.get().disponibilidad.setValue(false);
 		}
 
 		@Override

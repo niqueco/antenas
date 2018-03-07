@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas.location;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,12 +16,10 @@ import android.support.v4.app.ActivityCompat;
 public class LocationManagerLiveData extends LocationLiveData implements LocationListener
 {
 	private final LocationManager locationManager;
-	private final Context context;
 
-	public LocationManagerLiveData(Context ctx, float precisiónAceptable)
+	LocationManagerLiveData(Context ctx, float precisiónAceptable)
 	{
-		super(precisiónAceptable);
-		this.context = ctx.getApplicationContext();
+		super(ctx, precisiónAceptable);
 		locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
 		if(locationManager == null)
 			throw new NullPointerException();
@@ -28,7 +27,7 @@ public class LocationManagerLiveData extends LocationLiveData implements Locatio
 
 	@Override
 	@SuppressLint("MissingPermission")
-	public void inicializarConPermiso()
+	public void inicializarConPermiso(Activity activity)
 	{
 		Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if(location != null && location.getAccuracy() < precisiónAceptable)
@@ -40,6 +39,9 @@ public class LocationManagerLiveData extends LocationLiveData implements Locatio
 				setValue(location);
 		}
 	}
+
+	@Override
+	public void verificarConfiguración(Activity activity) { }
 
 	@SuppressLint("MissingPermission")
 	@Override

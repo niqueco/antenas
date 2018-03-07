@@ -16,9 +16,19 @@ public class AntenasViewModel extends AndroidViewModel
 	@Nullable Brújula brújula;
 	private boolean sinBrújula;
 
+	@NonNull LocationLiveData locationLiveData;
+
+	private static final int PRECISIÓN_ACEPTABLE = 150;
+
 	public AntenasViewModel(@NonNull Application application)
 	{
 		super(application);
+
+		locationLiveData = LocationLiveData.create(getApplication(), LocationRequest.create()
+				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+				.setInterval(10000)
+				.setFastestInterval(2000)
+				.setSmallestDisplacement(10), PRECISIÓN_ACEPTABLE);
 	}
 
 	public void init(boolean unaAntena)
