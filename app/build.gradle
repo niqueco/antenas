@@ -70,7 +70,6 @@ dependencies {
     implementation files('libs/clipper.jar')
     implementation "android.arch.lifecycle:extensions:1.1.0"
     implementation "android.arch.lifecycle:common-java8:1.1.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 }
 
 apply plugin: 'com.google.gms.google-services'
