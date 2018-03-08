@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.app.ActivityManager;
+import android.arch.lifecycle.LiveData;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -37,6 +38,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ar.com.lichtmaier.util.AsyncLiveData;
 import de.lighti.clipper.*;
 
 public class CachéDeContornos
@@ -333,6 +335,17 @@ public class CachéDeContornos
 			lruCache.evictAll();
 		if(cachéEnContorno != null)
 			cachéEnContorno.evictAll();
+	}
+
+	public LiveData<Boolean> enContorno(Antena antena, LatLng coords)
+	{
+		return new AsyncLiveData<Boolean>() {
+			@Override
+			protected Boolean loadInBackground()
+			{
+				return enContorno(antena, coords, true);
+			}
+		};
 	}
 
 	private static LruCache<Pair<String, Antena>, Boolean> cachéEnContorno;

@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.annotation.SuppressLint;
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -32,6 +33,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.*;
 
+import ar.com.lichtmaier.util.AsyncLiveData;
 import ar.com.lichtmaier.util.StringUtils;
 
 public class Antena implements Parcelable
@@ -204,6 +206,24 @@ public class Antena implements Parcelable
 		}
 	}
 	final static private DistComparator distComparator = new DistComparator();
+
+	public static LiveData<List<Antena>> dameAntenasCercaLD(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
+	{
+		return new AsyncLiveData<List<Antena>>()
+		{
+			@Override
+			protected List<Antena> loadInBackground()
+			{
+				try
+				{
+					return dameAntenasCerca(ctx, coordsUsuario, maxDist, mostrarMenos);
+				} catch(TimeoutException e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
+		};
+	}
 
 	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos) throws TimeoutException
 	{
