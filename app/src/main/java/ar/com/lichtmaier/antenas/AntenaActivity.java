@@ -132,7 +132,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		}
 
 		@Override
-		public void onAntenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
+		public void onAntenasActualizadas(List<AntenasRepository.AntenaListada> antenasListadas)
 		{
 			antenasActualizadas(antenasListadas);
 		}
@@ -619,7 +619,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		}
 	}
 
-	private void antenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
+	private void antenasActualizadas(List<AntenasRepository.AntenaListada> antenasListadas)
 	{
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		TextView problema = findViewById(R.id.problema);

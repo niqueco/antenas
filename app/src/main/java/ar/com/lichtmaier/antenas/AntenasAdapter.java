@@ -31,8 +31,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, AntenasAdapter.AntenaViewHolder> implements SharedPreferences.OnSharedPreferenceChangeListener
+import ar.com.lichtmaier.antenas.AntenasRepository.AntenaListada;
+
+public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.AntenaViewHolder> implements SharedPreferences.OnSharedPreferenceChangeListener
 {
+	final private AntenasRepository antenasRepository;
 	final private SharedPreferences prefs;
 	private final int resource;
 	private final Context context;
@@ -45,31 +48,6 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 	private GlobalCoordinates coordsUsuario;
 	private boolean mostrarDireccionesRelativas;
 	private boolean forzarDireccionesAbsolutas;
-
-	static class AntenaListada
-	{
-		final Antena antena;
-		double distancia;
-		final boolean lejos;
-
-		AntenaListada(Antena antena, double distancia, boolean lejos)
-		{
-			this.antena = antena;
-			this.distancia = distancia;
-			this.lejos = lejos;
-		}
-
-		@Override
-		public String toString()
-		{
-			StringBuilder sb = new StringBuilder();
-			sb.append('{').append(antena).append(' ').append((int)distancia).append('m');
-			if(lejos)
-				sb.append(" lejos");
-			sb.append('}');
-			return sb.toString();
-		}
-	}
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -176,6 +154,7 @@ public class AntenasAdapter extends ListAdapter<AntenasAdapter.AntenaListada, An
 		this.listener = listener;
 		this.resource = resource;
 		this.lifecycle = lifecycle;
+		this.antenasRepository = new AntenasRepository();
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 		setHasStableIds(true);
