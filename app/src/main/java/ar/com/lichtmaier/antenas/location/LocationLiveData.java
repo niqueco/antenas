@@ -31,7 +31,7 @@ public abstract class LocationLiveData extends LiveData<Location>
 	public static LocationLiveData create(Context context, LocationRequest locationRequest, float precisiónAceptable)
 	{
 		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
-		if(googlePlayServicesAvailable == ConnectionResult.SERVICE_MISSING || googlePlayServicesAvailable == ConnectionResult.SERVICE_INVALID)
+		if(googlePlayServicesAvailable != ConnectionResult.SUCCESS)
 		{
 			Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
 			return new LocationManagerLiveData(context, precisiónAceptable);
