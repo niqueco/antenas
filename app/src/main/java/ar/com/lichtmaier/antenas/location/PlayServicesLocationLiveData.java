@@ -137,7 +137,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 		{
 			Location loc = result.getLastLocation();
 			if(loc != null)
-				lcc.get().setValue(loc);
+				lcc.get().emitir(loc);
 		}
 	}
 	final private LocationCallback locationCallback = new MyLocationCallback(this);

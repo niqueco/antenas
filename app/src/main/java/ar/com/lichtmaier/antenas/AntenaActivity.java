@@ -53,7 +53,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 {
 	public static final String PACKAGE = "ar.com.lichtmaier.antenas";
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
-	private static final int PRECISIÓN_ACEPTABLE = 150;
 	private static final int REQUEST_CODE_ELEGIR_LUGAR = 889;
 
 	private static final String PREF_PAGAME_MES_MOSTRADO = "pagame_mes_mostrado";
@@ -520,16 +519,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 
 	private void nuevaUbicación(Location location)
 	{
-		if(location.hasAccuracy())
-		{
-			float accuracy = location.getAccuracy();
-			if(accuracy > PRECISIÓN_ACEPTABLE)
-			{
-				Log.i("antenas", "Rechazando ubicación de poca precisión (" + accuracy + "m)");
-				return;
-			}
-		}
-
 		nuevaUbicación(location.getLatitude(), location.getLongitude(), location.getAltitude());
 	}
 
