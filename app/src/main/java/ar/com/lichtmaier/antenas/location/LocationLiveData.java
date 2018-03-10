@@ -44,4 +44,15 @@ public abstract class LocationLiveData extends LiveData<Location>
 	public abstract void verificarConfiguración(Activity activity);
 
 	public abstract boolean onActivityResult(int requestCode, int resultCode, Intent data);
+
+	protected void emitir(Location location)
+	{
+		float accuracy = location.getAccuracy();
+		if(accuracy > precisiónAceptable)
+		{
+			Log.i("antenas", "Rechazando ubicación de poca precisión (" + accuracy + "m)");
+			return;
+		}
+		setValue(location);
+	}
 }

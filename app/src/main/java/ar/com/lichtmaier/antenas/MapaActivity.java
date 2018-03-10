@@ -79,7 +79,7 @@ public class MapaActivity extends AppCompatActivity
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(200)
 				.setFastestInterval(200)
-				.setSmallestDisplacement(1), 1);
+				.setSmallestDisplacement(1), Float.MAX_VALUE);
 
 		if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
 		{

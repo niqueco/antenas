@@ -66,9 +66,7 @@ public class LocationManagerLiveData extends LocationLiveData implements Locatio
 	@Override
 	public void onLocationChanged(Location location)
 	{
-		if(location.getAccuracy() > precisiónAceptable)
-			return;
-		setValue(location);
+		emitir(location);
 	}
 
 	@Override
