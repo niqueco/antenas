@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId "ar.com.lichtmaier.antenas"
         minSdkVersion 14
+        //noinspection OldTargetApi
         targetSdkVersion 26
         versionName "2.8.4"
         resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA",

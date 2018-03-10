@@ -341,7 +341,7 @@ public class CachéDeContornos
 	 */
 	public boolean enContorno(final Antena antena, final LatLng coords, boolean puedoEsperar)
 	{
-		if(antena.país != País.US)
+		if(antena.país != País.US || antena.canales == null)
 			return true;
 
 		if(cachéEnContorno == null)

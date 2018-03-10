@@ -629,7 +629,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		else
 			tr.setCustomAnimations(R.anim.canales_enter, R.anim.canales_exit, R.anim.canales_enter, R.anim.canales_exit);
 
-		CanalesMapaFragment fr = CanalesMapaFragment.crear(antena, canalSeleccionado == null || !antenaSeleccionada.canales.contains(canalSeleccionado) ? null : canalSeleccionado);
+		CanalesMapaFragment fr = CanalesMapaFragment.crear(antena, canalSeleccionado == null || antenaSeleccionada.canales == null || !antenaSeleccionada.canales.contains(canalSeleccionado) ? null : canalSeleccionado);
 		tr.replace(R.id.canales, fr, "canales")
 				.addToBackStack("canales")
 				.commit();

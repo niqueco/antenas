@@ -7,7 +7,6 @@ import android.arch.lifecycle.Transformations;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.google.android.gms.location.LocationRequest;
 
