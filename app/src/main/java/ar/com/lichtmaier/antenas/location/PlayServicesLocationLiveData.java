@@ -20,7 +20,7 @@ import java.lang.ref.WeakReference;
 
 public class PlayServicesLocationLiveData extends LocationLiveData
 {
-	private FusedLocationProviderClient flpc;
+	private final FusedLocationProviderClient flpc;
 	private final LocationRequest locationRequest;
 	private final int REQUEST_CHECK_SETTINGS = 9988;
 	private static boolean noPreguntar;
@@ -30,6 +30,8 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 		super(context, precisiónAceptable);
 		this.locationRequest = locationRequest;
 
+		flpc = LocationServices.getFusedLocationProviderClient(context);
+
 		locationRequest.setMaxWaitTime(locationRequest.getInterval() * 6);
 	}
 
@@ -38,7 +40,6 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 	{
 		if(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
-		flpc = LocationServices.getFusedLocationProviderClient(context);
 		if(hasActiveObservers())
 			flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 		Task<Location> task = flpc.getLastLocation();
