@@ -306,10 +306,15 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 					pl.setVisibility(View.GONE);
 				if(antenasAdapter != null)
 					antenasAdapter.setForzarDireccionesAbsolutas(false);
-				viewModel.locationLiveData.observe(this, locationObserver);
 			}
-			nuevaUbicación();
+		});
 
+		viewModel.location.observe(this, location -> {
+			if(location == null)
+				return;
+			if(publicidad != null)
+				publicidad.load(location);
+			nuevaUbicación(location);
 		});
 	}
 
@@ -327,15 +332,14 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		if(pb != null)
 			pb.postDelayed(avisoDemora = new AvisoDemora(this), 15000);
 
-		viewModel.locationLiveData.inicializarConPermiso(this);
-		viewModel.locationLiveData.observe(this, locationObserver);
+		viewModel.realLocation.inicializarConPermiso(this);
 
-		viewModel.locationLiveData.disponibilidad.observe(this, (d) -> {
+		viewModel.realLocation.disponibilidad.observe(this, (d) -> {
 			if(Boolean.FALSE.equals(d))
-				viewModel.locationLiveData.verificarConfiguración(this);
+				viewModel.realLocation.verificarConfiguración(this);
 		});
 
-		if(viewModel.locationLiveData instanceof LocationManagerLiveData)
+		if(viewModel.realLocation instanceof LocationManagerLiveData)
 			pedirCambioConfiguración();
 	}
 
@@ -654,19 +658,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		}
 	}
 
-	final private Observer<Location> locationObserver = new Observer<Location>()
-	{
-		@Override
-		public void onChanged(@Nullable Location location)
-		{
-			if(location == null)
-				return;
-			if(publicidad != null)
-				publicidad.load(location);
-			nuevaUbicación(location);
-		}
-	};
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -674,8 +665,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		{
 			if(data == null)
 				return;
-
-			viewModel.locationLiveData.removeObservers(this);
 
 			if(antenasAdapter != null)
 				antenasAdapter.setForzarDireccionesAbsolutas(true);
@@ -686,7 +675,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 
 			return;
 		}
-		if(viewModel.locationLiveData.onActivityResult(requestCode, resultCode, data))
+		if(viewModel.realLocation.onActivityResult(requestCode, resultCode, data))
 			return;
 		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;
