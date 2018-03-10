@@ -39,6 +39,7 @@
 		android:layout_alignEnd="@+id/android:text1"
 		android:layout_alignRight="@+id/android:text1"
 		android:layout_marginTop="26dp"
-		style="@style/Widget.AppCompat.Button.Borderless"/>
+		style="@style/Widget.AppCompat.Button"
+		/>
 
 </RelativeLayout>
