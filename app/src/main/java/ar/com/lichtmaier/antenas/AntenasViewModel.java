@@ -25,6 +25,7 @@ public class AntenasViewModel extends AndroidViewModel
 	@NonNull final LocationLiveData realLocation;
 
 	private static final int PRECISIÓN_ACEPTABLE = 150;
+	public static final String NO_PROVIDER = "*";
 
 	public AntenasViewModel(@NonNull Application application)
 	{
@@ -58,7 +59,7 @@ public class AntenasViewModel extends AndroidViewModel
 
 	private static Location toLocation(@NonNull GlobalCoordinates coords)
 	{
-		Location loc = new Location("*");
+		Location loc = new Location(NO_PROVIDER);
 		loc.setLatitude(coords.getLatitude());
 		loc.setLongitude(coords.getLongitude());
 		return loc;
