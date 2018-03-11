@@ -209,20 +209,7 @@ public class Antena implements Parcelable
 
 	public static LiveData<List<Antena>> dameAntenasCercaLD(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
 	{
-		return new AsyncLiveData<List<Antena>>()
-		{
-			@Override
-			protected List<Antena> loadInBackground()
-			{
-				try
-				{
-					return dameAntenasCerca(ctx, coordsUsuario, maxDist, mostrarMenos);
-				} catch(TimeoutException e)
-				{
-					throw new RuntimeException(e);
-				}
-			}
-		};
+		return AsyncLiveData.create(() -> dameAntenasCerca(ctx, coordsUsuario, maxDist, mostrarMenos));
 	}
 
 	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos) throws TimeoutException

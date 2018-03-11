@@ -339,13 +339,7 @@ public class CachéDeContornos
 
 	public LiveData<Boolean> enContorno(Antena antena, LatLng coords)
 	{
-		return new AsyncLiveData<Boolean>() {
-			@Override
-			protected Boolean loadInBackground()
-			{
-				return enContorno(antena, coords, true);
-			}
-		};
+		return AsyncLiveData.create(() -> enContorno(antena, coords, true));
 	}
 
 	private static LruCache<Pair<String, Antena>, Boolean> cachéEnContorno;

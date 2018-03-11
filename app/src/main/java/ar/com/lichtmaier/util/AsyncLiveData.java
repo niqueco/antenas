@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.WorkerThread;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -12,13 +13,13 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 	private Future<T> future;
 	private boolean loaded = false;
 
-	public AsyncLiveData(boolean loadImmediately)
+	private AsyncLiveData(boolean loadImmediately)
 	{
 		if(loadImmediately)
 			load();
 	}
 
-	public AsyncLiveData()
+	protected AsyncLiveData()
 	{
 		this(true);
 	}
@@ -55,4 +56,22 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 
 	@WorkerThread
 	protected abstract T loadInBackground();
+
+	public static <T> AsyncLiveData<T> create(Callable<T> callable)
+	{
+		return new AsyncLiveData<T>()
+		{
+			@Override
+			protected T loadInBackground()
+			{
+				try
+				{
+					return callable.call();
+				} catch(Exception e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
+		};
+	}
 }
