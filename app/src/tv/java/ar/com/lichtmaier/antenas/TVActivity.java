@@ -4,7 +4,6 @@ import android.Manifest;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -18,8 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.gavaghan.geodesy.GlobalCoordinates;
-
 import java.lang.ref.WeakReference;
 import java.util.List;
 
@@ -27,30 +24,8 @@ public class TVActivity extends FragmentActivity
 {
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 
-	private AntenasAdapter antenasAdapter;
 	private SharedPreferences prefs;
 	private AntenasViewModel viewModel;
-
-	private final AntenasAdapter.Callback antenasAdapterListener = new AntenasAdapter.Callback()
-	{
-		@Override
-		public void onAntenaClicked(Antena antena, View view)
-		{
-
-		}
-
-		@Override
-		public void onAdapterReady()
-		{
-			terminarDeConfigurar();
-		}
-
-		@Override
-		public void onAntenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
-		{
-			antenasActualizadas(antenasListadas);
-		}
-	};
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -77,8 +52,16 @@ public class TVActivity extends FragmentActivity
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, null, antenasAdapterListener, R.layout.antena_tv, getLifecycle());
+			AntenasAdapter antenasAdapter = new AntenasAdapter(this, null, viewModel.location, null, R.layout.antena_tv, getLifecycle());
 			rv.setAdapter(antenasAdapter);
+			AntenasRepository antenasRepository = new AntenasRepository(this);
+			antenasRepository.dameAntenasAlrededor(viewModel.location).observe(this, al -> {
+				if(al == null)
+					return;
+				antenasAdapter.submitList(al);
+				terminarDeConfigurar();
+				antenasActualizadas(al);
+			});
 		}
 
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -92,8 +75,7 @@ public class TVActivity extends FragmentActivity
 
 	private void crearLocationLiveData()
 	{
-		viewModel.locationLiveData.inicializarConPermiso(this);
-		viewModel.locationLiveData.observe(this, this::nuevaUbicación);
+		viewModel.realLocation.inicializarConPermiso(this);
 	}
 
 	@Override
@@ -108,19 +90,6 @@ public class TVActivity extends FragmentActivity
 				finish();
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-	}
-
-	@Override
-	protected void onDestroy()
-	{
-		if(antenasAdapter != null)
-			antenasAdapter.onDestroy();
-		super.onDestroy();
-	}
-
-	private void nuevaUbicación(Location location)
-	{
-		antenasAdapter.nuevaUbicación(new GlobalCoordinates(location.getLatitude(), location.getLongitude()));
 	}
 
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
@@ -149,7 +118,7 @@ public class TVActivity extends FragmentActivity
 		}
 	}
 
-	private void antenasActualizadas(List<AntenasAdapter.AntenaListada> antenasListadas)
+	private void antenasActualizadas(List<AntenasRepository.AntenaListada> antenasListadas)
 	{
 		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
 		TextView problema = findViewById(R.id.problema);

@@ -16,7 +16,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
@@ -121,18 +120,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			if(animar)
 				overridePendingTransition(0, 0);
 		}
-
-		@Override
-		public void onAdapterReady()
-		{
-			terminarDeConfigurar();
-		}
-
-		@Override
-		public void onAntenasActualizadas(List<AntenasRepository.AntenaListada> antenasListadas)
-		{
-			antenasActualizadas(antenasListadas);
-		}
 	};
 	protected Publicidad.Intersticial intersticial;
 
@@ -201,7 +188,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, viewModel.brújula, onAntenaClickedListener, R.layout.antena, getLifecycle());
+			antenasAdapter = new AntenasAdapter(this, viewModel.brújula, viewModel.location, onAntenaClickedListener, R.layout.antena, getLifecycle());
 			rv.setAdapter(antenasAdapter);
 			final RecyclerView.LayoutManager rvLayoutManager = rv.getLayoutManager();
 			if(rvLayoutManager instanceof LinearLayoutManager)
@@ -242,9 +229,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		{
 			crearLocationLiveData();
 		}
-
-		if(savedInstanceState != null && savedInstanceState.containsKey("lat"))
-			nuevaUbicación(savedInstanceState.getDouble("lat"), savedInstanceState.getDouble("lon"), savedInstanceState.getDouble("alt"));
 
 		huboSavedInstanceState = savedInstanceState != null;
 
@@ -311,8 +295,23 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				return;
 			if(publicidad != null)
 				publicidad.load(location);
-			nuevaUbicación(location);
+			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+			alturaUsuario = (float)location.getAltitude();
+
+			if(viewModel.brújula != null && !location.getProvider().equals(AntenasViewModel.NO_PROVIDER))
+				viewModel.brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 		});
+
+		AntenasRepository antenasRepository = new AntenasRepository(this);
+
+		if(antenasAdapter != null)
+			antenasRepository.dameAntenasAlrededor(viewModel.location).observe(this, al -> {
+				if(al == null)
+					return;
+				antenasAdapter.submitList(al);
+				terminarDeConfigurar();
+				antenasActualizadas(al);
+			});
 	}
 
 	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -364,12 +363,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	protected void onSaveInstanceState(Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		if(coordsUsuario != null)
-		{
-			outState.putDouble("lat", coordsUsuario.getLatitude());
-			outState.putDouble("lon", coordsUsuario.getLongitude());
-			outState.putDouble("alt", alturaUsuario);
-		}
 		Lugar.save(outState);
 	}
 
@@ -506,37 +499,12 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	{
 		if(viewModel.brújula != null)
 			viewModel.brújula.removeListener(this);
-		if(antenasAdapter != null)
-			antenasAdapter.onDestroy();
 		super.onDestroy();
 	}
 
 	private SharedPreferences prefs;
 
 	private boolean menúConfigurado = false;
-
-	private void nuevaUbicación(Location location)
-	{
-		nuevaUbicación(location.getLatitude(), location.getLongitude(), location.getAltitude());
-	}
-
-	private void nuevaUbicación(double lat, double lon, double altura)
-	{
-		coordsUsuario = new GlobalCoordinates(lat, lon);
-		alturaUsuario = (float)altura;
-		nuevaUbicación();
-	}
-
-	protected void nuevaUbicación()
-	{
-		Lugar l = Lugar.actual.getValue();
-		if(coordsUsuario == null && l == null)
-			return;
-		if(viewModel.brújula != null && coordsUsuario != null)
-			viewModel.brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
-
-		antenasAdapter.nuevaUbicación(l != null ? l.coords : coordsUsuario);
-	}
 
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
 	private void terminarDeConfigurar()
@@ -571,21 +539,13 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			for(int i = 0 ; i < cantAntenas ; i++)
 				países.add(antenasAdapter.getItem(i).antena.país);
 			SharedPreferences.Editor editor = prefs.edit();
-			boolean volver = false;
 			if(países.contains(País.US))
-			{
 				editor.putString("max_dist", "100");
-				volver = true;
-			}
 			editor.putBoolean("distancia_configurada", true).apply();
-			if(volver)
-			{
-				nuevaUbicación();
-			}
 		}
 
 		final ProgressBar pb = findViewById(R.id.progressBar);
-		if(pb != null)
+		if(pb != null && prenderAnimación != null)
 		{
 			if(prenderAnimación.comienzoAnimación != -1)
 			{

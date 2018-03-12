@@ -73,7 +73,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		assert tvPotencia != null;
 		tvPotencia.setText(antena.potencia > 0 ? Formatos.formatPower(antena.potencia) : null);
 		antenaDist = findViewById(R.id.antena_dist);
-		nuevaUbicación(); // para que se configure la distancia
+		configurarDistancia();
 
 		flechaOriginalY = bundle.getInt(PACKAGE + ".top");
 		flechaOriginalX = bundle.getInt(PACKAGE + ".left");
@@ -249,6 +249,9 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		{
 			flecha.postDelayed(this::mostrarAyuda, 200);
 		}
+
+		Lugar.actual.observe(this, v -> configurarDistancia());
+		viewModel.location.observe(this, v -> configurarDistancia());
 	}
 
 	private boolean seMostróAyuda = false;
@@ -389,8 +392,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		setContentView(R.layout.activity_una_antena);
 	}
 
-	@Override
-	protected void nuevaUbicación()
+	protected void configurarDistancia()
 	{
 		if(antena != null)
 		{
