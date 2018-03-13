@@ -3,6 +3,7 @@ package ar.com.lichtmaier.util;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.WorkerThread;
+import android.util.Log;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -19,7 +20,7 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 			load();
 	}
 
-	protected AsyncLiveData()
+	private AsyncLiveData()
 	{
 		this(true);
 	}
@@ -27,8 +28,15 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 	private void load()
 	{
 		future = ((ExecutorService)AsyncTask.THREAD_POOL_EXECUTOR).submit(() -> {
-			T r = loadInBackground();
-			postValue(r);
+			T r = null;
+			try
+			{
+				r = loadInBackground();
+				postValue(r);
+			} catch(Exception e)
+			{
+				Log.e("antenas", "AsyncLiveData", e);
+			}
 			synchronized(AsyncLiveData.this) {
 				future = null;
 				loaded = true;
