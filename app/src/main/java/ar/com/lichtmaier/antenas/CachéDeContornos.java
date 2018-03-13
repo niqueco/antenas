@@ -57,6 +57,8 @@ public class CachéDeContornos
 	private boolean ensureDatabaseCalled = false;
 	private final File externalCacheDir;
 
+	private static final String TAG = "contornos";
+
 	@NonNull
 	public static synchronized CachéDeContornos dameInstancia(Context ctx)
 	{
@@ -124,11 +126,11 @@ public class CachéDeContornos
 				}
 			} else
 			{
-				Log.w("antenas", "No hay almacenamiento externo. El caché de contornos será sólo en memoria.");
+				Log.w(TAG, "No hay almacenamiento externo. El caché de contornos será sólo en memoria.");
 			}
 		} catch(RuntimeException e)
 		{
-			Log.e("antenas", "Error creando la base. El caché de contornos será sólo en memoria.", e);
+			Log.e(TAG, "Error creando la base. El caché de contornos será sólo en memoria.", e);
 		}
 		db = base;
 	}
@@ -153,14 +155,14 @@ public class CachéDeContornos
 		Paths union = new Paths();
 		if(!clipper.execute(Clipper.ClipType.UNION, union))
 		{
-			Log.e("antenas", "Falló la unión de los polígonos " + ref);
+			Log.e(TAG, "Falló la unión de los polígonos " + ref);
 			return null;
 		}
 		Polígono.Builder builder = new Polígono.Builder();
 		Iterator<Path> it = union.iterator();
 		if(!it.hasNext())
 		{
-			Log.e("antenas", "¿La unión de " + ref + " es vacía?");
+			Log.e(TAG, "¿La unión de " + ref + " es vacía?");
 			return null;
 		}
 		for(Point.LongPoint punto : it.next())
@@ -236,10 +238,10 @@ public class CachéDeContornos
 		for(int i = 0; i < tamañoCachéNegativo; i++)
 			if(cachéNegativo[i] == appId)
 			{
-				Log.i("antenas", "Al polígono con appId=" + appId + " ya lo buscamos sin éxito.");
+				Log.i(TAG, "Al polígono con appId=" + appId + " ya lo buscamos sin éxito.");
 				return null;
 			}
-		Log.i("antenas", "buscando el polígono con appId=" + appId);
+		Log.i(TAG, "buscando el polígono con appId=" + appId);
 		String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId + "&.txt";
 		InputStream in = null;
 		try
@@ -267,7 +269,7 @@ public class CachéDeContornos
 					t = parser.next();
 					if(t != XmlPullParser.TEXT)
 					{
-						Log.e("antenas", "No se encontró el texto esperado en la línea " + parser.getLineNumber() + " de contorno appid=" + appId);
+						Log.e(TAG, "No se encontró el texto esperado en la línea " + parser.getLineNumber() + " de contorno appid=" + appId);
 						return null;
 					}
 
@@ -300,7 +302,7 @@ public class CachéDeContornos
 			return contorno;
 		} catch(XmlPullParserException e)
 		{
-			Log.e("antenas", "Obteniendo el contorno de " + url, e);
+			Log.e(TAG, "Obteniendo el contorno de " + url, e);
 			if(cachéNegativo == null)
 			{
 				cachéNegativo = new int[16];
@@ -312,7 +314,7 @@ public class CachéDeContornos
 			cachéNegativo[tamañoCachéNegativo++] = appId;
 		} catch(IOException e)
 		{
-			Log.e("antenas", "Obteniendo el contorno de " + url, e);
+			Log.e(TAG, "Obteniendo el contorno de " + url, e);
 		} catch(Exception e)
 		{
 			throw new RuntimeException("Obteniendo el contorno de " + url, e);
@@ -332,11 +334,11 @@ public class CachéDeContornos
 
 	public static void vaciarCache()
 	{
-		if(Log.isLoggable("antenas", Log.DEBUG))
+		if(Log.isLoggable(TAG, Log.DEBUG))
 		{
 			int n = lruCache == null ? 0 : lruCache.size();
 			if(n != 0)
-				Log.d("antenas", "Vaciando caché de contornos de " + n + " elementos.");
+				Log.d(TAG, "Vaciando caché de contornos de " + n + " elementos.");
 		}
 		if(lruCache != null)
 			lruCache.evictAll();
@@ -394,8 +396,8 @@ public class CachéDeContornos
 			return true;
 		}
 
-		if(Log.isLoggable("antenas", Log.DEBUG))
-			Log.d("antenas", "buscando contorno para " + antena);
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "buscando contorno para " + antena);
 
 		List<Canal> canalesLejos = null;
 
@@ -418,8 +420,8 @@ public class CachéDeContornos
 		}
 
 		final boolean cerca = canalesLejos == null || antena.canales.size() != canalesLejos.size();
-		if(!cerca && Log.isLoggable("antenas", Log.DEBUG))
-			Log.d("antenas", "La antena " + antena + " tiene canales lejos: " + canalesLejos);
+		if(!cerca && Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "La antena " + antena + " tiene canales lejos: " + canalesLejos);
 
 		cachéEnContorno.put(claveCaché, cerca);
 		return cerca;
