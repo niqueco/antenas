@@ -25,7 +25,7 @@ class AntenasRepository
 {
 	private final Context context;
 
-	private static final int PRECISIÓN_ACEPTABLE = 150;
+	private static String TAG = "antrepo";
 
 	static class AntenaListada
 	{
@@ -76,6 +76,8 @@ class AntenasRepository
 			location = locationLiveData.getValue();
 			prefs = PreferenceManager.getDefaultSharedPreferences(context);
 			addSource(locationLiveData, (loc) -> {
+				if(Log.isLoggable(TAG, Log.DEBUG))
+					Log.d(TAG, "loc: " + loc);
 				if(loc == null)
 					return;
 				location = loc;
@@ -108,6 +110,10 @@ class AntenasRepository
 			ldac = Antena.dameAntenasCercaLD(context, gcoords, maxDist, prefs.getBoolean("menos", true));
 
 			addSource(ldac, antenasAlrededor -> {
+
+				if(Log.isLoggable(TAG, Log.DEBUG))
+					Log.d(TAG, "alrededor: " + antenasAlrededor);
+
 				CachéDeContornos cdc = CachéDeContornos.dameInstancia(context);
 				try
 				{
@@ -121,8 +127,8 @@ class AntenasRepository
 					{
 						if(SphericalUtil.computeDistanceBetween(posCachéCercanía, coords) > 200)
 						{
-							if(Log.isLoggable("antenas", Log.DEBUG))
-								Log.d("antenas", "Renuevo caché de cercanía de " + cachéCercaníaAntena.size() + " elementos.");
+							if(Log.isLoggable(TAG, Log.DEBUG))
+								Log.d(TAG, "Renuevo caché de cercanía de " + cachéCercaníaAntena.size() + " elementos.");
 							renovarCaché = true;
 							posCachéCercanía = coords;
 							cachéCercaníaAntena.keySet().retainAll(antenasAlrededor);
