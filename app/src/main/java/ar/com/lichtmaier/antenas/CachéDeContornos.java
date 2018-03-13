@@ -47,13 +47,15 @@ public class CachéDeContornos
 
 	private static CachéDeContornos instancia;
 
-	final private SQLiteDatabase db;
+	private SQLiteDatabase db;
 	private int referencias = 1;
 
 	private static LruCache<Integer, Polígono> lruCache;
 	private final XmlPullParserFactory xmlPullParserFactory;
 	private int[] cachéNegativo;
 	private int tamañoCachéNegativo = 0;
+	private boolean ensureDatabaseCalled = false;
+	private final File externalCacheDir;
 
 	@NonNull
 	public static synchronized CachéDeContornos dameInstancia(Context ctx)
@@ -85,11 +87,24 @@ public class CachéDeContornos
 
 	private CachéDeContornos(Context ctx)
 	{
+		externalCacheDir = ctx.getExternalCacheDir();
+
+		try {
+			xmlPullParserFactory = XmlPullParserFactory.newInstance();
+		} catch(XmlPullParserException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@WorkerThread
+	private synchronized void ensureDatabase()
+	{
+		if(ensureDatabaseCalled)
+			return;
+		ensureDatabaseCalled = true;
 		SQLiteDatabase base = null;
 		try
 		{
-			File externalCacheDir = ctx.getExternalCacheDir();
-
 			if(externalCacheDir != null && externalCacheDir.isDirectory())
 			{
 				int flags = SQLiteDatabase.CREATE_IF_NECESSARY;
@@ -116,15 +131,6 @@ public class CachéDeContornos
 			Log.e("antenas", "Error creando la base. El caché de contornos será sólo en memoria.", e);
 		}
 		db = base;
-
-		try
-		{
-			xmlPullParserFactory = XmlPullParserFactory.newInstance();
-		} catch(XmlPullParserException e)
-		{
-			throw new RuntimeException(e);
-		}
-
 	}
 
 	public Polígono dameContornoFCC(String ref)
@@ -177,6 +183,7 @@ public class CachéDeContornos
 		}
 		try
 		{
+			ensureDatabase();
 			Polígono contorno = lruCache.get(appId);
 			if(contorno == null && db != null)
 				contorno = dameContornoFCCDeLaBase(appId);
