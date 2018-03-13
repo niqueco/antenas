@@ -20,6 +20,8 @@ public abstract class LocationLiveData extends LiveData<Location>
 
 	public final MutableLiveData<Boolean> disponibilidad = new MutableLiveData<>();
 
+	static final String TAG = "location";
+
 	LocationLiveData(Context context, float precisiónAceptable)
 	{
 		this.context = context.getApplicationContext();
@@ -33,7 +35,7 @@ public abstract class LocationLiveData extends LiveData<Location>
 		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
 		if(googlePlayServicesAvailable != ConnectionResult.SUCCESS)
 		{
-			Log.e("antenas", "Play Services no disponible. No importa, sobreviviremos.");
+			Log.e(TAG, "Play Services no disponible. No importa, sobreviviremos.");
 			return new LocationManagerLiveData(context, precisiónAceptable);
 		}
 		return new PlayServicesLocationLiveData(context, locationRequest, precisiónAceptable);
@@ -50,9 +52,11 @@ public abstract class LocationLiveData extends LiveData<Location>
 		float accuracy = location.getAccuracy();
 		if(accuracy > precisiónAceptable)
 		{
-			Log.i("antenas", "Rechazando ubicación de poca precisión (" + accuracy + "m)");
+			Log.i(TAG, "Rechazando ubicación de poca precisión (" + accuracy + "m)");
 			return;
 		}
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "loc: " + location);
 		setValue(location);
 	}
 }

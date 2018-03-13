@@ -47,6 +47,8 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 			try
 			{
 				Location lastLocation = t.getResult(ApiException.class);
+				if(Log.isLoggable(TAG, Log.DEBUG))
+					Log.d(TAG, "last location: " + lastLocation);
 				if(lastLocation != null && getValue() == null)
 					setValue(lastLocation);
 			} catch(ApiException e)
@@ -60,6 +62,8 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 	@Override
 	protected void onActive()
 	{
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "active");
 		try {
 			if(flpc != null)
 				flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
@@ -90,7 +94,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 						noPreguntar = true;
 					} catch(Exception e1)
 					{
-						Log.e("antenas", "Error configurando ubicación.", e1);
+						Log.e(TAG, "Error configurando ubicación.", e1);
 					}
 				}
 			}
@@ -100,6 +104,8 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 	@Override
 	protected void onInactive()
 	{
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "inactive");
 		if(flpc != null)
 			flpc.removeLocationUpdates(locationCallback);
 	}
@@ -111,7 +117,8 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 		{
 			if(resultCode != Activity.RESULT_CANCELED)
 				noPreguntar = false;
-			Log.i("antenas", "resultCode=" + resultCode + " data="+ data);
+			if(Log.isLoggable(TAG, Log.DEBUG))
+				Log.d(TAG, "onActivityResult - resultCode=" + resultCode + " data="+ data);
 			return true;
 		}
 		return false;
