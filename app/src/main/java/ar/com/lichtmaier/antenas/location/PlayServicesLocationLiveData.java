@@ -137,7 +137,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 		@Override
 		public void onLocationAvailability(LocationAvailability locationAvailability)
 		{
-			lcc.get().disponibilidad.setValue(false);
+			lcc.get().disponibilidad.setValue(locationAvailability.isLocationAvailable());
 		}
 
 		@Override
