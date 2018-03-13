@@ -787,7 +787,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		{
 			try
 			{
-				antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), l == null ? new GlobalCoordinates(latitudActual, longitudActual) : new GlobalCoordinates(l.coords.getLatitude(), l.coords.getLongitude()), maxDist, false));
+				antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), l == null ? new GlobalCoordinates(latitudActual, longitudActual) : new GlobalCoordinates(l.coords.getLatitude(), l.coords.getLongitude()), maxDist, false, 4000000));
 			} catch(TimeoutException e)
 			{
 				Log.w("antenas", "No hay antenas todavía para hacer líneas");

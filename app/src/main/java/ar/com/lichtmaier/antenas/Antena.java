@@ -209,10 +209,10 @@ public class Antena implements Parcelable
 
 	public static LiveData<List<Antena>> dameAntenasCercaLD(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
 	{
-		return AsyncLiveData.create(() -> dameAntenasCerca(ctx, coordsUsuario, maxDist, mostrarMenos));
+		return AsyncLiveData.create(() -> dameAntenasCerca(ctx, coordsUsuario, maxDist, mostrarMenos, Long.MAX_VALUE));
 	}
 
-	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos) throws TimeoutException
+	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos, long timeout) throws TimeoutException
 	{
 		double latitud = coordsUsuario.getLatitude();
 		double longitud = coordsUsuario.getLongitude();
@@ -225,11 +225,11 @@ public class Antena implements Parcelable
 					: EnumSet.of(País.AR, País.BR, País.CO, País.UY)));
 		try
 		{
-			long t = System.nanoTime() + 4000000;
+			long t = System.nanoTime() + timeout;
 			for(País país1 : países)
 			{
-				long timeout = Math.max(t - System.nanoTime(), 0);
-				dameAntenasFuturo(ctx, país1).get(timeout, TimeUnit.NANOSECONDS);
+				long paísTimeout = Math.max(t - System.nanoTime(), 0);
+				dameAntenasFuturo(ctx, país1).get(paísTimeout, TimeUnit.NANOSECONDS);
 			}
 		} catch(InterruptedException|ExecutionException e)
 		{
