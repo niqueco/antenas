@@ -66,22 +66,21 @@ class AntenasRepository
 	{
 		private final SharedPreferences prefs;
 		private LiveData<List<Antena>> ldac;
-		private Location location;
+		private final LiveData<Location> locationLiveData;
 
 		final private Map<Antena, Boolean> cachéCercaníaAntena = new HashMap<>();
 		private LatLng posCachéCercanía;
 
 		AntenasAlrededorLiveData(LiveData<Location> locationLiveData)
 		{
-			location = locationLiveData.getValue();
+			this.locationLiveData = locationLiveData;
 			prefs = PreferenceManager.getDefaultSharedPreferences(context);
 			addSource(locationLiveData, (loc) -> {
 				if(Log.isLoggable(TAG, Log.DEBUG))
 					Log.d(TAG, "loc: " + loc);
 				if(loc == null)
 					return;
-				location = loc;
-				process();
+				process(loc);
 			});
 		}
 
@@ -100,6 +99,11 @@ class AntenasRepository
 		}
 
 		private void process()
+		{
+			process(locationLiveData.getValue());
+		}
+
+		private void process(Location location)
 		{
 			if(location == null)
 				return;
