@@ -12,6 +12,8 @@ import com.google.android.gms.location.LocationRequest;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
+import java.util.List;
+
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
 
 public class AntenasViewModel extends AndroidViewModel
@@ -27,6 +29,7 @@ public class AntenasViewModel extends AndroidViewModel
 
 	private static final int PRECISIÓN_ACEPTABLE = 150;
 	public static final String NO_PROVIDER = "*";
+	public LiveData<List<AntenasRepository.AntenaListada>> antenasAlrededor;
 
 	public AntenasViewModel(@NonNull Application application)
 	{
@@ -55,6 +58,12 @@ public class AntenasViewModel extends AndroidViewModel
 			brújula = Brújula.crear(getApplication());
 			if(brújula == null)
 				sinBrújula = true;
+		}
+
+		if(!unaAntena && antenasAlrededor == null)
+		{
+			AntenasRepository antenasRepository = new AntenasRepository(getApplication());
+			antenasAlrededor = antenasRepository.dameAntenasAlrededor(location);
 		}
 	}
 

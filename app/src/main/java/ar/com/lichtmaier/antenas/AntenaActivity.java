@@ -302,10 +302,8 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				viewModel.brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 		});
 
-		AntenasRepository antenasRepository = new AntenasRepository(this);
-
 		if(antenasAdapter != null)
-			antenasRepository.dameAntenasAlrededor(viewModel.location).observe(this, al -> {
+			viewModel.antenasAlrededor.observe(this, al -> {
 				if(al == null)
 					return;
 				antenasAdapter.submitList(al);
