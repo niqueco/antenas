@@ -18,9 +18,6 @@ import ar.com.lichtmaier.antenas.location.LocationLiveData;
 
 public class AntenasViewModel extends AndroidViewModel
 {
-	@SuppressWarnings({"FieldCanBeLocal", "unused"})
-	private boolean unaAntena;
-
 	@Nullable Brújula brújula;
 	private boolean sinBrújula;
 
@@ -51,8 +48,6 @@ public class AntenasViewModel extends AndroidViewModel
 
 	public void init(boolean unaAntena)
 	{
-		this.unaAntena = unaAntena;
-
 		if(brújula == null && !sinBrújula)
 		{
 			brújula = Brújula.crear(getApplication());
