@@ -140,10 +140,16 @@ class AntenasRepository
 
 					boolean noUsarContornos = !prefs.getBoolean("usar_contornos", true);
 					List<AntenaListada> res = new ArrayList<>();
+					List<AntenaListada> antenasLejos = new ArrayList<>();
 					for(Antena a : antenasAlrededor)
 					{
 						Boolean cerca = a.país != País.US || noUsarContornos ? Boolean.TRUE : cachéCercaníaAntena.get(a);
-						res.add(new AntenaListada(a, a.distanceTo(gcoords), cerca != null && !cerca));
+						boolean lejos = cerca != null && !cerca;
+						AntenaListada al = new AntenaListada(a, a.distanceTo(gcoords), lejos);
+						if(lejos)
+							antenasLejos.add(al);
+						else
+							res.add(al);
 						if(renovarCaché || cerca == null)
 						{
 							LiveData<Boolean> ec = cdc.enContorno(a, coords);
@@ -154,6 +160,7 @@ class AntenasRepository
 							});
 						}
 					}
+					res.addAll(antenasLejos);
 					setValue(res);
 				} finally
 				{
