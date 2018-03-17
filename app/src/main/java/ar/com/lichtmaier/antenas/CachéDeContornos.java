@@ -135,6 +135,14 @@ public class CachéDeContornos
 		db = base;
 	}
 
+	public LiveData<Polígono> dameContornoFCC_LD(String ref)
+	{
+		synchronized(CachéDeContornos.class) {
+			referencias++;
+		}
+		return AsyncLiveData.create(() -> dameContornoFCC(ref),null, this::devolver);
+	}
+
 	public Polígono dameContornoFCC(String ref)
 	{
 		if(ref.indexOf(',') == -1)

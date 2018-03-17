@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -52,7 +53,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private Polygon contornoActual;
 	private int altoActionBar;
 	final private EnumSet<País> paísesPrendidos = EnumSet.noneOf(País.class);
-	private AsyncTask<Void, Void, Polígono> tareaTraerContorno;
+	private LiveData<Polígono> contornoLiveData;
 	private int originalBackStackEntryCount;
 	private Publicidad publicidad;
 	private SharedPreferences prefs;
@@ -664,68 +665,46 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			contornoActual.remove();
 			contornoActual = null;
 		}
-		if(tareaTraerContorno != null)
-			tareaTraerContorno.cancel(false);
+		if(contornoLiveData != null)
+			contornoLiveData.removeObservers(this);
 		if(antena == null || antena.país != País.US || canal == null || canal.ref == null)
 			return;
 		if(cachéDeContornos == null)
 			cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
-		tareaTraerContorno = new AsyncTask<Void, Void, Polígono>()
+
+		contornoLiveData = cachéDeContornos.dameContornoFCC_LD(canal.ref);
+		contornoLiveData.observe(this, new Observer<Polígono>()
 		{
-			private CachéDeContornos cache = CachéDeContornos.dameInstancia(getActivity());
-
 			@Override
-			protected Polígono doInBackground(Void... params)
+			public void onChanged(@Nullable Polígono polygon)
 			{
-				try {
-					if(isCancelled())
-						return null;
-					return cache.dameContornoFCC(canal.ref);
-				} finally {
-					cache.devolver();
-					cache = null;
-				}
-			}
-
-			@Override
-			protected void onPostExecute(Polígono polygon)
-			{
-				tareaTraerContorno = null;
+				contornoLiveData.removeObserver(this);
+				contornoLiveData = null;
 				if(polygon == null || canalSeleccionado != canal)
 					return;
-				Activity act = getActivity();
-				if(act == null || !getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED))
+				Activity act = MapaFragment.this.getActivity();
+				if(act == null || !MapaFragment.this.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED))
 					return;
 				PolygonOptions poly = new PolygonOptions();
 				poly.addAll(polygon.getPuntos());
 				poly.fillColor(ContextCompat.getColor(act, R.color.contorno));
-				poly.strokeWidth(getResources().getDimension(R.dimen.ancho_contorno));
+				poly.strokeWidth(MapaFragment.this.getResources().getDimension(R.dimen.ancho_contorno));
 				contornoActual = mapa.addPolygon(poly);
-				View view = getView();
+				View view = MapaFragment.this.getView();
 				if(view != null)
 				{
 					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), view.getWidth(), view.getHeight(), (int)act.getResources().getDimension(R.dimen.paddingContorno));
-					try {
+					try
+					{
 						mapa.animateCamera(cameraUpdate);
-					} catch(Exception e) {
-						logFragmentStatus();
+					} catch(Exception e)
+					{
+						MapaFragment.this.logFragmentStatus();
 						Crashlytics.logException(e);
 					}
 				}
 			}
-
-			@Override
-			protected void onCancelled()
-			{
-				tareaTraerContorno = null;
-				if(cache != null)
-				{
-					cache.devolver();
-					cache = null;
-				}
-			}
-		};
-		tareaTraerContorno.execute();
+		});
 	}
 
 	@Override
@@ -747,8 +726,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	@Override
 	public void onDestroy()
 	{
-		if(tareaTraerContorno != null)
-			tareaTraerContorno.cancel(false);
 		if(cachéDeContornos != null)
 			cachéDeContornos.devolver();
 		super.onDestroy();

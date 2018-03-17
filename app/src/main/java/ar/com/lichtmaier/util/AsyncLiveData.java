@@ -2,6 +2,7 @@ package ar.com.lichtmaier.util;
 
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.util.Log;
 
@@ -67,6 +68,11 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 
 	public static <T> AsyncLiveData<T> create(Callable<T> callable)
 	{
+		return create(callable, null, null);
+	}
+
+	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally)
+	{
 		return new AsyncLiveData<T>()
 		{
 			@Override
@@ -77,7 +83,13 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 					return callable.call();
 				} catch(Exception e)
 				{
+					if(onError != null)
+						onError.onError(e);
 					throw new RuntimeException(e);
+				} finally
+				{
+					if(doFinally != null)
+						doFinally.run();
 				}
 			}
 		};
