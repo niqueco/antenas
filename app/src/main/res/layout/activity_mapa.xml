@@ -28,14 +28,22 @@
 		tools:context="ar.com.lichtmaier.antenas.MapaActivity"
 		/>
 
-	<android.support.v7.widget.Toolbar
-		android:id="@+id/toolbar"
-		android:layout_width="match_parent"
-		android:layout_height="?actionBarSize"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-		app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-		android:background="@color/action_bar_mapa"
-		/>
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:fitsSystemWindows="true">
+
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="?actionBarSize"
+				android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+				app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+				android:background="@color/action_bar_mapa"
+				/>
+
+		</FrameLayout>
+
 
 	</FrameLayout>
 </LinearLayout>

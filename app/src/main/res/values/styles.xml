@@ -26,6 +26,10 @@
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
 
+	<style name="TemaApp.Mapa">
+		<item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
+	</style>
+
 	<style name="TemaPreferencias" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="colorPrimary">@color/celeste_lindo</item>
 		<item name="colorPrimaryDark">@color/celeste_lindo_oscuro</item>
