@@ -384,7 +384,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	}
 
 	@SuppressLint("MissingPermission")
-	public void onLocationChanged(Location location)
+	private void onLocationChanged(Location location)
 	{
 		if(publicidad != null)
 			publicidad.load(location);

@@ -19,8 +19,10 @@ public class Canal
 {
 	public final String nombre;
 	public final String numero;
+	@SuppressWarnings("WeakerAccess")
 	public final String numeroVirtual;
 	public final String cadena;
+	@SuppressWarnings("WeakerAccess")
 	public final char polarización;
 	public final String ref;
 

@@ -143,7 +143,7 @@ public class CachéDeContornos
 		return AsyncLiveData.create(() -> dameContornoFCC(ref),null, this::devolver);
 	}
 
-	public Polígono dameContornoFCC(String ref)
+	private Polígono dameContornoFCC(String ref)
 	{
 		if(ref.indexOf(',') == -1)
 			return dameContornoFCC(Integer.parseInt(ref));

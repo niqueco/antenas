@@ -25,12 +25,12 @@ class AntenasRepository
 {
 	private final Context context;
 
-	private static String TAG = "antrepo";
+	private final static String TAG = "antrepo";
 
 	static class AntenaListada
 	{
 		final Antena antena;
-		double distancia;
+		final double distancia;
 		final boolean lejos;
 
 		AntenaListada(Antena antena, double distancia, boolean lejos)

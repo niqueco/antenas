@@ -392,7 +392,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		setContentView(R.layout.activity_una_antena);
 	}
 
-	protected void configurarDistancia()
+	private void configurarDistancia()
 	{
 		if(antena != null)
 		{

@@ -24,7 +24,7 @@ class Publicidad implements DefaultLifecycleObserver
 
 	private final AdView adView;
 	private boolean loaded;
-	private Lifecycle lifecycle;
+	private final Lifecycle lifecycle;
 
 	Publicidad(Activity act, Lifecycle lifecycle, String adUnitId)
 	{
