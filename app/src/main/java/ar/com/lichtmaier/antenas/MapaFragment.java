@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -34,6 +33,8 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.util.*;
+
+import ar.com.lichtmaier.util.AsyncLiveData;
 
 public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
@@ -418,32 +419,32 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			return;
 		final LatLngBounds latLngBounds = mapa.getProjection().getVisibleRegion().latLngBounds;
 
-		new AsyncTask<Void, Void, List<FuturoMarcador>>()
-		{
-
-			@Override
-			protected List<FuturoMarcador> doInBackground(Void... params)
+		LiveData<List<FuturoMarcador>> ld = AsyncLiveData.create(() -> {
+			List<Antena> antenas = new ArrayList<>();
+			Antena.antenasEnRectángulo(getContext(),
+					latLngBounds.northeast.latitude,
+					latLngBounds.southwest.longitude,
+					latLngBounds.southwest.latitude,
+					latLngBounds.northeast.longitude, antenas);
+			List<FuturoMarcador> mm = new ArrayList<>();
+			for(Antena antena : antenas)
 			{
-				List<Antena> antenas = new ArrayList<>();
-				Antena.antenasEnRectángulo(getContext(),
-						latLngBounds.northeast.latitude,
-						latLngBounds.southwest.longitude,
-						latLngBounds.southwest.latitude,
-						latLngBounds.northeast.longitude, antenas);
-				List<FuturoMarcador> mm = new ArrayList<>();
-				for(Antena antena : antenas)
-				{
-					if(!antenasDentro.add(antena))
-						continue;
+				if(!antenasDentro.add(antena))
+					continue;
 
-					mm.add(new FuturoMarcador(antena, getContext()));
-				}
-				return mm;
+				mm.add(new FuturoMarcador(antena, getContext()));
 			}
+			return mm;
+		});
 
+		ld.observe(this, new Observer<List<FuturoMarcador>>()
+		{
 			@Override
-			protected void onPostExecute(List<FuturoMarcador> mm)
+			public void onChanged(@Nullable List<FuturoMarcador> mm)
 			{
+				if(mm == null)
+					return;
+				ld.removeObserver(this);
 				if(!isAdded())
 				{
 					Log.e("antenas", "setting markers at a wong time? fr=" + MapaFragment.this);
@@ -479,8 +480,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 					}
 				}
 			}
-
-		}.execute();
+		});
 	}
 
 	final private Set<Antena> antenasDentro = new HashSet<>();
