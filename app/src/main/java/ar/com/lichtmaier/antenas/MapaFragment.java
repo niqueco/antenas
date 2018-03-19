@@ -22,8 +22,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.*;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.*;
 import android.widget.ScrollView;
@@ -182,6 +180,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(!hayPermiso)
 			requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
 		FragmentActivity act = getActivity();
+		if(act == null)
+			throw new NullPointerException();
 		mapa.setMyLocationEnabled(hayPermiso);
 		myLocationEnabled = hayPermiso;
 		mapa.setIndoorEnabled(false);
@@ -231,28 +231,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				Antena.dameAntenas(act, país);
 				paísesPrendidos.add(país);
 			}
-		ActionBar actionBar = ((AppCompatActivity)requireActivity()).getSupportActionBar();
-		if(actionBar != null)
-			altoActionBar = actionBar.getHeight();
 
+		altoActionBar = act.findViewById(R.id.toolbar_wrapper).getHeight();
 		if(altoActionBar == 0)
-		{
-			View v = getView();
-			if(v == null)
-				throw new RuntimeException("uh?");
-			v.post(() -> {
-				AppCompatActivity activity1 = (AppCompatActivity)getActivity();
-				if(activity1 == null)
-					return;
-				ActionBar actionBar1 = activity1.getSupportActionBar();
-				if(actionBar1 != null)
-					altoActionBar = actionBar1.getHeight();
-				configurarPaddingMapa();
-			});
-		} else
-		{
-			configurarPaddingMapa();
-		}
+			Crashlytics.logException(new IllegalStateException("altoActionBar == 0"));
+
+		configurarPaddingMapa();
 
 		dibujarLíneas(prefs.getBoolean("dibujar_líneas", true));
 	}
