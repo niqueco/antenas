@@ -560,6 +560,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		Antena antena = (Antena)marker.getTag();
 		estiloLínea(antena, true);
 
+		// para que se borre el contorno si se pasa a una antena que no tiene canales con contorno
+		canalSeleccionado(null, null);
+
 		//noinspection ConstantConditions
 		if(antena.canales == null)
 		{
