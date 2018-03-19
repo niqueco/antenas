@@ -94,4 +94,9 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 			}
 		};
 	}
+
+	interface ErrorHandler
+	{
+		void onError(Exception e);
+	}
 }
