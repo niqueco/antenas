@@ -39,25 +39,6 @@
     <string name="pref_dibujar_líneas_title">Linien zeichnen</string>
     <string name="pref_dibujar_líneas_summary">Zeige Zeilen von Ihrem Standort aus zu den nächsten Antennen.</string>
 
-    <string name="pref_header_paises_mapa">Die Länder in der Karte</string>
-    <string name="pref_AR">Argentinien</string>
-    <string name="pref_AT">Österreich</string>
-    <string name="pref_AU">Australien</string>
-    <string name="pref_BR">Brasilien</string>
-    <string name="pref_CA">Kanada</string>
-    <string name="pref_CO">Kolumbien</string>
-    <string name="pref_JA">Japan</string>
-    <string name="pref_NZ">Neuseeland</string>
-    <string name="pref_PT">Portugal</string>
-    <string name="pref_UK">Großbritannien</string>
-    <string name="pref_US">Vereinigte Staaten</string>
-    <string name="pref_UY">Uruguay</string>
-
-	<plurals name="pref_país_summary">
-		<item quantity="one">Zeigen Sie die %1$,d Antenne von %2$s.</item>
-		<item quantity="other">Zeigen Sie die %1$,d Antennen von %2$s.</item>
-	</plurals>
-
 	<string name="pref_header_general">General</string>
 	<string name="pref_unit_title">Entfernung Einheit</string>
 	<string-array name="pref_unit_titles">

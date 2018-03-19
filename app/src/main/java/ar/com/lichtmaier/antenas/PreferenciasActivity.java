@@ -48,57 +48,6 @@ public class PreferenciasActivity extends AppCompatPreferenceActivity
 		addPreferencesFromResource(R.xml.prefs);
 		bindPreferenceSummaryToValue(findPreference("max_dist"));
 		bindPreferenceSummaryToValue(findPreference("unit"));
-		for(País país : País.values())
-		{
-			int nombre;
-			switch(país)
-			{
-				case AR:
-					nombre = R.string.pref_AR;
-					break;
-				case AT:
-					nombre = R.string.pref_AT;
-					break;
-				case AU:
-					nombre = R.string.pref_AU;
-					break;
-				case BR:
-					nombre = R.string.pref_BR;
-					break;
-				case CA:
-					nombre = R.string.pref_CA;
-					break;
-				case CO:
-					nombre = R.string.pref_CO;
-					break;
-				case JA:
-					nombre = R.string.pref_JA;
-					break;
-				case NZ:
-					nombre = R.string.pref_NZ;
-					break;
-				case PT:
-					nombre = R.string.pref_PT;
-					break;
-				case UK:
-					nombre = R.string.pref_UK;
-					break;
-				case US:
-					nombre = R.string.pref_US;
-					break;
-				case UY:
-					nombre = R.string.pref_UY;
-					break;
-				default:
-					throw new RuntimeException("pais " + país);
-			}
-			int cantAntenas = Antena.dameAntenas(this, país).size();
-			findPreference("mapa_país_" + país)
-				.setSummary(getResources().getQuantityString(R.plurals.pref_país_summary,
-					cantAntenas, cantAntenas,
-					getString(nombre)));
-		}
-
 	}
 
 	/**

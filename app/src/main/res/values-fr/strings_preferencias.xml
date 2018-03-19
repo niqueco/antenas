@@ -38,25 +38,6 @@
 	<string name="pref_dibujar_líneas_title">Draw lines</string>
 	<string name="pref_dibujar_líneas_summary">Afficher les lignes reliant votre position avec les antennes les plus proches.</string>
 
-	<string name="pref_header_paises_mapa">Les pays de la carte</string>
-	<string name="pref_AR">Argentina</string>
-	<string name="pref_AT">Autriche</string>
-	<string name="pref_AU">Australia</string>
-	<string name="pref_BR">Brésil</string>
-	<string name="pref_CA">Canada</string>
-	<string name="pref_CO">Colombia</string>
-	<string name="pref_JA">Japon</string>
-	<string name="pref_NZ">Nouvelle-Zélande</string>
-	<string name="pref_PT">Portugal</string>
-	<string name="pref_UK">Royaume-Uni</string>
-	<string name="pref_US">États-Unis</string>
-	<string name="pref_UY">Uruguay</string>
-
-	<plurals name="pref_país_summary">
-		<item quantity="one">Afficher le %1$,d antenne en %2$s.</item>
-		<item quantity="other">Afficher les %1$,d antennes en %2$s.</item>
-	</plurals>
-
 	<string name="pref_header_general">Général</string>
 	<string name="pref_unit_title">Unité de distance</string>
 	<string-array name="pref_unit_values">

@@ -34,7 +34,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.util.*;
-import java.util.concurrent.TimeoutException;
 
 public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
@@ -50,7 +49,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private CachéDeContornos cachéDeContornos;
 	private Polygon contornoActual;
 	private int altoActionBar;
-	final private EnumSet<País> paísesPrendidos = EnumSet.noneOf(País.class);
 	private LiveData<Polígono> contornoLiveData;
 	private int originalBackStackEntryCount;
 	private Publicidad publicidad;
@@ -225,12 +223,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(íconoAntenitaElegida == null)
 			íconoAntenitaElegida = BitmapDescriptorFactory.fromResource(R.drawable.antena_seleccionada);
 		prefs.registerOnSharedPreferenceChangeListener(this);
-		for(País país : País.values())
-			if(prefs.getBoolean("mapa_país_" + país, false))
-			{
-				Antena.dameAntenas(act, país);
-				paísesPrendidos.add(país);
-			}
 
 		altoActionBar = act.findViewById(R.id.toolbar_wrapper).getHeight();
 		if(altoActionBar == 0)
@@ -302,36 +294,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 	{
-		if(key.startsWith("mapa_país_"))
-		{
-			País país = País.valueOf(key.substring(10));
-			if(sharedPreferences.getBoolean(key, false))
-			{
-				Antena.dameAntenas(getActivity(), país);
-				ponerMarcadores();
-				paísesPrendidos.add(país);
-			} else
-			{
-				if(antenaSeleccionada != null && antenaSeleccionada.país == país)
-				{
-					antenaSeleccionada = null;
-					markerSeleccionado = null;
-				}
-				List<Marker> markers = países.remove(país);
-				if(markers != null)
-					for(Marker marker : markers)
-					{
-						Antena antena = (Antena)marker.getTag();
-						antenasDentro.remove(antena);
-						marker.remove();
-						Polyline polyline = líneas.remove(antena);
-						if(polyline != null)
-							polyline.remove();
-					}
-				paísesPrendidos.remove(país);
-			}
-			actualizarLíneas(false);
-		} else if(key.equals("max_dist"))
+		if(key.equals("max_dist"))
 		{
 			actualizarLíneas(true);
 		} else if(key.equals("dibujar_líneas"))
@@ -462,20 +425,18 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			protected List<FuturoMarcador> doInBackground(Void... params)
 			{
 				List<Antena> antenas = new ArrayList<>();
-				Antena.antenasEnRectángulo(latLngBounds.northeast.latitude,
+				Antena.antenasEnRectángulo(getContext(),
+						latLngBounds.northeast.latitude,
 						latLngBounds.southwest.longitude,
 						latLngBounds.southwest.latitude,
-						latLngBounds.northeast.longitude,
-						antenas);
+						latLngBounds.northeast.longitude, antenas);
 				List<FuturoMarcador> mm = new ArrayList<>();
 				for(Antena antena : antenas)
 				{
-					if(!paísesPrendidos.contains(antena.país))
-						continue;
 					if(!antenasDentro.add(antena))
 						continue;
 
-					mm.add(new FuturoMarcador(antena, getActivity()));
+					mm.add(new FuturoMarcador(antena, getContext()));
 				}
 				return mm;
 			}
@@ -742,34 +703,40 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			return;
 		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
 
-		Lugar l = Lugar.actual.getValue();
-
 		if(forzarBusqueda || antenasCerca == null || (System.nanoTime() - últimaVezQueSeBuscóAntenas) > 1000000000L * 60)
 		{
-			try
-			{
-				antenasCerca = new HashSet<>(Antena.dameAntenasCerca(getActivity(), l == null ? new GlobalCoordinates(latitudActual, longitudActual) : new GlobalCoordinates(l.coords.getLatitude(), l.coords.getLongitude()), maxDist, false, 4000000));
-			} catch(TimeoutException e)
-			{
-				Log.w("antenas", "No hay antenas todavía para hacer líneas");
-				return;
-			}
-			últimaVezQueSeBuscóAntenas = System.nanoTime();
-			Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
-		}
+			Lugar l = Lugar.actual.getValue();
 
+			LiveData<List<Antena>> ld = Antena.dameAntenasCerca(getContext(), l == null ? new GlobalCoordinates(latitudActual, longitudActual) : new GlobalCoordinates(l.coords.getLatitude(), l.coords.getLongitude()), maxDist, false);
+			ld.observe(this, new Observer<List<Antena>>()
+			{
+				@Override
+				public void onChanged(@Nullable List<Antena> antenas)
+				{
+					if(antenas == null)
+						return;
+					ld.removeObserver(this);
+					antenasCerca = new HashSet<>(antenas);
+					Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
+					ponerLíneasEnElMapa();
+				}
+			});
+			últimaVezQueSeBuscóAntenas = System.nanoTime();
+		} else
+		{
+			ponerLíneasEnElMapa();
+		}
+	}
+
+	private void ponerLíneasEnElMapa()
+	{
+		Lugar l = Lugar.actual.getValue();
 		LatLng posNosotros = l == null ? new LatLng(latitudActual, longitudActual) : new LatLng(l.coords.getLatitude(), l.coords.getLongitude());
 
 		Iterator<Antena> itA = antenasCerca.iterator();
 		while(itA.hasNext())
 		{
 			Antena antena = itA.next();
-
-			if(!paísesPrendidos.contains(antena.país))
-			{
-				itA.remove();
-				continue;
-			}
 
 			if(cachéDeContornos == null)
 				cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());

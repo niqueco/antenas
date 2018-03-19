@@ -111,7 +111,7 @@ class AntenasRepository
 			if(ldac != null)
 				removeSource(ldac);
 			GlobalCoordinates gcoords = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-			ldac = Antena.dameAntenasCercaLD(context, gcoords, maxDist, prefs.getBoolean("menos", true));
+			ldac = Antena.dameAntenasCerca(context, gcoords, maxDist, prefs.getBoolean("menos", true));
 
 			addSource(ldac, antenasAlrededor -> {
 

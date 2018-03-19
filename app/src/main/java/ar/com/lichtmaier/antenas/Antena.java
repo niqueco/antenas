@@ -207,41 +207,20 @@ public class Antena implements Parcelable
 	}
 	final static private DistComparator distComparator = new DistComparator();
 
-	public static LiveData<List<Antena>> dameAntenasCercaLD(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
+	public static LiveData<List<Antena>> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
 	{
-		return AsyncLiveData.create(() -> dameAntenasCerca(ctx, coordsUsuario, maxDist, mostrarMenos, Long.MAX_VALUE));
+		return AsyncLiveData.create(() -> dameAntenasCercaReal(ctx, coordsUsuario, maxDist, mostrarMenos));
 	}
 
-	public static List<Antena> dameAntenasCerca(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos, long timeout) throws TimeoutException
+	private static List<Antena> dameAntenasCercaReal(Context ctx, GlobalCoordinates coordsUsuario, int maxDist, boolean mostrarMenos)
 	{
-		double latitud = coordsUsuario.getLatitude();
-		double longitud = coordsUsuario.getLongitude();
-		Set<País> países = longitud > -32
-			? (longitud < 60 ? EnumSet.of(País.UK, País.PT, País.AT) : (latitud > 0 ? EnumSet.of(País.JA) : EnumSet.of(País.AU, País.NZ)))
-			: ((latitud > 13)
-				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
-				: (latitud < -34 || (latitud < -18 && longitud < -58)
-					? EnumSet.of(País.AR, País.UY)
-					: EnumSet.of(País.AR, País.BR, País.CO, País.UY)));
-		try
-		{
-			long t = System.nanoTime() + timeout;
-			for(País país1 : países)
-			{
-				long paísTimeout = Math.max(t - System.nanoTime(), 0);
-				dameAntenasFuturo(ctx, país1).get(paísTimeout, TimeUnit.NANOSECONDS);
-			}
-		} catch(InterruptedException|ExecutionException e)
-		{
-			throw new RuntimeException(e);
-		}
 		List<Antena> res = new ArrayList<>();
 		double distance = Math.hypot(maxDist, maxDist);
 		GlobalCoordinates topLeftCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 315, distance);
 		GlobalCoordinates bottomRightCoords = GeodeticCalculator.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, coordsUsuario, 135, distance);
-		antenasEnRectángulo(topLeftCoords.getLatitude(), topLeftCoords.getLongitude(),
-				bottomRightCoords.getLatitude(), bottomRightCoords.getLongitude(),
-				res);
+		antenasEnRectángulo(ctx, topLeftCoords.getLatitude(),
+				topLeftCoords.getLongitude(), bottomRightCoords.getLatitude(),
+				bottomRightCoords.getLongitude(), res);
 		for(Iterator<Antena> it = res.iterator(); it.hasNext() ; )
 		{
 			Antena antena = it.next();
@@ -259,14 +238,34 @@ public class Antena implements Parcelable
 		return res;
 	}
 
-	public static void antenasEnRectángulo(double topLeftLat, double topLeftLon, double bottomRightLat, double bottomRightLon, @NonNull List<Antena> antenas)
+	private static void cargarAntenasParaUbicación(Context ctx, double latitud, double longitud)
+	{
+		Set<País> países = longitud > -32
+			? (longitud < 60 ? EnumSet.of(País.UK, País.PT, País.AT) : (latitud > 0 ? EnumSet.of(País.JA) : EnumSet.of(País.AU, País.NZ)))
+			: ((latitud > 13)
+				? (latitud < 40 ? EnumSet.of(País.US) : EnumSet.of(País.US, País.CA))
+				: (latitud < -34 || (latitud < -18 && longitud < -58)
+					? EnumSet.of(País.AR, País.UY)
+					: EnumSet.of(País.AR, País.BR, País.CO, País.UY)));
+		try
+		{
+			for(País país : países)
+				cargarAntenas(ctx, país).get();
+		} catch(InterruptedException|ExecutionException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static void antenasEnRectángulo(Context context, double topLeftLat, double topLeftLon, double bottomRightLat, double bottomRightLon, @NonNull List<Antena> antenas)
 	{
 		if(topLeftLon > bottomRightLon)
 		{
-			antenasEnRectángulo(topLeftLat, topLeftLon, bottomRightLat, 180, antenas);
-			antenasEnRectángulo(topLeftLat, -180, bottomRightLat, bottomRightLon, antenas);
+			antenasEnRectángulo(context, topLeftLat, topLeftLon, bottomRightLat, 180, antenas);
+			antenasEnRectángulo(context, topLeftLat, -180, bottomRightLat, bottomRightLon, antenas);
 			return;
 		}
+		cargarAntenasParaUbicación(context, topLeftLat, topLeftLon);
 		Coverage coverage = GeoHash.coverBoundingBox(topLeftLat, topLeftLon, bottomRightLat, bottomRightLon);
 		if(coverage == null)
 		{
@@ -444,18 +443,7 @@ public class Antena implements Parcelable
 		coordsCache = coords;
 	}
 
-	public static List<Antena> dameAntenas(Context ctx, País país)
-	{
-		try
-		{
-			return dameAntenasFuturo(ctx, país).get();
-		} catch(InterruptedException|ExecutionException e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
-
-	private synchronized static Future<List<Antena>> dameAntenasFuturo(final Context ctx, final País país)
+	private synchronized static Future<List<Antena>> cargarAntenas(final Context ctx, final País país)
 	{
 		Future<List<Antena>> f = antenasPorPaís.get(país);
 		if(f != null)
@@ -474,7 +462,7 @@ public class Antena implements Parcelable
 	{
 		try
 		{
-			return dameAntenasFuturo(ctx, país).get().get(index);
+			return cargarAntenas(ctx, país).get().get(index);
 		} catch(InterruptedException|ExecutionException e)
 		{
 			throw new RuntimeException(e);
