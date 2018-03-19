@@ -38,10 +38,12 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 	@Override
 	public void inicializarConPermiso(Activity activity)
 	{
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "Inicializando");
 		if(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
 		if(hasActiveObservers())
-			flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+			onActive();
 		Task<Location> task = flpc.getLastLocation();
 		task.addOnCompleteListener(t -> {
 			try
@@ -64,6 +66,8 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 	{
 		if(Log.isLoggable(TAG, Log.DEBUG))
 			Log.d(TAG, "active");
+		if(ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+			return;
 		try {
 			if(flpc != null)
 				flpc.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());

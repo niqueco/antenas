@@ -1,7 +1,6 @@
 package ar.com.lichtmaier.antenas.location;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 public class LocationManagerLiveData extends LocationLiveData implements LocationListener
 {
@@ -26,9 +26,12 @@ public class LocationManagerLiveData extends LocationLiveData implements Locatio
 	}
 
 	@Override
-	@SuppressLint("MissingPermission")
 	public void inicializarConPermiso(Activity activity)
 	{
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "Inicializando");
+		if(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+			return;
 		Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if(location != null && location.getAccuracy() < precisiónAceptable)
 			setValue(location);
@@ -38,15 +41,18 @@ public class LocationManagerLiveData extends LocationLiveData implements Locatio
 			if(location != null && location.getAccuracy() < precisiónAceptable)
 				setValue(location);
 		}
+		if(hasActiveObservers())
+			onActive();
 	}
 
 	@Override
 	public void verificarConfiguración(Activity activity) { }
 
-	@SuppressLint("MissingPermission")
 	@Override
 	protected void onActive()
 	{
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "active");
 		if(ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
 
