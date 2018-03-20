@@ -99,12 +99,13 @@ public class CanalesMapaFragment extends Fragment
 		final int canalSeleccionadoPos = savedInstanceState != null ? savedInstanceState.getInt("canal", -1) : -1;
 		ViewGroup l = v.findViewById(R.id.lista_canales);
 		int n;
+		int cantCanales = antena.canales == null ? 0: antena.canales.size();
 		if(l instanceof TableLayout)
 		{
 			TypedArray arr = requireActivity().getTheme().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
 			int selectableItemBackground = arr.getResourceId(0, -1);
 			arr.recycle();
-			n = antena.canales.size();
+			n = cantCanales;
 			int ncolumns;
 			if(l.getParent().getParent().getClass() != ScrollView.class)
 			{
@@ -121,7 +122,7 @@ public class CanalesMapaFragment extends Fragment
 			{
 				TableRow row = new TableRow(ctx);
 
-				for(int j = 0; j < ncolumns && (i * ncolumns + j) < antena.canales.size(); j++)
+				for(int j = 0; j < ncolumns && (i * ncolumns + j) < cantCanales; j++)
 				{
 					int posCanal = i * ncolumns + j;
 					Canal canal = antena.canales.get(posCanal);
@@ -153,19 +154,16 @@ public class CanalesMapaFragment extends Fragment
 			}
 		} else
 		{
-			n = Math.min(antena.canales.size(), 4);
+			n = Math.min(cantCanales, 4);
 			for(Canal canal : antena.canales)
 				l.addView(canal.dameViewCanal(ctx, l, hayImágenes, false, false));
 		}
-		if(n < antena.canales.size())
+		if(n < cantCanales)
 		{
 			tv = new TextView(ctx);
-			tv.setText(ctx.getString(R.string.some_more, antena.canales.size() - n));
-			tv.setLayoutParams(
-					(l instanceof TableLayout)
-							? new TableLayout.LayoutParams()
-							: new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-			);
+			tv.setText(ctx.getString(R.string.some_more, cantCanales - n));
+			// nunca es TableLayout
+			tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 			tv.setGravity(Gravity.CENTER);
 			l.addView(tv);
 		}
@@ -211,7 +209,7 @@ public class CanalesMapaFragment extends Fragment
 		super.onSaveInstanceState(outState);
 
 		if(selectedView != null)
-			//noinspection SuspiciousMethodCalls
+			//noinspection SuspiciousMethodCalls,ConstantConditions
 			outState.putInt("canal", antena.canales.indexOf(selectedView.getTag()));
 
 	}

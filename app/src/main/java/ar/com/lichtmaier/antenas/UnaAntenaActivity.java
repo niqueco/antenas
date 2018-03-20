@@ -472,6 +472,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		Canal canal = (Canal)view.getTag();
 		Intent intent = new Intent(this, MapaActivity.class);
 		intent.putExtra("ar.com.lichtmaier.antenas.antena", antena);
+		//noinspection ConstantConditions
 		intent.putExtra("ar.com.lichtmaier.antenas.canal", antena.canales.indexOf(canal));
 		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, 0, 0, view.getWidth(), view.getHeight());
 		if(intersticial != null)
