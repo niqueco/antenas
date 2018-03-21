@@ -66,6 +66,7 @@
 	<string name="mapa_físico">Mapa físico</string>
 	<string name="mapa_satelital">Mapa satelital</string>
 	<string name="separator">", "</string>
+	<string name="unlikely">Es poco probable que pueda obtener señales de antenas que se encuentren a más de %s de distancia.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Hacia adelante</item>
@@ -84,6 +85,10 @@
 	<plurals name="more">
 		<item quantity="one">una más</item>
 		<item quantity="other">%d más</item>
+	</plurals>
+	<plurals name="antenas_en_distancia">
+		<item quantity="one">%d antena dentro de esa distancia</item>
+		<item quantity="other">%d antenas dentro de esa distancia</item>
 	</plurals>
 
 </resources>

@@ -56,7 +56,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	private static final String PREF_LANZAMIENTOS = "lanzamientos";
 
 	protected AntenasViewModel viewModel;
-	static GlobalCoordinates coordsUsuario;
+	public static GlobalCoordinates coordsUsuario;
 	private static float alturaUsuario;
 	private AntenasAdapter antenasAdapter;
 	private Publicidad publicidad;

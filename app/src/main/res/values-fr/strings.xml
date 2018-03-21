@@ -65,6 +65,7 @@
 	<string name="mapa_físico">Carte physique</string>
 	<string name="mapa_satelital">Carte satellite</string>
 	<string name="separator">", "</string>
+	<string name="unlikely">Il est peu probable que vous puissiez recevoir le signal des antennes au-delà de %s.</string>
 
 	<plurals name="hacia_adelante" tools:ignore="MissingQuantity">
 		<item quantity="other">Vers l\'avant</item>
@@ -83,6 +84,10 @@
 	<plurals name="more">
 		<item quantity="one">%d plus</item>
 		<item quantity="other">%d plus</item>
+	</plurals>
+	<plurals name="antenas_en_distancia">
+		<item quantity="one">%d antennes à cette distance.</item>
+		<item quantity="other">%d antenne dans cette distance.</item>
 	</plurals>
 
 </resources>

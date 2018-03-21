@@ -3,33 +3,66 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="horizontal"
-              android:paddingEnd="8dp"
-              android:paddingRight="8dp">
+              android:orientation="vertical">
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:focusable="true"/>
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:cursorVisible="false"
-        android:ems="2"
-        android:gravity="end"
-        android:inputType="number"
-        android:selectAllOnFocus="true"
-        tools:text="12"/>
+        android:orientation="horizontal"
+        android:paddingEnd="8dp"
+        android:paddingRight="8dp">
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:focusable="true"/>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:cursorVisible="false"
+            android:ems="2"
+            android:gravity="end"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            tools:text="12"/>
+
+        <TextView
+            android:id="@+id/tvUnidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            tools:text="km"/>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tvUnidad"
+        android:id="@+id/cant_antenas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        tools:text="km"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="23 antenas dentro de esa distancia"/>
+
+    <TextView
+        android:id="@+id/aviso_lejos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        tools:text="It's unlikely you can get signal from antennas beyond 60 km."
+        />
 </LinearLayout>
