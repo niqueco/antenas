@@ -2,6 +2,7 @@ package ar.com.lichtmaier.antenas;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -11,6 +12,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 import ar.com.lichtmaier.util.AppCompatPreferenceActivity;
+import ar.com.lichtmaier.util.DistanceSliderPreference;
 
 public class PreferenciasActivity extends AppCompatPreferenceActivity
 {
@@ -60,17 +62,21 @@ public class PreferenciasActivity extends AppCompatPreferenceActivity
 		@Override
 		public boolean onPreferenceChange(Preference preference, Object value)
 		{
-			String stringValue = value.toString();
+			CharSequence summary;
 
 			if(preference instanceof ListPreference)
 			{
 				ListPreference listPreference = (ListPreference)preference;
-				int index = listPreference.findIndexOfValue(stringValue);
-				preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
+				int index = listPreference.findIndexOfValue(value.toString());
+				summary = index >= 0 ? listPreference.getEntries()[index] : null;
+			} else if(preference instanceof DistanceSliderPreference)
+			{
+				summary = Formatos.formatDistance(preference.getContext(), ((Integer)value).doubleValue());
 			} else
 			{
-				preference.setSummary(stringValue);
+				summary = value.toString();
 			}
+			preference.setSummary(summary);
 			return true;
 		}
 	}
@@ -79,9 +85,12 @@ public class PreferenciasActivity extends AppCompatPreferenceActivity
 	private static void bindPreferenceSummaryToValue(Preference preference)
 	{
 		preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
-		sBindPreferenceSummaryToValueListener.onPreferenceChange(
-				preference,
-				PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(
-						preference.getKey(), ""));
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
+		Object value;
+		if(preference instanceof DistanceSliderPreference)
+			value = prefs.getInt(preference.getKey(), 60000);
+		else
+			value = prefs.getString(preference.getKey(), "");
+		sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, value);
 	}
 }

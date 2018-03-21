@@ -107,7 +107,7 @@ class AntenasRepository
 		{
 			if(location == null)
 				return;
-			int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
+			int maxDist = prefs.getInt("max_dist", 60000);
 			if(ldac != null)
 				removeSource(ldac);
 			GlobalCoordinates gcoords = new GlobalCoordinates(location.getLatitude(), location.getLongitude());

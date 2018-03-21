@@ -507,7 +507,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 	/** Se llama cuando antenasAdapter avisa que ya está toda la información. */
 	private void terminarDeConfigurar()
 	{
-		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
+		int maxDist = prefs.getInt("max_dist", 60000);
 		int cantAntenas = antenasAdapter.getItemCount();
 		if(!menúConfigurado)
 		{
@@ -570,7 +570,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 
 	private void antenasActualizadas(List<AntenasRepository.AntenaListada> antenasListadas)
 	{
-		int maxDist = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
+		int maxDist = prefs.getInt("max_dist", 60000);
 		TextView problema = findViewById(R.id.problema);
 		if(antenasListadas.isEmpty())
 		{

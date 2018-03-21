@@ -14,19 +14,20 @@ public class Formatos
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String unit = prefs.getString("unit", "km");
-		double f;
+		return format(distancia / unitFactor(unit)) + ' ' + unit;
+	}
+
+	public static double unitFactor(String unit)
+	{
 		switch(unit)
 		{
 			case "km":
-				f = 1000.0;
-				break;
+				return 1000.0;
 			case "mi":
-				f = 1609.344;
-				break;
+				return 1609.344;
 			default:
 				throw new RuntimeException("unit: " + unit);
 		}
-		return format(distancia / f) + ' ' + unit;
 	}
 
 	public static String formatPower(float potencia)

@@ -704,7 +704,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	{
 		if(!dibujandoLíneas || !isVisible())
 			return;
-		int maxDist = Math.min(Integer.parseInt(prefs.getString("max_dist", "60")), 100) * 1000;
+		int maxDist = Math.min(prefs.getInt("max_dist", 60000), 100000);
 
 		if(forzarBusqueda || antenasCerca == null || (System.nanoTime() - últimaVezQueSeBuscóAntenas) > 1000000000L * 60)
 		{

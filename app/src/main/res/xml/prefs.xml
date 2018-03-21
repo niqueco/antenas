@@ -2,10 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/pref_header_antenas">
-        <ListPreference
-            android:defaultValue="60"
-            android:entries="@array/pref_max_dist_titles"
-            android:entryValues="@array/pref_max_dist_values"
+        <ar.com.lichtmaier.util.DistanceSliderPreference
+            android:defaultValue="60000"
             android:key="max_dist"
             android:title="@string/pref_max_dist_title"/>
 
