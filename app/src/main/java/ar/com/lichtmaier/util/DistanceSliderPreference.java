@@ -210,4 +210,23 @@ public class DistanceSliderPreference extends DialogPreference
 			valor = m;
 		}
 	}
+
+	private final SharedPreferences.OnSharedPreferenceChangeListener changeListener = (sharedPreferences, key) -> {
+		if(key.equals("unit"))
+			setSummary(Formatos.formatDistance(getContext(), getPersistedInt(60000)));
+	};
+
+	@Override
+	protected void onAttachedToActivity()
+	{
+		super.onAttachedToActivity();
+		getSharedPreferences().registerOnSharedPreferenceChangeListener(changeListener);
+	}
+
+	@Override
+	public void onActivityDestroy()
+	{
+		super.onActivityDestroy();
+		getSharedPreferences().unregisterOnSharedPreferenceChangeListener(changeListener);
+	}
 }
