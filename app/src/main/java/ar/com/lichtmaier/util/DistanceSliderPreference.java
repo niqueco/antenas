@@ -37,6 +37,7 @@ public class DistanceSliderPreference extends DialogPreference
 	private LiveData<List<Antena>> antenasCerca;
 	private TreeMap<Integer, Integer> distanciaACantidadDeAntenas;
 	private TextView cant_antenas;
+	private boolean cambiandoEditTextNosotros;
 
 	public DistanceSliderPreference(Context context, AttributeSet attrs)
 	{
@@ -76,6 +77,8 @@ public class DistanceSliderPreference extends DialogPreference
 			@Override
 			public void afterTextChanged(Editable s)
 			{
+				if(cambiandoEditTextNosotros)
+					return;
 				try {
 					int m = aMetros(s.toString());
 					moverSeekbar(m);
@@ -148,7 +151,9 @@ public class DistanceSliderPreference extends DialogPreference
 
 	private void ponerDistanciaEnEditText(int metros)
 	{
+		cambiandoEditTextNosotros = true;
 		editText.setText(String.valueOf(Math.round(metros / f)));
+		cambiandoEditTextNosotros = false;
 	}
 
 	private void moverSeekbar(int m)
