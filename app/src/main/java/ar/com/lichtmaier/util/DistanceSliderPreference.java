@@ -17,13 +17,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
-import ar.com.lichtmaier.antenas.Antena;
-import ar.com.lichtmaier.antenas.AntenaActivity;
-import ar.com.lichtmaier.antenas.Formatos;
-import ar.com.lichtmaier.antenas.R;
+import ar.com.lichtmaier.antenas.*;
 
 public class DistanceSliderPreference extends DialogPreference
 {
@@ -35,7 +30,7 @@ public class DistanceSliderPreference extends DialogPreference
 	private double f;
 	private int valor;
 	private LiveData<List<Antena>> antenasCerca;
-	private TreeMap<Integer, Integer> distanciaACantidadDeAntenas;
+	private CantidadDeAntenasEnRadio cantidadDeAntenasEnRadio;
 	private TextView cant_antenas;
 	private boolean cambiandoEditTextNosotros;
 
@@ -123,10 +118,7 @@ public class DistanceSliderPreference extends DialogPreference
 				if(antenas == null || AntenaActivity.coordsUsuario == null)
 					return;
 				antenasCerca.removeObserver(this);
-				distanciaACantidadDeAntenas = new TreeMap<>();
-				int acum = 0;
-				for(Antena a : antenas)
-					distanciaACantidadDeAntenas.put((int)a.distanceTo(AntenaActivity.coordsUsuario), ++acum);
+				cantidadDeAntenasEnRadio = new CantidadDeAntenasEnRadio(antenas, AntenaActivity.coordsUsuario);
 				actualizarCantidadDeAntenas(seekBar.getProgress() + MIN_DIST);
 			}
 		});
@@ -136,11 +128,10 @@ public class DistanceSliderPreference extends DialogPreference
 
 	private void actualizarCantidadDeAntenas(int m)
 	{
-		if(distanciaACantidadDeAntenas != null)
+		if(cantidadDeAntenasEnRadio != null)
 		{
-			Map.Entry<Integer, Integer> e = distanciaACantidadDeAntenas.floorEntry(m);
-			if(e != null)
-				cant_antenas.setText(getContext().getResources().getQuantityString(R.plurals.antenas_en_distancia, e.getValue(), e.getValue()));
+			int cant = cantidadDeAntenasEnRadio.en(m);
+			cant_antenas.setText(getContext().getResources().getQuantityString(R.plurals.antenas_en_distancia, cant, cant));
 		}
 	}
 
