@@ -75,8 +75,8 @@ dependencies {
     }
     tvImplementation 'com.android.support:leanback-v17:27.1.0'
     implementation files('libs/clipper.jar')
-    implementation "android.arch.lifecycle:extensions:1.1.0"
-    implementation "android.arch.lifecycle:common-java8:1.1.0"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation "android.arch.lifecycle:common-java8:1.1.1"
     testImplementation "junit:junit:4.12"
     testImplementation "org.robolectric:robolectric:3.8"
 }
