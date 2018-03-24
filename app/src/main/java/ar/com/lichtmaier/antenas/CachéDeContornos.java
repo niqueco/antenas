@@ -186,7 +186,10 @@ public class CachéDeContornos
 		{
 			if(referencias == 0)
 			{
-				Crashlytics.logException(new IllegalStateException("referencias==0"));
+				IllegalStateException e = new IllegalStateException("referencias==0");
+				if(BuildConfig.DEBUG)
+					throw e;
+				Crashlytics.logException(e);
 				return null;
 			}
 			referencias++;
