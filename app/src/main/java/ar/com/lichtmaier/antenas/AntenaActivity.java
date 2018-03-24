@@ -6,7 +6,6 @@ import java.util.*;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +23,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
@@ -312,7 +310,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			});
 	}
 
-	@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
 	private void crearLocationLiveData()
 	{
 		if(seMuestraRuegoDePermisos)
@@ -337,7 +334,6 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			pedirCambioConfiguración();
 	}
 
-	@SuppressLint("MissingPermission")
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
