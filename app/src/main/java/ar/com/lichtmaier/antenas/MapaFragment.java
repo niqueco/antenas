@@ -81,6 +81,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		FragmentActivity activity = requireActivity();
 
 		prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+		AntenaActivity.actualizarPreferenciaDistanciaMáxima(prefs);
 		FragmentManager fm = requireFragmentManager();
 
 		setHasOptionsMenu(true);

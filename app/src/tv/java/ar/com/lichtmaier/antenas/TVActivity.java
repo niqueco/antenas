@@ -47,6 +47,7 @@ public class TVActivity extends FragmentActivity
 
 		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		AntenaActivity.actualizarPreferenciaDistanciaMáxima(prefs);
 
 		final RecyclerView rv = findViewById(R.id.antenas);
 

@@ -147,8 +147,11 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			pb.postDelayed(prenderAnimación, 400);
 		}
 
-		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		actualizarPreferenciaDistanciaMáxima(prefs);
+
+		PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 		if(!prefs.getBoolean("unidad_configurada", false))
 		{
 			Locale locale = Locale.getDefault();
@@ -308,6 +311,25 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				terminarDeConfigurar();
 				antenasActualizadas(al);
 			});
+	}
+
+	static void actualizarPreferenciaDistanciaMáxima(SharedPreferences prefs)
+	{
+		try
+		{
+			prefs.getInt("max_dist", 0);
+		} catch(ClassCastException e)
+		{
+			int nuevoValor = 0;
+			try {
+				nuevoValor = Integer.parseInt(prefs.getString("max_dist", "60")) * 1000;
+			} catch(Exception ignored) { }
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.remove("max_dist");
+			if(nuevoValor != 0)
+				editor.putInt("max_dist", nuevoValor);
+			editor.apply();
+		}
 	}
 
 	private void crearLocationLiveData()

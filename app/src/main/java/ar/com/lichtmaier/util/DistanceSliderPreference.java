@@ -177,19 +177,7 @@ public class DistanceSliderPreference extends DialogPreference
 	@Override
 	protected void onSetInitialValue(boolean restoreValue, Object defaultValue)
 	{
-		if(restoreValue)
-		{
-			int persistedInt;
-			try {
-				persistedInt = getPersistedInt(valor);
-			} catch(Exception e)
-			{
-				persistedInt = Integer.parseInt(getPersistedString("60")) * 1000;
-				getEditor().remove(getKey()).commit();
-			}
-			setValue(persistedInt);
-		} else
-			setValue((Integer)defaultValue);
+		setValue(restoreValue ? getPersistedInt(valor) : (Integer)defaultValue);
 	}
 
 	private void setValue(int m)
