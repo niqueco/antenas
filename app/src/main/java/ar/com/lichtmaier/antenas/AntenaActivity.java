@@ -43,6 +43,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import ar.com.lichtmaier.antenas.location.LocationManagerLiveData;
+import ar.com.lichtmaier.util.DistanceSliderPreference;
 
 public class AntenaActivity extends AppCompatActivity implements Brújula.Callback
 {
@@ -556,7 +557,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				países.add(antenasAdapter.getItem(i).antena.país);
 			SharedPreferences.Editor editor = prefs.edit();
 			if(países.contains(País.US))
-				editor.putString("max_dist", "100");
+				editor.putInt("max_dist", 100000);
 			editor.putBoolean("distancia_configurada", true).apply();
 		}
 
@@ -594,8 +595,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 		{
 			((ViewGroup.MarginLayoutParams)problema.getLayoutParams()).topMargin = 0;
 			StringBuilder sb = new StringBuilder(getString(R.string.no_se_encontraron_antenas, Formatos.formatDistance(this, maxDist)));
-			String[] vv = getResources().getStringArray(R.array.pref_max_dist_values);
-			if(Integer.parseInt(vv[vv.length-1]) * 1000 != maxDist)
+			if(maxDist < DistanceSliderPreference.MAX_DIST)
 				sb.append(' ').append(getString(R.string.podes_incrementar_radio));
 			problema.setText(sb.toString());
 			problema.setVisibility(View.VISIBLE);

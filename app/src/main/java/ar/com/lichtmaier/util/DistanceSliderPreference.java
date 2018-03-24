@@ -26,7 +26,7 @@ public class DistanceSliderPreference extends DialogPreference
 	private SeekBar seekBar;
 
 	private static final int MIN_DIST = 4000;
-	private static final int MAX_DIST = 400000;
+	public static final int MAX_DIST = 400000;
 	private double f;
 	private int valor;
 	private LiveData<List<Antena>> antenasCerca;
