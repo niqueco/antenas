@@ -266,18 +266,17 @@ public class Antena implements Parcelable
 			return;
 		}
 		cargarAntenasParaUbicación(context, topLeftLat, topLeftLon);
-		Coverage coverage = GeoHash.coverBoundingBox(topLeftLat, topLeftLon, bottomRightLat, bottomRightLon);
-		if(coverage == null)
-		{
-			Log.w("antenas", "mapa coverBoundingBox(" + topLeftLat + ", " + topLeftLon + ", "
-					+ bottomRightLat + ", " + bottomRightLon + ") dio null");
-			return;
-		}
+		Coverage coverage = GeoHash.coverBoundingBox(topLeftLat, topLeftLon, bottomRightLat, bottomRightLon, 4);
 		synchronized(geohashAAntenas)
 		{
 			for(String hash : coverage.getHashes())
 				for(Map.Entry<String, List<Antena>> e : geohashAAntenas.subMap(hash, hashMásUno(hash)).entrySet())
-					antenas.addAll(e.getValue());
+				{
+					List<Antena> l = e.getValue();
+					for(Antena a : l)
+						if(a.c.getLatitude() > bottomRightLat && a.c.getLatitude() < topLeftLat && a.c.getLongitude() > topLeftLon && a.c.getLongitude() < bottomRightLon)
+							antenas.add(a);
+				}
 		}
 	}
 
