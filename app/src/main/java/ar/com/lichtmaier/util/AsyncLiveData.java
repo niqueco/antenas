@@ -3,6 +3,7 @@ package ar.com.lichtmaier.util;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.support.annotation.WorkerThread;
 import android.util.Log;
 
@@ -44,6 +45,12 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 			}
 			return r;
 		});
+	}
+
+	@VisibleForTesting
+	public Future<T> getFuture()
+	{
+		return future;
 	}
 
 	@Override

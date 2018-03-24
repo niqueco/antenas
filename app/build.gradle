@@ -48,6 +48,12 @@ android {
     lintOptions {
         warning "MissingTranslation"
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -71,6 +77,8 @@ dependencies {
     implementation files('libs/clipper.jar')
     implementation "android.arch.lifecycle:extensions:1.1.0"
     implementation "android.arch.lifecycle:common-java8:1.1.0"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.robolectric:robolectric:3.8"
 }
 
 apply plugin: 'com.google.gms.google-services'
