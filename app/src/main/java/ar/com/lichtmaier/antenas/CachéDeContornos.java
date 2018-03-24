@@ -359,7 +359,10 @@ public class CachéDeContornos
 
 	public LiveData<Boolean> enContorno(Antena antena, LatLng coords)
 	{
-		return AsyncLiveData.create(() -> enContorno(antena, coords, true));
+		synchronized(CachéDeContornos.class) {
+			referencias++;
+		}
+		return AsyncLiveData.create(() -> enContorno(antena, coords, true), null, this::devolver);
 	}
 
 	private static LruCache<Pair<String, Antena>, Boolean> cachéEnContorno;
