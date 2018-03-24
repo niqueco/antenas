@@ -71,6 +71,10 @@ class AntenasRepository
 		final private Map<Antena, Boolean> cachéCercaníaAntena = new HashMap<>();
 		private LatLng posCachéCercanía;
 
+		// últimos valores de preferencias usados
+		private int maxDist;
+		private boolean mostrarMenos, usarContornos;
+
 		AntenasAlrededorLiveData(LiveData<Location> locationLiveData)
 		{
 			this.locationLiveData = locationLiveData;
@@ -89,6 +93,10 @@ class AntenasRepository
 		{
 			super.onActive();
 			prefs.registerOnSharedPreferenceChangeListener(this);
+
+			// si sólo cambió usarContornos habría que solamente forzar el procesado de una nueva ubicación, pero... fiaca
+			if(prefs.getInt("max_dist", 60000) != maxDist || prefs.getBoolean("menos", true) != mostrarMenos || prefs.getBoolean("usar_contornos", true) != usarContornos)
+				process();
 		}
 
 		@Override
@@ -107,11 +115,14 @@ class AntenasRepository
 		{
 			if(location == null)
 				return;
-			int maxDist = prefs.getInt("max_dist", 60000);
+			maxDist = prefs.getInt("max_dist", 60000);
+			if(Log.isLoggable(TAG, Log.DEBUG))
+				Log.d(TAG, "AntenasAlrededorLiveData: procesando loc " + location + " con max_dist " + maxDist);
 			if(ldac != null)
 				removeSource(ldac);
 			GlobalCoordinates gcoords = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
-			ldac = Antena.dameAntenasCerca(context, gcoords, maxDist, prefs.getBoolean("menos", true));
+			mostrarMenos = prefs.getBoolean("menos", true);
+			ldac = Antena.dameAntenasCerca(context, gcoords, maxDist, mostrarMenos);
 
 			addSource(ldac, antenasAlrededor -> {
 
@@ -142,7 +153,8 @@ class AntenasRepository
 						posCachéCercanía = coords;
 					}
 
-					boolean noUsarContornos = !prefs.getBoolean("usar_contornos", true);
+					usarContornos = prefs.getBoolean("usar_contornos", true);
+					boolean noUsarContornos = !usarContornos;
 					List<AntenaListada> res = new ArrayList<>();
 					List<AntenaListada> antenasLejos = new ArrayList<>();
 					for(Antena a : antenasAlrededor)
