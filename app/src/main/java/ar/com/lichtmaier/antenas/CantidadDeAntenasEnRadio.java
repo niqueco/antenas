@@ -21,6 +21,6 @@ public class CantidadDeAntenasEnRadio
 	public int en(int m)
 	{
 		Map.Entry<Integer, Integer> e = distanciaACantidadDeAntenas.floorEntry(m);
-		return e.getValue();
+		return e == null ? 0 : e.getValue();
 	}
 }
