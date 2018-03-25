@@ -73,6 +73,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private boolean myLocationEnabled;
 	private boolean mapaSatelital;
 	private MenuItem tipoMapaMenúItem;
+	private LiveData<List<FuturoMarcador>> buscarMarcadoresLD;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -410,6 +411,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			markers.add(marker);
 
 			mapaFragment.antenaAMarker.put(antena, marker);
+			mapaFragment.antenasDentro.add(antena);
 			mapaFragment.markersCargados = true;
 		}
 	}
@@ -421,7 +423,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			return;
 		final LatLngBounds latLngBounds = mapa.getProjection().getVisibleRegion().latLngBounds;
 
-		LiveData<List<FuturoMarcador>> ld = AsyncLiveData.create(() -> {
+		if(buscarMarcadoresLD != null)
+			buscarMarcadoresLD.removeObserver(ponerMarcadores);
+
+		buscarMarcadoresLD = AsyncLiveData.create(() -> {
 			List<Antena> antenas = new ArrayList<>();
 			Antena.antenasEnRectángulo(getContext(),
 					latLngBounds.northeast.latitude,
@@ -431,7 +436,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			List<FuturoMarcador> mm = new ArrayList<>();
 			for(Antena antena : antenas)
 			{
-				if(!antenasDentro.add(antena))
+				if(antenasDentro.contains(antena))
 					continue;
 
 				mm.add(new FuturoMarcador(antena, getContext()));
@@ -439,51 +444,51 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			return mm;
 		});
 
-		ld.observe(this, new Observer<List<FuturoMarcador>>()
+		buscarMarcadoresLD.observe(this, ponerMarcadores);
+	}
+
+	private final Observer<List<FuturoMarcador>> ponerMarcadores = new Observer<List<FuturoMarcador>>()
+	{
+		@Override
+		public void onChanged(@Nullable List<FuturoMarcador> mm)
 		{
-			@Override
-			public void onChanged(@Nullable List<FuturoMarcador> mm)
+			buscarMarcadoresLD.removeObserver(this);
+			buscarMarcadoresLD = null;
+
+			if(mm == null)
+				return;
+
+			for(FuturoMarcador m : mm)
+				m.crear(MapaFragment.this);
+
+			if(markerSeleccionado == null && antenaSeleccionada != null)
 			{
-				if(mm == null)
-					return;
-				ld.removeObserver(this);
-				if(!isAdded())
+				markerSeleccionado = antenaAMarker.get(antenaSeleccionada);
+				if(markerSeleccionado == null)
 				{
-					Log.e("antenas", "setting markers at a wong time? fr=" + MapaFragment.this);
+					Log.e("antenas", "La antena seleccionada " + antenaSeleccionada + " no tiene marker?");
 					return;
 				}
 
-				for(FuturoMarcador m : mm)
-					m.crear(MapaFragment.this);
-
-				if(markerSeleccionado == null && antenaSeleccionada != null)
+				if(huboEjecuciónPrevia)
 				{
-					markerSeleccionado = antenaAMarker.get(antenaSeleccionada);
-					if(markerSeleccionado == null)
+					markerSeleccionado.setIcon(íconoAntenitaElegida);
+					estiloLínea(antenaSeleccionada, true);
+				} else
+				{
+					try
 					{
-						Log.e("antenas", "La antena seleccionada " + antenaSeleccionada + " no tiene marker?");
-						return;
-					}
-
-					if(huboEjecuciónPrevia)
+						onMarkerClick(markerSeleccionado);
+					} catch(IllegalStateException e)
 					{
-						markerSeleccionado.setIcon(íconoAntenitaElegida);
-						estiloLínea(antenaSeleccionada, true);
-					} else
-					{
-						try {
-							onMarkerClick(markerSeleccionado);
-						} catch(IllegalStateException e)
-						{
-							Crashlytics.log("activity: " + getActivity());
-							logFragmentStatus();
-							Crashlytics.logException(e);
-						}
+						Crashlytics.log("activity: " + getActivity());
+						logFragmentStatus();
+						Crashlytics.logException(e);
 					}
 				}
 			}
-		});
-	}
+		}
+	};
 
 	final private Set<Antena> antenasDentro = Collections.newSetFromMap(new ConcurrentHashMap<Antena, Boolean>());
 
