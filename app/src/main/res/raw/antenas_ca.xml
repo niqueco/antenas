@@ -614,7 +614,6 @@
 </antena>
 <antena lat="48.42722" lon="-68.48722">
 <canal nombre="CFTF-DT-12" numero="18"/>
-<canal nombre="CJPC-DT" numero="18"/>
 </antena>
 <antena lat="48.46722" lon="-68.21083">
 <canal nombre="CFER-DT" numero="11"/>
