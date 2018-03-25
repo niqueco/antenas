@@ -486,10 +486,17 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	final private Set<Antena> antenasDentro = new HashSet<>();
 
+	private long busquéMarcadores;
+
 	@Override
 	public void onCameraMove()
 	{
-		ponerMarcadores();
+		long ahora = System.nanoTime();
+		if(ahora - busquéMarcadores > 100000000)
+		{
+			busquéMarcadores = ahora;
+			ponerMarcadores();
+		}
 	}
 
 	@Override
