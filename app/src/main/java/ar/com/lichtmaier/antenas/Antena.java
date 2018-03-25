@@ -32,6 +32,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import ar.com.lichtmaier.util.AsyncLiveData;
 import ar.com.lichtmaier.util.StringUtils;
@@ -50,6 +52,7 @@ public class Antena implements Parcelable
 
 	final static private Map<País, Future<List<Antena>>> antenasPorPaís = new EnumMap<>(País.class);
 	final static private SortedMap<String, List<Antena>> geohashAAntenas = new TreeMap<>();
+	final static private ReadWriteLock geohashAAntenasLock = new ReentrantReadWriteLock();
 
 	@SuppressLint("StaticFieldLeak")
 	static Context applicationContext;
@@ -65,7 +68,8 @@ public class Antena implements Parcelable
 		this.país = país;
 		this.ref = ref;
 		String geohash = GeoHash.encodeHash(lat, lon, 4);
-		synchronized(geohashAAntenas)
+		geohashAAntenasLock.writeLock().lock();
+		try
 		{
 			List<Antena> l = geohashAAntenas.get(geohash);
 			if(l == null)
@@ -74,6 +78,9 @@ public class Antena implements Parcelable
 				geohashAAntenas.put(geohash, l);
 			}
 			l.add(this);
+		} finally
+		{
+			geohashAAntenasLock.writeLock().unlock();
 		}
 	}
 
@@ -267,7 +274,8 @@ public class Antena implements Parcelable
 		}
 		cargarAntenasParaUbicación(context, topLeftLat, topLeftLon);
 		Coverage coverage = GeoHash.coverBoundingBox(topLeftLat, topLeftLon, bottomRightLat, bottomRightLon, 4);
-		synchronized(geohashAAntenas)
+		geohashAAntenasLock.readLock().lock();
+		try
 		{
 			for(String hash : coverage.getHashes())
 				for(Map.Entry<String, List<Antena>> e : geohashAAntenas.subMap(hash, hashMásUno(hash)).entrySet())
@@ -277,6 +285,9 @@ public class Antena implements Parcelable
 						if(a.c.getLatitude() > bottomRightLat && a.c.getLatitude() < topLeftLat && a.c.getLongitude() > topLeftLon && a.c.getLongitude() < bottomRightLon)
 							antenas.add(a);
 				}
+		} finally
+		{
+			geohashAAntenasLock.readLock().unlock();
 		}
 	}
 
