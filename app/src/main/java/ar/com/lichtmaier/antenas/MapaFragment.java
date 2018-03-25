@@ -33,6 +33,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import org.gavaghan.geodesy.GlobalCoordinates;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import ar.com.lichtmaier.util.AsyncLiveData;
 
@@ -484,7 +485,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		});
 	}
 
-	final private Set<Antena> antenasDentro = new HashSet<>();
+	final private Set<Antena> antenasDentro = Collections.newSetFromMap(new ConcurrentHashMap<Antena, Boolean>());
 
 	private long busquéMarcadores;
 
