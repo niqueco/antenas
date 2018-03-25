@@ -28,7 +28,6 @@
             android:ems="2"
             android:gravity="end"
             android:inputType="number"
-            android:selectAllOnFocus="true"
             tools:text="12"/>
 
         <TextView
