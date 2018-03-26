@@ -416,12 +416,19 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 	}
 
+	/** Área grande para la que ya se pidieron antenas. */
+	private LatLngBounds unÁrea;
+
 	private void ponerMarcadores()
 	{
 		Activity act = getActivity();
 		if(act == null)
 			return;
 		final LatLngBounds latLngBounds = mapa.getProjection().getVisibleRegion().latLngBounds;
+
+		if(unÁrea != null && unÁrea.contains(latLngBounds.northeast) && unÁrea.contains(latLngBounds.southwest))
+			return;
+		unÁrea = latLngBounds;
 
 		if(buscarMarcadoresLD != null)
 			buscarMarcadoresLD.removeObserver(ponerMarcadores);
