@@ -9,6 +9,7 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.LocationRequest;
@@ -35,7 +36,7 @@ public abstract class LocationLiveData extends LiveData<Location>
 		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
 		if(googlePlayServicesAvailable != ConnectionResult.SUCCESS)
 		{
-			Log.e(TAG, "Play Services no disponible. No importa, sobreviviremos.");
+			Crashlytics.log(Log.WARN, TAG, "Play Services no disponible. No importa, sobreviviremos.");
 			return new LocationManagerLiveData(context, precisiónAceptable);
 		}
 		return new PlayServicesLocationLiveData(context, locationRequest, precisiónAceptable);
