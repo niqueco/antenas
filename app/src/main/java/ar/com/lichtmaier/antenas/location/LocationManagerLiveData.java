@@ -12,6 +12,11 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.crashlytics.android.Crashlytics;
+
+import ar.com.lichtmaier.antenas.R;
 
 public class LocationManagerLiveData extends LocationLiveData implements LocationListener
 {
@@ -60,7 +65,14 @@ public class LocationManagerLiveData extends LocationLiveData implements Locatio
 		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 		criteria.setCostAllowed(true);
 
-		locationManager.requestLocationUpdates(1000 * 60, 0, criteria, this, null);
+		try
+		{
+			locationManager.requestLocationUpdates(1000 * 60, 0, criteria, this, null);
+		} catch(Exception e)
+		{
+			Crashlytics.logException(e);
+			Toast.makeText(context, R.string.no_ubicacion, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override
