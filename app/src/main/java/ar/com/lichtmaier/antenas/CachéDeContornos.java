@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,6 +58,11 @@ public class CachéDeContornos
 	private int tamañoCachéNegativo = 0;
 	private boolean ensureDatabaseCalled = false;
 	private final File externalCacheDir;
+
+	private final AtomicInteger contadorThreads = new AtomicInteger(1);
+	private final ExecutorService threadPoolContornos = new ThreadPoolExecutor(0, 4,
+			30L, TimeUnit.SECONDS,
+			new LinkedBlockingQueue<>(), r -> new Thread(r, "Contornos #" + contadorThreads.getAndIncrement()));
 
 	private static final String TAG = "contornos";
 
@@ -140,7 +147,7 @@ public class CachéDeContornos
 		synchronized(CachéDeContornos.class) {
 			referencias++;
 		}
-		return AsyncLiveData.create(() -> dameContornoFCC(ref),null, this::devolver);
+		return AsyncLiveData.create(() -> dameContornoFCC(ref),null, this::devolver, threadPoolContornos);
 	}
 
 	private Polígono dameContornoFCC(String ref)
@@ -362,7 +369,7 @@ public class CachéDeContornos
 		synchronized(CachéDeContornos.class) {
 			referencias++;
 		}
-		return AsyncLiveData.create(() -> enContorno(antena, coords, true), null, this::devolver);
+		return AsyncLiveData.create(() -> enContorno(antena, coords, true), null, this::devolver, threadPoolContornos);
 	}
 
 	private static LruCache<Pair<String, Antena>, Boolean> cachéEnContorno;
@@ -406,7 +413,7 @@ public class CachéDeContornos
 					}
 					return null;
 				}
-			}.execute();
+			}.executeOnExecutor(threadPoolContornos);
 			return true;
 		}
 

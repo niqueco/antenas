@@ -9,27 +9,25 @@ import android.util.Log;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public abstract class AsyncLiveData<T> extends LiveData<T>
 {
 	private Future<T> future;
 	private boolean loaded = false;
+	private final ExecutorService executor;
 
-	private AsyncLiveData(boolean loadImmediately)
+	private AsyncLiveData(boolean loadImmediately, ExecutorService executor)
 	{
+		this.executor = executor;
 		if(loadImmediately)
 			load();
 	}
 
-	private AsyncLiveData()
-	{
-		this(true);
-	}
-
 	private void load()
 	{
-		future = ((ExecutorService)AsyncTask.THREAD_POOL_EXECUTOR).submit(() -> {
+		future = executor.submit(() -> {
 			T r = null;
 			try
 			{
@@ -80,7 +78,13 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 
 	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally)
 	{
-		return new AsyncLiveData<T>()
+		Executors.newCachedThreadPool();
+		return create(callable, onError, doFinally, (ExecutorService)AsyncTask.THREAD_POOL_EXECUTOR);
+	}
+
+	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally, ExecutorService executor)
+	{
+		return new AsyncLiveData<T>(true, executor)
 		{
 			@Override
 			protected T loadInBackground()
