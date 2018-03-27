@@ -97,7 +97,7 @@ public class TVActivity extends FragmentActivity
 	private void terminarDeConfigurar()
 	{
 		final ProgressBar pb = findViewById(R.id.progressBar);
-		if(pb != null)
+		if(pb != null && prenderAnimación != null)
 		{
 			if(prenderAnimación.comienzoAnimación != -1)
 			{
