@@ -159,14 +159,15 @@ class AntenasRepository
 					List<AntenaListada> antenasLejos = new ArrayList<>();
 					for(Antena a : antenasAlrededor)
 					{
-						Boolean cerca = a.país != País.US || noUsarContornos ? Boolean.TRUE : cachéCercaníaAntena.get(a);
+						boolean estamosUsandoContornos = a.país == País.US && !noUsarContornos;
+						Boolean cerca = estamosUsandoContornos ? cachéCercaníaAntena.get(a) : Boolean.TRUE;
 						boolean lejos = cerca != null && !cerca;
 						AntenaListada al = new AntenaListada(a, a.distanceTo(gcoords), lejos);
 						if(lejos)
 							antenasLejos.add(al);
 						else
 							res.add(al);
-						if(renovarCaché || cerca == null)
+						if(estamosUsandoContornos && (renovarCaché || cerca == null))
 						{
 							LiveData<Boolean> ec = cdc.enContorno(a, coords);
 							addSource(ec, enContorno -> {
