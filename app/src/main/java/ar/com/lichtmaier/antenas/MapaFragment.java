@@ -174,6 +174,16 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		}
 		LiveData<Location> location = activity.getLocation();
 		location.observe(this, this::onLocationChanged);
+
+		View tb = activity.findViewById(R.id.toolbar_wrapper);
+		tb.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+			int antes = altoActionBar;
+			altoActionBar = tb.getHeight();
+			if(altoActionBar == 0)
+				return;
+			if(mapa != null && antes != altoActionBar)
+				configurarPaddingMapa();
+		});
 	}
 
 	private void inicializarMapa(Bundle savedInstanceState)
@@ -229,9 +239,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		altoActionBar = act.findViewById(R.id.toolbar_wrapper).getHeight();
-		if(altoActionBar == 0)
-			Crashlytics.logException(new IllegalStateException("altoActionBar == 0"));
-
 		configurarPaddingMapa();
 
 		dibujarLíneas(prefs.getBoolean("dibujar_líneas", true));
