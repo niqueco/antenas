@@ -20,6 +20,9 @@ import android.widget.TextView;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ar.com.lichtmaier.antenas.AntenasRepository.AntenaListada;
 
 public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.AntenaViewHolder> implements SharedPreferences.OnSharedPreferenceChangeListener
@@ -34,6 +37,7 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 	private GlobalCoordinates coords;
 	private boolean mostrarDireccionesRelativas;
 	private boolean forzarDireccionesAbsolutas;
+	private final Map<Antena, CharSequence> distanciasFormateadas = new HashMap<>();
 
 	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
 	{
@@ -111,7 +115,10 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 			}
 			if(tvPotencia != null)
 				tvPotencia.setText(antena.potencia > 0 ? antena.potencia + " kW" : null);
-			tvDistancia.setText(Formatos.formatDistance(context, al.distancia));
+			CharSequence distanciaFormateada = distanciasFormateadas.get(al.antena);
+			if(distanciaFormateada == null)
+				distanciasFormateadas.put(al.antena, distanciaFormateada = Formatos.formatDistance(context, al.distancia));
+			tvDistancia.setText(distanciaFormateada);
 			avisoLejos.setVisibility(al.lejos ? View.VISIBLE : View.GONE);
 			if(!mostrarDireccionesRelativas)
 				flechaView.setÁngulo(antena.rumboDesde(coords), false);
@@ -150,7 +157,10 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 		mostrarDireccionesRelativas = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false);
 		location.observe(lifecycleOwner, loc -> {
 			if(loc != null)
+			{
 				coords = new GlobalCoordinates(loc.getLatitude(), loc.getLongitude());
+				distanciasFormateadas.clear();
+			}
 		});
 	}
 
