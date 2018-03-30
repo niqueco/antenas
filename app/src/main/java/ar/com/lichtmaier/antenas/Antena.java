@@ -539,7 +539,7 @@ public class Antena implements Parcelable
 		@Override
 		public Antena createFromParcel(Parcel parcel)
 		{
-			País país = País.values()[parcel.readInt()];
+			País país = País.TODOS[parcel.readInt()];
 			int index = parcel.readInt();
 			return dameAntena(null, país, index);
 		}

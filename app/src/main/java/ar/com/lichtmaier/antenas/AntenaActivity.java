@@ -541,7 +541,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			if(!prefs.getBoolean("paises_configurados", false))
 			{
 				SharedPreferences.Editor editor = prefs.edit();
-				for(País país : País.values())
+				for(País país : País.TODOS)
 					editor.putBoolean("mapa_país_" + país, países.contains(país));
 				editor.putBoolean("paises_configurados", true);
 				editor.apply();

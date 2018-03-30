@@ -74,7 +74,7 @@ public class CanalesMapaFragment extends Fragment
 		Bundle arguments = getArguments();
 		if(arguments == null)
 			throw new NullPointerException("no arguments?");
-		País país = País.values()[arguments.getInt("país")];
+		País país = País.TODOS[arguments.getInt("país")];
 		int index = arguments.getInt("index");
 		antena = Antena.dameAntena(getActivity(), país, index);
 
