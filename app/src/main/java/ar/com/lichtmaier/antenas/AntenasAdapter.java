@@ -1,6 +1,7 @@
 package ar.com.lichtmaier.antenas;
 
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,6 +31,7 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 	private final Callback listener;
 	private final Lifecycle lifecycle;
 	private final LiveData<Location> location;
+	private GlobalCoordinates coords;
 	private boolean mostrarDireccionesRelativas;
 	private boolean forzarDireccionesAbsolutas;
 
@@ -65,7 +67,7 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 			Location loc = location.getValue();
 			if(loc == null)
 				throw new NullPointerException();
-			double rumbo = antena.rumboDesde(new GlobalCoordinates(loc.getLatitude(), loc.getLongitude()));
+			double rumbo = antena.rumboDesde(coords);
 			//Log.d("antenas", "antena: " + antena.descripción + ", rumbo="+ (int)rumbo + ", ángulo flecha="+ (int)(rumbo - orientación));
 			flechaView.setÁngulo(rumbo - orientación, suave);
 			suave = true;
@@ -112,11 +114,7 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 			tvDistancia.setText(Formatos.formatDistance(context, al.distancia));
 			avisoLejos.setVisibility(al.lejos ? View.VISIBLE : View.GONE);
 			if(!mostrarDireccionesRelativas)
-			{
-				Location loc = location.getValue();
-				assert loc != null;
-				flechaView.setÁngulo(antena.rumboDesde(new GlobalCoordinates(loc.getLatitude(), loc.getLongitude())), false);
-			}
+				flechaView.setÁngulo(antena.rumboDesde(coords), false);
 			else
 				suave = false;
 		}
@@ -137,7 +135,7 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 		}
 	};
 
-	AntenasAdapter(Context context, @Nullable Brújula brújula, LiveData<Location> location, Callback listener, @LayoutRes int resource, Lifecycle lifecycle)
+	AntenasAdapter(Context context, @Nullable Brújula brújula, LiveData<Location> location, Callback listener, @LayoutRes int resource, LifecycleOwner lifecycleOwner)
 	{
 		super(diffCallback);
 		this.context = context;
@@ -145,11 +143,15 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 		this.location = location;
 		this.listener = listener;
 		this.resource = resource;
-		this.lifecycle = lifecycle;
+		this.lifecycle = lifecycleOwner.getLifecycle();
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 		setHasStableIds(true);
 		mostrarDireccionesRelativas = (brújula != null) && !prefs.getBoolean("forzar_direcciones_absolutas", false);
+		location.observe(lifecycleOwner, loc -> {
+			if(loc != null)
+				coords = new GlobalCoordinates(loc.getLatitude(), loc.getLongitude());
+		});
 	}
 
 	@NonNull

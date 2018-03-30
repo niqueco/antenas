@@ -190,7 +190,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 
 		if(rv != null)
 		{
-			antenasAdapter = new AntenasAdapter(this, viewModel.brújula, viewModel.location, onAntenaClickedListener, R.layout.antena, getLifecycle());
+			antenasAdapter = new AntenasAdapter(this, viewModel.brújula, viewModel.location, onAntenaClickedListener, R.layout.antena, this);
 			rv.setAdapter(antenasAdapter);
 			final RecyclerView.LayoutManager rvLayoutManager = rv.getLayoutManager();
 			if(rvLayoutManager instanceof LinearLayoutManager)
