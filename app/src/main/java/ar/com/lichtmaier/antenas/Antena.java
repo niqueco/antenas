@@ -121,12 +121,20 @@ public class Antena implements Parcelable
 		return canales.size() > 12 ? dameResumenCanales(context) : StringUtils.join(dameListaDetallesCanales(context), ", ");
 	}
 
+	private transient Locale localeResumenCanales = null;
+	private transient CharSequence resumenCanales;
+
 	@NonNull
 	private CharSequence dameResumenCanales(@NonNull Context context)
 	{
 		assert canales != null;
+		Locale locale = Locale.getDefault();
+		if(locale.equals(localeResumenCanales))
+			return resumenCanales;
 		SpannableString spannableString = new SpannableString(context.getResources().getQuantityString(R.plurals.senales, canales.size(), canales.size()));
 		spannableString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spannableString.length(), 0);
+		resumenCanales = spannableString;
+		localeResumenCanales = locale;
 		return spannableString;
 	}
 
