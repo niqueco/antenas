@@ -2,6 +2,7 @@ package ar.com.lichtmaier.util;
 
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.os.Process;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.annotation.WorkerThread;
@@ -28,6 +29,7 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 	private void load()
 	{
 		future = executor.submit(() -> {
+			Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 			T r = null;
 			try
 			{
