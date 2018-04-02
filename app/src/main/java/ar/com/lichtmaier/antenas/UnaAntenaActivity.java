@@ -415,7 +415,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	@Override
 	public void nuevaOrientación(double brújula)
 	{
-		if(!mostrarDireccionesRelativas)
+		if(!mostrarDireccionesRelativas || coordsUsuario == null)
 			return;
 		double rumbo = antena.rumboDesde(coordsUsuario);
 		FlechaView f = findViewById(R.id.flecha);
