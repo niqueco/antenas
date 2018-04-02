@@ -89,6 +89,7 @@ public class CachéDeContornos
 			{
 				if(db != null)
 					db.close();
+				threadPoolContornos.shutdown();
 				instancia = null;
 			}
 		}

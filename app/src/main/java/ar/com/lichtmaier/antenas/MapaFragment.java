@@ -697,6 +697,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		líneas.clear();
 		antenaAMarker.clear();
 		markerLugar = null;
+		threadPoolMarcadores.shutdown();
 		super.onDestroyView();
 	}
 
