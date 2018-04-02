@@ -74,7 +74,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private boolean mapaSatelital;
 	private MenuItem tipoMapaMenúItem;
 	private LiveData<List<FuturoMarcador>> buscarMarcadoresLD;
-	private final ExecutorService threadPoolMarcadores = new ThreadPoolExecutor(1, 1, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), r -> new Thread(r, "Marcadores"));
+	private final ExecutorService threadPoolMarcadores = Executors.newSingleThreadExecutor(r -> new Thread(r, "Marcadores"));
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
