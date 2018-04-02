@@ -161,6 +161,8 @@ public class DistanceSliderPreference extends DialogPreference
 			try
 			{
 				int m = aMetros(editText.getText().toString());
+				if(m > 1000000)
+					m = 1000000;
 				if(callChangeListener(m))
 					setValue(m);
 			} catch(NumberFormatException e)
