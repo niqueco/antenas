@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -157,9 +158,15 @@ public class DistanceSliderPreference extends DialogPreference
 		super.onDialogClosed(positiveResult);
 		if(positiveResult)
 		{
-			int m = aMetros(editText.getText().toString());
-			if(callChangeListener(m))
-				setValue(m);
+			try
+			{
+				int m = aMetros(editText.getText().toString());
+				if(callChangeListener(m))
+					setValue(m);
+			} catch(NumberFormatException e)
+			{
+				Log.e("antenas", "Distancia inválida", e);
+			}
 		}
 		antenasCerca.removeObserver(antenasObserver);
 		seekBar = null;
