@@ -80,7 +80,6 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 
 	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally)
 	{
-		Executors.newCachedThreadPool();
 		return create(callable, onError, doFinally, (ExecutorService)AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 
