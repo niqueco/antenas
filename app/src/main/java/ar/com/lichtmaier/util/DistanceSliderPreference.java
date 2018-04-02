@@ -33,6 +33,7 @@ public class DistanceSliderPreference extends DialogPreference
 	private CantidadDeAntenasEnRadio cantidadDeAntenasEnRadio;
 	private TextView cant_antenas;
 	private boolean cambiandoEditTextNosotros;
+	private Observer<List<Antena>> antenasObserver;
 
 	public DistanceSliderPreference(Context context, AttributeSet attrs)
 	{
@@ -110,18 +111,14 @@ public class DistanceSliderPreference extends DialogPreference
 		});
 
 		antenasCerca = Antena.dameAntenasCerca(getContext(), AntenaActivity.coordsUsuario, MAX_DIST, false);
-		antenasCerca.observeForever(new Observer<List<Antena>>()
-		{
-			@Override
-			public void onChanged(@Nullable List<Antena> antenas)
-			{
-				if(antenas == null || AntenaActivity.coordsUsuario == null)
-					return;
-				antenasCerca.removeObserver(this);
-				cantidadDeAntenasEnRadio = new CantidadDeAntenasEnRadio(antenas, AntenaActivity.coordsUsuario);
-				actualizarCantidadDeAntenas(seekBar.getProgress() + MIN_DIST);
-			}
-		});
+		antenasObserver = antenas -> {
+			if(antenas == null || AntenaActivity.coordsUsuario == null)
+				return;
+			antenasCerca.removeObserver(antenasObserver);
+			cantidadDeAntenasEnRadio = new CantidadDeAntenasEnRadio(antenas, AntenaActivity.coordsUsuario);
+			actualizarCantidadDeAntenas(seekBar.getProgress() + MIN_DIST);
+		};
+		antenasCerca.observeForever(antenasObserver);
 
 		((TextView)view.findViewById(R.id.aviso_lejos)).setText(getContext().getResources().getString(R.string.unlikely, unidad.equals("km") ? "80 km" : "50 miles"));
 	}
@@ -164,6 +161,7 @@ public class DistanceSliderPreference extends DialogPreference
 			if(callChangeListener(m))
 				setValue(m);
 		}
+		antenasCerca.removeObserver(antenasObserver);
 		seekBar = null;
 		editText = null;
 	}
