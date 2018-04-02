@@ -11,7 +11,7 @@ android {
         minSdkVersion 14
         //noinspection OldTargetApi
         targetSdkVersion 26
-        versionName "3.0.3"
+        versionName "3.1"
         resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA",
                 "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "ja", 'ja-rJP',
                 "pt", "pt-rBR", "pt-rPT"
@@ -34,11 +34,11 @@ android {
     productFlavors {
         phone {
             dimension "device"
-            versionCode 1403030
+            versionCode 1403031
         }
         tv {
             dimension "device"
-            versionCode 2103030
+            versionCode 2103031
             minSdkVersion 21
         }
     }
