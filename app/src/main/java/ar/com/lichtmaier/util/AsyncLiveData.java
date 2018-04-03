@@ -9,17 +9,17 @@ import android.support.annotation.WorkerThread;
 import android.util.Log;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
 public abstract class AsyncLiveData<T> extends LiveData<T>
 {
-	private Future<T> future;
+	private FutureTask<T> future;
 	private boolean loaded = false;
-	private final ExecutorService executor;
+	private final Executor executor;
 
-	private AsyncLiveData(boolean loadImmediately, ExecutorService executor)
+	private AsyncLiveData(boolean loadImmediately, Executor executor)
 	{
 		this.executor = executor;
 		if(loadImmediately)
@@ -28,7 +28,7 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 
 	private void load()
 	{
-		future = executor.submit(() -> {
+		future = new FutureTask<>(() -> {
 			Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 			T r = null;
 			try
@@ -45,6 +45,7 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 			}
 			return r;
 		});
+		executor.execute(future);
 	}
 
 	@VisibleForTesting
@@ -75,15 +76,10 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 
 	public static <T> AsyncLiveData<T> create(Callable<T> callable)
 	{
-		return create(callable, null, null);
+		return create(callable, null, null, AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 
-	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally)
-	{
-		return create(callable, onError, doFinally, (ExecutorService)AsyncTask.THREAD_POOL_EXECUTOR);
-	}
-
-	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally, ExecutorService executor)
+	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally, Executor executor)
 	{
 		return new AsyncLiveData<T>(true, executor)
 		{
