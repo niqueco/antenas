@@ -3,24 +3,27 @@ package ar.com.lichtmaier.util;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.os.Process;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
-import android.support.annotation.WorkerThread;
 import android.util.Log;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
-public abstract class AsyncLiveData<T> extends LiveData<T>
+public class AsyncLiveData<T> extends LiveData<T>
 {
-	private FutureTask<T> future;
+	@NonNull private final Callable<T> callable;
+	@Nullable private FutureTask<T> future;
 	private boolean loaded = false;
-	private final Executor executor;
+	@Nullable private final ErrorHandler onError;
+	@Nullable private final Runnable doFinally;
+	@NonNull private final Executor executor;
 
-	private AsyncLiveData(boolean loadImmediately, Executor executor)
+	private AsyncLiveData(@NonNull Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally, boolean loadImmediately, @NonNull Executor executor)
 	{
+		this.callable = callable;
+		this.onError = onError;
+		this.doFinally = doFinally;
 		this.executor = executor;
 		if(loadImmediately)
 			load();
@@ -28,23 +31,39 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 
 	private void load()
 	{
-		future = new FutureTask<>(() -> {
-			Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-			T r = null;
-			try
+		future = new FutureTask<T>(callable) {
+			@Override
+			public void run()
 			{
-				r = loadInBackground();
-				postValue(r);
-			} catch(Exception e)
+				Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+				super.run();
+			}
+
+			@Override
+			protected void done()
 			{
-				Log.e("antenas", "AsyncLiveData", e);
+				try
+				{
+					if(!isCancelled())
+						postValue(get());
+				} catch(ExecutionException e)
+				{
+					if(onError == null)
+						Log.e("antenas", "AsyncLiveData", e.getCause());
+					else
+						onError.onError(e.getCause());
+				} catch(InterruptedException e)
+				{
+					Log.e("antenas", "AsyncLiveData", e);
+				}
+				synchronized(AsyncLiveData.this) {
+					future = null;
+					loaded = true;
+				}
+				if(doFinally != null)
+					doFinally.run();
 			}
-			synchronized(AsyncLiveData.this) {
-				future = null;
-				loaded = true;
-			}
-			return r;
-		});
+		};
 		executor.execute(future);
 	}
 
@@ -71,40 +90,18 @@ public abstract class AsyncLiveData<T> extends LiveData<T>
 			load();
 	}
 
-	@WorkerThread
-	protected abstract T loadInBackground();
-
-	public static <T> AsyncLiveData<T> create(Callable<T> callable)
+	public static <T> AsyncLiveData<T> create(@NonNull Callable<T> callable)
 	{
 		return create(callable, null, null, AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 
-	public static <T> AsyncLiveData<T> create(Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally, Executor executor)
+	public static <T> AsyncLiveData<T> create(@NonNull Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally, @NonNull Executor executor)
 	{
-		return new AsyncLiveData<T>(true, executor)
-		{
-			@Override
-			protected T loadInBackground()
-			{
-				try
-				{
-					return callable.call();
-				} catch(Exception e)
-				{
-					if(onError != null)
-						onError.onError(e);
-					throw new RuntimeException(e);
-				} finally
-				{
-					if(doFinally != null)
-						doFinally.run();
-				}
-			}
-		};
+		return new AsyncLiveData<>(callable, onError, doFinally, true, executor);
 	}
 
 	interface ErrorHandler
 	{
-		void onError(Exception e);
+		void onError(Throwable e);
 	}
 }
