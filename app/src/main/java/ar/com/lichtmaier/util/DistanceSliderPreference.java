@@ -147,8 +147,11 @@ public class DistanceSliderPreference extends DialogPreference
 
 	private void moverSeekbar(int m)
 	{
-		if(m < MIN_DIST || m > MAX_DIST)
-			return;
+		if(m < MIN_DIST)
+			m = MIN_DIST;
+		else if(m > MAX_DIST)
+			m = MAX_DIST;
+
 		seekBar.setProgress(m - MIN_DIST);
 	}
 
