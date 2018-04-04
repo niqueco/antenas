@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.TrafficStats;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -365,19 +364,21 @@ public class CachéDeContornos
 			cachéEnContorno.evictAll();
 	}
 
+	/** Busca si un punto dado está cubierto por el contorno de algún canal de la antena.
+	 */
 	public LiveData<Boolean> enContorno(Antena antena, LatLng coords)
 	{
 		synchronized(CachéDeContornos.class) {
 			referencias++;
 		}
-		return AsyncLiveData.create(() -> enContorno(antena, coords, true), null, this::devolver, threadPoolContornos);
+		return AsyncLiveData.create(() -> enContornoReal(antena, coords), null, this::devolver, threadPoolContornos);
 	}
 
 	private static LruCache<Pair<String, Antena>, Boolean> cachéEnContorno;
 
 	/** Busca si un punto dado está cubierto por el contorno de algún canal de la antena.
 	 */
-	public boolean enContorno(final Antena antena, final LatLng coords, boolean puedoEsperar)
+	private boolean enContornoReal(final Antena antena, final LatLng coords)
 	{
 		if(antena.país != País.US || antena.canales == null)
 			return true;
@@ -397,26 +398,6 @@ public class CachéDeContornos
 		Boolean cached = cachéEnContorno.get(claveCaché);
 		if(cached != null)
 			return cached;
-
-		if(!puedoEsperar)
-		{
-			synchronized(CachéDeContornos.class) {
-				referencias++;
-			}
-			new AsyncTask<Void, Void, Void>() {
-				@Override
-				protected Void doInBackground(Void... voids)
-				{
-					try {
-						enContorno(antena, coords, true);
-					} finally {
-						devolver();
-					}
-					return null;
-				}
-			}.executeOnExecutor(threadPoolContornos);
-			return true;
-		}
 
 		if(Log.isLoggable(TAG, Log.DEBUG))
 			Log.d(TAG, "buscando contorno para " + antena);

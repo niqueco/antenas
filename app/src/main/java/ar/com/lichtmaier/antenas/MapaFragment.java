@@ -30,8 +30,6 @@ import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import org.gavaghan.geodesy.GlobalCoordinates;
-
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -75,6 +73,9 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private MenuItem tipoMapaMenúItem;
 	private LiveData<List<FuturoMarcador>> buscarMarcadoresLD;
 	private final ExecutorService threadPoolMarcadores = Executors.newSingleThreadExecutor(r -> new Thread(r, "Marcadores"));
+	private AntenasRepository antenasRepository;
+	private LiveData<Location> location;
+	private LiveData<List<AntenasRepository.AntenaListada>> antenasAlrededor;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -173,7 +174,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			Crashlytics.logException(new RuntimeException("getActivity es null"));
 			return;
 		}
-		LiveData<Location> location = activity.getLocation();
+		location = activity.getLocation();
 		location.observe(this, this::onLocationChanged);
 
 		View tb = activity.findViewById(R.id.toolbar_wrapper);
@@ -306,10 +307,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
 	{
-		if(key.equals("max_dist"))
-		{
-			actualizarLíneas(true);
-		} else if(key.equals("dibujar_líneas"))
+		if(key.equals("dibujar_líneas"))
 		{
 			dibujarLíneas(sharedPreferences.getBoolean("dibujar_líneas", true));
 		}
@@ -362,8 +360,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitudActual, longitudActual)));
 			mapaMovido = true;
 		}
-
-		actualizarLíneas(false);
 	}
 
 	private void esPro(Boolean pro)
@@ -720,107 +716,82 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			for(Polyline p : líneas.values())
 				p.remove();
 			líneas.clear();
+			if(antenasAlrededor != null)
+			{
+				antenasAlrededor.removeObservers(this);
+				antenasAlrededor = null;
+			}
 		} else
 		{
-			actualizarLíneas(false);
-		}
-	}
+			if(antenasRepository == null)
+				antenasRepository = new AntenasRepository(requireContext());
 
-	private Set<Antena> antenasCerca;
-	private long últimaVezQueSeBuscóAntenas;
-	private final static Cap ROUND_CAP = new RoundCap();
-
-	private void actualizarLíneas(boolean forzarBusqueda)
-	{
-		if(!dibujandoLíneas || !isVisible())
-			return;
-		int maxDist = Math.min(prefs.getInt("max_dist", 60000), 100000);
-
-		if(forzarBusqueda || antenasCerca == null || (System.nanoTime() - últimaVezQueSeBuscóAntenas) > 1000000000L * 60)
-		{
-			Lugar l = Lugar.actual.getValue();
-
-			LiveData<List<Antena>> ld = Antena.dameAntenasCerca(getContext(), l == null ? new GlobalCoordinates(latitudActual, longitudActual) : new GlobalCoordinates(l.coords.getLatitude(), l.coords.getLongitude()), maxDist, false);
-			ld.observe(this, new Observer<List<Antena>>()
-			{
-				@Override
-				public void onChanged(@Nullable List<Antena> antenas)
+			antenasAlrededor = antenasRepository.dameAntenasAlrededor(location);
+			antenasAlrededor.observe(this, l -> {
+				if(l == null)
+					return;
+				Set<Antena> antenasConLínea = new HashSet<>(l.size());
+				for(AntenasRepository.AntenaListada al : l)
 				{
-					if(antenas == null)
-						return;
-					ld.removeObserver(this);
-					antenasCerca = new HashSet<>(antenas);
-					Log.i("antenas", "Tengo " + antenasCerca.size() + " antenas para hacer líneas.");
-					ponerLíneasEnElMapa();
+					if(!al.lejos)
+					{
+						dibujarLínea(dameLatLng(), al.antena);
+						antenasConLínea.add(al.antena);
+					}
+				}
+
+				Iterator<Map.Entry<Antena, Polyline>> itL = líneas.entrySet().iterator();
+				while(itL.hasNext())
+				{
+					Map.Entry<Antena, Polyline> e = itL.next();
+					if(!antenasConLínea.contains(e.getKey()))
+					{
+						e.getValue().remove();
+						itL.remove();
+					}
 				}
 			});
-			últimaVezQueSeBuscóAntenas = System.nanoTime();
-		} else
-		{
-			ponerLíneasEnElMapa();
 		}
 	}
 
-	private void ponerLíneasEnElMapa()
+	private final static Cap ROUND_CAP = new RoundCap();
+
+	@NonNull
+	private LatLng dameLatLng()
 	{
 		Lugar l = Lugar.actual.getValue();
-		LatLng posNosotros = l == null ? new LatLng(latitudActual, longitudActual) : new LatLng(l.coords.getLatitude(), l.coords.getLongitude());
+		return l == null ? new LatLng(latitudActual, longitudActual) : new LatLng(l.coords.getLatitude(), l.coords.getLongitude());
+	}
 
-		Iterator<Antena> itA = antenasCerca.iterator();
-		while(itA.hasNext())
+	private void dibujarLínea(LatLng posNosotros, Antena antena)
+	{
+		Polyline polyline = líneas.get(antena);
+		if(polyline != null)
 		{
-			Antena antena = itA.next();
-
-			if(cachéDeContornos == null)
-				cachéDeContornos = CachéDeContornos.dameInstancia(getActivity());
-
-			if(!cachéDeContornos.enContorno(antena, posNosotros, false))
-			{
-				if(Log.isLoggable("antenas", Log.DEBUG))
-					Log.d("antenas", "No se dibuja línea de antena " + antena + " porque estamos fuera de su contorno de alcance.");
-				itA.remove();
-				continue;
-			}
-
-			Polyline polyline = líneas.get(antena);
-			if(polyline != null)
-			{
-				//Log.d("antenas", "modifico "+polyline);
-				List<LatLng> points = new ArrayList<>(2);
-				points.add(posNosotros);
-				points.add(antena.getLatLng());
-				polyline.setPoints(points);
-			} else
-			{
-				if(!antenasDentro.contains(antena))
-					new FuturoMarcador(antena, getContext()).crear(this);
-				boolean sel = antena == antenaSeleccionada;
-				polyline = mapa.addPolyline(new PolylineOptions()
-						.add(posNosotros, antena.getLatLng())
-						.geodesic(true)
-						.width(getResources().getDimension(sel
-								? R.dimen.ancho_línea_antena_sel
-								: R.dimen.ancho_línea_antena))
-						.color(ContextCompat.getColor(requireContext(), sel
-								? R.color.línea_mapa_sel
-								: R.color.línea_mapa))
-						.endCap(ROUND_CAP));
-				polyline.setTag(antena);
-				polyline.setClickable(true);
-				//Log.d("antenas", "agrego "+polyline);
-				líneas.put(antena, polyline);
-			}
-		}
-
-		Iterator<Map.Entry<Antena, Polyline>> itL = líneas.entrySet().iterator();
-		while(itL.hasNext())
+			//Log.d("antenas", "modifico "+polyline);
+			List<LatLng> points = new ArrayList<>(2);
+			points.add(posNosotros);
+			points.add(antena.getLatLng());
+			polyline.setPoints(points);
+		} else
 		{
-			Map.Entry<Antena, Polyline> e = itL.next();
-			if(!antenasCerca.contains(e.getKey()))
-			{
-				e.getValue().remove();
-				itL.remove();
-			}
+			if(!antenasDentro.contains(antena))
+				new FuturoMarcador(antena, getContext()).crear(this);
+			boolean sel = antena == antenaSeleccionada;
+			polyline = mapa.addPolyline(new PolylineOptions()
+					.add(posNosotros, antena.getLatLng())
+					.geodesic(true)
+					.width(getResources().getDimension(sel
+							? R.dimen.ancho_línea_antena_sel
+							: R.dimen.ancho_línea_antena))
+					.color(ContextCompat.getColor(requireContext(), sel
+							? R.color.línea_mapa_sel
+							: R.color.línea_mapa))
+					.endCap(ROUND_CAP));
+			polyline.setTag(antena);
+			polyline.setClickable(true);
+			//Log.d("antenas", "agrego "+polyline);
+			líneas.put(antena, polyline);
 		}
 	}
 
