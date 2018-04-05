@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -216,9 +217,10 @@ public class CanalesMapaFragment extends Fragment
 
 	private void ponerDistancia(Location location, TextView tv, boolean comentario)
 	{
-		Lugar l = Lugar.actual.getValue();
-		double distancia = antena.distanceTo(l == null ? new GlobalCoordinates(location.getLatitude(), location.getLongitude()) : l.coords);
-		if(distancia < 100000)
+		if(location == null)
+			return;
+		double distancia = antena.distanceTo(new GlobalCoordinates(location.getLatitude(), location.getLongitude()));
+		if(distancia <= PreferenceManager.getDefaultSharedPreferences(getContext()).getInt("max_dist", 60000))
 		{
 			int res = comentario ? R.string.dist_away_comentario : R.string.dist_away_solo;
 			tv.setText(getString(res, Formatos.formatDistance(getActivity(), distancia)));
