@@ -298,11 +298,12 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				return;
 			if(publicidad != null)
 				publicidad.load(location);
-			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
+			double latitude = location.getLatitude(), longitude = location.getLongitude();
+			coordsUsuario = new GlobalCoordinates(latitude, longitude);
 			alturaUsuario = (float)location.getAltitude();
 
 			if(viewModel.brújula != null && !location.getProvider().equals(GeoUtils.NO_PROVIDER))
-				viewModel.brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
+				viewModel.brújula.setCoordinates(latitude, longitude, alturaUsuario);
 		});
 
 		if(antenasAdapter != null)
