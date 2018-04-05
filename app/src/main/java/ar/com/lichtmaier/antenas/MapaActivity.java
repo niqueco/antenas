@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import com.google.android.gms.location.LocationRequest;
 
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
-import ar.com.lichtmaier.util.GeoUtils;
 
 public class MapaActivity extends AppCompatActivity
 {
