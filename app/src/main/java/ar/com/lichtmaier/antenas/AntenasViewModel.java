@@ -10,11 +10,10 @@ import android.support.annotation.Nullable;
 
 import com.google.android.gms.location.LocationRequest;
 
-import org.gavaghan.geodesy.GlobalCoordinates;
-
 import java.util.List;
 
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
+import ar.com.lichtmaier.util.GeoUtils;
 
 public class AntenasViewModel extends AndroidViewModel
 {
@@ -25,7 +24,6 @@ public class AntenasViewModel extends AndroidViewModel
 	@NonNull final LocationLiveData realLocation;
 
 	private static final int PRECISIÓN_ACEPTABLE = 150;
-	public static final String NO_PROVIDER = "*";
 	public LiveData<List<AntenasRepository.AntenaListada>> antenasAlrededor;
 
 	public AntenasViewModel(@NonNull Application application)
@@ -40,7 +38,7 @@ public class AntenasViewModel extends AndroidViewModel
 
 		location = Transformations.switchMap(Lugar.actual, locActual -> locActual == null
 				? realLocation
-				: Transformations.map(Lugar.actual, lugar -> toLocation(lugar.coords)));
+				: Transformations.map(Lugar.actual, lugar -> GeoUtils.toLocation(lugar.coords)));
 
 		// emito un valor para que se active la fuente bien
 		Lugar.actual.setValue(Lugar.actual.getValue());
@@ -62,11 +60,4 @@ public class AntenasViewModel extends AndroidViewModel
 		}
 	}
 
-	private static Location toLocation(@NonNull GlobalCoordinates coords)
-	{
-		Location loc = new Location(NO_PROVIDER);
-		loc.setLatitude(coords.getLatitude());
-		loc.setLongitude(coords.getLongitude());
-		return loc;
-	}
 }

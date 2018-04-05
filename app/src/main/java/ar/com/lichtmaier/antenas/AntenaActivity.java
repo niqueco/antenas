@@ -44,6 +44,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 
 import ar.com.lichtmaier.antenas.location.LocationManagerLiveData;
 import ar.com.lichtmaier.util.DistanceSliderPreference;
+import ar.com.lichtmaier.util.GeoUtils;
 
 public class AntenaActivity extends AppCompatActivity implements Brújula.Callback
 {
@@ -300,7 +301,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			coordsUsuario = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 			alturaUsuario = (float)location.getAltitude();
 
-			if(viewModel.brújula != null && !location.getProvider().equals(AntenasViewModel.NO_PROVIDER))
+			if(viewModel.brújula != null && !location.getProvider().equals(GeoUtils.NO_PROVIDER))
 				viewModel.brújula.setCoordinates(coordsUsuario.getLatitude(), coordsUsuario.getLongitude(), alturaUsuario);
 		});
 
