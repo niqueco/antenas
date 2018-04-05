@@ -6,9 +6,11 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.crashlytics.android.BuildConfig;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -33,11 +35,14 @@ public abstract class LocationLiveData extends LiveData<Location>
 	@NonNull
 	public static LocationLiveData create(Context context, LocationRequest locationRequest, float precisiónAceptable)
 	{
-		int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
-		if(googlePlayServicesAvailable != ConnectionResult.SUCCESS)
+		if(!BuildConfig.DEBUG || !Build.FINGERPRINT.contains("generic"))
 		{
-			Crashlytics.log(Log.WARN, TAG, "Play Services no disponible. No importa, sobreviviremos.");
-			return new LocationManagerLiveData(context, precisiónAceptable);
+			int googlePlayServicesAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
+			if(googlePlayServicesAvailable != ConnectionResult.SUCCESS)
+			{
+				Crashlytics.log(Log.WARN, TAG, "Play Services no disponible. No importa, sobreviviremos.");
+				return new LocationManagerLiveData(context, precisiónAceptable);
+			}
 		}
 		return new PlayServicesLocationLiveData(context, locationRequest, precisiónAceptable);
 	}
