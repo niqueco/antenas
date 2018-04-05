@@ -614,7 +614,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private void estiloLínea(Antena antena, boolean sel)
 	{
 		Polyline línea = líneas.get(antena);
-		Log.d("antenas", "estiloLínea " + antena + ", sel=" +sel + ", línea="+línea);
+		if(Log.isLoggable("antenas", Log.DEBUG))
+			Log.d("antenas", "estiloLínea " + antena + ", sel=" +sel + ", línea="+línea);
 		if(línea != null)
 		{
 			Context context = requireContext();
@@ -798,7 +799,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	@Override
 	public void onPolylineClick(Polyline polyline)
 	{
-		Log.d("antenas", "click en " + polyline);
+		if(Log.isLoggable("antenas", Log.DEBUG))
+			Log.d("antenas", "click en " + polyline);
 		Antena antena = (Antena)polyline.getTag();
 		if(antena == null)
 		{
@@ -808,7 +810,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			Crashlytics.logException(new RuntimeException("onPolylineClick: unknown polyline"));
 			return;
 		}
-		Log.d("antenas", "click en línea de " + antena);
+		if(Log.isLoggable("antenas", Log.DEBUG))
+			Log.d("antenas", "click en línea de " + antena);
 
 		Marker marker = antenaAMarker.get(antena);
 		if(marker == null)
