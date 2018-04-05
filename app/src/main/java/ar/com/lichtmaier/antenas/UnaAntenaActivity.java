@@ -67,13 +67,11 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		}
 		antena = Antena.dameAntena(this, País.valueOf(bundle.getString("ar.com.lichtmaier.antenas.antenaPaís")), bundle.getInt("ar.com.lichtmaier.antenas.antenaIndex"));
 		final TextView antenaDesc = findViewById(R.id.antena_desc);
-		assert antenaDesc != null;
 		if(antena.descripción != null)
 			antenaDesc.setText(antena.descripción);
 		else
 			antenaDesc.setVisibility(View.GONE);
 		final TextView tvPotencia = findViewById(R.id.antena_potencia);
-		assert tvPotencia != null;
 		tvPotencia.setText(antena.potencia > 0 ? Formatos.formatPower(antena.potencia) : null);
 		antenaDist = findViewById(R.id.antena_dist);
 		configurarDistancia();
@@ -88,7 +86,6 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		boolean animar = bundle.getBoolean(PACKAGE + ".animar");
 
 		flecha = findViewById(R.id.flecha);
-		assert flecha != null;
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		flecha.setMostrarAlineación(prefs.getBoolean("mostrarAlineación", false));
@@ -107,7 +104,6 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			ViewGroup p = findViewById(R.id.columna_derecha);
 			if(p == null)
 				p = findViewById(R.id.principal);
-			assert p != null;
 			boolean hayImágenes = antena.hayImágenes();
 			float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
 			float density = getResources().getDisplayMetrics().density;
@@ -154,7 +150,6 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 					calcularDeltas();
 
 					View fondo = findViewById(R.id.fondo);
-					assert fondo != null;
 
 					flecha.setScaleX(escalaAncho);
 					flecha.setScaleY(escalaAlto);
@@ -191,7 +186,6 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 							});
 
 					Toolbar tb = findViewById(R.id.toolbar);
-					assert tb != null;
 
 					tb.setAlpha(0);
 					tb.animate()
@@ -322,9 +316,7 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 		if(AntenaActivity.flechaADesaparecer != null)
 			AntenaActivity.flechaADesaparecer.setVisibility(View.INVISIBLE);
 		View fondo = findViewById(R.id.fondo);
-		assert fondo != null;
 		View flecha = findViewById(R.id.flecha);
-		assert flecha != null;
 		AlphaAnimation aa = new AlphaAnimation(1, 0);
 		aa.setDuration(400);
 		aa.setInterpolator(new AccelerateInterpolator());
@@ -347,7 +339,6 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			});
 
 		Toolbar tb = findViewById(R.id.toolbar);
-		assert tb != null;
 		tb.animate()
 			.alpha(0)
 			.setStartDelay(200)
@@ -417,7 +408,6 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 			return;
 		double rumbo = antena.rumboDesde(coordsUsuario);
 		FlechaView f = findViewById(R.id.flecha);
-		assert f != null;
 		ángulo = rumbo - brújula;
 		f.setÁngulo(ángulo);
 	}
