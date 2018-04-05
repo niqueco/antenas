@@ -19,6 +19,8 @@ public class AsyncLiveData<T> extends LiveData<T>
 	@Nullable private final Runnable doFinally;
 	@NonNull private final Executor executor;
 
+	private static final String TAG = "AsyncLiveData";
+
 	private AsyncLiveData(@NonNull Callable<T> callable, @Nullable ErrorHandler onError, @Nullable Runnable doFinally, boolean loadImmediately, @NonNull Executor executor)
 	{
 		this.callable = callable;
@@ -49,12 +51,12 @@ public class AsyncLiveData<T> extends LiveData<T>
 				} catch(ExecutionException e)
 				{
 					if(onError == null)
-						Log.e("antenas", "AsyncLiveData", e.getCause());
+						Log.e(TAG, "Error", e.getCause());
 					else
 						onError.onError(e.getCause());
 				} catch(InterruptedException e)
 				{
-					Log.e("antenas", "AsyncLiveData", e);
+					Log.e(TAG, "Error", e);
 				}
 				synchronized(AsyncLiveData.this) {
 					future = null;
