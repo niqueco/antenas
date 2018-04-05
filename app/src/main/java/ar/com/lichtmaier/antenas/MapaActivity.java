@@ -56,26 +56,15 @@ public class MapaActivity extends AppCompatActivity
 				opciónPagar.setVisible(!pro);
 		});
 
-		MapaFragment mapaFragment;
 		if(savedInstanceState == null)
 		{
-			mapaFragment = new MapaFragment();
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, mapaFragment)
-					.commit();
 			if(getIntent().getExtras() == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)
 			{
 				ShortcutManager sm = getSystemService(ShortcutManager.class);
 				if(sm != null)
 					sm.reportShortcutUsed("mapa");
 			}
-		} else
-		{
-			mapaFragment = (MapaFragment)getSupportFragmentManager().findFragmentById(R.id.container);
 		}
-
-		if(mapaFragment == null)
-			throw new NullPointerException("mapaFragment es null, activity = " + this);
 
 		realLocation = LocationLiveData.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)

@@ -21,11 +21,12 @@
             android:layout_weight="1"
             tools:ignore="UselessParent">
 
-            <FrameLayout
+            <fragment
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="ar.com.lichtmaier.antenas.MapaActivity"
+                android:name="ar.com.lichtmaier.antenas.MapaFragment"
+                tools:layout="@layout/fragment_mapa"
                 />
 
             <FrameLayout
