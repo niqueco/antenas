@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -21,6 +22,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.*;
 import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.*;
 import android.widget.ScrollView;
@@ -33,6 +35,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.*;
 import java.util.concurrent.*;
 
+import ar.com.lichtmaier.antenas.location.TieneLocation;
 import ar.com.lichtmaier.util.AsyncLiveData;
 import ar.com.lichtmaier.util.GeoUtils;
 
@@ -76,6 +79,18 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private AntenasRepository antenasRepository;
 	private LiveData<Location> location;
 	private LiveData<List<AntenasRepository.AntenaListada>> antenasAlrededor;
+	private boolean mostrarBottomSheetAntena, myLocationButtonEnabled;
+
+	@Override
+	public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState)
+	{
+		super.onInflate(context, attrs, savedInstanceState);
+
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MapaFragment);
+		mostrarBottomSheetAntena = a.getBoolean(R.styleable.MapaFragment_mostrarBottomSheetAntena, true);
+		myLocationButtonEnabled = a.getBoolean(R.styleable.MapaFragment_myLocationButtonEnabled, true);
+		a.recycle();
+	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
@@ -166,7 +181,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			mapa = googleMap;
 			inicializarMapa(savedInstanceState);
 		});
-		MapaActivity activity = (MapaActivity)getActivity();
+		FragmentActivity activity = getActivity();
 		if(activity == null)
 		{
 			logFragmentStatus();
@@ -174,18 +189,19 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			Crashlytics.logException(new RuntimeException("getActivity es null"));
 			return;
 		}
-		location = activity.getLocation();
+		location = ((TieneLocation)activity).getLocation();
 		location.observe(this, this::onLocationChanged);
 
 		View tb = activity.findViewById(R.id.toolbar_wrapper);
-		tb.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-			int antes = altoActionBar;
-			altoActionBar = tb.getHeight();
-			if(altoActionBar == 0)
-				return;
-			if(mapa != null && antes != altoActionBar)
-				configurarPaddingMapa();
-		});
+		if(tb != null)
+			tb.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+				int antes = altoActionBar;
+				altoActionBar = tb.getHeight();
+				if(altoActionBar == 0)
+					return;
+				if(mapa != null && antes != altoActionBar)
+					configurarPaddingMapa();
+			});
 	}
 
 	private void inicializarMapa(Bundle savedInstanceState)
@@ -198,6 +214,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			throw new NullPointerException();
 		mapa.setMyLocationEnabled(hayPermiso);
 		myLocationEnabled = hayPermiso;
+		mapa.getUiSettings().setMyLocationButtonEnabled(myLocationButtonEnabled);
 		mapa.setIndoorEnabled(false);
 		if(savedInstanceState == null)
 			mapa.moveCamera(CameraUpdateFactory.zoomTo(10));
@@ -226,9 +243,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 				mapaMovido = true;
 			}
-		} else if(location.getValue() != null)
+		} else
 		{
-			if(savedInstanceState == null)
+			Location loc = location.getValue();
+			if(loc != null && savedInstanceState == null)
 			{
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(dameLatLng()));
 				mapaMovido = true;
@@ -240,7 +258,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			íconoAntenitaElegida = BitmapDescriptorFactory.fromResource(R.drawable.antena_seleccionada);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
-		altoActionBar = act.findViewById(R.id.toolbar_wrapper).getHeight();
+		View tb = act.findViewById(R.id.toolbar_wrapper);
+		altoActionBar = tb == null ? 0 : tb.getHeight();
 		configurarPaddingMapa();
 
 		dibujarLíneas(prefs.getBoolean("dibujar_líneas", true));
@@ -557,6 +576,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		modoMostrarAntena = false;
 	}
 
+	void onAntenaClick(Antena antena)
+	{
+		onMarkerClick(antenaAMarker.get(antena));
+	}
+
 	@Override
 	public boolean onMarkerClick(Marker marker)
 	{
@@ -586,6 +610,22 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 		// para que se borre el contorno si se pasa a una antena que no tiene canales con contorno
 		canalSeleccionado(null, null);
+
+		if(!mostrarBottomSheetAntena)
+		{
+			Location loc = location.getValue();
+			if(loc != null && antena != null)
+			{
+				LatLngBounds bbox = LatLngBounds.builder()
+						.include(new LatLng(loc.getLatitude(), loc.getLongitude()))
+						.include(antena.getLatLng())
+						.build();
+				CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bbox, (int)getResources().getDimension(R.dimen.paddingContorno) * 3);
+				Log.i("antenas", "animando a " + antena + " con " + bbox);
+				mapa.animateCamera(cameraUpdate);
+			}
+			return false;
+		}
 
 		//noinspection ConstantConditions
 		if(antena.canales == null)

@@ -20,8 +20,9 @@ import android.view.MenuItem;
 import com.google.android.gms.location.LocationRequest;
 
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
+import ar.com.lichtmaier.antenas.location.TieneLocation;
 
-public class MapaActivity extends AppCompatActivity
+public class MapaActivity extends AppCompatActivity implements TieneLocation
 {
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 11112;
 
@@ -170,7 +171,7 @@ public class MapaActivity extends AppCompatActivity
 	}
 
 	@NonNull
-	LiveData<Location> getLocation()
+	public LiveData<Location> getLocation()
 	{
 		return location;
 	}

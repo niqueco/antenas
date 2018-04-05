@@ -6,4 +6,8 @@
 		<attr name="colorDial" format="color"/>
 		<attr name="mostrarAlineacion" format="boolean"/>
 	</declare-styleable>
+	<declare-styleable name="MapaFragment">
+		<attr name="mostrarBottomSheetAntena" format="boolean"/>
+		<attr name="myLocationButtonEnabled" format="boolean"/>
+	</declare-styleable>
 </resources>

@@ -39,7 +39,7 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 	private boolean forzarDireccionesAbsolutas;
 	private final Map<Antena, CharSequence> distanciasFormateadas = new HashMap<>();
 
-	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener
+	class AntenaViewHolder extends RecyclerView.ViewHolder implements Brújula.Callback, View.OnClickListener, View.OnFocusChangeListener
 	{
 		private final CommaEllipsizeTextView tvDesc;
 		private final CommaEllipsizeTextView tvDetalle;
@@ -60,6 +60,7 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 			flechaView = v.findViewById(R.id.flecha);
 			avisoLejos = v.findViewById(R.id.aviso_lejos);
 			v.setOnClickListener(this);
+			v.setOnFocusChangeListener(this);
 			flechaView.setMostrarPuntosCardinales(!mostrarDireccionesRelativas);
 		}
 
@@ -93,6 +94,13 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 		{
 			if(listener != null)
 				listener.onAntenaClicked(antena, v);
+		}
+
+		@Override
+		public void onFocusChange(View v, boolean hasFocus)
+		{
+			if(listener != null)
+				listener.onFocusChanged(hasFocus ? antena : null);
 		}
 
 		private void bindTo(AntenaListada al)
@@ -231,5 +239,6 @@ public class AntenasAdapter extends ListAdapter<AntenaListada, AntenasAdapter.An
 	interface Callback
 	{
 		void onAntenaClicked(Antena antena, View view);
+		void onFocusChanged(Antena antena);
 	}
 }

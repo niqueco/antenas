@@ -1,9 +1,11 @@
 package ar.com.lichtmaier.antenas;
 
 import android.Manifest;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -20,7 +22,9 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class TVActivity extends FragmentActivity
+import ar.com.lichtmaier.antenas.location.TieneLocation;
+
+public class TVActivity extends FragmentActivity implements AntenasAdapter.Callback, TieneLocation
 {
 	private static final int PEDIDO_DE_PERMISO_FINE_LOCATION = 131;
 
@@ -53,7 +57,7 @@ public class TVActivity extends FragmentActivity
 
 		if(rv != null)
 		{
-			AntenasAdapter antenasAdapter = new AntenasAdapter(this, null, viewModel.location, null, R.layout.antena_tv, this);
+			AntenasAdapter antenasAdapter = new AntenasAdapter(this, null, viewModel.location, this, R.layout.antena_tv, this);
 			rv.setAdapter(antenasAdapter);
 			AntenasRepository antenasRepository = new AntenasRepository(this);
 			antenasRepository.dameAntenasAlrededor(viewModel.location).observe(this, al -> {
@@ -140,6 +144,29 @@ public class TVActivity extends FragmentActivity
 	}
 
 	private PrenderAnimación prenderAnimación;
+
+	@Override
+	@NonNull
+	public LiveData<Location> getLocation()
+	{
+		return viewModel.location;
+	}
+
+	@Override
+	public void onAntenaClicked(Antena antena, View view)
+	{
+
+	}
+
+	@Override
+	public void onFocusChanged(Antena antena)
+	{
+		if(antena != null)
+		{
+			MapaFragment fr = (MapaFragment)getSupportFragmentManager().findFragmentById(R.id.mapaFragment);
+			fr.onAntenaClick(antena);
+		}
+	}
 
 	private static class PrenderAnimación implements Runnable
 	{

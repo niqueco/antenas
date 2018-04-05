@@ -120,6 +120,9 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 			if(animar)
 				overridePendingTransition(0, 0);
 		}
+
+		@Override
+		public void onFocusChanged(Antena antena) { }
 	};
 	protected Publicidad.Intersticial intersticial;
 
