@@ -346,6 +346,8 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(publicidad != null)
 			publicidad.load(location);
 
+		AntenaActivity.coordsUsuario = GeoUtils.toGlobalCoordinates(location);
+
 		if(mapa == null)
 			return; // El mapa todavía no se terminó de inicializar.
 
