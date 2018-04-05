@@ -1,6 +1,9 @@
 package ar.com.lichtmaier.antenas;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,6 +13,9 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.gavaghan.geodesy.GlobalCoordinates;
+
+import ar.com.lichtmaier.antenas.location.LocationLiveData;
+import ar.com.lichtmaier.util.GeoUtils;
 
 /** Un lugar elegido para ser el centro de referencia de la información de antenas.
  */
@@ -59,6 +65,18 @@ class Lugar implements Parcelable
 
 		if(savedInstanceState != null)
 			actual.setValue(savedInstanceState.getParcelable(KEY));
+	}
+
+	@NonNull
+	static LiveData<Location> dameUbicaciónFusionada(LocationLiveData realLocation)
+	{
+		LiveData<Location> location = Transformations.switchMap(actual, locActual -> locActual == null
+				? realLocation
+				: Transformations.map(actual, lugar -> GeoUtils.toLocation(lugar.coords)));
+
+		// emito un valor para que se active la fuente bien
+		actual.setValue(actual.getValue());
+		return location;
 	}
 
 	public static final Creator<Lugar> CREATOR = new Creator<Lugar>()

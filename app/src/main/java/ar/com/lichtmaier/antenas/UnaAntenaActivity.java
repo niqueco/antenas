@@ -3,6 +3,7 @@ package ar.com.lichtmaier.antenas;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +25,8 @@ import com.getkeepsafe.taptargetview.TapTargetSequence;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ar.com.lichtmaier.util.GeoUtils;
 
 public class UnaAntenaActivity extends AntenaActivity implements SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener
 {
@@ -396,18 +399,13 @@ public class UnaAntenaActivity extends AntenaActivity implements SharedPreferenc
 	{
 		if(antena != null)
 		{
+			Location loc = viewModel.location.getValue();
+			if(loc == null)
+				return;
+			String str = Formatos.formatDistance(this, antena.distanceTo(GeoUtils.toGlobalCoordinates(loc)));
 			Lugar l = Lugar.actual.getValue();
-			String str;
-			if(l == null)
-			{
-				if(AntenaActivity.coordsUsuario == null)
-					return;
-				str = Formatos.formatDistance(this, antena.distanceTo(AntenaActivity.coordsUsuario));
-			} else
-			{
-				str = Formatos.formatDistance(this, antena.distanceTo(l.coords));
+			if(l != null)
 				str = getString(R.string.distancia_de, str, l.name);
-			}
 			antenaDist.setText(str);
 		}
 	}

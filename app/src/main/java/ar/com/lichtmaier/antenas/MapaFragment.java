@@ -34,6 +34,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import ar.com.lichtmaier.util.AsyncLiveData;
+import ar.com.lichtmaier.util.GeoUtils;
 
 public class MapaFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 		GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener,
@@ -57,7 +58,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	private static BitmapDescriptor íconoAntenita, íconoAntenitaElegida;
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 145;
 	private Canal canalSeleccionado;
-	private double latitudActual, longitudActual;
 	final private Map<Antena, Polyline> líneas = new HashMap<>();
 	final private Map<Antena, Marker> antenaAMarker = new HashMap<>();
 	private boolean dibujandoLíneas;
@@ -226,11 +226,11 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 				mapa.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 				mapaMovido = true;
 			}
-		} else if(AntenaActivity.coordsUsuario != null)
+		} else if(location.getValue() != null)
 		{
 			if(savedInstanceState == null)
 			{
-				mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(AntenaActivity.coordsUsuario.getLatitude(), AntenaActivity.coordsUsuario.getLongitude())));
+				mapa.moveCamera(CameraUpdateFactory.newLatLng(dameLatLng()));
 				mapaMovido = true;
 			}
 		}
@@ -346,9 +346,6 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		if(publicidad != null)
 			publicidad.load(location);
 
-		latitudActual = location.getLatitude();
-		longitudActual = location.getLongitude();
-
 		if(mapa == null)
 			return; // El mapa todavía no se terminó de inicializar.
 
@@ -357,7 +354,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 		if(!mapaMovido)
 		{
-			mapa.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitudActual, longitudActual)));
+			mapa.moveCamera(CameraUpdateFactory.newLatLng(dameLatLng()));
 			mapaMovido = true;
 		}
 	}
@@ -760,8 +757,10 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 	@NonNull
 	private LatLng dameLatLng()
 	{
-		Lugar l = Lugar.actual.getValue();
-		return l == null ? new LatLng(latitudActual, longitudActual) : new LatLng(l.coords.getLatitude(), l.coords.getLongitude());
+		Location loc = location.getValue();
+		if(loc == null)
+			throw new NullPointerException();
+		return GeoUtils.toLatLng(loc);
 	}
 
 	private void dibujarLínea(LatLng posNosotros, Antena antena)

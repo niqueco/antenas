@@ -20,13 +20,15 @@ import android.view.MenuItem;
 import com.google.android.gms.location.LocationRequest;
 
 import ar.com.lichtmaier.antenas.location.LocationLiveData;
+import ar.com.lichtmaier.util.GeoUtils;
 
 public class MapaActivity extends AppCompatActivity
 {
 	private static final int PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION = 11112;
 
 	private long comienzoUsoPantalla;
-	private LocationLiveData locationLiveData;
+	private LocationLiveData realLocation;
+	private LiveData<Location> location;
 
 	private AyudanteDePagos ayudanteDePagos;
 	private MenuItem opciónPagar;
@@ -75,15 +77,17 @@ public class MapaActivity extends AppCompatActivity
 		if(mapaFragment == null)
 			throw new NullPointerException("mapaFragment es null, activity = " + this);
 
-		locationLiveData = LocationLiveData.create(this, LocationRequest.create()
+		realLocation = LocationLiveData.create(this, LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
 				.setInterval(200)
 				.setFastestInterval(200)
 				.setSmallestDisplacement(1), Float.MAX_VALUE);
 
+		location = Lugar.dameUbicaciónFusionada(realLocation);
+
 		if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
 		{
-			locationLiveData.inicializarConPermiso(this);
+			realLocation.inicializarConPermiso(this);
 		} else
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION);
 	}
@@ -94,7 +98,7 @@ public class MapaActivity extends AppCompatActivity
 		if(requestCode == PEDIDO_DE_PERMISO_ACCESS_FINE_LOCATION)
 		{
 			if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-				locationLiveData.inicializarConPermiso(this);
+				realLocation.inicializarConPermiso(this);
 		} else
 			super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
@@ -170,7 +174,7 @@ public class MapaActivity extends AppCompatActivity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if(locationLiveData.onActivityResult(requestCode, resultCode, data))
+		if(realLocation.onActivityResult(requestCode, resultCode, data))
 			return;
 		if(ayudanteDePagos.onActivityResult(requestCode, resultCode, data))
 			return;
@@ -180,6 +184,6 @@ public class MapaActivity extends AppCompatActivity
 	@NonNull
 	LiveData<Location> getLocation()
 	{
-		return locationLiveData;
+		return location;
 	}
 }
