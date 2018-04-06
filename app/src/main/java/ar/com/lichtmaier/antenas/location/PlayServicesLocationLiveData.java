@@ -39,7 +39,7 @@ public class PlayServicesLocationLiveData extends LocationLiveData
 	public void inicializarConPermiso(Activity activity)
 	{
 		if(Log.isLoggable(TAG, Log.DEBUG))
-			Log.d(TAG, "Inicializando");
+			Log.d(TAG, "Inicializando con Play Services");
 		if(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
 		if(hasActiveObservers())

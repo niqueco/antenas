@@ -34,7 +34,7 @@ public class LocationManagerLiveData extends LocationLiveData implements Locatio
 	public void inicializarConPermiso(Activity activity)
 	{
 		if(Log.isLoggable(TAG, Log.DEBUG))
-			Log.d(TAG, "Inicializando");
+			Log.d(TAG, "Inicializando con Location Manager");
 		if(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 			return;
 		Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
