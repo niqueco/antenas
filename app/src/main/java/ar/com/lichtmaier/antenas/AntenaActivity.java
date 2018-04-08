@@ -562,7 +562,7 @@ public class AntenaActivity extends AppCompatActivity implements Brújula.Callba
 				países.add(antenasAdapter.getItem(i).antena.país);
 			SharedPreferences.Editor editor = prefs.edit();
 			if(países.contains(País.US))
-				editor.putInt("max_dist", 100000);
+				editor.putInt("max_dist", 96560);
 			editor.putBoolean("distancia_configurada", true).apply();
 		}
 
