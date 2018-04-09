@@ -38,8 +38,8 @@ public class MapaActivity extends AppCompatActivity implements TieneLocation
 	{
 		Antena.applicationContext = getApplicationContext();
 		super.onCreate(savedInstanceState);
-		Antena.applicationContext = null;
 		setContentView(R.layout.activity_mapa);
+		Antena.applicationContext = null;
 		Toolbar tb = findViewById(R.id.toolbar);
 		if(tb != null)
 		{
