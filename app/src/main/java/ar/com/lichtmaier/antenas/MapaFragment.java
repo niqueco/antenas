@@ -766,7 +766,7 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			if(antenasRepository == null)
 				antenasRepository = new AntenasRepository(requireContext());
 
-			antenasAlrededor = antenasRepository.dameAntenasAlrededor(location);
+			antenasAlrededor = antenasRepository.dameAntenasAlrededor(location, true);
 			antenasAlrededor.observe(this, l -> {
 				if(l == null)
 					return;

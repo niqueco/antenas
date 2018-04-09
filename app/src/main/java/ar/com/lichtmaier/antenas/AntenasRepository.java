@@ -57,9 +57,9 @@ class AntenasRepository
 		this.context = context.getApplicationContext();
 	}
 
-	LiveData<List<AntenaListada>> dameAntenasAlrededor(LiveData<Location> locationLiveData)
+	LiveData<List<AntenaListada>> dameAntenasAlrededor(LiveData<Location> locationLiveData, boolean nuncaMostrarMenos)
 	{
-		return new AntenasAlrededorLiveData(locationLiveData);
+		return new AntenasAlrededorLiveData(locationLiveData, nuncaMostrarMenos);
 	}
 
 	private class AntenasAlrededorLiveData extends MediatorLiveData<List<AntenaListada>> implements SharedPreferences.OnSharedPreferenceChangeListener
@@ -75,9 +75,12 @@ class AntenasRepository
 		private int maxDist;
 		private boolean mostrarMenos, usarContornos;
 
-		AntenasAlrededorLiveData(LiveData<Location> locationLiveData)
+		private final boolean nuncaMostrarMenos;
+
+		AntenasAlrededorLiveData(LiveData<Location> locationLiveData, boolean nuncaMostrarMenos)
 		{
 			this.locationLiveData = locationLiveData;
+			this.nuncaMostrarMenos = nuncaMostrarMenos;
 			prefs = PreferenceManager.getDefaultSharedPreferences(context);
 			addSource(locationLiveData, (loc) -> {
 				if(Log.isLoggable(TAG, Log.DEBUG))
@@ -95,7 +98,7 @@ class AntenasRepository
 			prefs.registerOnSharedPreferenceChangeListener(this);
 
 			// si sólo cambió usarContornos habría que solamente forzar el procesado de una nueva ubicación, pero... fiaca
-			if(prefs.getInt("max_dist", 60000) != maxDist || prefs.getBoolean("menos", true) != mostrarMenos || prefs.getBoolean("usar_contornos", true) != usarContornos)
+			if(prefs.getInt("max_dist", 60000) != maxDist || (!nuncaMostrarMenos && prefs.getBoolean("menos", true) != mostrarMenos) || prefs.getBoolean("usar_contornos", true) != usarContornos)
 				process();
 		}
 
@@ -122,7 +125,7 @@ class AntenasRepository
 				removeSource(ldac);
 			GlobalCoordinates gcoords = new GlobalCoordinates(location.getLatitude(), location.getLongitude());
 			mostrarMenos = prefs.getBoolean("menos", true);
-			ldac = Antena.dameAntenasCerca(context, gcoords, maxDist, mostrarMenos);
+			ldac = Antena.dameAntenasCerca(context, gcoords, maxDist, !nuncaMostrarMenos && mostrarMenos);
 
 			addSource(ldac, antenasAlrededor -> {
 

@@ -49,7 +49,7 @@ public class AntenasViewModel extends AndroidViewModel
 		if(!unaAntena && antenasAlrededor == null)
 		{
 			AntenasRepository antenasRepository = new AntenasRepository(getApplication());
-			antenasAlrededor = antenasRepository.dameAntenasAlrededor(location);
+			antenasAlrededor = antenasRepository.dameAntenasAlrededor(location, false);
 		}
 	}
 
