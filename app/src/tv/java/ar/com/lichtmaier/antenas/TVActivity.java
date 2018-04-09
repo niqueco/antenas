@@ -60,7 +60,7 @@ public class TVActivity extends FragmentActivity implements AntenasAdapter.Callb
 			AntenasAdapter antenasAdapter = new AntenasAdapter(this, null, viewModel.location, this, R.layout.antena_tv, this);
 			rv.setAdapter(antenasAdapter);
 			AntenasRepository antenasRepository = new AntenasRepository(this);
-			antenasRepository.dameAntenasAlrededor(viewModel.location).observe(this, al -> {
+			antenasRepository.dameAntenasAlrededor(viewModel.location, false).observe(this, al -> {
 				if(al == null)
 					return;
 				antenasAdapter.submitList(al);
