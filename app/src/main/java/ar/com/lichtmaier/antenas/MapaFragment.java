@@ -734,6 +734,12 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 		antenaAMarker.clear();
 		markerLugar = null;
 		threadPoolMarcadores.shutdown();
+
+		/* Aunque las preferencias mantienen una referencia débil al listener no queremos
+		 * que nos llamen si ya no estamos listos para procesarlo.
+		 */
+		prefs.unregisterOnSharedPreferenceChangeListener(this);
+
 		super.onDestroyView();
 	}
 
