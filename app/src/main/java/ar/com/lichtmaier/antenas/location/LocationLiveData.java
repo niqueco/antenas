@@ -36,7 +36,9 @@ public abstract class LocationLiveData extends LiveData<Location>
 	@NonNull
 	public static LocationLiveData create(Context context, LocationRequest locationRequest, float precisiónAceptable)
 	{
-		if((BuildConfig.DEBUG && Build.FINGERPRINT.contains("generic")) || GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context) != ConnectionResult.SUCCESS)
+		GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+		int available = googleApiAvailability.isGooglePlayServicesAvailable(context);
+		if((BuildConfig.DEBUG && Build.FINGERPRINT.contains("generic")) || available != ConnectionResult.SUCCESS)
 		{
 			if(BuildConfig.DEBUG)
 			{
@@ -46,7 +48,7 @@ public abstract class LocationLiveData extends LiveData<Location>
 					Log.i(TAG, "Emulador detectado, usando location manager");
 			} else
 			{
-				Crashlytics.log(Log.WARN, TAG, "Play Services no disponible. No importa, sobreviviremos.");
+				Crashlytics.log(Log.WARN, TAG, "Play Services no disponible. No importa, sobreviviremos (" + googleApiAvailability.getErrorString(available) + ")");
 			}
 			return new LocationManagerLiveData(context, precisiónAceptable);
 		}
