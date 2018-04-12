@@ -702,31 +702,54 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 			{
 				contornoLiveData.removeObserver(this);
 				contornoLiveData = null;
-				if(polygon == null || canalSeleccionado != canal)
-					return;
-				Activity act = MapaFragment.this.getActivity();
-				if(act == null || !MapaFragment.this.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED))
-					return;
-				PolygonOptions poly = new PolygonOptions();
-				poly.addAll(polygon.getPuntos());
-				poly.fillColor(ContextCompat.getColor(act, R.color.contorno));
-				poly.strokeWidth(MapaFragment.this.getResources().getDimension(R.dimen.ancho_contorno));
-				contornoActual = mapa.addPolygon(poly);
-				View view = MapaFragment.this.getView();
-				if(view != null)
+				SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
+				View mapView = mapFragment.getView();
+				if(mapView == null)
+					throw new NullPointerException();
+				if(mapView.getWidth() == 0 || mapView.getHeight() == 0)
 				{
-					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), view.getWidth(), view.getHeight(), (int)act.getResources().getDimension(R.dimen.paddingContorno));
-					try
+					mapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
 					{
-						mapa.animateCamera(cameraUpdate);
-					} catch(Exception e)
-					{
-						MapaFragment.this.logFragmentStatus();
-						Crashlytics.logException(e);
-					}
+						@Override
+						public void onGlobalLayout()
+						{
+							mapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+							pintarContornoCanal(polygon, canal);
+						}
+					});
+				} else
+				{
+					pintarContornoCanal(polygon, canal);
 				}
 			}
 		});
+	}
+
+	private void pintarContornoCanal(@Nullable Polígono polygon, Canal canal)
+	{
+		if(polygon == null || canalSeleccionado != canal)
+			return;
+		Activity act = MapaFragment.this.getActivity();
+		if(act == null || !MapaFragment.this.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED))
+			return;
+		PolygonOptions poly = new PolygonOptions();
+		poly.addAll(polygon.getPuntos());
+		poly.fillColor(ContextCompat.getColor(act, R.color.contorno));
+		poly.strokeWidth(MapaFragment.this.getResources().getDimension(R.dimen.ancho_contorno));
+		contornoActual = mapa.addPolygon(poly);
+		View view = MapaFragment.this.getView();
+		if(view != null)
+		{
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(polygon.getBoundingBox(), view.getWidth(), view.getHeight(), (int)act.getResources().getDimension(R.dimen.paddingContorno));
+			try
+			{
+				mapa.animateCamera(cameraUpdate);
+			} catch(Exception e)
+			{
+				MapaFragment.this.logFragmentStatus();
+				Crashlytics.logException(e);
+			}
+		}
 	}
 
 	@Override
