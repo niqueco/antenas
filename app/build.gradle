@@ -12,6 +12,7 @@ android {
         //noinspection OldTargetApi
         targetSdkVersion 26
         versionName "3.2.1"
+        versionCode 14030201
         resConfigs "de", "de-rAT", "en", "en-rGB", "en-rUS", "en-rAU", "en-rCA",
                 "en-rNZ", "es", "es-rUS", "fr", "fr-rCA", "ja", 'ja-rJP',
                 "pt", "pt-rBR", "pt-rPT"
@@ -26,20 +27,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
-        }
-    }
-
-    flavorDimensions "device"
-
-    productFlavors {
-        phone {
-            dimension "device"
-            versionCode 1403033
-        }
-        tv {
-            dimension "device"
-            versionCode 2103033
-            minSdkVersion 21
         }
     }
 
@@ -74,7 +61,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:12.0.1'
     implementation 'com.google.firebase:firebase-perf:12.0.1'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.1'
-    tvImplementation 'com.android.support:leanback-v17:27.1.1'
     implementation files('libs/clipper.jar')
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "android.arch.lifecycle:common-java8:1.1.1"

@@ -26,6 +26,9 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true"/>
 
     <uses-sdk tools:overrideLibrary="com.google.maps.android"/>
 
@@ -36,6 +39,7 @@
         android:name=".Aplicacion"
         android:theme="@style/TemaApp.Antenas"
         android:supportsRtl="true"
+        android:banner="@drawable/banner"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity
@@ -80,6 +84,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ar.com.lichtmaier.antenas.AntenaActivity"/>
+        </activity>
+
+        <activity
+            android:name="ar.com.lichtmaier.antenas.TVActivity"
+            android:theme="@style/TemaTV">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <meta-data android:name="com.google.android.gms.version"
