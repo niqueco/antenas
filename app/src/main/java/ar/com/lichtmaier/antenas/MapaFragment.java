@@ -578,7 +578,16 @@ public class MapaFragment extends Fragment implements SharedPreferences.OnShared
 
 	void onAntenaClick(Antena antena)
 	{
-		onMarkerClick(antenaAMarker.get(antena));
+		Marker marker = antenaAMarker.get(antena);
+		if(marker == null)
+		{
+			logFragmentStatus();
+			Crashlytics.log("antena: " + antena);
+			Crashlytics.log("antenasDentro(antena): " + antenasDentro.contains(antena));
+			Crashlytics.logException(new IllegalStateException("antena sin marcador?"));
+			return;
+		}
+		onMarkerClick(marker);
 	}
 
 	@Override
