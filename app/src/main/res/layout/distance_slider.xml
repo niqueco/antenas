@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingEnd="8dp"
-        android:paddingRight="8dp">
+        android:paddingRight="8dp"
+        tools:ignore="RtlSymmetry">
 
         <SeekBar
             android:id="@+id/seekBar"
@@ -28,6 +29,7 @@
             android:ems="2"
             android:gravity="end"
             android:inputType="number"
+            android:hint="@string/pref_max_dist_title"
             tools:text="12"/>
 
         <TextView
