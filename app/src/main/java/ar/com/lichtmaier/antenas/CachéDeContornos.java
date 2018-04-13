@@ -236,6 +236,8 @@ public class CachéDeContornos
 		}
 		if(contorno != null)
 		{
+			if(Log.isLoggable(TAG, Log.DEBUG))
+				Log.d(TAG, "Se obtuvo de la base el polígono con appId=" + appId);
 			try
 			{
 				ContentValues values = new ContentValues(1);
@@ -259,7 +261,8 @@ public class CachéDeContornos
 				Log.i(TAG, "Al polígono con appId=" + appId + " ya lo buscamos sin éxito.");
 				return null;
 			}
-		Log.i(TAG, "buscando el polígono con appId=" + appId);
+		if(Log.isLoggable(TAG, Log.DEBUG))
+			Log.d(TAG, "Buscando desde la red polígono con appId=" + appId);
 		String url = "http://transition.fcc.gov/fcc-bin/contourplot.kml?appid=" + appId + "&.txt";
 		InputStream in = null;
 		try
