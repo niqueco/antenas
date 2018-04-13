@@ -30,10 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
@@ -367,21 +364,27 @@ public class CachéDeContornos
 			cachéEnContorno.evictAll();
 	}
 
+	private int contador = 0;
+	private final Map<Integer, Integer> referenciasAntes = new HashMap<>();
+
 	/** Busca si un punto dado está cubierto por el contorno de algún canal de la antena.
 	 */
 	public LiveData<Boolean> enContorno(Antena antena, LatLng coords)
 	{
+		int num;
 		synchronized(CachéDeContornos.class) {
+			num = contador++;
+			referenciasAntes.put(num, referencias);
 			referencias++;
 		}
-		return AsyncLiveData.create(() -> enContornoReal(antena, coords), null, this::devolver, threadPoolContornos);
+		return AsyncLiveData.create(() -> enContornoReal(antena, coords, num), null, this::devolver, threadPoolContornos);
 	}
 
 	private static LruCache<Pair<String, Antena>, Boolean> cachéEnContorno;
 
 	/** Busca si un punto dado está cubierto por el contorno de algún canal de la antena.
 	 */
-	private boolean enContornoReal(final Antena antena, final LatLng coords)
+	private boolean enContornoReal(final Antena antena, final LatLng coords, int num)
 	{
 		if(antena.país != País.US || antena.canales == null)
 			return true;
@@ -392,6 +395,18 @@ public class CachéDeContornos
 			{
 				if(cachéEnContorno == null)
 					cachéEnContorno = new LruCache<>(400);
+			}
+		}
+
+		synchronized(CachéDeContornos.class)
+		{
+			int antes = referenciasAntes.remove(num);
+			if(referencias == 0)
+			{
+				Crashlytics.log("referencias antes: " + antes);
+				if(!referenciasAntes.isEmpty())
+					Crashlytics.log("otas llamadas: " + referenciasAntes);
+				throw new IllegalStateException("referencias es 0!");
 			}
 		}
 
