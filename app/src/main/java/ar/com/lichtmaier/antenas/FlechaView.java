@@ -23,7 +23,7 @@ public class FlechaView extends View
 {
 	private double ángulo, ánguloDibujado = Float.MAX_VALUE;
 	final private Paint pinturaFlecha, pinturaBorde;
-	private Paint pinturaPuntosCardinales;
+	private Paint pinturaPuntosCardinales, pinturaNorte;
 	private float cx, cy, z;
 	private float[] líneasFlecha;
 	private boolean mostrarPuntosCardinales;
@@ -161,11 +161,15 @@ public class FlechaView extends View
 		{
 			pinturaPuntosCardinales = new Paint(Paint.ANTI_ALIAS_FLAG);
 			pinturaPuntosCardinales.setColor(pinturaBorde.getColor());
+			pinturaNorte = new Paint(Paint.ANTI_ALIAS_FLAG);
+			pinturaNorte.setColor(pinturaBorde.getColor());
 		}
 		DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
 		float scale = dm.scaledDensity / dm.density;
 		altoTexto = h * .14f * scale;
 		pinturaPuntosCardinales.setTextSize(altoTexto);
+
+		pinturaNorte.setTextSize(altoTexto * 1.25f);
 	}
 
 	@Override
@@ -199,7 +203,7 @@ public class FlechaView extends View
 		if(mostrarPuntosCardinales)
 		{
 			int h = getHeight();
-			canvas.drawText("N", cx - pinturaPuntosCardinales.measureText("N") / 2, altoTexto + h / 10, pinturaPuntosCardinales);
+			canvas.drawText("N", cx - pinturaNorte.measureText("N") / 2, altoTexto * 1.25f + h * .08f, pinturaNorte);
 			String text = (int)ángulo + "°";
 			canvas.drawText(text, cx - pinturaPuntosCardinales.measureText(text) / 2, h - 2.5f * h / 10, pinturaPuntosCardinales);
 
