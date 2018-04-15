@@ -194,12 +194,17 @@ public class FlechaView extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
+		float radio = z + pinturaFlecha.getStrokeWidth() * .75f;
+
 		if(mostrarPuntosCardinales)
 		{
 			int h = getHeight();
 			canvas.drawText("N", cx - pinturaPuntosCardinales.measureText("N") / 2, altoTexto + h / 10, pinturaPuntosCardinales);
 			String text = (int)ángulo + "°";
 			canvas.drawText(text, cx - pinturaPuntosCardinales.measureText(text) / 2, h - 2.5f * h / 10, pinturaPuntosCardinales);
+
+			// el taquito
+			canvas.drawLine(cx, pinturaBorde.getStrokeWidth() / 2 + cy - radio, cx, getHeight() * .06f + cy - radio, pinturaBorde);
 		}
 
 		if(ánguloDibujado == Float.MAX_VALUE)
@@ -226,12 +231,9 @@ public class FlechaView extends View
 			verAlineación();
 
 		pinturaFlecha.setColor(colorFlechaDibujado);
-		float radio = z + pinturaFlecha.getStrokeWidth() * .75f;
 		canvas.drawCircle(0, 0, radio, pinturaBorde);
 		canvas.drawLines(líneasFlecha, pinturaFlecha);
 		canvas.restore();
-		if(mostrarPuntosCardinales)
-			canvas.drawLine(cx, pinturaBorde.getStrokeWidth() / 2 + cy - radio, cx, getHeight() * .06f + cy - radio, pinturaBorde);
 
 		if(ánguloDibujado != ángulo)
 			ViewCompat.postInvalidateOnAnimation(this);
