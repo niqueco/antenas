@@ -205,7 +205,15 @@ public class FlechaView extends View
 			int h = getHeight();
 			canvas.drawText("N", cx - pinturaNorte.measureText("N") / 2, altoTexto * 1.25f + h * .08f, pinturaNorte);
 			String text = (int)ángulo + "°";
-			canvas.drawText(text, cx - pinturaPuntosCardinales.measureText(text) / 2, h - 2.5f * h / 10, pinturaPuntosCardinales);
+			float xTexto;
+			double m = ángulo % 180;
+			if(m >= 0 && m < 35)
+				xTexto = (h * .05f) + cx;
+			else if (m > 145)
+				xTexto = (-h * .05f) + cx - pinturaPuntosCardinales.measureText(text);
+			else
+				xTexto = cx - pinturaPuntosCardinales.measureText(text) / 2;
+			canvas.drawText(text, xTexto, h - 2.5f * h / 10, pinturaPuntosCardinales);
 
 			// el taquito
 			canvas.drawLine(cx, pinturaBorde.getStrokeWidth() / 2 + cy - radio, cx, getHeight() * .06f + cy - radio, pinturaBorde);
