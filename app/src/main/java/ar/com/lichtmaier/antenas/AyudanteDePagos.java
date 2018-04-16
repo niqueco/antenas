@@ -144,11 +144,7 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 			if(res != 0)
 			{
 				if(res == RESULT_ITEM_ALREADY_OWNED)
-				{
 					Toast.makeText(context, "Ya está usando la versión Pro", Toast.LENGTH_SHORT).show();
-
-					pagosDeGoogle.consumePurchase(3, BuildConfig.APPLICATION_ID, ID_PRODUCTO);
-				}
 				else
 					Log.e(TAG, "Comprando RESPONSE_CODE = " + res);
 				return;
