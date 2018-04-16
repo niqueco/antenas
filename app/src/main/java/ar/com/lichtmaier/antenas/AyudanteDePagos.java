@@ -61,6 +61,13 @@ class AyudanteDePagos extends LiveData<Boolean> implements ServiceConnection
 		Crashlytics.log(Log.WARN, TAG, "servicio de pagos offline");
 	}
 
+	@Override
+	public void onBindingDied(ComponentName name)
+	{
+		pagosDeGoogle = null;
+		Crashlytics.log(Log.WARN, TAG, "servicio de pagos murió");
+	}
+
 	@SuppressLint("StaticFieldLeak")
 	@Override
 	public void onServiceConnected(ComponentName name, IBinder service)
