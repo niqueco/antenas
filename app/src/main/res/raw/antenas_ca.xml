@@ -454,9 +454,6 @@
 <antena lat="46.50528" lon="-80.95917">
 <canal nombre="CFGC-DT" numero="11"/>
 </antena>
-<antena lat="47.25444" lon="-79.37694">
-<canal nombre="CKRN-TV-3" numero="3"/>
-</antena>
 <antena lat="49.39111" lon="-82.3575">
 <canal nombre="CITO-TV-1" numero="10"/>
 </antena>
@@ -474,7 +471,6 @@
 <canal nombre="CFEM-DT" numero="13"/>
 <canal nombre="CFVS-DT-1" numero="20"/>
 <canal nombre="CIVA-DT-1" numero="8"/>
-<canal nombre="CKRN-DT" numero="9"/>
 </antena>
 <antena lat="45.05944" lon="-77.19972">
 <canal nombre="CIII-TV-2" numero="2"/>
@@ -540,13 +536,6 @@
 <canal nombre="CFEM-DT-1" numero="10"/>
 <canal nombre="CFVS-DT" numero="25"/>
 <canal nombre="CIVA-DT" numero="12"/>
-<canal nombre="CJDG-DT" numero="7"/>
-</antena>
-<antena lat="49.45556" lon="-78.33083">
-<canal nombre="CJDG-TV-3" numero="11"/>
-</antena>
-<antena lat="49.73417" lon="-77.67889">
-<canal nombre="CJDG-TV-4" numero="9"/>
 </antena>
 <antena lat="45.31194" lon="-72.24167">
 <canal nombre="CFKS-DT" numero="30"/>

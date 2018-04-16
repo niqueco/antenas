@@ -160,9 +160,9 @@
 <canal nombre="WOW" numero="51" polarizacion="H"/>
 </antena>
 <antena lat="-31.48" lon="115.6031">
-<canal nombre="ABC" numero="29" polarizacion="V"/>
+<canal nombre="ABC" numero="29" polarizacion="H"/>
 <canal nombre="NEW" numero="33" polarizacion="V"/>
-<canal nombre="SBS" numero="28" polarizacion="V"/>
+<canal nombre="SBS" numero="28" polarizacion="H"/>
 <canal nombre="STW" numero="31" polarizacion="H"/>
 <canal nombre="TVW" numero="30" polarizacion="H"/>
 </antena>
@@ -741,9 +741,9 @@
 <antena lat="-42.09194" lon="145.6064">
 <canal nombre="ABC" numero="47" polarizacion="H"/>
 <canal nombre="SBS" numero="46" polarizacion="V"/>
-<canal nombre="TDT" numero="50" polarizacion="V"/>
+<canal nombre="TDT" numero="50" polarizacion="H"/>
 <canal nombre="TNT" numero="48" polarizacion="V"/>
-<canal nombre="TVT" numero="49" polarizacion="H"/>
+<canal nombre="TVT" numero="49" polarizacion="V"/>
 </antena>
 <antena lat="-41.49056" lon="146.1844">
 <canal nombre="ABC" numero="48" polarizacion="H"/>
@@ -1235,9 +1235,6 @@
 <canal nombre="AMV" numero="31" polarizacion="H"/>
 <canal nombre="BCV" numero="33" polarizacion="H"/>
 <canal nombre="VTV" numero="30" polarizacion="H"/>
-</antena>
-<antena lat="-37.84972" lon="144.97">
-<canal nombre="" numero="51" polarizacion="H"/>
 </antena>
 <antena lat="-37.83889" lon="144.9967">
 <canal nombre="ABC" numero="43" polarizacion="V"/>
@@ -3159,8 +3156,8 @@
 <canal nombre="ABC" numero="29" polarizacion="V"/>
 <canal nombre="ABC" numero="50" polarizacion="H"/>
 <canal nombre="BTQ" numero="34" polarizacion="H"/>
-<canal nombre="NBN" numero="31" polarizacion="V"/>
 <canal nombre="NBN" numero="38" polarizacion="H"/>
+<canal nombre="NBN" numero="31" polarizacion="V"/>
 <canal nombre="NEN" numero="37" polarizacion="H"/>
 <canal nombre="NEN" numero="30" polarizacion="V"/>
 <canal nombre="NRN" numero="32" polarizacion="V"/>
@@ -3357,10 +3354,10 @@
 <canal nombre="RTQ" numero="50" polarizacion="H"/>
 <canal nombre="RTQ" numero="7" polarizacion="H"/>
 <canal nombre="SBS" numero="12" polarizacion="H"/>
-<canal nombre="STQ" numero="49" polarizacion="H"/>
 <canal nombre="STQ" numero="6" polarizacion="H"/>
-<canal nombre="TNQ" numero="48" polarizacion="H"/>
+<canal nombre="STQ" numero="49" polarizacion="H"/>
 <canal nombre="TNQ" numero="8" polarizacion="H"/>
+<canal nombre="TNQ" numero="48" polarizacion="H"/>
 </antena>
 <antena lat="-23.47444" lon="148.1511">
 <canal nombre="ABC" numero="11" polarizacion="H"/>
@@ -3607,13 +3604,13 @@
 <canal nombre="TVQ" numero="44" polarizacion="V"/>
 </antena>
 <antena lat="-26.79" lon="152.9183">
-<canal nombre="ABC" numero="39" polarizacion="H"/>
 <canal nombre="ABC" numero="49" polarizacion="H"/>
+<canal nombre="ABC" numero="39" polarizacion="H"/>
 <canal nombre="BTQ" numero="34" polarizacion="H"/>
 <canal nombre="QTQ" numero="37" polarizacion="H"/>
 <canal nombre="RTQ" numero="46" polarizacion="H"/>
-<canal nombre="SBS" numero="50" polarizacion="H"/>
 <canal nombre="SBS" numero="35" polarizacion="H"/>
+<canal nombre="SBS" numero="50" polarizacion="H"/>
 <canal nombre="STQ" numero="48" polarizacion="H"/>
 <canal nombre="TNQ" numero="47" polarizacion="H"/>
 <canal nombre="TVQ" numero="38" polarizacion="H"/>
